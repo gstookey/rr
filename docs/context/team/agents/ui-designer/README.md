@@ -2,12 +2,11 @@
 schema: corpus-doc/v1
 status: accepted
 title: UI Designer
-name: Cadence
 areas: [agent-fleet]
-updated: 2026-08-2025
+updated: 2026-08-25
 ---
 
-# UI Designer
+# UI Designer (Cadence)
 
 ## Purpose
 
@@ -17,8 +16,8 @@ Use Cadence when the work needs design shape before implementation.
 
 ## Supporting docs
 
-- [Role](workstation_ui_designer_role.md)
-- [Workflow](workstation_ui_designer_workflow.md)
+- [Role](ui_designer_role.md)
+- [Workflow](ui_designer_workflow.md)
 - [Soul](soul.md)
 - [Identity Addendum](identity_addendum.md)
 - [Prompt Templates](prompt_templates.md)

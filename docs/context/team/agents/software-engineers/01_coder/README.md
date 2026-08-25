@@ -3,7 +3,7 @@ schema: corpus-doc/v1
 status: accepted
 title: Coder
 areas: [agent-fleet]
-updated: 2026-08-2025
+updated: 2026-08-25
 ---
 
 # Coder
@@ -31,3 +31,7 @@ Coder is expected to write production-grade, human-readable TypeScript and Angul
 At the time of `AGENT-HARNESS-01`, `apps/web` is on Angular `21.2.9`, TypeScript `5.9.3`, and `@ngrx/signals` `21.1.0`.
 
 Coder should add TSDoc/JSDoc comments to exported helpers, public contracts, domain-critical helpers, and non-obvious boundary logic. Coder should not over-comment obvious code. Coder should stop and report when a task is under-designed, visually ambiguous, blocked by bundle budget, or requires a role such as Cadence before implementation.
+
+## RR note (2026-08-25)
+
+References to `apps/web` and pnpm in this folder are inherited from TrAIdit. RR's monorepo layout and package manager are undecided — contradiction **C-001** in `docs/context/governance/contradictions/register.md`. Do not scaffold against either convention until Graham decides.

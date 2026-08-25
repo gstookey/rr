@@ -33,9 +33,9 @@ trap 'rm -f "$TMP"' EXIT
   tree -I 'node_modules|.angular|dist|coverage|.git'
 } > "$TMP"
 
-# Floor guard: the real tree is thousands of lines (docs/ alone is ~1,900 files).
+# Floor guard (RR: tree is a few hundred lines today; TrAIdit was ~3,500).
 # Anything under this means a truncated tree (stray depth limit) or missing `tree`.
-MIN_LINES=1000
+MIN_LINES=100  # lowered from 1000 on 2026-08-25: RR tree is small; raise as the repo grows
 lines="$(wc -l < "$TMP" | tr -d ' ')"
 if [ "$lines" -lt "$MIN_LINES" ]; then
   echo "snapshot-file-tree: refusing to write — only $lines lines (expected >= $MIN_LINES)." >&2

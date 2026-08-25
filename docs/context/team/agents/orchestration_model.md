@@ -3,7 +3,7 @@ schema: corpus-doc/v1
 status: accepted
 title: Agent Orchestration Model
 areas: [agent-fleet, process-governance]
-updated: 2026-08-2025
+updated: 2026-08-25
 ---
 
 # Agent Orchestration Model
@@ -449,7 +449,7 @@ Execute a bounded multi-agent workflow for [TASK / MILESTONE].
 
 ## Repo Root
 
-`/Users/gstookey/repos/Project Road Runner`
+`~/repos/rr`
 
 ## Workflow
 

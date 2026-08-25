@@ -4,7 +4,7 @@ status: accepted
 title: Context Maintenance Workflow (Librarian)
 areas: [context-system, process-governance, agent-fleet]
 related: ["docs/context/team/agents/context-librarian/context_librarian_checklist.md"]
-updated: 2026-08-2025
+updated: 2026-08-25
 ---
 
 # Context Maintenance Workflow
@@ -31,12 +31,13 @@ Primary:
 - `docs/CURRENT_STATE.md`
 - `docs/context/log.md`
 - `docs/context/governance/contradictions/register.md`
-- `docs/context/operations/milestones/lab_v1_milestone_ledger.md`
+- `docs/context/operations/milestones/rr_milestone_ledger.md`
 
 Secondary:
 - recently changed files under `docs/context/`
 - relevant files under `docs/design/`
 - `docs/context/operations/feedback/raw/user_feedback_backlog.md`
+- `docs/context/evidence/raw/source_register.md`
 
 ## Process
 
@@ -94,9 +95,9 @@ Compare:
 
 - `docs/CURRENT_STATE.md`
 - `docs/context/canonical/current_priorities.md`
-- `docs/context/canonical/evaluation.md`
-- `docs/context/canonical/versioning.md`
-- `docs/context/canonical/implementation_program.md`
+- `docs/context/canonical/evaluation.md` (not yet created in RR)
+- `docs/context/canonical/versioning.md` (not yet created in RR)
+- `docs/context/canonical/implementation_program.md` (not yet created in RR)
 - milestone ledger
 
 Flag any mismatch.

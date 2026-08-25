@@ -4,7 +4,7 @@ status: accepted
 title: Context Librarian Checklist
 areas: [context-system, agent-fleet]
 related: ["docs/context/team/agents/context-librarian/context_maintenance_workflow.md"]
-updated: 2026-08-2025
+updated: 2026-08-25
 ---
 
 # Context Librarian Checklist
@@ -33,7 +33,7 @@ Use this checklist for each context maintenance pass.
   - [ ] `evidence/`
   - [ ] `team/`
   - [ ] `operations/user-workflow/`
-  - [ ] `operations/task-queue/`
+  - [ ] `operations/task-queue/` — intentionally absent in RR (board-as-status from day one, ADR-003); do not create
   - [ ] `team/agents/`
 
 - [ ] Confirm no obsolete folders remain:
@@ -83,9 +83,9 @@ Compare:
 
 - `docs/CURRENT_STATE.md`
 - `docs/context/canonical/current_priorities.md`
-- `docs/context/canonical/evaluation.md`
-- `docs/context/canonical/versioning.md`
-- `docs/context/canonical/implementation_program.md`
+- `docs/context/canonical/evaluation.md` (not yet created in RR)
+- `docs/context/canonical/versioning.md` (not yet created in RR)
+- `docs/context/canonical/implementation_program.md` (not yet created in RR)
 
 Check:
 
