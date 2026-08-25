@@ -1,7 +1,8 @@
-File tree as of Tue Aug 25 19:54:11 UTC 2026
+File tree as of Tue Aug 25 20:29:17 UTC 2026
 .
 |-- AGENTS.md
 |-- README.md
+|-- current_file_tree.txt
 |-- docs
 |   |-- CURRENT_STATE.md
 |   |-- angular-upgrade-docs
@@ -38,6 +39,7 @@ File tree as of Tue Aug 25 19:54:11 UTC 2026
 |   |   |   |   `-- README.md
 |   |   |   `-- raw
 |   |   |       |-- README.md
+|   |   |       |-- project-road-runner-description.txt
 |   |   |       `-- source_register.md
 |   |   |-- governance
 |   |   |   |-- README.md
@@ -47,6 +49,7 @@ File tree as of Tue Aug 25 19:54:11 UTC 2026
 |   |   |   |   |-- ADR-001-context-system-adopted-from-traidit.md
 |   |   |   |   |-- ADR-002-merge-gate.md
 |   |   |   |   |-- ADR-003-board-is-status-docs-are-doctrine.md
+|   |   |   |   |-- ADR-004-package-manager-npm.md
 |   |   |   |   `-- README.md
 |   |   |   `-- meta
 |   |   |       |-- README.md
@@ -237,4 +240,4 @@ File tree as of Tue Aug 25 19:54:11 UTC 2026
     `-- test
         `-- corpus-graph-claims.spec.mjs
 
-53 directories, 184 files
+53 directories, 187 files

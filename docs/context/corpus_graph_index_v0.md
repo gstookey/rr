@@ -75,7 +75,7 @@ Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-
 - Context System — How This Corpus Is Organized — `docs/context/canonical/context_system.md` — areas: context-system, process-governance — governs: 0 — related: 2
 - Current Priorities — `docs/context/canonical/current_priorities.md` — areas: planning, context-system — governs: 0 — related: 3
 - Isolated Network Constraints — Known and Unknown — `docs/context/canonical/isolated_network_constraints.md` — areas: isolated-network, dev-environment, security, planning — governs: 0 — related: 2
-- Project Overview — Project Road Runner — `docs/context/canonical/project_overview.md` — areas: planning, brand-design — governs: 0 — related: 2
+- Project Overview — Project Road Runner — `docs/context/canonical/project_overview.md` — areas: planning, isolated-network, dev-environment, brand-design — governs: 0 — related: 3
 - Technology Stack — Intended (Design Direction) — `docs/context/canonical/technology_stack.md` — areas: technology-stack, system-architecture, monorepo, frontend, backend — governs: 0 — related: 3
 - Evidence — `docs/context/evidence/README.md` — areas: context-system — governs: 0 — related: 0
 - Evidence — Images — `docs/context/evidence/images/README.md` — areas: context-system, brand-design — governs: 0 — related: 0
@@ -102,8 +102,9 @@ Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-
 - Agents — Repo-Side Fleet — `docs/context/team/agents/README.md` — areas: agent-fleet, process-governance — governs: 0 — related: 2
 - Design — `docs/design/README.md` — areas: brand-design, planning — governs: 0 — related: 1
 
-## exploratory (0)
+## exploratory (1)
 
+- ADR-004 — Package manager and workspace tooling for RR (proposed: npm) — `docs/context/governance/decisions/ADR-004-package-manager-npm.md` — areas: technology-stack, monorepo, isolated-network, dev-environment — governs: 0 — related: 3
 
 ## founder-source (1)
 

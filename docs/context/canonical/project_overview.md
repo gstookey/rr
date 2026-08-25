@@ -2,34 +2,42 @@
 schema: corpus-doc/v1
 status: active
 title: Project Overview — Project Road Runner
-areas: [planning, brand-design]
-related: ["docs/context/canonical/technology_stack.md", "docs/design/brand/README.md"]
+areas: [planning, isolated-network, dev-environment, brand-design]
+related: ["docs/context/canonical/technology_stack.md", "docs/context/canonical/isolated_network_constraints.md", "docs/design/brand/README.md"]
 updated: 2026-08-25
 ---
 
 # Project Overview — Project Road Runner (RR)
 
-**Created:** 2026-08-25 | **Last updated:** 2026-08-25
+**Created:** 2026-08-25 | **Last updated:** 2026-08-25 (SRC-012 ingested — Graham's description, `evidence/raw/project-road-runner-description.txt`)
 
-> **Provenance warning.** Graham keeps a project description inside the Claude project that was *not* available to the agent that wrote this page. Everything here is reconstructed from repo evidence (`AGENTS.md`, the brand guide, the stack source documents). Sections marked `[NEEDS GRAHAM]` are gaps, not facts. First ingest action: paste the project description into `docs/context/evidence/raw/` and let Rin reconcile this page.
+## What RR is
 
-## What we know
+RR is a **program stand-up**: preparing for, then executing, the creation of a brand-new software development program and project on a **fully isolated network**, over the next several weeks/months. This repo is the **outside-the-fence preparation workbench**. The fleet (Axium et al.) lives here, on the "dirty-internet" side; **Graham's access to Claude does not extend onto the island.** Everything produced here must therefore be executable by humans, from documents and bundles alone, once it crosses.
 
-- **Name:** Project Road Runner ("RR", "Project Roadrunner" in the brand guide).
-- **Nature:** a new software system, sibling to an existing AstroUXDS-based Angular application Graham works on. The brand guide describes a "high-tech, military-grade initiative blending Southwestern desert resilience with advanced cyber-electronic warfare and aerospace capabilities" — read this as **brand voice**, not a verified functional description.
-- **Delivery context:** stood up and developed on an **isolated network**; Graham's day job is full-stack engineering in aerospace/defense.
-- **Team:** Graham (lead front-end engineer, C2) + an agent fleet; other human team members exist but are undocumented.
-- **Horizon:** planning now (2026-08); development next; a released version within ~12 months.
-- **Brand promise / tone:** "Speed. Precision. Unstoppable." Direct, technical, mission-focused. Dark theme default, orange-glow accent family, desert earth palette, Orbitron/Rajdhani/Inter/Space Mono type stack. See `docs/design/brand/`.
+## Lines of effort (from SRC-012)
 
-## What we do not know `[NEEDS GRAHAM]`
+| LOE | Description | Output shape |
+|---|---|---|
+| LOE-1 Preparation plan | plan + stories for the preparation phase | board epics/stories, packets in `docs/design/packets/` |
+| LOE-2 Execution plan | plan + stories for the stand-up execution phase on the island | same |
+| LOE-3 Set-up guides | preparatory how-to docs for standing up systems, technologies, environments — largely from scratch | human-executable runbooks |
+| LOE-4 Stack documentation | docs for each package **at the exact versions** to be installed | version-pinned reference bundle |
+| LOE-5 Transfer bundles | package/file bundles prepared for compression and port-up | artifact manifests + bundles |
+| LOE-6 Legacy Angular upgrade | **10+ Angular apps at v17 → v19 minimum, v22 stretch**, on the island | upgrade runbooks per version hop; `docs/angular-upgrade-docs/` is the raw source |
+| LOE-7 Remote troubleshooting | during/after port-up, help Graham troubleshoot with access limited to this side | reproduction-from-description discipline; sanitized issue reports |
+| LOE-8 Scaffold code | source material / templates, mostly TypeScript/Angular, some Python and Java | `apps/`/`packages/` templates in this repo |
 
-- What RR *does* — the user problem, the operators, the core workflows.
-- Who the users are and how many (single-operator first? multi-user target? — AGENTS.md hints the answer is "single now, multi later" as a pattern to expire, but does not say so for RR).
-- What "release" means (internal tool? fielded system? demo?).
-- Relationship to the sibling application — shared code, shared design system only, or shared backend?
-- Data sources, integrations, and any security/classification handling requirements on the isolated network.
+## Team and horizon
 
-## Reusable vs RR-specific (AGENTS.md "Project Road Runner rule")
+Graham (lead front-end engineer, C2) + a human team on the island (npm-fluent, size unknown) + the agent fleet on this side. Prep: weeks/months from 2026-08. Long-term: a released version within ~12 months.
 
-The context system, fleet model, governance, and much of the stack blueprint are **reusable program concepts** inherited from TrAIdit. RR-specific content so far is limited to: the brand identity, the isolated-network delivery constraint, and the AstroUXDS-sibling relationship.
+## Still unknown `[NEEDS GRAHAM]`
+
+- What the *product* on the island does (the description covers the program stand-up, not the application's purpose). Fine for now — LOE-1..6 do not need it.
+- Team size, roles, and who owns the network/transfer process.
+- Whether the sibling AstroUXDS app is one of the 10+ legacy apps.
+
+## Reusable vs RR-specific
+
+The stand-up-on-an-island pattern, the transfer-bundle discipline, and the Angular upgrade runbooks are **reusable program concepts** (candidates for `platform/`). The brand and the specific legacy estate are RR-specific.

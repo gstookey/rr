@@ -43,7 +43,7 @@ Navigation spine for the RR context system. Update when a page is added, removed
 # Governance
 
 - [Governance README](governance/README.md)
-- [Decisions (ADR index)](governance/decisions/README.md) — ADR-001 context system · ADR-002 merge gate · ADR-003 board/doctrine
+- [Decisions (ADR index)](governance/decisions/README.md) — ADR-001 context system · ADR-002 merge gate · ADR-003 board/doctrine · ADR-004 npm (proposed)
 - [Contradiction Register](governance/contradictions/register.md) — C-001..C-006
 - [Meta](governance/meta/README.md)
 
@@ -71,6 +71,7 @@ Navigation spine for the RR context system. Update when a page is added, removed
 
 - [Evidence README](evidence/README.md)
 - [Source Register](evidence/raw/source_register.md) — SRC-001..SRC-012
+- Raw: `evidence/raw/project-road-runner-description.txt` (SRC-012, founder source)
 - [Raw](evidence/raw/README.md) · [Images](evidence/images/README.md)
 - Raw source folders (registered, not moved): `../source-documents/`, `../angular-upgrade-docs/`, `../../images/rr_logos/`
 - Reference: `../context.root-files.example/` (TrAIdit exemplar)

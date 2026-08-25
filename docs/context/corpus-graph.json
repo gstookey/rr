@@ -67,6 +67,8 @@
       "status": "active",
       "areas": [
         "planning",
+        "isolated-network",
+        "dev-environment",
         "brand-design"
       ],
       "governs": []
@@ -169,6 +171,18 @@
       "areas": [
         "process-governance",
         "planning"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/governance/decisions/ADR-004-package-manager-npm.md",
+      "title": "ADR-004 — Package manager and workspace tooling for RR (proposed: npm)",
+      "status": "exploratory",
+      "areas": [
+        "technology-stack",
+        "monorepo",
+        "isolated-network",
+        "dev-environment"
       ],
       "governs": []
     },
@@ -882,6 +896,11 @@
     },
     {
       "from": "docs/context/canonical/project_overview.md",
+      "to": "docs/context/canonical/isolated_network_constraints.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/canonical/project_overview.md",
       "to": "docs/context/canonical/technology_stack.md",
       "type": "related"
     },
@@ -923,6 +942,21 @@
     {
       "from": "docs/context/governance/decisions/ADR-003-board-is-status-docs-are-doctrine.md",
       "to": "docs/context/team/agents/planning_surface_workflow.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/governance/decisions/ADR-004-package-manager-npm.md",
+      "to": "docs/context/canonical/isolated_network_constraints.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/governance/decisions/ADR-004-package-manager-npm.md",
+      "to": "docs/context/canonical/technology_stack.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/governance/decisions/ADR-004-package-manager-npm.md",
+      "to": "docs/context/governance/contradictions/register.md",
       "type": "related"
     },
     {

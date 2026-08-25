@@ -23,4 +23,4 @@ updated: 2026-08-25
 | SRC-009 | Angular upgrade guides v17→v22 (ripped) | `docs/angular-upgrade-docs/` | ripped vendor docs | registered only | — | For the sibling app / migration reference. Excluded from corpus graph. |
 | SRC-010 | RR logo candidates (57 JPGs) | `images/rr_logos/` | generated images | registered only | `docs/design/brand/README.md` | Zip + `__MACOSX` removed 2026-08-25; originals kept. |
 | SRC-011 | TrAIdit context root example | `docs/context.root-files.example/` | reference copy | n/a | `canonical/context_system.md` | Read-only exemplar; excluded from corpus graph. |
-| SRC-012 | Graham's Claude-project description of RR | **not in repo** | founder-source | **pending** | `canonical/project_overview.md` | C-006. |
+| SRC-012 | Graham's description of RR (program stand-up on an isolated network, 8 lines of effort) | `docs/context/evidence/raw/project-road-runner-description.txt` | founder-source | 2026-08-25 | `canonical/project_overview.md`, `canonical/isolated_network_constraints.md`, `canonical/current_priorities.md` | Landed on `main` 9852e23. C-006 resolved. |

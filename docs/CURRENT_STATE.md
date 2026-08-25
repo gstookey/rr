@@ -18,8 +18,8 @@ This file is **implementation truth**: what actually exists and works now. When 
 - **Phase:** preparation / planning. No application code exists in this repo. No monorepo, no `package.json`, no CI.
 - **What exists:** the repo-native context system (this docs corpus), the seven-role agent fleet harnesses under `.claude/agents/`, the merge-gate hook, the corpus-graph tooling (`scripts/corpus-graph.mjs`, green as of 2026-08-25), raw source material for the intended stack and brand.
 - **Intended stack (design direction, not implemented):** Angular 22 + TypeScript 6 + Vitest + NgRx SignalStore on the client; AstroUXDS design system with RR brand-token overrides; Node/Express gateway; shared TypeScript `common` library; npm-workspaces monorepo; Helm-chart-driven runtime config for Kubernetes. Source: `docs/source-documents/`. Canonical synthesis: `docs/context/canonical/technology_stack.md`.
-- **Target environment:** an isolated network. Constraints of that network (package mirrors, allowed tooling, CI availability, container registry) are **not yet documented** — see open decisions.
-- **Team:** Graham (lead front-end engineer, repo owner, C2) + the agent fleet. Additional human team members are referenced ("his team") but not documented.
+- **Target environment:** a fully isolated network with **no agent access**; artifacts cross as one-way compressed bundles; a legacy estate of 10+ Angular v17 apps must be upgraded there (v19 floor, v22 stretch). Remaining unknowns: `canonical/isolated_network_constraints.md`.
+- **Team:** Graham (lead front-end engineer, repo owner, C2) + an npm-fluent human team on the island (size/roles undocumented) + the agent fleet on this side.
 - **Planning surface:** GitHub Project "Project Road Runner Roadmap" (`https://github.com/users/gstookey/projects/3`). Board content not verified from this repo as of 2026-08-25.
 
 ## Active lane
@@ -31,7 +31,7 @@ This file is **implementation truth**: what actually exists and works now. When 
 
 1. **Monorepo layout** — `client/ common/ server/` (source docs) vs `apps/web` etc. (fleet docs, `.claude/launch.json`). Contradiction C-001.
 2. **Isolated-network constraints** — what can be installed, how packages reach the network, whether GitHub/Claude Code are available there at all. Everything downstream depends on this.
-3. **Project description** — the description Graham keeps in the Claude project has not been ingested into this repo. `canonical/project_overview.md` carries `[NEEDS GRAHAM]` markers.
+3. **ADR-004 (npm vs pnpm)** — proposed by Axium; accept or reject.
 4. **Harness model assignments** — `.claude/agents/README.md` table vs frontmatter disagree (Axium: fable vs opus; Rin: fable vs haiku).
 5. **Prompt-template repo root** — set to `~/repos/rr` as a guess; confirm.
 
