@@ -31,11 +31,11 @@ updated: 2026-08-25
 |---|---|---|
 | Shared library | `common/` TypeScript package (contracts, models) | consumed by client and server via workspace symlink |
 | Gateway | Node 22 + Express, `tsc` build | serves `/api/config`, reads Helm ConfigMap at `/config/runtime-config.json` with `.env` fallback |
-| Workspace tooling | **npm workspaces** (explicitly avoiding Nx/Turborepo) | conflicts with pnpm usage in inherited fleet docs — see C-001 |
+| Workspace tooling | **npm workspaces**, `@rr/*` package scope (ADR-004, accepted) | no Nx/Turborepo; layout half of C-001 still open |
 | Runtime | Kubernetes via Helm chart; ConfigMap-driven runtime config | `mono-repo-helm-chart-setup.md` |
 
 ## Open stack questions
 
 - Zone.js vs zoneless (blueprint shows `provideZoneChangeDetection` with a comment inviting removal).
-- Package manager: npm (source docs) vs pnpm+corepack (fleet docs, `launch.json`). Decide with C-001.
+- Package manager: **decided — npm** (ADR-004).
 - Whether any of this is installable on the isolated network — see `isolated_network_constraints.md`. Version pins must be frozen against what can actually be mirrored.

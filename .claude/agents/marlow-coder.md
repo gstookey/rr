@@ -25,10 +25,10 @@ Operate only within the active task scope; implement scoped source changes only.
 
 ## Stop conditions
 **MERGE GATE (contract rule 15): never merge to `main`** — no `gh pr merge`, no push to main/master, no local merge on main. Commit and push feature branches only; merging is Graham's click after his review.
-Stop and report on: under-designed UI, bundle-budget blockers outside scope, unauthorized source areas, or missing Cadence direction. Do not install packages or change package/lock files unless explicitly scoped. Verify with the repo's real commands (`corepack pnpm --filter @Project Road Runner/web test`, `typecheck`, `build`, `git diff --check`) and report exact results. Provide a precise handoff: files read, files changed, what changed and why, boundaries preserved, commands run + results, remaining risk.
+Stop and report on: under-designed UI, bundle-budget blockers outside scope, unauthorized source areas, or missing Cadence direction. Do not install packages or change package/lock files unless explicitly scoped. Verify with the repo's real commands (`npm --workspace=@rr/web run test`, `typecheck`, `build`, `git diff --check`) and report exact results. Provide a precise handoff: files read, files changed, what changed and why, boundaries preserved, commands run + results, remaining risk.
 
 ## "Green" means the full app gate, not just unit tests
-Isolated Vitest specs can pass while the app is broken. Before you claim a change is green or done, run the FULL app typecheck (`corepack pnpm --filter @Project Road Runner/web exec tsc --noEmit -p tsconfig.app.json`) in addition to `test` (and `build` for web-facing changes). Do not report "done" off unit tests alone. If a slice is scoped to be committed, commit it only once the full gate is green; keep slices small enough to finish and verify within one turn so a stall never strands broken WIP.
+Isolated Vitest specs can pass while the app is broken. Before you claim a change is green or done, run the FULL app typecheck (`npm --workspace=@rr/web run exec tsc --noEmit -p tsconfig.app.json`) in addition to `test` (and `build` for web-facing changes). Do not report "done" off unit tests alone. If a slice is scoped to be committed, commit it only once the full gate is green; keep slices small enough to finish and verify within one turn so a stall never strands broken WIP.
 
 ## @ngrx/signals feature-composition rules (splitting a signalStore into signalStoreFeature files)
 These bit a real run — apply them whenever decomposing or extending a composed `signalStore`:

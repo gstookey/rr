@@ -34,4 +34,4 @@ Coder should add TSDoc/JSDoc comments to exported helpers, public contracts, dom
 
 ## RR note (2026-08-25)
 
-References to `apps/web` and pnpm in this folder are inherited from TrAIdit. RR's monorepo layout and package manager are undecided — contradiction **C-001** in `docs/context/governance/contradictions/register.md`. Do not scaffold against either convention until Graham decides.
+Package manager is **npm** (ADR-004, accepted 2026-08-25). Monorepo layout: working assumption `apps/*` + `packages/*` (C-001 layout half). Do not scaffold against `apps/web` paths until the layout is confirmed.

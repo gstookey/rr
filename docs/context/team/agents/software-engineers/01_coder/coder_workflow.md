@@ -29,7 +29,7 @@ For web tasks, also inspect:
 
 - `apps/web/package.json`
 - `apps/web/angular.json`
-- `pnpm-lock.yaml` only enough to verify installed versions when needed
+- `package-lock.json` only enough to verify installed versions when needed
 - nearby Angular components/templates/styles/specs relevant to the task
 
 ## Workflow

@@ -10,11 +10,12 @@ Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-
 ## doctrine (0)
 
 
-## accepted (54)
+## accepted (55)
 
 - ADR-001 — Adopt the TrAIdit context system and agent fleet for RR — `docs/context/governance/decisions/ADR-001-context-system-adopted-from-traidit.md` — areas: process-governance, context-system, agent-fleet — governs: 0 — related: 1
 - ADR-002 — Merging to main is Graham's click — `docs/context/governance/decisions/ADR-002-merge-gate.md` — areas: process-governance, agent-fleet — governs: 0 — related: 1
 - ADR-003 — The board is status; the docs are doctrine — `docs/context/governance/decisions/ADR-003-board-is-status-docs-are-doctrine.md` — areas: process-governance, planning — governs: 0 — related: 1
+- ADR-004 — Package manager and workspace tooling for RR (proposed: npm) — `docs/context/governance/decisions/ADR-004-package-manager-npm.md` — areas: technology-stack, monorepo, isolated-network, dev-environment — governs: 0 — related: 3
 - Agent Handoff Contract — `docs/context/team/agents/agent_handoff_contract.md` — areas: process-governance, agent-fleet — governs: 0 — related: 1
 - Agent Operating Contract — `docs/context/team/agents/agent_operating_contract.md` — areas: process-governance, agent-fleet — governs: 0 — related: 1
 - Agent Collaboration Model — `docs/context/team/agents/collaboration_model.md` — areas: agent-fleet, process-governance — governs: 0 — related: 0
@@ -102,9 +103,8 @@ Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-
 - Agents — Repo-Side Fleet — `docs/context/team/agents/README.md` — areas: agent-fleet, process-governance — governs: 0 — related: 2
 - Design — `docs/design/README.md` — areas: brand-design, planning — governs: 0 — related: 1
 
-## exploratory (1)
+## exploratory (0)
 
-- ADR-004 — Package manager and workspace tooling for RR (proposed: npm) — `docs/context/governance/decisions/ADR-004-package-manager-npm.md` — areas: technology-stack, monorepo, isolated-network, dev-environment — governs: 0 — related: 3
 
 ## founder-source (1)
 

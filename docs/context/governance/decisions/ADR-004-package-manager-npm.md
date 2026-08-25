@@ -1,6 +1,6 @@
 ---
 schema: corpus-doc/v1
-status: exploratory
+status: accepted
 title: ADR-004 — Package manager and workspace tooling for RR (proposed: npm)
 areas: [technology-stack, monorepo, isolated-network, dev-environment]
 related: ["docs/context/governance/contradictions/register.md", "docs/context/canonical/technology_stack.md", "docs/context/canonical/isolated_network_constraints.md"]
@@ -9,13 +9,13 @@ updated: 2026-08-25
 
 # ADR-004 — Package manager and workspace tooling for RR
 
-**Date:** 2026-08-25 | **Status:** **proposed** (Axium recommendation; becomes `accepted` only on Graham's word) | Resolves C-001 (package-manager half)
+**Date:** 2026-08-25 | **Status:** **accepted** by Graham 2026-08-25 ("npm it is. Lock it in.") | Resolves C-001 (package-manager half)
 
 ## Context
 
 Graham uses pnpm in TrAIdit; his island team is more used to npm. The island: no agent access, one-way bundle transfer, and a legacy estate of 10+ Angular v17 apps to be upgraded in place (LOE-6). Both tools are supported by the Angular CLI (`cli.packageManager`). The source-document blueprints assume npm workspaces; the inherited fleet docs assume pnpm + corepack.
 
-## Decision (proposed)
+## Decision
 
 **npm** (bundled with Node, npm workspaces for the monorepo) for RR and for the legacy estate. No pnpm on the island.
 
@@ -29,7 +29,7 @@ Graham uses pnpm in TrAIdit; his island team is more used to npm. The island: no
 
 ## Consequences
 
-- Sweep pnpm/corepack references out of fleet docs and `.claude/launch.json` (Rin; after acceptance).
+- pnpm/corepack references swept from `.claude/launch.json`, `vera-tester.md`, `marlow-coder.md`, coder docs (2026-08-25). Workspace package names use the `@rr/*` scope.
 - Monorepo layout is the *other* half of C-001 and remains open: the blueprint's `client/ common/ server/` vs `apps/* packages/*`. Axium's lean: **`apps/*` + `packages/*`**, because LOE-8 will produce multiple app templates, not one client — but this is a layout taste call, not a risk call; decide alongside this ADR.
 - Pin Node LTS and npm versions explicitly in the readiness packet; the island's Node version is an unknown that may constrain the Angular ceiling.
 

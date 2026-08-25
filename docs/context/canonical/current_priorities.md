@@ -24,7 +24,7 @@ Compact operating context. Readable in one window. Standing truth lives in `docs
 2. **Close the highest-leverage unknowns before designing anything else.** Two of them gate the entire plan:
    - the isolated-network constraints (`canonical/isolated_network_constraints.md` — mostly questions today);
    - the monorepo layout decision (contradiction C-001).
-3. **Decide the package manager and monorepo layout** (ADR-004 proposed; C-001) — it gates LOE-4, LOE-5, and LOE-8 alike.
+3. **Confirm the monorepo layout** (C-001 layout half; npm is decided per ADR-004) — it gates LOE-8 scaffolds.
 
 ## Recommended first line of effort (Axium's opinion, 2026-08-25, revised after SRC-012)
 

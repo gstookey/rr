@@ -177,7 +177,7 @@
     {
       "path": "docs/context/governance/decisions/ADR-004-package-manager-npm.md",
       "title": "ADR-004 — Package manager and workspace tooling for RR (proposed: npm)",
-      "status": "exploratory",
+      "status": "accepted",
       "areas": [
         "technology-stack",
         "monorepo",
