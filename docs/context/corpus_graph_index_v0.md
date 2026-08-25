@@ -103,8 +103,15 @@ Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-
 - Agents — Repo-Side Fleet — `docs/context/team/agents/README.md` — areas: agent-fleet, process-governance — governs: 0 — related: 2
 - Design — `docs/design/README.md` — areas: brand-design, planning — governs: 0 — related: 1
 
-## exploratory (0)
+## exploratory (7)
 
+- Isolated-Network Readiness Packet (iso-net-readiness-01) — `docs/design/packets/iso-net-readiness-01-design-packet/README.md` — areas: isolated-network, dev-environment, technology-stack, planning — governs: 0 — related: 5
+- Day One on the Island — Runbook v0 (draft, unrehearsed) — `docs/design/packets/iso-net-readiness-01-design-packet/day_one_on_the_island_runbook_v0.md` — areas: isolated-network, dev-environment, technology-stack — governs: 0 — related: 3
+- Decision Register v0 — Isolated-Network Readiness — `docs/design/packets/iso-net-readiness-01-design-packet/decision_register_v0.md` — areas: isolated-network, technology-stack, process-governance, planning — governs: 0 — related: 4
+- Island Questionnaire v0 — Isolated-Network Readiness — `docs/design/packets/iso-net-readiness-01-design-packet/island_questionnaire_v0.md` — areas: isolated-network, dev-environment, security, planning — governs: 0 — related: 2
+- Legacy Estate Inventory Template v0 — Angular v17 applications — `docs/design/packets/iso-net-readiness-01-design-packet/legacy_estate_inventory_template_v0.md` — areas: isolated-network, frontend, dev-environment, planning — governs: 0 — related: 3
+- Stack Dependency Manifest v0 — pinned versions and bundle footprint — `docs/design/packets/iso-net-readiness-01-design-packet/stack_dependency_manifest_v0.md` — areas: technology-stack, isolated-network, dev-environment, monorepo — governs: 0 — related: 4
+- Story Decomposition v0 — Isolated-Network Readiness — `docs/design/packets/iso-net-readiness-01-design-packet/story_decomposition_v0.md` — areas: planning, isolated-network, process-governance — governs: 0 — related: 4
 
 ## founder-source (1)
 

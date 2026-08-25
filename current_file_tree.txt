@@ -1,4 +1,4 @@
-File tree as of Tue Aug 25 20:39:37 UTC 2026
+File tree as of Tue Aug 25 21:14:08 UTC 2026
 .
 |-- AGENTS.md
 |-- README.md
@@ -151,8 +151,15 @@ File tree as of Tue Aug 25 20:39:37 UTC 2026
 |   |   |-- README.md
 |   |   |-- brand
 |   |   |   `-- README.md
-|   |   |-- mockups
 |   |   `-- packets
+|   |       `-- iso-net-readiness-01-design-packet
+|   |           |-- README.md
+|   |           |-- day_one_on_the_island_runbook_v0.md
+|   |           |-- decision_register_v0.md
+|   |           |-- island_questionnaire_v0.md
+|   |           |-- legacy_estate_inventory_template_v0.md
+|   |           |-- stack_dependency_manifest_v0.md
+|   |           `-- story_decomposition_v0.md
 |   `-- source-documents
 |       `-- monorepo-set-up-docs
 |           |-- angular-application-stand-up-docs
@@ -240,4 +247,4 @@ File tree as of Tue Aug 25 20:39:37 UTC 2026
     `-- test
         `-- corpus-graph-claims.spec.mjs
 
-53 directories, 187 files
+53 directories, 194 files

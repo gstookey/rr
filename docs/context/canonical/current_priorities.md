@@ -9,7 +9,7 @@ updated: 2026-08-25
 
 # Current Priorities
 
-**Created:** 2026-08-25 | **Last updated:** 2026-08-25 (Axium; SRC-012 ingested, lines of effort now known)
+**Created:** 2026-08-25 | **Last updated:** 2026-08-25 (Axium; readiness packet cut — sequencing note added below the recommendation)
 
 Compact operating context. Readable in one window. Standing truth lives in `docs/CURRENT_STATE.md`; this page is *sequencing and intent*.
 
@@ -36,6 +36,19 @@ SRC-012 confirms the shape: eight lines of effort (`project_overview.md`). Recom
 - *Alternative if Graham disagrees:* "Monorepo Skeleton v0" — scaffold `client/common/server` (or `apps/*`) with Angular 22 + Vitest + AstroUXDS brand tokens, on the internet side, *provisionally*, with the explicit expiration that it gets re-validated once the network constraints are known. Faster dopamine, higher rework risk.
 
 Graham chooses. Axium does not activate lanes.
+
+### Status of that recommendation (2026-08-25, second session)
+
+The packet described above has been **cut, not activated**: `docs/design/packets/iso-net-readiness-01-design-packet/` — all five pieces (a)–(e) plus a story decomposition. It is `exploratory` design direction; no board issue exists and no decision is closed.
+
+What it changes about sequencing:
+
+- **Two items are externally gated and should go out first**, because their lead time is not ours: the island questionnaire (S-01) and the legacy-estate inventory (S-02). Everything else in preparation is partly speculative until they return.
+- **The parallel LOE-6 track above is now the substantive work available today** with no external dependency (S-05, the v17→v18 hop rehearsed on a throwaway app). If Graham wants motion while S-01/S-02 sit in other people's inboxes, that is the lane.
+- **Bundle work (S-03) and the offline rehearsal (S-04) are sequenced behind the questionnaire**, not ahead of it — building a bundle before the registry situation and the Node ceiling are known risks building the wrong bundle.
+- **C-001's layout half is now the cheapest open decision** (DR-05): free to close today, expensive once LOE-8 scaffolding starts.
+
+Candidates and sequence: `docs/design/packets/iso-net-readiness-01-design-packet/story_decomposition_v0.md`. Open decisions: `.../decision_register_v0.md` (DR-01..DR-09). Activation remains Graham's.
 
 ## Not now
 

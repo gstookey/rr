@@ -2,6 +2,10 @@
 
 <!-- Convention (BS-14): one `# [YYYY-MM-DD] <type> | <title>` header level, newest-first — prepend below this comment. Types: ingest | decision | milestone | lint | governance | session -->
 
+# [2026-08-25] milestone | Isolated-Network Readiness Packet cut (`iso-net-readiness-01`, docs-only, proposed not activated)
+
+Axium, second RR session, branch `claude/isolated-network-readiness-6fzogv`. Cut `docs/design/packets/iso-net-readiness-01-design-packet/`: island questionnaire (network unknowns → answerable questions), legacy-estate inventory template (the instrument LOE-6 cannot be sized without), version-pinned stack manifest with pins verified live against `registry.npmjs.org` and a **measured** bundle footprint (521 packages, ≈89 MB tarballs, ≈436 MB unpacked; Verdaccio ≈11 MB / 62 MB), unrehearsed day-one runbook, decision register DR-01..DR-09, story candidates S-01..S-06. Registry findings worth carrying: Angular 22.1.3 requires Node `^22.22.3 || ^24.15.0 || >=26.0.0` and TypeScript `>=6.0 <6.1` (only 6.0.2/6.0.3 exist; `typescript@latest` is 7.0.2 — a hand-packed "latest of everything" bundle cannot build); Node 24.19.0 is the current Active LTS; Express `latest` is 5.2.1, ahead of the source blueprints. Proceeded on C-001's open layout half (`apps/*` + `packages/*`) as a stated assumption, not a resolution. **No board issues created; nothing activated; no decision closed.**
+
 # [2026-08-25] decision | ADR-004 accepted — npm for RR and the legacy estate
 
 Graham: "npm it is. Lock it in." pnpm/corepack swept from harnesses, `launch.json`, coder docs; `@rr/*` package scope. C-001 package-manager half resolved; layout half open (working assumption `apps/*` + `packages/*`).
