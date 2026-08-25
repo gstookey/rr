@@ -1,0 +1,2109 @@
+<!-- GENERATED FILE — do not edit by hand. Regenerate: node scripts/corpus-graph.mjs index -->
+<!-- Source of truth: per-doc YAML frontmatter (schema corpus-doc/v1). Lint: node scripts/corpus-graph.mjs check -->
+
+# Corpus Graph Index v0
+
+**Created:** 2026-08-25 (generated artifact — a regeneration date is deliberately omitted so diffs stay meaningful; per-doc currency lives in each doc's `updated` frontmatter field and its prose date-stamp)
+
+Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-or-term>`
+
+## doctrine (68)
+
+- Massive/Polygon Compliance — Engineering Posture — `docs/context/governance/data-rights/massive_compliance_v0.md` — areas: data-rights, provider-data — governs: 1 — related: 0
+- Provider Data — Delete-on-Termination Runbook — `docs/context/governance/data-rights/provider_data_delete_on_termination_runbook_v0.md` — areas: data-rights, provider-data — governs: 2 — related: 2
+- Agent Archetypes — Definition, Composition, Manifest Seed, Promotion — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/README.md` — areas: agent-archetypes, agent-manifest, agent-creation — governs: 1 — related: 1
+- Archetype Controlling Definition — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/archetype_controlling_definition_v0.md` — areas: agent-archetypes — governs: 0 — related: 1
+- Algorithmic / Agentic Boundary Package — `docs/design/v2/agent-architecture/algorithmic-agentic-boundary-v0/README.md` — areas: agent-execution, quant-service, risk-gates — governs: 1 — related: 0
+- Agentic Decision Layer — `docs/design/v2/agent-architecture/algorithmic-agentic-boundary-v0/agentic_decision_layer_v0.md` — areas: agent-execution, mind-provider — governs: 1 — related: 1
+- Algorithmic / Agentic Boundary Brief — `docs/design/v2/agent-architecture/algorithmic-agentic-boundary-v0/algorithmic_agentic_boundary_brief_v0.md` — areas: agent-execution, quant-service — governs: 1 — related: 1
+- Algorithmic Tool Layer — `docs/design/v2/agent-architecture/algorithmic-agentic-boundary-v0/algorithmic_tool_layer_v0.md` — areas: quant-service, agent-execution — governs: 0 — related: 1
+- B/A/S/H Plus Sizing Decision Chain — `docs/design/v2/agent-architecture/algorithmic-agentic-boundary-v0/bash_plus_sizing_decision_chain_v0.md` — areas: agent-execution, position-sizing — governs: 0 — related: 1
+- Paper / Live Boundary Implications — `docs/design/v2/agent-architecture/algorithmic-agentic-boundary-v0/paper_live_boundary_implications_v0.md` — areas: paper-live-boundary, live-authority — governs: 0 — related: 1
+- Risk Gate and Authority Layer — `docs/design/v2/agent-architecture/algorithmic-agentic-boundary-v0/risk_gate_and_authority_layer_v0.md` — areas: risk-gates, agent-execution, paper-live-boundary — governs: 1 — related: 1
+- Sizing Caliper Set — `docs/design/v2/agent-architecture/position-sizing-decision-model-v0/sizing_caliper_set_v0.md` — areas: position-sizing, decision-calipers — governs: 0 — related: 0
+- Evidence Layer Reconciliation — evidence-assembly owner-doc — `docs/design/v2/agent-execution/agent-execution-01-design-packet/evidence_layer_reconciliation_v0.md` — areas: decision-evidence, agent-execution — governs: 1 — related: 2
+- Agentic Differentiation Model — `docs/design/v2/business-research/algo-research-01-algo-trading-vernacular-platform-scan/agentic_differentiation_model_v0.md` — areas: product-thesis, agent-execution — governs: 0 — related: 1
+- Regime Detection and Market Context — `docs/design/v2/business-research/algo-research-01-algo-trading-vernacular-platform-scan/regime_detection_and_market_context_v0.md` — areas: regime-detection, market-context, algo-surface — governs: 1 — related: 1
+- Symbol Universe vs Market Context Universe — `docs/design/v2/business-research/algo-research-01-algo-trading-vernacular-platform-scan/symbol_universe_vs_market_context_universe_v0.md` — areas: symbol-universe, market-context, algo-surface, agent-manifest — governs: 2 — related: 2
+- Decision Caliper R&D Program Package — `docs/design/v2/decision-calipers/r-and-d/README.md` — areas: decision-calipers, autonomy — governs: 0 — related: 0
+- C2 HITL Automation Balance — `docs/design/v2/decision-calipers/r-and-d/c2_hitl_automation_balance_v0.md` — areas: decision-calipers, autonomy — governs: 0 — related: 1
+- Configurable Autonomy Doctrine — `docs/design/v2/decision-calipers/r-and-d/configurable_autonomy_doctrine_v0.md` — areas: decision-calipers, autonomy — governs: 0 — related: 1
+- Decision Caliper R&D Program — `docs/design/v2/decision-calipers/r-and-d/decision_caliper_r_and_d_program_v0.md` — areas: decision-calipers, autonomy — governs: 0 — related: 1
+- Hidden / Internal Caliper Layer — `docs/design/v2/decision-calipers/r-and-d/hidden_internal_caliper_layer_v0.md` — areas: decision-calipers, autonomy — governs: 0 — related: 1
+- R&D Agentic Fleet — `docs/design/v2/decision-calipers/r-and-d/r_d_agentic_fleet_v0.md` — areas: decision-calipers, agent-fleet, autonomy — governs: 0 — related: 1
+- The TrAIder Score — the scoring system doctrine (Pit Score · Lab Score) — `docs/design/v2/evaluation/traider_score_doctrine_v1.md` — areas: evaluation, decision-evidence, promotion-governance — governs: 0 — related: 8
+- SIM MicroPath — Interpolated Evidence Stream — `docs/design/v2/historic-simulator/sim-micropath-01-interpolated-evidence-stream/README.md` — areas: historic-simulator, replay, decision-evidence — governs: 1 — related: 0
+- Simulator Replay / Playhead / Preview Model — `docs/design/v2/historic-simulator/simulator-replay-playhead-preview-v0/README.md` — areas: historic-simulator, replay — governs: 1 — related: 0
+- Live Intervention Package — `docs/design/v2/live-authority/live-intervention-01-operator-manual-live-intervention-surface/README.md` — areas: live-authority, paper-live-boundary — governs: 0 — related: 0
+- Audit Logging and Traceability — `docs/design/v2/live-authority/live-intervention-01-operator-manual-live-intervention-surface/audit_logging_and_traceability_v0.md` — areas: live-authority, process-governance — governs: 0 — related: 1
+- Broker Order / Fill Boundary — `docs/design/v2/live-authority/live-intervention-01-operator-manual-live-intervention-surface/broker_order_fill_boundary_v0.md` — areas: live-authority, paper-live-boundary — governs: 0 — related: 1
+- Live Intervention Core Doctrine — `docs/design/v2/live-authority/live-intervention-01-operator-manual-live-intervention-surface/core_doctrine_v0.md` — areas: live-authority — governs: 0 — related: 1
+- Live Operator Intervention Record Model — `docs/design/v2/live-authority/live-intervention-01-operator-manual-live-intervention-surface/live_operator_intervention_record_model_v0.md` — areas: live-authority, decision-evidence — governs: 0 — related: 1
+- Operator Authority Boundary — `docs/design/v2/live-authority/live-intervention-01-operator-manual-live-intervention-surface/operator_authority_boundary_v0.md` — areas: live-authority, risk-gates — governs: 0 — related: 1
+- Live Workbench Region Ownership — `docs/design/v2/live-authority/live-intervention-01-operator-manual-live-intervention-surface/workbench_region_ownership_v0.md` — areas: live-authority, workstation-ui — governs: 0 — related: 1
+- Market Ontology — Market Structure and Symbol Metadata Substrate — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/README.md` — areas: market-ontology, symbol-universe, research — governs: 0 — related: 1
+- Market Ontology Core Doctrine — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/market_ontology_core_doctrine_v0.md` — areas: market-ontology — governs: 0 — related: 1
+- THE MIND OUTPUT CONTRACT — text-JSON is canonical; the schema↔prompt parity guard — `docs/design/v2/mind-contract/mind_output_contract_doctrine_v0.md` — areas: mind-provider, agent-execution, game-script, process-governance — governs: 0 — related: 3
+- Evidence Confidence Matrix Agent Decision Doctrine — `docs/design/v2/mvp-roadmap/evidence_confidence_matrix_agent_decision_doctrine_v0.md` — areas: decision-evidence, agent-execution — governs: 0 — related: 1
+- Simulator Run Wallet and Recorded Run Reuse — `docs/design/v2/mvp-roadmap/simulator_run_wallet_and_recorded_run_reuse_v0.md` — areas: historic-simulator, portfolio-accounting, agent-versioning — governs: 0 — related: 0
+- Portfolio Core — Account / Execution / Accounting Foundation — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/README.md` — areas: portfolio-accounting, paper-live-boundary — governs: 1 — related: 1
+- Normalized Order Lifecycle — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/normalized_order_lifecycle_v0.md` — areas: portfolio-accounting, risk-gates — governs: 1 — related: 1
+- Portfolio Core Controlling Doctrine — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/portfolio_core_controlling_doctrine_v0.md` — areas: portfolio-accounting — governs: 1 — related: 1
+- Controlling Ledger Doctrine — `docs/design/v2/portfolio-core/portfolio-ledger-01-cash-position-weighted-average-cost-accounting-reducer/controlling_ledger_doctrine_v0.md` — areas: portfolio-accounting — governs: 1 — related: 0
+- Portfolio Numeric Doctrine — Division / Quantization / Rounding / Conservation — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/README.md` — areas: portfolio-accounting — governs: 1 — related: 1
+- Portfolio Numeric Controlling Doctrine — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/portfolio_numeric_controlling_doctrine_v0.md` — areas: portfolio-accounting — governs: 1 — related: 1
+- Weighted-Average Cost Downstream Doctrine — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/weighted_average_cost_downstream_doctrine_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Portfolio Valuation — Equity Snapshot Doctrine — `docs/design/v2/portfolio-core/portfolio-valuation-01-equity-snapshot-doctrine/README.md` — areas: portfolio-accounting, evaluation — governs: 1 — related: 1
+- Controlling Valuation Doctrine — `docs/design/v2/portfolio-core/portfolio-valuation-01-equity-snapshot-doctrine/controlling_valuation_doctrine_v0.md` — areas: portfolio-accounting — governs: 1 — related: 1
+- Controlling Execution Doctrine — `docs/design/v2/portfolio-core/sim-execution-01-historic-simulator-execution-adapter/implementation_packet/controlling_execution_doctrine.md` — areas: portfolio-accounting, historic-simulator — governs: 1 — related: 0
+- The Combine — TrAIdit R&D Manual — `docs/design/v2/rnd/rnd_manual_v0.md` — areas: research, decision-calipers, evaluation, agent-archetypes, process-governance — governs: 0 — related: 15
+- Event Stream Timeline Doctrine — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/README.md` — areas: event-stream-timeline, workstation-ui — governs: 1 — related: 1
+- Core Doctrine — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/core_doctrine_v0.md` — areas: event-stream-timeline — governs: 0 — related: 1
+- Semantic Color Doctrine v1 — `docs/design/v2/workstation-ui/color/semantic_color_doctrine_v1.md` — areas: workstation-ui — governs: 0 — related: 3
+- Label Capitalization and Casing Canon — `docs/design/v2/workstation-ui/label_capitalization_and_casing_canon_v0.md` — areas: workstation-ui, content-style — governs: 1 — related: 4
+- Workstation Loading-State Doctrine (spinner / pulse / resolve) — `docs/design/v2/workstation-ui/loading_state_doctrine_v0.md` — areas: workstation-ui, content-style, workstation-shell — governs: 1 — related: 5
+- Minimum Necessary Force — UI Disqualifying & Honesty-Labeling — `docs/design/v2/workstation-ui/minimum_necessary_force_doctrine_v0.md` — areas: workstation-ui, content-style — governs: 1 — related: 4
+- Display Layer Legend Core Doctrine — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-legend-01/display_layer_legend_core_doctrine_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Readiness Definition — `docs/design/v2/workstation-ui/readiness-modes-windowing/readiness_definition_v0.md` — areas: workstation-ui, promotion-governance — governs: 0 — related: 0
+- Readiness Dimension Candidates — `docs/design/v2/workstation-ui/readiness-modes-windowing/readiness_dimension_candidates_v0.md` — areas: promotion-governance, evaluation — governs: 0 — related: 0
+- Readiness Surface Ownership — `docs/design/v2/workstation-ui/readiness-modes-windowing/readiness_surface_ownership_v0.md` — areas: promotion-governance, workstation-ui — governs: 0 — related: 2
+- Selected Decision Dashboard — `docs/design/v2/workstation-ui/selected-decision-dashboard-v0/README.md` — areas: workstation-ui, decision-evidence — governs: 0 — related: 0
+- Selected Decision Dashboard Core Doctrine — `docs/design/v2/workstation-ui/selected-decision-dashboard-v0/core_doctrine_v0.md` — areas: workstation-ui, decision-evidence — governs: 0 — related: 0
+- UI-FOUNDATIONS-01 — the shared substrate every workstation UI packet inherits — `docs/design/v2/workstation-ui/ui-foundations-01/README.md` — areas: workstation-ui, process-governance — governs: 0 — related: 4
+- The Mockup Request Protocol — how the WDA is briefed, run, and handed off to the Coder — `docs/design/v2/workstation-ui/ui-foundations-01/mockup_request_protocol_v0.md` — areas: workstation-ui, process-governance, content-style — governs: 0 — related: 3
+- The UI Concordance — the four ledgers every UI design packet reads and writes — `docs/design/v2/workstation-ui/ui-foundations-01/ui_concordance_v0.md` — areas: workstation-ui, process-governance, system-architecture — governs: 0 — related: 4
+- UI refactor doctrine — keep, recast, demolish, and the salvage census — `docs/design/v2/workstation-ui/ui-foundations-01/ui_refactor_doctrine_v0.md` — areas: workstation-ui, process-governance, legacy-retirement — governs: 0 — related: 4
+- UI Copy Discipline — Show, Don't Tell — `docs/design/v2/workstation-ui/ui_copy_discipline_show_dont_tell_v0.md` — areas: workstation-ui, content-style — governs: 1 — related: 4
+- Utility Window System Design Doctrine — `docs/design/v2/workstation-ui/utility-window-01-design-packet/utility_window_system_v0.md` — areas: utility-window-system, workstation-ui — governs: 1 — related: 2
+- Window vs Dialog Policy — `docs/design/v2/workstation-ui/utility-window-01-design-packet/window_dialog_policy_v0.md` — areas: utility-window-system, workstation-ui — governs: 1 — related: 1
+- Workstation UI Operating Doctrine — `docs/design/v2/workstation-ui/workstation_ui_operating_doctrine.md` — areas: workstation-ui, workstation-shell, lab — governs: 1 — related: 1
+
+## accepted (372)
+
+- ADR 0001: Start with a monorepo — `docs/adrs/0001-monorepo.md` — areas: process-governance, system-architecture — governs: 0 — related: 0
+- ADR-001 — Lab-first product center — `docs/context/governance/decisions/ADR-001-lab-first.md` — areas: process-governance, product-thesis, lab — governs: 0 — related: 0
+- ADR-002 — Design broad enough, implement narrow enough — `docs/context/governance/decisions/ADR-002-design-broad-implement-narrow.md` — areas: process-governance — governs: 0 — related: 0
+- ADR-003 — Context is a first-class project asset — `docs/context/governance/decisions/ADR-003-context-is-a-first-class-asset.md` — areas: process-governance, context-system — governs: 0 — related: 0
+- ADR-004 — Milestones and session rollups are first-class operating artifacts — `docs/context/governance/decisions/ADR-004-milestones-and-rollups.md` — areas: process-governance, planning-surface — governs: 0 — related: 0
+- ADR-006 — Historic Simulator runs are persisted with triggering events only — `docs/context/governance/decisions/ADR-006-simulator-run-persistence-boundary.md` — areas: process-governance, historic-simulator — governs: 0 — related: 0
+- ADR-007 — User-facing names: Symbol Graph → "Price Action", Version Graph → "Equity" — `docs/context/governance/decisions/ADR-007-user-facing-graph-names.md` — areas: process-governance, workstation-ui, historic-simulator — governs: 0 — related: 0
+- ADR-008 — GitHub Projects Is the Planning Surface — `docs/context/governance/decisions/ADR-008-github-projects-planning-surface.md` — areas: planning-surface, process-governance — governs: 0 — related: 1
+- ADR-009 — Multi-repo Structure — `docs/context/governance/decisions/ADR-009-multi-repo-structure.md` — areas: process-governance, planning-surface — governs: 0 — related: 1
+- Assistant Role — Axium — `docs/context/governance/meta/assistant_role.md` — areas: agent-fleet, context-system — governs: 0 — related: 0
+- Context Librarian Role — `docs/context/governance/meta/context_librarian_role.md` — areas: agent-fleet, context-system — governs: 0 — related: 0
+- TrAInit Document Hierarchy Overview — `docs/context/governance/meta/trainit_doc_overview.md` — areas: context-system — governs: 0 — related: 0
+- Feedback Entry Template — `docs/context/operations/feedback/feedback_template.md` — areas: process-governance — governs: 0 — related: 0
+- Session Rollup Checklist — `docs/context/operations/sessions/session_rollup_checklist.md` — areas: process-governance, context-system — governs: 0 — related: 0
+- Operator Workflow (Lab Usage) — `docs/context/operations/user-workflow/operator_workflow.md` — areas: lab, process-governance — governs: 0 — related: 0
+- Context System Design — `docs/context/platform/architecture/context_system_design.md` — areas: context-system, platform-thesis — governs: 0 — related: 0
+- Iteration Model (TrAInit Core Loop) — `docs/context/platform/system/iteration_model.md` — areas: platform-thesis — governs: 0 — related: 0
+- Team Agents — `docs/context/team/agents/README.md` — areas: agent-fleet — governs: 0 — related: 0
+- Agent Handoff Contract — `docs/context/team/agents/agent_handoff_contract.md` — areas: process-governance, agent-fleet — governs: 0 — related: 1
+- Agent Operating Contract — `docs/context/team/agents/agent_operating_contract.md` — areas: process-governance, agent-fleet — governs: 0 — related: 1
+- Business Incubation Advisor — `docs/context/team/agents/business-advisors/01_business-incubation-advisor/README.md` — areas: agent-fleet — governs: 0 — related: 0
+- Business Incubation Advisor Role — `docs/context/team/agents/business-advisors/01_business-incubation-advisor/business_incubation_advisor_role.md` — areas: agent-fleet — governs: 0 — related: 0
+- Business Incubation Advisor Workflow — `docs/context/team/agents/business-advisors/01_business-incubation-advisor/business_incubation_advisor_workflow.md` — areas: agent-fleet — governs: 0 — related: 0
+- Business Incubation Advisor Guardrails — `docs/context/team/agents/business-advisors/01_business-incubation-advisor/guardrails.md` — areas: agent-fleet — governs: 0 — related: 0
+- Identity Addendum - Verity BIA — `docs/context/team/agents/business-advisors/01_business-incubation-advisor/identity_addendum.md` — areas: agent-fleet — governs: 0 — related: 0
+- Business Incubation Advisor Principles — `docs/context/team/agents/business-advisors/01_business-incubation-advisor/principles.md` — areas: agent-fleet — governs: 0 — related: 0
+- Business Incubation Advisor Prompt Templates — `docs/context/team/agents/business-advisors/01_business-incubation-advisor/prompt_templates.md` — areas: agent-fleet — governs: 0 — related: 0
+- Soul - Business Incubation Advisor — `docs/context/team/agents/business-advisors/01_business-incubation-advisor/soul.md` — areas: agent-fleet — governs: 0 — related: 0
+- Business Advisors — `docs/context/team/agents/business-advisors/README.md` — areas: agent-fleet — governs: 0 — related: 0
+- Agent Collaboration Model — `docs/context/team/agents/collaboration_model.md` — areas: agent-fleet, process-governance — governs: 0 — related: 0
+- Context Librarian — `docs/context/team/agents/context-librarian/README.md` — areas: agent-fleet — governs: 0 — related: 0
+- Context Librarian Checklist — `docs/context/team/agents/context-librarian/context_librarian_checklist.md` — areas: context-system, agent-fleet — governs: 0 — related: 1
+- Context Librarian Local Role Stub — `docs/context/team/agents/context-librarian/context_librarian_role.md` — areas: agent-fleet — governs: 0 — related: 0
+- Context Maintenance Workflow (Librarian) — `docs/context/team/agents/context-librarian/context_maintenance_workflow.md` — areas: context-system, process-governance, agent-fleet — governs: 0 — related: 1
+- Identity Addendum - Rin Librarian — `docs/context/team/agents/context-librarian/identity_addendum.md` — areas: agent-fleet — governs: 0 — related: 0
+- Soul — Context Librarian — `docs/context/team/agents/context-librarian/soul.md` — areas: agent-fleet — governs: 0 — related: 0
+- Workstation UI Designer — `docs/context/team/agents/designers/01_workstation-ui-designer/README.md` — areas: agent-fleet — governs: 0 — related: 0
+- Identity Addendum - Cadence WDA — `docs/context/team/agents/designers/01_workstation-ui-designer/identity_addendum.md` — areas: agent-fleet — governs: 0 — related: 0
+- Workstation UI Designer Prompt Templates — `docs/context/team/agents/designers/01_workstation-ui-designer/prompt_templates.md` — areas: agent-fleet — governs: 0 — related: 0
+- Soul — Workstation UI Designer — `docs/context/team/agents/designers/01_workstation-ui-designer/soul.md` — areas: agent-fleet — governs: 0 — related: 0
+- Workstation UI Designer Role — `docs/context/team/agents/designers/01_workstation-ui-designer/workstation_ui_designer_role.md` — areas: agent-fleet — governs: 0 — related: 0
+- Workstation UI Designer Workflow — `docs/context/team/agents/designers/01_workstation-ui-designer/workstation_ui_designer_workflow.md` — areas: agent-fleet — governs: 0 — related: 0
+- Designers — `docs/context/team/agents/designers/README.md` — areas: agent-fleet — governs: 0 — related: 0
+- Agent Orchestration Model — `docs/context/team/agents/orchestration_model.md` — areas: agent-fleet, process-governance — governs: 0 — related: 0
+- Orchestrator — `docs/context/team/agents/orchestrators/01_orchestrator/README.md` — areas: agent-fleet — governs: 0 — related: 0
+- Identity Addendum - Marin Orchestrator — `docs/context/team/agents/orchestrators/01_orchestrator/identity_addendum.md` — areas: agent-fleet — governs: 0 — related: 0
+- Orchestrator Role — `docs/context/team/agents/orchestrators/01_orchestrator/orchestrator_role.md` — areas: agent-fleet — governs: 0 — related: 0
+- Orchestrator Workflow — `docs/context/team/agents/orchestrators/01_orchestrator/orchestrator_workflow.md` — areas: agent-fleet — governs: 0 — related: 0
+- Orchestrator Phase Gate Checklist — `docs/context/team/agents/orchestrators/01_orchestrator/phase_gate_checklist.md` — areas: agent-fleet — governs: 0 — related: 0
+- Orchestrator Prompt Templates — `docs/context/team/agents/orchestrators/01_orchestrator/prompt_templates.md` — areas: agent-fleet — governs: 0 — related: 0
+- Soul - Orchestrator — `docs/context/team/agents/orchestrators/01_orchestrator/soul.md` — areas: agent-fleet — governs: 0 — related: 0
+- Orchestrator Spawn Contract — `docs/context/team/agents/orchestrators/01_orchestrator/spawn_contract.md` — areas: agent-fleet — governs: 0 — related: 0
+- Planning Surface Workflow — `docs/context/team/agents/planning_surface_workflow.md` — areas: planning-surface, process-governance, agent-fleet — governs: 0 — related: 0
+- Soul — Tycho — `docs/context/team/agents/quant-engineers/01_tycho_quant-coder/soul.md` — areas: agent-fleet — governs: 0 — related: 0
+- Soul — Bessel — `docs/context/team/agents/quant-engineers/02_bessel_quant-reviewer/soul.md` — areas: agent-fleet — governs: 0 — related: 0
+- Soul — Gosset — `docs/context/team/agents/quant-engineers/03_gosset_quant-tester/soul.md` — areas: agent-fleet — governs: 0 — related: 0
+- Quant Engineers — the traidit-quant-service fleet — `docs/context/team/agents/quant-engineers/README.md` — areas: agent-fleet — governs: 0 — related: 0
+- Software Design Assistant — `docs/context/team/agents/software-design-assistant/README.md` — areas: agent-fleet — governs: 0 — related: 0
+- Identity Addendum - Fader SDA — `docs/context/team/agents/software-design-assistant/identity_addendum.md` — areas: agent-fleet — governs: 0 — related: 0
+- Software Design Assistant Role — `docs/context/team/agents/software-design-assistant/software_design_assistant_role.md` — areas: agent-fleet — governs: 0 — related: 0
+- Software Design Assistant Workflow — `docs/context/team/agents/software-design-assistant/software_design_assistant_workflow.md` — areas: agent-fleet — governs: 0 — related: 0
+- Soul — SDA — `docs/context/team/agents/software-design-assistant/soul.md` — areas: agent-fleet — governs: 0 — related: 0
+- Coder — `docs/context/team/agents/software-engineers/01_coder/README.md` — areas: agent-fleet — governs: 0 — related: 0
+- Angular Frontend Engineering Policy — `docs/context/team/agents/software-engineers/01_coder/angular_frontend_engineering_policy.md` — areas: agent-fleet — governs: 0 — related: 0
+- Coder Agent — `docs/context/team/agents/software-engineers/01_coder/coder_role.md` — areas: agent-fleet — governs: 0 — related: 0
+- Coder Workflow — `docs/context/team/agents/software-engineers/01_coder/coder_workflow.md` — areas: agent-fleet — governs: 0 — related: 0
+- Identity Addendum - Marlow Coder — `docs/context/team/agents/software-engineers/01_coder/identity_addendum.md` — areas: agent-fleet — governs: 0 — related: 0
+- Soul — Coder — `docs/context/team/agents/software-engineers/01_coder/soul.md` — areas: agent-fleet — governs: 0 — related: 0
+- Reviewer — `docs/context/team/agents/software-engineers/02_reviewer/README.md` — areas: agent-fleet — governs: 0 — related: 0
+- Identity Addendum - Verin Reviewer — `docs/context/team/agents/software-engineers/02_reviewer/identity_addendum.md` — areas: agent-fleet — governs: 0 — related: 0
+- Reviewer Agent — `docs/context/team/agents/software-engineers/02_reviewer/reviewer_role.md` — areas: agent-fleet — governs: 0 — related: 0
+- Reviewer Workflow — `docs/context/team/agents/software-engineers/02_reviewer/reviewer_workflow.md` — areas: agent-fleet — governs: 0 — related: 0
+- Soul — Reviewer — `docs/context/team/agents/software-engineers/02_reviewer/soul.md` — areas: agent-fleet — governs: 0 — related: 0
+- Tester — `docs/context/team/agents/software-engineers/03_tester/README.md` — areas: agent-fleet — governs: 0 — related: 0
+- Identity Addendum - Vera Tester — `docs/context/team/agents/software-engineers/03_tester/identity_addendum.md` — areas: agent-fleet — governs: 0 — related: 0
+- Soul — Tester — `docs/context/team/agents/software-engineers/03_tester/soul.md` — areas: agent-fleet — governs: 0 — related: 0
+- Tester Agent — `docs/context/team/agents/software-engineers/03_tester/tester_role.md` — areas: agent-fleet — governs: 0 — related: 0
+- Tester Workflow — `docs/context/team/agents/software-engineers/03_tester/tester_workflow.md` — areas: agent-fleet — governs: 0 — related: 0
+- DevOps — `docs/context/team/agents/software-engineers/04_dev-ops/README.md` — areas: agent-fleet — governs: 0 — related: 0
+- DevOps Agent — `docs/context/team/agents/software-engineers/04_dev-ops/dev-ops_role.md` — areas: agent-fleet — governs: 0 — related: 0
+- DevOps Workflow — `docs/context/team/agents/software-engineers/04_dev-ops/dev-ops_workflow.md` — areas: agent-fleet — governs: 0 — related: 0
+- Identity Addendum - Kepler DevOps — `docs/context/team/agents/software-engineers/04_dev-ops/identity_addendum.md` — areas: agent-fleet — governs: 0 — related: 0
+- Soul — Dev-Ops — `docs/context/team/agents/software-engineers/04_dev-ops/soul.md` — areas: agent-fleet — governs: 0 — related: 0
+- Fast UI Repairer — `docs/context/team/agents/software-engineers/05_fast-ui-repairer/README.md` — areas: agent-fleet — governs: 0 — related: 0
+- Angular Fast Repair Policy — `docs/context/team/agents/software-engineers/05_fast-ui-repairer/angular_fast_repair_policy.md` — areas: agent-fleet — governs: 0 — related: 0
+- Fast UI Repairer Role — `docs/context/team/agents/software-engineers/05_fast-ui-repairer/fast_ui_repairer_role.md` — areas: agent-fleet — governs: 0 — related: 0
+- Fast UI Repairer Workflow — `docs/context/team/agents/software-engineers/05_fast-ui-repairer/fast_ui_repairer_workflow.md` — areas: agent-fleet — governs: 0 — related: 0
+- Identity Addendum - Ember Fast UI Repairer — `docs/context/team/agents/software-engineers/05_fast-ui-repairer/identity_addendum.md` — areas: agent-fleet — governs: 0 — related: 0
+- Fast UI Repairer Prompt Templates — `docs/context/team/agents/software-engineers/05_fast-ui-repairer/prompt_templates.md` — areas: agent-fleet — governs: 0 — related: 0
+- Scope And Stop Conditions — `docs/context/team/agents/software-engineers/05_fast-ui-repairer/scope_and_stop_conditions.md` — areas: agent-fleet — governs: 0 — related: 0
+- Soul - Fast UI Repairer — `docs/context/team/agents/software-engineers/05_fast-ui-repairer/soul.md` — areas: agent-fleet — governs: 0 — related: 0
+- Software Engineers — `docs/context/team/agents/software-engineers/README.md` — areas: agent-fleet — governs: 0 — related: 0
+- Axium — `docs/context/team/agents/systems-engineers/01_axium_lead-platform-systems-engineer/README.md` — areas: agent-fleet — governs: 0 — related: 0
+- Axium — Lead Platform Systems Engineer — `docs/context/team/agents/systems-engineers/01_axium_lead-platform-systems-engineer/axium_role.md` — areas: agent-fleet — governs: 0 — related: 0
+- Axium Workflow — `docs/context/team/agents/systems-engineers/01_axium_lead-platform-systems-engineer/axium_workflow.md` — areas: agent-fleet — governs: 0 — related: 0
+- Identity Addendum - Axium Lead Systems Engineer — `docs/context/team/agents/systems-engineers/01_axium_lead-platform-systems-engineer/identity_addendum.md` — areas: agent-fleet — governs: 0 — related: 0
+- Axium Prompt Generation Standards — `docs/context/team/agents/systems-engineers/01_axium_lead-platform-systems-engineer/prompt_generation_standards.md` — areas: agent-fleet — governs: 0 — related: 0
+- Axium Prompt Templates — `docs/context/team/agents/systems-engineers/01_axium_lead-platform-systems-engineer/prompt_templates.md` — areas: agent-fleet — governs: 0 — related: 0
+- Context Enrichment Side-Quests — `docs/context/team/agents/systems-engineers/01_axium_lead-platform-systems-engineer/side_quests.md` — areas: agent-fleet — governs: 0 — related: 0
+- Soul — Axium — `docs/context/team/agents/systems-engineers/01_axium_lead-platform-systems-engineer/soul.md` — areas: agent-fleet — governs: 0 — related: 0
+- Architect — `docs/context/team/agents/systems-engineers/02_architect/README.md` — areas: agent-fleet — governs: 0 — related: 0
+- Architect Agent — `docs/context/team/agents/systems-engineers/02_architect/architect_role.md` — areas: agent-fleet — governs: 0 — related: 0
+- Architect Workflow — `docs/context/team/agents/systems-engineers/02_architect/architect_workflow.md` — areas: agent-fleet — governs: 0 — related: 0
+- Identity Addendum - Trestle Architect — `docs/context/team/agents/systems-engineers/02_architect/identity_addendum.md` — areas: agent-fleet — governs: 0 — related: 0
+- Soul — Architect — `docs/context/team/agents/systems-engineers/02_architect/soul.md` — areas: agent-fleet — governs: 0 — related: 0
+- Systems Engineers — `docs/context/team/agents/systems-engineers/README.md` — areas: agent-fleet — governs: 0 — related: 0
+- TrAIdit / TrAInit Business Incubation Milestones and Implementation Plan — `docs/context/team/graham/business-research/TrAIdit_BETA/business_incubation_milestones_and_implementation_plan.md` — areas: business-research, planning-surface — governs: 0 — related: 0
+- Founder Proof Rubric — `docs/context/team/graham/business-research/TrAIdit_BETA/founder_proof_rubric_v0.md` — areas: business-research, evaluation — governs: 0 — related: 0
+- TrAIdit-Focused Business Incubation Plan — `docs/context/team/graham/business-research/TrAIdit_BETA/traidit_focused_business_incubation_plan_v0.md` — areas: business-research — governs: 0 — related: 0
+- Business Incubation / Startup Advisor Requirements — `docs/context/team/human-team/future-human-team-roles-and-requirements/business_incubation_startup_advisor_requirements.md` — areas: process-governance — governs: 0 — related: 0
+- Business Partner Requirements — `docs/context/team/human-team/future-human-team-roles-and-requirements/business_partner_requirements.md` — areas: process-governance — governs: 0 — related: 0
+- Candidate Scorecard And Trial Process — `docs/context/team/human-team/future-human-team-roles-and-requirements/candidate_scorecard_and_trial_process.md` — areas: process-governance — governs: 0 — related: 0
+- Engagement Stage Gates — `docs/context/team/human-team/future-human-team-roles-and-requirements/engagement_stage_gates.md` — areas: process-governance — governs: 0 — related: 0
+- Human Team Principles — `docs/context/team/human-team/future-human-team-roles-and-requirements/human_team_principles.md` — areas: process-governance — governs: 0 — related: 0
+- Lawyer And Law Firm Requirements — `docs/context/team/human-team/future-human-team-roles-and-requirements/lawyer_and_law_firm_requirements.md` — areas: process-governance — governs: 0 — related: 0
+- Ownership Model — `docs/context/team/ownership_model.md` — areas: context-system, process-governance — governs: 0 — related: 0
+- Agent Creation UI Implications — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/agent_creation_ui_implications_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Archetype Catalog Curation Policy — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/archetype_catalog_curation_policy_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Archetype Evaluation And Distinctness Model — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/archetype_evaluation_and_distinctness_model_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Archetype Failure Mode And Test Profile — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/archetype_failure_mode_and_test_profile_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Archetype Manifest Seed Model — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/archetype_manifest_seed_model_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Archetype Materialization Flow — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/archetype_materialization_flow_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Archetype Provenance Snapshot — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/archetype_provenance_snapshot_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Archetype Purpose And Product Role — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/archetype_purpose_and_product_role_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Archetype Versioning And Catalog Immutability — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/archetype_versioning_and_catalog_immutability_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Archetype Versus Adjacent Concepts — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/archetype_vs_adjacent_concepts_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Canonical Alpha Promotion Model — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/canonical_alpha_promotion_model_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Current Runtime Built-ins Compatibility Map — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/current_runtime_builtins_compatibility_map_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Decision Caliper Seed Mapping — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/decision_caliper_seed_mapping_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Environment Authority And Execution Boundary — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/environment_authority_and_execution_boundary_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Evaluation Cadence And Runner Seed Model — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/evaluation_cadence_and_runner_seed_model_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Hidden Internal Default Traceability — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/hidden_internal_default_traceability_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Internal Archetype Composition Model — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/internal_archetype_composition_model_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Market Ontology And Symbol Universe Mapping — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/market_ontology_and_symbol_universe_mapping_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Parent Agent Initial Version Model — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/parent_agent_initial_version_model_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Post-Creation Edit And Lineage Policy — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/post_creation_edit_and_lineage_policy_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Risk, Sizing, And Allocation Seed Model — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/risk_sizing_and_allocation_seed_model_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Seed Category Map — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/seed_category_map_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Seed Defaults, Constraints, And Overrides — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/seed_defaults_constraints_and_overrides_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Seed Field Maturity And Requiredness — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/seed_field_maturity_and_requiredness_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Simulator / Paper / Live Portability — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/simulator_paper_live_portability_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Source Material Index — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/source_material_index_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Source Of Truth And Migration Model — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/source_of_truth_and_migration_model_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Specialist Overlay Model — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/specialist_overlay_model_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Strategy Orientation Model — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/strategy_orientation_model_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Tool And Evidence Profile Model — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/tool_and_evidence_profile_model_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Universal Capability Model — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/universal_capability_model_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- User-Facing Archetype Experience — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/user_facing_archetype_experience_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Development Archetypes — `docs/design/v2/agent-archetypes/development-v0/README.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Archetype Artifact Schema — `docs/design/v2/agent-archetypes/development-v0/archetype_artifact_schema_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Archetype Definition And Scope — `docs/design/v2/agent-archetypes/development-v0/archetype_definition_and_scope_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Archetype Failure Modes — `docs/design/v2/agent-archetypes/development-v0/archetype_failure_modes_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Archetype To EvalCal Map — `docs/design/v2/agent-archetypes/development-v0/archetype_to_evalcal_map_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Archetype To MVP Caliper Map — `docs/design/v2/agent-archetypes/development-v0/archetype_to_mvp_caliper_map_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Archetype To Paper Flow Test Map — `docs/design/v2/agent-archetypes/development-v0/archetype_to_paper_flow_test_map_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Archetype To Simulator Test Map — `docs/design/v2/agent-archetypes/development-v0/archetype_to_simulator_test_map_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Archetype To Symbol Universe Map — `docs/design/v2/agent-archetypes/development-v0/archetype_to_symbol_universe_map_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Canonical Alpha Archetype Path — `docs/design/v2/agent-archetypes/development-v0/canonical_alpha_archetype_path_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Development Archetype Set — `docs/design/v2/agent-archetypes/development-v0/development_archetype_set_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Agent Execution / Simulator Decision Runner Model — `docs/design/v2/agent-architecture/agent-execution-simulator-decision-runner-v0/README.md` — areas: agent-execution, historic-simulator — governs: 0 — related: 0
+- Runner Output Contract — `docs/design/v2/agent-architecture/agent-execution-simulator-decision-runner-v0/runner_output_contract_v0.md` — areas: agent-execution, historic-simulator — governs: 0 — related: 0
+- Approved Tool Contract Model — `docs/design/v2/agent-architecture/algorithmic-agentic-boundary-v0/approved_tool_contract_model_v0.md` — areas: agent-execution, autonomy — governs: 0 — related: 0
+- Decision Evidence Package MVP Field Set — `docs/design/v2/agent-architecture/decision-evidence-package-mvp-field-set-v0/README.md` — areas: decision-evidence — governs: 0 — related: 0
+- HARNESS-01 — The Layered TrAIder Harness (Design Packet) — `docs/design/v2/agent-architecture/harness-01-design-packet/README.md` — areas: agent-execution, agent-lifecycle, agent-fleet, evaluation, system-architecture — governs: 0 — related: 5
+- Reading Assayer Evidence — Doctrine v0 — `docs/design/v2/agent-architecture/harness-01-design-packet/assayer_evidence_doctrine_v0.md` — areas: agent-execution, agent-lifecycle, quant-service, evaluation — governs: 0 — related: 4
+- HARNESS-01 — Decision Register — `docs/design/v2/agent-architecture/harness-01-design-packet/decision_register_v0.md` — areas: agent-execution, agent-lifecycle, agent-fleet, evaluation, system-architecture — governs: 0 — related: 2
+- HARNESS-01 — Implementation Decomposition — `docs/design/v2/agent-architecture/harness-01-design-packet/implementation_decomposition_v0.md` — areas: agent-execution, agent-lifecycle, agent-fleet, evaluation, system-architecture — governs: 0 — related: 3
+- Position Sizing Decision Model — `docs/design/v2/agent-architecture/position-sizing-decision-model-v0/README.md` — areas: position-sizing — governs: 0 — related: 0
+- Runner Cadence / Evaluation Policy — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/README.md` — areas: agent-execution — governs: 0 — related: 0
+- AGENT-CREATION-01 Packet (EP-06) — `docs/design/v2/agent-creation/agent-creation-01-design-packet/README.md` — areas: agent-creation, agent-manifest, mind-provider — governs: 0 — related: 1
+- Agent Creation Flow UI Direction — `docs/design/v2/agent-creation/agent-creation-01-design-packet/creation_flow_ui_direction_v0.md` — areas: agent-creation, utility-window-system, workstation-ui — governs: 1 — related: 1
+- AGENT-CREATION-01 Decision Register (AC-D1..D11) — `docs/design/v2/agent-creation/agent-creation-01-design-packet/decision_register_v0.md` — areas: agent-creation, agent-manifest, mind-provider — governs: 0 — related: 0
+- AGENT-EXECUTION-01 Packet (EP-05) — `docs/design/v2/agent-execution/agent-execution-01-design-packet/README.md` — areas: agent-execution, decision-evidence — governs: 0 — related: 1
+- AGENT-EXECUTION-01 Decision Register (ED-D1..D12) — `docs/design/v2/agent-execution/agent-execution-01-design-packet/decision_register_v0.md` — areas: agent-execution, decision-evidence — governs: 0 — related: 0
+- AGENT-EXECUTION-01 Runtime Architecture — `docs/design/v2/agent-execution/agent-execution-01-design-packet/runtime_architecture_v0.md` — areas: agent-execution, mind-provider — governs: 0 — related: 1
+- AGENT-HARNESS-01 - Coder / Orchestrator Harness Refactor — `docs/design/v2/agent-harness/agent-harness-01-coder-orchestrator-refactor/README.md` — areas: agent-fleet — governs: 0 — related: 0
+- Role Spawn Contract — `docs/design/v2/agent-harness/agent-harness-01-coder-orchestrator-refactor/role_spawn_contract_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- AGENT-HARNESS-03 - Spark Fast UI Repairer — `docs/design/v2/agent-harness/agent-harness-03-spark-fast-ui-repairer/README.md` — areas: agent-fleet — governs: 0 — related: 0
+- PAPER-PNL-SOURCE — the real Paper P&L onto the campaign ledger (#424, EP-32's last leg) — `docs/design/v2/agentic-unit-economics/paper-pnl-source/paper_pnl_source_design_v0.md` — areas: portfolio-accounting, forward-testing, paper-live-boundary — governs: 0 — related: 2
+- ALGO-SURFACE-01 Packet — `docs/design/v2/algo/algo-surface-01-design-packet/README.md` — areas: algo-surface, workstation-ui — governs: 0 — related: 1
+- Architecture And Interplay — `docs/design/v2/algo/algo-surface-01-design-packet/architecture_and_interplay_v0.md` — areas: algo-surface — governs: 0 — related: 0
+- ALGO-SURFACE-01 Decision Register (AD-1..8) — `docs/design/v2/algo/algo-surface-01-design-packet/decision_register_v0.md` — areas: algo-surface — governs: 0 — related: 0
+- Value And Workflows — `docs/design/v2/algo/algo-surface-01-design-packet/value_and_workflows_v0.md` — areas: algo-surface — governs: 0 — related: 0
+- ASSAYER-OPS-01 — Decision Register — `docs/design/v2/algo/assayer-ops-01-design-packet/decision_register_v0.md` — areas: quant-service, algo-surface, agent-execution, process-governance — governs: 0 — related: 2
+- EDGE-INTEGRATION-01 — The Assayer at the Campaign Seam (Design Packet) — `docs/design/v2/algo/edge-integration-01-design-packet/README.md` — areas: quant-service, algo-surface, agent-execution, agent-lifecycle, evaluation — governs: 0 — related: 10
+- EDGE-INTEGRATION-01 — Decision Register — `docs/design/v2/algo/edge-integration-01-design-packet/decision_register_v0.md` — areas: quant-service, algo-surface, agent-execution, agent-lifecycle, evaluation — governs: 0 — related: 4
+- EDGE-INTEGRATION-01 — Implementation Decomposition — `docs/design/v2/algo/edge-integration-01-design-packet/implementation_decomposition_v0.md` — areas: quant-service, algo-surface, agent-execution, agent-lifecycle, evaluation — governs: 0 — related: 2
+- QUANT-SERVICE-01 — Python Quant Service Design Packet — `docs/design/v2/algo/quant-service-01-design-packet/README.md` — areas: quant-service — governs: 0 — related: 0
+- QUANT-SERVICE-01 Decision Register — `docs/design/v2/algo/quant-service-01-design-packet/decision_register_v0.md` — areas: quant-service — governs: 0 — related: 1
+- 02 — Container Architecture — `docs/design/v2/architecture-diagrams/02-container-architecture.md` — areas: system-architecture — governs: 0 — related: 0
+- 03 — Lab v2 UI Architecture — `docs/design/v2/architecture-diagrams/03-lab-v2-ui-architecture.md` — areas: system-architecture, lab, workstation-ui — governs: 0 — related: 0
+- 04 — Lab Domain Component Architecture — `docs/design/v2/architecture-diagrams/04-lab-domain-component-architecture.md` — areas: system-architecture, lab — governs: 0 — related: 0
+- 07 — Provider Integration Architecture — `docs/design/v2/architecture-diagrams/07-provider-integration-architecture.md` — areas: system-architecture, provider-data — governs: 0 — related: 0
+- ASYNC-PRICING-LANE-01 — Arc Build Status (COMPLETE) — `docs/design/v2/async-pricing-lane/async-pricing-lane-01-design-packet/arc_build_status_v0.md` — areas: system-architecture, market-data, provider-data, agent-execution, paper-live-boundary — governs: 0 — related: 4
+- ASYNC-REALTIME-01 — Decision Register — `docs/design/v2/async-realtime/async-realtime-01-design-packet/decision_register_v0.md` — areas: system-architecture, market-data, algo-surface, agent-execution — governs: 0 — related: 0
+- ALGO-RESEARCH-01 Research Package — `docs/design/v2/business-research/algo-research-01-algo-trading-vernacular-platform-scan/README.md` — areas: research, algo-surface, product-thesis — governs: 0 — related: 0
+- Algo Trading Vernacular Glossary — `docs/design/v2/business-research/algo-research-01-algo-trading-vernacular-platform-scan/algo_trading_vernacular_glossary_v0.md` — areas: research — governs: 0 — related: 1
+- Algo Strategy Taxonomy — `docs/design/v2/business-research/algo-research-01-algo-trading-vernacular-platform-scan/strategy_taxonomy_v0.md` — areas: research, algo-surface — governs: 0 — related: 1
+- MIND-LINEAGE-01 — Durable Mind Lineage (the stamp survives the process, the thesis names its mind, dedup can't splice minds) — `docs/design/v2/byo-mind/mind-lineage-01-design-packet/README.md` — areas: mind-provider, agent-manifest, agent-lifecycle, portfolio-accounting — governs: 1 — related: 3
+- MIND-LINEAGE-01 — Decision Register (stamp home · campaign provenance · dedup honesty · migration) — `docs/design/v2/byo-mind/mind-lineage-01-design-packet/decision_register_v0.md` — areas: mind-provider, agent-manifest, agent-lifecycle, portfolio-accounting — governs: 0 — related: 2
+- MINDCONFIG-01 — MindConfiguration, Founder Phase (model choice as agent identity) — `docs/design/v2/byo-mind/mindconfig-01-design-packet/README.md` — areas: mind-provider, agent-manifest, agent-creation, utility-window-system — governs: 1 — related: 3
+- MINDCONFIG-01 — Decision Register (entity · manifest ref · catalog+rate-cards · estimate · tab · Mind field) — `docs/design/v2/byo-mind/mindconfig-01-design-packet/decision_register_v0.md` — areas: mind-provider, agent-manifest, agent-creation, utility-window-system — governs: 1 — related: 2
+- Alpaca Broker / Paper / Account Lane — `docs/design/v2/data-sources/alpaca_broker_paper_account_lane_v0.md` — areas: provider-data — governs: 0 — related: 0
+- DATA-SPIKE-02 - Deep Historical Data Access / Provider Cost Gate — `docs/design/v2/data-sources/data-spike-02-deep-historical-data-access/README.md` — areas: provider-data — governs: 0 — related: 0
+- Historical Data Requirements — `docs/design/v2/data-sources/historical_data_requirements_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Live Market Data Requirements — `docs/design/v2/data-sources/live_market_data_requirements_v0.md` — areas: provider-data — governs: 0 — related: 0
+- News / Event Source Requirements — `docs/design/v2/data-sources/news_event_source_requirements_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Normalized Market Data Contracts — `docs/design/v2/data-sources/normalized_market_data_contracts_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Paper Broker Requirements — `docs/design/v2/data-sources/paper_broker_requirements_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Polygon / Massive Market Data Lane — `docs/design/v2/data-sources/polygon_massive_market_data_lane_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Provider Role Map — `docs/design/v2/data-sources/provider_role_map_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Recommended MVP Provider Path — `docs/design/v2/data-sources/recommended_mvp_provider_path_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Source Freshness / Fallback Model — `docs/design/v2/data-sources/source_freshness_fallback_model_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Storage / Caching / Licensing Questions — `docs/design/v2/data-sources/storage_caching_and_licensing_questions_v0.md` — areas: provider-data, data-rights — governs: 0 — related: 0
+- Symbol Metadata Requirements — `docs/design/v2/data-sources/symbol_metadata_requirements_v0.md` — areas: provider-data — governs: 0 — related: 0
+- X / Social / Expert / Breaking News Lane — `docs/design/v2/data-sources/x_social_expert_breaking_news_lane_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Decision Caliper Corpus Package — `docs/design/v2/decision-calipers/README.md` — areas: decision-calipers — governs: 0 — related: 0
+- Caliper Canon Index v1 (index of record) — `docs/design/v2/decision-calipers/canon/caliper_canon_index_v1.md` — areas: decision-calipers — governs: 0 — related: 1
+- DECISION-CALIPERS-01 Packet (EP-07) — `docs/design/v2/decision-calipers/decision-calipers-01-design-packet/README.md` — areas: decision-calipers — governs: 0 — related: 1
+- DECISION-CALIPERS-01 Decision Register (DC-D1..D6) — `docs/design/v2/decision-calipers/decision-calipers-01-design-packet/decision_register_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- Caliper Registry Architecture — `docs/design/v2/decision-calipers/decision-calipers-01-design-packet/registry_architecture_v0.md` — areas: decision-calipers, agent-manifest — governs: 2 — related: 1
+- Caliper Whittle Worksheet (RULED 2026-07-13) — `docs/design/v2/decision-calipers/decision-calipers-01-design-packet/whittle_worksheet_v0.md` — areas: decision-calipers, promotion-governance — governs: 1 — related: 1
+- Decision Caliper Definition and Scope — `docs/design/v2/decision-calipers/decision_caliper_definition_and_scope_v0.md` — areas: decision-calipers — governs: 0 — related: 1
+- Decision Caliper Taxonomy — `docs/design/v2/decision-calipers/decision_caliper_taxonomy_v0.md` — areas: decision-calipers — governs: 0 — related: 1
+- Caliper Prospect Register — `docs/design/v2/decision-calipers/r-and-d/caliper_prospect_register_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- EvalCal Reconciliation v1 (activation-prep) — `docs/design/v2/evaluation/evalcal_reconciliation_v1.md` — areas: evaluation, decision-evidence, decision-calipers, planning-surface — governs: 0 — related: 6
+- GAME-SCRIPT-01 — Decision Register v0 (GS-D1..D20, ALL RULED 2026-07-18) — `docs/design/v2/game-script/game-script-01-design-packet/decision_register_v0.md` — areas: game-script, agent-execution — governs: 0 — related: 2
+- GAME-SCRIPT-01 FF-2 — Decision Register v0 (FF2-D1..FF2-D8, RULED 2026-07-18) — `docs/design/v2/game-script/game-script-01-design-packet/ff2-requisition-fulfillment/decision_register_v0.md` — areas: game-script, agent-execution — governs: 0 — related: 4
+- ALPACA-HISTORIC-LANE-01 — Arc Build Status + PS-D9 Gate-1 Evidence — `docs/design/v2/historic-simulator/alpaca-historic-lane-01/arc_build_status_v0.md` — areas: historic-simulator, market-data, provider-data, data-rights, system-architecture — governs: 0 — related: 7
+- Cross-Provider Audit — Polygon vs Alpaca, same tape — `docs/design/v2/historic-simulator/alpaca-historic-lane-01/cross_provider_audit_v0.md` — areas: historic-simulator, market-data, provider-data — governs: 0 — related: 3
+- ALPACA-HISTORIC-LANE-01 — Implementation Decomposition (phase 2 of the Alpaca line) — `docs/design/v2/historic-simulator/alpaca-historic-lane-01/implementation_decomposition_v0.md` — areas: historic-simulator, market-data, provider-data, data-rights, system-architecture — governs: 0 — related: 10
+- ALPACA-HISTORIC-LANE-01 — AHL-S0 Probe Findings (the unknowns, measured) — `docs/design/v2/historic-simulator/alpaca-historic-lane-01/s0_probe_findings_v0.md` — areas: historic-simulator, market-data, provider-data, system-architecture — governs: 0 — related: 3
+- AHL-S4 — Live End-to-End Verification (real Alpaca, real DB) — `docs/design/v2/historic-simulator/alpaca-historic-lane-01/s4_live_verification_v0.md` — areas: historic-simulator, market-data, provider-data, data-rights — governs: 0 — related: 3
+- Historic Simulator Data Contracts / Local Historical Data Prototype — `docs/design/v2/historic-simulator/data-contracts-v0/README.md` — areas: historic-simulator — governs: 0 — related: 0
+- Historical Bar Contract — `docs/design/v2/historic-simulator/data-contracts-v0/historical_bar_contract_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Paper Budget Replay Contract — `docs/design/v2/historic-simulator/data-contracts-v0/paper_budget_replay_contract_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Replay Scenario Contract — `docs/design/v2/historic-simulator/data-contracts-v0/replay_scenario_contract_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Simulator Decision Output Contract — `docs/design/v2/historic-simulator/data-contracts-v0/simulator_decision_output_contract_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Simulator Evidence Event Contract — `docs/design/v2/historic-simulator/data-contracts-v0/simulator_evidence_event_contract_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Simulator Run Contract — `docs/design/v2/historic-simulator/data-contracts-v0/simulator_run_contract_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Historic Simulator Graph Views / Workflow Model — `docs/design/v2/historic-simulator/graph-workflow-v0/README.md` — areas: historic-simulator — governs: 0 — related: 0
+- Replay Transport Workflow — `docs/design/v2/historic-simulator/graph-workflow-v0/replay_transport_workflow_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Simulator Graph Workflow Brief — `docs/design/v2/historic-simulator/graph-workflow-v0/simulator_graph_workflow_brief_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Simulator Operator Workflow — `docs/design/v2/historic-simulator/graph-workflow-v0/simulator_operator_workflow_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- HIST-SIM-01 Implementation Packet — `docs/design/v2/historic-simulator/hist-sim-01-implementation-packet/README.md` — areas: historic-simulator — governs: 0 — related: 0
+- HIST-SIM-01 Contract Shapes — `docs/design/v2/historic-simulator/hist-sim-01-implementation-packet/hist_sim_01_contract_shapes_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- HIST-SIM-02A Provider Recent Scenario Preview — `docs/design/v2/historic-simulator/hist-sim-02a-provider-recent-scenario-preview/README.md` — areas: historic-simulator — governs: 0 — related: 0
+- HIST-SIM-02B Provider Intraday Bar Granularity — `docs/design/v2/historic-simulator/hist-sim-02b-provider-intraday-granularity/README.md` — areas: historic-simulator — governs: 0 — related: 0
+- HIST-SIM-02C Session Scope / Regular Trading Window Normalization — `docs/design/v2/historic-simulator/hist-sim-02c-session-scope-normalization/README.md` — areas: historic-simulator — governs: 0 — related: 0
+- Scenario Regime Taxonomy / Scenario Metadata Classification — `docs/design/v2/historic-simulator/scenario-regime-taxonomy-v0/README.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-GRAPH-01 - Chart Library Selection / Simulator Graph Rendering Spike — `docs/design/v2/historic-simulator/sim-graph-01-chart-library-selection/README.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-GRAPH-02 - Graph Controls / Interval / Zoom / View State — `docs/design/v2/historic-simulator/sim-graph-02-controls-view-state/README.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-LEGEND-01 - Simulator Display Layer Legend / Agent Version Visibility Controls — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/README.md` — areas: historic-simulator — governs: 0 — related: 0
+- WDA Contract Summary — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/wda_contract_summary_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-LOADER-01 — Scenario Loader UX Cleanup — `docs/design/v2/historic-simulator/sim-loader-01-scenario-loader-ux-cleanup/README.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-MARKERS-01 - Decision Marker Overlay Skeleton / Static Mock Evidence — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/README.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-MICROPATH-02 - Interpolated Event Stream Implementation Packet — `docs/design/v2/historic-simulator/sim-micropath-02-interpolated-event-stream-implementation/README.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-MICROPATH-03 - OHLC-Aware Interpolation Policy / Synthetic Path Upgrade — `docs/design/v2/historic-simulator/sim-micropath-03-ohlc-aware-interpolation-policy/README.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-REPLAY-01A - Replay / Playhead UI Foundation — `docs/design/v2/historic-simulator/sim-replay-01a-playhead-ui-foundation/README.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-RUNNER-01 Schema And Contract Readiness — `docs/design/v2/historic-simulator/sim-runner-01-schema-contract-readiness-v0/README.md` — areas: historic-simulator — governs: 0 — related: 0
+- Cross-View Projection Contract — `docs/design/v2/historic-simulator/sim-runner-01-schema-contract-readiness-v0/cross_view_projection_contract_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Run Wallet And Recorded Reuse Contract — `docs/design/v2/historic-simulator/sim-runner-01-schema-contract-readiness-v0/run_wallet_and_recorded_reuse_contract_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-SEARCH-01 Provider Recent Scenario Search / Descriptor Creation — `docs/design/v2/historic-simulator/sim-search-01-provider-recent-scenario-search/README.md` — areas: historic-simulator — governs: 0 — related: 0
+- API Contract Recommendation — `docs/design/v2/historic-simulator/sim-search-01-provider-recent-scenario-search/api_contract_recommendation_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- UI Workflow Model — `docs/design/v2/historic-simulator/sim-search-01-provider-recent-scenario-search/ui_workflow_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-SEARCH-02 - Unified Scenario Loader / Provider Recent Descriptor Creation — `docs/design/v2/historic-simulator/sim-search-02-unified-scenario-loader/README.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-UI-01 Implementation Packet — `docs/design/v2/historic-simulator/sim-ui-01-implementation-packet/README.md` — areas: historic-simulator — governs: 0 — related: 0
+- IDENTITY-01 — Decision Register (auth substrate · sessions · founder account · occupancy gate · preferences) — `docs/design/v2/identity/identity-01-design-packet/decision_register_v0.md` — areas: security, user-identity, utility-window-system, process-governance — governs: 4 — related: 4
+- Agent Arbitration Risk Model — `docs/design/v2/live-authority/live-intervention-01-operator-manual-live-intervention-surface/agent_arbitration_risk_model_v0.md` — areas: live-authority — governs: 0 — related: 0
+- Agent Pause / Observe / Release Model — `docs/design/v2/live-authority/live-intervention-01-operator-manual-live-intervention-surface/agent_pause_observe_release_model_v0.md` — areas: live-authority — governs: 0 — related: 0
+- Configurable Autonomy Mapping — `docs/design/v2/live-authority/live-intervention-01-operator-manual-live-intervention-surface/configurable_autonomy_mapping_v0.md` — areas: live-authority — governs: 0 — related: 0
+- Graph / Timeline Projection Mapping — `docs/design/v2/live-authority/live-intervention-01-operator-manual-live-intervention-surface/graph_timeline_projection_mapping_v0.md` — areas: live-authority — governs: 0 — related: 0
+- Intervention Scope Model — `docs/design/v2/live-authority/live-intervention-01-operator-manual-live-intervention-surface/intervention_scope_model_v0.md` — areas: live-authority — governs: 0 — related: 0
+- Live Control Surface Model — `docs/design/v2/live-authority/live-intervention-01-operator-manual-live-intervention-surface/live_control_surface_model_v0.md` — areas: live-authority — governs: 0 — related: 0
+- Live-Only Scope Boundary — `docs/design/v2/live-authority/live-intervention-01-operator-manual-live-intervention-surface/live_only_scope_boundary_v0.md` — areas: live-authority — governs: 0 — related: 0
+- Marker Visual Distinction Policy — `docs/design/v2/live-authority/live-intervention-01-operator-manual-live-intervention-surface/marker_visual_distinction_policy_v0.md` — areas: live-authority — governs: 0 — related: 0
+- Non-Goals And Exclusions — `docs/design/v2/live-authority/live-intervention-01-operator-manual-live-intervention-surface/non_goals_and_exclusions_v0.md` — areas: live-authority — governs: 0 — related: 0
+- Operator Intervention Marker Model — `docs/design/v2/live-authority/live-intervention-01-operator-manual-live-intervention-surface/operator_intervention_marker_model_v0.md` — areas: live-authority — governs: 0 — related: 0
+- Return-Control Policy Model — `docs/design/v2/live-authority/live-intervention-01-operator-manual-live-intervention-surface/return_control_policy_model_v0.md` — areas: live-authority — governs: 0 — related: 0
+- Agent Archetype Implications — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/agent_archetype_implications_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- Agent Creation Integration — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/agent_creation_integration_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- Analysis / Algo Tools Integration — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/analysis_and_algo_tools_integration_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- Analysis Universe Model — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/analysis_universe_model_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- Classification Provenance Model — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/classification_provenance_model_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- Data Strategy / Persistence Questions — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/data_strategy_and_persistence_questions_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- Database Shape Sketch — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/database_shape_sketch_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- Decision Evidence Integration — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/decision_evidence_integration_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- Exchange / Listing Venue Model — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/exchange_listing_venue_model_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- Future Packet Recommendations — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/future_packet_recommendations_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- Graham Source Material Index — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/graham_source_material_index_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- Market Context Universe Model — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/market_context_universe_model_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- Market Coverage Universe Model — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/market_coverage_universe_model_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- Market Metric Relevance Profile — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/market_metric_relevance_profile_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- Market Quality Profile Model — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/market_quality_profile_model_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- Market Theme Model — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/market_theme_model_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- News / Event Catalyst Integration — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/news_event_catalyst_integration_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- Research / Discovery Activity Model — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/research_discovery_activity_model_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- Runner Context Integration — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/runner_context_integration_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- Sector / Industry Classification Model — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/sector_industry_classification_model_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- Security Type / Asset Class Model — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/security_type_and_asset_class_model_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- Symbol Universe Boundary Mapping — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/symbol_universe_boundary_mapping_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- Watchlist / Candidate Set Model — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/watchlist_candidate_set_model_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- Agent Details Module Spec — `docs/design/v2/modules/agent_details_module_spec.md` — areas: workstation-ui, agent-versioning — governs: 0 — related: 0
+- Decision Details Module Spec — `docs/design/v2/modules/decision_details_module_spec.md` — areas: workstation-ui, decision-evidence — governs: 0 — related: 0
+- EvalCal Module Spec — `docs/design/v2/modules/evalcal_module_spec.md` — areas: evaluation, workstation-ui — governs: 0 — related: 1
+- Readiness Module Spec — `docs/design/v2/modules/readiness_module_spec.md` — areas: promotion-governance, workstation-ui — governs: 0 — related: 0
+- Epic Completion Baseline v1 (definitions of done) — `docs/design/v2/mvp-roadmap/roadmap-reconciliation-v1/epic_completion_baseline_v1.md` — areas: planning-surface, process-governance — governs: 0 — related: 1
+- PORTFOLIO-CONTRACTS-01 - Exact Numeric Values — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/README.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Account And Book Context Scope Contract — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/account_and_book_context_scope_contract_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Cash And Adjustment Event Contract — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/cash_and_adjustment_event_contract_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Confirmed Fill Contract — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/confirmed_fill_contract_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Contract Validation Test Matrix — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/contract_validation_test_matrix_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Economic Ledger Event Contract — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/economic_ledger_event_contract_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Environment Authority Context Contract — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/environment_authority_context_contract_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Event Time And Ordering Contract — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/event_time_and_ordering_contract_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Fee Exactly Once Contract — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/fee_exactly_once_contract_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Identifier And Branding Contract — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/identifier_and_branding_contract_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Instrument Reference Contract — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/instrument_reference_contract_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Money Price Quantity Contract — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/money_price_quantity_contract_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Normalized Order Lifecycle Contract — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/normalized_order_lifecycle_contract_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Order Intent Contract — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/order_intent_contract_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Order Request Contract — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/order_request_contract_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Order Sizing Contract — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/order_sizing_contract_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Provenance Causation And Correlation Contract — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/provenance_causation_and_correlation_contract_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Requested Approved Executed Sizing Contract — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/requested_approved_executed_sizing_contract_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Trading Account Portfolio Book Identity Contract — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/trading_account_portfolio_book_identity_contract_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Fill Contract And Finality Model — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/fill_contract_and_finality_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- PORTFOLIO-LEDGER-01 - Cash / Position / Weighted-Average-Cost Accounting Reducer — `docs/design/v2/portfolio-core/portfolio-ledger-01-cash-position-weighted-average-cost-accounting-reducer/README.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- PORTFOLIO-NUMERIC-01 Implementation Packet — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/implementation-packet/README.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- SIM-EXECUTION-01 - Historic Simulator Execution / Fill Adapter — `docs/design/v2/portfolio-core/sim-execution-01-historic-simulator-execution-adapter/README.md` — areas: portfolio-accounting, historic-simulator — governs: 0 — related: 0
+- SIM-EXECUTION-01 Implementation Packet — `docs/design/v2/portfolio-core/sim-execution-01-historic-simulator-execution-adapter/implementation_packet/README.md` — areas: portfolio-accounting, historic-simulator — governs: 0 — related: 0
+- Adapter Input Contract — `docs/design/v2/portfolio-core/sim-execution-01-historic-simulator-execution-adapter/implementation_packet/adapter_input_contract.md` — areas: portfolio-accounting, historic-simulator — governs: 0 — related: 0
+- Fill Outcome Contract — `docs/design/v2/portfolio-core/sim-execution-01-historic-simulator-execution-adapter/implementation_packet/fill_outcome_contract.md` — areas: portfolio-accounting, historic-simulator — governs: 0 — related: 0
+- No-Fill / Rejection Outcome Contract — `docs/design/v2/portfolio-core/sim-execution-01-historic-simulator-execution-adapter/implementation_packet/no_fill_outcome_contract.md` — areas: portfolio-accounting, historic-simulator — governs: 0 — related: 0
+- QUANT-AUDIT-01 — Decision Register (feed fidelity · consolidated tape · evidence pipe · synthetic worlds) — `docs/design/v2/quant-audit-01/decision_register_v0.md` — areas: quant-service, agent-execution, decision-evidence, provider-data, market-data — governs: 4 — related: 1
+- Decision Timeline Detailed UI Spec — `docs/design/v2/timeline/decision_timeline_detailed_ui_spec.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- EST-03 — Timeline Projection Implementation — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/est-03-timeline-projection-implementation/README.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- EST-04 — Lab Timeline Convergence Spike — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/est-04-lab-timeline-convergence-spike/README.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- WDA-EST-01 - Event Stream Timeline Surface / Event Log / Selected Workbench Placeholder — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/wda-est-01-event-stream-timeline-surface/README.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- Component Contract — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/wda-est-01-event-stream-timeline-surface/component_contract_v0.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- TRAIDIT-ATLAS-02 — Refresh / Maintenance Packet — `docs/design/v2/traidit-atlas/traidit-atlas-02-refresh-packet/README.md` — areas: market-ontology, provider-data, data-rights, symbol-universe — governs: 0 — related: 4
+- TRAIDIT-ATLAS-02 — Refresh / Maintenance Direction — `docs/design/v2/traidit-atlas/traidit-atlas-02-refresh-packet/atlas02_refresh_direction_v0.md` — areas: market-ontology, provider-data, data-rights, symbol-universe — governs: 0 — related: 2
+- TRAIDIT-ATLAS-02 — Decision Register — `docs/design/v2/traidit-atlas/traidit-atlas-02-refresh-packet/decision_register_v0.md` — areas: market-ontology, provider-data, data-rights, symbol-universe — governs: 0 — related: 2
+- TRAIDIT-ATLAS-02 — Refresh Implementation Decomposition — `docs/design/v2/traidit-atlas/traidit-atlas-02-refresh-packet/refresh_implementation_decomposition_v0.md` — areas: market-ontology, provider-data, data-rights, symbol-universe — governs: 0 — related: 2
+- TRAIDIT-ATLAS-03 — Polygon Exodus Packet (Alpaca price-window lane + neighborhood v2) — `docs/design/v2/traidit-atlas/traidit-atlas-03-polygon-exodus-packet/README.md` — areas: market-ontology, provider-data, data-rights, symbol-universe — governs: 0 — related: 6
+- TRAIDIT-ATLAS-03 — Polygon Exodus Direction — `docs/design/v2/traidit-atlas/traidit-atlas-03-polygon-exodus-packet/atlas03_exodus_direction_v0.md` — areas: market-ontology, provider-data, data-rights, symbol-universe — governs: 0 — related: 3
+- TRAIDIT-ATLAS-03 — Decision Register — `docs/design/v2/traidit-atlas/traidit-atlas-03-polygon-exodus-packet/decision_register_v0.md` — areas: market-ontology, provider-data, data-rights, symbol-universe — governs: 0 — related: 4
+- TRAIDIT-ATLAS-03 — Implementation Decomposition — `docs/design/v2/traidit-atlas/traidit-atlas-03-polygon-exodus-packet/implementation_decomposition_v0.md` — areas: market-ontology, provider-data, data-rights, symbol-universe — governs: 0 — related: 2
+- UTILITY-WINDOW-01 — Generic Floating Window + Dialog System (#98) — `docs/design/v2/utility-window-system/utility-window-01-design-packet/README.md` — areas: utility-window-system — governs: 0 — related: 0
+- UTILITY-WINDOW-01 Architecture — `docs/design/v2/utility-window-system/utility-window-01-design-packet/architecture_v0.md` — areas: utility-window-system, workstation-shell — governs: 1 — related: 1
+- UTILITY-WINDOW-01 Decision Register (UWS-D1..D8) — `docs/design/v2/utility-window-system/utility-window-01-design-packet/decision_register_v0.md` — areas: utility-window-system — governs: 0 — related: 0
+- UWS Detachment and Document-PiP Model — `docs/design/v2/utility-window-system/utility-window-01-design-packet/detachment_and_pip_model_v0.md` — areas: utility-window-system — governs: 1 — related: 1
+- ICON-01 - Lucide Angular Icon Library Selection / Integration Policy — `docs/design/v2/workstation-ui/iconography/icon-01-lucide-angular-selection/README.md` — areas: workstation-ui — governs: 0 — related: 0
+- Loading-State Surface Inventory + #197 Taste-Check (#223 Phase A) — `docs/design/v2/workstation-ui/loading-state-doctrine-223/loading_state_surface_inventory_v0.md` — areas: workstation-ui, workstation-shell — governs: 0 — related: 1
+- SIM-WDA-01 - Simulator Graph / Scenario Loading UI Mockup Package — `docs/design/v2/workstation-ui/mockups/historic-simulator/sim-wda-01/README.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- SIM-WDA-01 Refinement — `docs/design/v2/workstation-ui/mockups/historic-simulator/sim-wda-01/refinement-v0-1/README.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- WDA-SIM-LEGEND-01 - Simulator Cross-View Legend / Agent Version Display Layer Controls — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-legend-01/README.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- WDA-SIM-MARKERS-01A — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-markers-01a/README.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Accepted Marker Visual Contract — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-markers-01a/accepted_marker_visual_contract_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- WDA-SIM-REPLAY-TRANSPORT-01 — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-replay-transport-01/README.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- WDA-SIM-SEARCH-LOAD-01 - Unified Load Scenario Utility Window — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-search-load-01/README.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- WDA-VERSION-GRAPH-01 - Version Equity Graph — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/README.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Lab v2 Shell Accepted Baseline — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/accepted-baseline.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Shell Alignment v1 Component Contract — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/shell-alignment-v1/shell_alignment_v1_component_contract.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Shell Alignment v1 Layout Contract — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/shell-alignment-v1/shell_alignment_v1_layout_contract.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Shell Alignment v1 State Contract — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/shell-alignment-v1/shell_alignment_v1_state_contract.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Readiness / Modes / Windowing Doctrine — `docs/design/v2/workstation-ui/readiness-modes-windowing/README.md` — areas: workstation-ui, promotion-governance — governs: 0 — related: 0
+- Focused Modal Workflow Model — `docs/design/v2/workstation-ui/readiness-modes-windowing/focused_modal_workflow_model_v0.md` — areas: workstation-ui, promotion-governance — governs: 0 — related: 0
+- Promotion / Deployment Workflow Boundary — `docs/design/v2/workstation-ui/readiness-modes-windowing/promotion_deployment_workflow_boundary_v0.md` — areas: workstation-ui, promotion-governance — governs: 0 — related: 0
+- REGION-RESIZE-01 — Workstation Region Resize System — `docs/design/v2/workstation-ui/region-resize-01/README.md` — areas: workstation-shell, workstation-ui — governs: 0 — related: 0
+- UTILITY-WINDOW-01 Design Packet (WDA) — `docs/design/v2/workstation-ui/utility-window-01-design-packet/README.md` — areas: utility-window-system, workstation-ui — governs: 0 — related: 0
+- WEB-RESET-01 Visual Target Contract — `docs/design/v2/workstation-ui/web-reset/web-reset-01/web_reset_01_visual_target_contract.md` — areas: workstation-ui — governs: 0 — related: 0
+
+## active (207)
+
+- Current State (implementation truth) — `docs/CURRENT_STATE.md` — areas: context-system, process-governance — governs: 0 — related: 0
+- TrAIdit Context System — `docs/context/README.md` — areas: context-system — governs: 0 — related: 0
+- Canonical Layer README — `docs/context/canonical/README.md` — areas: context-system — governs: 0 — related: 0
+- Agent Lifecycle — `docs/context/canonical/agent_lifecycle.md` — areas: agent-lifecycle, agent-versioning — governs: 0 — related: 0
+- Algo / Quant Service Synthesis — `docs/context/canonical/algo_quant_service.md` — areas: quant-service, algo-surface, market-context — governs: 0 — related: 3
+- Archetypes — `docs/context/canonical/archetypes.md` — areas: agent-archetypes, agent-creation — governs: 0 — related: 0
+- Context System — `docs/context/canonical/context_system.md` — areas: context-system — governs: 0 — related: 0
+- Current Priorities — `docs/context/canonical/current_priorities.md` — areas: context-system, planning-surface, process-governance — governs: 0 — related: 0
+- Evaluation — `docs/context/canonical/evaluation.md` — areas: evaluation, promotion-governance — governs: 0 — related: 0
+- Event Stream Timeline Synthesis — `docs/context/canonical/event_stream_timeline.md` — areas: event-stream-timeline — governs: 0 — related: 1
+- Implementation Program — `docs/context/canonical/implementation_program.md` — areas: process-governance, context-system — governs: 0 — related: 0
+- Lab — `docs/context/canonical/lab.md` — areas: lab, workstation-ui — governs: 0 — related: 0
+- Market Ontology Synthesis — `docs/context/canonical/market_ontology.md` — areas: market-ontology — governs: 0 — related: 1
+- Platform Thesis — `docs/context/canonical/platform_thesis.md` — areas: platform-thesis — governs: 0 — related: 0
+- Portfolio Core Synthesis — `docs/context/canonical/portfolio_core.md` — areas: portfolio-accounting — governs: 0 — related: 1
+- Product Thesis — `docs/context/canonical/product_thesis.md` — areas: product-thesis — governs: 0 — related: 0
+- Research Workspace (ASUMRT Window) — `docs/context/canonical/research.md` — areas: research, symbol-universe, workstation-ui — governs: 0 — related: 0
+- TrAIdit — `docs/context/canonical/traidit.md` — areas: product-thesis — governs: 0 — related: 0
+- TrAInit — `docs/context/canonical/trainit.md` — areas: platform-thesis — governs: 0 — related: 0
+- UI-Runway Readiness — the backend floor beneath the near-term front-end surfaces — `docs/context/canonical/ui_runway_readiness.md` — areas: workstation-ui, agent-lifecycle, wallet, forward-testing, portfolio-accounting — governs: 0 — related: 0
+- Versioning — `docs/context/canonical/versioning.md` — areas: agent-versioning — governs: 0 — related: 0
+- Workstation Shell Synthesis — `docs/context/canonical/workstation_shell.md` — areas: workstation-shell, workstation-ui — governs: 0 — related: 2
+- Evidence — `docs/context/evidence/README.md` — areas: context-system — governs: 0 — related: 0
+- Evidence Images — `docs/context/evidence/images/README.md` — areas: context-system — governs: 0 — related: 0
+- Raw Evidence — `docs/context/evidence/raw/README.md` — areas: context-system — governs: 0 — related: 0
+- Source Register — `docs/context/evidence/raw/source_register.md` — areas: context-system — governs: 0 — related: 0
+- Governance — `docs/context/governance/README.md` — areas: context-system, process-governance — governs: 0 — related: 0
+- CI Local-Gate Policy — `docs/context/governance/ci_local_gate_policy_v0.md` — areas: process-governance — governs: 0 — related: 0
+- Contradictions — `docs/context/governance/contradictions/README.md` — areas: context-system, process-governance — governs: 0 — related: 0
+- Contradiction / Tension Register — `docs/context/governance/contradictions/register.md` — areas: context-system, process-governance — governs: 0 — related: 0
+- Alpaca Data-Rights Compliance — Engineering Posture (founder-research; answers PSR-Q4) — `docs/context/governance/data-rights/alpaca_compliance_v0.md` — areas: data-rights, provider-data, paper-live-boundary — governs: 0 — related: 5
+- Derived-Works & Persistence Rights — the derivation question (Alpaca + Polygon/Massive; ED-01-triggered) — `docs/context/governance/data-rights/derived_works_and_persistence_v0.md` — areas: data-rights, provider-data, algo-surface — governs: 0 — related: 5
+- Decisions — `docs/context/governance/decisions/README.md` — areas: process-governance — governs: 0 — related: 0
+- Governance Meta — `docs/context/governance/meta/README.md` — areas: context-system, process-governance — governs: 0 — related: 0
+- TrAInit Context Wiki Index — `docs/context/index.md` — areas: context-system — governs: 0 — related: 0
+- Operations — `docs/context/operations/README.md` — areas: context-system, process-governance — governs: 0 — related: 0
+- Feedback — `docs/context/operations/feedback/README.md` — areas: context-system — governs: 0 — related: 0
+- Open Questions — `docs/context/operations/feedback/open_questions.md` — areas: process-governance — governs: 0 — related: 0
+- User Feedback Backlog — `docs/context/operations/feedback/raw/user_feedback_backlog.md` — areas: process-governance — governs: 0 — related: 0
+- BIA Harness Augmentation Source Material — `docs/context/operations/feedback/source-material-for-canonization/bia-harness-augmentation/README.md` — areas: agent-fleet — governs: 0 — related: 1
+- Business / Legal Research Source Material — `docs/context/operations/feedback/source-material-for-canonization/business-legal-research/README.md` — areas: business-research — governs: 0 — related: 0
+- Game Script / Decision Recipe — Ideation Source & Golden Synthesis — `docs/context/operations/feedback/source-material-for-canonization/game_script_ideation_v0.md` — areas: agent-execution — governs: 0 — related: 4
+- Human Team Roles And Requirements Source Material — `docs/context/operations/feedback/source-material-for-canonization/human-team-roles-and-requirements/README.md` — areas: process-governance — governs: 0 — related: 0
+- Milestones — `docs/context/operations/milestones/README.md` — areas: planning-surface, context-system — governs: 0 — related: 0
+- Reviews — `docs/context/operations/reviews/README.md` — areas: process-governance — governs: 0 — related: 0
+- Sessions — `docs/context/operations/sessions/README.md` — areas: process-governance, context-system — governs: 0 — related: 0
+- Workflow — `docs/context/operations/user-workflow/README.md` — areas: process-governance — governs: 0 — related: 0
+- Platform — `docs/context/platform/README.md` — areas: platform-thesis — governs: 0 — related: 0
+- Platform Architecture — `docs/context/platform/architecture/README.md` — areas: platform-thesis — governs: 0 — related: 0
+- Platform Future — `docs/context/platform/future/README.md` — areas: platform-thesis — governs: 0 — related: 0
+- Platform System — `docs/context/platform/system/README.md` — areas: platform-thesis — governs: 0 — related: 0
+- Platform Vision — `docs/context/platform/vision/README.md` — areas: platform-thesis — governs: 0 — related: 0
+- Team — `docs/context/team/README.md` — areas: process-governance — governs: 0 — related: 0
+- Graham — `docs/context/team/graham/README.md` — areas: context-system — governs: 0 — related: 0
+- Business Research — `docs/context/team/graham/business-research/README.md` — areas: business-research — governs: 0 — related: 0
+- TrAIdit BETA Business Research — `docs/context/team/graham/business-research/TrAIdit_BETA/README.md` — areas: business-research — governs: 0 — related: 0
+- Agentic Unit Economics — Validation Framing (EP-32 business leg) — `docs/context/team/graham/business-research/TrAIdit_BETA/agentic_unit_economics_validation_v0.md` — areas: business-research, evaluation — governs: 0 — related: 7
+- Cost Assumption Register — `docs/context/team/graham/business-research/TrAIdit_BETA/cost_assumption_register_v0.md` — areas: business-research — governs: 0 — related: 0
+- Professional Questions Register — `docs/context/team/graham/business-research/TrAIdit_BETA/professional_questions_register_v0.md` — areas: business-research, data-rights — governs: 0 — related: 0
+- TrAInit Business Research — `docs/context/team/graham/business-research/TrAInit/README.md` — areas: business-research, platform-thesis — governs: 0 — related: 0
+- Human Team — `docs/context/team/human-team/README.md` — areas: process-governance — governs: 0 — related: 0
+- Future Human Team Roles And Requirements — `docs/context/team/human-team/future-human-team-roles-and-requirements/README.md` — areas: process-governance — governs: 0 — related: 0
+- Design — `docs/design/README.md` — areas: context-system — governs: 0 — related: 0
+- Design — `docs/design/v2/README.md` — areas: context-system — governs: 0 — related: 0
+- Agent Archetypes — `docs/design/v2/agent-archetypes/README.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Agent Architecture — `docs/design/v2/agent-architecture/README.md` — areas: agent-execution — governs: 0 — related: 0
+- AGENT-HARNESS-05 — Verin Reviewer Latency Diagnostic & Repair — `docs/design/v2/agent-harness/agent-harness-05-verin-reviewer-latency/README.md` — areas: agent-fleet — governs: 0 — related: 0
+- EP-32 Agentic Unit Economics — Engineering-Design Packet (README) — `docs/design/v2/agentic-unit-economics/ep32-design-packet/README.md` — areas: evaluation, decision-evidence, mind-provider — governs: 0 — related: 7
+- EP-32 Agentic Unit Economics — Decision Register v0 — `docs/design/v2/agentic-unit-economics/ep32-design-packet/decision_register_v0.md` — areas: evaluation, decision-evidence, mind-provider — governs: 0 — related: 5
+- EP-32 Agentic Unit Economics — Engineering Direction v0 — `docs/design/v2/agentic-unit-economics/ep32-design-packet/engineering_direction_v0.md` — areas: evaluation, decision-evidence, workstation-ui — governs: 0 — related: 6
+- EP-32 Agentic Unit Economics — Implementation Decomposition v0 — `docs/design/v2/agentic-unit-economics/ep32-design-packet/implementation_decomposition_v0.md` — areas: evaluation, decision-evidence, workstation-ui — governs: 0 — related: 6
+- EP-32 Agentic Unit Economics — UI Option Slate v0 (Round 2) — `docs/design/v2/agentic-unit-economics/ep32-design-packet/ui-design/option_slate_v0.md` — areas: workstation-ui, evaluation, decision-evidence — governs: 0 — related: 5
+- EP-32 Agentic Unit Economics — UI Design Direction v0 (Round 2) — `docs/design/v2/agentic-unit-economics/ep32-design-packet/ui-design/ui_design_direction_v0.md` — areas: workstation-ui, evaluation, decision-evidence — governs: 0 — related: 9
+- Mockup Request — the Axium dock (PRODUCT-AXIUM-01, Cadence round, R1) — `docs/design/v2/ai/product-axium-01-design-packet/mockups/mockup_request_axium_dock_v0.md` — areas: workstation-ui, autonomy — governs: 0 — related: 5
+- Algo — EP-12 design area — `docs/design/v2/algo/README.md` — areas: algo-surface — governs: 0 — related: 0
+- Settings Window v0 — Design Direction — `docs/design/v2/app-settings/settings-window-01-design-packet/settings_window_direction_v0.md` — areas: utility-window-system, workstation-ui, workstation-shell — governs: 1 — related: 2
+- TrAIdit v2 Architecture Diagrams — `docs/design/v2/architecture-diagrams/README.md` — areas: system-architecture — governs: 0 — related: 0
+- ASYNC-PRICING-LANE-01 — Alpaca Takes the Realtime Price Lane (Design Packet) — `docs/design/v2/async-pricing-lane/async-pricing-lane-01-design-packet/README.md` — areas: system-architecture, market-data, provider-data, agent-execution, paper-live-boundary — governs: 0 — related: 5
+- ASYNC-PRICING-LANE-01 — Implementation Decomposition — `docs/design/v2/async-pricing-lane/async-pricing-lane-01-design-packet/implementation_decomposition_v0.md` — areas: system-architecture, market-data, provider-data, agent-execution, paper-live-boundary — governs: 0 — related: 2
+- ASYNC-REALTIME-01 — Async / Real-Time Messaging Substrate (Design Packet) — `docs/design/v2/async-realtime/async-realtime-01-design-packet/README.md` — areas: system-architecture, market-data, algo-surface, agent-execution, provider-data — governs: 0 — related: 5
+- ASYNC-REALTIME-01 — Coordination-Surface Map — `docs/design/v2/async-realtime/async-realtime-01-design-packet/coordination_surface_map_v0.md` — areas: system-architecture, market-data, agent-execution, provider-data — governs: 0 — related: 0
+- ASYNC-REALTIME-01 — Current Implementation Truth (anchor) — `docs/design/v2/async-realtime/async-realtime-01-design-packet/current_implementation_truth_v0.md` — areas: algo-surface, market-data, system-architecture — governs: 0 — related: 0
+- ASYNC-REALTIME-01 — Decomposition & Sequencing — `docs/design/v2/async-realtime/async-realtime-01-design-packet/decomposition_and_sequencing_v0.md` — areas: system-architecture, market-data, algo-surface — governs: 0 — related: 0
+- AUTHORING-RELIABILITY-01 — refusal-kind telemetry + the prefill nudge (#872) — `docs/design/v2/authoring-reliability/authoring-reliability-01/README.md` — areas: agent-execution, evaluation, process-governance — governs: 0 — related: 2
+- Business Research Design — `docs/design/v2/business-research/README.md` — areas: business-research — governs: 0 — related: 0
+- Cost And Infrastructure Question Register — `docs/design/v2/business-research/algo-research-01-algo-trading-vernacular-platform-scan/cost_and_infrastructure_question_register_v0.md` — areas: business-research, quant-service — governs: 0 — related: 0
+- Professional And Data Rights Question Register — `docs/design/v2/business-research/algo-research-01-algo-trading-vernacular-platform-scan/professional_and_data_rights_question_register_v0.md` — areas: data-rights, business-research — governs: 0 — related: 0
+- CAMPAIGN-01 — The Campaign Tier (Design Packet) — `docs/design/v2/campaign/campaign-01-design-packet/README.md` — areas: game-script, agent-lifecycle, agent-execution, evaluation, portfolio-accounting — governs: 0 — related: 5
+- CAMPAIGN-01 — Decision Register — `docs/design/v2/campaign/campaign-01-design-packet/decision_register_v0.md` — areas: game-script, agent-lifecycle, agent-execution, evaluation, portfolio-accounting — governs: 0 — related: 3
+- CAMPAIGN-01 — Implementation Decomposition — `docs/design/v2/campaign/campaign-01-design-packet/implementation_decomposition_v0.md` — areas: game-script, agent-lifecycle, agent-execution, evaluation, portfolio-accounting — governs: 0 — related: 3
+- CAMPAIGN-02 — Design Packet (the scored, winnable, per-group standing thesis) — `docs/design/v2/campaign/campaign-02-design-packet/README.md` — areas: game-script, agent-lifecycle, agent-execution, evaluation, portfolio-accounting — governs: 0 — related: 5
+- CAMPAIGN-02 — Decision Register — `docs/design/v2/campaign/campaign-02-design-packet/decision_register_v0.md` — areas: game-script, agent-lifecycle, agent-execution, evaluation, portfolio-accounting — governs: 0 — related: 4
+- CAMPAIGN-02 — Implementation Decomposition — `docs/design/v2/campaign/campaign-02-design-packet/implementation_decomposition_v0.md` — areas: game-script, agent-lifecycle, agent-execution, evaluation, portfolio-accounting — governs: 0 — related: 6
+- Data Source / Provider Role Map — `docs/design/v2/data-sources/README.md` — areas: provider-data — governs: 0 — related: 0
+- Decision-Architecture Exodus — Host Unification Arc Build Status v0 — `docs/design/v2/decision-architecture-exodus/arc_build_status_v0.md` — areas: game-script, agent-execution — governs: 0 — related: 3
+- Flat-Lane Retirement — Design Packet (Decision-Architecture Exodus, phase 2) — `docs/design/v2/decision-architecture-exodus/flat-lane-retirement/README.md` — areas: game-script, agent-execution, decision-evidence, mind-provider, historic-simulator — governs: 0 — related: 8
+- Flat-Lane Retirement — Arc Build Status v0 — `docs/design/v2/decision-architecture-exodus/flat-lane-retirement/arc_build_status_v0.md` — areas: game-script, agent-execution, decision-evidence, mind-provider, historic-simulator — governs: 0 — related: 5
+- Decision-Architecture Exodus — Flat-Lane Retirement Decision Register v0 — `docs/design/v2/decision-architecture-exodus/flat-lane-retirement/decision_register_v0.md` — areas: game-script, agent-execution, decision-evidence, mind-provider, historic-simulator — governs: 0 — related: 7
+- Decision-Architecture Exodus — Flat-Lane Retirement Implementation Decomposition v0 — `docs/design/v2/decision-architecture-exodus/flat-lane-retirement/implementation_decomposition_v0.md` — areas: game-script, agent-execution, decision-evidence, historic-simulator — governs: 0 — related: 3
+- Game Script Capability Trade Study — exodus sacrifices & profitability buy-back paths — `docs/design/v2/decision-architecture-exodus/gs_capability_trade_study_v0.md` — areas: game-script, decision-evidence, agent-execution, mind-provider — governs: 0 — related: 5
+- Decision-Architecture Exodus — Host Unification Decomposition v0 (opening slice) — `docs/design/v2/decision-architecture-exodus/host_unification_decomposition_v0.md` — areas: game-script, agent-execution — governs: 0 — related: 4
+- Run-Model Reconciliation (#448) — design packet + decision register — `docs/design/v2/decision-architecture-exodus/run-model-reconciliation/README.md` — areas: game-script, agent-execution, historic-simulator, decision-evidence, portfolio-accounting — governs: 0 — related: 4
+- Mockup Request — the panel kit (EvalCal hardware vocabulary, Cadence round B, R1) — `docs/design/v2/evaluation/evalcal-01-design-packet/mockups/mockup_request_panel_kit_v0.md` — areas: workstation-ui, evaluation — governs: 0 — related: 3
+- FLIGHT-RECORDER-01 — the authoring flight recorder (#770 Phase 1 + #771 + #772) — `docs/design/v2/flight-recorder/flight_recorder_01_design_v0.md` — areas: agent-execution, evaluation, decision-evidence, forward-testing, historic-simulator — governs: 0 — related: 3
+- FALSIFIER-DAILY-BASKET — the daily-bar basket source (#662, docket item 2) — `docs/design/v2/forward-testing/falsifier-daily-basket/falsifier_daily_basket_design_v0.md` — areas: forward-testing, agent-lifecycle, historic-simulator, provider-data — governs: 0 — related: 2
+- FORWARD-RUN-SUMMARY-01 (#844) — the forward run-summary home + exact synthetic-tick recovery — `docs/design/v2/forward-testing/forward-run-summary-01/forward_run_summary_01_design_v0.md` — areas: forward-testing, evaluation, agent-execution, decision-evidence — governs: 0 — related: 3
+- FORWARD-TESTING-01 — the Paper Forward Testing Environment (campaign↔execution seam) — `docs/design/v2/forward-testing/forward-testing-01-design-packet/README.md` — areas: forward-testing, agent-lifecycle, game-script, agent-execution, paper-live-boundary — governs: 0 — related: 6
+- FORWARD-TESTING-01 — Arc Build Status (authoritative per-slice record) — `docs/design/v2/forward-testing/forward-testing-01-design-packet/arc_build_status_v0.md` — areas: forward-testing, agent-lifecycle, game-script, agent-execution, paper-live-boundary — governs: 0 — related: 1
+- FORWARD-TESTING-01 — Current Implementation Truth (the seam census) — `docs/design/v2/forward-testing/forward-testing-01-design-packet/current_implementation_truth_v0.md` — areas: forward-testing, agent-lifecycle, game-script, agent-execution — governs: 0 — related: 1
+- FORWARD-TESTING-01 — Decision Register v0 — `docs/design/v2/forward-testing/forward-testing-01-design-packet/decision_register_v0.md` — areas: forward-testing, agent-lifecycle, game-script, agent-execution, paper-live-boundary — governs: 0 — related: 1
+- FORWARD-TESTING-01 — Implementation Decomposition v0 (pre-authored; build fires when AHL phase 2 lands) — `docs/design/v2/forward-testing/forward-testing-01-design-packet/implementation_decomposition_v0.md` — areas: forward-testing, agent-lifecycle, game-script, agent-execution — governs: 0 — related: 1
+- GAME-SCRIPT-01 — Game Script / Decision Recipe Design Packet — `docs/design/v2/game-script/game-script-01-design-packet/README.md` — areas: game-script, agent-execution — governs: 0 — related: 4
+- GAME-SCRIPT-01 — Arc Build Status v0 — `docs/design/v2/game-script/game-script-01-design-packet/arc_build_status_v0.md` — areas: game-script, agent-execution — governs: 0 — related: 2
+- GAME-SCRIPT-01 — Current Implementation Truth — `docs/design/v2/game-script/game-script-01-design-packet/current_implementation_truth_v0.md` — areas: game-script, agent-execution — governs: 0 — related: 2
+- GAME-SCRIPT-01 FF-2 — Requisition Fulfillment (errand-boy v1.1) Sub-Packet — `docs/design/v2/game-script/game-script-01-design-packet/ff2-requisition-fulfillment/README.md` — areas: game-script, agent-execution — governs: 0 — related: 5
+- GAME-SCRIPT-01 FF-2 — Arc Build Status & Decision Trail v0 — `docs/design/v2/game-script/game-script-01-design-packet/ff2-requisition-fulfillment/arc_build_status_v0.md` — areas: game-script, agent-execution — governs: 0 — related: 2
+- GAME-SCRIPT-01 FF-2 — Implementation Decomposition v0 — `docs/design/v2/game-script/game-script-01-design-packet/ff2-requisition-fulfillment/implementation_decomposition_v0.md` — areas: game-script, agent-execution — governs: 0 — related: 4
+- GAME-SCRIPT-01 FF-2 — Requisition Fulfillment Direction v0 — `docs/design/v2/game-script/game-script-01-design-packet/ff2-requisition-fulfillment/requisition_fulfillment_direction_v0.md` — areas: game-script, agent-execution — governs: 0 — related: 5
+- GAME-SCRIPT-01 — game-script@1 Contract Direction v0 — `docs/design/v2/game-script/game-script-01-design-packet/game_script_contract_v0.md` — areas: game-script, agent-execution — governs: 0 — related: 2
+- GAME-SCRIPT-01 — Host Environment-Agnosticism Audit v0 — `docs/design/v2/game-script/game-script-01-design-packet/host_environment_agnosticism_audit_v0.md` — areas: game-script, agent-execution — governs: 0 — related: 5
+- GAME-SCRIPT-01 — Implementation Decomposition v0 (the arc record) — `docs/design/v2/game-script/game-script-01-design-packet/implementation_decomposition_v0.md` — areas: game-script, agent-execution — governs: 0 — related: 4
+- GAME-SCRIPT-01 — Plan Read-Back UI Direction v0 (GS-8 inspector, GS-9 bands) — `docs/design/v2/game-script/game-script-01-design-packet/plan_readback_ui_direction_v0.md` — areas: game-script, workstation-ui — governs: 0 — related: 5
+- GAME-SCRIPT-01 — Runtime Integration Direction v0 — `docs/design/v2/game-script/game-script-01-design-packet/runtime_integration_v0.md` — areas: game-script, agent-execution — governs: 0 — related: 3
+- GAME-SCRIPT-01 — Spike Plan v0 (S1 authoring coherence, S2 prototype evaluator) — `docs/design/v2/game-script/game-script-01-design-packet/spike_plan_v0.md` — areas: game-script, agent-execution — governs: 0 — related: 2
+- GAME-SCRIPT-01 — Spike S1 Findings v0 (plan-authoring coherence x universe size) — `docs/design/v2/game-script/game-script-01-design-packet/spike_s1_authoring_coherence_findings_v0.md` — areas: game-script, agent-execution — governs: 0 — related: 2
+- GAME-SCRIPT-01 — Spike S2 Findings v0 (prototype deterministic plan evaluator) — `docs/design/v2/game-script/game-script-01-design-packet/spike_s2_evaluator_findings_v0.md` — areas: game-script, agent-execution — governs: 0 — related: 2
+- GAME-SCRIPT-02 — the Expressive Plan Arc (Design Packet) — `docs/design/v2/game-script/game-script-02-design-packet/README.md` — areas: game-script, agent-execution, evaluation, decision-evidence — governs: 4 — related: 10
+- GAME-SCRIPT-02 — Decision Register v0 (GS2-D1..D22) — `docs/design/v2/game-script/game-script-02-design-packet/decision_register_v0.md` — areas: game-script, agent-execution, evaluation — governs: 0 — related: 6
+- GAME-SCRIPT-02 — Expressive Plan Contract Direction v0 — `docs/design/v2/game-script/game-script-02-design-packet/expressive_plan_contract_v0.md` — areas: game-script, agent-execution, evaluation — governs: 0 — related: 4
+- GAME-SCRIPT-02 — Implementation Decomposition v0 — `docs/design/v2/game-script/game-script-02-design-packet/implementation_decomposition_v0.md` — areas: game-script, agent-execution, evaluation — governs: 0 — related: 5
+- GAME-SCRIPT-02 — Validation Plan v0 (goldens + sentinel probes) — `docs/design/v2/game-script/game-script-02-design-packet/validation_plan_v0.md` — areas: game-script, agent-execution, evaluation — governs: 0 — related: 3
+- Game Script + Campaign Evolution Study — the picture, the structural gaps, and the buy-back proposals — `docs/design/v2/game-script/gs_campaign_evolution_study_v0.md` — areas: game-script, agent-execution, evaluation, decision-evidence, system-architecture, product-thesis — governs: 7 — related: 7
+- Structured-output budget — the 2026-07-27 measurement (why trimming is not the answer) — `docs/design/v2/game-script/structured_output_budget_measurement_v0.md` — areas: game-script, mind-provider, agent-execution — governs: 3 — related: 3
+- Historic Simulator — `docs/design/v2/historic-simulator/README.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-DATA-ALIGNMENT-01 — Simulator Data Fidelity, Cadence & Topology — `docs/design/v2/historic-simulator/sim-data-alignment-01/README.md` — areas: historic-simulator, market-data, agent-execution, data-rights — governs: 0 — related: 0
+- SIM-DATA-ALIGNMENT-01 — Decision Register — `docs/design/v2/historic-simulator/sim-data-alignment-01/decision_register_v0.md` — areas: historic-simulator, market-data, agent-execution, data-rights — governs: 0 — related: 0
+- SIM-DATA-ALIGNMENT-01 — Provider Fidelity & Cost Research — `docs/design/v2/historic-simulator/sim-data-alignment-01/provider_fidelity_and_cost_v0.md` — areas: historic-simulator, market-data, data-rights — governs: 0 — related: 0
+- SIM-MODERNIZATION-01 — Design Packet — `docs/design/v2/historic-simulator/sim-modernization-01-design-packet/README.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-MODERNIZATION-01 — Open Decisions — `docs/design/v2/historic-simulator/sim-modernization-01-design-packet/open_decisions_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-MODERNIZATION-01 — Scoping / Decomposition — `docs/design/v2/historic-simulator/sim-modernization-01-design-packet/scoping_decomposition_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-OUTER-LOOP-01 — scenario-forked campaigns + the per-simulated-day authoring loop (EP-38, #559 + #629) — `docs/design/v2/historic-simulator/sim-outer-loop-01-design-packet/sim_outer_loop_design_v0.md` — areas: historic-simulator, agent-lifecycle, game-script, forward-testing, agent-execution — governs: 0 — related: 3
+- Live Authority — `docs/design/v2/live-authority/README.md` — areas: live-authority — governs: 0 — related: 0
+- LIVE-DEPLOY-01 — Design Packet (the ladder's third act; EP-17 S1, #745) — `docs/design/v2/live-deployment/live-deployment-01-design-packet/README.md` — areas: agent-execution, agent-lifecycle, portfolio-accounting, process-governance — governs: 0 — related: 3
+- LIVE-DEPLOY-01 — Decision Register — `docs/design/v2/live-deployment/live-deployment-01-design-packet/decision_register_v0.md` — areas: agent-execution, agent-lifecycle, portfolio-accounting, process-governance — governs: 0 — related: 2
+- LIVE-DEPLOY-01 — Implementation Decomposition v0 (the ladder's third act, sliced) — `docs/design/v2/live-deployment/live-deployment-01-design-packet/implementation_decomposition_v0.md` — areas: agent-execution, agent-lifecycle, portfolio-accounting, process-governance — governs: 0 — related: 3
+- LIVE-DEPLOY-01 — LD-S4 Evidence (the real-database proof, the credential wall, the fixture census) — `docs/design/v2/live-deployment/live-deployment-01-design-packet/ld_s4_evidence_v0.md` — areas: agent-execution, agent-lifecycle, paper-live-boundary, portfolio-accounting, process-governance — governs: 0 — related: 4
+- LIVE-DEPLOY-01 — The Supervised-Submit Ritual (the first real-money flip, executed by Graham) — `docs/design/v2/live-deployment/live-deployment-01-design-packet/supervised_submit_ritual_v0.md` — areas: agent-execution, agent-lifecycle, paper-live-boundary, portfolio-accounting, process-governance — governs: 0 — related: 4
+- Live-Paper Adapter Spike — Arc Build Status v0 — `docs/design/v2/live-paper-adapter-spike/arc_build_status_v0.md` — areas: game-script, agent-execution, paper-live-boundary — governs: 0 — related: 3
+- Live-Paper Adapter Spike — Direction v0 — `docs/design/v2/live-paper-adapter-spike/live_paper_spike_direction_v0.md` — areas: game-script, agent-execution, paper-live-boundary — governs: 0 — related: 3
+- Market Ontology Design — `docs/design/v2/market-ontology/README.md` — areas: market-ontology — governs: 0 — related: 0
+- Provider / Dataset Ingestion Question Register — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/provider_dataset_ingestion_question_register_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- TrAIdit MVP Roadmap Reconciliation — `docs/design/v2/mvp-roadmap/README.md` — areas: planning-surface — governs: 0 — related: 0
+- Portfolio Core Design — `docs/design/v2/portfolio-core/README.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Professional And Provider Question Register — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/professional_and_provider_question_register_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- PORTFOLIO-READ-01 — Portfolio / Equity Read Surface Design Packet — `docs/design/v2/portfolio/portfolio-read-01-design-packet/README.md` — areas: portfolio-accounting, evaluation — governs: 0 — related: 4
+- PORTFOLIO-READ-01 — Decision Register v0 (PR-D1..D6, ALL RULED 2026-08-10) — `docs/design/v2/portfolio/portfolio-read-01-design-packet/decision_register_v0.md` — areas: portfolio-accounting, evaluation — governs: 0 — related: 2
+- POLYGON-EXODUS-02 — the remaining Polygon flush (platform + quant service) — `docs/design/v2/price-substrate/polygon-exodus-02-packet/README.md` — areas: market-data, provider-data, system-architecture, symbol-universe — governs: 0 — related: 5
+- POLYGON-EXODUS-02 — Current-State Survey (every surviving call site) — `docs/design/v2/price-substrate/polygon-exodus-02-packet/current_state_survey_v0.md` — areas: market-data, provider-data, system-architecture — governs: 0 — related: 1
+- POLYGON-EXODUS-02 — Decision Register (PX-D1..PX-D8) — `docs/design/v2/price-substrate/polygon-exodus-02-packet/decision_register_v0.md` — areas: market-data, provider-data, system-architecture, symbol-universe — governs: 0 — related: 2
+- POLYGON-EXODUS-02 — Implementation Decomposition (PX-S1..PX-S6, conditional) — `docs/design/v2/price-substrate/polygon-exodus-02-packet/implementation_decomposition_v0.md` — areas: market-data, provider-data, system-architecture — governs: 0 — related: 2
+- PRICE-SUBSTRATE-01 — Data-Rights Notes & Attorney Follow-Up Register — `docs/design/v2/price-substrate/price-substrate-01-design-packet/data_rights_notes_v0.md` — areas: data-rights, provider-data, paper-live-boundary — governs: 0 — related: 4
+- PRICE-SUBSTRATE-01 — Probe Findings (P0–P6) — `docs/design/v2/price-substrate/price-substrate-01-design-packet/probe_findings_v0.md` — areas: market-data, provider-data, system-architecture, paper-live-boundary — governs: 0 — related: 2
+- PRICE-SUBSTRATE-01 — Provider Capability & Cost Matrix — `docs/design/v2/price-substrate/price-substrate-01-design-packet/provider_capability_and_cost_matrix_v0.md` — areas: market-data, provider-data, data-rights — governs: 0 — related: 2
+- QUANT-REALTIME-01 — Real-Time Quant Streaming (Design Packet) — `docs/design/v2/quant-realtime/quant-realtime-01-design-packet/README.md` — areas: system-architecture, quant-service, algo-surface, market-data, provider-data — governs: 0 — related: 6
+- QUANT-REALTIME-01 — Coordination-Surface Map — `docs/design/v2/quant-realtime/quant-realtime-01-design-packet/coordination_surface_map_v0.md` — areas: system-architecture, quant-service, algo-surface, provider-data — governs: 0 — related: 0
+- QUANT-REALTIME-01 — Current Implementation Truth (anchor) — `docs/design/v2/quant-realtime/quant-realtime-01-design-packet/current_implementation_truth_v0.md` — areas: quant-service, algo-surface, market-data, system-architecture — governs: 0 — related: 0
+- QUANT-REALTIME-01 — Decision Register — `docs/design/v2/quant-realtime/quant-realtime-01-design-packet/decision_register_v0.md` — areas: system-architecture, quant-service, algo-surface, market-data — governs: 0 — related: 0
+- QUANT-REALTIME-01 — Decomposition & Sequencing — `docs/design/v2/quant-realtime/quant-realtime-01-design-packet/decomposition_and_sequencing_v0.md` — areas: system-architecture, quant-service, algo-surface — governs: 0 — related: 0
+- QUANT-REALTIME-02 — Cross-Sectional Stream v1 (Design Packet) — `docs/design/v2/quant-realtime/quant-realtime-02-design-packet/README.md` — areas: system-architecture, quant-service, algo-surface, market-data — governs: 0 — related: 3
+- QUANT-REALTIME-02 — Decision Register — `docs/design/v2/quant-realtime/quant-realtime-02-design-packet/decision_register_v0.md` — areas: system-architecture, quant-service, algo-surface, market-data — governs: 0 — related: 2
+- RESEARCH-SYMBOL-UNIVERSE-01 — ASUMRT Design Packet — `docs/design/v2/research-symbol-universe/research-symbol-universe-01-design-packet/README.md` — areas: research, symbol-universe, market-ontology, workstation-ui — governs: 0 — related: 3
+- ASUMRT Direction — `docs/design/v2/research-symbol-universe/research-symbol-universe-01-design-packet/asumrt_direction_v0.md` — areas: research, symbol-universe, market-ontology, workstation-ui — governs: 1 — related: 2
+- ASUMRT Decision Register — `docs/design/v2/research-symbol-universe/research-symbol-universe-01-design-packet/decision_register_v0.md` — areas: research, symbol-universe, market-ontology, workstation-ui — governs: 0 — related: 1
+- ASUMRT Mockup Notes v0 — `docs/design/v2/research-symbol-universe/research-symbol-universe-01-design-packet/mockups/asumrt_mockup_notes_v0.md` — areas: research, symbol-universe, workstation-ui, market-ontology — governs: 0 — related: 5
+- ASUMRT Resume Build Decomposition (EP-29 on Atlas) — `docs/design/v2/research-symbol-universe/research-symbol-universe-01-design-packet/resume_build_decomposition_v0.md` — areas: research, symbol-universe, workstation-ui — governs: 0 — related: 1
+- ASUMRT Spike Findings (S1 classification · S2 news) — `docs/design/v2/research-symbol-universe/research-symbol-universe-01-design-packet/spike_findings_v0.md` — areas: research, symbol-universe, market-ontology, provider-data — governs: 0 — related: 1
+- The Combine — R&D bundle index — `docs/design/v2/rnd/README.md` — areas: research — governs: 0 — related: 3
+- The Combine — Lab Notebook (test registry of record) — `docs/design/v2/rnd/lab_notebook_v0.md` — areas: research, decision-calipers, evaluation, agent-archetypes — governs: 0 — related: 4
+- Template — archetype candidate dossier (accrues evidence across tests) — `docs/design/v2/rnd/templates/archetype_dossier_template_v0.md` — areas: research, agent-archetypes — governs: 0 — related: 4
+- Template — pre-registered experiment doc (formal / metered tests) — `docs/design/v2/rnd/templates/experiment_doc_template_v0.md` — areas: research, process-governance — governs: 0 — related: 2
+- Template — sweep note (lightweight downstream/free sweeps) — `docs/design/v2/rnd/templates/sweep_note_template_v0.md` — areas: research, process-governance — governs: 0 — related: 2
+- Security Posture Question Register — `docs/design/v2/security/security_posture_question_register_v0.md` — areas: security — governs: 0 — related: 0
+- SHADOW-PLANS-01 — the Counterfactual Lane (Design Packet) — `docs/design/v2/shadow-plans/shadow-plans-01-design-packet/README.md` — areas: game-script, agent-execution, evaluation, decision-evidence, historic-simulator — governs: 3 — related: 12
+- SHADOW-PLANS-01 — Decision Register v0 (SP-D1..D14) — `docs/design/v2/shadow-plans/shadow-plans-01-design-packet/decision_register_v0.md` — areas: game-script, agent-execution, evaluation, decision-evidence, historic-simulator — governs: 0 — related: 9
+- SHADOW-PLANS-01 — Implementation Decomposition v0 — `docs/design/v2/shadow-plans/shadow-plans-01-design-packet/implementation_decomposition_v0.md` — areas: game-script, agent-execution, evaluation, historic-simulator — governs: 0 — related: 5
+- SHADOW-PLANS-01 — Validation Plan v0 (per-slice coverage + sentinel probes) — `docs/design/v2/shadow-plans/shadow-plans-01-design-packet/validation_plan_v0.md` — areas: game-script, agent-execution, evaluation, historic-simulator — governs: 0 — related: 4
+- SHADOW-PLANS-02 — the forward counterfactual lane (out-of-sample shadows) — `docs/design/v2/shadow-plans/shadow-plans-02/shadow_plans_02_design_v0.md` — areas: agent-execution, forward-testing, evaluation, decision-evidence — governs: 0 — related: 4
+- System Synthesis Probe 01 — end-to-end agent decision loop — `docs/design/v2/system-synthesis/system-synthesis-probe-01/README.md` — areas: agent-execution, agent-creation — governs: 0 — related: 0
+- TRAIDIT-ATLAS-01 — Owned Reference-Data Feasibility Packet — `docs/design/v2/traidit-atlas/traidit-atlas-01-feasibility-packet/README.md` — areas: market-ontology, provider-data, data-rights, symbol-universe — governs: 0 — related: 3
+- TrAIdit Atlas — A4 Native Taxonomy Design Direction — `docs/design/v2/traidit-atlas/traidit-atlas-01-feasibility-packet/a4_taxonomy_design_direction_v0.md` — areas: market-ontology, symbol-universe — governs: 0 — related: 2
+- TrAIdit Atlas — Feasibility & Architecture — `docs/design/v2/traidit-atlas/traidit-atlas-01-feasibility-packet/atlas_feasibility_and_architecture_v0.md` — areas: market-ontology, provider-data, data-rights, symbol-universe — governs: 0 — related: 2
+- TrAIdit Atlas — Datastore & Query Modeling (S-Atlas-2) — `docs/design/v2/traidit-atlas/traidit-atlas-01-feasibility-packet/datastore_and_query_modeling_v0.md` — areas: market-ontology, symbol-universe, process-governance — governs: 0 — related: 2
+- TrAIdit Atlas — Decision Register — `docs/design/v2/traidit-atlas/traidit-atlas-01-feasibility-packet/decision_register_v0.md` — areas: market-ontology, provider-data, data-rights, symbol-universe — governs: 0 — related: 1
+- TrAIdit Atlas — Legal Question Register — `docs/design/v2/traidit-atlas/traidit-atlas-01-feasibility-packet/legal_question_register_v0.md` — areas: data-rights, market-ontology, provider-data — governs: 0 — related: 2
+- TrAIdit Atlas — Phase-1 Implementation Decomposition — `docs/design/v2/traidit-atlas/traidit-atlas-01-feasibility-packet/phase1_implementation_decomposition_v0.md` — areas: market-ontology, provider-data, symbol-universe, process-governance — governs: 0 — related: 2
+- TrAIdit Atlas — Reference-Data Sourcing & Licensing — `docs/design/v2/traidit-atlas/traidit-atlas-01-feasibility-packet/reference_data_sourcing_and_licensing_v0.md` — areas: market-ontology, provider-data, data-rights — governs: 0 — related: 2
+- TrAIdit Atlas — Phase-0 Ingest PoC Findings (S-Atlas-1) — `docs/design/v2/traidit-atlas/traidit-atlas-01-feasibility-packet/spike_findings_phase0_v0.md` — areas: market-ontology, provider-data, data-rights, symbol-universe — governs: 0 — related: 2
+- V1 Exodus — Direction & Decomposition v0 (routes, surfaces, terminology, final scrub) — `docs/design/v2/v1-exodus/v1_exodus_direction_v0.md` — areas: legacy-retirement, workstation-shell, workstation-ui — governs: 0 — related: 1
+- Wallet — Design Direction v0 — `docs/design/v2/wallet/wallet-01-design-packet/wallet_direction_v0.md` — areas: wallet, portfolio-accounting, position-sizing, paper-live-boundary, risk-gates, workstation-ui — governs: 0 — related: 3
+- Wallet W5 — Live ALLOCATE (the /wallet/live leg; EP-30 #747) — `docs/design/v2/wallet/wallet-w5-live-allocate/README.md` — areas: portfolio-accounting, agent-execution, process-governance — governs: 0 — related: 3
+- Workstation UI Design — `docs/design/v2/workstation-ui/README.md` — areas: workstation-ui — governs: 0 — related: 0
+- Historic Simulator UI Mockups — `docs/design/v2/workstation-ui/mockups/historic-simulator/README.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Lab v2 Shell Mockups — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/README.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Mockup Request — the agent identity mark (ROSTER-01 Cadence round A, R1) — `docs/design/v2/workstation-ui/roster-01/mockups/mockup_request_identity_mark_v0.md` — areas: workstation-ui, agent-lifecycle — governs: 0 — related: 3
+- Mockup Request — The Pit (TRAIDING-FLOOR-01, Cadence round R1, divergent) — `docs/design/v2/workstation-ui/traiding-floor-01/mockups/mockup_request_pit_v0.md` — areas: workstation-ui, live-authority — governs: 0 — related: 6
+- Template — Mockup Request Packet (WDA brief) — `docs/design/v2/workstation-ui/ui-foundations-01/templates/mockup_request_template_v0.md` — areas: workstation-ui, process-governance — governs: 0 — related: 1
+- Workstation UI Web Reset — `docs/design/v2/workstation-ui/web-reset/README.md` — areas: workstation-ui — governs: 0 — related: 0
+
+## exploratory (123)
+
+- Archive Policy Draft — `docs/context/governance/context-hygiene/context-canonicalization-audit-01/archive_policy_draft_v0.md` — areas: context-system — governs: 0 — related: 0
+- Compaction Reinstantiation Bootstrap — `docs/context/governance/context-hygiene/context-canonicalization-audit-01/compaction_reinstantiation_bootstrap_v0.md` — areas: context-system — governs: 0 — related: 0
+- Design Docs vs Context Policy — `docs/context/governance/context-hygiene/context-canonicalization-audit-01/design_docs_vs_context_policy_v0.md` — areas: context-system — governs: 0 — related: 0
+- External Context Patterns Research — `docs/context/governance/context-hygiene/context-canonicalization-audit-01/external_context_patterns_research_v0.md` — areas: context-system — governs: 0 — related: 0
+- Proposed Context Architecture — `docs/context/governance/context-hygiene/context-canonicalization-audit-01/proposed_context_architecture_v0.md` — areas: context-system — governs: 0 — related: 0
+- ADR-005 — Session rollup ownership belongs to the assistant role — `docs/context/governance/decisions/ADR-005-session-rollup-ownership.md` — areas: process-governance, context-system — governs: 0 — related: 0
+- AI Capability Layers — `docs/context/platform/future/ai_capability_layers.md` — areas: platform-thesis — governs: 0 — related: 0
+- TrAInit Platform Vision (v0 — Directional, Non-Binding) — `docs/context/platform/future/trAInit_platform_vision_v0.md` — areas: platform-thesis — governs: 0 — related: 0
+- TrAInit Platform Layers (Vision Draft) — `docs/context/platform/vision/trainit_platform_layers.md` — areas: platform-thesis — governs: 0 — related: 0
+- PRODUCT-AXIUM-01 design packet — Axium, the TrAIdit-Native AI Assistant (#133) — `docs/design/v2/ai/product-axium-01-design-packet/README.md` — areas: autonomy, workstation-ui, mind-provider — governs: 0 — related: 10
+- PRODUCT-AXIUM-01 decision register — PAX-D1..D10 — `docs/design/v2/ai/product-axium-01-design-packet/decision_register_v0.md` — areas: autonomy, workstation-ui, mind-provider — governs: 0 — related: 10
+- Axium dock — handoff annex (the build contract from the R2 FINAL stamped set) — `docs/design/v2/ai/product-axium-01-design-packet/mockups/axium_dock_handoff_annex_v0.md` — areas: workstation-ui, autonomy — governs: 0 — related: 11
+- Axium dock R1 — design notes, defect log, and open questions (Cadence) — `docs/design/v2/ai/product-axium-01-design-packet/mockups/axium_dock_r1_notes_v0.md` — areas: workstation-ui, autonomy — governs: 0 — related: 10
+- Axium dock R2 — the convergent composite, defect log, the R2 FINAL reconcile, and the PAX-D16 masthead micro-pass (Cadence) — `docs/design/v2/ai/product-axium-01-design-packet/mockups/axium_dock_r2_notes_v0.md` — areas: workstation-ui, autonomy — governs: 0 — related: 11
+- ASSAY-OFFICE-01 — direction capture: wielding the Assayer (the edge-hunting console) — `docs/design/v2/algo/assay-office-01-direction/README.md` — areas: algo-surface, research, workstation-ui — governs: 0 — related: 5
+- ASSAYER-OPS-01 — The Cadence (Design Packet) — `docs/design/v2/algo/assayer-ops-01-design-packet/README.md` — areas: quant-service, algo-surface, agent-execution, process-governance — governs: 0 — related: 4
+- EDGE-DISCOVERY-01 (ED-01) — Design Packet — `docs/design/v2/algo/edge-discovery-01-design-packet/README.md` — areas: quant-service, algo-surface, research, regime-detection — governs: 0 — related: 8
+- EDGE-DISCOVERY-01 — Design-Conformance Audit v0 — `docs/design/v2/algo/edge-discovery-01-design-packet/conformance_audit_v0.md` — areas: quant-service, algo-surface, research — governs: 0 — related: 2
+- ED-01 — D4 Revision Packet (the recipe/verdict store) — `docs/design/v2/algo/edge-discovery-01-design-packet/d4_revision_persistence_packet_v0.md` — areas: quant-service, algo-surface, data-rights, research — governs: 0 — related: 6
+- EDGE-DISCOVERY-01 — Decision Register — `docs/design/v2/algo/edge-discovery-01-design-packet/decision_register_v0.md` — areas: quant-service, algo-surface, research, regime-detection — governs: 0 — related: 2
+- EDGE-DISCOVERY-01 — Decomposition & Sequencing — `docs/design/v2/algo/edge-discovery-01-design-packet/decomposition_and_sequencing_v0.md` — areas: quant-service, algo-surface, research, regime-detection — governs: 0 — related: 2
+- Evidence Feed Contract v0 — toward EP-05 — `docs/design/v2/algo/quant-service-01-design-packet/evidence_feed_contract_v0.md` — areas: quant-service — governs: 0 — related: 0
+- 08 — Future Execution Architecture — `docs/design/v2/architecture-diagrams/08-future-execution-architecture.md` — areas: system-architecture, agent-execution — governs: 0 — related: 0
+- NEWS-01 design packet — index (the news/event-driven lane, #433 + trade-study D.2) — `docs/design/v2/async-realtime/news-01-design-packet/README.md` — areas: system-architecture, market-data, agent-execution, provider-data, data-rights — governs: 0 — related: 4
+- NEWS-01 decision register — NW-D1..D14 (RULED — Graham 2026-08-12) — `docs/design/v2/async-realtime/news-01-design-packet/decision_register_v0.md` — areas: system-architecture, market-data, agent-execution, provider-data, data-rights — governs: 0 — related: 5
+- NEWS-01 provider/ToS survey — xAI x_search, Polygon/Massive verdict, the field (2026-08-11) — `docs/design/v2/async-realtime/news-01-design-packet/provider_tos_survey_v0.md` — areas: provider-data, data-rights, market-data — governs: 0 — related: 2
+- BYO MIND — user-provided LLM keys/models as the agent mind (Alpha-phase direction) — `docs/design/v2/byo-mind/byo_mind_direction_v0.md` — areas: mind-provider, agent-execution, security, business-research — governs: 0 — related: 2
+- MINDCONFIG-01 — Mockup Round 1 Design Notes (MC-D6 tab + MC-D7 Mind field) — `docs/design/v2/byo-mind/mindconfig-01-design-packet/mockups/design_notes.md` — areas: mind-provider, agent-creation, utility-window-system, workstation-ui — governs: 0 — related: 4
+- DATA-SPIKE-01 - Polygon / Massive Historical Bars Fetch Verification — `docs/design/v2/data-sources/data-spike-01-polygon-historical-bars/README.md` — areas: provider-data — governs: 0 — related: 0
+- Adjusted / Unadjusted And Interval Questions — `docs/design/v2/data-sources/data-spike-01-polygon-historical-bars/adjusted_unadjusted_and_interval_questions_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Current Source Research Checklist — `docs/design/v2/data-sources/data-spike-01-polygon-historical-bars/current_source_research_checklist_v0.md` — areas: provider-data — governs: 0 — related: 0
+- DATA-SPIKE-01 Coder Or Researcher Prompt — `docs/design/v2/data-sources/data-spike-01-polygon-historical-bars/data_spike_01_coder_or_researcher_prompt_v0.md` — areas: provider-data — governs: 0 — related: 0
+- DATA-SPIKE-01 Reviewer Checklist — `docs/design/v2/data-sources/data-spike-01-polygon-historical-bars/data_spike_01_reviewer_checklist_v0.md` — areas: provider-data — governs: 0 — related: 0
+- DATA-SPIKE-01 Scope And Boundaries — `docs/design/v2/data-sources/data-spike-01-polygon-historical-bars/data_spike_01_scope_and_boundaries_v0.md` — areas: provider-data — governs: 0 — related: 0
+- DATA-SPIKE-01 Task Packet — `docs/design/v2/data-sources/data-spike-01-polygon-historical-bars/data_spike_01_task_packet_v0.md` — areas: provider-data — governs: 0 — related: 0
+- DATA-SPIKE-01 Tester Checklist — `docs/design/v2/data-sources/data-spike-01-polygon-historical-bars/data_spike_01_tester_checklist_v0.md` — areas: provider-data — governs: 0 — related: 0
+- DATA-SPIKE-01 Validation Plan — `docs/design/v2/data-sources/data-spike-01-polygon-historical-bars/data_spike_01_validation_plan_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Future HIST-SIM-02 Implications — `docs/design/v2/data-sources/data-spike-01-polygon-historical-bars/future_hist_sim_02_implications_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Historical Bars Probe Plan — `docs/design/v2/data-sources/data-spike-01-polygon-historical-bars/historical_bars_probe_plan_v0.md` — areas: provider-data — governs: 0 — related: 0
+- DATA-SPIKE-01 Open Questions — `docs/design/v2/data-sources/data-spike-01-polygon-historical-bars/open_questions_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Polygon / Massive Endpoint Verification Plan — `docs/design/v2/data-sources/data-spike-01-polygon-historical-bars/polygon_massive_endpoint_verification_plan_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Provider Entitlement And Rate-Limit Questions — `docs/design/v2/data-sources/data-spike-01-polygon-historical-bars/provider_entitlement_and_rate_limit_questions_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Repo Integration Probe Plan — `docs/design/v2/data-sources/data-spike-01-polygon-historical-bars/repo_integration_probe_plan_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Storage / Caching / Data Rights Questions — `docs/design/v2/data-sources/data-spike-01-polygon-historical-bars/storage_caching_and_data_rights_questions_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Provider Adapter Architecture — `docs/design/v2/data-sources/provider_adapter_architecture_v0.md` — areas: provider-data — governs: 0 — related: 0
+- User-Configured External Sources — `docs/design/v2/data-sources/user_configured_external_sources_v0.md` — areas: provider-data — governs: 0 — related: 0
+- DATA-RETENTION-01 — direction capture: the db-wide archive + deletion policy — `docs/design/v2/data/data-retention-01-direction/README.md` — areas: system-architecture, process-governance — governs: 0 — related: 1
+- Decision-Architecture Exodus — Arc README — `docs/design/v2/decision-architecture-exodus/README.md` — areas: game-script, agent-execution — governs: 0 — related: 3
+- DEPLOY-01 — First Deployment to traidit.io (founder-only topology, security-high) — `docs/design/v2/deployment/deploy-01-design-packet/README.md` — areas: security, system-architecture, user-identity — governs: 0 — related: 9
+- DEPLOY-01 — Decision Register (managed founder host · parallel k8s lane · secrets · deploy/rollback · data cutover) — `docs/design/v2/deployment/deploy-01-design-packet/decision_register_v0.md` — areas: security, system-architecture, user-identity — governs: 0 — related: 7
+- DEPLOY-01 — Direction v0 (traidit.io, founder-only, managed host + parallel k8s lane) — `docs/design/v2/deployment/deploy-01-design-packet/deploy_direction_v0.md` — areas: security, system-architecture, user-identity — governs: 0 — related: 8
+- ID-D6 — Kepler's Secrets-Home Opinion (founder phase + the Alpha secret-store trajectory) — `docs/design/v2/deployment/deploy-01-design-packet/secrets_home_opinion_v0.md` — areas: security, system-architecture, user-identity — governs: 0 — related: 7
+- Deployment & Tenancy — Source Notes (founder validation → alpha → beta) — `docs/design/v2/deployment/deployment_and_tenancy_source_notes_v0.md` — areas: system-architecture, market-data, provider-data, data-rights, security, platform-thesis, user-identity — governs: 0 — related: 8
+- EVALCAL-01 design packet — index (EP-08 activation packet) — `docs/design/v2/evaluation/evalcal-01-design-packet/README.md` — areas: evaluation, decision-calipers, workstation-ui — governs: 0 — related: 7
+- The Caliper Affordance Table v0 — all 29 exposed calipers → their control, one function — `docs/design/v2/evaluation/evalcal-01-design-packet/caliper_affordance_table_v0.md` — areas: workstation-ui, evaluation — governs: 0 — related: 3
+- EVALCAL-01 decision register — EC-D1..D16 (RULED — Graham 2026-08-12) — `docs/design/v2/evaluation/evalcal-01-design-packet/decision_register_v0.md` — areas: evaluation, decision-calipers, workstation-ui — governs: 0 — related: 5
+- The Equipment Catalog v0 — caliper sets → rack modules → series (EC-D20's artifact) — `docs/design/v2/evaluation/evalcal-01-design-packet/equipment_catalog_v0.md` — areas: workstation-ui, evaluation — governs: 0 — related: 4
+- Panel kit, the Custom Shop and the assembly — design note, rounds 1–3, Custom Shop R1 and Round C (material languages, the equipment series, the eight-module rack, the signature tier, EvalCal in the shell frame) — `docs/design/v2/evaluation/evalcal-01-design-packet/mockups/panel_kit_r1_notes_v0.md` — areas: workstation-ui, evaluation — governs: 0 — related: 18
+- EVALCAL-01 surface design doctrine — the instrument, the panel kit (four-rooms anatomy superseded by EC-D30) — `docs/design/v2/evaluation/evalcal-01-design-packet/surface_design_doctrine_v0.md` — areas: evaluation, workstation-ui, content-style — governs: 0 — related: 4
+- EVALCAL-LAYOUT-02 — the post-recast consolidation packet (index) — `docs/design/v2/evaluation/evalcal-layout-02-packet/README.md` — areas: evaluation, workstation-ui — governs: 0 — related: 4
+- EVALCAL-LAYOUT-02 — the consolidated room layout (Evaluate · Calibrate, post-recast) — `docs/design/v2/evaluation/evalcal-layout-02-packet/evalcal_layout_v1.md` — areas: evaluation, workstation-ui, utility-window-system — governs: 0 — related: 10
+- ALPACA-HISTORIC-LANE-01 — Alpaca Ticks as the Backtesting Data Lane (Scoping) — `docs/design/v2/historic-simulator/alpaca-historic-lane-01/README.md` — areas: historic-simulator, market-data, provider-data, data-rights — governs: 0 — related: 5
+- SIM-UI-REFRESH-01 — the time-series view suite (Price Action · Equity · EST), environment-agnostic — `docs/design/v2/historic-simulator/sim-ui-refresh-01/README.md` — areas: historic-simulator, workstation-ui — governs: 0 — related: 4
+- BROKERAGE-CONNECT-01 — direction capture: brokerage connectivity, the secret store, and the ritual decomposed — `docs/design/v2/identity/brokerage-connect-01-direction/README.md` — areas: user-identity, security, live-authority — governs: 0 — related: 3
+- IDENTITY-01 — Founder-Only Accounts, Auth & Preferences (tenancy-shaped, solo-occupied) — `docs/design/v2/identity/identity-01-design-packet/README.md` — areas: security, user-identity, utility-window-system, process-governance — governs: 1 — related: 5
+- IDENTITY-01 evidence — SOLO_USER seam census v0 (EP-24 S0, issue #742) — `docs/design/v2/identity/identity-01-design-packet/evidence/solo_user_seam_census_v0.md` — areas: security, user-identity, system-architecture — governs: 0 — related: 3
+- IDENTITY-01 — Direction v0 (founder-only auth, accounts, preferences · tenancy-shaped, solo-occupied) — `docs/design/v2/identity/identity-01-design-packet/identity_direction_v0.md` — areas: security, user-identity, utility-window-system — governs: 0 — related: 4
+- PRICE-SUBSTRATE-01 — Alpaca vs Polygon as the Platform Price Source (Direction Packet) — `docs/design/v2/price-substrate/price-substrate-01-design-packet/README.md` — areas: system-architecture, market-data, provider-data, paper-live-boundary, agent-execution — governs: 0 — related: 6
+- PRICE-SUBSTRATE-01 — Async Pricing Lane Arc Sketch — `docs/design/v2/price-substrate/price-substrate-01-design-packet/async_pricing_lane_arc_sketch_v0.md` — areas: system-architecture, market-data, provider-data, agent-execution, paper-live-boundary — governs: 0 — related: 3
+- PRICE-SUBSTRATE-01 — Decision Register (PS-D1..D9) — `docs/design/v2/price-substrate/price-substrate-01-design-packet/decision_register_v0.md` — areas: system-architecture, market-data, provider-data, paper-live-boundary, agent-execution — governs: 0 — related: 3
+- QUANT-AUDIT-01 — Quant-Service Blind-Spot Audit & Augmentation Packet — `docs/design/v2/quant-audit-01/README.md` — areas: quant-service, agent-execution, decision-evidence, provider-data, market-data — governs: 3 — related: 5
+- QUANT-AUDIT-01 — Augmentation Roadmap (proposed waves) — `docs/design/v2/quant-audit-01/augmentation_roadmap_v0.md` — areas: quant-service, agent-execution, decision-evidence, market-data — governs: 0 — related: 3
+- QUANT-AUDIT-01 — Blind-Spot Audit (four reconciliation passes) — `docs/design/v2/quant-audit-01/blind_spot_audit_v0.md` — areas: quant-service, agent-execution, decision-evidence, market-data — governs: 0 — related: 4
+- QUANT-AUDIT-01 — Evidence Appendix B — Standard-Practice Blind-Spot Scan (research lane) — `docs/design/v2/quant-audit-01/evidence/practice_scan_evidence_v0.md` — areas: quant-service, agent-execution, decision-evidence, market-data — governs: 0 — related: 1
+- QUANT-AUDIT-01 — Evidence Appendix A — Repo Reconciliation (research lane) — `docs/design/v2/quant-audit-01/evidence/reconciliation_evidence_v0.md` — areas: quant-service, agent-execution, decision-evidence, market-data — governs: 0 — related: 1
+- QUANT-AUDIT-01 — Current Inventory & Lanes-Served Truth — `docs/design/v2/quant-audit-01/quant_inventory_v0.md` — areas: quant-service, agent-execution, decision-evidence, market-data — governs: 0 — related: 2
+- BELVILLE — the center-workspace time-series program (Arnold + the three views) — `docs/design/v2/workstation-ui/belville/README.md` — areas: workstation-ui, historic-simulator, forward-testing — governs: 0 — related: 6
+- BELVILLE-01 design packet — the Spine (Arnold, lanes, shared cross-cutting) — `docs/design/v2/workstation-ui/belville/belville-01-spine-packet/README.md` — areas: workstation-ui, historic-simulator, forward-testing, system-architecture — governs: 0 — related: 4
+- BELVILLE-01 decision register — BV-D1..D14 (forks RULED — Graham 2026-08-14) — `docs/design/v2/workstation-ui/belville/belville-01-spine-packet/decision_register_v0.md` — areas: workstation-ui, historic-simulator, forward-testing, system-architecture — governs: 0 — related: 5
+- FOOTER-01 — direction capture: the process footer as the workstation's heartbeat line — `docs/design/v2/workstation-ui/footer-01-direction/README.md` — areas: workstation-ui, workstation-shell — governs: 0 — related: 2
+- Center Workspace Exception Model (proposal) — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/whittle-down-round-1/center_workspace_exception_model_v0.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- RIGHT-CONTEXT-01 — the rail's capacity ruling (host/plug split · the admission rule · source's fate) — `docs/design/v2/workstation-ui/right-context-01/README.md` — areas: workstation-ui — governs: 0 — related: 5
+- RIGHT-CONTEXT-01 decision register — RC-D1..D5 — `docs/design/v2/workstation-ui/right-context-01/decision_register_v0.md` — areas: workstation-ui — governs: 0 — related: 5
+- ROSTER-01 — the home place (agent cards, rank ladders, the identity mark, avatars) — `docs/design/v2/workstation-ui/roster-01/README.md` — areas: workstation-ui, agent-lifecycle — governs: 0 — related: 6
+- ROSTER-01 decision register — RS-D1..D17 — `docs/design/v2/workstation-ui/roster-01/decision_register_v0.md` — areas: workstation-ui, agent-lifecycle — governs: 0 — related: 9
+- Identity mark — Round 1 design note (grammar rules, failure modes, recommendation) — `docs/design/v2/workstation-ui/roster-01/mockups/identity_mark_r1_notes_v0.md` — areas: workstation-ui, agent-lifecycle — governs: 0 — related: 9
+- SESSION-LOADER-01 — one loader for every session (scenarios + recorded forward/live runs) — `docs/design/v2/workstation-ui/session-loader-01/README.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 6
+- SESSION-LOADER-01 decision register — SL-D1..D9 — `docs/design/v2/workstation-ui/session-loader-01/decision_register_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 6
+- THEME-01 — direction capture: the hex→token consolidation, floor-scoped theming, and light/dark mode — `docs/design/v2/workstation-ui/theme-01-direction/README.md` — areas: workstation-ui, content-style — governs: 0 — related: 2
+- TRAIDING-FLOOR-01 design packet — the live floor (The Pit · Fleet · Portfolio · TCC) — `docs/design/v2/workstation-ui/traiding-floor-01/README.md` — areas: workstation-ui, live-authority, portfolio-accounting — governs: 0 — related: 9
+- TRAIDING-FLOOR-01 decision register — TF-D1..D13 + TF-A1..A8 (The Pit LOCKED) — `docs/design/v2/workstation-ui/traiding-floor-01/decision_register_v0.md` — areas: workstation-ui, live-authority, portfolio-accounting — governs: 0 — related: 10
+- The Pit — handoff annex, LOCKED at TF-A8 (geometry, tokens, anatomy, states, laws) — `docs/design/v2/workstation-ui/traiding-floor-01/mockups/pit_handoff_annex_v0.md` — areas: workstation-ui, live-authority — governs: 0 — related: 13
+- The Pit — Cadence round R1 design note (three theses, the new views, the atmosphere study) — `docs/design/v2/workstation-ui/traiding-floor-01/mockups/pit_r1_notes_v0.md` — areas: workstation-ui, live-authority — governs: 0 — related: 13
+- The Pit — Cadence round R2 design note (convergent; TF-A1..A6 discharged) — `docs/design/v2/workstation-ui/traiding-floor-01/mockups/pit_r2_notes_v0.md` — areas: workstation-ui, live-authority — governs: 0 — related: 15
+- The Pit — Cadence round R3 design note (LOCKED; TF-A7 discharged, TF-A8 applied) — `docs/design/v2/workstation-ui/traiding-floor-01/mockups/pit_r3_notes_v0.md` — areas: workstation-ui, live-authority — governs: 0 — related: 18
+- The Founder-MVP UI thrust — surface inventory, two-lane register, and the wave plan — `docs/design/v2/workstation-ui/ui-foundations-01/founder_mvp_ui_thrust_plan_v0.md` — areas: workstation-ui, process-governance, planning-surface — governs: 0 — related: 5
+- SEAM-REVIEW-01 — the cross-packet seam register (joins, not packets) — `docs/design/v2/workstation-ui/ui-foundations-01/seam_register_v0.md` — areas: workstation-ui, process-governance — governs: 0 — related: 8
+- The full-system UI surface audit (2026-08-14) — index + synthesis — `docs/design/v2/workstation-ui/ui-foundations-01/surface-audits/README.md` — areas: workstation-ui, process-governance — governs: 0 — related: 4
+- Surface audit — center surfaces, algo, and the definitive wiring inventory (2026-08-14) — `docs/design/v2/workstation-ui/ui-foundations-01/surface-audits/center_algo_wiring_audit_v0.md` — areas: workstation-ui, algo-surface, historic-simulator — governs: 0 — related: 2
+- Surface audit — shell & chrome (header · ticker · registry · right-context · workbench · footer) — `docs/design/v2/workstation-ui/ui-foundations-01/surface-audits/shell_chrome_audit_v0.md` — areas: workstation-ui — governs: 0 — related: 5
+- The UI-debt census (2026-08-17) — the net cast over six debt sources, pre-triage — `docs/design/v2/workstation-ui/ui-foundations-01/surface-audits/ui_debt_census_2026-08-17_v0.md` — areas: workstation-ui, process-governance — governs: 0 — related: 4
+- Surface audit — utility windows & the session-loading apparatus (2026-08-14) — `docs/design/v2/workstation-ui/ui-foundations-01/surface-audits/windows_and_session_loading_audit_v0.md` — areas: workstation-ui, utility-window-system, historic-simulator — governs: 0 — related: 2
+- WEB-BUDGET-01 - Initial Bundle Budget Recovery — `docs/design/v2/workstation-ui/web-budget-01-initial-bundle-recovery/README.md` — areas: workstation-ui — governs: 0 — related: 0
+- Angular Budget Config Assessment — `docs/design/v2/workstation-ui/web-budget-01-initial-bundle-recovery/angular_budget_config_assessment_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Coder Prompt — `docs/design/v2/workstation-ui/web-budget-01-initial-bundle-recovery/coder_prompt_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Compatibility Route Preservation Policy — `docs/design/v2/workstation-ui/web-budget-01-initial-bundle-recovery/compatibility_route_preservation_policy_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Current Budget State — `docs/design/v2/workstation-ui/web-budget-01-initial-bundle-recovery/current_budget_state_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- File Change Plan — `docs/design/v2/workstation-ui/web-budget-01-initial-bundle-recovery/file_change_plan_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Global Styles Budget Assessment — `docs/design/v2/workstation-ui/web-budget-01-initial-bundle-recovery/global_styles_budget_assessment_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Implementation Options — `docs/design/v2/workstation-ui/web-budget-01-initial-bundle-recovery/implementation_options_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Initial Bundle Risk Model — `docs/design/v2/workstation-ui/web-budget-01-initial-bundle-recovery/initial_bundle_risk_model_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Legacy Route Chunking Plan — `docs/design/v2/workstation-ui/web-budget-01-initial-bundle-recovery/legacy_route_chunking_plan_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/workstation-ui/web-budget-01-initial-bundle-recovery/open_questions_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Recommended Option — `docs/design/v2/workstation-ui/web-budget-01-initial-bundle-recovery/recommended_option_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Reviewer Checklist — `docs/design/v2/workstation-ui/web-budget-01-initial-bundle-recovery/reviewer_checklist_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Route Lazy Loading Candidate Map — `docs/design/v2/workstation-ui/web-budget-01-initial-bundle-recovery/route_lazy_loading_candidate_map_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Simulator Chunking And Lightweight Charts Plan — `docs/design/v2/workstation-ui/web-budget-01-initial-bundle-recovery/simulator_chunking_and_lightweight_charts_plan_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Tester Checklist — `docs/design/v2/workstation-ui/web-budget-01-initial-bundle-recovery/tester_checklist_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Validation Plan — `docs/design/v2/workstation-ui/web-budget-01-initial-bundle-recovery/validation_plan_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- WDA Checklist — `docs/design/v2/workstation-ui/web-budget-01-initial-bundle-recovery/wda_checklist_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- WEB-BUDGET-01 Task Packet — `docs/design/v2/workstation-ui/web-budget-01-initial-bundle-recovery/web_budget_01_task_packet_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- WORKSTATION-IA-01 — floors, navigation, and the environment channel (five floors, WI-A2) — `docs/design/v2/workstation-ui/workstation-ia-01/README.md` — areas: workstation-ui, process-governance — governs: 0 — related: 4
+- WORKSTATION-IA-01 decision register — WI-D1..D9 — `docs/design/v2/workstation-ui/workstation-ia-01/decision_register_v0.md` — areas: workstation-ui, process-governance — governs: 0 — related: 3
+
+## founder-source (84)
+
+- V3 Ideas — `docs/context/operations/feedback/design/v3_ideas.md` — areas: product-thesis — governs: 0 — related: 0
+- Lab v1 Retrospective (Operator Feedback) — `docs/context/operations/feedback/retrospectives/lab_v1_retrospective.md` — areas: lab — governs: 0 — related: 0
+- Agent Evaluation & Performance Profile Framework — `docs/context/operations/feedback/source-material-for-canonization/agent_evaluation_profile_framework_v0_2.md` — areas: evaluation — governs: 0 — related: 1
+- BIA Guardrails — `docs/context/operations/feedback/source-material-for-canonization/bia-harness-augmentation/bia_augmentation_source_material.guardrails.md` — areas: agent-fleet, business-research — governs: 0 — related: 0
+- BIA Core Principles & Incubation-Specific Context — `docs/context/operations/feedback/source-material-for-canonization/bia-harness-augmentation/bia_augmentation_source_material.principles.md` — areas: agent-fleet, business-research — governs: 0 — related: 0
+- BIA Role Definition — `docs/context/operations/feedback/source-material-for-canonization/bia-harness-augmentation/bia_augmentation_source_material.role.md` — areas: agent-fleet, business-research — governs: 0 — related: 0
+- BIA Soul – Identity, Values & Operating Philosophy — `docs/context/operations/feedback/source-material-for-canonization/bia-harness-augmentation/bia_augmentation_source_material.soul.md` — areas: agent-fleet, business-research — governs: 0 — related: 0
+- BIA Workflow & Interaction Protocol — `docs/context/operations/feedback/source-material-for-canonization/bia-harness-augmentation/bia_augmentation_source_material.workflow.md` — areas: agent-fleet, business-research — governs: 0 — related: 0
+- Pure Legal Overview: Requirements for a Platform Enabling Users to Build & Deploy Their Own Stock Trading Agents (Using Third-Party Brokerage APIs) — `docs/context/operations/feedback/source-material-for-canonization/business-legal-research/legal-requirements-overview.md` — areas: business-research — governs: 0 — related: 0
+- Human Business Incubation / Startup Advisor – Role Profile — `docs/context/operations/feedback/source-material-for-canonization/human-team-roles-and-requirements/business_incubation_startup_advisor.requirements.md` — areas: process-governance — governs: 0 — related: 1
+- Human Business Partner – Role Profile & Requirements — `docs/context/operations/feedback/source-material-for-canonization/human-team-roles-and-requirements/business_partner.requirements.md` — areas: process-governance — governs: 0 — related: 1
+- Human Lawyer / Law Firm – Role Profile & Requirements — `docs/context/operations/feedback/source-material-for-canonization/human-team-roles-and-requirements/lawyer_and_lawfirm.requirements.md` — areas: process-governance — governs: 0 — related: 1
+- LAC Guardrails — `docs/context/operations/feedback/source-material-for-canonization/legal-advisor-agent/laa.guardrails.md` — areas: agent-fleet, business-research — governs: 0 — related: 0
+- LAA Role Definition – Legal Advisor Agent — `docs/context/operations/feedback/source-material-for-canonization/legal-advisor-agent/laa.role.md` — areas: agent-fleet, business-research — governs: 0 — related: 0
+- LAC Soul — `docs/context/operations/feedback/source-material-for-canonization/legal-advisor-agent/laa.soul.md` — areas: agent-fleet, business-research — governs: 0 — related: 0
+- LAC Workflow — `docs/context/operations/feedback/source-material-for-canonization/legal-advisor-agent/laa.workflow.md` — areas: agent-fleet, business-research — governs: 0 — related: 0
+- Naming Model Exploration — TrAInit, TrAIdit, TrAIder, Registry, Exchange — `docs/context/operations/feedback/source-material-for-canonization/naming_model_exploration_trainit_traidit_v0.md` — areas: product-thesis, platform-thesis — governs: 0 — related: 0
+- TrAIdit Full Product Description — `docs/context/operations/feedback/source-material-for-canonization/traidit_full_product_description_v0.md` — areas: product-thesis — governs: 0 — related: 1
+- TrAIdit Market Edge Product Thesis Source — `docs/context/operations/feedback/source-material-for-canonization/traidit_market_edge_product_thesis_source_v0.md` — areas: product-thesis — governs: 0 — related: 1
+- TrAInit / TrAIder Badge Iconography Model — `docs/context/operations/feedback/source-material-for-canonization/trainit_badge_iconography_model_v0.md` — areas: platform-thesis — governs: 0 — related: 0
+- Ui Ux Design Agent Prompt Rough Draft — `docs/context/operations/feedback/source-material-for-canonization/ui_ux_design_agent_prompt_rough_draft.md` — areas: agent-fleet, workstation-ui — governs: 0 — related: 0
+- Workstation UI Doctrine Source — TrAInit / TrAIdit — `docs/context/operations/feedback/source-material-for-canonization/workstation_ui_doctrine_source_v0.md` — areas: workstation-ui — governs: 0 — related: 1
+- TrAInit Agentic Trust Thesis — `docs/context/operations/feedback/trainit-ideation/trainit_agentic_trust_thesis_v0.md` — areas: platform-thesis — governs: 0 — related: 0
+- TrAInit Seal, Score, Rating, And Trust Model — `docs/context/operations/feedback/trainit-ideation/trainit_seal_rating_model_v0.md` — areas: platform-thesis — governs: 0 — related: 0
+- Algo-Trading Strategies 01 - Most Tried and True — `docs/context/team/graham/algo-trading-research/algo-trading-strategies/algo-trading-strategies_01_tried-and-true.md` — areas: research — governs: 0 — related: 0
+- Algo-Trading Strategies 02 - Cutting Edge and Experimental — `docs/context/team/graham/algo-trading-research/algo-trading-strategies/algo-trading-strategies_02_cutting-edge.md` — areas: research — governs: 0 — related: 0
+- Algo-Trading Strategies 03 - Experimental — `docs/context/team/graham/algo-trading-research/algo-trading-strategies/algo-trading-strategies_03_promising.md` — areas: research — governs: 0 — related: 0
+- Algo-Trading Strategies 04 - Implementation Considerations — `docs/context/team/graham/algo-trading-research/algo-trading-strategies/algo-trading-strategies_04_implementation-considerations.md` — areas: research — governs: 0 — related: 0
+- Algo-Trading Strategies 05 - The Holy Grail — `docs/context/team/graham/algo-trading-research/algo-trading-strategies/algo-trading-strategies_05_the-holy-grail.md` — areas: research — governs: 0 — related: 0
+- Algo Trading Vernacular Glossary — `docs/context/team/graham/algo-trading-research/algo-trading-vernacular-glossary.md` — areas: research — governs: 0 — related: 1
+- Common Tech Stacks — `docs/context/team/graham/algo-trading-research/common-tech-stacks.md` — areas: research — governs: 0 — related: 0
+- Community — `docs/context/team/graham/algo-trading-research/community.md` — areas: business-research, research — governs: 0 — related: 0
+- Market Overview — `docs/context/team/graham/algo-trading-research/market-overview.md` — areas: business-research, research — governs: 0 — related: 0
+- Additional endpoints for universe, analytics, WebSocket, etc. can be added similarly. — `docs/context/team/graham/algo-trading-research/python-quant-service/example-implementation.md` — areas: quant-service — governs: 0 — related: 0
+- Regime Detection — `docs/context/team/graham/algo-trading-research/regime-detection.md` — areas: regime-detection, market-context — governs: 0 — related: 1
+- Symbol Universe Selection — `docs/context/team/graham/algo-trading-research/symbol-universe-selection.md` — areas: symbol-universe — governs: 0 — related: 1
+- Top 10 Most Important Things for Algo Traders to Master — `docs/context/team/graham/algo-trading-research/top-ten-most-important-things-for-successful-algo-trading.md` — areas: research — governs: 0 — related: 0
+- No-Shit Business Incubation Plan — `docs/context/team/graham/business-research/TrAIdit_BETA/business-incubation-plan_v0.0.md` — areas: business-research — governs: 0 — related: 0
+- Preliminary Market Research: Direct Competitors (April 2026) — `docs/context/team/graham/business-research/TrAIdit_BETA/competitor-analysis.md` — areas: business-research — governs: 0 — related: 0
+- Where I'll Likely Find My Edge — `docs/context/team/graham/business-research/TrAIdit_BETA/differentiation-edge.md` — areas: business-research — governs: 0 — related: 0
+- Market Size & Revenue Outlooks — `docs/context/team/graham/business-research/TrAIdit_BETA/market-size-revenue-outlook.md` — areas: business-research — governs: 0 — related: 0
+- Monetization Models (Competitors + Recommendations) — `docs/context/team/graham/business-research/TrAIdit_BETA/monetization-models.md` — areas: business-research — governs: 0 — related: 0
+- Preliminary Marketing Strategy — `docs/context/team/graham/business-research/TrAIdit_BETA/preliminary-market-strategy.md` — areas: business-research — governs: 0 — related: 0
+- TrAIDit BETA Subscription Model — `docs/context/team/graham/business-research/TrAIdit_BETA/subscription-tiers.md` — areas: business-research — governs: 0 — related: 0
+- Event Stream Timeline Design Rough Draft — `docs/context/team/graham/event-stream-timeline/event-stream-timeline-design-rough-draft.md` — areas: event-stream-timeline — governs: 0 — related: 1
+- Data Storage Policies — `docs/context/team/graham/legal-review-docs/PolygonMassive/data_storage_policies.md` — areas: data-rights, provider-data — governs: 0 — related: 1
+- Algo Trading Stock Categories — `docs/context/team/graham/stock-market-research/algo-trading-stock-categories.md` — areas: market-ontology — governs: 0 — related: 0
+- Bibliography — `docs/context/team/graham/stock-market-research/bibliography.md` — areas: market-ontology — governs: 0 — related: 0
+- Consolidated Tape Association — `docs/context/team/graham/stock-market-research/consolidated-tape-association.md` — areas: market-ontology — governs: 0 — related: 0
+- GICS (Global Industry Classification Standard) Categories — `docs/context/team/graham/stock-market-research/gics_categories_list.md` — areas: market-ontology — governs: 0 — related: 0
+- Gics Categories Tables — `docs/context/team/graham/stock-market-research/gics_categories_tables.md` — areas: market-ontology — governs: 0 — related: 0
+- Major Us Stock Exchanges — `docs/context/team/graham/stock-market-research/major-us-stock-exchanges.md` — areas: market-ontology — governs: 0 — related: 0
+- My Ideas And Notes — `docs/context/team/graham/stock-market-research/my-ideas-and-notes.md` — areas: market-ontology — governs: 0 — related: 0
+- Additional Metrics — `docs/context/team/graham/stock-market-research/relevant-stock-metrics/additional-metrics.md` — areas: market-ontology — governs: 0 — related: 0
+- Impact Cost and Slippage Mechanics — `docs/context/team/graham/stock-market-research/relevant-stock-metrics/impact-cost-and-slippage-mechanics.md` — areas: market-ontology — governs: 0 — related: 0
+- Liquidity — `docs/context/team/graham/stock-market-research/relevant-stock-metrics/liquidity.md` — areas: market-ontology — governs: 0 — related: 0
+- Market Capitalization (Market Cap) — `docs/context/team/graham/stock-market-research/relevant-stock-metrics/market-cap.md` — areas: market-ontology — governs: 0 — related: 0
+- Master Stock Evaluation Checklist — `docs/context/team/graham/stock-market-research/relevant-stock-metrics/master-stock-evaluation-checklist.md` — areas: market-ontology — governs: 0 — related: 0
+- Revenue — `docs/context/team/graham/stock-market-research/relevant-stock-metrics/revenue.md` — areas: market-ontology — governs: 0 — related: 0
+- Volume — `docs/context/team/graham/stock-market-research/relevant-stock-metrics/volume.md` — areas: market-ontology — governs: 0 — related: 0
+- 00 Sector Overview — `docs/context/team/graham/stock-market-research/sectors/00_sector-overview.md` — areas: market-ontology — governs: 0 — related: 0
+- 01A Information Technology Industries Overview — `docs/context/team/graham/stock-market-research/sectors/01_information-technology/01A_information-technology_industries-overview.md` — areas: market-ontology — governs: 0 — related: 0
+- 01 Information Technology — `docs/context/team/graham/stock-market-research/sectors/01_information-technology/01_information-technology.md` — areas: market-ontology — governs: 0 — related: 0
+- 02A Financials Industries Overview — `docs/context/team/graham/stock-market-research/sectors/02_financials/02A_financials_industries-overview.md` — areas: market-ontology — governs: 0 — related: 0
+- 02 Financials — `docs/context/team/graham/stock-market-research/sectors/02_financials/02_financials.md` — areas: market-ontology — governs: 0 — related: 0
+- 03A Communication Services Industries Overview — `docs/context/team/graham/stock-market-research/sectors/03_communication-services/03A_communication-services_industries-overview.md` — areas: market-ontology — governs: 0 — related: 0
+- 03 Communication Services — `docs/context/team/graham/stock-market-research/sectors/03_communication-services/03_communication-services.md` — areas: market-ontology — governs: 0 — related: 0
+- 04A Consumer Discretionary Industries Overview — `docs/context/team/graham/stock-market-research/sectors/04_consumer-discretionary/04A_consumer-discretionary_industries-overview.md` — areas: market-ontology — governs: 0 — related: 0
+- 04 Consumer Discretionary — `docs/context/team/graham/stock-market-research/sectors/04_consumer-discretionary/04_consumer-discretionary.md` — areas: market-ontology — governs: 0 — related: 0
+- 05A Industrials Industries Overview — `docs/context/team/graham/stock-market-research/sectors/05_industrials/05A_industrials_industries-overview.md` — areas: market-ontology — governs: 0 — related: 0
+- 05 Industrials — `docs/context/team/graham/stock-market-research/sectors/05_industrials/05_industrials.md` — areas: market-ontology — governs: 0 — related: 0
+- 06A Health Care Industries Overview — `docs/context/team/graham/stock-market-research/sectors/06_health-care/06A_health-care_industries-overview.md` — areas: market-ontology — governs: 0 — related: 0
+- 06 Health Care — `docs/context/team/graham/stock-market-research/sectors/06_health-care/06_health-care.md` — areas: market-ontology — governs: 0 — related: 0
+- 07A Consumer Staples Industries Overview — `docs/context/team/graham/stock-market-research/sectors/07_consumer-staples/07A_consumer-staples_industries-overview.md` — areas: market-ontology — governs: 0 — related: 0
+- 07 Consumer Staples — `docs/context/team/graham/stock-market-research/sectors/07_consumer-staples/07_consumer-staples.md` — areas: market-ontology — governs: 0 — related: 0
+- 08A Energy Industries Overview — `docs/context/team/graham/stock-market-research/sectors/08_energy/08A_energy_industries-overview.md` — areas: market-ontology — governs: 0 — related: 0
+- 08 Energy Sector — `docs/context/team/graham/stock-market-research/sectors/08_energy/08_energy.md` — areas: market-ontology — governs: 0 — related: 0
+- 09A Materials Industries Overview — `docs/context/team/graham/stock-market-research/sectors/09_materials/09A_materials_industries-overview.md` — areas: market-ontology — governs: 0 — related: 0
+- 09 Materials — `docs/context/team/graham/stock-market-research/sectors/09_materials/09_materials.md` — areas: market-ontology — governs: 0 — related: 0
+- 10A Real Estate Industries Overview — `docs/context/team/graham/stock-market-research/sectors/10_real-estate/10A_real-estate_industries-overview.md` — areas: market-ontology — governs: 0 — related: 0
+- 10 Real Estate — `docs/context/team/graham/stock-market-research/sectors/10_real-estate/10_real-estate.md` — areas: market-ontology — governs: 0 — related: 0
+- 11A Utilities Industries Overview — `docs/context/team/graham/stock-market-research/sectors/11_utilities/11A_utilities_industries-overview.md` — areas: market-ontology — governs: 0 — related: 0
+- 11 Utilities — `docs/context/team/graham/stock-market-research/sectors/11_utilities/11_utilities.md` — areas: market-ontology — governs: 0 — related: 0
+- Graham's live UI walkthrough (2026-08-14) — findings, bugs, and the navigation question — `docs/design/v2/workstation-ui/ui-foundations-01/surface-audits/graham_walkthrough_2026-08-14_v0.md` — areas: workstation-ui — governs: 0 — related: 2
+
+## historical (1201)
+
+- Copilots (legacy terminology bridge — retired by V1X-2) — `docs/context/canonical/copilots.md` — areas: legacy-retirement — governs: 0 — related: 0
+- Source Note 001 — "Every AI trend you need to know in 2026" — `docs/context/evidence/raw/source_001_ai_trends_2026_context_layer.md` — areas: context-system — governs: 0 — related: 0
+- Source Note 002 — Karpathy llm-wiki.md — `docs/context/evidence/raw/source_002_karpathy_llm_wiki.md` — areas: context-system — governs: 0 — related: 0
+- Source Note 003 — CURRENT_STATE Snapshot (v0.3.5 era) — `docs/context/evidence/raw/source_003_current_state_tradit_v0_3_5.md` — areas: context-system — governs: 0 — related: 0
+- Blind-Spot Remediation 01 — `docs/context/governance/context-hygiene/blind-spot-remediation-01/README.md` — areas: context-system — governs: 0 — related: 0
+- TrAIdit Docs & Context Blind-Spot Report — Remediation Work Order — `docs/context/governance/context-hygiene/blind-spot-remediation-01/blind_spot_report_2026-07-08.md` — areas: context-system — governs: 0 — related: 0
+- Board ↔ Corpus Sync Audit v0 (leg two) — `docs/context/governance/context-hygiene/blind-spot-remediation-01/board_corpus_sync_audit_v0.md` — areas: context-system, planning-surface — governs: 0 — related: 0
+- Context Canonicalization Audit 01 — `docs/context/governance/context-hygiene/context-canonicalization-audit-01/README.md` — areas: context-system — governs: 0 — related: 0
+- Archive Candidates — `docs/context/governance/context-hygiene/context-canonicalization-audit-01/archive_candidates_v0.md` — areas: context-system — governs: 0 — related: 0
+- Canonical Truth Gaps — `docs/context/governance/context-hygiene/context-canonicalization-audit-01/canonical_truth_gaps_v0.md` — areas: context-system — governs: 0 — related: 0
+- Current Context Map — `docs/context/governance/context-hygiene/context-canonicalization-audit-01/current_context_map_v0.md` — areas: context-system — governs: 0 — related: 0
+- Graham Review Required — `docs/context/governance/context-hygiene/context-canonicalization-audit-01/graham_review_required_v0.md` — areas: context-system — governs: 0 — related: 0
+- Stale Or Contradictory Context — `docs/context/governance/context-hygiene/context-canonicalization-audit-01/stale_or_contradictory_context_v0.md` — areas: context-system — governs: 0 — related: 0
+- Lab v2 Feedback Structured — `docs/context/operations/feedback/retrospectives/lab_v2_feedback_structured.md` — areas: lab — governs: 0 — related: 0
+- Lab v1 Milestone Ledger — `docs/context/operations/milestones/lab_v1_milestone_ledger.md` — areas: planning-surface — governs: 0 — related: 0
+- Milestone Template — `docs/context/operations/milestones/milestone_template.md` — areas: planning-surface, process-governance — governs: 0 — related: 0
+- Codebase Review — Retrospective — `docs/context/operations/reviews/codebase-review_retrospective_v1.0.md` — areas: process-governance — governs: 0 — related: 0
+- Context Coherence Review — Retrospective — `docs/context/operations/reviews/context-coherence-review_retrospective_v1.0.md` — areas: process-governance, context-system — governs: 0 — related: 0
+- Design Coherence Review — Retrospective — `docs/context/operations/reviews/design-coherence-review_retrospective_v1.0.md` — areas: process-governance — governs: 0 — related: 0
+- Session Summary — 2026-04-23 — Context Bootstrap — `docs/context/operations/sessions/2026-04-23_context_bootstrap.md` — areas: context-system — governs: 0 — related: 0
+- Task Queue — `docs/context/operations/task-queue/README.md` — areas: planning-surface, process-governance — governs: 0 — related: 0
+- Active Task Queue — `docs/context/operations/task-queue/active.md` — areas: planning-surface — governs: 0 — related: 0
+- Blocked Task Queue — `docs/context/operations/task-queue/blocked.md` — areas: planning-surface — governs: 0 — related: 0
+- Completed Task Queue — `docs/context/operations/task-queue/completed.md` — areas: planning-surface — governs: 0 — related: 0
+- Proposed Task Queue — `docs/context/operations/task-queue/proposed.md` — areas: planning-surface — governs: 0 — related: 0
+- Task Template — `docs/context/operations/task-queue/task-template.md` — areas: planning-surface, process-governance — governs: 0 — related: 0
+- Working With Codex and ChatGPT — `docs/context/team/agents/working_with_codex_and_chatgpt.md` — areas: agent-fleet — governs: 0 — related: 0
+- Business Context Intake — `docs/context/team/graham/business-research/business_context_intake_v0.md` — areas: business-research — governs: 0 — related: 0
+- Agent Platform Thesis — `docs/design/v1/00-strategy/agent-platform-thesis-v1.md` — areas: product-thesis — governs: 0 — related: 0
+- TrAIdit Product Thesis — `docs/design/v1/00-strategy/product-thesis-v1.md` — areas: product-thesis — governs: 0 — related: 0
+- Lab Requirements — `docs/design/v1/10-product/lab-requirements-v1.md` — areas: product-thesis, lab — governs: 0 — related: 0
+- Lab Workflow — `docs/design/v1/10-product/lab-workflow-v1.md` — areas: product-thesis, lab — governs: 0 — related: 0
+- Module Map — `docs/design/v1/10-product/module-map-v1.md` — areas: product-thesis, lab — governs: 0 — related: 0
+- UI Information Architecture — `docs/design/v1/10-product/ui-information-architecture-v1.md` — areas: product-thesis, lab — governs: 0 — related: 0
+- Agent Manifest — `docs/design/v1/20-agent-system/agent-manifest-v1.md` — areas: agent-lifecycle — governs: 0 — related: 0
+- Agent Registry — `docs/design/v1/20-agent-system/agent-registry-v1.md` — areas: agent-lifecycle — governs: 0 — related: 0
+- Archetype Catalog — `docs/design/v1/20-agent-system/archetype-catalog-v1.md` — areas: agent-lifecycle — governs: 0 — related: 0
+- Calibration Studio — `docs/design/v1/20-agent-system/calibration-studio-v1.md` — areas: agent-lifecycle — governs: 0 — related: 0
+- Comparison Workspace — `docs/design/v1/20-agent-system/comparison-workspace-v1.md` — areas: agent-lifecycle — governs: 0 — related: 0
+- Evaluation Framework — `docs/design/v1/20-agent-system/evaluation-framework-v1.md` — areas: agent-lifecycle — governs: 0 — related: 0
+- Manifest Builder — `docs/design/v1/20-agent-system/manifest-builder-v1.md` — areas: agent-lifecycle — governs: 0 — related: 0
+- Promotion Gate — `docs/design/v1/20-agent-system/promotion-gate-v1.md` — areas: agent-lifecycle — governs: 0 — related: 0
+- Version Manager — `docs/design/v1/20-agent-system/version-manager-v1.md` — areas: agent-lifecycle — governs: 0 — related: 0
+- Data and Tool Taxonomy — `docs/design/v1/30-research-domain-data/data-and-tool-taxonomy-v1.md` — areas: research — governs: 0 — related: 0
+- Domain Context Model — `docs/design/v1/30-research-domain-data/domain-context-model-v1.md` — areas: research — governs: 0 — related: 0
+- Research Workspace — `docs/design/v1/30-research-domain-data/research-workspace-v1.md` — areas: research — governs: 0 — related: 0
+- Assistant Layer — `docs/design/v1/40-architecture/assistant-layer-v1.md` — areas: system-architecture — governs: 0 — related: 0
+- System Architecture Principles — `docs/design/v1/40-architecture/system-architecture-principles-v1.md` — areas: system-architecture — governs: 0 — related: 0
+- Copilot Control Surface — `docs/design/v1/50-copilots/copilot-control-surface-v1.md` — areas: legacy-retirement — governs: 0 — related: 0
+- Copilot Requirements — `docs/design/v1/50-copilots/copilot-requirements-v1.md` — areas: legacy-retirement — governs: 0 — related: 0
+- Shadow Mode — `docs/design/v1/50-copilots/shadow-mode-v1.md` — areas: legacy-retirement — governs: 0 — related: 0
+- Codex Prompt Sequence — `docs/design/v1/60-implementation/codex-prompt-sequence-v1.md` — areas: process-governance — governs: 0 — related: 0
+- Codex Work Packets — `docs/design/v1/60-implementation/codex-work-packets-v1.md` — areas: process-governance — governs: 0 — related: 0
+- Implementation Strategy — `docs/design/v1/60-implementation/implementation-strategy-v1.md` — areas: process-governance — governs: 0 — related: 0
+- TrAIdit Lab v1 Implementation Plan — `docs/design/v1/60-implementation/lab-v1-implementation-plan.md` — areas: process-governance — governs: 0 — related: 0
+- Milestone Acceptance Criteria — `docs/design/v1/60-implementation/milestone-acceptance-criteria-v1.md` — areas: process-governance — governs: 0 — related: 0
+- Agent Archetypes 01 Architect Brief — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/agent_archetypes_01_architect_brief_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- AGENT-ARCHETYPES-02 Future Handoff — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/agent_archetypes_02_future_handoff_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Architect Review Checklist — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/architect_review_checklist_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Conceptual Contract Sketches — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/conceptual_contract_sketches_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Dependency Map — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/dependency_map_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Development Archetype Axis Audit — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/development_archetype_axis_audit_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Development Archetypes Normalization — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/development_archetypes_normalization_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Future Task Candidates — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/future_task_candidates_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Graham Decisions Applied — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/graham_decisions_applied_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Implementation Handoff — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/implementation_handoff_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/agent-archetypes/agent-archetypes-01-definition-composition-manifest-seed-promotion-doctrine/open_questions_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Archetype Selection Rationale — `docs/design/v2/agent-archetypes/development-v0/archetype_selection_rationale_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Development Archetypes Brief — `docs/design/v2/agent-archetypes/development-v0/development_archetypes_brief_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/agent-archetypes/development-v0/open_questions_v0.md` — areas: agent-archetypes — governs: 0 — related: 0
+- Agent Execution / Simulator Decision Runner Brief — `docs/design/v2/agent-architecture/agent-execution-simulator-decision-runner-v0/agent_execution_simulator_decision_runner_brief_v0.md` — areas: agent-execution, historic-simulator — governs: 0 — related: 0
+- Agent Manifest Dependency — `docs/design/v2/agent-architecture/agent-execution-simulator-decision-runner-v0/agent_manifest_dependency_v0.md` — areas: agent-execution, historic-simulator — governs: 0 — related: 0
+- Agent Visible Evidence Input Model — `docs/design/v2/agent-architecture/agent-execution-simulator-decision-runner-v0/agent_visible_evidence_input_model_v0.md` — areas: agent-execution, historic-simulator — governs: 0 — related: 0
+- Algorithmic Tool Layer Integration — `docs/design/v2/agent-architecture/agent-execution-simulator-decision-runner-v0/algorithmic_tool_layer_integration_v0.md` — areas: agent-execution, historic-simulator — governs: 0 — related: 0
+- Current Truth And Boundaries — `docs/design/v2/agent-architecture/agent-execution-simulator-decision-runner-v0/current_truth_and_boundaries_v0.md` — areas: agent-execution, historic-simulator — governs: 0 — related: 0
+- Decision Evidence Package Mapping — `docs/design/v2/agent-architecture/agent-execution-simulator-decision-runner-v0/decision_evidence_package_mapping_v0.md` — areas: agent-execution, historic-simulator — governs: 0 — related: 0
+- EvalCal / Analysis / Compare Usage — `docs/design/v2/agent-architecture/agent-execution-simulator-decision-runner-v0/evalcal_analysis_compare_usage_v0.md` — areas: agent-execution, historic-simulator — governs: 0 — related: 0
+- Graph / Timeline / Marker Readiness — `docs/design/v2/agent-architecture/agent-execution-simulator-decision-runner-v0/graph_timeline_marker_readiness_v0.md` — areas: agent-execution, historic-simulator — governs: 0 — related: 0
+- Implementation Sequence Recommendation — `docs/design/v2/agent-architecture/agent-execution-simulator-decision-runner-v0/implementation_sequence_recommendation_v0.md` — areas: agent-execution, historic-simulator — governs: 0 — related: 0
+- MicroPath / Interpolation Integration — `docs/design/v2/agent-architecture/agent-execution-simulator-decision-runner-v0/micropath_interpolation_integration_v0.md` — areas: agent-execution, historic-simulator — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/agent-architecture/agent-execution-simulator-decision-runner-v0/open_questions_v0.md` — areas: agent-execution, historic-simulator — governs: 0 — related: 0
+- Projection Posture Integration — `docs/design/v2/agent-architecture/agent-execution-simulator-decision-runner-v0/projection_posture_integration_v0.md` — areas: agent-execution, historic-simulator — governs: 0 — related: 0
+- Replay / Playhead Integration — `docs/design/v2/agent-architecture/agent-execution-simulator-decision-runner-v0/replay_playhead_integration_v0.md` — areas: agent-execution, historic-simulator — governs: 0 — related: 0
+- Runner Scope Model — `docs/design/v2/agent-architecture/agent-execution-simulator-decision-runner-v0/runner_scope_model_v0.md` — areas: agent-execution, historic-simulator — governs: 0 — related: 0
+- Runner State Machine — `docs/design/v2/agent-architecture/agent-execution-simulator-decision-runner-v0/runner_state_machine_v0.md` — areas: agent-execution, historic-simulator — governs: 0 — related: 0
+- Simulator Decision Loop — `docs/design/v2/agent-architecture/agent-execution-simulator-decision-runner-v0/simulator_decision_loop_v0.md` — areas: agent-execution, historic-simulator — governs: 0 — related: 0
+- Sizing And Budget Gate Integration — `docs/design/v2/agent-architecture/agent-execution-simulator-decision-runner-v0/sizing_and_budget_gate_integration_v0.md` — areas: agent-execution, historic-simulator — governs: 0 — related: 0
+- Symbol Universe Dependency — `docs/design/v2/agent-architecture/agent-execution-simulator-decision-runner-v0/symbol_universe_dependency_v0.md` — areas: agent-execution, historic-simulator — governs: 0 — related: 0
+- Agent Artifact Tool Policy Model — `docs/design/v2/agent-architecture/algorithmic-agentic-boundary-v0/agent_artifact_tool_policy_model_v0.md` — areas: agent-execution, autonomy — governs: 0 — related: 0
+- Algorithmic Caliper Mapping — `docs/design/v2/agent-architecture/algorithmic-agentic-boundary-v0/algorithmic_caliper_mapping_v0.md` — areas: agent-execution, autonomy — governs: 0 — related: 0
+- Algorithmic Library Package Map — `docs/design/v2/agent-architecture/algorithmic-agentic-boundary-v0/algorithmic_library_package_map_v0.md` — areas: agent-execution, autonomy — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/agent-architecture/algorithmic-agentic-boundary-v0/open_questions_v0.md` — areas: agent-execution, autonomy — governs: 0 — related: 0
+- Public Algo-Trading Lessons — `docs/design/v2/agent-architecture/algorithmic-agentic-boundary-v0/public_algo_trading_lessons_v0.md` — areas: agent-execution, autonomy — governs: 0 — related: 0
+- Simulator Tool Execution Model — `docs/design/v2/agent-architecture/algorithmic-agentic-boundary-v0/simulator_tool_execution_model_v0.md` — areas: agent-execution, autonomy — governs: 0 — related: 0
+- Tool Result Schema Model — `docs/design/v2/agent-architecture/algorithmic-agentic-boundary-v0/tool_result_schema_model_v0.md` — areas: agent-execution, autonomy — governs: 0 — related: 0
+- Agent Visible Evidence Window — `docs/design/v2/agent-architecture/decision-evidence-package-mvp-field-set-v0/agent_visible_evidence_window_v0.md` — areas: decision-evidence — governs: 0 — related: 0
+- Analysis / Compare / EvalCal Usage — `docs/design/v2/agent-architecture/decision-evidence-package-mvp-field-set-v0/analysis_compare_evalcal_usage_v0.md` — areas: decision-evidence — governs: 0 — related: 0
+- Data Rights / Professional Boundary — `docs/design/v2/agent-architecture/decision-evidence-package-mvp-field-set-v0/data_rights_professional_boundary_v0.md` — areas: decision-evidence — governs: 0 — related: 0
+- Decision Action Snapshot — `docs/design/v2/agent-architecture/decision-evidence-package-mvp-field-set-v0/decision_action_snapshot_v0.md` — areas: decision-evidence — governs: 0 — related: 0
+- Decision Boundary Snapshot — `docs/design/v2/agent-architecture/decision-evidence-package-mvp-field-set-v0/decision_boundary_snapshot_v0.md` — areas: decision-evidence — governs: 0 — related: 0
+- Decision Budget Snapshot — `docs/design/v2/agent-architecture/decision-evidence-package-mvp-field-set-v0/decision_budget_snapshot_v0.md` — areas: decision-evidence — governs: 0 — related: 0
+- Decision Context Evidence — `docs/design/v2/agent-architecture/decision-evidence-package-mvp-field-set-v0/decision_context_evidence_v0.md` — areas: decision-evidence — governs: 0 — related: 0
+- Decision Evidence Package MVP Field Set Brief — `docs/design/v2/agent-architecture/decision-evidence-package-mvp-field-set-v0/decision_evidence_package_mvp_field_set_brief_v0.md` — areas: decision-evidence — governs: 0 — related: 0
+- Decision Evidence Package Shape — `docs/design/v2/agent-architecture/decision-evidence-package-mvp-field-set-v0/decision_evidence_package_shape_v0.md` — areas: decision-evidence — governs: 0 — related: 0
+- Decision Execution Evidence — `docs/design/v2/agent-architecture/decision-evidence-package-mvp-field-set-v0/decision_execution_evidence_v0.md` — areas: decision-evidence — governs: 0 — related: 0
+- Decision Lineage Snapshot — `docs/design/v2/agent-architecture/decision-evidence-package-mvp-field-set-v0/decision_lineage_snapshot_v0.md` — areas: decision-evidence — governs: 0 — related: 0
+- Decision Price Event Snapshot — `docs/design/v2/agent-architecture/decision-evidence-package-mvp-field-set-v0/decision_price_event_snapshot_v0.md` — areas: decision-evidence — governs: 0 — related: 0
+- Decision Replay Time Snapshot — `docs/design/v2/agent-architecture/decision-evidence-package-mvp-field-set-v0/decision_replay_time_snapshot_v0.md` — areas: decision-evidence — governs: 0 — related: 0
+- Decision Sizing Snapshot — `docs/design/v2/agent-architecture/decision-evidence-package-mvp-field-set-v0/decision_sizing_snapshot_v0.md` — areas: decision-evidence — governs: 0 — related: 0
+- DTO / Domain / Persistence Boundary — `docs/design/v2/agent-architecture/decision-evidence-package-mvp-field-set-v0/dto_domain_persistence_boundary_v0.md` — areas: decision-evidence — governs: 0 — related: 0
+- Field Tier Model — `docs/design/v2/agent-architecture/decision-evidence-package-mvp-field-set-v0/field_tier_model_v0.md` — areas: decision-evidence — governs: 0 — related: 0
+- Graph / Timeline / Right Context Mapping — `docs/design/v2/agent-architecture/decision-evidence-package-mvp-field-set-v0/graph_timeline_right_context_mapping_v0.md` — areas: decision-evidence — governs: 0 — related: 0
+- Implementation Sequence Recommendation — `docs/design/v2/agent-architecture/decision-evidence-package-mvp-field-set-v0/implementation_sequence_recommendation_v0.md` — areas: decision-evidence — governs: 0 — related: 0
+- Nullability And Optional Policy — `docs/design/v2/agent-architecture/decision-evidence-package-mvp-field-set-v0/nullability_and_optional_policy_v0.md` — areas: decision-evidence — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/agent-architecture/decision-evidence-package-mvp-field-set-v0/open_questions_v0.md` — areas: decision-evidence — governs: 0 — related: 0
+- TypeScript Model Naming Policy — `docs/design/v2/agent-architecture/decision-evidence-package-mvp-field-set-v0/typescript_model_naming_policy_v0.md` — areas: decision-evidence — governs: 0 — related: 0
+- EP-05 Packet Birth Requirements — `docs/design/v2/agent-architecture/ep05_packet_birth_requirements_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Algorithmic vs Agentic Sizing Boundary — `docs/design/v2/agent-architecture/position-sizing-decision-model-v0/algorithmic_vs_agentic_sizing_boundary_v0.md` — areas: position-sizing — governs: 0 — related: 0
+- B/A/S/H Plus Sizing Decision Chain — `docs/design/v2/agent-architecture/position-sizing-decision-model-v0/bash_plus_sizing_decision_chain_v0.md` — areas: position-sizing — governs: 0 — related: 0
+- Budget Hierarchy And Allocation Model — `docs/design/v2/agent-architecture/position-sizing-decision-model-v0/budget_hierarchy_and_allocation_model_v0.md` — areas: position-sizing — governs: 0 — related: 0
+- BUY Sizing Model — `docs/design/v2/agent-architecture/position-sizing-decision-model-v0/buy_sizing_model_v0.md` — areas: position-sizing — governs: 0 — related: 0
+- Data Rights And Professional Boundary — `docs/design/v2/agent-architecture/position-sizing-decision-model-v0/data_rights_and_professional_boundary_v0.md` — areas: position-sizing — governs: 0 — related: 0
+- Decision Caliper Candidates — `docs/design/v2/agent-architecture/position-sizing-decision-model-v0/decision_caliper_candidates_v0.md` — areas: position-sizing — governs: 0 — related: 0
+- Decision Evidence Package Model — `docs/design/v2/agent-architecture/position-sizing-decision-model-v0/decision_evidence_package_model_v0.md` — areas: position-sizing — governs: 0 — related: 0
+- EvalCal And Analysis Usage — `docs/design/v2/agent-architecture/position-sizing-decision-model-v0/evalcal_and_analysis_usage_v0.md` — areas: position-sizing — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/agent-architecture/position-sizing-decision-model-v0/open_questions_v0.md` — areas: position-sizing — governs: 0 — related: 0
+- Parent Agent Budget Rule — `docs/design/v2/agent-architecture/position-sizing-decision-model-v0/parent_agent_budget_rule_v0.md` — areas: position-sizing — governs: 0 — related: 0
+- Per-Symbol Budget Policy — `docs/design/v2/agent-architecture/position-sizing-decision-model-v0/per_symbol_budget_policy_v0.md` — areas: position-sizing — governs: 0 — related: 0
+- Position Sizing Decision Model — `docs/design/v2/agent-architecture/position-sizing-decision-model-v0/position_sizing_decision_model_v0.md` — areas: position-sizing — governs: 0 — related: 0
+- Projection Posture Model — `docs/design/v2/agent-architecture/position-sizing-decision-model-v0/projection_posture_model_v0.md` — areas: position-sizing — governs: 0 — related: 0
+- Risk Gate And Size Reduction Model — `docs/design/v2/agent-architecture/position-sizing-decision-model-v0/risk_gate_and_size_reduction_model_v0.md` — areas: position-sizing — governs: 0 — related: 0
+- SELL Sizing Model — `docs/design/v2/agent-architecture/position-sizing-decision-model-v0/sell_sizing_model_v0.md` — areas: position-sizing — governs: 0 — related: 0
+- Simulator Graph And Timeline Mapping — `docs/design/v2/agent-architecture/position-sizing-decision-model-v0/simulator_graph_and_timeline_mapping_v0.md` — areas: position-sizing — governs: 0 — related: 0
+- Sizing Intent Classes — `docs/design/v2/agent-architecture/position-sizing-decision-model-v0/sizing_intent_classes_v0.md` — areas: position-sizing — governs: 0 — related: 0
+- Action And Sizing Intent Model — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/action_and_sizing_intent_model_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Admin / R&D UI Exposure Policy — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/admin_r_and_d_ui_exposure_policy_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Agent-Visible Context Model — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/agent_visible_context_model_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Async Event Input Model — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/async_event_input_model_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Baseline Policy Family — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/baseline_policy_family_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Current Source Assessment — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/current_source_assessment_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Decision Emission Model — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/decision_emission_model_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Decision Evidence Mapping — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/decision_evidence_mapping_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Decision Marker Boundary — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/decision_marker_boundary_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Deterministic Gate Model — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/deterministic_gate_model_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Environment Adapter Model — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/environment_adapter_model_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Environment-Agnostic Runner Core — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/environment_agnostic_runner_core_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Evaluation Policy Stack — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/evaluation_policy_stack_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Evaluation Record Model — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/evaluation_record_model_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Evidence Event Processing Cadence — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/evidence_event_processing_cadence_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Evidence Event Stream Model — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/evidence_event_stream_model_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Existing Doctrine Inputs — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/existing_doctrine_inputs_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- File Change Future Plan — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/file_change_future_plan_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Hidden Internal Caliper Mapping — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/hidden_internal_caliper_mapping_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Implementation Sequence Recommendation — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/implementation_sequence_recommendation_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Interrupt Policy Family — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/interrupt_policy_family_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Merge / Collision Policy — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/merge_collision_policy_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Metrics And Analysis / EvalCal Implications — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/metrics_and_analysis_implications_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/open_questions_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Reviewer Checklist — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/reviewer_checklist_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Runner Cadence / Evaluation Policy Brief — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/runner_cadence_evaluation_policy_brief_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Runner Entity Model — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/runner_entity_model_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Scope And Boundaries — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/scope_and_boundaries_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Simulator / Live Paper / Live Mapping — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/simulator_live_paper_live_mapping_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Sizing Envelope Model — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/sizing_envelope_model_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Suppression And Cooldown Policy — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/suppression_and_cooldown_policy_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Symbol Batch Policy — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/symbol_batch_policy_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Symbol Lane Model — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/symbol_lane_model_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Terminology Model — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/terminology_model_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Tester Checklist — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/tester_checklist_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- Time Source Model — `docs/design/v2/agent-architecture/runner-cadence-evaluation-policy-v0/time_source_model_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- AGENT-CREATION-01 Arc Build Status — `docs/design/v2/agent-creation/agent-creation-01-design-packet/arc_build_status_v0.md` — areas: agent-creation — governs: 0 — related: 1
+- Agent Creation v0 (#122) — UI Arc Build Status & Resume Anchor — `docs/design/v2/agent-creation/agent-creation-01-design-packet/creation_ui_build_status_v0.md` — areas: agent-creation — governs: 0 — related: 0
+- Agent Creation UI — Implementation Decomposition v0 (#122, EP-06 #24) — `docs/design/v2/agent-creation/agent-creation-01-design-packet/creation_ui_implementation_decomposition_v0.md` — areas: agent-creation — governs: 0 — related: 0
+- Pre-EP-06 Implementation Truth Map — `docs/design/v2/agent-creation/agent-creation-01-design-packet/current_implementation_truth_v0.md` — areas: agent-creation, agent-manifest — governs: 0 — related: 1
+- DEP Intake Model v0 — agent-side consumption of algorithmic evidence — `docs/design/v2/agent-creation/agent-creation-01-design-packet/dep_intake_model_v0.md` — areas: agent-creation — governs: 0 — related: 0
+- EP-06 Review Ledger — `docs/design/v2/agent-creation/agent-creation-01-design-packet/ep06_review_ledger_v0.md` — areas: agent-creation — governs: 0 — related: 1
+- AGENT-CREATION-01 Implementation Decomposition — `docs/design/v2/agent-creation/agent-creation-01-design-packet/implementation_decomposition_v0.md` — areas: agent-creation — governs: 0 — related: 1
+- LLM Linkage Options — `docs/design/v2/agent-creation/agent-creation-01-design-packet/llm_linkage_options_v0.md` — areas: agent-creation, mind-provider — governs: 0 — related: 1
+- Manifest Architecture Options v0 — storage, shape, API, runtime-equipping — `docs/design/v2/agent-creation/agent-creation-01-design-packet/manifest_architecture_options_v0.md` — areas: agent-creation — governs: 0 — related: 0
+- Agent Creation v0 — Mockup Notes — `docs/design/v2/agent-creation/agent-creation-01-design-packet/mockups/agent_creation_mockup_notes_v0.md` — areas: agent-creation — governs: 0 — related: 0
+- Runner / Simulator Interfacing — Spike Scoping — `docs/design/v2/agent-creation/agent-creation-01-design-packet/runner_simulator_spike_scoping_v0.md` — areas: agent-creation — governs: 0 — related: 0
+- Spike S1 Findings — scripted-runner → agent-decision seam — `docs/design/v2/agent-creation/agent-creation-01-design-packet/spike_s1_scripted_seam_findings_v0.md` — areas: agent-creation — governs: 0 — related: 0
+- Spike S2 Findings — simulator-bar.mapper 0.7.0 parity — `docs/design/v2/agent-creation/agent-creation-01-design-packet/spike_s2_bar_mapper_parity_findings_v0.md` — areas: agent-creation — governs: 0 — related: 0
+- Spike S3 Findings — injected time/data audit of the decision cycle — `docs/design/v2/agent-creation/agent-creation-01-design-packet/spike_s3_injected_time_findings_v0.md` — areas: agent-creation — governs: 0 — related: 0
+- Spike S4 Findings — DEP budget/sizing fields ↔ Portfolio Core — `docs/design/v2/agent-creation/agent-creation-01-design-packet/spike_s4_wallet_budget_mapping_findings_v0.md` — areas: agent-creation — governs: 0 — related: 0
+- Spike S5 — Characterization Test Plan (the EP-05 birth discipline, pulled early) — `docs/design/v2/agent-creation/agent-creation-01-design-packet/spike_s5_characterization_plan_v0.md` — areas: agent-creation — governs: 0 — related: 0
+- AGENT-EXECUTION-01 Closeout Context Deltas v0 — staged, apply at merge — `docs/design/v2/agent-execution/agent-execution-01-design-packet/closeout_context_deltas_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- AGENT-EXECUTION-01 Dispatch Briefs v0 — first wave (slices 1–4), fire-ready — `docs/design/v2/agent-execution/agent-execution-01-design-packet/dispatch_briefs_v0.md` — areas: agent-execution — governs: 0 — related: 0
+- AGENT-EXECUTION-01 Implementation Decomposition (arc record) — `docs/design/v2/agent-execution/agent-execution-01-design-packet/implementation_decomposition_v0.md` — areas: agent-execution — governs: 0 — related: 1
+- EP-05 Slice 9 Convergence Plan — `docs/design/v2/agent-execution/agent-execution-01-design-packet/slice9_convergence_plan_v0.md` — areas: agent-execution, lab — governs: 0 — related: 1
+- AGENT-HARNESS-01 Summary — `docs/design/v2/agent-harness/agent-harness-01-coder-orchestrator-refactor/agent_harness_01_summary_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Angular Frontend Engineering Policy — `docs/design/v2/agent-harness/agent-harness-01-coder-orchestrator-refactor/angular_frontend_engineering_policy_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Bundle Budget Response Policy — `docs/design/v2/agent-harness/agent-harness-01-coder-orchestrator-refactor/bundle_budget_response_policy_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Coder Harness Refactor Plan — `docs/design/v2/agent-harness/agent-harness-01-coder-orchestrator-refactor/coder_harness_refactor_plan_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Current Harness Inventory — `docs/design/v2/agent-harness/agent-harness-01-coder-orchestrator-refactor/current_harness_inventory_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Files Changed Summary — `docs/design/v2/agent-harness/agent-harness-01-coder-orchestrator-refactor/files_changed_summary_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Generic Worker Fallback Policy — `docs/design/v2/agent-harness/agent-harness-01-coder-orchestrator-refactor/generic_worker_fallback_policy_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Handoff Proof Requirements — `docs/design/v2/agent-harness/agent-harness-01-coder-orchestrator-refactor/handoff_proof_requirements_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/agent-harness/agent-harness-01-coder-orchestrator-refactor/open_questions_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Orchestration Phase Gate Model — `docs/design/v2/agent-harness/agent-harness-01-coder-orchestrator-refactor/orchestration_phase_gate_model_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Orchestrator Harness Design — `docs/design/v2/agent-harness/agent-harness-01-coder-orchestrator-refactor/orchestrator_harness_design_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Prompt Template Updates — `docs/design/v2/agent-harness/agent-harness-01-coder-orchestrator-refactor/prompt_template_updates_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Validation And Closeout Policy — `docs/design/v2/agent-harness/agent-harness-01-coder-orchestrator-refactor/validation_and_closeout_policy_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- AGENT-HARNESS-02 - Codex Custom Agent Bridge — `docs/design/v2/agent-harness/agent-harness-02-codex-custom-agent-bridge/README.md` — areas: agent-fleet — governs: 0 — related: 0
+- AGENT-HARNESS-02 Summary — `docs/design/v2/agent-harness/agent-harness-02-codex-custom-agent-bridge/agent_harness_02_summary_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Agent Identity Self-Naming Protocol — `docs/design/v2/agent-harness/agent-harness-02-codex-custom-agent-bridge/agent_identity_self_naming_protocol_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Agent Roster And Selected Names — `docs/design/v2/agent-harness/agent-harness-02-codex-custom-agent-bridge/agent_roster_and_selected_names_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Agent Soul Editing Guardrails — `docs/design/v2/agent-harness/agent-harness-02-codex-custom-agent-bridge/agent_soul_editing_guardrails_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- BIA Custom Agent Bridge — `docs/design/v2/agent-harness/agent-harness-02-codex-custom-agent-bridge/bia_custom_agent_bridge_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Codex Custom Agent Registration Model — `docs/design/v2/agent-harness/agent-harness-02-codex-custom-agent-bridge/codex_custom_agent_registration_model_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Current Codex Subagent Capability Assessment — `docs/design/v2/agent-harness/agent-harness-02-codex-custom-agent-bridge/current_codex_subagent_capability_assessment_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Files Changed Summary — `docs/design/v2/agent-harness/agent-harness-02-codex-custom-agent-bridge/files_changed_summary_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Handoff And Spawn Proof Policy — `docs/design/v2/agent-harness/agent-harness-02-codex-custom-agent-bridge/handoff_and_spawn_proof_policy_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/agent-harness/agent-harness-02-codex-custom-agent-bridge/open_questions_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Project Codex Config Policy — `docs/design/v2/agent-harness/agent-harness-02-codex-custom-agent-bridge/project_codex_config_policy_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Role To Custom Agent Mapping — `docs/design/v2/agent-harness/agent-harness-02-codex-custom-agent-bridge/role_to_custom_agent_mapping_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Spawn Name And Role Suffix Policy — `docs/design/v2/agent-harness/agent-harness-02-codex-custom-agent-bridge/spawn_name_and_role_suffix_policy_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- TOML File Inventory — `docs/design/v2/agent-harness/agent-harness-02-codex-custom-agent-bridge/toml_file_inventory_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Validation Plan — `docs/design/v2/agent-harness/agent-harness-02-codex-custom-agent-bridge/validation_plan_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- AGENT-HARNESS-03 Brief — `docs/design/v2/agent-harness/agent-harness-03-spark-fast-ui-repairer/agent_harness_03_brief.md` — areas: agent-fleet — governs: 0 — related: 0
+- Allowed Use Cases — `docs/design/v2/agent-harness/agent-harness-03-spark-fast-ui-repairer/allowed_use_cases_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Current Custom Agent Inventory — `docs/design/v2/agent-harness/agent-harness-03-spark-fast-ui-repairer/current_custom_agent_inventory_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Fast UI Repairer Role Model — `docs/design/v2/agent-harness/agent-harness-03-spark-fast-ui-repairer/fast_ui_repairer_role_model_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Forbidden Use Cases — `docs/design/v2/agent-harness/agent-harness-03-spark-fast-ui-repairer/forbidden_use_cases_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Marlow vs Fast UI Repairer Boundary — `docs/design/v2/agent-harness/agent-harness-03-spark-fast-ui-repairer/marlow_vs_fast_ui_repairer_boundary_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/agent-harness/agent-harness-03-spark-fast-ui-repairer/open_questions_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Prompt Templates — `docs/design/v2/agent-harness/agent-harness-03-spark-fast-ui-repairer/prompt_templates_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Spark Model Source Verification — `docs/design/v2/agent-harness/agent-harness-03-spark-fast-ui-repairer/spark_model_source_verification_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- TOML Registration Plan — `docs/design/v2/agent-harness/agent-harness-03-spark-fast-ui-repairer/toml_registration_plan_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- Validation Plan — `docs/design/v2/agent-harness/agent-harness-03-spark-fast-ui-repairer/validation_plan_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- WDA To Fast UI Repairer Handoff Policy — `docs/design/v2/agent-harness/agent-harness-03-spark-fast-ui-repairer/wda_to_fast_ui_repairer_handoff_policy_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- AGENT-HARNESS-04 - Axium Codex Main Thread Harness — `docs/design/v2/agent-harness/agent-harness-04-axium-codex-main-thread-harness/README.md` — areas: agent-fleet — governs: 0 — related: 0
+- Axium Codex Main Thread Harness Brief — `docs/design/v2/agent-harness/agent-harness-04-axium-codex-main-thread-harness/axium_codex_main_thread_harness_brief_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- AGENT-HARNESS-04 Validation Plan — `docs/design/v2/agent-harness/agent-harness-04-axium-codex-main-thread-harness/validation_plan_v0.md` — areas: agent-fleet — governs: 0 — related: 0
+- AI Assistance And Command Authority Model — `docs/design/v2/ai/ai_assistance_and_command_authority_model.md` — areas: legacy-retirement, autonomy — governs: 0 — related: 1
+- AS-01 Review Ledger — `docs/design/v2/algo/algo-surface-01-design-packet/as01_review_ledger_v0.md` — areas: algo-surface — governs: 0 — related: 1
+- AS-02.5 Review Ledger — `docs/design/v2/algo/algo-surface-01-design-packet/as025_review_ledger_v0.md` — areas: algo-surface — governs: 0 — related: 1
+- AS-02 Review Ledger — `docs/design/v2/algo/algo-surface-01-design-packet/as02_review_ledger_v0.md` — areas: algo-surface — governs: 0 — related: 1
+- AS-03 Review Ledger — `docs/design/v2/algo/algo-surface-01-design-packet/as03_review_ledger_v0.md` — areas: algo-surface — governs: 0 — related: 1
+- AS-04 Review Ledger — `docs/design/v2/algo/algo-surface-01-design-packet/as04_review_ledger_v0.md` — areas: algo-surface, market-context — governs: 0 — related: 1
+- AS-05 Review Ledger — `docs/design/v2/algo/algo-surface-01-design-packet/as05_review_ledger_v0.md` — areas: algo-surface, market-context — governs: 0 — related: 1
+- Cadence Mockup Brief — `docs/design/v2/algo/algo-surface-01-design-packet/cadence_mockup_brief_v0.md` — areas: algo-surface — governs: 0 — related: 0
+- Dashboard Engine — `docs/design/v2/algo/algo-surface-01-design-packet/dashboard_engine_v0.md` — areas: algo-surface — governs: 0 — related: 0
+- Data Flow And Dependencies — `docs/design/v2/algo/algo-surface-01-design-packet/data_flow_and_dependencies_v0.md` — areas: algo-surface — governs: 0 — related: 0
+- Post-AS-05 Cleanup Run Ledger — `docs/design/v2/algo/algo-surface-01-design-packet/post_as05_cleanup_ledger_v0.md` — areas: algo-surface, market-context — governs: 0 — related: 1
+- Primitives And Tool Mapping — `docs/design/v2/algo/algo-surface-01-design-packet/primitives_and_tool_mapping_v0.md` — areas: algo-surface — governs: 0 — related: 0
+- ALGO-SURFACE-01 Story Decomposition — `docs/design/v2/algo/algo-surface-01-design-packet/story_decomposition_v0.md` — areas: algo-surface — governs: 0 — related: 1
+- Tranche-1 UI Feedback Ledger — `docs/design/v2/algo/algo-surface-01-design-packet/tranche1_ui_feedback_ledger_v0.md` — areas: algo-surface, workstation-ui — governs: 0 — related: 1
+- Algorithm Library v0 Subset — `docs/design/v2/algo/quant-service-01-design-packet/algorithm_library_v0_subset.md` — areas: quant-service — governs: 0 — related: 0
+- API Contract — Gateway And Visualization — `docs/design/v2/algo/quant-service-01-design-packet/api_contract_gateway_and_visualization_v0.md` — areas: quant-service — governs: 0 — related: 0
+- Architecture And Stack Proposal — `docs/design/v2/algo/quant-service-01-design-packet/architecture_and_stack_proposal_v0.md` — areas: quant-service — governs: 0 — related: 0
+- Deployment Posture — `docs/design/v2/algo/quant-service-01-design-packet/deployment_posture_v0.md` — areas: quant-service — governs: 0 — related: 0
+- EP-12 Story Decomposition — `docs/design/v2/algo/quant-service-01-design-packet/ep12_story_decomposition_v0.md` — areas: quant-service — governs: 0 — related: 0
+- Market Data Ingestion Strategy — `docs/design/v2/algo/quant-service-01-design-packet/market_data_ingestion_strategy_v0.md` — areas: quant-service — governs: 0 — related: 0
+- QS-01 Review Ledger — `docs/design/v2/algo/quant-service-01-design-packet/qs01_review_ledger_v0.md` — areas: quant-service — governs: 0 — related: 0
+- QS-02 Review Ledger — `docs/design/v2/algo/quant-service-01-design-packet/qs02_review_ledger_v0.md` — areas: quant-service — governs: 0 — related: 0
+- QS-03 / QS-04 Review Ledger — `docs/design/v2/algo/quant-service-01-design-packet/qs03_qs04_review_ledger_v0.md` — areas: quant-service — governs: 0 — related: 0
+- QS-05 Review Ledger — `docs/design/v2/algo/quant-service-01-design-packet/qs05_review_ledger_v0.md` — areas: quant-service — governs: 0 — related: 0
+- QS-07 Review Ledger — `docs/design/v2/algo/quant-service-01-design-packet/qs07_review_ledger_v0.md` — areas: quant-service — governs: 0 — related: 0
+- Sector Taxonomy Scope v0 — Reference-Data lane, real Industry Lens, F1 — `docs/design/v2/algo/quant-service-01-design-packet/sector_taxonomy_scope_v0.md` — areas: quant-service — governs: 0 — related: 0
+- Service Naming Decision — `docs/design/v2/algo/quant-service-01-design-packet/service_naming_decision_v0.md` — areas: quant-service — governs: 0 — related: 0
+- Tier-2 Cross-Sectional Scope v0 — breadth, sector aggregation, composition shape — `docs/design/v2/algo/quant-service-01-design-packet/tier2_cross_sectional_scope_v0.md` — areas: quant-service — governs: 0 — related: 0
+- 01 — System Context Diagram — `docs/design/v2/architecture-diagrams/01-system-context.md` — areas: system-architecture — governs: 0 — related: 0
+- 05 — Decision Cycle Data Flow — `docs/design/v2/architecture-diagrams/05-decision-cycle-data-flow.md` — areas: system-architecture — governs: 0 — related: 0
+- 06 — Agent Lifecycle State Model — `docs/design/v2/architecture-diagrams/06-agent-lifecycle-state-model.md` — areas: system-architecture — governs: 0 — related: 0
+- 09 — TrAInit Platform Relationship — `docs/design/v2/architecture-diagrams/09-trainit-platform-relationship.md` — areas: system-architecture — governs: 0 — related: 0
+- 10 — Context and Agent Operating System — `docs/design/v2/architecture-diagrams/10-context-and-agent-operating-system.md` — areas: system-architecture — governs: 0 — related: 0
+- 11 — Lab v2 Module I/O Model — `docs/design/v2/architecture-diagrams/11-lab-v2-module-io-model.md` — areas: system-architecture — governs: 0 — related: 0
+- 12 — Deployment Evolution — `docs/design/v2/architecture-diagrams/12-deployment-evolution.md` — areas: system-architecture — governs: 0 — related: 0
+- ALGO-RESEARCH-01 Brief — `docs/design/v2/business-research/algo-research-01-algo-trading-vernacular-platform-scan/algo_research_01_brief_v0.md` — areas: business-research — governs: 0 — related: 0
+- Algo Trading Pipeline Model — `docs/design/v2/business-research/algo-research-01-algo-trading-vernacular-platform-scan/algo_trading_pipeline_model_v0.md` — areas: business-research — governs: 0 — related: 0
+- Algorithm Library Tier Model — `docs/design/v2/business-research/algo-research-01-algo-trading-vernacular-platform-scan/algorithm_library_tier_model_v0.md` — areas: business-research — governs: 0 — related: 0
+- Algorithmic Tool Layer Mapping — `docs/design/v2/business-research/algo-research-01-algo-trading-vernacular-platform-scan/algorithmic_tool_layer_mapping_v0.md` — areas: business-research — governs: 0 — related: 0
+- Analysis Surface Mapping — `docs/design/v2/business-research/algo-research-01-algo-trading-vernacular-platform-scan/analysis_surface_mapping_v0.md` — areas: business-research — governs: 0 — related: 0
+- Backtesting / Forward Testing Mapping — `docs/design/v2/business-research/algo-research-01-algo-trading-vernacular-platform-scan/backtesting_forward_testing_mapping_v0.md` — areas: business-research — governs: 0 — related: 0
+- Business Proof Implications — `docs/design/v2/business-research/algo-research-01-algo-trading-vernacular-platform-scan/business_proof_implications_v0.md` — areas: business-research — governs: 0 — related: 0
+- Current Source Research Notes — `docs/design/v2/business-research/algo-research-01-algo-trading-vernacular-platform-scan/current_source_research_notes_v0.md` — areas: business-research — governs: 0 — related: 0
+- Future Packet Recommendations — `docs/design/v2/business-research/algo-research-01-algo-trading-vernacular-platform-scan/future_packet_recommendations_v0.md` — areas: business-research — governs: 0 — related: 0
+- Graham Source Material Index — `docs/design/v2/business-research/algo-research-01-algo-trading-vernacular-platform-scan/graham_source_material_index_v0.md` — areas: business-research — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/business-research/algo-research-01-algo-trading-vernacular-platform-scan/open_questions_v0.md` — areas: business-research — governs: 0 — related: 0
+- Platform And Competitor Scan — `docs/design/v2/business-research/algo-research-01-algo-trading-vernacular-platform-scan/platform_and_competitor_scan_v0.md` — areas: business-research — governs: 0 — related: 0
+- QuantConnect Lessons And Infrastructure Notes — `docs/design/v2/business-research/algo-research-01-algo-trading-vernacular-platform-scan/quantconnect_lessons_and_infrastructure_notes_v0.md` — areas: business-research — governs: 0 — related: 0
+- Retail Algo Trader User Profile — `docs/design/v2/business-research/algo-research-01-algo-trading-vernacular-platform-scan/retail_algo_trader_user_profile_v0.md` — areas: business-research — governs: 0 — related: 0
+- Strategy MVP Relevance Matrix — `docs/design/v2/business-research/algo-research-01-algo-trading-vernacular-platform-scan/strategy_mvp_relevance_matrix_v0.md` — areas: business-research — governs: 0 — related: 0
+- Tech Stack And Python Worker Assessment — `docs/design/v2/business-research/algo-research-01-algo-trading-vernacular-platform-scan/tech_stack_and_python_worker_assessment_v0.md` — areas: business-research — governs: 0 — related: 0
+- TrAIdit Positioning And Language — `docs/design/v2/business-research/algo-research-01-algo-trading-vernacular-platform-scan/trAIdit_positioning_and_language_v0.md` — areas: business-research — governs: 0 — related: 0
+- Cost / Rate Limit Matrix — `docs/design/v2/data-sources/cost_rate_limit_matrix_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Alternative Provider Slate — `docs/design/v2/data-sources/data-spike-02-deep-historical-data-access/alternative_provider_slate_v0.md` — areas: provider-data — governs: 0 — related: 0
+- DATA-SPIKE-02 Current Source Findings - 2026-05-22 — `docs/design/v2/data-sources/data-spike-02-deep-historical-data-access/current_source_findings_2026-05-22.md` — areas: provider-data — governs: 0 — related: 0
+- Current Source Research Plan — `docs/design/v2/data-sources/data-spike-02-deep-historical-data-access/current_source_research_plan_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Daily vs Intraday Tradeoff — `docs/design/v2/data-sources/data-spike-02-deep-historical-data-access/daily_vs_intraday_tradeoff_v0.md` — areas: provider-data — governs: 0 — related: 0
+- DATA-SPIKE-02 Researcher Prompt — `docs/design/v2/data-sources/data-spike-02-deep-historical-data-access/data_spike_02_researcher_prompt_v0.md` — areas: provider-data — governs: 0 — related: 0
+- DATA-SPIKE-02 Task Packet — `docs/design/v2/data-sources/data-spike-02-deep-historical-data-access/data_spike_02_task_packet_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Founder Cost Decision Gate — `docs/design/v2/data-sources/data-spike-02-deep-historical-data-access/founder_cost_decision_gate_v0.md` — areas: provider-data — governs: 0 — related: 0
+- HIST-SIM-02 Path Options — `docs/design/v2/data-sources/data-spike-02-deep-historical-data-access/hist_sim_02_path_options_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Historical Depth Requirements — `docs/design/v2/data-sources/data-spike-02-deep-historical-data-access/historical_depth_requirements_v0.md` — areas: provider-data — governs: 0 — related: 0
+- DATA-SPIKE-02 Open Questions — `docs/design/v2/data-sources/data-spike-02-deep-historical-data-access/open_questions_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Polygon / Massive Upgrade Path — `docs/design/v2/data-sources/data-spike-02-deep-historical-data-access/polygon_massive_upgrade_path_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Provider Comparison Matrix — `docs/design/v2/data-sources/data-spike-02-deep-historical-data-access/provider_comparison_matrix_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Storage / Caching / Rights Gate — `docs/design/v2/data-sources/data-spike-02-deep-historical-data-access/storage_caching_rights_gate_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Deep Historical Data Gate — `docs/design/v2/data-sources/data-spike-02-deep_historical_data_gate_v0.md` — areas: provider-data, data-rights — governs: 0 — related: 0
+- Local Historical Data Prototype Plan — `docs/design/v2/data-sources/local_historical_data_prototype_plan_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Open Questions And Professional Gates — `docs/design/v2/data-sources/open_questions_and_professional_gates_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Provider Option Matrix — `docs/design/v2/data-sources/provider_option_matrix_v0.md` — areas: provider-data — governs: 0 — related: 0
+- Agent Profile Snapshot Model — `docs/design/v2/data/agent_profile_snapshot_model.md` — areas: agent-versioning — governs: 0 — related: 0
+- Execution Evidence Model, Future — `docs/design/v2/data/execution_evidence_model_future.md` — areas: decision-evidence, paper-live-boundary — governs: 0 — related: 0
+- Provider Data And Source Provenance Model — `docs/design/v2/data/provider_data_and_source_provenance_model.md` — areas: provider-data — governs: 0 — related: 0
+- DECISION-CALIPERS-01 Arc Build Status — `docs/design/v2/decision-calipers/decision-calipers-01-design-packet/arc_build_status_v0.md` — areas: decision-calipers — governs: 0 — related: 1
+- EP-07 Review Ledger — `docs/design/v2/decision-calipers/decision-calipers-01-design-packet/ep07_review_ledger_v0.md` — areas: decision-calipers — governs: 0 — related: 1
+- DECISION-CALIPERS-01 — Implementation Decomposition — `docs/design/v2/decision-calipers/decision-calipers-01-design-packet/implementation_decomposition_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- Decision Caliper Artifact Mapping — `docs/design/v2/decision-calipers/decision_caliper_artifact_mapping_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- Decision Caliper Open Questions — `docs/design/v2/decision-calipers/decision_caliper_open_questions_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- Decision Caliper UI Surface Map — `docs/design/v2/decision-calipers/decision_caliper_ui_surface_map_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- Decision Caliper Versioning And Change Model — `docs/design/v2/decision-calipers/decision_caliper_versioning_and_change_model_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- Decision Profile Effect Ontology — `docs/design/v2/decision-calipers/decision_profile_effect_ontology_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- Caliper Family Testing Surface — `docs/design/v2/decision-calipers/mvp-subset/caliper_family_testing_surface_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- MVP Caliper Open Questions — `docs/design/v2/decision-calipers/mvp-subset/mvp_caliper_open_questions_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- Automation Authority Matrix — `docs/design/v2/decision-calipers/r-and-d/automation_authority_matrix_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- Caliper Experiment Protocol — `docs/design/v2/decision-calipers/r-and-d/caliper_experiment_protocol_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- Caliper Promotion Policy — `docs/design/v2/decision-calipers/r-and-d/caliper_promotion_policy_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- Missing Caliper Candidate Families — `docs/design/v2/decision-calipers/r-and-d/missing_caliper_candidate_families_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- Trading Intuition Operational Definition — `docs/design/v2/decision-calipers/r-and-d/trading_intuition_operational_definition_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- Agent Evaluation Profile Model — `docs/design/v2/evaluation/agent_evaluation_profile_model.md` — areas: evaluation — governs: 0 — related: 0
+- Analyzer Agent Model — `docs/design/v2/evaluation/analyzer_agent_model.md` — areas: evaluation — governs: 0 — related: 0
+- Evaluation and Readiness Integration — `docs/design/v2/evaluation/evaluation_readiness_integration.md` — areas: evaluation — governs: 0 — related: 0
+- Scenario Test Suite Model — `docs/design/v2/evaluation/scenario_test_suite_model.md` — areas: evaluation — governs: 0 — related: 0
+- Trading Performance Profile Model — `docs/design/v2/evaluation/trading_performance_profile_model.md` — areas: evaluation — governs: 0 — related: 0
+- Alpaca Boundary For Simulator — `docs/design/v2/historic-simulator/data-contracts-v0/alpaca_boundary_for_simulator_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Archetype Fixture Usage — `docs/design/v2/historic-simulator/data-contracts-v0/archetype_fixture_usage_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- First Implementation Packet Recommendation — `docs/design/v2/historic-simulator/data-contracts-v0/first_implementation_packet_recommendation_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Historic Simulator Data Contracts Brief — `docs/design/v2/historic-simulator/data-contracts-v0/historic_simulator_data_contracts_brief_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Local Data File Manifest — `docs/design/v2/historic-simulator/data-contracts-v0/local_data_file_manifest_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Local Historical Data Prototype — `docs/design/v2/historic-simulator/data-contracts-v0/local_historical_data_prototype_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Open Questions And Professional Gates — `docs/design/v2/historic-simulator/data-contracts-v0/open_questions_and_professional_gates_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Polygon / Massive Historical Path — `docs/design/v2/historic-simulator/data-contracts-v0/polygon_massive_historical_path_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Provider Adapter Boundary — `docs/design/v2/historic-simulator/data-contracts-v0/provider_adapter_boundary_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Source Freshness / Fallback Labels — `docs/design/v2/historic-simulator/data-contracts-v0/source_freshness_fallback_labels_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Symbol Universe Replay Scope — `docs/design/v2/historic-simulator/data-contracts-v0/symbol_universe_replay_scope_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- B/A/S/H Decision Opportunity Model — `docs/design/v2/historic-simulator/graph-workflow-v0/bash_decision_opportunity_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Chart Library Selection Criteria — `docs/design/v2/historic-simulator/graph-workflow-v0/chart_library_selection_criteria_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Decision Marker Overlay Model — `docs/design/v2/historic-simulator/graph-workflow-v0/decision_marker_overlay_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Graph Legend Selection Model — `docs/design/v2/historic-simulator/graph-workflow-v0/graph_legend_selection_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Graph To Decision Timeline Interop — `docs/design/v2/historic-simulator/graph-workflow-v0/graph_to_decision_timeline_interop_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Graph Tooltip Anatomy — `docs/design/v2/historic-simulator/graph-workflow-v0/graph_tooltip_anatomy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- HIST-SIM-01 Implications — `docs/design/v2/historic-simulator/graph-workflow-v0/hist_sim_01_implications_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Historic Trading Day Details Window — `docs/design/v2/historic-simulator/graph-workflow-v0/historic_trading_day_details_window_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Historic Trading Day Preview Model — `docs/design/v2/historic-simulator/graph-workflow-v0/historic_trading_day_preview_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Historic Trading Day Search Window — `docs/design/v2/historic-simulator/graph-workflow-v0/historic_trading_day_search_window_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Loaded Scenario Control Model — `docs/design/v2/historic-simulator/graph-workflow-v0/loaded_scenario_control_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/historic-simulator/graph-workflow-v0/open_questions_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Paper Equity Curve Model — `docs/design/v2/historic-simulator/graph-workflow-v0/paper_equity_curve_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Paper Mode Graph Inheritance — `docs/design/v2/historic-simulator/graph-workflow-v0/paper_mode_graph_inheritance_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Paper Recording To Simulator Bridge — `docs/design/v2/historic-simulator/graph-workflow-v0/paper_recording_to_simulator_bridge_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Simulator Graph Projection Requirements — `docs/design/v2/historic-simulator/graph-workflow-v0/simulator_graph_projection_requirements_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Simulator Scenario Catalog Model — `docs/design/v2/historic-simulator/graph-workflow-v0/simulator_scenario_catalog_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Symbol Graph View Model — `docs/design/v2/historic-simulator/graph-workflow-v0/symbol_graph_view_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Version Graph View Model — `docs/design/v2/historic-simulator/graph-workflow-v0/version_graph_view_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- HIST-SIM-01 API Boundary Plan — `docs/design/v2/historic-simulator/hist-sim-01-implementation-packet/hist_sim_01_api_boundary_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- HIST-SIM-01 Coder Prompt — `docs/design/v2/historic-simulator/hist-sim-01-implementation-packet/hist_sim_01_coder_prompt_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- HIST-SIM-01 File Change Plan — `docs/design/v2/historic-simulator/hist-sim-01-implementation-packet/hist_sim_01_file_change_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- HIST-SIM-01 Fixture Plan — `docs/design/v2/historic-simulator/hist-sim-01-implementation-packet/hist_sim_01_fixture_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- HIST-SIM-01 Local Scenario Loader Plan — `docs/design/v2/historic-simulator/hist-sim-01-implementation-packet/hist_sim_01_local_scenario_loader_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- HIST-SIM-01 Projection Support Plan — `docs/design/v2/historic-simulator/hist-sim-01-implementation-packet/hist_sim_01_projection_support_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- HIST-SIM-01 Reviewer Checklist — `docs/design/v2/historic-simulator/hist-sim-01-implementation-packet/hist_sim_01_reviewer_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- HIST-SIM-01 Scope And Boundaries — `docs/design/v2/historic-simulator/hist-sim-01-implementation-packet/hist_sim_01_scope_and_boundaries_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- HIST-SIM-01 Task Packet — `docs/design/v2/historic-simulator/hist-sim-01-implementation-packet/hist_sim_01_task_packet_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- HIST-SIM-01 Test Plan — `docs/design/v2/historic-simulator/hist-sim-01-implementation-packet/hist_sim_01_test_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- HIST-SIM-01 Tester Checklist — `docs/design/v2/historic-simulator/hist-sim-01-implementation-packet/hist_sim_01_tester_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- HIST-SIM-01 Validation Plan — `docs/design/v2/historic-simulator/hist-sim-01-implementation-packet/hist_sim_01_validation_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- HIST-SIM-01 Web State Boundary Plan — `docs/design/v2/historic-simulator/hist-sim-01-implementation-packet/hist_sim_01_web_state_boundary_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- HIST-SIM-01 Open Questions — `docs/design/v2/historic-simulator/hist-sim-01-implementation-packet/open_questions_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- API Endpoint Plan — `docs/design/v2/historic-simulator/hist-sim-02a-provider-recent-scenario-preview/api_endpoint_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Coder Prompt — `docs/design/v2/historic-simulator/hist-sim-02a-provider-recent-scenario-preview/coder_prompt_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Data Rights Boundary — `docs/design/v2/historic-simulator/hist-sim-02a-provider-recent-scenario-preview/data_rights_boundary_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- HIST-SIM-02A Scope And Boundaries — `docs/design/v2/historic-simulator/hist-sim-02a-provider-recent-scenario-preview/hist_sim_02a_scope_and_boundaries_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- HIST-SIM-02A Task Packet — `docs/design/v2/historic-simulator/hist-sim-02a-provider-recent-scenario-preview/hist_sim_02a_task_packet_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/historic-simulator/hist-sim-02a-provider-recent-scenario-preview/open_questions_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Provider Bar Normalization Model — `docs/design/v2/historic-simulator/hist-sim-02a-provider-recent-scenario-preview/provider_bar_normalization_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Provider Live Fetch On Load Model — `docs/design/v2/historic-simulator/hist-sim-02a-provider-recent-scenario-preview/provider_live_fetch_on_load_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Recent Window Policy — `docs/design/v2/historic-simulator/hist-sim-02a-provider-recent-scenario-preview/recent_window_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Reviewer Checklist — `docs/design/v2/historic-simulator/hist-sim-02a-provider-recent-scenario-preview/reviewer_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Scenario Descriptor Model — `docs/design/v2/historic-simulator/hist-sim-02a-provider-recent-scenario-preview/scenario_descriptor_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Scenario Descriptor Persistence Plan — `docs/design/v2/historic-simulator/hist-sim-02a-provider-recent-scenario-preview/scenario_descriptor_persistence_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Scenario Metadata Classification Model — `docs/design/v2/historic-simulator/hist-sim-02a-provider-recent-scenario-preview/scenario_metadata_classification_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Test And Validation Plan — `docs/design/v2/historic-simulator/hist-sim-02a-provider-recent-scenario-preview/test_and_validation_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Tester Checklist — `docs/design/v2/historic-simulator/hist-sim-02a-provider-recent-scenario-preview/tester_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- WDA Checklist — `docs/design/v2/historic-simulator/hist-sim-02a-provider-recent-scenario-preview/wda_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Web Integration Plan — `docs/design/v2/historic-simulator/hist-sim-02a-provider-recent-scenario-preview/web_integration_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- API Contract Delta Plan — `docs/design/v2/historic-simulator/hist-sim-02b-provider-intraday-granularity/api_contract_delta_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Bar Granularity Policy — `docs/design/v2/historic-simulator/hist-sim-02b-provider-intraday-granularity/bar_granularity_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Coder Prompt — `docs/design/v2/historic-simulator/hist-sim-02b-provider-intraday-granularity/coder_prompt_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Data Point Count Model — `docs/design/v2/historic-simulator/hist-sim-02b-provider-intraday-granularity/data_point_count_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Data Rights Boundary — `docs/design/v2/historic-simulator/hist-sim-02b-provider-intraday-granularity/data_rights_boundary_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Fetch And Loading Policy — `docs/design/v2/historic-simulator/hist-sim-02b-provider-intraday-granularity/fetch_and_loading_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- HIST-SIM-02B Scope And Boundaries — `docs/design/v2/historic-simulator/hist-sim-02b-provider-intraday-granularity/hist_sim_02b_scope_and_boundaries_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- HIST-SIM-02B Task Packet — `docs/design/v2/historic-simulator/hist-sim-02b-provider-intraday-granularity/hist_sim_02b_task_packet_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/historic-simulator/hist-sim-02b-provider-intraday-granularity/open_questions_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Performance And Pagination Risk Model — `docs/design/v2/historic-simulator/hist-sim-02b-provider-intraday-granularity/performance_and_pagination_risk_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Provider Intraday Descriptor Model — `docs/design/v2/historic-simulator/hist-sim-02b-provider-intraday-granularity/provider_intraday_descriptor_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Reviewer Checklist — `docs/design/v2/historic-simulator/hist-sim-02b-provider-intraday-granularity/reviewer_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Test And Validation Plan — `docs/design/v2/historic-simulator/hist-sim-02b-provider-intraday-granularity/test_and_validation_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Tester Checklist — `docs/design/v2/historic-simulator/hist-sim-02b-provider-intraday-granularity/tester_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- WDA Checklist — `docs/design/v2/historic-simulator/hist-sim-02b-provider-intraday-granularity/wda_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Web Integration Plan — `docs/design/v2/historic-simulator/hist-sim-02b-provider-intraday-granularity/web_integration_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- API Contract Delta Plan — `docs/design/v2/historic-simulator/hist-sim-02c-session-scope-normalization/api_contract_delta_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Bar Filtering Strategy — `docs/design/v2/historic-simulator/hist-sim-02c-session-scope-normalization/bar_filtering_strategy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Coder Prompt — `docs/design/v2/historic-simulator/hist-sim-02c-session-scope-normalization/coder_prompt_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Data Point Count Expectations — `docs/design/v2/historic-simulator/hist-sim-02c-session-scope-normalization/data_point_count_expectations_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Extended Hours Boundary — `docs/design/v2/historic-simulator/hist-sim-02c-session-scope-normalization/extended_hours_boundary_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- HIST-SIM-02C Scope And Boundaries — `docs/design/v2/historic-simulator/hist-sim-02c-session-scope-normalization/hist_sim_02c_scope_and_boundaries_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- HIST-SIM-02C Task Packet — `docs/design/v2/historic-simulator/hist-sim-02c-session-scope-normalization/hist_sim_02c_task_packet_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/historic-simulator/hist-sim-02c-session-scope-normalization/open_questions_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Provider Timestamp And Timezone Plan — `docs/design/v2/historic-simulator/hist-sim-02c-session-scope-normalization/provider_timestamp_and_timezone_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Regular Session Definition — `docs/design/v2/historic-simulator/hist-sim-02c-session-scope-normalization/regular_session_definition_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Reviewer Checklist — `docs/design/v2/historic-simulator/hist-sim-02c-session-scope-normalization/reviewer_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Session Scope Policy — `docs/design/v2/historic-simulator/hist-sim-02c-session-scope-normalization/session_scope_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Test And Validation Plan — `docs/design/v2/historic-simulator/hist-sim-02c-session-scope-normalization/test_and_validation_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Tester Checklist — `docs/design/v2/historic-simulator/hist-sim-02c-session-scope-normalization/tester_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- WDA Checklist — `docs/design/v2/historic-simulator/hist-sim-02c-session-scope-normalization/wda_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Web Integration Plan — `docs/design/v2/historic-simulator/hist-sim-02c-session-scope-normalization/web_integration_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Analysis / Compare Usage — `docs/design/v2/historic-simulator/scenario-regime-taxonomy-v0/analysis_compare_usage_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Bar-Derived Signal Candidates — `docs/design/v2/historic-simulator/scenario-regime-taxonomy-v0/bar_derived_signal_candidates_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Data Rights And Metadata Boundary — `docs/design/v2/historic-simulator/scenario-regime-taxonomy-v0/data_rights_and_metadata_boundary_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Derived vs Operator Classification — `docs/design/v2/historic-simulator/scenario-regime-taxonomy-v0/derived_vs_operator_classification_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Domain And Catalyst Tag Model — `docs/design/v2/historic-simulator/scenario-regime-taxonomy-v0/domain_and_catalyst_tag_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- EvalCal And R&D Usage — `docs/design/v2/historic-simulator/scenario-regime-taxonomy-v0/evalcal_and_rd_usage_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Market Regime Vernacular Research — `docs/design/v2/historic-simulator/scenario-regime-taxonomy-v0/market_regime_vernacular_research_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- MVP Regime Label Set — `docs/design/v2/historic-simulator/scenario-regime-taxonomy-v0/mvp_regime_label_set_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/historic-simulator/scenario-regime-taxonomy-v0/open_questions_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- R&D Regime Candidate Set — `docs/design/v2/historic-simulator/scenario-regime-taxonomy-v0/rd_regime_candidate_set_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Regime Analyzer Future Tool Model — `docs/design/v2/historic-simulator/scenario-regime-taxonomy-v0/regime_analyzer_future_tool_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Regime Classification Levels — `docs/design/v2/historic-simulator/scenario-regime-taxonomy-v0/regime_classification_levels_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Scenario Descriptor Mapping — `docs/design/v2/historic-simulator/scenario-regime-taxonomy-v0/scenario_descriptor_mapping_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Scenario Metadata Model — `docs/design/v2/historic-simulator/scenario-regime-taxonomy-v0/scenario_metadata_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Scenario Regime Taxonomy — `docs/design/v2/historic-simulator/scenario-regime-taxonomy-v0/scenario_regime_taxonomy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Statistical Definition Candidates — `docs/design/v2/historic-simulator/scenario-regime-taxonomy-v0/statistical_definition_candidates_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Angular Integration Plan — `docs/design/v2/historic-simulator/sim-graph-01-chart-library-selection/angular_integration_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Axis Tooltip And Crosshair Model — `docs/design/v2/historic-simulator/sim-graph-01-chart-library-selection/axis_tooltip_and_crosshair_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Chart Library Candidate Matrix — `docs/design/v2/historic-simulator/sim-graph-01-chart-library-selection/chart_library_candidate_matrix_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Charting Requirements — `docs/design/v2/historic-simulator/sim-graph-01-chart-library-selection/charting_requirements_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Coder Prompt — `docs/design/v2/historic-simulator/sim-graph-01-chart-library-selection/coder_prompt_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Current Source Research Notes — `docs/design/v2/historic-simulator/sim-graph-01-chart-library-selection/current_source_research_notes_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Future Marker Overlay Requirements — `docs/design/v2/historic-simulator/sim-graph-01-chart-library-selection/future_marker_overlay_requirements_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/historic-simulator/sim-graph-01-chart-library-selection/open_questions_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Package And Bundle Risk — `docs/design/v2/historic-simulator/sim-graph-01-chart-library-selection/package_and_bundle_risk_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Recommended Chart Library — `docs/design/v2/historic-simulator/sim-graph-01-chart-library-selection/recommended_chart_library_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Reviewer Checklist — `docs/design/v2/historic-simulator/sim-graph-01-chart-library-selection/reviewer_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Selected Symbol Graph Model — `docs/design/v2/historic-simulator/sim-graph-01-chart-library-selection/selected_symbol_graph_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Session Scope And Time Axis Model — `docs/design/v2/historic-simulator/sim-graph-01-chart-library-selection/session_scope_and_time_axis_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-GRAPH-01 Scope And Boundaries — `docs/design/v2/historic-simulator/sim-graph-01-chart-library-selection/sim_graph_01_scope_and_boundaries_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-GRAPH-01 Task Packet — `docs/design/v2/historic-simulator/sim-graph-01-chart-library-selection/sim_graph_01_task_packet_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Simulator Data Shape Mapping — `docs/design/v2/historic-simulator/sim-graph-01-chart-library-selection/simulator_data_shape_mapping_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Test And Validation Plan — `docs/design/v2/historic-simulator/sim-graph-01-chart-library-selection/test_and_validation_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Tester Checklist — `docs/design/v2/historic-simulator/sim-graph-01-chart-library-selection/tester_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Visual Design Requirements — `docs/design/v2/historic-simulator/sim-graph-01-chart-library-selection/visual_design_requirements_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- WDA Checklist — `docs/design/v2/historic-simulator/sim-graph-01-chart-library-selection/wda_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Chart View State Persistence Boundary — `docs/design/v2/historic-simulator/sim-graph-02-controls-view-state/chart_view_state_persistence_boundary_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Coder Prompt — `docs/design/v2/historic-simulator/sim-graph-02-controls-view-state/coder_prompt_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Graph Header Cleanup Plan — `docs/design/v2/historic-simulator/sim-graph-02-controls-view-state/graph_header_cleanup_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Graph View State Policy — `docs/design/v2/historic-simulator/sim-graph-02-controls-view-state/graph_view_state_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Interpolation / Micro-Path Future Boundary — `docs/design/v2/historic-simulator/sim-graph-02-controls-view-state/interpolation_micro_path_future_boundary_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Interval Control Policy — `docs/design/v2/historic-simulator/sim-graph-02-controls-view-state/interval_control_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Lightweight Charts Control Mapping — `docs/design/v2/historic-simulator/sim-graph-02-controls-view-state/lightweight_charts_control_mapping_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/historic-simulator/sim-graph-02-controls-view-state/open_questions_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Playhead / Preview Future Boundary — `docs/design/v2/historic-simulator/sim-graph-02-controls-view-state/playhead_preview_future_boundary_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Reviewer Checklist — `docs/design/v2/historic-simulator/sim-graph-02-controls-view-state/reviewer_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-GRAPH-02 Scope And Boundaries — `docs/design/v2/historic-simulator/sim-graph-02-controls-view-state/sim_graph_02_scope_and_boundaries_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-GRAPH-02 Task Packet — `docs/design/v2/historic-simulator/sim-graph-02-controls-view-state/sim_graph_02_task_packet_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Test And Validation Plan — `docs/design/v2/historic-simulator/sim-graph-02-controls-view-state/test_and_validation_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Tester Checklist — `docs/design/v2/historic-simulator/sim-graph-02-controls-view-state/tester_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- WDA Checklist — `docs/design/v2/historic-simulator/sim-graph-02-controls-view-state/wda_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Web Integration Plan — `docs/design/v2/historic-simulator/sim-graph-02-controls-view-state/web_integration_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Zoom Control Policy — `docs/design/v2/historic-simulator/sim-graph-02-controls-view-state/zoom_control_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Accepted Doctrine Inputs — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/accepted_doctrine_inputs_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Accessibility And Keyboard Policy — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/accessibility_and_keyboard_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Agent Version Display Layer Model — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/agent_version_display_layer_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Coder Prompt — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/coder_prompt_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Color Picker Deferred Model — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/color_picker_deferred_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Current Source Assessment — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/current_source_assessment_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Expanded / Collapsed Rail Behavior — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/expanded_collapsed_rail_behavior_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- File Change Plan — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/file_change_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Legend Region Integration Plan — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/legend_region_integration_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Marker Colorization Integration — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/marker_colorization_integration_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/open_questions_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Responsive And Layout Policy — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/responsive_and_layout_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Reviewer Checklist — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/reviewer_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Scope And Boundaries — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/scope_and_boundaries_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-LEGEND-01 Task Packet — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/sim_legend_01_task_packet_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Simulator Display Layer Product Model — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/simulator_display_layer_product_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Source Authority Boundary — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/source_authority_boundary_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- State Ownership And Persistence Policy — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/state_ownership_and_persistence_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Static Marker Fixture Compatibility — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/static_marker_fixture_compatibility_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Symbol Graph Integration Plan — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/symbol_graph_integration_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Test And Validation Plan — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/test_and_validation_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Tester Checklist — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/tester_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Timeline Future Mapping — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/timeline_future_mapping_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Version Color Mapping Policy — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/version_color_mapping_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Version Graph Future Mapping — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/version_graph_future_mapping_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Visibility State Model — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/visibility_state_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- WDA Checklist — `docs/design/v2/historic-simulator/sim-legend-01-simulator-display-layer-legend/wda_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Coder Prompt — `docs/design/v2/historic-simulator/sim-loader-01-scenario-loader-ux-cleanup/coder_prompt_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Current Loader State Assessment — `docs/design/v2/historic-simulator/sim-loader-01-scenario-loader-ux-cleanup/current_loader_state_assessment_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Load vs Search Policy — `docs/design/v2/historic-simulator/sim-loader-01-scenario-loader-ux-cleanup/load_vs_search_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/historic-simulator/sim-loader-01-scenario-loader-ux-cleanup/open_questions_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Provider Search Future Boundary — `docs/design/v2/historic-simulator/sim-loader-01-scenario-loader-ux-cleanup/provider_search_future_boundary_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Reviewer Checklist — `docs/design/v2/historic-simulator/sim-loader-01-scenario-loader-ux-cleanup/reviewer_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Scenario Actions Kebab Model — `docs/design/v2/historic-simulator/sim-loader-01-scenario-loader-ux-cleanup/scenario_actions_kebab_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Scenario Details Preview Boundary — `docs/design/v2/historic-simulator/sim-loader-01-scenario-loader-ux-cleanup/scenario_details_preview_boundary_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Scenario Row Selection Model — `docs/design/v2/historic-simulator/sim-loader-01-scenario-loader-ux-cleanup/scenario_row_selection_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Scenario Table Model — `docs/design/v2/historic-simulator/sim-loader-01-scenario-loader-ux-cleanup/scenario_table_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-LOADER-01 — Scenario Loader UX Cleanup Task Packet — `docs/design/v2/historic-simulator/sim-loader-01-scenario-loader-ux-cleanup/sim_loader_01_scenario_loader_task_packet_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-LOADER-01 Scope and Boundaries — `docs/design/v2/historic-simulator/sim-loader-01-scenario-loader-ux-cleanup/sim_loader_01_scope_and_boundaries_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Test and Validation Plan — `docs/design/v2/historic-simulator/sim-loader-01-scenario-loader-ux-cleanup/test_and_validation_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Tester Checklist — `docs/design/v2/historic-simulator/sim-loader-01-scenario-loader-ux-cleanup/tester_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Utility Window Polish Plan — `docs/design/v2/historic-simulator/sim-loader-01-scenario-loader-ux-cleanup/utility_window_polish_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- WDA Checklist — `docs/design/v2/historic-simulator/sim-loader-01-scenario-loader-ux-cleanup/wda_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Web Integration Plan — `docs/design/v2/historic-simulator/sim-loader-01-scenario-loader-ux-cleanup/web_integration_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Accepted Doctrine Inputs — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/accepted_doctrine_inputs_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Accessibility And Keyboard Policy — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/accessibility_and_keyboard_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Action Vocabulary And Semantics — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/action_vocabulary_and_semantics_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Agent Runner Boundary — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/agent_runner_boundary_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Chart Component Integration Plan — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/chart_component_integration_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Coder Prompt — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/coder_prompt_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Current Source Assessment — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/current_source_assessment_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Decision Evidence Mapping — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/decision_evidence_mapping_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Decision Marker Product Model — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/decision_marker_product_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- File Change Plan — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/file_change_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Marker Density / Overlap Policy — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/marker_density_overlap_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Marker Positioning And Time Alignment — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/marker_positioning_and_time_alignment_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Marker Price Anchor Policy — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/marker_price_anchor_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Marker Source And Truth Boundary — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/marker_source_and_truth_boundary_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Marker Tooltip And Selection Model — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/marker_tooltip_and_selection_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Mock Fixture Data Plan — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/mock_fixture_data_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/open_questions_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Replay / Playhead Interaction Boundary — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/replay_playhead_interaction_boundary_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Reviewer Checklist — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/reviewer_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Scope And Boundaries — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/scope_and_boundaries_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-MARKERS-01 Task Packet — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/sim_markers_01_task_packet_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Static Mock Decision Record Model — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/static_mock_decision_record_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Symbol Graph Overlay Model — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/symbol_graph_overlay_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Test And Validation Plan — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/test_and_validation_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Tester Checklist — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/tester_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Timeline v2 And Version Graph Interop — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/timeline_v2_and_version_graph_interop_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- WDA Checklist — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/wda_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Web Projection Plan — `docs/design/v2/historic-simulator/sim-markers-01-decision-marker-overlay-skeleton/web_projection_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Agent Consumption Policy — `docs/design/v2/historic-simulator/sim-micropath-01-interpolated-evidence-stream/agent_consumption_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Data Rights And Professional Boundary — `docs/design/v2/historic-simulator/sim-micropath-01-interpolated-evidence-stream/data_rights_and_professional_boundary_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Decision Evidence Implications — `docs/design/v2/historic-simulator/sim-micropath-01-interpolated-evidence-stream/decision_evidence_implications_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Event Source Labeling Model — `docs/design/v2/historic-simulator/sim-micropath-01-interpolated-evidence-stream/event_source_labeling_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Graph Display Policy — `docs/design/v2/historic-simulator/sim-micropath-01-interpolated-evidence-stream/graph_display_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Interpolated Micro-Path Model — `docs/design/v2/historic-simulator/sim-micropath-01-interpolated-evidence-stream/interpolated_micro_path_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Linear Interpolation Policy — `docs/design/v2/historic-simulator/sim-micropath-01-interpolated-evidence-stream/linear_interpolation_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- OHLC-Aware Interpolation Policy — `docs/design/v2/historic-simulator/sim-micropath-01-interpolated-evidence-stream/ohlc_aware_interpolation_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/historic-simulator/sim-micropath-01-interpolated-evidence-stream/open_questions_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Provider Bar Truth Anchor Model — `docs/design/v2/historic-simulator/sim-micropath-01-interpolated-evidence-stream/provider_bar_truth_anchor_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- R&D Risk And Validation — `docs/design/v2/historic-simulator/sim-micropath-01-interpolated-evidence-stream/r_and_d_risk_and_validation_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Replay / Playhead Integration — `docs/design/v2/historic-simulator/sim-micropath-01-interpolated-evidence-stream/replay_playhead_integration_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Synthetic Price Event Model — `docs/design/v2/historic-simulator/sim-micropath-01-interpolated-evidence-stream/synthetic_price_event_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Accepted MicroPath Doctrine Inputs — `docs/design/v2/historic-simulator/sim-micropath-02-interpolated-event-stream-implementation/accepted_micropath_doctrine_inputs_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Agent Visibility Boundary — `docs/design/v2/historic-simulator/sim-micropath-02-interpolated-event-stream-implementation/agent_visibility_boundary_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- API / Shared Contract Plan — `docs/design/v2/historic-simulator/sim-micropath-02-interpolated-event-stream-implementation/api_shared_contract_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Chart Integration Plan — `docs/design/v2/historic-simulator/sim-micropath-02-interpolated-event-stream-implementation/chart_integration_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-MICROPATH-02 Coder Prompt — `docs/design/v2/historic-simulator/sim-micropath-02-interpolated-event-stream-implementation/coder_prompt_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Current Source Assessment — `docs/design/v2/historic-simulator/sim-micropath-02-interpolated-event-stream-implementation/current_source_assessment_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Data Rights And Persistence Boundary — `docs/design/v2/historic-simulator/sim-micropath-02-interpolated-event-stream-implementation/data_rights_and_persistence_boundary_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Decision Evidence Source Mapping — `docs/design/v2/historic-simulator/sim-micropath-02-interpolated-event-stream-implementation/decision_evidence_source_mapping_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Deterministic Generation Policy — `docs/design/v2/historic-simulator/sim-micropath-02-interpolated-event-stream-implementation/deterministic_generation_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Event Density And Interval Policy — `docs/design/v2/historic-simulator/sim-micropath-02-interpolated-event-stream-implementation/event_density_and_interval_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- File Change Plan — `docs/design/v2/historic-simulator/sim-micropath-02-interpolated-event-stream-implementation/file_change_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Interpolated Event Model — `docs/design/v2/historic-simulator/sim-micropath-02-interpolated-event-stream-implementation/interpolated_event_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Interpolation Policy — `docs/design/v2/historic-simulator/sim-micropath-02-interpolated-event-stream-implementation/interpolation_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- OHLC Constraint Policy — `docs/design/v2/historic-simulator/sim-micropath-02-interpolated-event-stream-implementation/ohlc_constraint_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-MICROPATH-02 Open Questions — `docs/design/v2/historic-simulator/sim-micropath-02-interpolated-event-stream-implementation/open_questions_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Provider Bar Truth Anchor Model — `docs/design/v2/historic-simulator/sim-micropath-02-interpolated-event-stream-implementation/provider_bar_truth_anchor_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Replay Integration Plan — `docs/design/v2/historic-simulator/sim-micropath-02-interpolated-event-stream-implementation/replay_integration_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Reviewer Checklist — `docs/design/v2/historic-simulator/sim-micropath-02-interpolated-event-stream-implementation/reviewer_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Scope And Boundaries — `docs/design/v2/historic-simulator/sim-micropath-02-interpolated-event-stream-implementation/scope_and_boundaries_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-MICROPATH-02 Task Packet — `docs/design/v2/historic-simulator/sim-micropath-02-interpolated-event-stream-implementation/sim_micropath_02_task_packet_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Test And Validation Plan — `docs/design/v2/historic-simulator/sim-micropath-02-interpolated-event-stream-implementation/test_and_validation_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-MICROPATH-02 Tester Checklist — `docs/design/v2/historic-simulator/sim-micropath-02-interpolated-event-stream-implementation/tester_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- WDA Checklist — `docs/design/v2/historic-simulator/sim-micropath-02-interpolated-event-stream-implementation/wda_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Web State / Projection Plan — `docs/design/v2/historic-simulator/sim-micropath-02-interpolated-event-stream-implementation/web_state_projection_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- API / Shared Contract Plan — `docs/design/v2/historic-simulator/sim-micropath-03-ohlc-aware-interpolation-policy/api_shared_contract_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Bounds And Invariants — `docs/design/v2/historic-simulator/sim-micropath-03-ohlc-aware-interpolation-policy/bounds_and_invariants_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Chart And Tooltip Implications — `docs/design/v2/historic-simulator/sim-micropath-03-ohlc-aware-interpolation-policy/chart_and_tooltip_implications_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-MICROPATH-03 Coder Prompt — `docs/design/v2/historic-simulator/sim-micropath-03-ohlc-aware-interpolation-policy/coder_prompt_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Current Source Assessment — `docs/design/v2/historic-simulator/sim-micropath-03-ohlc-aware-interpolation-policy/current_source_assessment_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Data Rights And Persistence Boundary — `docs/design/v2/historic-simulator/sim-micropath-03-ohlc-aware-interpolation-policy/data_rights_and_persistence_boundary_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Decision Evidence Source Mapping — `docs/design/v2/historic-simulator/sim-micropath-03-ohlc-aware-interpolation-policy/decision_evidence_source_mapping_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Deterministic Intrabar Order Policy — `docs/design/v2/historic-simulator/sim-micropath-03-ohlc-aware-interpolation-policy/deterministic_intrabar_order_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Event Density And Performance Policy — `docs/design/v2/historic-simulator/sim-micropath-03-ohlc-aware-interpolation-policy/event_density_and_performance_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- File Change Plan — `docs/design/v2/historic-simulator/sim-micropath-03-ohlc-aware-interpolation-policy/file_change_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- OHLC Path Policy Option Slate — `docs/design/v2/historic-simulator/sim-micropath-03-ohlc-aware-interpolation-policy/ohlc_path_policy_option_slate_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/historic-simulator/sim-micropath-03-ohlc-aware-interpolation-policy/open_questions_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Provider Bar OHLC Truth Model — `docs/design/v2/historic-simulator/sim-micropath-03-ohlc-aware-interpolation-policy/provider_bar_ohlc_truth_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Recommended OHLC Interpolation Policy — `docs/design/v2/historic-simulator/sim-micropath-03-ohlc-aware-interpolation-policy/recommended_ohlc_interpolation_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Replay And Agent Visibility Boundary — `docs/design/v2/historic-simulator/sim-micropath-03-ohlc-aware-interpolation-policy/replay_and_agent_visibility_boundary_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Reviewer Checklist — `docs/design/v2/historic-simulator/sim-micropath-03-ohlc-aware-interpolation-policy/reviewer_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Scope And Boundaries — `docs/design/v2/historic-simulator/sim-micropath-03-ohlc-aware-interpolation-policy/scope_and_boundaries_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-MICROPATH-02 Findings And Limits — `docs/design/v2/historic-simulator/sim-micropath-03-ohlc-aware-interpolation-policy/sim_micropath_02_findings_and_limits_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-MICROPATH-03 Task Packet — `docs/design/v2/historic-simulator/sim-micropath-03-ohlc-aware-interpolation-policy/sim_micropath_03_task_packet_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Test And Validation Plan — `docs/design/v2/historic-simulator/sim-micropath-03-ohlc-aware-interpolation-policy/test_and_validation_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Tester Checklist — `docs/design/v2/historic-simulator/sim-micropath-03-ohlc-aware-interpolation-policy/tester_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Timestamp Semantics And Bar Window Model — `docs/design/v2/historic-simulator/sim-micropath-03-ohlc-aware-interpolation-policy/timestamp_semantics_and_bar_window_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- WDA Checklist — `docs/design/v2/historic-simulator/sim-micropath-03-ohlc-aware-interpolation-policy/wda_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Web Projection Plan — `docs/design/v2/historic-simulator/sim-micropath-03-ohlc-aware-interpolation-policy/web_projection_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Accepted Replay Doctrine Inputs — `docs/design/v2/historic-simulator/sim-replay-01a-playhead-ui-foundation/accepted_replay_doctrine_inputs_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Chart Playhead Visual Model — `docs/design/v2/historic-simulator/sim-replay-01a-playhead-ui-foundation/chart_playhead_visual_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Coder Prompt — `docs/design/v2/historic-simulator/sim-replay-01a-playhead-ui-foundation/coder_prompt_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Current Source Assessment — `docs/design/v2/historic-simulator/sim-replay-01a-playhead-ui-foundation/current_source_assessment_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- File Change Plan — `docs/design/v2/historic-simulator/sim-replay-01a-playhead-ui-foundation/file_change_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Lightweight Charts Integration Plan — `docs/design/v2/historic-simulator/sim-replay-01a-playhead-ui-foundation/lightweight_charts_integration_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/historic-simulator/sim-replay-01a-playhead-ui-foundation/open_questions_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Operator Preview Boundary — `docs/design/v2/historic-simulator/sim-replay-01a-playhead-ui-foundation/operator_preview_boundary_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Playback Speed Policy — `docs/design/v2/historic-simulator/sim-replay-01a-playhead-ui-foundation/playback_speed_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Playhead Lock / Freeform Model — `docs/design/v2/historic-simulator/sim-replay-01a-playhead-ui-foundation/playhead_lock_freeform_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Playhead State Model — `docs/design/v2/historic-simulator/sim-replay-01a-playhead-ui-foundation/playhead_state_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Reviewer Checklist — `docs/design/v2/historic-simulator/sim-replay-01a-playhead-ui-foundation/reviewer_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Scope And Boundaries — `docs/design/v2/historic-simulator/sim-replay-01a-playhead-ui-foundation/scope_and_boundaries_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Scrub / Pause / Reset Policy — `docs/design/v2/historic-simulator/sim-replay-01a-playhead-ui-foundation/scrub_pause_reset_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-REPLAY-01A Task Packet — `docs/design/v2/historic-simulator/sim-replay-01a-playhead-ui-foundation/sim_replay_01a_task_packet_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Simulator Now Model — `docs/design/v2/historic-simulator/sim-replay-01a-playhead-ui-foundation/simulator_now_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- State And Projection Plan — `docs/design/v2/historic-simulator/sim-replay-01a-playhead-ui-foundation/state_and_projection_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Test And Validation Plan — `docs/design/v2/historic-simulator/sim-replay-01a-playhead-ui-foundation/test_and_validation_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Tester Checklist — `docs/design/v2/historic-simulator/sim-replay-01a-playhead-ui-foundation/tester_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Transport Control Model — `docs/design/v2/historic-simulator/sim-replay-01a-playhead-ui-foundation/transport_control_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- WDA Checklist — `docs/design/v2/historic-simulator/sim-replay-01a-playhead-ui-foundation/wda_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Workspace UI Integration Plan — `docs/design/v2/historic-simulator/sim-replay-01a-playhead-ui-foundation/workspace_ui_integration_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Current Source Contract Assessment — `docs/design/v2/historic-simulator/sim-runner-01-schema-contract-readiness-v0/current_source_contract_assessment_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- File Change Plan — `docs/design/v2/historic-simulator/sim-runner-01-schema-contract-readiness-v0/file_change_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Implementation Sequence Recommendation — `docs/design/v2/historic-simulator/sim-runner-01-schema-contract-readiness-v0/implementation_sequence_recommendation_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/historic-simulator/sim-runner-01-schema-contract-readiness-v0/open_questions_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Reviewer Checklist — `docs/design/v2/historic-simulator/sim-runner-01-schema-contract-readiness-v0/reviewer_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Scripted Decision Branch Model — `docs/design/v2/historic-simulator/sim-runner-01-schema-contract-readiness-v0/scripted_decision_branch_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-RUNNER-01 Architect Brief — `docs/design/v2/historic-simulator/sim-runner-01-schema-contract-readiness-v0/sim_runner_01_architect_brief_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Simulator Run Record Model — `docs/design/v2/historic-simulator/sim-runner-01-schema-contract-readiness-v0/simulator_run_record_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Tester Checklist — `docs/design/v2/historic-simulator/sim-runner-01-schema-contract-readiness-v0/tester_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Coder Prompt — `docs/design/v2/historic-simulator/sim-search-01-provider-recent-scenario-search/coder_prompt_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Current Scenario Loader State — `docs/design/v2/historic-simulator/sim-search-01-provider-recent-scenario-search/current_scenario_loader_state_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Descriptor Creation Model — `docs/design/v2/historic-simulator/sim-search-01-provider-recent-scenario-search/descriptor_creation_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Metadata-Only Persistence Boundary — `docs/design/v2/historic-simulator/sim-search-01-provider-recent-scenario-search/metadata_only_persistence_boundary_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/historic-simulator/sim-search-01-provider-recent-scenario-search/open_questions_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Provider Fetch Boundary — `docs/design/v2/historic-simulator/sim-search-01-provider-recent-scenario-search/provider_fetch_boundary_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Provider Recent Search Policy — `docs/design/v2/historic-simulator/sim-search-01-provider-recent-scenario-search/provider_recent_search_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Reviewer Checklist — `docs/design/v2/historic-simulator/sim-search-01-provider-recent-scenario-search/reviewer_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Scenario Search Result Model — `docs/design/v2/historic-simulator/sim-search-01-provider-recent-scenario-search/scenario_search_result_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Search Form Model — `docs/design/v2/historic-simulator/sim-search-01-provider-recent-scenario-search/search_form_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-SEARCH-01 Scope And Boundaries — `docs/design/v2/historic-simulator/sim-search-01-provider-recent-scenario-search/sim_search_01_scope_and_boundaries_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-SEARCH-01 Task Packet — `docs/design/v2/historic-simulator/sim-search-01-provider-recent-scenario-search/sim_search_01_task_packet_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Test And Validation Plan — `docs/design/v2/historic-simulator/sim-search-01-provider-recent-scenario-search/test_and_validation_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Tester Checklist — `docs/design/v2/historic-simulator/sim-search-01-provider-recent-scenario-search/tester_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- WDA Checklist — `docs/design/v2/historic-simulator/sim-search-01-provider-recent-scenario-search/wda_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Web Integration Plan — `docs/design/v2/historic-simulator/sim-search-01-provider-recent-scenario-search/web_integration_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Accepted WDA Inputs — `docs/design/v2/historic-simulator/sim-search-02-unified-scenario-loader/accepted_wda_inputs_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Agent Symbol Universe Dependency — `docs/design/v2/historic-simulator/sim-search-02-unified-scenario-loader/agent_symbol_universe_dependency_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- API Contract Plan — `docs/design/v2/historic-simulator/sim-search-02-unified-scenario-loader/api_contract_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- API Descriptor Registry Plan — `docs/design/v2/historic-simulator/sim-search-02-unified-scenario-loader/api_descriptor_registry_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Coder Prompt — `docs/design/v2/historic-simulator/sim-search-02-unified-scenario-loader/coder_prompt_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Current Source Assessment — `docs/design/v2/historic-simulator/sim-search-02-unified-scenario-loader/current_source_assessment_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- File Change Plan — `docs/design/v2/historic-simulator/sim-search-02-unified-scenario-loader/file_change_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/historic-simulator/sim-search-02-unified-scenario-loader/open_questions_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Reviewer Checklist — `docs/design/v2/historic-simulator/sim-search-02-unified-scenario-loader/reviewer_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Scenario Naming Policy — `docs/design/v2/historic-simulator/sim-search-02-unified-scenario-loader/scenario_naming_policy_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Scope And Boundaries — `docs/design/v2/historic-simulator/sim-search-02-unified-scenario-loader/scope_and_boundaries_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Search Create Load Flow — `docs/design/v2/historic-simulator/sim-search-02-unified-scenario-loader/search_create_load_flow_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-SEARCH-02 Task Packet — `docs/design/v2/historic-simulator/sim-search-02-unified-scenario-loader/sim_search_02_task_packet_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- State Model Plan — `docs/design/v2/historic-simulator/sim-search-02-unified-scenario-loader/state_model_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Test And Validation Plan — `docs/design/v2/historic-simulator/sim-search-02-unified-scenario-loader/test_and_validation_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Tester Checklist — `docs/design/v2/historic-simulator/sim-search-02-unified-scenario-loader/tester_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- UI Component Plan — `docs/design/v2/historic-simulator/sim-search-02-unified-scenario-loader/ui_component_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Unified Loader Product Model — `docs/design/v2/historic-simulator/sim-search-02-unified-scenario-loader/unified_loader_product_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Validation And Error State Plan — `docs/design/v2/historic-simulator/sim-search-02-unified-scenario-loader/validation_and_error_state_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- WDA Checklist — `docs/design/v2/historic-simulator/sim-search-02-unified-scenario-loader/wda_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Web API Integration Plan — `docs/design/v2/historic-simulator/sim-search-02-unified-scenario-loader/web_api_integration_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-UI-01 Open Questions — `docs/design/v2/historic-simulator/sim-ui-01-implementation-packet/open_questions_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-UI-01 Accepted Design Inputs — `docs/design/v2/historic-simulator/sim-ui-01-implementation-packet/sim_ui_01_accepted_design_inputs_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-UI-01 API Integration Plan — `docs/design/v2/historic-simulator/sim-ui-01-implementation-packet/sim_ui_01_api_integration_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-UI-01 Coder Prompt — `docs/design/v2/historic-simulator/sim-ui-01-implementation-packet/sim_ui_01_coder_prompt_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-UI-01 Component Plan — `docs/design/v2/historic-simulator/sim-ui-01-implementation-packet/sim_ui_01_component_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-UI-01 File Change Plan — `docs/design/v2/historic-simulator/sim-ui-01-implementation-packet/sim_ui_01_file_change_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-UI-01 Projection Usage Plan — `docs/design/v2/historic-simulator/sim-ui-01-implementation-packet/sim_ui_01_projection_usage_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-UI-01 Reviewer Checklist — `docs/design/v2/historic-simulator/sim-ui-01-implementation-packet/sim_ui_01_reviewer_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-UI-01 Scope And Boundaries — `docs/design/v2/historic-simulator/sim-ui-01-implementation-packet/sim_ui_01_scope_and_boundaries_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-UI-01 State Model Plan — `docs/design/v2/historic-simulator/sim-ui-01-implementation-packet/sim_ui_01_state_model_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-UI-01 Task Packet — `docs/design/v2/historic-simulator/sim-ui-01-implementation-packet/sim_ui_01_task_packet_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-UI-01 Test Plan — `docs/design/v2/historic-simulator/sim-ui-01-implementation-packet/sim_ui_01_test_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-UI-01 Tester Checklist — `docs/design/v2/historic-simulator/sim-ui-01-implementation-packet/sim_ui_01_tester_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-UI-01 UI States — `docs/design/v2/historic-simulator/sim-ui-01-implementation-packet/sim_ui_01_ui_states_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-UI-01 Validation Plan — `docs/design/v2/historic-simulator/sim-ui-01-implementation-packet/sim_ui_01_validation_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-UI-01 Visual QA Plan — `docs/design/v2/historic-simulator/sim-ui-01-implementation-packet/sim_ui_01_visual_qa_plan_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- SIM-UI-01 WDA Checklist — `docs/design/v2/historic-simulator/sim-ui-01-implementation-packet/sim_ui_01_wda_checklist_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Agent Decision Cadence And Speed Risk — `docs/design/v2/historic-simulator/simulator-replay-playhead-preview-v0/agent_decision_cadence_and_speed_risk_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Agent Evidence Visibility Boundary — `docs/design/v2/historic-simulator/simulator-replay-playhead-preview-v0/agent_evidence_visibility_boundary_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Data Rights And Professional Boundary — `docs/design/v2/historic-simulator/simulator-replay-playhead-preview-v0/data_rights_and_professional_boundary_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Decision Evidence Package Implications — `docs/design/v2/historic-simulator/simulator-replay-playhead-preview-v0/decision_evidence_package_implications_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Graph Controls Integration — `docs/design/v2/historic-simulator/simulator-replay-playhead-preview-v0/graph_controls_integration_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/historic-simulator/simulator-replay-playhead-preview-v0/open_questions_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Operator Preview Boundary — `docs/design/v2/historic-simulator/simulator-replay-playhead-preview-v0/operator_preview_boundary_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Past / Current / Future Visual Model — `docs/design/v2/historic-simulator/simulator-replay-playhead-preview-v0/past_current_future_visual_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Playback Speed Model — `docs/design/v2/historic-simulator/simulator-replay-playhead-preview-v0/playback_speed_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Playhead Lock View Mode — `docs/design/v2/historic-simulator/simulator-replay-playhead-preview-v0/playhead_lock_view_mode_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Provider Bars And Interpolated Events Boundary — `docs/design/v2/historic-simulator/simulator-replay-playhead-preview-v0/provider_bars_and_interpolated_events_boundary_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Replay Transport Future UI Model — `docs/design/v2/historic-simulator/simulator-replay-playhead-preview-v0/replay_transport_future_ui_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Replay Viewport And Zoom Interaction — `docs/design/v2/historic-simulator/simulator-replay-playhead-preview-v0/replay_viewport_and_zoom_interaction_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Scrub / Pause / Reset Model — `docs/design/v2/historic-simulator/simulator-replay-playhead-preview-v0/scrub_pause_reset_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Simulator Now Model — `docs/design/v2/historic-simulator/simulator-replay-playhead-preview-v0/simulator_now_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Simulator Replay / Playhead / Preview Model — `docs/design/v2/historic-simulator/simulator-replay-playhead-preview-v0/simulator_replay_playhead_preview_model_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Test And Validation Implications — `docs/design/v2/historic-simulator/simulator-replay-playhead-preview-v0/test_and_validation_implications_v0.md` — areas: historic-simulator — governs: 0 — related: 0
+- Lab v2 Architect Handoff — `docs/design/v2/implementation-readiness/lab_v2_architect_handoff.md` — areas: lab, process-governance — governs: 0 — related: 0
+- Lab v2 Architect Preflight — `docs/design/v2/implementation-readiness/lab_v2_architect_preflight.md` — areas: lab, process-governance — governs: 0 — related: 0
+- Lab v2 Architecture Decomposition Plan — `docs/design/v2/implementation-readiness/lab_v2_architecture_decomposition_plan.md` — areas: lab, process-governance — governs: 0 — related: 0
+- Lab v2 MVP Milestone Plan — `docs/design/v2/implementation-readiness/lab_v2_milestone_plan.md` — areas: lab, process-governance — governs: 0 — related: 0
+- Lab v2 MVP Scope — `docs/design/v2/implementation-readiness/lab_v2_mvp_scope.md` — areas: lab, process-governance — governs: 0 — related: 0
+- Lab v2 Non-Goals And Boundaries — `docs/design/v2/implementation-readiness/lab_v2_non_goals_and_boundaries.md` — areas: lab, process-governance — governs: 0 — related: 0
+- Lab v2 — Core System Model — `docs/design/v2/lab_v2_core_model.md` — areas: lab, workstation-ui — governs: 0 — related: 0
+- Lab v2 — Design Principles — `docs/design/v2/lab_v2_design_principles.md` — areas: lab, workstation-ui — governs: 0 — related: 0
+- Lab v2 — UI System Definition — `docs/design/v2/lab_v2_ui_system.md` — areas: lab, workstation-ui — governs: 0 — related: 0
+- v0.1 Manifest Exodus (arc record, #333) — `docs/design/v2/legacy-retirement/v01_manifest_exodus_scoping_v0.md` — areas: legacy-retirement, agent-manifest — governs: 0 — related: 1
+- Future Implementation Sequence — `docs/design/v2/live-authority/live-intervention-01-operator-manual-live-intervention-surface/future_implementation_sequence_v0.md` — areas: live-authority — governs: 0 — related: 0
+- Future Task Candidates — `docs/design/v2/live-authority/live-intervention-01-operator-manual-live-intervention-surface/future_task_candidates_v0.md` — areas: live-authority — governs: 0 — related: 0
+- Future WDA Packet Recommendation — `docs/design/v2/live-authority/live-intervention-01-operator-manual-live-intervention-surface/future_wda_packet_recommendation_v0.md` — areas: live-authority — governs: 0 — related: 0
+- LIVE-INTERVENTION-01 Brief — `docs/design/v2/live-authority/live-intervention-01-operator-manual-live-intervention-surface/live_intervention_01_brief_v0.md` — areas: live-authority — governs: 0 — related: 0
+- Object Model Sketches — `docs/design/v2/live-authority/live-intervention-01-operator-manual-live-intervention-surface/object_model_sketches_v0.md` — areas: live-authority — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/live-authority/live-intervention-01-operator-manual-live-intervention-surface/open_questions_v0.md` — areas: live-authority — governs: 0 — related: 0
+- Professional Gates And Open Questions — `docs/design/v2/live-authority/live-intervention-01-operator-manual-live-intervention-surface/professional_gates_and_open_questions_v0.md` — areas: live-authority — governs: 0 — related: 0
+- Current Source Research Notes — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/current_source_research_notes_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- Evidence Confidence Matrix Integration — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/evidence_confidence_matrix_integration_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- Market Ontology 01 Brief — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/market_ontology_01_brief_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- Object Model Sketches — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/object_model_sketches_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/market-ontology/market-ontology-01-stock-market-structure-symbol-metadata-substrate/open_questions_v0.md` — areas: market-ontology — governs: 0 — related: 0
+- Agent Creation / Manifest Scope Bridge — `docs/design/v2/mvp-roadmap/agent_creation_manifest_scope_bridge_v0.md` — areas: planning-surface — governs: 0 — related: 0
+- Alpha Preparation / Deployment Readiness Backlog — `docs/design/v2/mvp-roadmap/alpha_preparation_deployment_readiness_backlog_v0.md` — areas: planning-surface — governs: 0 — related: 0
+- Analysis / Compare Scope Bridge — `docs/design/v2/mvp-roadmap/analysis_compare_scope_bridge_v0.md` — areas: planning-surface — governs: 0 — related: 0
+- BI-2 Readiness Schedule — `docs/design/v2/mvp-roadmap/bi2_readiness_schedule_v0.md` — areas: planning-surface — governs: 0 — related: 0
+- Data Source Research Plan — `docs/design/v2/mvp-roadmap/data_source_research_plan_v0.md` — areas: planning-surface — governs: 0 — related: 0
+- Evidence Confidence Matrix — `docs/design/v2/mvp-roadmap/evidence_confidence_matrix_v0.md` — areas: planning-surface, decision-evidence — governs: 0 — related: 0
+- Historic Simulator Scope — `docs/design/v2/mvp-roadmap/historic_simulator_scope_v0.md` — areas: planning-surface — governs: 0 — related: 0
+- Live Paper Flow Scope — `docs/design/v2/mvp-roadmap/live_paper_flow_scope_v0.md` — areas: planning-surface — governs: 0 — related: 0
+- Market Data Source Option Slate — `docs/design/v2/mvp-roadmap/market_data_source_option_slate_v0.md` — areas: planning-surface — governs: 0 — related: 0
+- MVP Dependency Graph — `docs/design/v2/mvp-roadmap/mvp_dependency_graph_v0.md` — areas: planning-surface — governs: 0 — related: 0
+- News / Event Input Scope — `docs/design/v2/mvp-roadmap/news_event_input_scope_v0.md` — areas: planning-surface — governs: 0 — related: 0
+- Open Questions And Professional Gates — `docs/design/v2/mvp-roadmap/open_questions_and_professional_gates_v0.md` — areas: planning-surface — governs: 0 — related: 0
+- Paper Budget / Allocation Model — `docs/design/v2/mvp-roadmap/paper_budget_allocation_model_v0.md` — areas: planning-surface — governs: 0 — related: 0
+- Post-WEB-RESET Stabilization Packet — `docs/design/v2/mvp-roadmap/post_web_reset_stabilization_packet_v0.md` — areas: planning-surface — governs: 0 — related: 0
+- Board Backfill Manifest v0 — completed-work stories — `docs/design/v2/mvp-roadmap/roadmap-reconciliation-v1/board_backfill_manifest_v0.md` — areas: planning-surface — governs: 0 — related: 0
+- Epic Completion Baseline v0 — what's done, what's left — `docs/design/v2/mvp-roadmap/roadmap-reconciliation-v1/epic_completion_baseline_v0.md` — areas: planning-surface — governs: 0 — related: 0
+- Roadmap Master Inventory v1 (discovery pass 1) — `docs/design/v2/mvp-roadmap/roadmap-reconciliation-v1/master_inventory_v1.md` — areas: planning-surface — governs: 0 — related: 1
+- Roadmap Master Inventory v2 (discovery pass 2) — `docs/design/v2/mvp-roadmap/roadmap-reconciliation-v1/master_inventory_v2.md` — areas: planning-surface — governs: 0 — related: 0
+- Roadmap Reconciliation — Master Inventory — `docs/design/v2/mvp-roadmap/roadmap-reconciliation-v1/master_inventory_v3.md` — areas: planning-surface — governs: 0 — related: 0
+- Roadmap Reconciliation — Master Inventory — `docs/design/v2/mvp-roadmap/roadmap-reconciliation-v1/master_inventory_v4.md` — areas: planning-surface — governs: 0 — related: 0
+- TrAIdit MVP Roadmap — `docs/design/v2/mvp-roadmap/traidit_mvp_roadmap_v0.md` — areas: planning-surface — governs: 0 — related: 0
+- Accepted Portfolio Core Doctrine — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/accepted_portfolio_core_doctrine_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Canonical Decimal String Model — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/canonical_decimal_string_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Coder Prompt — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/coder_prompt_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Compatibility And Future Extension Model — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/compatibility_and_future_extension_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Currency And Scale Policy — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/currency_and_scale_policy_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Current Source And Package Assessment — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/current_source_and_package_assessment_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Current Technical Source Notes — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/current_technical_source_notes_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Domain Vs Transport Serialization Boundary — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/domain_vs_transport_serialization_boundary_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Error And Validation Model — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/error_and_validation_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Exact Numeric Representation Decision — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/exact_numeric_representation_decision_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Exact Numeric Test Matrix — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/exact_numeric_test_matrix_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- File Change Plan — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/file_change_plan_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Immutability And Constructor Policy — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/immutability_and_constructor_policy_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Implementation Sequence — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/implementation_sequence_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/open_questions_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Package Manifest And Tooling Plan — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/package_manifest_and_tooling_plan_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Package Placement Decision — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/package_placement_decision_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Portfolio Contracts 01 Architect Brief — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/portfolio_contracts_01_architect_brief_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Portfolio Contracts 01 Scope And Boundaries — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/portfolio_contracts_01_scope_and_boundaries_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Portfolio Contracts 01 Task Packet — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/portfolio_contracts_01_task_packet_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Public API And Export Surface — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/public_api_and_export_surface_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Reviewer Checklist — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/reviewer_checklist_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Test Strategy — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/test_strategy_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Tester Checklist — `docs/design/v2/portfolio-core/portfolio-contracts-01-exact-values-order-fill-ledger-contracts-implementation/tester_checklist_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Account / Book Conservation Invariants — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/account_book_conservation_invariants_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Account / Book Relationship Model — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/account_book_relationship_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Architect Review Checklist — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/architect_review_checklist_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Authority / Provenance / Truth Model — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/authority_provenance_and_truth_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Capital Allocation And Reserve Model — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/capital_allocation_and_reserve_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Conceptual Contract Sketches — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/conceptual_contract_sketches_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Current Source Research Notes — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/current_source_research_notes_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Decision / Intent / Order / Fill Boundary — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/decision_intent_order_fill_boundary_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Economic Ledger Versus Valuation Projection — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/economic_ledger_vs_valuation_projection_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Environment Adapter Model — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/environment_adapter_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Environment And Capital Mode Model — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/environment_and_capital_mode_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Equity And P&L Formula Model — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/equity_and_pnl_formula_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Exact Numeric Value Model — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/exact_numeric_value_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Explicit Non-Goals — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/explicit_non_goals_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- External Cash Flow Adjustment Model — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/external_cash_flow_adjustment_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Future LIVE Portfolio Adapter Boundary — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/future_live_portfolio_adapter_boundary_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Future Task Candidates — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/future_task_candidates_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Future Task Decomposition — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/future_task_decomposition_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Graham Decisions Applied — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/graham_decisions_applied_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Historic Simulator Execution Adapter — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/historic_simulator_execution_adapter_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Idempotency, Ordering, And Time Semantics — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/idempotency_ordering_and_time_semantics_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Implementation Dependency Map — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/implementation_dependency_map_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Implementation Handoff — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/implementation_handoff_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Initial Policy Defaults — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/initial_policy_defaults_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Ledger Event And Reducer Invariants — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/ledger_event_and_reducer_invariants_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Live Paper Portfolio Adapter Boundary — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/live_paper_portfolio_adapter_boundary_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Manual And Unattributed Activity Model — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/manual_and_unattributed_activity_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Missing / Stale / Partial Valuation Policy — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/missing_stale_and_partial_valuation_policy_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Money / Price / Quantity / Currency Model — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/money_price_quantity_currency_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Normalized Execution Event Taxonomy — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/normalized_execution_event_taxonomy_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/open_questions_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Package Boundary And Placement Options — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/package_boundary_and_placement_options_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Persistence, Snapshot, And Deterministic Replay — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/persistence_snapshot_and_deterministic_replay_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Portfolio Book Model — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/portfolio_book_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- PORTFOLIO-CORE-01 Architect Brief — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/portfolio_core_01_architect_brief_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Portfolio Core Terminology — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/portfolio_core_terminology_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Position And Weighted-Average Cost Model — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/position_and_weighted_average_cost_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Safe First Implementation Slice — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/safe_first_implementation_slice_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Shared Account / Multi-Book Model — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/shared_account_multi_book_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Source Of Truth And Reconciliation Model — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/source_of_truth_and_reconciliation_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Symbol Contribution Attribution Model — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/symbol_contribution_attribution_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Test Strategy And Invariant Matrix — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/test_strategy_and_invariant_matrix_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Trading Account Model — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/trading_account_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Valuation Price Input Policy — `docs/design/v2/portfolio-core/portfolio-core-01-environment-agnostic-account-execution-accounting-foundation/valuation_price_input_policy_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Architect Brief — `docs/design/v2/portfolio-core/portfolio-ledger-01-cash-position-weighted-average-cost-accounting-reducer/architect_brief_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Cash State Model — `docs/design/v2/portfolio-core/portfolio-ledger-01-cash-position-weighted-average-cost-accounting-reducer/cash_state_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Ready-To-Paste Coder Prompt — `docs/design/v2/portfolio-core/portfolio-ledger-01-cash-position-weighted-average-cost-accounting-reducer/coder_prompt_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Current Source Assessment — `docs/design/v2/portfolio-core/portfolio-ledger-01-cash-position-weighted-average-cost-accounting-reducer/current_source_assessment_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Error / Validation Model — `docs/design/v2/portfolio-core/portfolio-ledger-01-cash-position-weighted-average-cost-accounting-reducer/error_and_validation_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Event Application Model — `docs/design/v2/portfolio-core/portfolio-ledger-01-cash-position-weighted-average-cost-accounting-reducer/event_application_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Fee Handling And Exactly-Once Model — `docs/design/v2/portfolio-core/portfolio-ledger-01-cash-position-weighted-average-cost-accounting-reducer/fee_handling_and_exactly_once_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- File Change Plan — `docs/design/v2/portfolio-core/portfolio-ledger-01-cash-position-weighted-average-cost-accounting-reducer/file_change_plan_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Idempotency And Event Ordering Model — `docs/design/v2/portfolio-core/portfolio-ledger-01-cash-position-weighted-average-cost-accounting-reducer/idempotency_and_event_ordering_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Implementation Dependency Map — `docs/design/v2/portfolio-core/portfolio-ledger-01-cash-position-weighted-average-cost-accounting-reducer/implementation_dependency_map_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Implementation Handoff — `docs/design/v2/portfolio-core/portfolio-ledger-01-cash-position-weighted-average-cost-accounting-reducer/implementation_handoff_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Ledger Policy Model — `docs/design/v2/portfolio-core/portfolio-ledger-01-cash-position-weighted-average-cost-accounting-reducer/ledger_policy_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Ledger State Model — `docs/design/v2/portfolio-core/portfolio-ledger-01-cash-position-weighted-average-cost-accounting-reducer/ledger_state_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Non-Goals And Boundaries — `docs/design/v2/portfolio-core/portfolio-ledger-01-cash-position-weighted-average-cost-accounting-reducer/non_goals_and_boundaries_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Position State Model — `docs/design/v2/portfolio-core/portfolio-ledger-01-cash-position-weighted-average-cost-accounting-reducer/position_state_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Realized Result Model — `docs/design/v2/portfolio-core/portfolio-ledger-01-cash-position-weighted-average-cost-accounting-reducer/realized_result_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Reducer Input / Output Model — `docs/design/v2/portfolio-core/portfolio-ledger-01-cash-position-weighted-average-cost-accounting-reducer/reducer_input_output_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Reviewer Checklist — `docs/design/v2/portfolio-core/portfolio-ledger-01-cash-position-weighted-average-cost-accounting-reducer/reviewer_checklist_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Test And Invariant Matrix — `docs/design/v2/portfolio-core/portfolio-ledger-01-cash-position-weighted-average-cost-accounting-reducer/test_and_invariant_matrix_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Tester Checklist — `docs/design/v2/portfolio-core/portfolio-ledger-01-cash-position-weighted-average-cost-accounting-reducer/tester_checklist_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Validation Plan — `docs/design/v2/portfolio-core/portfolio-ledger-01-cash-position-weighted-average-cost-accounting-reducer/validation_plan_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Weighted-Average Operational Cost Model — `docs/design/v2/portfolio-core/portfolio-ledger-01-cash-position-weighted-average-cost-accounting-reducer/weighted_average_operational_cost_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Accounting Precision vs Display Precision — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/accounting_precision_vs_display_precision_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Architect Review Checklist — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/architect_review_checklist_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Calculate Notional Model — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/calculate_notional_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Conceptual Contract Sketches — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/conceptual_contract_sketches_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Currency Minor Unit / Tick Size / Quantity Step Boundary — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/currency_minor_unit_tick_size_quantity_step_boundary_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Current ExactDecimal Baseline Assessment — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/current_exact_decimal_baseline_assessment_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Dependency Map — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/dependency_map_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Derive Unit Price Model — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/derive_unit_price_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Deterministic Numeric vs Agent Judgment Boundary — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/deterministic_numeric_vs_agent_judgment_boundary_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Divide To Scale Model — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/divide_to_scale_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Environment Portability — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/environment_portability_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Exact Numeric Error Model — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/exact_numeric_error_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Exact Rescale Relationship — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/exact_rescale_relationship_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Fee And Cost Basis Separation — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/fee_and_cost_basis_separation_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Final Close Residual Policy — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/final_close_residual_policy_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Future Task Candidates — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/future_task_candidates_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Graham Decisions Applied — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/graham_decisions_applied_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Ready-to-Paste Coder Prompt — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/implementation-packet/coder_prompt.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- divideToScale Implementation Plan — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/implementation-packet/divide_to_scale_implementation_plan.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Error / Validation Plan — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/implementation-packet/error_validation_plan.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Exact File Change Plan — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/implementation-packet/file_change_plan.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Implementation Brief — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/implementation-packet/implementation_brief.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Public API / Export Plan — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/implementation-packet/public_api_export_plan.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- quantize Implementation Plan — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/implementation-packet/quantize_implementation_plan.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Reviewer Checklist — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/implementation-packet/reviewer_checklist.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Rounding Implementation Plan — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/implementation-packet/rounding_implementation_plan.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Source Assessment — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/implementation-packet/source_assessment.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Test Matrix — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/implementation-packet/test_matrix.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Tester Checklist — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/implementation-packet/tester_checklist.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Typed Portfolio Calculation Helper Plan — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/implementation-packet/typed_portfolio_calculation_helper_plan.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Validation Plan — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/implementation-packet/validation_plan.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Implementation Handoff — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/implementation_handoff_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Numeric Limits And Overflow Policy — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/numeric_limits_and_overflow_policy_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Open Quantity And Open Cost Authority Model — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/open_quantity_and_open_cost_authority_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/open_questions_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Partial Sell Cost Allocation Model — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/partial_sell_cost_allocation_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Portfolio Ledger Handoff — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/portfolio_ledger_handoff_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- PORTFOLIO-NUMERIC-01 Architect Brief — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/portfolio_numeric_01_architect_brief_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Proportional Money Allocation Model — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/proportional_money_allocation_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Quantization Model — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/quantization_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Remainder And Conservation Model — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/remainder_and_conservation_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Rounding Mode Taxonomy — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/rounding_mode_taxonomy_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Safe First Implementation Slice — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/safe_first_implementation_slice_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Signed Rounding And Tie Semantics — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/signed_rounding_and_tie_semantics_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Source Material Index — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/source_material_index_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Target Scale And Canonical Normalization — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/target_scale_and_canonical_normalization_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Test And Invariant Matrix — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/test_and_invariant_matrix_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Typed Portfolio Calculation Model — `docs/design/v2/portfolio-core/portfolio-numeric-01-explicit-division-quantization-rounding-conservation-doctrine/typed_portfolio_calculation_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Cash, Equity, And Result Formula Model — `docs/design/v2/portfolio-core/portfolio-valuation-01-equity-snapshot-doctrine/cash_equity_and_result_formula_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Environment Labeling And Money Display Policy — `docs/design/v2/portfolio-core/portfolio-valuation-01-equity-snapshot-doctrine/environment_labeling_and_money_display_policy_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Future Paper / Live Reconciliation Boundary — `docs/design/v2/portfolio-core/portfolio-valuation-01-equity-snapshot-doctrine/future_paper_live_reconciliation_boundary_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Future Task Candidates — `docs/design/v2/portfolio-core/portfolio-valuation-01-equity-snapshot-doctrine/future_task_candidates_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Implementation Handoff — `docs/design/v2/portfolio-core/portfolio-valuation-01-equity-snapshot-doctrine/implementation_handoff_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Implementation Sequence Recommendation — `docs/design/v2/portfolio-core/portfolio-valuation-01-equity-snapshot-doctrine/implementation_sequence_recommendation_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Missing, Stale, Partial, And Completeness Model — `docs/design/v2/portfolio-core/portfolio-valuation-01-equity-snapshot-doctrine/missing_stale_partial_completeness_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/portfolio-core/portfolio-valuation-01-equity-snapshot-doctrine/open_questions_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Realized, Unrealized, And Open Position Display Model — `docs/design/v2/portfolio-core/portfolio-valuation-01-equity-snapshot-doctrine/realized_unrealized_and_open_position_display_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Simulator Now And MicroPath Mark Policy — `docs/design/v2/portfolio-core/portfolio-valuation-01-equity-snapshot-doctrine/simulator_now_and_micropath_mark_policy_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Symbol Contribution Attribution — `docs/design/v2/portfolio-core/portfolio-valuation-01-equity-snapshot-doctrine/symbol_contribution_attribution_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Valuation Price Input Event Policy — `docs/design/v2/portfolio-core/portfolio-valuation-01-equity-snapshot-doctrine/valuation_price_input_event_policy_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Valuation Snapshot Model — `docs/design/v2/portfolio-core/portfolio-valuation-01-equity-snapshot-doctrine/valuation_snapshot_model_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Version Graph Series Dependency — `docs/design/v2/portfolio-core/portfolio-valuation-01-equity-snapshot-doctrine/version_graph_series_dependency_v0.md` — areas: portfolio-accounting — governs: 0 — related: 0
+- Coder Prompt — `docs/design/v2/portfolio-core/sim-execution-01-historic-simulator-execution-adapter/implementation_packet/coder_prompt.md` — areas: portfolio-accounting, historic-simulator — governs: 0 — related: 0
+- Current Source Assessment — `docs/design/v2/portfolio-core/sim-execution-01-historic-simulator-execution-adapter/implementation_packet/current_source_assessment.md` — areas: portfolio-accounting, historic-simulator — governs: 0 — related: 0
+- File Change Plan — `docs/design/v2/portfolio-core/sim-execution-01-historic-simulator-execution-adapter/implementation_packet/file_change_plan.md` — areas: portfolio-accounting, historic-simulator — governs: 0 — related: 0
+- Fill Timing And Price Policy — `docs/design/v2/portfolio-core/sim-execution-01-historic-simulator-execution-adapter/implementation_packet/fill_timing_and_price_policy.md` — areas: portfolio-accounting, historic-simulator — governs: 0 — related: 0
+- Implementation Handoff — `docs/design/v2/portfolio-core/sim-execution-01-historic-simulator-execution-adapter/implementation_packet/implementation_handoff.md` — areas: portfolio-accounting, historic-simulator — governs: 0 — related: 0
+- Ledger Event Mapping — `docs/design/v2/portfolio-core/sim-execution-01-historic-simulator-execution-adapter/implementation_packet/ledger_event_mapping.md` — areas: portfolio-accounting, historic-simulator — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/portfolio-core/sim-execution-01-historic-simulator-execution-adapter/implementation_packet/open_questions.md` — areas: portfolio-accounting, historic-simulator — governs: 0 — related: 0
+- Provenance And Idempotency Model — `docs/design/v2/portfolio-core/sim-execution-01-historic-simulator-execution-adapter/implementation_packet/provenance_and_idempotency_model.md` — areas: portfolio-accounting, historic-simulator — governs: 0 — related: 0
+- Reviewer Checklist — `docs/design/v2/portfolio-core/sim-execution-01-historic-simulator-execution-adapter/implementation_packet/reviewer_checklist.md` — areas: portfolio-accounting, historic-simulator — governs: 0 — related: 0
+- Test Matrix — `docs/design/v2/portfolio-core/sim-execution-01-historic-simulator-execution-adapter/implementation_packet/test_matrix.md` — areas: portfolio-accounting, historic-simulator — governs: 0 — related: 0
+- Tester Checklist — `docs/design/v2/portfolio-core/sim-execution-01-historic-simulator-execution-adapter/implementation_packet/tester_checklist.md` — areas: portfolio-accounting, historic-simulator — governs: 0 — related: 0
+- Validation Plan — `docs/design/v2/portfolio-core/sim-execution-01-historic-simulator-execution-adapter/implementation_packet/validation_plan.md` — areas: portfolio-accounting, historic-simulator — governs: 0 — related: 0
+- Marketplace Future Scope Brief — `docs/design/v2/product-model/marketplace_future_scope_brief.md` — areas: product-thesis — governs: 0 — related: 0
+- Terminology Migration Plan — `docs/design/v2/product-model/terminology_migration_plan.md` — areas: product-thesis — governs: 0 — related: 0
+- TrAIdit v2 Product Model — `docs/design/v2/product-model/traidit_v2_product_model.md` — areas: product-thesis — governs: 0 — related: 0
+- TrAIdit Full Product Description Intake Report — `docs/design/v2/product-vision-intake/traidit_product_description_intake_report.md` — areas: product-thesis — governs: 0 — related: 0
+- Adjacent Surface Boundaries — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/adjacent_surface_boundaries_v0.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- Composite Event And Causality Model — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/composite_event_and_causality_model_v0.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- Environment / Track / Lane Model — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/environment_track_lane_model_v0.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- EST-02 Timeline Architecture Spike — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/est-02-timeline-architecture-spike/README.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- Comparison Matrix — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/est-02-timeline-architecture-spike/comparison_matrix_v0.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- Implementation Acceptance Criteria — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/est-02-timeline-architecture-spike/implementation_acceptance_criteria_v0.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- Recommendation — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/est-02-timeline-architecture-spike/recommendation_v0.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- Research Notes — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/est-02-timeline-architecture-spike/research_notes_v0.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- EST-04 Slice 4 — Track View ⇄ Event Stream Parity & Cutover Analysis — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/est-04-lab-timeline-convergence-spike/slice4_parity_and_cutover_v0.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- EST-05 — Timeline Layout Alignment to Prototype C (repair packet) — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/est-05-prototype-c-layout-alignment/README.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- EST-05 Tier-2 — Prototype C Canvas Rendering (packet) — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/est-05-tier2-canvas-rendering/README.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- EST-06 Tier-3 — Multi-Category Event Stream + Causal Links (architecture spike) — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/est-06-tier3-multi-category/README.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- EST-06 Tier-3 — Implementation Slice Definition — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/est-06-tier3-multi-category/SLICES.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- EST-07 — Simulator Timeline UI Repairs (Graham live-QA repair set) — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/est-07-simulator-timeline-repairs/README.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- Rendering / Zoom / Motion / Implementation Strategy — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/rendering_zoom_motion_implementation_strategy_v0.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- Selected Event Detail Templates — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/selected_event_detail_templates_v0.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- Timeline / Log / Workbench / Context Sync Model — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/timeline_log_workbench_context_sync_model_v0.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- Visible Event Taxonomy And Display Policy — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/visible_event_taxonomy_and_display_policy_v0.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- Implementation Handoff — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/wda-est-01-event-stream-timeline-surface/implementation_handoff_v0.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- Interaction Model — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/wda-est-01-event-stream-timeline-surface/interaction_model_v0.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/wda-est-01-event-stream-timeline-surface/open_questions_v0.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- Visual Language — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/wda-est-01-event-stream-timeline-surface/visual_language_v0.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- WDA Brief — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/wda-est-01-event-stream-timeline-surface/wda_brief_v0.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- WDA Handoff And Open Questions — `docs/design/v2/timeline/event-stream-timeline-doctrine-v0/wda_handoff_and_open_questions_v0.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- Timeline Event Taxonomy And Data Model — `docs/design/v2/timeline/timeline_event_taxonomy_and_data_model.md` — areas: event-stream-timeline — governs: 0 — related: 0
+- UTILITY-WINDOW-01 Arc Build Status — `docs/design/v2/utility-window-system/utility-window-01-design-packet/arc_build_status_v0.md` — areas: utility-window-system — governs: 0 — related: 1
+- UTILITY-WINDOW-01 Implementation Decomposition — `docs/design/v2/utility-window-system/utility-window-01-design-packet/implementation_decomposition_v0.md` — areas: utility-window-system — governs: 0 — related: 1
+- UTILITY-WINDOW-01 — Window Chrome Design Note — `docs/design/v2/utility-window-system/utility-window-01-design-packet/mockups/uws-chrome-design-note.md` — areas: utility-window-system — governs: 0 — related: 0
+- UWS Review Ledger — `docs/design/v2/utility-window-system/utility-window-01-design-packet/uws_review_ledger_v0.md` — areas: utility-window-system — governs: 0 — related: 1
+- Accessibility And Tooltip Policy — `docs/design/v2/workstation-ui/iconography/icon-01-lucide-angular-selection/accessibility_and_tooltip_policy_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Angular Integration Policy — `docs/design/v2/workstation-ui/iconography/icon-01-lucide-angular-selection/angular_integration_policy_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- App Header Icon Trial Plan — `docs/design/v2/workstation-ui/iconography/icon-01-lucide-angular-selection/app_header_icon_trial_plan_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Approved Initial Icon Set — `docs/design/v2/workstation-ui/iconography/icon-01-lucide-angular-selection/approved_initial_icon_set_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Bundle Budget And Tree Shaking Policy — `docs/design/v2/workstation-ui/iconography/icon-01-lucide-angular-selection/bundle_budget_and_tree_shaking_policy_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Candidate Library Matrix — `docs/design/v2/workstation-ui/iconography/icon-01-lucide-angular-selection/candidate_library_matrix_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Coder Prompt — `docs/design/v2/workstation-ui/iconography/icon-01-lucide-angular-selection/coder_prompt_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Current Iconography Need — `docs/design/v2/workstation-ui/iconography/icon-01-lucide-angular-selection/current_iconography_need_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- ICON-01 Selection Brief — `docs/design/v2/workstation-ui/iconography/icon-01-lucide-angular-selection/icon_01_selection_brief_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Icon Usage Taxonomy — `docs/design/v2/workstation-ui/iconography/icon-01-lucide-angular-selection/icon_usage_taxonomy_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Implementation Packet — `docs/design/v2/workstation-ui/iconography/icon-01-lucide-angular-selection/implementation_packet_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Lucide Angular Source Verification — `docs/design/v2/workstation-ui/iconography/icon-01-lucide-angular-selection/lucide_angular_source_verification_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/workstation-ui/iconography/icon-01-lucide-angular-selection/open_questions_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Recommended Library — `docs/design/v2/workstation-ui/iconography/icon-01-lucide-angular-selection/recommended_library_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Rejected And Deferred Libraries — `docs/design/v2/workstation-ui/iconography/icon-01-lucide-angular-selection/rejected_and_deferred_libraries_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Repo Iconography Doctrine Inputs — `docs/design/v2/workstation-ui/iconography/icon-01-lucide-angular-selection/repo_iconography_doctrine_inputs_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Reviewer / WDA / Tester Checklists — `docs/design/v2/workstation-ui/iconography/icon-01-lucide-angular-selection/reviewer_wda_tester_checklists_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Transport Icon Policy — `docs/design/v2/workstation-ui/iconography/icon-01-lucide-angular-selection/transport_icon_policy_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Wrapper Registry Policy — `docs/design/v2/workstation-ui/iconography/icon-01-lucide-angular-selection/wrapper_registry_policy_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Loading-State Doctrine Packet (#223 Phase A) — `docs/design/v2/workstation-ui/loading-state-doctrine-223/README.md` — areas: workstation-ui, workstation-shell — governs: 0 — related: 2
+- Cadence Mockup Findings & Handoff v0 — Algo Surface, Rounds 1–3 — `docs/design/v2/workstation-ui/mockups/algo-surface/cadence_mockup_findings_and_handoff_v0.md` — areas: workstation-ui, algo-surface — governs: 0 — related: 0
+- Algo Surface Mockups — Round 1 — `docs/design/v2/workstation-ui/mockups/algo-surface/round-1/README.md` — areas: workstation-ui, algo-surface — governs: 0 — related: 0
+- Algo Surface Mockups — Round 2: Custom Dashboard — `docs/design/v2/workstation-ui/mockups/algo-surface/round-2/README.md` — areas: workstation-ui, algo-surface — governs: 0 — related: 0
+- Algo Surface Mockups — Round 3: Market Analysis Triptych — `docs/design/v2/workstation-ui/mockups/algo-surface/round-3/README.md` — areas: workstation-ui, algo-surface — governs: 0 — related: 0
+- Component Anatomy — `docs/design/v2/workstation-ui/mockups/historic-simulator/sim-wda-01/component_anatomy_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Graph Marker And Tooltip Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/sim-wda-01/graph_marker_and_tooltip_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- HIST-SIM-01 Data Integration Notes — `docs/design/v2/workstation-ui/mockups/historic-simulator/sim-wda-01/hist_sim_01_data_integration_notes_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Implementation Handoff — `docs/design/v2/workstation-ui/mockups/historic-simulator/sim-wda-01/implementation_handoff_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Interaction States — `docs/design/v2/workstation-ui/mockups/historic-simulator/sim-wda-01/interaction_states_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/workstation-ui/mockups/historic-simulator/sim-wda-01/open_questions_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Accepted And Rejected Mockup Register — `docs/design/v2/workstation-ui/mockups/historic-simulator/sim-wda-01/refinement-v0-1/accepted_and_rejected_mockup_register_v0_1.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Component Delta — `docs/design/v2/workstation-ui/mockups/historic-simulator/sim-wda-01/refinement-v0-1/component_delta_v0_1.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Implementation Delta — `docs/design/v2/workstation-ui/mockups/historic-simulator/sim-wda-01/refinement-v0-1/implementation_delta_v0_1.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Interaction Delta — `docs/design/v2/workstation-ui/mockups/historic-simulator/sim-wda-01/refinement-v0-1/interaction_delta_v0_1.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/workstation-ui/mockups/historic-simulator/sim-wda-01/refinement-v0-1/open_questions_v0_1.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- SIM-WDA-01 Refinement v0.1 Brief — `docs/design/v2/workstation-ui/mockups/historic-simulator/sim-wda-01/refinement-v0-1/sim_wda_01_refinement_v0_1_brief.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Visual QA Delta — `docs/design/v2/workstation-ui/mockups/historic-simulator/sim-wda-01/refinement-v0-1/visual_qa_delta_v0_1.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- SIM-WDA-01 Refinement v0.2 / SIM-UI-01A Repair — `docs/design/v2/workstation-ui/mockups/historic-simulator/sim-wda-01/refinement-v0-2/README.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- SIM-UI-01A Repair Brief — `docs/design/v2/workstation-ui/mockups/historic-simulator/sim-wda-01/refinement-v0-2/sim_ui_01a_repair_brief_v0_2.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- SIM-UI-01A Visual Repair Delta — `docs/design/v2/workstation-ui/mockups/historic-simulator/sim-wda-01/refinement-v0-2/sim_ui_01a_visual_repair_delta_v0_2.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Region Ownership Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/sim-wda-01/region_ownership_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Replay Transport Visual Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/sim-wda-01/replay_transport_visual_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Scenario Loading Workflow — `docs/design/v2/workstation-ui/mockups/historic-simulator/sim-wda-01/scenario_loading_workflow_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- SIM-WDA-01 Brief — `docs/design/v2/workstation-ui/mockups/historic-simulator/sim-wda-01/sim_wda_01_brief.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Visual QA Checklist — `docs/design/v2/workstation-ui/mockups/historic-simulator/sim-wda-01/visual_qa_checklist_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Accessibility And Keyboard Policy — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-legend-01/accessibility_and_keyboard_policy_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Agent Version Color Mapping Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-legend-01/agent_version_color_mapping_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Collapsed / Expanded State Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-legend-01/collapsed_expanded_state_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Color Picker Future Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-legend-01/color_picker_future_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Color Swatch And Saturation Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-legend-01/color_swatch_and_saturation_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Graham Direction Applied — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-legend-01/graham_direction_applied_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Implementation Handoff — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-legend-01/implementation_handoff_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Legend Rail Anatomy — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-legend-01/legend_rail_anatomy_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Legend Region Ownership — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-legend-01/legend_region_ownership_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-legend-01/open_questions_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Responsive Behavior — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-legend-01/responsive_behavior_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Source / Authority Visual Distinction — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-legend-01/source_authority_visual_distinction_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Symbol Graph Application — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-legend-01/symbol_graph_application_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Timeline Application — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-legend-01/timeline_application_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Version Graph Application — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-legend-01/version_graph_application_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Visibility Toggle Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-legend-01/visibility_toggle_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Visual QA Checklist — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-legend-01/visual_qa_checklist_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- WDA-SIM-LEGEND-01 Brief — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-legend-01/wda_sim_legend_01_brief.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Implementation Handoff — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-markers-01/implementation_handoff_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Marker Action Token Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-markers-01/marker_action_token_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Marker Density And Overlap Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-markers-01/marker_density_and_overlap_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Marker Tooltip And Selection Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-markers-01/marker_tooltip_and_selection_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Marker Visual Language — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-markers-01/marker_visual_language_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Marker Visual QA Checklist — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-markers-01/marker_visual_qa_checklist_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-markers-01/open_questions_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- WDA SIM-MARKERS-01 Brief — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-markers-01/wda_sim_markers_01_brief_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Circular Marker Token Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-markers-01a/circular_marker_token_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Curved MicroPath Display Experiment Note — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-markers-01a/curved_micropath_display_experiment_note_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Graham Feedback Applied — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-markers-01a/graham_feedback_applied_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Implementation Handoff — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-markers-01a/implementation_handoff_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Marker Density And Overlap Delta — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-markers-01a/marker_density_and_overlap_delta_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Marker Line Anchor Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-markers-01a/marker_line_anchor_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Marker Opacity Option Comparison — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-markers-01a/marker_opacity_option_comparison_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Marker Tooltip Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-markers-01a/marker_tooltip_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Marker Trigger Reason Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-markers-01a/marker_trigger_reason_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-markers-01a/open_questions_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Visual QA Checklist — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-markers-01a/visual_qa_checklist_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- WDA SIM-MARKERS-01A Brief — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-markers-01a/wda_sim_markers_01a_brief.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Bottom Workbench Toolbar Placement — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-replay-transport-01/bottom_workbench_toolbar_placement_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Chart Playhead Visual Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-replay-transport-01/chart_playhead_visual_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Chart Region Integration Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-replay-transport-01/chart_region_integration_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Current Replay Spike Assessment — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-replay-transport-01/current_replay_spike_assessment_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Implementation Handoff — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-replay-transport-01/implementation_handoff_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Interaction States — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-replay-transport-01/interaction_states_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-replay-transport-01/open_questions_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Playback Completion State Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-replay-transport-01/playback_completion_state_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Region Ownership Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-replay-transport-01/region_ownership_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Responsive Density Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-replay-transport-01/responsive_density_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Simulator Clock Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-replay-transport-01/simulator_clock_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Transport Control Unit Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-replay-transport-01/transport_control_unit_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Transport Icon Policy — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-replay-transport-01/transport_icon_policy_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Visual QA Checklist — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-replay-transport-01/visual_qa_checklist_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- WDA SIM Replay Transport 01 Brief — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-replay-transport-01/wda_sim_replay_transport_01_brief.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Current Load Window Assessment — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-search-load-01/current_load_window_assessment_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Implementation Handoff — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-search-load-01/implementation_handoff_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Interaction States — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-search-load-01/interaction_states_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Known Scenarios Table Delta — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-search-load-01/known_scenarios_table_delta_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-search-load-01/open_questions_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Search Section Component Anatomy — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-search-load-01/search_section_component_anatomy_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Unified Load Scenario Surface Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-search-load-01/unified_load_scenario_surface_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Visual QA Checklist — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-search-load-01/visual_qa_checklist_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- WDA-SIM-SEARCH-LOAD-01 Brief — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-search-load-01/wda_sim_search_load_01_brief.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Agent Version Color Registry — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/agent_version_color_registry_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Alternate Version Graph Metric Modes — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/alternate_version_graph_metric_modes_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Color Accessibility And Non-Color Carriers — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/color_accessibility_and_non_color_carriers_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Color Registry Collision Policy — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/color_registry_collision_policy_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Contribution Versus Counterfactual Boundary — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/contribution_vs_counterfactual_boundary_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Cross-View Color Ontology — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/cross_view_color_ontology_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Equity Reference Line Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/equity_reference_line_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Focused Version And Right Context Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/focused_version_and_right_context_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Future Task Candidates — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/future_task_candidates_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Graham Decisions Applied — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/graham_decisions_applied_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Graph Density And Overlap Policy — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/graph_density_and_overlap_policy_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Implementation Dependency Map — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/implementation_dependency_map_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Implementation Handoff — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/implementation_handoff_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Legend And Symbol Filter Interaction Matrix — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/legend_and_symbol_filter_interaction_matrix_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Line Focus And Selection Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/line_focus_and_selection_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/open_questions_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Per-Symbol Contribution Table Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/per_symbol_contribution_table_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Portfolio Core Dependency Handoff — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/portfolio_core_dependency_handoff_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Responsive Behavior — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/responsive_behavior_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Safe First Slice Recommendation — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/safe_first_slice_recommendation_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Selected Contribution Equity Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/selected_contribution_equity_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Shared Playhead And Reveal Boundary — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/shared_playhead_and_reveal_boundary_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Simulated Equity Metric Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/simulated_equity_metric_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Symbol Color Registry — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/symbol_color_registry_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Symbol Graph Color Application — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/symbol_graph_color_application_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Symbol Selection And All State Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/symbol_selection_and_all_state_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Timeline Color Application — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/timeline_color_application_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Version-Aware Symbol Universe Union — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/version_aware_symbol_universe_union_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Version Graph Core Product Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/version_graph_core_product_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Version Graph Decision Marker Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/version_graph_decision_marker_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Version Graph Implementation Readiness — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/version_graph_implementation_readiness_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Version Graph Marker Tooltip Model — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/version_graph_marker_tooltip_model_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Visual QA Checklist — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/visual_qa_checklist_v0.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- WDA-VERSION-GRAPH-01 Brief — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-version-graph-01/wda_version_graph_01_brief.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Agent Registry Left Panel Anatomy — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/hybrid-round-2/agent_registry_left_panel_anatomy.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Bottom Tool Rack Revision — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/hybrid-round-2/bottom_tool_rack_revision.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Hybrid Shell Component Revision Notes — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/hybrid-round-2/hybrid_shell_component_revision_notes.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Lab v2 Hybrid Shell Round 2 Brief — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/hybrid-round-2/hybrid_shell_round_2_brief.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Simulator / Paper Mode Controls Model — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/hybrid-round-2/simulator_paper_mode_controls_model.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Timeline Decision Block Anatomy — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/hybrid-round-2/timeline_decision_block_anatomy.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Top Header And Workstation Toolbar Model — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/hybrid-round-2/top_header_and_workstation_toolbar_model.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Variant D Compact 1080p Notes — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/hybrid-round-2/variant_d_compact_1080p_notes.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Variant D Ultrawide Adaptation Notes — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/hybrid-round-2/variant_d_ultrawide_adaptation_notes.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Lab v2 Shell Component Anatomy — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/lab_v2_shell_component_anatomy_v0.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Lab v2 Shell Implementation Notes — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/lab_v2_shell_implementation_notes_v0.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Lab v2 Shell Interaction States — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/lab_v2_shell_interaction_states_v0.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Lab v2 Shell Screen Brief — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/lab_v2_shell_screen_brief_v0.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Lab v2 Shell Visual QA Checklist — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/lab_v2_shell_visual_qa_checklist_v0.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Decision Block Size Rules — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/refinement-round-1-1/decision_block_size_rules_v0.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Market Status Bar Model — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/refinement-round-1-1/market_status_bar_model_v0.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Mockup Canvas Purity Rules — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/refinement-round-1-1/mockup_canvas_purity_rules_v0.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Region Ownership Delta — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/refinement-round-1-1/region_ownership_delta_v1_1.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Registry Cleanup Delta — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/refinement-round-1-1/registry_cleanup_delta_v0.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Styling Whittle-Down Readiness Notes — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/refinement-round-1-1/styling_whittle_down_readiness_notes_v0.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Timeline Header Control Strip Model — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/refinement-round-1-1/timeline_header_control_strip_model_v0.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Variant D Refinement Round 1.1 Brief — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/refinement-round-1-1/variant_d_refinement_round_1_1_brief.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Workbench Cleanup Delta — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/refinement-round-1-1/workbench_cleanup_delta_v0.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Interaction State Visual Language Draft — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/refinement-round-1/interaction_state_visual_language_draft_v0.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Screen Real Estate Triage Model — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/refinement-round-1/screen_real_estate_triage_model_v0.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Semantic Color System Draft — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/refinement-round-1/semantic_color_system_draft_v0.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Styling Whittle-Down Prebrief — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/refinement-round-1/styling_whittle_down_prebrief_v0.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Variant D Component Positioning Delta — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/refinement-round-1/variant_d_component_positioning_delta_v0.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Variant D Control Labeling Delta — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/refinement-round-1/variant_d_control_labeling_delta_v0.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Variant D Refinement Round 1 Brief — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/refinement-round-1/variant_d_refinement_round_1_brief.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Shell Alignment v1 Architect Handoff — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/shell-alignment-v1/shell_alignment_v1_architect_handoff.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Shell Alignment v1 Current-Compatible Scope — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/shell-alignment-v1/shell_alignment_v1_current_compatible_scope.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Shell Alignment v1 Design Brief — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/shell-alignment-v1/shell_alignment_v1_design_brief.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Shell Alignment v1 Staged Implementation Recommendation — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/shell-alignment-v1/shell_alignment_v1_staged_implementation_recommendation.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Shell Alignment v1 Visual QA Checklist — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/shell-alignment-v1/shell_alignment_v1_visual_qa_checklist.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- High-Divergence Comparison Matrix — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/styling-whittle-down-round-1-1/high_divergence_comparison_matrix.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Recommended Style Direction — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/styling-whittle-down-round-1-1/recommended_style_direction_v1.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Styling Whittle-Down Round 1.1 Brief — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/styling-whittle-down-round-1-1/styling_whittle_down_round_1_1_brief.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Visual Delta Audit — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/styling-whittle-down-round-1-1/visual_delta_audit.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Iconography And Affordance Notes — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/styling-whittle-down-round-1/iconography_and_affordance_notes_v0.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Recommended Style Direction — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/styling-whittle-down-round-1/recommended_style_direction_v0.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Style Comparison Matrix — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/styling-whittle-down-round-1/style_comparison_matrix.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Styling Whittle-Down Round 1 Brief — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/styling-whittle-down-round-1/styling_whittle_down_round_1_brief.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Typography And Density Notes — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/styling-whittle-down-round-1/typography_and_density_notes_v0.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Lab v2 Shell Whittle-Down Round 1 — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/whittle-down-round-1/lab_v2_shell_whittle_down_round_1.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Recommended v1 Direction — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/whittle-down-round-1/recommended_v1_direction.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Symbol Universe / Research Shell Notes — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/whittle-down-round-1/symbol_universe_research_shell_notes_v0.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Variant Comparison Matrix — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/whittle-down-round-1/variant_comparison_matrix.md` — areas: workstation-ui, lab — governs: 0 — related: 0
+- Symbol Universe / Research Component Delta — `docs/design/v2/workstation-ui/mockups/symbol-universe-research-mode/refinement-v0-1/symbol_universe_research_component_delta_v0_1.md` — areas: workstation-ui, research, symbol-universe — governs: 0 — related: 0
+- Symbol Universe / Research Implementation Delta — `docs/design/v2/workstation-ui/mockups/symbol-universe-research-mode/refinement-v0-1/symbol_universe_research_implementation_delta_v0_1.md` — areas: workstation-ui, research, symbol-universe — governs: 0 — related: 0
+- Symbol Universe / Research Interaction Delta — `docs/design/v2/workstation-ui/mockups/symbol-universe-research-mode/refinement-v0-1/symbol_universe_research_interaction_delta_v0_1.md` — areas: workstation-ui, research, symbol-universe — governs: 0 — related: 0
+- Symbol Universe / Research Refinement v0.1 Brief — `docs/design/v2/workstation-ui/mockups/symbol-universe-research-mode/refinement-v0-1/symbol_universe_research_refinement_v0_1_brief.md` — areas: workstation-ui, research, symbol-universe — governs: 0 — related: 0
+- Symbol Universe / Research Region Ownership Delta — `docs/design/v2/workstation-ui/mockups/symbol-universe-research-mode/refinement-v0-1/symbol_universe_research_region_ownership_delta_v0_1.md` — areas: workstation-ui, research, symbol-universe — governs: 0 — related: 0
+- Symbol Universe / Research Visual QA Delta — `docs/design/v2/workstation-ui/mockups/symbol-universe-research-mode/refinement-v0-1/symbol_universe_research_visual_qa_delta_v0_1.md` — areas: workstation-ui, research, symbol-universe — governs: 0 — related: 0
+- Symbol Universe / Research Component Anatomy — `docs/design/v2/workstation-ui/mockups/symbol-universe-research-mode/symbol_universe_research_component_anatomy_v0.md` — areas: workstation-ui, research, symbol-universe — governs: 0 — related: 0
+- Symbol Universe / Research Implementation Handoff — `docs/design/v2/workstation-ui/mockups/symbol-universe-research-mode/symbol_universe_research_implementation_handoff_v0.md` — areas: workstation-ui, research, symbol-universe — governs: 0 — related: 0
+- Symbol Universe / Research Interaction States — `docs/design/v2/workstation-ui/mockups/symbol-universe-research-mode/symbol_universe_research_interaction_states_v0.md` — areas: workstation-ui, research, symbol-universe — governs: 0 — related: 0
+- Symbol Universe / Research Workstation Mode Brief — `docs/design/v2/workstation-ui/mockups/symbol-universe-research-mode/symbol_universe_research_mode_brief_v0.md` — areas: workstation-ui, research, symbol-universe — governs: 0 — related: 0
+- Symbol Universe / Research Option Slate — `docs/design/v2/workstation-ui/mockups/symbol-universe-research-mode/symbol_universe_research_option_slate_v0.md` — areas: workstation-ui, research, symbol-universe — governs: 0 — related: 0
+- Symbol Universe / Research Recommended Direction — `docs/design/v2/workstation-ui/mockups/symbol-universe-research-mode/symbol_universe_research_recommended_direction_v0.md` — areas: workstation-ui, research, symbol-universe — governs: 0 — related: 0
+- Symbol Universe / Research Region Ownership Model — `docs/design/v2/workstation-ui/mockups/symbol-universe-research-mode/symbol_universe_research_region_ownership_model_v0.md` — areas: workstation-ui, research, symbol-universe — governs: 0 — related: 0
+- Symbol Universe / Research State Model — `docs/design/v2/workstation-ui/mockups/symbol-universe-research-mode/symbol_universe_research_state_model_v0.md` — areas: workstation-ui, research, symbol-universe — governs: 0 — related: 0
+- Symbol Universe / Research Visual QA Checklist — `docs/design/v2/workstation-ui/mockups/symbol-universe-research-mode/symbol_universe_research_visual_qa_checklist_v0.md` — areas: workstation-ui, research, symbol-universe — governs: 0 — related: 0
+- Agent Activity Trace Model — `docs/design/v2/workstation-ui/readiness-modes-windowing/agent_activity_trace_model_v0.md` — areas: workstation-ui, promotion-governance — governs: 0 — related: 0
+- Algorithmic vs Agentic Boundary — `docs/design/v2/workstation-ui/readiness-modes-windowing/algorithmic_vs_agentic_boundary_v0.md` — areas: workstation-ui, promotion-governance — governs: 0 — related: 0
+- Floating Utility Window Model — `docs/design/v2/workstation-ui/readiness-modes-windowing/floating_utility_window_model_v0.md` — areas: workstation-ui, promotion-governance — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/workstation-ui/readiness-modes-windowing/open_questions_v0.md` — areas: workstation-ui, promotion-governance — governs: 0 — related: 0
+- Paper Session History To Simulator Bridge — `docs/design/v2/workstation-ui/readiness-modes-windowing/paper_session_history_to_simulator_bridge_v0.md` — areas: workstation-ui, promotion-governance — governs: 0 — related: 0
+- Readiness Criteria Policy — `docs/design/v2/workstation-ui/readiness-modes-windowing/readiness_criteria_policy_v0.md` — areas: workstation-ui, promotion-governance — governs: 0 — related: 0
+- Replay Transport Control Model — `docs/design/v2/workstation-ui/readiness-modes-windowing/replay_transport_control_model_v0.md` — areas: workstation-ui, promotion-governance — governs: 0 — related: 0
+- Simulator / Paper Mode Taxonomy — `docs/design/v2/workstation-ui/readiness-modes-windowing/simulator_paper_mode_taxonomy_v0.md` — areas: workstation-ui, promotion-governance — governs: 0 — related: 0
+- Workbench EvalCal / Mixer Direction — `docs/design/v2/workstation-ui/readiness-modes-windowing/workbench_evalcal_mixer_direction_v0.md` — areas: workstation-ui, promotion-governance — governs: 0 — related: 0
+- Region Resize Review Ledger — `docs/design/v2/workstation-ui/region-resize-01/region_resize_review_ledger_v0.md` — areas: workstation-shell, workstation-ui — governs: 0 — related: 0
+- Dashboard vs Instrument Panel Taxonomy — `docs/design/v2/workstation-ui/selected-decision-dashboard-v0/dashboard_vs_instrument_panel_taxonomy_v0.md` — areas: workstation-ui, decision-evidence — governs: 0 — related: 0
+- Dynamic Render Plan — `docs/design/v2/workstation-ui/selected-decision-dashboard-v0/dynamic_render_plan_v0.md` — areas: workstation-ui, decision-evidence — governs: 0 — related: 0
+- Implementation Sequence Recommendation — `docs/design/v2/workstation-ui/selected-decision-dashboard-v0/implementation_sequence_recommendation_v0.md` — areas: workstation-ui, decision-evidence — governs: 0 — related: 0
+- Selected Decision Data Subset — `docs/design/v2/workstation-ui/selected-decision-dashboard-v0/selected_decision_data_subset_v0.md` — areas: workstation-ui, decision-evidence — governs: 0 — related: 0
+- TrAIdit Data Visualization Primitives — `docs/design/v2/workstation-ui/selected-decision-dashboard-v0/traidit_data_visualization_primitives_v0.md` — areas: workstation-ui, decision-evidence — governs: 0 — related: 0
+- UI Debt Ledger — `docs/design/v2/workstation-ui/ui-debt-ledger/README.md` — areas: workstation-ui — governs: 0 — related: 0
+- Graph View / Settings Debt — `docs/design/v2/workstation-ui/ui-debt-ledger/graph_view_settings_debt_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Legacy Route / Context-Window Debt — `docs/design/v2/workstation-ui/ui-debt-ledger/legacy_route_context_window_debt_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Open Questions — `docs/design/v2/workstation-ui/ui-debt-ledger/open_questions_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Prioritization And Task Candidates — `docs/design/v2/workstation-ui/ui-debt-ledger/prioritization_and_task_candidates_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Simulator Graph / Replay Debt — `docs/design/v2/workstation-ui/ui-debt-ledger/simulator_graph_replay_debt_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- UI Debt Ledger — `docs/design/v2/workstation-ui/ui-debt-ledger/ui_debt_ledger_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Utility Window / Context Debt — `docs/design/v2/workstation-ui/ui-debt-ledger/utility_window_context_debt_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Consumer Profiles v0 — the four known consumers, fitted — `docs/design/v2/workstation-ui/utility-window-01-design-packet/consumer_profiles_v0.md` — areas: utility-window-system, workstation-ui — governs: 0 — related: 0
+- Utility-Window Implementation Handoff v0 — anatomy, states, QA — `docs/design/v2/workstation-ui/utility-window-01-design-packet/implementation_handoff_v0.md` — areas: utility-window-system, workstation-ui — governs: 0 — related: 0
+- Utility-Window Option Slates (ruled) — `docs/design/v2/workstation-ui/utility-window-01-design-packet/option_slates_v0.md` — areas: utility-window-system — governs: 0 — related: 1
+- Front-End Engineering Standards — `docs/design/v2/workstation-ui/web-reset/frontend_engineering_standards_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Apps Web Reset Agent Handoff Notes — `docs/design/v2/workstation-ui/web-reset/web-reset-01/apps_web_agent_handoff_notes.md` — areas: workstation-ui — governs: 0 — related: 0
+- Apps Web Migration Strategy — `docs/design/v2/workstation-ui/web-reset/web-reset-01/apps_web_migration_strategy.md` — areas: workstation-ui — governs: 0 — related: 0
+- Apps Web Preservation / Deletion Map — `docs/design/v2/workstation-ui/web-reset/web-reset-01/apps_web_preservation_deletion_map.md` — areas: workstation-ui — governs: 0 — related: 0
+- Apps Web Reset Task Sequence Recommendation — `docs/design/v2/workstation-ui/web-reset/web-reset-01/apps_web_reset_task_sequence_recommendation.md` — areas: workstation-ui — governs: 0 — related: 0
+- Apps Web Reset Risk Register — `docs/design/v2/workstation-ui/web-reset/web-reset-01/apps_web_risk_register.md` — areas: workstation-ui — governs: 0 — related: 0
+- Apps Web Target Architecture — `docs/design/v2/workstation-ui/web-reset/web-reset-01/apps_web_target_architecture.md` — areas: workstation-ui — governs: 0 — related: 0
+- Future Research Workstation Mode Packets — `docs/design/v2/workstation-ui/web-reset/web-reset-01/task-10-symbol-universe-research-split/future_research_workstation_mode_packets.md` — areas: workstation-ui — governs: 0 — related: 0
+- Research/SU Global Shell Follow-Ups — `docs/design/v2/workstation-ui/web-reset/web-reset-01/task-10-symbol-universe-research-split/research_su_global_shell_followups.md` — areas: workstation-ui — governs: 0 — related: 0
+- Research/SU Operator Feedback Register — `docs/design/v2/workstation-ui/web-reset/web-reset-01/task-10-symbol-universe-research-split/research_su_operator_feedback_register.md` — areas: workstation-ui — governs: 0 — related: 0
+- WEB-RESET-01 Task 10 Symbol Universe / Research Split Brief — `docs/design/v2/workstation-ui/web-reset/web-reset-01/task-10-symbol-universe-research-split/task_10_symbol_universe_research_split_brief.md` — areas: workstation-ui — governs: 0 — related: 0
+- WEB-RESET-01-TASK-10A Current-Compatible Scope — `docs/design/v2/workstation-ui/web-reset/web-reset-01/task-10-symbol-universe-research-split/task_10a_current_compatible_scope.md` — areas: workstation-ui — governs: 0 — related: 0
+- Archive / Remove / Hide Recommendation — `docs/design/v2/workstation-ui/web-reset/web-reset-01/task-11-legacy-ui-archive-removal-prep/archive_remove_hide_recommendation_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Golden Preservation Checklist — `docs/design/v2/workstation-ui/web-reset/web-reset-01/task-11-legacy-ui-archive-removal-prep/golden_preservation_checklist_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Legacy Route Compatibility Map — `docs/design/v2/workstation-ui/web-reset/web-reset-01/task-11-legacy-ui-archive-removal-prep/legacy_route_compatibility_map_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Legacy UI Inventory — `docs/design/v2/workstation-ui/web-reset/web-reset-01/task-11-legacy-ui-archive-removal-prep/legacy_ui_inventory_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- Replacement Coverage Map — `docs/design/v2/workstation-ui/web-reset/web-reset-01/task-11-legacy-ui-archive-removal-prep/replacement_coverage_map_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- WEB-RESET-01-TASK-11 Legacy UI Archive / Removal Prep Brief — `docs/design/v2/workstation-ui/web-reset/web-reset-01/task-11-legacy-ui-archive-removal-prep/task_11_legacy_ui_archive_removal_prep_brief.md` — areas: workstation-ui — governs: 0 — related: 0
+- Task 11 Operator Approval Needed — `docs/design/v2/workstation-ui/web-reset/web-reset-01/task-11-legacy-ui-archive-removal-prep/task_11_operator_approval_needed_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+- WEB-RESET-01 Architect Brief — `docs/design/v2/workstation-ui/web-reset/web-reset-01/web_reset_01_architect_brief.md` — areas: workstation-ui — governs: 0 — related: 0
+- WEB-RESET-01 Operator Amendments — `docs/design/v2/workstation-ui/web-reset/web-reset-01/web_reset_01_operator_amendments.md` — areas: workstation-ui — governs: 0 — related: 0
+- WEB-RESET-01 Session Closeout Follow-Ups - 2026-05-13 — `docs/design/v2/workstation-ui/web-reset/web-reset-01/web_reset_01_session_closeout_followups_2026-05-13.md` — areas: workstation-ui — governs: 0 — related: 0
+- WEB-RESET Context Brief — `docs/design/v2/workstation-ui/web-reset/web_reset_context_brief_v0.md` — areas: workstation-ui — governs: 0 — related: 0
+
+## superseded (25)
+
+- Milestone Operating Model — `docs/context/operations/milestones/milestone_operating_model.md` — areas: context-system — governs: 0 — related: 0
+- Master Decision Caliper Table — `docs/design/v2/decision-calipers/master_decision_caliper_table_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- MVP Decision Caliper Subset — `docs/design/v2/decision-calipers/mvp-subset/README.md` — areas: decision-calipers — governs: 0 — related: 0
+- Agent Creation Calipers — `docs/design/v2/decision-calipers/mvp-subset/agent_creation_calipers_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- Analysis / Compare Lenses And Caliper Evidence — `docs/design/v2/decision-calipers/mvp-subset/analysis_compare_calipers_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- Caliper Exposure Policy — `docs/design/v2/decision-calipers/mvp-subset/caliper_exposure_policy_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- Deferred Advanced Calipers — `docs/design/v2/decision-calipers/mvp-subset/deferred_advanced_calipers_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- Development Decision Caliper Pool — `docs/design/v2/decision-calipers/mvp-subset/development_decision_caliper_pool_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- EvalCal Calibration Calipers — `docs/design/v2/decision-calipers/mvp-subset/evalcal_calibration_calipers_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- Governance / Readiness Gates And Caliper References — `docs/design/v2/decision-calipers/mvp-subset/governance_readiness_calipers_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- Hidden Internal Candidates — `docs/design/v2/decision-calipers/mvp-subset/hidden_internal_candidates_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- Live Paper Required Calipers And Paper Run Configuration — `docs/design/v2/decision-calipers/mvp-subset/live_paper_required_calipers_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- MVP Decision Caliper Subset — `docs/design/v2/decision-calipers/mvp-subset/mvp_decision_caliper_subset_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- Never User Editable Controls — `docs/design/v2/decision-calipers/mvp-subset/never_user_editable_controls_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- Paper Budget Calipers And Budget Parameters — `docs/design/v2/decision-calipers/mvp-subset/paper_budget_calipers_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- Professional Review Gated Calipers — `docs/design/v2/decision-calipers/mvp-subset/professional_review_gated_calipers_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- Research / Symbol Universe Calipers And Related Context — `docs/design/v2/decision-calipers/mvp-subset/research_symbol_universe_calipers_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- Simulator Required Calipers And Run Configuration — `docs/design/v2/decision-calipers/mvp-subset/simulator_required_calipers_v0.md` — areas: decision-calipers — governs: 0 — related: 0
+- EVALCAL-01 workstation real estate — regions, nav model, transport, naming — `docs/design/v2/evaluation/evalcal-01-design-packet/workstation_real_estate_v0.md` — areas: evaluation, workstation-ui, utility-window-system — governs: 0 — related: 6
+- Research / Symbol Universe Module Spec — `docs/design/v2/modules/research_symbol_universe_module_spec.md` — areas: research, symbol-universe, workstation-ui — governs: 0 — related: 0
+- M4 EvalCal Scope Bridge — `docs/design/v2/mvp-roadmap/m4_evalcal_scope_bridge_v0.md` — areas: planning-surface — governs: 0 — related: 1
+- Symbol Universe Editing Scope Bridge — `docs/design/v2/mvp-roadmap/symbol_universe_editing_scope_bridge_v0.md` — areas: planning-surface — governs: 0 — related: 0
+- TrAIder Workspace Concept — `docs/design/v2/product-model/traider_workspace_concept.md` — areas: product-thesis — governs: 0 — related: 1
+- WDA-SIM-MARKERS-01 — `docs/design/v2/workstation-ui/mockups/historic-simulator/wda-sim-markers-01/README.md` — areas: workstation-ui, historic-simulator — governs: 0 — related: 0
+- Semantic Color System — `docs/design/v2/workstation-ui/mockups/lab-v2-shell/styling-whittle-down-round-1/semantic_color_system_v0_1.md` — areas: workstation-ui, lab — governs: 0 — related: 1

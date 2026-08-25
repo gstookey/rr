@@ -1,0 +1,23 @@
+# corpus-graph claim namespaces — THE one place claim namespaces live.
+# Created: 2026-08-25
+# A doc's optional `claims:` frontmatter field lists the shared UI resources it
+# claims, each as `namespace:slug`. The NAMESPACE must appear below; the slug is
+# free-form kebab-case and is deliberately NOT vocabulary-checked (slugs are
+# per-resource and would rot; namespaces are the stable axis).
+# One namespace per line; lines starting with # are comments.
+# `node scripts/corpus-graph.mjs check` fails any doc claiming an unlisted
+# namespace, and reports CONTENTION when two live docs claim the same
+# `namespace:slug` without citing each other in `related:`.
+#
+# region    — a named region of a shell/layout (e.g. region:inventory-right-context-pane)
+# state     — a piece of shared application/store state (e.g. state:selected-item-id)
+# window    — a utility window identity (e.g. window:settings)
+# primitive — a shared UI primitive/component (e.g. primitive:viz-spinner)
+# name      — a user-facing name/label owned by one doc (e.g. name:Inventory Manager)
+# route     — an app route path (e.g. route:inventory)
+region
+state
+window
+primitive
+name
+route

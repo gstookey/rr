@@ -1,0 +1,1436 @@
+<!doctype html>
+<!-- TEMPLATE-DOC
+  scripts/corpus-graph-viewer.template.html — AUTHORED template for the TrAIdit corpus
+  graph viewer (CORPUS-GRAPH-01, slices CG-3 + CG-4). Created: 2026-07-17.
+  Last updated: 2026-07-17 (CG-4: Details | Contents card tabs — doc bodies lazy-loaded
+  from the generated sidecar and rendered by a minimal escape-first markdown renderer).
+
+  `node scripts/corpus-graph.mjs index` substitutes the placeholders below and emits
+  docs/context/corpus_graph_viewer.html. The emitted file is generated-only — never edit
+  it by hand; edit THIS template (or the frontmatter the graph is built from) and re-run
+  `index`. This TEMPLATE-DOC comment block is replaced by the generated-file header.
+
+  Placeholders (generation fails loudly if any is missing or left behind):
+    __CG_NODE_COUNT__  — total doc count, substituted into the header stats line
+    __CG_EDGE_COUNT__  — total edge count, substituted into the header stats line
+    __CG_GRAPH_JSON__  — the graph (same object as docs/context/corpus-graph.json,
+                         compact JSON, the `<` character escaped as backslash-u003c)
+                         inside the application/json data script tag
+    __CG_CONTENT_SRC__ — the doc-contents sidecar's filename (a directory sibling of the
+                         emitted viewer), script-injected on first Contents-tab open
+
+  Constraints:
+  - Fully self-contained: ZERO external requests (no CDN, fonts, images, scripts) so the
+    emitted file works from file:// with no network at all. The ONE additional request is
+    the generated SIBLING sidecar (doc bodies keyed by path) via a relative <script src>
+    injected lazily on first Contents open — fetch/XHR are blocked on file://, script
+    tags are not; a failed load degrades to an honest "contents unavailable" line.
+  - Deterministic: no timestamps, no Math.random — layout is seeded by node order, so the
+    same corpus renders the same picture on every open and the emitted bytes are stable.
+  - Hand-rolled force simulation (no D3): edge springs + Barnes-Hut node repulsion +
+    center gravity, damped to settle. Pan by drag, zoom by wheel, click a node for its card.
+  - Hand-rolled minimal markdown rendering for Contents: HTML-escape EVERYTHING first,
+    then headings, fenced/inline code (mono, no highlighting), bold/italic, lists,
+    blockquotes, tables as-is in mono, hr, and links as text with the URL in a title
+    attribute — no live external links, keeping the offline purity.
+TEMPLATE-DOC -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>TrAIdit corpus graph</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: #0b0e13;
+    color: #d6dee9;
+    font: 12px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; }
+
+  /* ---- header ---- */
+  .cg-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    padding: 8px 14px;
+    background: #10151d;
+    border-bottom: 1px solid #1e2836;
+  }
+  .cg-brand h1 { margin: 0; font-size: 13px; font-weight: 600; letter-spacing: .02em; }
+  .cg-stats { margin: 1px 0 0; font-size: 11px; color: #8593a6; white-space: nowrap; }
+  .cg-controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-left: auto; }
+  #cg-search {
+    width: 250px;
+    padding: 4px 8px;
+    background: #0b0f16;
+    border: 1px solid #263248;
+    border-radius: 6px;
+    color: #d6dee9;
+    font: inherit;
+    outline: none;
+  }
+  #cg-search:focus { border-color: #3d5578; }
+  .cg-match-count { font-size: 11px; color: #8593a6; white-space: nowrap; }
+
+  /* search results dropdown — every match reachable, incl. behind the historical toggle */
+  .cg-search-wrap { position: relative; }
+  .cg-search-results {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    z-index: 30;
+    width: 360px;
+    max-height: 60vh;
+    overflow-y: auto;
+    background: #10151d;
+    border: 1px solid #263248;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    padding: 4px;
+  }
+  .cg-sr-row {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 7px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .cg-sr-row:hover, .cg-sr-row.sel { background: #1a2333; }
+  .cg-sr-dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+  .cg-sr-text { min-width: 0; flex: 1; }
+  .cg-sr-title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  /* rtl ellipsis keeps the path TAIL (the filename) visible when truncated */
+  .cg-sr-path { font-size: 10px; color: #8593a6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; direction: rtl; text-align: left; }
+  .cg-sr-tag { flex: none; font-size: 9px; color: #8593a6; border: 1px solid #232e40; border-radius: 999px; padding: 1px 6px; }
+  .cg-sr-more { padding: 4px 7px; font-size: 10px; color: #8593a6; }
+
+  /* status chips double as the status legend: dot = node color, count = corpus count */
+  .cg-chips { display: flex; gap: 4px; flex-wrap: wrap; }
+  .cg-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 8px;
+    background: #151b25;
+    border: 1px solid #232e40;
+    border-radius: 999px;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+  }
+  .cg-chip input { position: absolute; opacity: 0; pointer-events: none; }
+  .cg-chip .cg-dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+  .cg-chip .cg-count { color: #8593a6; font-size: 10px; }
+  .cg-chip.off { opacity: .38; border-style: dashed; }
+
+  select#cg-area {
+    max-width: 190px;
+    padding: 3px 6px;
+    background: #0b0f16;
+    border: 1px solid #263248;
+    border-radius: 6px;
+    color: #d6dee9;
+    font: inherit;
+  }
+  .cg-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+  }
+  .cg-switch input { position: absolute; opacity: 0; pointer-events: none; }
+  .cg-switch .cg-track {
+    width: 26px; height: 14px;
+    background: #1a2230;
+    border: 1px solid #2b3950;
+    border-radius: 999px;
+    position: relative;
+    transition: background .15s;
+    flex: none;
+  }
+  .cg-switch .cg-track::after {
+    content: "";
+    position: absolute;
+    top: 1px; left: 1px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: #8593a6;
+    transition: transform .15s, background .15s;
+  }
+  .cg-switch input:checked + .cg-track { background: #26364e; }
+  .cg-switch input:checked + .cg-track::after { transform: translateX(12px); background: #d6dee9; }
+  .cg-btn {
+    padding: 4px 10px;
+    background: #151b25;
+    border: 1px solid #232e40;
+    border-radius: 6px;
+    color: #d6dee9;
+    font: inherit;
+    cursor: pointer;
+  }
+  .cg-btn:hover { border-color: #3d5578; }
+  .cg-dim { color: #8593a6; }
+
+  /* ---- stage ---- */
+  .cg-main { position: relative; flex: 1; min-height: 0; }
+  #cg-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
+
+  /* ---- legend (edge types; status legend lives in the header chips) ---- */
+  .cg-legend {
+    position: absolute;
+    left: 12px; bottom: 12px;
+    padding: 8px 10px;
+    background: rgba(16, 21, 29, .88);
+    border: 1px solid #1e2836;
+    border-radius: 8px;
+    font-size: 11px;
+    color: #aab6c6;
+    display: grid;
+    gap: 5px;
+    pointer-events: none;
+  }
+  .cg-legend > div { display: flex; align-items: center; gap: 7px; }
+  .cg-edge-sample { width: 26px; border-top: 2px solid #7a96be; flex: none; }
+  .cg-edge-sample.cg-edge-superseded { border-top-style: dashed; }
+
+  /* ---- node card ---- */
+  .cg-card {
+    position: absolute;
+    top: 12px; right: 12px;
+    width: 340px;
+    max-width: calc(100% - 24px);
+    max-height: calc(100% - 24px);
+    background: rgba(16, 21, 29, .96);
+    border: 1px solid #223047;
+    border-radius: 10px;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, .45);
+    display: flex;
+    flex-direction: column;
+  }
+  .cg-card[hidden] { display: none; }
+  /* Contents mode widens the card into a readable column (viewport-capped). */
+  .cg-card.cg-card-wide { width: 560px; }
+  .cg-card-tabs {
+    display: flex;
+    gap: 2px;
+    padding: 7px 34px 0 12px; /* right padding clears the close button */
+    border-bottom: 1px solid #1e2836;
+    flex: none;
+  }
+  .cg-card-tab {
+    padding: 5px 11px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    color: #8593a6;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .cg-card-tab:hover { color: #d6dee9; }
+  .cg-card-tab.active { color: #d6dee9; border-bottom-color: #38d5f0; }
+  .cg-card-close {
+    position: absolute;
+    top: 6px; right: 8px;
+    background: none;
+    border: none;
+    color: #8593a6;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .cg-card-close:hover { color: #d6dee9; }
+  .cg-card-body { padding: 14px 14px 12px; overflow-y: auto; }
+  .cg-pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .cg-card-title { margin: 8px 0 6px; font-size: 15px; font-weight: 600; line-height: 1.3; }
+  .cg-card-path {
+    display: block;
+    padding: 6px 8px;
+    background: #0b0f16;
+    border: 1px solid #1c2536;
+    border-radius: 6px;
+    color: #9fb0c5;
+    word-break: break-all;
+    user-select: text;
+    cursor: text;
+  }
+  .cg-section { margin-top: 12px; }
+  .cg-section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: #74829a;
+    margin-bottom: 5px;
+  }
+  .cg-area-chip {
+    display: inline-block;
+    margin: 0 4px 4px 0;
+    padding: 2px 8px;
+    background: #151b25;
+    border: 1px solid #232e40;
+    border-radius: 999px;
+    color: #aab6c6;
+    font: inherit;
+    font-size: 11px;
+    cursor: pointer;
+  }
+  .cg-area-chip:hover { border-color: #3d5578; color: #d6dee9; }
+  .cg-govern { display: block; color: #9fb0c5; padding: 2px 0; word-break: break-all; }
+  .cg-jump {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    width: 100%;
+    padding: 5px 7px;
+    margin: 0 0 3px;
+    background: #121826;
+    border: 1px solid #1c2536;
+    border-radius: 6px;
+    color: #c3cddb;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+  }
+  .cg-jump:hover { border-color: #3d5578; background: #162031; }
+  .cg-jump .cg-dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+  .cg-jump .cg-jump-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* ---- Contents tab: minimal-markdown typography (viewer palette throughout) ---- */
+  .cg-card-contents { padding: 12px 14px 14px; overflow-y: auto; }
+  .cg-md { font-size: 12px; line-height: 1.6; color: #c3cddb; }
+  .cg-md h1, .cg-md h2, .cg-md h3, .cg-md h4 { color: #e6edf6; line-height: 1.3; margin: 15px 0 6px; font-weight: 600; }
+  .cg-md h1 { font-size: 15px; padding-bottom: 5px; border-bottom: 1px solid #1e2836; }
+  .cg-md h2 { font-size: 14px; }
+  .cg-md h3 { font-size: 13px; }
+  .cg-md h4 { font-size: 12px; }
+  .cg-md > :first-child { margin-top: 0; }
+  .cg-md p { margin: 6px 0; }
+  .cg-md ul, .cg-md ol { margin: 6px 0; padding-left: 22px; }
+  .cg-md li { margin: 3px 0; }
+  .cg-md pre {
+    margin: 8px 0;
+    padding: 8px 10px;
+    background: #0b0f16;
+    border: 1px solid #1c2536;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 11px;
+    line-height: 1.5;
+    white-space: pre;
+    color: #b7c3d4;
+  }
+  .cg-md code { background: #0b0f16; border: 1px solid #1c2536; border-radius: 4px; padding: 0 4px; }
+  .cg-md strong { color: #e6edf6; }
+  .cg-md blockquote { margin: 8px 0; padding: 3px 10px; border-left: 2px solid #2b3950; color: #aab6c6; }
+  .cg-md hr { border: none; border-top: 1px solid #1e2836; margin: 12px 0; }
+  /* Links render as text; the URL lives in the title attribute (offline purity). */
+  .cg-md-link { color: #7fa3d0; border-bottom: 1px dotted #3d5578; cursor: help; }
+  .cg-md-note { color: #8593a6; padding: 2px 0; }
+  .cg-md-note code { background: #0b0f16; border: 1px solid #1c2536; border-radius: 4px; padding: 0 4px; }
+</style>
+</head>
+<body>
+<header class="cg-header">
+  <div class="cg-brand">
+    <h1>TrAIdit corpus graph</h1>
+    <p class="cg-stats">__CG_NODE_COUNT__ docs · __CG_EDGE_COUNT__ edges · <span id="cg-showing"></span></p>
+  </div>
+  <div class="cg-controls">
+    <div class="cg-search-wrap">
+      <input id="cg-search" type="search" placeholder="search title · path · filename · area" autocomplete="off" spellcheck="false">
+      <div id="cg-search-results" class="cg-search-results" role="listbox" hidden></div>
+    </div>
+    <span id="cg-match-count" class="cg-match-count" hidden></span>
+    <div id="cg-status-chips" class="cg-chips"></div>
+    <select id="cg-area" aria-label="area filter"></select>
+    <label class="cg-switch">
+      <input id="cg-historical" type="checkbox">
+      <span class="cg-track"></span>
+      <span>show historical <span id="cg-historical-count" class="cg-dim"></span></span>
+    </label>
+    <button id="cg-fit" class="cg-btn" type="button">fit</button>
+  </div>
+</header>
+<main class="cg-main">
+  <canvas id="cg-canvas"></canvas>
+  <aside id="cg-card" class="cg-card" hidden>
+    <button id="cg-card-close" class="cg-card-close" type="button" aria-label="close">&times;</button>
+    <div class="cg-card-tabs" role="tablist">
+      <button id="cg-tab-details" class="cg-card-tab active" type="button" role="tab" aria-selected="true">Details</button>
+      <button id="cg-tab-contents" class="cg-card-tab" type="button" role="tab" aria-selected="false">Contents</button>
+    </div>
+    <div id="cg-card-body" class="cg-card-body"></div>
+    <div id="cg-card-contents" class="cg-card-contents" hidden></div>
+  </aside>
+  <div class="cg-legend">
+    <div><span class="cg-edge-sample" id="cg-legend-related"></span>related</div>
+    <div><span class="cg-edge-sample cg-edge-superseded" id="cg-legend-superseded"></span>superseded &rarr; successor</div>
+    <div class="cg-dim">node size &prop; links</div>
+  </div>
+</main>
+<script type="application/json" id="cg-data">__CG_GRAPH_JSON__</script>
+<script>
+"use strict";
+(() => {
+  // -------------------------------------------------------------------------
+  // Data — parsed from the inlined graph (same object as corpus-graph.json).
+  // -------------------------------------------------------------------------
+  const graph = JSON.parse(document.getElementById("cg-data").textContent);
+
+  /** Status display order (mirrors the corpus-doc/v1 vocabulary in corpus-graph.mjs). */
+  const STATUS_ORDER = ["doctrine", "accepted", "active", "exploratory", "founder-source", "historical", "superseded"];
+
+  /**
+   * The one color source for the whole viewer (canvas, chips, pills, legend all
+   * read from here). founder-source is the ONLY warm hue in the node field so
+   * Graham's primary-source docs read at a glance; doctrine is the brightest.
+   */
+  const STATUS_COLOR = {
+    doctrine: "#38d5f0",
+    accepted: "#5f8fd8",
+    active: "#46c98d",
+    exploratory: "#a689f2",
+    "founder-source": "#f2b23e",
+    historical: "#4d5a70",
+    superseded: "#6b5b4e",
+  };
+  const EDGE_COLOR = { related: "#7a96be", superseded_by: "#e08a50" };
+  /** Statuses shown by default; historical + superseded live behind the toggle. */
+  const LIVING = new Set(["doctrine", "accepted", "active", "exploratory", "founder-source"]);
+
+  /** hex "#rrggbb" -> "rgba(r,g,b,a)". */
+  function hexA(hex, a) {
+    const v = parseInt(hex.slice(1), 16);
+    return `rgba(${(v >> 16) & 255},${(v >> 8) & 255},${v & 255},${a})`;
+  }
+
+  // Node model: graph node + sim state + adjacency. Seed positions come from a
+  // deterministic phyllotaxis spiral over the FULL path-sorted node list, so a
+  // node's home position is stable regardless of which membership is toggled on.
+  const GOLDEN = 2.3999632297286533;
+  const nodes = graph.nodes.map((n, i) => {
+    const sr = 10 * Math.sqrt(i);
+    return {
+      path: n.path, title: n.title, status: n.status, areas: n.areas, governs: n.governs,
+      i,
+      x: sr * Math.cos(i * GOLDEN),
+      y: sr * Math.sin(i * GOLDEN),
+      vx: 0, vy: 0,
+      deg: 0, out: [], inn: [],
+      r: 0, mass: 0,
+      active: false, matched: true, em: 1,
+    };
+  });
+  const byPath = new Map(nodes.map((n) => [n.path, n]));
+  const edges = graph.edges.map((e) => {
+    const src = byPath.get(e.from);
+    const tgt = byPath.get(e.to);
+    src.deg++; tgt.deg++;
+    src.out.push({ node: tgt, type: e.type });
+    tgt.inn.push({ node: src, type: e.type });
+    return { src, tgt, type: e.type };
+  });
+  for (const n of nodes) {
+    // Degree-scaled radius with a min floor so isolated docs stay clickable.
+    n.r = Math.min(3.2 + Math.sqrt(n.deg) * 2.2, 13);
+    n.mass = 1 + n.deg * 0.3;
+  }
+
+  // -------------------------------------------------------------------------
+  // State
+  // -------------------------------------------------------------------------
+  const state = {
+    q: "",                                   // live search term (lowercased)
+    area: "",                                // "" = all areas
+    status: Object.fromEntries(STATUS_ORDER.map((s) => [s, true])),
+    historical: false,                       // membership toggle (historical + superseded)
+    selected: null,                          // node object or null
+    neighbors: new Set(),                    // selected node's direct neighbors
+    cardTab: "details",                      // "details" | "contents" — sticky across node jumps
+    hover: null,
+    k: 1, tx: 0, ty: 0,                      // view transform (screen = world*k + t)
+  };
+  let layoutNodes = [];
+  let layoutEdges = [];
+  let dirty = true;
+
+  // -------------------------------------------------------------------------
+  // Force simulation — hand-rolled: springs + Barnes-Hut repulsion + gravity,
+  // velocity-damped, alpha-cooled to a stop. Deterministic (fixed iteration
+  // order, no randomness).
+  // -------------------------------------------------------------------------
+  const SIM = {
+    repulsion: 520,       // charge magnitude (F = repulsion·mass/d²)
+    repulsionMinD2: 64,   // d² clamp so near-overlaps don't explode
+    forceCap: 8,          // max per-interaction velocity add (px/tick)
+    theta2: 0.72,         // Barnes-Hut acceptance θ² (θ ≈ 0.85)
+    springRest: 80,       // edge rest length (px)
+    spring: 0.06,         // spring constant
+    gravity: 0.025,       // pull toward world origin
+    damping: 0.82,        // velocity retention per tick
+    alphaDecay: 0.972,    // cooling factor per tick
+    alphaMin: 0.012,      // below this the sim stops
+    reheat: 0.5,          // alpha on membership change
+    warmupMs: 650,        // synchronous pre-paint settle budget
+  };
+  const sim = { alpha: 1 };
+
+  /** Build a Barnes-Hut quadtree over the current layout nodes. */
+  function buildQuad() {
+    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    for (const n of layoutNodes) {
+      if (n.x < minX) minX = n.x;
+      if (n.y < minY) minY = n.y;
+      if (n.x > maxX) maxX = n.x;
+      if (n.y > maxY) maxY = n.y;
+    }
+    const size = Math.max(maxX - minX, maxY - minY, 1);
+    const root = { x: minX, y: minY, s: size, mass: 0, cx: 0, cy: 0, kids: null, body: null, pile: null };
+    for (const n of layoutNodes) qtInsert(root, n, 0);
+    return root;
+  }
+
+  function qtInsert(cell, n, depth) {
+    // Running center-of-mass accumulation on every cell the node passes through.
+    cell.cx = (cell.cx * cell.mass + n.x * n.mass) / (cell.mass + n.mass);
+    cell.cy = (cell.cy * cell.mass + n.y * n.mass) / (cell.mass + n.mass);
+    cell.mass += n.mass;
+    if (cell.pile) { cell.pile.push(n); return; }
+    if (!cell.kids) {
+      if (cell.body === null) { cell.body = n; return; }
+      if (depth >= 22) { cell.pile = [cell.body, n]; cell.body = null; return; }
+      const prev = cell.body;
+      cell.body = null;
+      cell.kids = [null, null, null, null];
+      qtPlace(cell, prev, depth); // prev's mass is already counted at this cell
+    }
+    qtPlace(cell, n, depth);
+  }
+
+  function qtPlace(cell, n, depth) {
+    const half = cell.s / 2;
+    const ix = n.x >= cell.x + half ? 1 : 0;
+    const iy = n.y >= cell.y + half ? 1 : 0;
+    const q = iy * 2 + ix;
+    let kid = cell.kids[q];
+    if (!kid) {
+      kid = cell.kids[q] = {
+        x: cell.x + ix * half, y: cell.y + iy * half, s: half,
+        mass: 0, cx: 0, cy: 0, kids: null, body: null, pile: null,
+      };
+    }
+    qtInsert(kid, n, depth + 1);
+  }
+
+  /** Push repulsion from (px,py,mass) onto n. */
+  function pushForce(n, px, py, mass, alpha) {
+    let dx = n.x - px;
+    let dy = n.y - py;
+    let d2 = dx * dx + dy * dy;
+    if (d2 < 1e-4) {
+      // Deterministic nudge for exact overlaps (index-derived, no randomness).
+      dx = 0.05 + (n.i % 7) * 0.01;
+      dy = -0.05 + (n.i % 5) * 0.01;
+      d2 = dx * dx + dy * dy;
+    }
+    const d2c = Math.max(d2, SIM.repulsionMinD2);
+    let mag = (SIM.repulsion * mass * alpha) / d2c;
+    if (mag > SIM.forceCap) mag = SIM.forceCap;
+    const d = Math.sqrt(d2);
+    n.vx += (dx / d) * mag;
+    n.vy += (dy / d) * mag;
+  }
+
+  function qtApply(n, cell, alpha) {
+    if (!cell || cell.mass === 0) return;
+    if (cell.kids) {
+      const dx = n.x - cell.cx;
+      const dy = n.y - cell.cy;
+      const d2 = dx * dx + dy * dy;
+      if (cell.s * cell.s < SIM.theta2 * d2) {
+        pushForce(n, cell.cx, cell.cy, cell.mass, alpha); // far enough: aggregate
+      } else {
+        for (const k of cell.kids) qtApply(n, k, alpha);
+      }
+      return;
+    }
+    if (cell.body) {
+      if (cell.body !== n) pushForce(n, cell.body.x, cell.body.y, cell.body.mass, alpha);
+      return;
+    }
+    if (cell.pile) {
+      for (const b of cell.pile) if (b !== n) pushForce(n, b.x, b.y, b.mass, alpha);
+    }
+  }
+
+  function tick() {
+    const alpha = sim.alpha;
+    const root = buildQuad();
+    for (const n of layoutNodes) {
+      qtApply(n, root, alpha);
+      // Center gravity keeps disconnected components (most of the corpus) in frame.
+      n.vx += -n.x * SIM.gravity * alpha;
+      n.vy += -n.y * SIM.gravity * alpha;
+    }
+    for (const e of layoutEdges) {
+      const dx = e.tgt.x - e.src.x;
+      const dy = e.tgt.y - e.src.y;
+      const d = Math.max(Math.sqrt(dx * dx + dy * dy), 1e-3);
+      const f = (d - SIM.springRest) * SIM.spring * alpha;
+      const ux = dx / d;
+      const uy = dy / d;
+      // Degree-biased displacement: hubs move less, leaves come to them.
+      const sum = e.src.deg + e.tgt.deg;
+      e.src.vx += ux * f * (e.tgt.deg / sum);
+      e.src.vy += uy * f * (e.tgt.deg / sum);
+      e.tgt.vx -= ux * f * (e.src.deg / sum);
+      e.tgt.vy -= uy * f * (e.src.deg / sum);
+    }
+    for (const n of layoutNodes) {
+      n.vx *= SIM.damping;
+      n.vy *= SIM.damping;
+      n.x += n.vx;
+      n.y += n.vy;
+    }
+    sim.alpha = alpha * SIM.alphaDecay < SIM.alphaMin ? 0 : alpha * SIM.alphaDecay;
+  }
+
+  // -------------------------------------------------------------------------
+  // Layout membership — the "show historical" toggle adds/removes nodes from
+  // the sim; search/status/area filters only re-emphasize (dim), never remove.
+  // -------------------------------------------------------------------------
+  function rebuildLayout(reheat) {
+    for (const n of nodes) n.active = LIVING.has(n.status) || state.historical;
+    layoutNodes = nodes.filter((n) => n.active);
+    layoutEdges = edges.filter((e) => e.src.active && e.tgt.active);
+    if (state.selected && !state.selected.active) clearSelection();
+    document.getElementById("cg-showing").textContent = "showing " + layoutNodes.length;
+    if (reheat) sim.alpha = Math.max(sim.alpha, SIM.reheat);
+    dirty = true;
+  }
+
+  // -------------------------------------------------------------------------
+  // Filters — matches highlight, non-matches dim.
+  // -------------------------------------------------------------------------
+  function filterActive() {
+    return state.q !== "" || state.area !== "" || STATUS_ORDER.some((s) => !state.status[s]);
+  }
+
+  function recomputeFilter() {
+    const q = state.q;
+    let shown = 0;
+    let hidden = 0;
+    for (const n of nodes) {
+      const okQ = q === "" || n.title.toLowerCase().includes(q) || n.path.toLowerCase().includes(q) || n.areas.some((a) => a.includes(q));
+      const okS = state.status[n.status];
+      const okA = state.area === "" || n.areas.includes(state.area);
+      n.matched = okQ && okS && okA;
+      if (n.matched) (n.active ? shown++ : hidden++);
+    }
+    const out = document.getElementById("cg-match-count");
+    if (filterActive()) {
+      out.hidden = false;
+      out.textContent = `${shown} match${shown === 1 ? "" : "es"}` + (hidden > 0 ? ` (+${hidden} historical)` : "");
+    } else {
+      out.hidden = true;
+    }
+    dirty = true;
+  }
+
+  /** Per-node emphasis: filter dim × selection dim, composed multiplicatively. */
+  function computeEmphasis() {
+    const f = filterActive();
+    const sel = state.selected;
+    for (const n of layoutNodes) {
+      let em = f && !n.matched ? 0.1 : 1;
+      if (sel) em *= n === sel || state.neighbors.has(n) ? 1 : 0.3;
+      n.em = em;
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // Canvas rendering
+  // -------------------------------------------------------------------------
+  const canvas = document.getElementById("cg-canvas");
+  const ctx = canvas.getContext("2d");
+  let dpr = 1;
+  let cw = 0;
+  let ch = 0;
+
+  function resize() {
+    dpr = window.devicePixelRatio || 1;
+    cw = canvas.clientWidth;
+    ch = canvas.clientHeight;
+    canvas.width = Math.max(1, Math.round(cw * dpr));
+    canvas.height = Math.max(1, Math.round(ch * dpr));
+    dirty = true;
+  }
+
+  function render() {
+    computeEmphasis();
+    const { k, tx, ty } = state;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, cw, ch);
+    ctx.setTransform(dpr * k, 0, 0, dpr * k, dpr * tx, dpr * ty);
+
+    // Edges first. superseded_by is dashed + arrowheaded toward the successor.
+    for (const e of layoutEdges) {
+      const em = Math.min(e.src.em, e.tgt.em);
+      const incident = state.selected && (e.src === state.selected || e.tgt === state.selected);
+      const sup = e.type === "superseded_by";
+      ctx.globalAlpha = (sup ? 0.7 : 0.5) * (incident ? 1 : em);
+      ctx.strokeStyle = EDGE_COLOR[e.type];
+      ctx.lineWidth = (incident ? 1.6 : sup ? 1.0 : 0.8) / Math.sqrt(k);
+      ctx.setLineDash(sup ? [4, 3] : []);
+      ctx.beginPath();
+      ctx.moveTo(e.src.x, e.src.y);
+      ctx.lineTo(e.tgt.x, e.tgt.y);
+      ctx.stroke();
+      if (sup) {
+        // Arrowhead just outside the successor's radius.
+        const dx = e.tgt.x - e.src.x;
+        const dy = e.tgt.y - e.src.y;
+        const d = Math.max(Math.sqrt(dx * dx + dy * dy), 1e-3);
+        const ax = e.tgt.x - (dx / d) * (e.tgt.r + 2);
+        const ay = e.tgt.y - (dy / d) * (e.tgt.r + 2);
+        const s = 4.5;
+        ctx.setLineDash([]);
+        ctx.fillStyle = EDGE_COLOR.superseded_by;
+        ctx.beginPath();
+        ctx.moveTo(ax, ay);
+        ctx.lineTo(ax - (dx / d) * s - (dy / d) * (s * 0.55), ay - (dy / d) * s + (dx / d) * (s * 0.55));
+        ctx.lineTo(ax - (dx / d) * s + (dy / d) * (s * 0.55), ay - (dy / d) * s - (dx / d) * (s * 0.55));
+        ctx.closePath();
+        ctx.fill();
+      }
+    }
+    ctx.setLineDash([]);
+
+    // Nodes: dimmed pass first so emphasized nodes paint on top.
+    for (const pass of [0, 1]) {
+      for (const n of layoutNodes) {
+        if ((n.em === 1 ? 1 : 0) !== pass) continue;
+        ctx.globalAlpha = n.em;
+        if (n.status === "founder-source") {
+          // Warm halo — the founder lane must read at a glance.
+          ctx.fillStyle = hexA(STATUS_COLOR["founder-source"], 0.16);
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.r * 2.1, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.globalAlpha = n.em;
+        }
+        ctx.fillStyle = STATUS_COLOR[n.status];
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+        ctx.fill();
+        if (n.status === "doctrine") {
+          ctx.strokeStyle = hexA(STATUS_COLOR.doctrine, 0.5);
+          ctx.lineWidth = 1.2;
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.r + 1.8, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Hover + selection rings.
+    if (state.hover && state.hover.active && state.hover !== state.selected) {
+      ctx.globalAlpha = 1;
+      ctx.strokeStyle = "rgba(230,237,246,.55)";
+      ctx.lineWidth = 1.4 / k;
+      ctx.beginPath();
+      ctx.arc(state.hover.x, state.hover.y, state.hover.r + 3 / k, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+    if (state.selected) {
+      ctx.globalAlpha = 1;
+      ctx.strokeStyle = "#e6edf6";
+      ctx.lineWidth = 1.7 / k;
+      ctx.beginPath();
+      ctx.arc(state.selected.x, state.selected.y, state.selected.r + 3.5 / k, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+
+    // Labels: constant screen size; hubs label earlier, everything labels when
+    // zoomed close; hovered + selected always. Viewport-culled.
+    const vx0 = -tx / k;
+    const vy0 = -ty / k;
+    const vx1 = (cw - tx) / k;
+    const vy1 = (ch - ty) / k;
+    ctx.font = `${11 / k}px system-ui, -apple-system, sans-serif`;
+    ctx.textBaseline = "middle";
+    for (const n of layoutNodes) {
+      const forced = n === state.hover || n === state.selected;
+      if (!forced && !(k >= 2 || k * n.r >= 11)) continue;
+      if (n.x < vx0 || n.x > vx1 || n.y < vy0 || n.y > vy1) continue;
+      if (!forced && n.em < 0.3) continue;
+      const label = n.title.length > 42 ? n.title.slice(0, 41) + "…" : n.title;
+      ctx.globalAlpha = forced ? 1 : Math.min(n.em, 0.85);
+      ctx.strokeStyle = "rgba(11,14,19,.85)";
+      ctx.lineWidth = 3 / k;
+      ctx.strokeText(label, n.x + n.r + 4 / k, n.y);
+      ctx.fillStyle = "#cfd8e3";
+      ctx.fillText(label, n.x + n.r + 4 / k, n.y);
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  function frame() {
+    if (sim.alpha > 0) {
+      tick();
+      dirty = true;
+    }
+    if (dirty) {
+      render();
+      dirty = false;
+    }
+    requestAnimationFrame(frame);
+  }
+
+  // -------------------------------------------------------------------------
+  // View helpers
+  // -------------------------------------------------------------------------
+  function fitView() {
+    if (layoutNodes.length === 0) return;
+    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    for (const n of layoutNodes) {
+      if (n.x - n.r < minX) minX = n.x - n.r;
+      if (n.y - n.r < minY) minY = n.y - n.r;
+      if (n.x + n.r > maxX) maxX = n.x + n.r;
+      if (n.y + n.r > maxY) maxY = n.y + n.r;
+    }
+    const bw = Math.max(maxX - minX, 1);
+    const bh = Math.max(maxY - minY, 1);
+    state.k = Math.min(Math.max(Math.min((cw - 80) / bw, (ch - 80) / bh), 0.06), 2.2);
+    state.tx = cw / 2 - ((minX + maxX) / 2) * state.k;
+    state.ty = ch / 2 - ((minY + maxY) / 2) * state.k;
+    dirty = true;
+  }
+
+  function centerOn(n) {
+    if (state.k < 0.9) state.k = 1.6;
+    // Center within the region the card overlay leaves visible. Measured, not
+    // assumed — the card is wider when the Contents tab is active.
+    const cardW = card.hidden ? 0 : card.getBoundingClientRect().width + 12;
+    const visibleW = cardW === 0 ? cw : Math.max(cw - cardW, cw * 0.5);
+    state.tx = visibleW / 2 - n.x * state.k;
+    state.ty = ch / 2 - n.y * state.k;
+    dirty = true;
+  }
+
+  function hitTest(sx, sy) {
+    const wx = (sx - state.tx) / state.k;
+    const wy = (sy - state.ty) / state.k;
+    const pad = 4 / state.k;
+    // Iterate backwards so later-drawn (path-later) nodes win overlap ties.
+    for (let i = layoutNodes.length - 1; i >= 0; i--) {
+      const n = layoutNodes[i];
+      const dx = wx - n.x;
+      const dy = wy - n.y;
+      const hr = n.r + pad;
+      if (dx * dx + dy * dy <= hr * hr) return n;
+    }
+    return null;
+  }
+
+  // -------------------------------------------------------------------------
+  // Node card
+  // -------------------------------------------------------------------------
+  const card = document.getElementById("cg-card");
+  const cardBody = document.getElementById("cg-card-body");
+
+  function el(tag, cls, text) {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text !== undefined) e.textContent = text;
+    return e;
+  }
+
+  function section(label) {
+    const s = el("div", "cg-section");
+    s.appendChild(el("div", "cg-section-label", label));
+    return s;
+  }
+
+  function jumpRow(node, prefix) {
+    const b = el("button", "cg-jump");
+    b.type = "button";
+    b.title = node.path;
+    const dot = el("span", "cg-dot");
+    dot.style.background = STATUS_COLOR[node.status];
+    b.appendChild(dot);
+    b.appendChild(el("span", "cg-jump-title", (prefix ? prefix + " " : "") + node.title));
+    b.addEventListener("click", () => jumpTo(node));
+    return b;
+  }
+
+  function renderCard(n) {
+    cardBody.textContent = "";
+    const pill = el("span", "cg-pill", n.status);
+    pill.style.background = hexA(STATUS_COLOR[n.status], 0.18);
+    pill.style.color = STATUS_COLOR[n.status];
+    cardBody.appendChild(pill);
+    cardBody.appendChild(el("h2", "cg-card-title", n.title));
+    cardBody.appendChild(el("code", "cg-card-path", n.path));
+
+    if (n.areas.length > 0) {
+      const s = section("areas");
+      for (const a of n.areas) {
+        const chip = el("button", "cg-area-chip", a);
+        chip.type = "button";
+        chip.addEventListener("click", () => {
+          areaSelect.value = a;
+          state.area = a;
+          recomputeFilter();
+        });
+        s.appendChild(chip);
+      }
+      cardBody.appendChild(s);
+    }
+
+    if (n.governs.length > 0) {
+      const s = section("governs");
+      for (const g of n.governs) s.appendChild(el("code", "cg-govern", g));
+      cardBody.appendChild(s);
+    }
+
+    const supOut = n.out.filter((e) => e.type === "superseded_by");
+    if (supOut.length > 0) {
+      const s = section("superseded by");
+      for (const e of supOut) s.appendChild(jumpRow(e.node, "→"));
+      cardBody.appendChild(s);
+    }
+    const supIn = n.inn.filter((e) => e.type === "superseded_by");
+    if (supIn.length > 0) {
+      const s = section("supersedes");
+      for (const e of supIn) s.appendChild(jumpRow(e.node, "←"));
+      cardBody.appendChild(s);
+    }
+
+    const relOut = n.out.filter((e) => e.type === "related");
+    if (relOut.length > 0) {
+      const s = section(`edges out (${relOut.length})`);
+      for (const e of relOut) s.appendChild(jumpRow(e.node));
+      cardBody.appendChild(s);
+    }
+    const relIn = n.inn.filter((e) => e.type === "related");
+    if (relIn.length > 0) {
+      const s = section(`edges in (${relIn.length})`);
+      for (const e of relIn) s.appendChild(jumpRow(e.node));
+      cardBody.appendChild(s);
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // Contents tab (CG-4) — the selected doc's body, lazy-loaded and rendered.
+  //
+  // Doc bodies live in the generated sibling sidecar (frontmatter pre-stripped
+  // at generation), injected as a relative <script src> on FIRST Contents open:
+  // fetch/XHR are blocked on file://, script tags are not. The Details tab
+  // needs none of this — the sidecar never loads until Contents is opened.
+  // -------------------------------------------------------------------------
+  const contentsPane = document.getElementById("cg-card-contents");
+  const tabDetails = document.getElementById("cg-tab-details");
+  const tabContents = document.getElementById("cg-tab-contents");
+  const CONTENT_SRC = "__CG_CONTENT_SRC__";
+  let contentState = "idle"; // idle → loading → ready | failed
+  const mdCache = new Map(); // path → rendered HTML (render once; long docs stay instant)
+
+  function ensureContentLoaded() {
+    if (contentState !== "idle") return;
+    contentState = "loading";
+    const s = document.createElement("script");
+    s.src = CONTENT_SRC;
+    s.onload = () => {
+      contentState =
+        window.__CORPUS_DOC_CONTENT__ && typeof window.__CORPUS_DOC_CONTENT__ === "object" ? "ready" : "failed";
+      renderContents();
+    };
+    s.onerror = () => {
+      contentState = "failed";
+      renderContents();
+    };
+    document.body.appendChild(s);
+  }
+
+  /** HTML-escape — EVERY body character passes through here before any markdown transform. */
+  function escHtml(s) {
+    return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+
+  /**
+   * Inline markdown on an already-escaped line: inline code (protected from the
+   * other transforms via placeholder tokens), links as text with the URL in a
+   * title attribute (never live), then bold and italic.
+   */
+  function mdInline(s) {
+    const codes = [];
+    s = s.replace(/`([^`\n]+)`/g, (_, c) => {
+      codes.push(c);
+      return "\x00" + (codes.length - 1) + "\x00";
+    });
+    s = s.replace(/!?\[([^\]]*)\]\(([^()\s]+)\)/g, (_, text, url) => `<span class="cg-md-link" title="${url}">${text || url}</span>`);
+    s = s.replace(/\*\*(\S(?:[^*]*\S)?)\*\*/g, "<strong>$1</strong>");
+    s = s.replace(/\*(\S(?:[^*]*\S)?)\*/g, "<em>$1</em>");
+    return s.replace(/\x00(\d+)\x00/g, (_, i) => `<code>${codes[+i]}</code>`);
+  }
+
+  /**
+   * Minimal hand-rolled markdown → HTML. Escape-first, then the small block
+   * grammar the corpus actually uses: #–#### headings (deeper clamp to h4),
+   * fenced code (verbatim mono, no highlighting), lists (indent → visual
+   * nesting), blockquotes, tables as-is in mono, hr, paragraphs. NOTE: input is
+   * escaped, so blockquote markers arrive as `&gt;`.
+   */
+  function renderMarkdown(md) {
+    const lines = escHtml(md).split("\n");
+    const out = [];
+    let para = [];
+    const flushPara = () => {
+      if (para.length > 0) {
+        out.push(`<p>${mdInline(para.join(" "))}</p>`);
+        para = [];
+      }
+    };
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      const t = line.trim();
+      if (t === "") {
+        flushPara();
+        i++;
+        continue;
+      }
+      if (t.startsWith("```")) {
+        flushPara();
+        const buf = [];
+        i++;
+        while (i < lines.length && !lines[i].trim().startsWith("```")) buf.push(lines[i++]);
+        i++; // closing fence (or EOF)
+        out.push(`<pre>${buf.join("\n")}</pre>`);
+        continue;
+      }
+      const h = t.match(/^(#{1,6})\s+(.*)$/);
+      if (h) {
+        flushPara();
+        const lvl = Math.min(h[1].length, 4);
+        out.push(`<h${lvl}>${mdInline(h[2])}</h${lvl}>`);
+        i++;
+        continue;
+      }
+      if (/^(-{3,}|\*{3,}|_{3,})$/.test(t)) {
+        flushPara();
+        out.push("<hr>");
+        i++;
+        continue;
+      }
+      if (t.startsWith("|")) {
+        flushPara();
+        const buf = [];
+        while (i < lines.length && lines[i].trim().startsWith("|")) buf.push(lines[i++].trim());
+        out.push(`<pre>${buf.join("\n")}</pre>`);
+        continue;
+      }
+      if (/^&gt;/.test(t)) {
+        flushPara();
+        const buf = [];
+        while (i < lines.length && /^&gt;/.test(lines[i].trim())) {
+          buf.push(lines[i].trim().replace(/^&gt;\s?/, ""));
+          i++;
+        }
+        out.push(`<blockquote>${mdInline(buf.join(" "))}</blockquote>`);
+        continue;
+      }
+      const li = line.match(/^(\s*)([-*+]|\d+[.)])\s+(.*)$/);
+      if (li) {
+        flushPara();
+        const ordered = /^\d/.test(li[2]);
+        const items = [];
+        while (i < lines.length) {
+          const m = lines[i].match(/^(\s*)([-*+]|\d+[.)])\s+(.*)$/);
+          if (!m) {
+            // Lazy continuation: an indented non-blank line extends the previous item.
+            if (items.length > 0 && lines[i].trim() !== "" && /^\s{2,}/.test(lines[i])) {
+              items[items.length - 1].text += " " + lines[i].trim();
+              i++;
+              continue;
+            }
+            break;
+          }
+          const depth = Math.min(Math.floor(m[1].replace(/\t/g, "  ").length / 2), 6);
+          items.push({ depth, text: m[3] });
+          i++;
+        }
+        const tag = ordered ? "ol" : "ul";
+        out.push(
+          `<${tag}>` +
+            items.map((it) => `<li${it.depth > 0 ? ` style="margin-left:${it.depth * 14}px"` : ""}>${mdInline(it.text)}</li>`).join("") +
+            `</${tag}>`,
+        );
+        continue;
+      }
+      para.push(t);
+      i++;
+    }
+    flushPara();
+    return out.join("\n");
+  }
+
+  /** Paint the Contents pane for the current selection + sidecar load state. */
+  function renderContents() {
+    const n = state.selected;
+    if (!n || state.cardTab !== "contents") return;
+    if (contentState === "idle") ensureContentLoaded(); // flips to "loading" synchronously
+    if (contentState === "loading") {
+      contentsPane.innerHTML = `<div class="cg-md-note">loading contents…</div>`;
+      return;
+    }
+    if (contentState === "failed") {
+      contentsPane.innerHTML = `<div class="cg-md-note">contents unavailable — regenerate with <code>node scripts/corpus-graph.mjs index</code></div>`;
+      return;
+    }
+    const body = window.__CORPUS_DOC_CONTENT__[n.path];
+    if (typeof body !== "string") {
+      contentsPane.innerHTML = `<div class="cg-md-note">no contents for this doc in the sidecar — regenerate with <code>node scripts/corpus-graph.mjs index</code></div>`;
+      return;
+    }
+    if (!mdCache.has(n.path)) mdCache.set(n.path, `<div class="cg-md">${renderMarkdown(body)}</div>`);
+    contentsPane.innerHTML = mdCache.get(n.path);
+    contentsPane.scrollTop = 0;
+  }
+
+  function setCardTab(tab) {
+    state.cardTab = tab;
+    tabDetails.classList.toggle("active", tab === "details");
+    tabContents.classList.toggle("active", tab === "contents");
+    tabDetails.setAttribute("aria-selected", String(tab === "details"));
+    tabContents.setAttribute("aria-selected", String(tab === "contents"));
+    cardBody.hidden = tab !== "details";
+    contentsPane.hidden = tab !== "contents";
+    card.classList.toggle("cg-card-wide", tab === "contents");
+    if (tab === "contents") renderContents();
+  }
+
+  function select(n) {
+    state.selected = n;
+    state.neighbors = new Set([...n.out, ...n.inn].map((e) => e.node));
+    renderCard(n);
+    if (state.cardTab === "contents") renderContents();
+    card.hidden = false;
+    dirty = true;
+  }
+
+  function clearSelection() {
+    state.selected = null;
+    state.neighbors = new Set();
+    card.hidden = true;
+    dirty = true;
+  }
+
+  /** Card jump: reveal the historical layer if the target lives behind the toggle. */
+  function jumpTo(n) {
+    if (!n.active) {
+      document.getElementById("cg-historical").checked = true;
+      state.historical = true;
+      rebuildLayout(true);
+      recomputeFilter();
+    }
+    select(n);
+    centerOn(n);
+  }
+
+  // -------------------------------------------------------------------------
+  // Controls
+  // -------------------------------------------------------------------------
+  const areaSelect = document.getElementById("cg-area");
+
+  function buildControls() {
+    // Status chips (filter + legend in one: dot color, name, corpus count).
+    const chips = document.getElementById("cg-status-chips");
+    for (const s of STATUS_ORDER) {
+      const count = nodes.reduce((acc, n) => acc + (n.status === s ? 1 : 0), 0);
+      const label = el("label", "cg-chip");
+      const input = document.createElement("input");
+      input.type = "checkbox";
+      input.checked = true;
+      const dot = el("span", "cg-dot");
+      dot.style.background = STATUS_COLOR[s];
+      label.appendChild(input);
+      label.appendChild(dot);
+      label.appendChild(el("span", undefined, s));
+      label.appendChild(el("span", "cg-count", String(count)));
+      input.addEventListener("change", () => {
+        state.status[s] = input.checked;
+        label.classList.toggle("off", !input.checked);
+        recomputeFilter();
+      });
+      chips.appendChild(label);
+    }
+
+    // Area filter (options from the data, alphabetical, with counts).
+    const areaCounts = new Map();
+    for (const n of nodes) for (const a of n.areas) areaCounts.set(a, (areaCounts.get(a) || 0) + 1);
+    const all = document.createElement("option");
+    all.value = "";
+    all.textContent = "all areas";
+    areaSelect.appendChild(all);
+    for (const a of [...areaCounts.keys()].sort()) {
+      const opt = document.createElement("option");
+      opt.value = a;
+      opt.textContent = `${a} (${areaCounts.get(a)})`;
+      areaSelect.appendChild(opt);
+    }
+    areaSelect.addEventListener("change", () => {
+      state.area = areaSelect.value;
+      recomputeFilter();
+    });
+
+    // Live search + the results dropdown. recomputeFilter() only dims the
+    // canvas, so a match behind the historical toggle (or off-screen) is
+    // invisible there; the dropdown makes every match reachable — click or
+    // Enter jumpTo()s, revealing the historical layer when the target lives
+    // behind it. Ranked filename-first: searching an exact doc filename is
+    // the "another thread cited this doc" recall path.
+    const searchInput = document.getElementById("cg-search");
+    const searchResults = document.getElementById("cg-search-results");
+    const SR_CAP = 12;
+    let srItems = [];
+    let srIdx = -1;
+
+    const basename = (p) => p.slice(p.lastIndexOf("/") + 1).toLowerCase();
+
+    function searchRank(n, q) {
+      const file = basename(n.path);
+      if (file === q) return 0;
+      if (file.startsWith(q)) return 1;
+      if (file.includes(q)) return 2;
+      if (n.title.toLowerCase().includes(q)) return 3;
+      if (n.path.toLowerCase().includes(q)) return 4;
+      return 5; // area match (caller only passes nodes recomputeFilter matched)
+    }
+
+    function closeSearchResults() {
+      searchResults.hidden = true;
+      searchResults.textContent = "";
+      srItems = [];
+      srIdx = -1;
+    }
+
+    function highlightSearchRow() {
+      srItems.forEach((it, i) => it.row.classList.toggle("sel", i === srIdx));
+      if (srIdx >= 0) srItems[srIdx].row.scrollIntoView({ block: "nearest" });
+    }
+
+    function pickSearchResult(n) {
+      closeSearchResults();
+      jumpTo(n);
+    }
+
+    function renderSearchResults() {
+      const q = state.q;
+      if (q === "") return closeSearchResults();
+      const hits = nodes
+        .filter((n) => n.matched)
+        .map((n) => [searchRank(n, q), n])
+        .sort((a, b) => a[0] - b[0] || (a[1].path < b[1].path ? -1 : 1));
+      searchResults.textContent = "";
+      srItems = [];
+      srIdx = hits.length > 0 ? 0 : -1;
+      for (const [, n] of hits.slice(0, SR_CAP)) {
+        const row = el("div", "cg-sr-row");
+        row.setAttribute("role", "option");
+        const dot = el("span", "cg-sr-dot");
+        dot.style.background = STATUS_COLOR[n.status];
+        const text = el("div", "cg-sr-text");
+        text.appendChild(el("div", "cg-sr-title", n.title));
+        text.appendChild(el("div", "cg-sr-path", n.path));
+        row.appendChild(dot);
+        row.appendChild(text);
+        if (!n.active) row.appendChild(el("span", "cg-sr-tag", "historical"));
+        // mousedown, not click — it fires before the input's blur closes the panel
+        row.addEventListener("mousedown", (ev) => {
+          ev.preventDefault();
+          pickSearchResult(n);
+        });
+        searchResults.appendChild(row);
+        srItems.push({ row, node: n });
+      }
+      if (hits.length > SR_CAP) searchResults.appendChild(el("div", "cg-sr-more", `+${hits.length - SR_CAP} more — keep typing`));
+      if (hits.length === 0) searchResults.appendChild(el("div", "cg-sr-more", "no matches"));
+      highlightSearchRow();
+      searchResults.hidden = false;
+    }
+
+    searchInput.addEventListener("input", () => {
+      state.q = searchInput.value.trim().toLowerCase();
+      recomputeFilter();
+      renderSearchResults();
+    });
+    searchInput.addEventListener("focus", renderSearchResults);
+    searchInput.addEventListener("blur", closeSearchResults);
+    searchInput.addEventListener("keydown", (e) => {
+      if (searchResults.hidden) return;
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        e.preventDefault();
+        if (srItems.length === 0) return;
+        srIdx = (srIdx + (e.key === "ArrowDown" ? 1 : -1) + srItems.length) % srItems.length;
+        highlightSearchRow();
+      } else if (e.key === "Enter") {
+        if (srIdx >= 0) {
+          e.preventDefault();
+          pickSearchResult(srItems[srIdx].node);
+        }
+      } else if (e.key === "Escape") {
+        e.stopPropagation(); // the window-level Escape handler clears the card selection
+        closeSearchResults();
+      }
+    });
+
+    // Historical membership toggle.
+    const historicalCount = nodes.reduce((acc, n) => acc + (LIVING.has(n.status) ? 0 : 1), 0);
+    document.getElementById("cg-historical-count").textContent = `+${historicalCount}`;
+    document.getElementById("cg-historical").addEventListener("change", (e) => {
+      state.historical = e.target.checked;
+      rebuildLayout(true);
+      recomputeFilter();
+    });
+
+    document.getElementById("cg-fit").addEventListener("click", fitView);
+    document.getElementById("cg-card-close").addEventListener("click", clearSelection);
+    tabDetails.addEventListener("click", () => setCardTab("details"));
+    tabContents.addEventListener("click", () => setCardTab("contents"));
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") clearSelection();
+    });
+
+    // Edge legend swatches read from the one color source.
+    document.getElementById("cg-legend-related").style.borderTopColor = EDGE_COLOR.related;
+    document.getElementById("cg-legend-superseded").style.borderTopColor = EDGE_COLOR.superseded_by;
+  }
+
+  // -------------------------------------------------------------------------
+  // Pointer interaction: drag pans, click selects, wheel zooms at the cursor.
+  // -------------------------------------------------------------------------
+  function bindPointer() {
+    let down = null;
+    canvas.addEventListener("pointerdown", (e) => {
+      down = { sx: e.clientX, sy: e.clientY, tx: state.tx, ty: state.ty, moved: false };
+      canvas.setPointerCapture(e.pointerId);
+    });
+    canvas.addEventListener("pointermove", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      if (down) {
+        const dx = e.clientX - down.sx;
+        const dy = e.clientY - down.sy;
+        if (!down.moved && dx * dx + dy * dy > 9) down.moved = true;
+        if (down.moved) {
+          state.tx = down.tx + dx;
+          state.ty = down.ty + dy;
+          canvas.style.cursor = "grabbing";
+          dirty = true;
+        }
+        return;
+      }
+      const hit = hitTest(e.clientX - rect.left, e.clientY - rect.top);
+      if (hit !== state.hover) {
+        state.hover = hit;
+        canvas.style.cursor = hit ? "pointer" : "";
+        dirty = true;
+      }
+    });
+    canvas.addEventListener("pointerup", (e) => {
+      const wasDrag = down && down.moved;
+      down = null;
+      canvas.style.cursor = state.hover ? "pointer" : "";
+      if (wasDrag) return;
+      const rect = canvas.getBoundingClientRect();
+      const hit = hitTest(e.clientX - rect.left, e.clientY - rect.top);
+      if (hit) select(hit);
+      else clearSelection();
+    });
+    canvas.addEventListener("pointercancel", () => {
+      down = null;
+      canvas.style.cursor = "";
+    });
+    canvas.addEventListener(
+      "wheel",
+      (e) => {
+        e.preventDefault();
+        const rect = canvas.getBoundingClientRect();
+        const sx = e.clientX - rect.left;
+        const sy = e.clientY - rect.top;
+        const wx = (sx - state.tx) / state.k;
+        const wy = (sy - state.ty) / state.k;
+        const k = Math.min(Math.max(state.k * Math.exp(-e.deltaY * 0.0016), 0.06), 10);
+        state.k = k;
+        state.tx = sx - wx * k;
+        state.ty = sy - wy * k;
+        dirty = true;
+      },
+      { passive: false },
+    );
+  }
+
+  // -------------------------------------------------------------------------
+  // Boot: build UI, settle the layout synchronously within a small budget so
+  // the first paint is already laid out, then fit and animate the remaining
+  // settle. A `#<repo-relative-doc-path>` hash deep-links to that node's card
+  // (revealing the historical layer first when the target lives behind the
+  // toggle) — usable headlessly and from a file:// URL.
+  // -------------------------------------------------------------------------
+  buildControls();
+  bindPointer();
+  window.addEventListener("resize", resize);
+  resize();
+  rebuildLayout(false);
+  recomputeFilter();
+  const initialNode = byPath.get(decodeURIComponent((location.hash || "").slice(1))) || null;
+  if (initialNode && !initialNode.active) {
+    document.getElementById("cg-historical").checked = true;
+    state.historical = true;
+    rebuildLayout(false);
+    recomputeFilter();
+  }
+  sim.alpha = 1;
+  const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const budget = reduced ? 2500 : SIM.warmupMs;
+  const floor = reduced ? 0 : 0.06;
+  const t0 = performance.now();
+  while (sim.alpha > floor && performance.now() - t0 < budget) tick();
+  if (initialNode) {
+    select(initialNode);
+    centerOn(initialNode);
+  } else {
+    fitView();
+  }
+  requestAnimationFrame(frame);
+  console.log(`corpus graph viewer — ${nodes.length} docs, ${edges.length} edges, showing ${layoutNodes.length}`);
+})();
+</script>
+</body>
+</html>

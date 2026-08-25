@@ -1,0 +1,19 @@
+# Created: 2026-08-25
+# Extend deliberately (closeout passes), keep tags concept-level, never per-doc.
+# One kebab-case tag per line; lines starting with # are comments.
+# `node scripts/corpus-graph.mjs check` fails any doc using a tag not listed here.
+# corpus-graph area vocabulary — THE one place area tags live (CORPUS-GRAPH-01).
+agents
+auth
+backend
+code
+content-style
+context-system
+frontend
+planning
+process-governance
+research
+risk-gates
+security
+system-architecture
+technology-stack

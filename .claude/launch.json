@@ -1,0 +1,25 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "web",
+      "runtimeExecutable": "corepack",
+      "runtimeArgs": ["pnpm", "--filter", "@project-road-runner/web", "exec", "ng", "serve", "--host", "0.0.0.0", "--port", "4310"],
+      "port": 4310,
+      "autoPort": false
+    },
+    {
+      "name": "mockups",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8137", "--directory", "docs/design/"],
+      "port": 8137
+    },
+    {
+      "name": "corpus",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8138", "--directory", "docs/context"],
+      "port": 8138,
+      "url": "http://localhost:8138"
+    }
+  ]
+}
