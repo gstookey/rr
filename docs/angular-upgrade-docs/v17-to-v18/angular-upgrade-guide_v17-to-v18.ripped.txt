@@ -1,0 +1,131 @@
+# Raw text copy and pasted of webpage: https://angular.dev/update-guide?v=17.0-18.0&l=3
+
+Update Guide
+Select the options that match your update
+Angular versions
+From v. 
+17.0
+expand_more
+To v. 
+18.0
+expand_more
+Application complexity
+
+
+
+Shows all the information we have about this update.
+
+Other dependencies
+
+I use ngUpgrade to combine AngularJS & Angular
+
+I use Angular Material
+
+I use Windows
+Guide to update your Angular application v17.0 -> v18.0 for advanced applications
+Before you update
+You don't need to do anything before moving between these versions.
+Update to the new version
+Review these changes and perform the actions to update your application.
+
+Make sure that you are using a supported version of node.js before you upgrade your application. Angular v18 supports node.js versions: v18.19.0 and newer
+
+Basic
+
+In the application's project directory, run ng update @angular/core@18 @angular/cli@18 to update your application to Angular v18.
+
+Basic
+
+Run ng update @angular/material@18.
+
+Basic
+
+Update TypeScript to versions 5.4 or newer.
+
+Basic
+
+Replace async from @angular/core with waitForAsync.
+
+Advanced
+
+Remove calls to matchesElement because it's now not part of AnimationDriver.
+
+Advanced
+
+Import StateKey and TransferState from @angular/core instead of @angular/platform-browser.
+
+Medium
+
+Use includeRequestsWithAuthHeaders: true in withHttpTransferCache to opt-in of caching for HTTP requests that require authorization.
+
+Medium
+
+Update the application to remove isPlatformWorkerUi and isPlatformWorkerApp since they were part of platform WebWorker which is now not part of Angular.
+
+Advanced
+
+Tests may run additional rounds of change detection to fully reflect test state in the DOM. As a last resort, revert to the old behavior by adding provideZoneChangeDetection({ignoreChangesOutsideZone: true}) to the TestBed providers.
+
+Medium
+
+Remove expressions that write to properties in templates that use [(ngModel)]
+
+Medium
+
+Remove calls to Testability methods increasePendingRequestCount, decreasePendingRequestCount, and getPendingRequestCount. This information is tracked by ZoneJS.
+
+Advanced
+
+Move any environment providers that should be available to routed components from the component that defines the RouterOutlet to the providers of bootstrapApplication or the Route config.
+
+Medium
+
+When a guard returns a UrlTree as a redirect, the redirecting navigation will now use replaceUrl if the initial navigation was also using the replaceUrl option. If you prefer the previous behavior, configure the redirect using the new NavigationBehaviorOptions by returning a RedirectCommand with the desired options instead of UrlTree.
+
+Advanced
+
+Remove dependencies of RESOURCE_CACHE_PROVIDER since it's no longer part of the Angular runtime.
+
+Advanced
+
+In @angular/platform-server now pathname is always suffixed with / and the default ports for http: and https: respectively are 80 and 443.
+
+Advanced
+
+Provide an absolute url instead of using useAbsoluteUrl and baseUrl from PlatformConfig.
+
+Medium
+
+Replace the usage of platformDynamicServer with platformServer. Also, add an import @angular/compiler.
+
+Advanced
+
+Remove all imports of ServerTransferStateModule from your application. It is no longer needed.
+
+Medium
+
+Route.redirectTo can now include a function in addition to a string. Any code which reads Route objects directly and expects redirectTo to be a string may need to update to account for functions as well.
+
+Advanced
+
+Route guards and resolvers can now return a RedirectCommand object in addition to a UrlTree and boolean. Any code which reads Route objects directly and expects only boolean or UrlTree may need to update to account for RedirectCommand as well.
+
+Advanced
+
+For any components using OnPush change detection, ensure they are properly marked dirty to enable host binding updates.
+
+Medium
+
+Be aware that newly created views or views marked for check and reattached during change detection are now guaranteed to be refreshed in that same change detection cycle.
+
+Advanced
+
+After aligning the semantics of ComponentFixture.whenStable and ApplicationRef.isStable, your tests may wait longer when using whenStable.
+
+Advanced
+
+You may experience tests failures if you have tests that rely on change detection execution order when using ComponentFixture.autoDetect because it now executes change detection for fixtures within ApplicationRef.tick. For example, this will cause test fixture to refresh before any dialogs that it creates whereas this may have been the other way around in the past.
+
+Advanced
+After you update
+You don't need to do anything after moving between these versions.

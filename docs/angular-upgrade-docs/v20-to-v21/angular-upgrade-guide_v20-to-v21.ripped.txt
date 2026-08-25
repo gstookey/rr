@@ -1,0 +1,123 @@
+# Raw text copy and pasted of webpage: https://angular.dev/update-guide?v=20.0-21.0&l=3
+
+Update Guide
+Select the options that match your update
+Angular versions
+From v. 
+20.0
+expand_more
+To v. 
+21.0
+expand_more
+Application complexity
+
+
+
+Shows all the information we have about this update.
+
+Other dependencies
+
+I use ngUpgrade to combine AngularJS & Angular
+
+I use Angular Material
+
+I use Windows
+Guide to update your Angular application v20.0 -> v21.0 for advanced applications
+Before you update
+You don't need to do anything before moving between these versions.
+Update to the new version
+Review these changes and perform the actions to update your application.
+
+In the application's project directory, run ng update @angular/core@21 @angular/cli@21 to update your application to Angular v21.
+
+Basic
+
+If you use SafeResourceUrl values with audio[src] bindings, be aware that audio[src] is no longer sanitized in Angular v21. Existing uses of bypassSecurityTrustResourceUrl may therefore produce the SafeValue must use [property]=binding message. Remove the unnecessary sanitization and bind the URL directly instead.
+
+Advanced
+
+Run ng update @angular/material@21.
+
+Basic
+
+CDK overlays can now render in the browser's native top layer, causing elements that previously appeared above Material overlays via z-index to render beneath them. You can restore the previous behavior by providing OVERLAY_DEFAULT_CONFIG from @angular/cdk/overlay with the value {usePopover: false}.
+
+Medium
+
+When using signal inputs with Angular custom elements, update property access to be direct (elementRef.newInput) instead of a function call (elementRef.newInput()) to align with the behavior of decorator-based inputs.
+
+Advanced
+
+If using provideZoneChangeDetection without the ZoneJS polyfill, note that the internal scheduler is now always enabled. Review your app's timing as this may alter behavior that previously relied on the disabled scheduler.
+
+Advanced
+
+Zone-based applications should add provideZoneChangeDetection() to your application's root providers. For standalone apps, add it to the bootstrapApplication call. For NgModule-based apps, add it to your root AppModule's providers array. An automated migration should handle this.
+
+Basic
+
+Remove the 'interpolation' property from your @Component decorators. Angular now only supports the default '{{' and '}}' interpolation markers.
+
+Advanced
+
+Remove the 'moduleId' property from your @Component decorators. This property was used for resolving relative URLs for templates and styles, a functionality now handled by modern build tools.
+
+Medium
+
+The ngComponentOutletContent input has been strictly typed from any[][] to Node[][]. Update the value you pass to this input to match the new Node[][] | undefined type.
+
+Medium
+
+Host binding type checking is now enabled by default and may surface new build errors. Resolve any new type errors or set typeCheckHostBindings: false in your tsconfig.json's angularCompilerOptions.
+
+Basic
+
+Update your project's TypeScript version to 5.9 or later. The ng update command will typically handle this automatically.
+
+Basic
+
+The ApplicationConfig export from @angular/platform-browser has been removed. Update your imports to use ApplicationConfig from @angular/core instead.
+
+Medium
+
+The ignoreChangesOutsideZone option for configuring ZoneJS is no longer available. Remove this option from your ZoneJS configuration in your polyfills file.
+
+Advanced
+
+Update tests using provideZoneChangeDetection as TestBed now rethrows errors. Fix the underlying issues in your tests or, as a last resort, configure TestBed with rethrowApplicationErrors: false to disable this behavior.
+
+Medium
+
+Update tests that rely on router navigation timing. Navigations may now take additional microtasks to complete. Ensure navigations are fully completed before making assertions, for example by using fakeAsync with flush or waiting for promises/observables to resolve.
+
+Medium
+
+Tests using TestBed might be affected by the new fake PlatformLocation. If your tests fail, provide the old MockPlatformLocation from @angular/common/testing via {provide: PlatformLocation, useClass: MockPlatformLocation} in your TestBed configuration.
+
+Medium
+
+The UpgradeAdapter has been removed. Update your hybrid Angular/AngularJS application to use the static APIs from the @angular/upgrade/static package instead.
+
+Advanced
+
+The new standalone formArray directive might conflict with existing custom directives or inputs. Rename any custom directives named FormArray or inputs named formArray on elements that also use reactive forms to resolve the conflict.
+
+Medium
+
+The deprecated NgModuleFactory has been removed. Update any code that uses NgModuleFactory to use NgModule directly, which is common in dynamic component loading scenarios.
+
+Advanced
+
+The emitDeclarationOnly TypeScript compiler option is not supported. Please disable it in your tsconfig.json file to allow the Angular compiler to function correctly.
+
+Advanced
+
+The lastSuccessfulNavigation property on the Router has been converted to a signal. To get its value, you now need to invoke it as a function: router.lastSuccessfulNavigation().
+
+Medium
+
+Starting @angular/ssr 21.1.5, if your application uses SSR with CommonEngine, set the allowedHosts option in your server.ts (for example, new CommonEngine({allowedHosts: ['localhost', '*.yourdomain.com']})). Without it, SSR silently falls back to client-side rendering. This requirement comes from security advisory GHSA-x288-3778-4hhx (also backported to 20.3.17 and 19.2.21).
+
+Medium
+After you update
+You don't need to do anything after moving between these versions.

@@ -1,0 +1,103 @@
+# Raw text copy and pasted of webpage: https://angular.dev/update-guide?v=18.0-19.0&l=3
+
+Update Guide
+Select the options that match your update
+Angular versions
+From v. 
+18.0
+expand_more
+To v. 
+19.0
+expand_more
+Application complexity
+
+
+
+Shows all the information we have about this update.
+
+Other dependencies
+
+I use ngUpgrade to combine AngularJS & Angular
+
+I use Angular Material
+
+I use Windows
+Guide to update your Angular application v18.0 -> v19.0 for advanced applications
+Before you update
+You don't need to do anything before moving between these versions.
+Update to the new version
+Review these changes and perform the actions to update your application.
+
+In the application's project directory, run ng update @angular/core@19 @angular/cli@19 to update your application to Angular v19.
+
+Basic
+
+Run ng update @angular/material@19.
+
+Basic
+
+Angular directives, components and pipes are now standalone by default. Specify "standalone: false" for declarations that are currently declared in an NgModule. The Angular CLI will automatically update your code to reflect that.
+
+Basic
+
+Remove this. prefix when accessing template reference variables. For example, refactor <div #foo></div>{{ this.foo }} to <div #foo></div>{{ foo }}
+
+Medium
+
+Replace usages of BrowserModule.withServerTransition() with injection of the APP_ID token to set the application id instead.
+
+Basic
+
+The factories property in KeyValueDiffers has been removed.
+
+Advanced
+
+In angular.json, replace the "name" option with "project" for the @angular/localize builder.
+
+Medium
+
+Rename ExperimentalPendingTasks to PendingTasks.
+
+Advanced
+
+Update tests that relied on the Promise timing of effects to use await whenStable() or call .detectChanges() to trigger effects. For effects triggered during change detection, ensure they don't depend on the application being fully rendered or consider using afterRenderEffect(). Tests using faked clocks may need to fast-forward/flush the clock.
+
+Medium
+
+Upgrade to TypeScript version 5.5 or later.
+
+Basic
+
+Update tests using fakeAsync that rely on specific timing of zone coalescing and scheduling when a change happens outside the Angular zone (hybrid mode scheduling) as these timers are now affected by tick and flush.
+
+Advanced
+
+When using createComponent API and not passing content for the first ng-content, provide document.createTextNode('') as a projectableNode to prevent rendering the default fallback content.
+
+Medium
+
+Update tests that rely on specific timing or ordering of change detection around custom elements, as the timing may have changed due to the switch to the hybrid scheduler.
+
+Advanced
+
+Migrate from using Router.errorHandler to withNavigationErrorHandler from provideRouter or errorHandler from RouterModule.forRoot.
+
+Basic
+
+Update tests to handle errors thrown during ApplicationRef.tick by either triggering change detection synchronously or rejecting outstanding ComponentFixture.whenStable promises.
+
+Advanced
+
+Update usages of Resolve interface to include RedirectCommand in its return type.
+
+Medium
+
+fakeAsync will flush pending timers by default. For tests that require the previous behavior, explicitly pass {flush: false} in the options parameter.
+
+Advanced
+
+Remove the allowSignalWrites option from effect() calls. The option is deprecated and no longer required, as signal writes inside effects are allowed by default.
+
+Medium
+After you update
+You don't need to do anything after moving between these versions.
