@@ -1,0 +1,12 @@
+Project Road Runner (RR) Description Source Document:
+
+I'm standing up this project within Claude Code to have you help me prepare for and execute standing up a brand new software development program & project on a fully isolated network. This preparation process will occur over the next several weeks / months, and will include (but isn't limited to):
+
+- developing a preparation plan / stories for the preparation phase of standing up the new project on the iso network.
+- developing an execution plan / stories for the execution phase of standing up the new project on the iso network.
+- generating a set of preparatory set-up guides and 'how-to' documents for guidance on how to stand up the various systems, technologies, environments, etc. which I will need to set up (largely from scratch) on the iso network.
+- collecting and generating documentation on the various software packages (at the proper versions) for the tech stack we will be setting up on iso network.
+- preparing the various package / file bundles for compression to port up to our iso network.
+- developing / collecting necessary documentation for conducting major version upgrades on legacy software on the isolated network (specifically, an Angular upgrade encompassing 10+ Angular applications currently at Angular v17, needing to go to, at minimum, v19, and if we can handle the extra effort, all the way up to v22).
+- during and after porting up the necessary bundles, helping me trouble shoot issues during the new project's stand-up execution phase when my access to you will be isolated to this open / "dirty-internet" environment.
+- generate scaffold code to use as source material / templates for standing up various parts of the software, mostly in typescript / Angular, with some Python and Java as well. 
