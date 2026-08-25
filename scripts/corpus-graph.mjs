@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * corpus-graph.mjs — the TrAIdit in-repo corpus graph (CORPUS-GRAPH-01, slices CG-1 through CG-4).
+ * corpus-graph.mjs — the Project Road Runner (RR) in-repo corpus graph (adopted from TrAIdit 2026-08-25) (CORPUS-GRAPH-01, slices CG-1 through CG-4).
  *
  * Created: 2026-07-17 | Last updated: 2026-07-17 (CG-4: the doc-contents sidecar
  * JS as a fourth generated `index` artifact, lazy-loaded by the viewer's Contents

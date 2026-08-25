@@ -16,7 +16,7 @@ Task/Agent tool by its `name`. These mirror the Project Road Runner fleet roles 
 | Reviewer | `verin-reviewer.md` | sonnet |
 | Tester | `vera-tester.md` | sonnet |
 | Fast UI Repairer | `ember-fast-ui-repairer.md` | sonnet |
-| UI Designer | `cadence-Cadence.md` | opus |
+| UI Designer | `cadence-ui-designer.md` | opus |
 | Context Librarian | `rin-librarian.md` | fable |
 
 Adjust per-role in the frontmatter as needed.

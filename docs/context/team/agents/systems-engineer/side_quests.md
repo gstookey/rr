@@ -3,7 +3,7 @@ schema: corpus-doc/v1
 status: accepted
 title: Context Enrichment Side-Quests
 areas: [agent-fleet]
-updated: 2026-08-2025
+updated: 2026-08-25
 ---
 
 # Context Enrichment Side-Quests

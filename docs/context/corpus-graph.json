@@ -1,0 +1,1053 @@
+{
+  "schema": "corpus-graph/v1",
+  "nodes": [
+    {
+      "path": "docs/CURRENT_STATE.md",
+      "title": "CURRENT_STATE — Project Road Runner",
+      "status": "active",
+      "areas": [
+        "context-system",
+        "planning"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/README.md",
+      "title": "RR Context System",
+      "status": "active",
+      "areas": [
+        "context-system"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/canonical/README.md",
+      "title": "Canonical — Synthesized Current Truth",
+      "status": "active",
+      "areas": [
+        "context-system"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/canonical/context_system.md",
+      "title": "Context System — How This Corpus Is Organized",
+      "status": "active",
+      "areas": [
+        "context-system",
+        "process-governance"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/canonical/current_priorities.md",
+      "title": "Current Priorities",
+      "status": "active",
+      "areas": [
+        "planning",
+        "context-system"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/canonical/isolated_network_constraints.md",
+      "title": "Isolated Network Constraints — Known and Unknown",
+      "status": "active",
+      "areas": [
+        "isolated-network",
+        "dev-environment",
+        "security",
+        "planning"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/canonical/project_overview.md",
+      "title": "Project Overview — Project Road Runner",
+      "status": "active",
+      "areas": [
+        "planning",
+        "isolated-network",
+        "dev-environment",
+        "brand-design"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/canonical/technology_stack.md",
+      "title": "Technology Stack — Intended (Design Direction)",
+      "status": "active",
+      "areas": [
+        "technology-stack",
+        "system-architecture",
+        "monorepo",
+        "frontend",
+        "backend"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/evidence/README.md",
+      "title": "Evidence",
+      "status": "active",
+      "areas": [
+        "context-system"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/evidence/images/README.md",
+      "title": "Evidence — Images",
+      "status": "active",
+      "areas": [
+        "context-system",
+        "brand-design"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/evidence/raw/README.md",
+      "title": "Evidence — Raw",
+      "status": "active",
+      "areas": [
+        "context-system"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/evidence/raw/source_register.md",
+      "title": "Source Register",
+      "status": "active",
+      "areas": [
+        "context-system"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/governance/README.md",
+      "title": "Governance",
+      "status": "active",
+      "areas": [
+        "process-governance",
+        "context-system"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/governance/contradictions/register.md",
+      "title": "Contradiction Register",
+      "status": "active",
+      "areas": [
+        "process-governance",
+        "context-system"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/governance/decisions/ADR-001-context-system-adopted-from-traidit.md",
+      "title": "ADR-001 — Adopt the TrAIdit context system and agent fleet for RR",
+      "status": "accepted",
+      "areas": [
+        "process-governance",
+        "context-system",
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/governance/decisions/ADR-002-merge-gate.md",
+      "title": "ADR-002 — Merging to main is Graham's click",
+      "status": "accepted",
+      "areas": [
+        "process-governance",
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/governance/decisions/ADR-003-board-is-status-docs-are-doctrine.md",
+      "title": "ADR-003 — The board is status; the docs are doctrine",
+      "status": "accepted",
+      "areas": [
+        "process-governance",
+        "planning"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/governance/decisions/ADR-004-package-manager-npm.md",
+      "title": "ADR-004 — Package manager and workspace tooling for RR (proposed: npm)",
+      "status": "accepted",
+      "areas": [
+        "technology-stack",
+        "monorepo",
+        "isolated-network",
+        "dev-environment"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/governance/decisions/README.md",
+      "title": "Decision Records (ADRs)",
+      "status": "active",
+      "areas": [
+        "process-governance"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/governance/meta/README.md",
+      "title": "Governance Meta",
+      "status": "active",
+      "areas": [
+        "process-governance",
+        "context-system"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/governance/meta/assistant_role.md",
+      "title": "Assistant Role (pointer)",
+      "status": "active",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/governance/meta/context_librarian_role.md",
+      "title": "Context Librarian Role (pointer)",
+      "status": "active",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/governance/meta/rr_doc_overview.md",
+      "title": "Doc Hierarchy Overview — Which Doc Wins",
+      "status": "active",
+      "areas": [
+        "process-governance",
+        "context-system"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/index.md",
+      "title": "RR Context Wiki Index",
+      "status": "active",
+      "areas": [
+        "context-system"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/operations/README.md",
+      "title": "Operations",
+      "status": "active",
+      "areas": [
+        "process-governance",
+        "context-system"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/operations/feedback/README.md",
+      "title": "Feedback",
+      "status": "active",
+      "areas": [
+        "process-governance"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/operations/feedback/raw/user_feedback_backlog.md",
+      "title": "User Feedback Backlog (raw)",
+      "status": "founder-source",
+      "areas": [
+        "process-governance"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/operations/milestones/README.md",
+      "title": "Milestones",
+      "status": "active",
+      "areas": [
+        "planning",
+        "process-governance"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/operations/milestones/rr_milestone_ledger.md",
+      "title": "RR Milestone Ledger",
+      "status": "active",
+      "areas": [
+        "planning"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/operations/reviews/README.md",
+      "title": "Reviews",
+      "status": "active",
+      "areas": [
+        "process-governance"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/operations/sessions/2026-08-25_repo_initialization_plan.md",
+      "title": "Repo Initialization Plan — 2026-08-25 (Axium)",
+      "status": "active",
+      "areas": [
+        "context-system",
+        "planning",
+        "process-governance"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/operations/sessions/session_rollup_checklist.md",
+      "title": "Session Rollup Checklist",
+      "status": "active",
+      "areas": [
+        "context-system",
+        "process-governance"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/operations/user-workflow/README.md",
+      "title": "User Workflow (Graham's operating loop)",
+      "status": "active",
+      "areas": [
+        "process-governance"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/platform/README.md",
+      "title": "Platform — Reusable Program Concepts",
+      "status": "active",
+      "areas": [
+        "context-system",
+        "process-governance"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/README.md",
+      "title": "Team",
+      "status": "active",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/README.md",
+      "title": "Agents — Repo-Side Fleet",
+      "status": "active",
+      "areas": [
+        "agent-fleet",
+        "process-governance"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/agent_handoff_contract.md",
+      "title": "Agent Handoff Contract",
+      "status": "accepted",
+      "areas": [
+        "process-governance",
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/agent_operating_contract.md",
+      "title": "Agent Operating Contract",
+      "status": "accepted",
+      "areas": [
+        "process-governance",
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/collaboration_model.md",
+      "title": "Agent Collaboration Model",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet",
+        "process-governance"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/context-librarian/README.md",
+      "title": "Context Librarian",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/context-librarian/context_librarian_checklist.md",
+      "title": "Context Librarian Checklist",
+      "status": "accepted",
+      "areas": [
+        "context-system",
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/context-librarian/context_librarian_role.md",
+      "title": "Context Librarian Local Role Stub",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/context-librarian/context_maintenance_workflow.md",
+      "title": "Context Maintenance Workflow (Librarian)",
+      "status": "accepted",
+      "areas": [
+        "context-system",
+        "process-governance",
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/context-librarian/identity_addendum.md",
+      "title": "Identity Addendum - Rin Librarian",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/context-librarian/soul.md",
+      "title": "Soul — Context Librarian",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/orchestration_model.md",
+      "title": "Agent Orchestration Model",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet",
+        "process-governance"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/planning_surface_workflow.md",
+      "title": "Planning Surface Workflow (GitHub Projects)",
+      "status": "accepted",
+      "areas": [
+        "planning",
+        "process-governance",
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/software-engineers/01_coder/README.md",
+      "title": "Coder",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/software-engineers/01_coder/angular_frontend_engineering_policy.md",
+      "title": "Angular Frontend Engineering Policy",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/software-engineers/01_coder/coder_role.md",
+      "title": "Coder Agent",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/software-engineers/01_coder/coder_workflow.md",
+      "title": "Coder Workflow",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/software-engineers/01_coder/identity_addendum.md",
+      "title": "Identity Addendum - Marlow Coder",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/software-engineers/01_coder/soul.md",
+      "title": "Soul — Coder",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/software-engineers/02_reviewer/README.md",
+      "title": "Reviewer",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/software-engineers/02_reviewer/identity_addendum.md",
+      "title": "Identity Addendum - Verin Reviewer",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/software-engineers/02_reviewer/reviewer_role.md",
+      "title": "Reviewer Agent",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/software-engineers/02_reviewer/reviewer_workflow.md",
+      "title": "Reviewer Workflow",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/software-engineers/02_reviewer/soul.md",
+      "title": "Soul — Reviewer",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/software-engineers/03_tester/README.md",
+      "title": "Tester",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/software-engineers/03_tester/identity_addendum.md",
+      "title": "Identity Addendum - Vera Tester",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/software-engineers/03_tester/soul.md",
+      "title": "Soul — Tester",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/software-engineers/03_tester/tester_role.md",
+      "title": "Tester Agent",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/software-engineers/03_tester/tester_workflow.md",
+      "title": "Tester Workflow",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/software-engineers/05_fast-ui-repairer/README.md",
+      "title": "Fast UI Repairer",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/software-engineers/05_fast-ui-repairer/angular_fast_repair_policy.md",
+      "title": "Angular Fast Repair Policy",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/software-engineers/05_fast-ui-repairer/fast_ui_repairer_role.md",
+      "title": "Fast UI Repairer Role",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/software-engineers/05_fast-ui-repairer/fast_ui_repairer_workflow.md",
+      "title": "Fast UI Repairer Workflow",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/software-engineers/05_fast-ui-repairer/identity_addendum.md",
+      "title": "Identity Addendum - Ember Fast UI Repairer",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/software-engineers/05_fast-ui-repairer/prompt_templates.md",
+      "title": "Fast UI Repairer Prompt Templates",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/software-engineers/05_fast-ui-repairer/scope_and_stop_conditions.md",
+      "title": "Scope And Stop Conditions",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/software-engineers/05_fast-ui-repairer/soul.md",
+      "title": "Soul - Fast UI Repairer",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/software-engineers/README.md",
+      "title": "Software Engineers",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/systems-engineer/README.md",
+      "title": "Axium",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/systems-engineer/axium_role.md",
+      "title": "Axium — Lead Platform Systems Engineer",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/systems-engineer/axium_workflow.md",
+      "title": "Axium Workflow",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/systems-engineer/identity_addendum.md",
+      "title": "Identity Addendum - Axium Lead Systems Engineer",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/systems-engineer/prompt_generation_standards.md",
+      "title": "Axium Prompt Generation Standards",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/systems-engineer/prompt_templates.md",
+      "title": "Axium Prompt Templates",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/systems-engineer/side_quests.md",
+      "title": "Context Enrichment Side-Quests",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/systems-engineer/soul.md",
+      "title": "Soul — Axium",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/ui-designer/README.md",
+      "title": "UI Designer",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/ui-designer/identity_addendum.md",
+      "title": "Identity Addendum - Cadence",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/ui-designer/prompt_templates.md",
+      "title": "UI Designer Prompt Templates",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/ui-designer/soul.md",
+      "title": "Soul — UI Designer",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/ui-designer/ui_designer_role.md",
+      "title": "UI Designer Role",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/team/agents/ui-designer/ui_designer_workflow.md",
+      "title": "UI Designer Workflow",
+      "status": "accepted",
+      "areas": [
+        "agent-fleet"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/README.md",
+      "title": "Design",
+      "status": "active",
+      "areas": [
+        "brand-design",
+        "planning"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/brand/README.md",
+      "title": "Brand — Visual Identity",
+      "status": "accepted",
+      "areas": [
+        "brand-design",
+        "frontend",
+        "content-style"
+      ],
+      "governs": []
+    }
+  ],
+  "edges": [
+    {
+      "from": "docs/CURRENT_STATE.md",
+      "to": "docs/context/canonical/current_priorities.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/CURRENT_STATE.md",
+      "to": "docs/context/index.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/README.md",
+      "to": "docs/context/canonical/context_system.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/README.md",
+      "to": "docs/context/index.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/canonical/context_system.md",
+      "to": "docs/context/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/canonical/context_system.md",
+      "to": "docs/context/governance/decisions/ADR-001-context-system-adopted-from-traidit.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/canonical/current_priorities.md",
+      "to": "docs/CURRENT_STATE.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/canonical/current_priorities.md",
+      "to": "docs/context/canonical/isolated_network_constraints.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/canonical/current_priorities.md",
+      "to": "docs/context/governance/contradictions/register.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/canonical/isolated_network_constraints.md",
+      "to": "docs/context/canonical/current_priorities.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/canonical/isolated_network_constraints.md",
+      "to": "docs/context/canonical/technology_stack.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/canonical/project_overview.md",
+      "to": "docs/context/canonical/isolated_network_constraints.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/canonical/project_overview.md",
+      "to": "docs/context/canonical/technology_stack.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/canonical/project_overview.md",
+      "to": "docs/design/brand/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/canonical/technology_stack.md",
+      "to": "docs/context/canonical/isolated_network_constraints.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/canonical/technology_stack.md",
+      "to": "docs/context/evidence/raw/source_register.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/canonical/technology_stack.md",
+      "to": "docs/context/governance/contradictions/register.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/evidence/raw/README.md",
+      "to": "docs/context/evidence/raw/source_register.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/governance/decisions/ADR-001-context-system-adopted-from-traidit.md",
+      "to": "docs/context/canonical/context_system.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/governance/decisions/ADR-002-merge-gate.md",
+      "to": "docs/context/team/agents/agent_operating_contract.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/governance/decisions/ADR-003-board-is-status-docs-are-doctrine.md",
+      "to": "docs/context/team/agents/planning_surface_workflow.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/governance/decisions/ADR-004-package-manager-npm.md",
+      "to": "docs/context/canonical/isolated_network_constraints.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/governance/decisions/ADR-004-package-manager-npm.md",
+      "to": "docs/context/canonical/technology_stack.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/governance/decisions/ADR-004-package-manager-npm.md",
+      "to": "docs/context/governance/contradictions/register.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/governance/meta/assistant_role.md",
+      "to": "docs/context/team/agents/systems-engineer/axium_role.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/governance/meta/context_librarian_role.md",
+      "to": "docs/context/team/agents/context-librarian/context_librarian_role.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/operations/milestones/README.md",
+      "to": "docs/context/operations/milestones/rr_milestone_ledger.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/operations/sessions/2026-08-25_repo_initialization_plan.md",
+      "to": "docs/CURRENT_STATE.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/operations/sessions/2026-08-25_repo_initialization_plan.md",
+      "to": "docs/context/canonical/current_priorities.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/operations/sessions/session_rollup_checklist.md",
+      "to": "docs/context/team/agents/context-librarian/context_maintenance_workflow.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/operations/user-workflow/README.md",
+      "to": "docs/context/operations/sessions/session_rollup_checklist.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/team/agents/README.md",
+      "to": "docs/context/team/agents/agent_operating_contract.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/team/agents/README.md",
+      "to": "docs/context/team/agents/orchestration_model.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/team/agents/agent_handoff_contract.md",
+      "to": "docs/context/team/agents/agent_operating_contract.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/team/agents/agent_operating_contract.md",
+      "to": "docs/context/team/agents/planning_surface_workflow.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/team/agents/context-librarian/context_librarian_checklist.md",
+      "to": "docs/context/team/agents/context-librarian/context_maintenance_workflow.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/team/agents/context-librarian/context_maintenance_workflow.md",
+      "to": "docs/context/team/agents/context-librarian/context_librarian_checklist.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/team/agents/planning_surface_workflow.md",
+      "to": "docs/context/governance/decisions/ADR-003-board-is-status-docs-are-doctrine.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/team/agents/planning_surface_workflow.md",
+      "to": "docs/context/team/agents/agent_operating_contract.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/README.md",
+      "to": "docs/design/brand/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/brand/README.md",
+      "to": "docs/context/canonical/technology_stack.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/brand/README.md",
+      "to": "docs/context/governance/contradictions/register.md",
+      "type": "related"
+    }
+  ]
+}

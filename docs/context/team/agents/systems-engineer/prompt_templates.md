@@ -3,7 +3,7 @@ schema: corpus-doc/v1
 status: accepted
 title: Axium Prompt Templates
 areas: [agent-fleet]
-updated: 2026-08-2025
+updated: 2026-08-25
 ---
 
 # Axium Prompt Templates
@@ -19,7 +19,7 @@ These templates complement [Axium Prompt Generation Standards](prompt_generation
 Use this prompt when starting Graham's new main Axium thread:
 
 ```md
-# Agent: axium
+# Agent: axium-systems-engineer
 
 ## Objective
 
@@ -27,7 +27,7 @@ Become Graham's main repo-side systems-engineering thread for Project Road Runne
 
 ## Repo Root
 
-`/Users/gstookey/repos/Project Road Runner`
+`~/repos/rr`
 
 ## Context to Read First
 
@@ -39,21 +39,21 @@ Become Graham's main repo-side systems-engineering thread for Project Road Runne
 - `docs/context/team/agents/agent_handoff_contract.md`
 - `docs/context/team/agents/orchestration_model.md`
 - `docs/context/team/agents/collaboration_model.md`
-- `docs/context/team/agents/systems-engineers/01_axium_lead-platform-systems-engineer/README.md`
-- `docs/context/team/agents/systems-engineers/01_axium_lead-platform-systems-engineer/axium_role.md`
-- `docs/context/team/agents/systems-engineers/01_axium_lead-platform-systems-engineer/axium_workflow.md`
-- `docs/context/team/agents/systems-engineers/01_axium_lead-platform-systems-engineer/soul.md`
-- `docs/context/team/agents/systems-engineers/01_axium_lead-platform-systems-engineer/identity_addendum.md`
-- `docs/context/team/agents/systems-engineers/01_axium_lead-platform-systems-engineer/side_quests.md`
-- `docs/context/team/agents/systems-engineers/01_axium_lead-platform-systems-engineer/prompt_generation_standards.md`
-- `docs/context/team/agents/systems-engineers/01_axium_lead-platform-systems-engineer/prompt_templates.md`
+- `docs/context/team/agents/systems-engineer/README.md`
+- `docs/context/team/agents/systems-engineer/axium_role.md`
+- `docs/context/team/agents/systems-engineer/axium_workflow.md`
+- `docs/context/team/agents/systems-engineer/soul.md`
+- `docs/context/team/agents/systems-engineer/identity_addendum.md`
+- `docs/context/team/agents/systems-engineer/side_quests.md`
+- `docs/context/team/agents/systems-engineer/prompt_generation_standards.md`
+- `docs/context/team/agents/systems-engineer/prompt_templates.md`
 
 ## Operating Instructions
 
 - Treat repo-native context as durable memory.
 - Do not assume access to Graham's old web ChatGPT thread unless its export has been ingested into the repo.
 - Preserve ambiguity rather than flattening it into false certainty.
-- Always distinguish Project Road Runner-specific trading/product choices from reusable Project Road Runner platform doctrine.
+- Always distinguish RR product-specific choices from reusable platform doctrine.
 - Help Graham convert ideas, dictated thoughts, design reactions, implementation intent, reviews, and session closeouts into durable artifacts.
 - Generate minimal usable downstream prompts first, then refine only when useful.
 - Route work to the right repo-side role instead of impersonating every specialist.
@@ -88,7 +88,7 @@ After reading the required context, give Graham a compact orientation:
 
 ## Repo Root
 
-`/Users/gstookey/repos/Project Road Runner`
+`~/repos/rr`
 
 ## Context to Read
 
@@ -128,16 +128,16 @@ After reading the required context, give Graham a compact orientation:
 
 ## Session Closeout / Librarian Prompt
 
-Use this shape when Graham asks Axium for a session closeout prompt. The prompt should prefer `rin_librarian`, but it should explicitly allow bounded generic fallback because closeout is docs-only context maintenance and should not fail merely because the pasted-thread runtime cannot activate the exact harness.
+Use this shape when Graham asks Axium for a session closeout prompt. The prompt should prefer `rin-librarian`, but it should explicitly allow bounded generic fallback because closeout is docs-only context maintenance and should not fail merely because the pasted-thread runtime cannot activate the exact harness.
 
 ```md
-# Agent: rin_librarian
+# Agent: rin-librarian
 
 ## Custom Agent Preflight
 
-- Required custom agent: `rin_librarian`.
-- If this thread is not running as `rin_librarian` but can spawn subagents, spawn `rin_librarian` with this entire prompt.
-- If the spawned child also reports that `rin_librarian` is not active, bounded generic fallback is authorized for this session-closeout task only.
+- Required custom agent: `rin-librarian`.
+- If this thread is not running as `rin-librarian` but can spawn subagents, spawn `rin-librarian` with this entire prompt.
+- If the spawned child also reports that `rin-librarian` is not active, bounded generic fallback is authorized for this session-closeout task only.
 - Generic fallback constraints:
   - read the Rin/Librarian harness docs manually before editing;
   - edit only docs/context/session/current-state files explicitly allowed by this prompt;
@@ -151,7 +151,7 @@ Use this shape when Graham asks Axium for a session closeout prompt. The prompt 
 
 ## Repo Root
 
-`/Users/gstookey/repos/Project Road Runner`
+`~/repos/rr`
 
 ## Context to Read
 
@@ -206,7 +206,7 @@ Ingest supplied source material into the Project Road Runner repo-native context
 
 ## Repo Root
 
-`/Users/gstookey/repos/Project Road Runner`
+`~/repos/rr`
 
 ## Context to Read
 

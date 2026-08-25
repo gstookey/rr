@@ -1,3 +1,5 @@
+**EXAMPLE FILE — copied from TrAIdit as a reference for how a mature `index.md` looks. Not RR doctrine; paths inside do not exist here. (banner added 2026-08-25 so the corpus graph does not parse its frontmatter)**
+
 ---
 schema: corpus-doc/v1
 status: active

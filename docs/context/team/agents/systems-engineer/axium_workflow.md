@@ -3,7 +3,7 @@ schema: corpus-doc/v1
 status: accepted
 title: Axium Workflow
 areas: [agent-fleet]
-updated: 2026-08-2025
+updated: 2026-08-25
 ---
 
 # Axium Workflow
@@ -18,15 +18,15 @@ Before task work, read:
 
 - [Axium Role](axium_role.md)
 - [Axium Soul](soul.md)
-- [Agent Operating Contract](../../agent_operating_contract.md)
-- [Agent Handoff Contract](../../agent_handoff_contract.md)
-- [Orchestration Model](../../orchestration_model.md)
-- [Current State](../../../../../CURRENT_STATE.md)
-- [Current Priorities](../../../../canonical/current_priorities.md)
+- [Agent Operating Contract](../agent_operating_contract.md)
+- [Agent Handoff Contract](../agent_handoff_contract.md)
+- [Orchestration Model](../orchestration_model.md)
+- [Current State](../../../../CURRENT_STATE.md)
+- [Current Priorities](../../../canonical/current_priorities.md)
 
 ## Workflow
 
-1. Identify whether the work is Project Road Runner-specific, Project Road Runner-level, or both.
+1. Identify whether the work is RR-product-specific, reusable-platform-level, or both.
 2. Ground in current implementation truth and canonical context.
 3. Separate product direction, design intent, implementation truth, and future scope.
 4. Choose the right downstream lane: Cadence, Coder, Reviewer, Tester, or Context Librarian.

@@ -3,7 +3,7 @@ schema: corpus-doc/v1
 status: accepted
 title: Coder Workflow
 areas: [agent-fleet]
-updated: 2026-08-2025
+updated: 2026-08-25
 ---
 
 # Coder Workflow
@@ -29,7 +29,7 @@ For web tasks, also inspect:
 
 - `apps/web/package.json`
 - `apps/web/angular.json`
-- `pnpm-lock.yaml` only enough to verify installed versions when needed
+- `package-lock.json` only enough to verify installed versions when needed
 - nearby Angular components/templates/styles/specs relevant to the task
 
 ## Workflow

@@ -3,7 +3,7 @@ schema: corpus-doc/v1
 status: accepted
 title: Fast UI Repairer Prompt Templates
 areas: [agent-fleet]
-updated: 2026-08-2025
+updated: 2026-08-25
 ---
 
 # Fast UI Repairer Prompt Templates

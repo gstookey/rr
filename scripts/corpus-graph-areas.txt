@@ -17,3 +17,9 @@ risk-gates
 security
 system-architecture
 technology-stack
+# Added 2026-08-25 (RR initialization, Axium): fleet/role docs + RR planning concepts
+agent-fleet
+brand-design
+dev-environment
+isolated-network
+monorepo

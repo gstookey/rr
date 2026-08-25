@@ -3,7 +3,7 @@ schema: corpus-doc/v1
 status: accepted
 title: Agent Collaboration Model
 areas: [agent-fleet, process-governance]
-updated: 2026-08-2025
+updated: 2026-08-25
 ---
 
 # Collaboration Model
@@ -51,7 +51,7 @@ Owns:
 - durable shared memory
 - project truth outside chat memory
 - milestone and decision traceability
-- reusable knowledge for Project Road Runner and later Project Road Runner
+- reusable knowledge for RR and any later sibling project
 
 ## Operating loop
 1. Human raises ideas, constraints, goals, or feedback.
@@ -83,6 +83,6 @@ This collaboration model should eventually become a productized pattern inside P
 - human governance role
 
 ## Related pages
-- [Axium Assistant Role](../../governance/meta/assistant_role.md)
+- [Axium Role](systems-engineer/axium_role.md)
 - [Context System](../../canonical/context_system.md)
 - [Current Priorities](../../canonical/current_priorities.md)

@@ -47,7 +47,7 @@ const FIXTURE_AREAS = "# fixture area vocabulary\nlab\n";
  * `docs` maps a `docs/context/…` relative path to full file text.
  */
 function runTool(subcommand, docs) {
-  const root = mkdtempSync(path.join(tmpdir(), "traidit-corpus-claims-"));
+  const root = mkdtempSync(path.join(tmpdir(), "rr-corpus-claims-"));
   try {
     mkdirSync(path.join(root, "scripts"), { recursive: true });
     mkdirSync(path.join(root, "docs", "context"), { recursive: true });

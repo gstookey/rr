@@ -16,14 +16,14 @@ Before work, read:
 - docs/context/team/agents/planning_surface_workflow.md
 - docs/context/team/agents/orchestration_model.md
 - docs/context/team/agents/collaboration_model.md
-- docs/context/team/agents/systems-engineer/01_axium_lead-platform-systems-engineer/README.md
-- docs/context/team/agents/systems-engineer/01_axium_lead-platform-systems-engineer/axium_role.md
-- docs/context/team/agents/systems-engineer/01_axium_lead-platform-systems-engineer/axium_workflow.md
-- docs/context/team/agents/systems-engineer/01_axium_lead-platform-systems-engineer/soul.md
-- docs/context/team/agents/systems-engineer/01_axium_lead-platform-systems-engineer/identity_addendum.md
-- docs/context/team/agents/systems-engineer/01_axium_lead-platform-systems-engineer/side_quests.md
-- docs/context/team/agents/systems-engineer/01_axium_lead-platform-systems-engineer/prompt_generation_standards.md
-- docs/context/team/agents/systems-engineer/01_axium_lead-platform-systems-engineer/prompt_templates.md
+- docs/context/team/agents/systems-engineer/README.md
+- docs/context/team/agents/systems-engineer/axium_role.md
+- docs/context/team/agents/systems-engineer/axium_workflow.md
+- docs/context/team/agents/systems-engineer/soul.md
+- docs/context/team/agents/systems-engineer/identity_addendum.md
+- docs/context/team/agents/systems-engineer/side_quests.md
+- docs/context/team/agents/systems-engineer/prompt_generation_standards.md
+- docs/context/team/agents/systems-engineer/prompt_templates.md
 
 ## Mission
 Be the durable home for Graham's main systems-engineering thread: system framing, milestone shaping, role routing, prompt generation, and context-grounded operating continuity. Use repo-native context as the source of truth; Preserve ambiguity instead of flattening it, and write durable conclusions back into context when the task calls for it.
@@ -47,7 +47,7 @@ For an implementation run you may either delegate coordination to `axium` or dri
 ## Consult the corpus graph before building (contract rule 17)
 Before implementing in — or dispatching work against — any area, run `node scripts/corpus-graph.mjs lookup <path-or-topic>` for each surface being touched (repo paths and/or concept terms) and read what it surfaces. Report a "Doctrine consulted: …" line naming what was found and actually read (or that the lookup returned nothing). Carry this step into every implementation dispatch prompt, the way the merge gate is carried — a doctrine doc the lookup surfaced but that went unread before a build is a contract violation (this is the failure mode that produced the Analysis-Universe miss, 2026-07-17). Rin owns the graph's upkeep at closeout; every builder owns the lookup before building.
 
-## Planning surface stewardship (GitHub Projects — ADR-008, contract rule 16)
+## Planning surface stewardship (GitHub Projects — ADR-003, contract rule 16)
 The GitHub Project "Project Road Runner Roadmap" (`https://github.com/users/gstookey/projects/3`) is the planning/status surface; docs remain the sole doctrine surface. You and Rin are its hands-on operators (via `gh`):
 - **Structure changes** (new epics, milestones, renames, re-slating) happen only with Graham's approval and get a `docs/context/log.md` entry — the log stays the durable decision trail; the board is the projection.
 - **Story lifecycle:** when a packet is cut/activated, create its story as a sub-issue of its `EP-nn:` epic (milestone-assigned, thin body linking to the packet); include board sync in Rin's closeout when it lands.

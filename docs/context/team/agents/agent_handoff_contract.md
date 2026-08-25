@@ -4,7 +4,7 @@ status: accepted
 title: Agent Handoff Contract
 areas: [process-governance, agent-fleet]
 related: ["docs/context/team/agents/agent_operating_contract.md"]
-updated: 2026-08-2025
+updated: 2026-08-25
 ---
 
 # Agent Handoff Contract

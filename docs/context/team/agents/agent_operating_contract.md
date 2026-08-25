@@ -4,7 +4,7 @@ status: accepted
 title: Agent Operating Contract
 areas: [process-governance, agent-fleet]
 related: ["docs/context/team/agents/planning_surface_workflow.md"]
-updated: 2026-08-2025
+updated: 2026-08-25
 ---
 
 # Agent Operating Contract
@@ -135,7 +135,7 @@ Failure mode prevented: unreviewed changes reaching `main` (occurred 2026-07-02:
 
 ### 16. The Board Is Status; The Docs Are Doctrine
 
-The GitHub Project "Project Road Runner Roadmap" (`https://github.com/users/gstookey/projects/3`) is Project Road Runner's planning/status surface (ADR-008): milestones = convergence targets, epics = workstreams (`epic`-labeled issues, `EP-nn:` prefix), stories = packets (sub-issues, cut when work is activated). Board items stay **thin** — title, value line, status, priority, size, milestone, and a link to the controlling doc. Never write scope text, boundaries, or acceptance criteria onto the board, and never treat board text as doctrine; when the board and the docs disagree, the docs win and the disagreement is surfaced (contradiction register if durable). Board hygiene: when a packet is activated its story is created/moved to In Progress; when a packet lands its story closes in the same closeout pass that updates the log/CURRENT_STATE. Board manipulation confers no authority: activating, reordering, or closing task-queue items still requires explicit Graham approval, and closing a story is a *record* of a Graham-gated closeout, not a decision.
+The GitHub Project "Project Road Runner Roadmap" (`https://github.com/users/gstookey/projects/3`) is Project Road Runner's planning/status surface (ADR-003): milestones = convergence targets, epics = workstreams (`epic`-labeled issues, `EP-nn:` prefix), stories = packets (sub-issues, cut when work is activated). Board items stay **thin** — title, value line, status, priority, size, milestone, and a link to the controlling doc. Never write scope text, boundaries, or acceptance criteria onto the board, and never treat board text as doctrine; when the board and the docs disagree, the docs win and the disagreement is surfaced (contradiction register if durable). Board hygiene: when a packet is activated its story is created/moved to In Progress; when a packet lands its story closes in the same closeout pass that updates the log/CURRENT_STATE. Board manipulation confers no authority: activating, reordering, or closing task-queue items still requires explicit Graham approval, and closing a story is a *record* of a Graham-gated closeout, not a decision.
 
 Failure mode prevented: a second source of truth drifting from doctrine, and planning-surface edits masquerading as scope or activation authority.
 

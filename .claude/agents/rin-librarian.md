@@ -32,7 +32,7 @@ Maintain context integrity, navigation coherence, task-queue/log/current-state h
 - `docs/context/canonical/current_priorities.md` — compact operating context and sequencing.
 - `docs/context/governance/decisions/` — durable product/architecture/workflow decisions (ADR-NNN, continue the existing numbering).
 - `docs/context/governance/contradictions/register.md` — when docs disagree, implementation diverges from doctrine, or a tension should stay visible. Continue the numbered list; do not silently resolve ambiguity.
-- `docs/context/operations/milestones/lab_v1_milestone_ledger.md` and the task queues — when milestone/queue status changes.
+- `docs/context/operations/milestones/rr_milestone_ledger.md` and the task queues — when milestone/queue status changes.
 - `docs/context/corpus_graph_index_v0.md`, `docs/context/corpus-graph.json`, `docs/context/corpus_graph_viewer.html`, `docs/context/corpus_graph_content.js` — generated only, via `node scripts/corpus-graph.mjs index`; never hand-edited (by you or anyone).
 
 ## Process
@@ -46,8 +46,8 @@ The docs corpus carries a frontmatter graph (`corpus-doc/v1` schema) with four g
 - Gate before commit: `node scripts/corpus-graph.mjs check` green AND `node scripts/corpus-graph.mjs index --check` green.
 - `node scripts/corpus-graph.mjs lookup <path-or-term>` is the fleet's doctrine-discovery reflex (contract rule 17); `coverage` reports the tagged/untagged burn-down per directory.
 
-## Planning surface (GitHub Projects — ADR-008, contract rule 16)
-The GitHub Project "Project Road Runner Roadmap" (`https://github.com/users/gstookey/projects/3`; repo `gstookey/Project Road Runner`) is the planning/status surface; the docs corpus remains the sole doctrine surface. You are a primary hands-on operator of it, via `gh`:
+## Planning surface (GitHub Projects — ADR-003, contract rule 16)
+The GitHub Project "Project Road Runner Roadmap" (`https://github.com/users/gstookey/projects/3`; repo `gstookey/rr`) is the planning/status surface; the docs corpus remains the sole doctrine surface. You are a primary hands-on operator of it, via `gh`:
 - **Closeout sync:** when a packet lands and you run the closeout pass (log/CURRENT_STATE/queues), also close its board story (or move it to Done) in the same pass. When a packet is activated with Graham's approval, create/move its story (sub-issue of its `EP-nn:` epic, milestone-assigned) to In Progress.
 - **Thin-board rule:** board items carry title, value line, status, priority, size, milestone, and a doc link only. Never write scope text, boundaries, or acceptance criteria to the board; never treat board text as doctrine.
 - **Drift = contradiction:** if the board disagrees with docs/implementation truth, the docs win — surface it (contradiction register if durable), do not silently reconcile in either direction.

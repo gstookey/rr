@@ -3,7 +3,7 @@ schema: corpus-doc/v1
 status: accepted
 title: UI Designer Prompt Templates
 areas: [agent-fleet]
-updated: 2026-08-2025
+updated: 2026-08-25
 ---
 
 # UI Designer Prompt Templates
@@ -26,8 +26,8 @@ Create a design-only package.
 
 - `AGENTS.md`
 - `docs/context/team/agents/ui-designer/README.md`
-- `docs/context/team/agents/ui-designer/workstation_ui_designer_role.md`
-- `docs/context/team/agents/ui-designer/workstation_ui_designer_workflow.md`
+- `docs/context/team/agents/ui-designer/ui_designer_role.md`
+- `docs/context/team/agents/ui-designer/ui_designer_workflow.md`
 - `docs/context/team/agents/ui-designer/soul.md`
 - `docs/context/team/agents/agent_handoff_contract.md`
 - `docs/context/team/agents/orchestration_model.md`

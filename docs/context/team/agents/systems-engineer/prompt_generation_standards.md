@@ -3,7 +3,7 @@ schema: corpus-doc/v1
 status: accepted
 title: Axium Prompt Generation Standards
 areas: [agent-fleet]
-updated: 2026-08-2025
+updated: 2026-08-25
 ---
 
 # Axium Prompt Generation Standards
@@ -14,7 +14,7 @@ Define the standard Axium must follow when generating prompts for downstream age
 
 Prompts are executable coordination artifacts. A bad prompt can cause code drift, context drift, scope creep, or false system assumptions.
 
-These standards should be read with the repo-side [Agent Operating Contract](../../agent_operating_contract.md), especially the rule that prompt-generation agents must return a minimal usable prompt first and use a short timebox before optional refinement.
+These standards should be read with the repo-side [Agent Operating Contract](../agent_operating_contract.md), especially the rule that prompt-generation agents must return a minimal usable prompt first and use a short timebox before optional refinement.
 
 ---
 
@@ -34,13 +34,13 @@ For docs-only context maintenance and session closeout prompts, Axium should avo
 
 Current custom-agent ids include:
 
-- `marlow_coder` for Marlow / Coder
-- `verin_reviewer` for Verin / Reviewer
-- `vera_tester` for Vera / Tester
-- `rin_librarian` for Rin / Context Librarian
-- `cadence_wda` for Cadence / Cadence
-- `ember_fast_ui_repairer` for Ember / Fast UI Repairer
-- `axium` for Axium / main systems-engineering thread
+- `marlow-coder` for Marlow / Coder
+- `verin-reviewer` for Verin / Reviewer
+- `vera-tester` for Vera / Tester
+- `rin-librarian` for Rin / Context Librarian
+- `cadence-ui-designer` for Cadence / UI Designer
+- `ember-fast-ui-repairer` for Ember / Fast UI Repairer
+- `axium-systems-engineer` for Axium / main systems-engineering thread
 
 ---
 
@@ -83,7 +83,7 @@ Classify the prompt as one of:
 Before writing the prompt, confirm current paths using:
 
 - `docs/context/index.md`
-- `docs/current_docs_file_tree.txt` if available
+- `current_file_tree.txt` (repo root, from `scripts/snapshot-file-tree.sh`) if available
 - relevant folder READMEs
 - `docs/CURRENT_STATE.md`
 
@@ -107,13 +107,13 @@ Every prompt must state what the receiving agent may read and write.
 Examples:
 
 - Librarian may write under `docs/context/`
-- Axium may write under `docs/design/v2/`
+- Axium may write under `docs/design/packets/`
 - Coder may write implementation files named in the task
 - Reviewer should generally report findings and avoid broad rewrites
 - Tester should generate tests and reports according to assigned scope
 - DevOps should avoid product behavior changes
 
-For session closeout prompts, the authority boundary should explicitly say whether bounded generic fallback is allowed if `rin_librarian` cannot activate. When allowed, it must be limited to context/session docs and must preserve the same validation and handoff expectations.
+For session closeout prompts, the authority boundary should explicitly say whether bounded generic fallback is allowed if `rin-librarian` cannot activate. When allowed, it must be limited to context/session docs and must preserve the same validation and handoff expectations.
 
 ---
 
@@ -154,7 +154,7 @@ Use this structure for downstream agent prompts:
 
 ## Repo Root
 
-`/Users/gstookey/repos/Project Road Runner`
+`~/repos/rr`
 
 ## Context to Read
 

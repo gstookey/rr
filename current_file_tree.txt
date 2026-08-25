@@ -1,0 +1,243 @@
+File tree as of Tue Aug 25 20:39:37 UTC 2026
+.
+|-- AGENTS.md
+|-- README.md
+|-- current_file_tree.txt
+|-- docs
+|   |-- CURRENT_STATE.md
+|   |-- angular-upgrade-docs
+|   |   |-- full_v17-to-v22
+|   |   |   `-- angular-upgrade-guide_v17-to-v22.ripped.txt
+|   |   |-- v17-to-v18
+|   |   |   `-- angular-upgrade-guide_v17-to-v18.ripped.txt
+|   |   |-- v18-to-v19
+|   |   |   `-- angular-upgrade-guide_v18-to-v19.ripped.txt
+|   |   |-- v19-to-v20
+|   |   |   `-- angular-upgrade-guide_v19-to-v20.ripped.txt
+|   |   |-- v20-to-v21
+|   |   |   `-- angular-upgrade-guide_v20-to-v21.ripped.txt
+|   |   `-- v21-to-v22
+|   |       `-- angular-upgrade-guide_v21-to-v22.ripped.txt
+|   |-- context
+|   |   |-- README.md
+|   |   |-- bootstrap
+|   |   |   `-- START_HERE.md
+|   |   |-- canonical
+|   |   |   |-- README.md
+|   |   |   |-- context_system.md
+|   |   |   |-- current_priorities.md
+|   |   |   |-- isolated_network_constraints.md
+|   |   |   |-- project_overview.md
+|   |   |   `-- technology_stack.md
+|   |   |-- corpus-graph.json
+|   |   |-- corpus_graph_content.js
+|   |   |-- corpus_graph_index_v0.md
+|   |   |-- corpus_graph_viewer.html
+|   |   |-- evidence
+|   |   |   |-- README.md
+|   |   |   |-- images
+|   |   |   |   `-- README.md
+|   |   |   `-- raw
+|   |   |       |-- README.md
+|   |   |       |-- project-road-runner-description.txt
+|   |   |       `-- source_register.md
+|   |   |-- governance
+|   |   |   |-- README.md
+|   |   |   |-- contradictions
+|   |   |   |   `-- register.md
+|   |   |   |-- decisions
+|   |   |   |   |-- ADR-001-context-system-adopted-from-traidit.md
+|   |   |   |   |-- ADR-002-merge-gate.md
+|   |   |   |   |-- ADR-003-board-is-status-docs-are-doctrine.md
+|   |   |   |   |-- ADR-004-package-manager-npm.md
+|   |   |   |   `-- README.md
+|   |   |   `-- meta
+|   |   |       |-- README.md
+|   |   |       |-- assistant_role.md
+|   |   |       |-- context_librarian_role.md
+|   |   |       `-- rr_doc_overview.md
+|   |   |-- index.md
+|   |   |-- log.md
+|   |   |-- operations
+|   |   |   |-- README.md
+|   |   |   |-- feedback
+|   |   |   |   |-- README.md
+|   |   |   |   `-- raw
+|   |   |   |       `-- user_feedback_backlog.md
+|   |   |   |-- milestones
+|   |   |   |   |-- README.md
+|   |   |   |   `-- rr_milestone_ledger.md
+|   |   |   |-- reviews
+|   |   |   |   `-- README.md
+|   |   |   |-- sessions
+|   |   |   |   |-- 2026-08-25_repo_initialization_plan.md
+|   |   |   |   |-- SESSION_LOG.md
+|   |   |   |   `-- session_rollup_checklist.md
+|   |   |   `-- user-workflow
+|   |   |       `-- README.md
+|   |   |-- platform
+|   |   |   `-- README.md
+|   |   `-- team
+|   |       |-- README.md
+|   |       `-- agents
+|   |           |-- README.md
+|   |           |-- agent_handoff_contract.md
+|   |           |-- agent_operating_contract.md
+|   |           |-- collaboration_model.md
+|   |           |-- context-librarian
+|   |           |   |-- README.md
+|   |           |   |-- context_librarian_checklist.md
+|   |           |   |-- context_librarian_role.md
+|   |           |   |-- context_maintenance_workflow.md
+|   |           |   |-- identity_addendum.md
+|   |           |   `-- soul.md
+|   |           |-- orchestration_model.md
+|   |           |-- planning_surface_workflow.md
+|   |           |-- software-engineers
+|   |           |   |-- 01_coder
+|   |           |   |   |-- README.md
+|   |           |   |   |-- angular_frontend_engineering_policy.md
+|   |           |   |   |-- coder_role.md
+|   |           |   |   |-- coder_workflow.md
+|   |           |   |   |-- identity_addendum.md
+|   |           |   |   `-- soul.md
+|   |           |   |-- 02_reviewer
+|   |           |   |   |-- README.md
+|   |           |   |   |-- identity_addendum.md
+|   |           |   |   |-- reviewer_role.md
+|   |           |   |   |-- reviewer_workflow.md
+|   |           |   |   `-- soul.md
+|   |           |   |-- 03_tester
+|   |           |   |   |-- README.md
+|   |           |   |   |-- identity_addendum.md
+|   |           |   |   |-- soul.md
+|   |           |   |   |-- tester_role.md
+|   |           |   |   `-- tester_workflow.md
+|   |           |   |-- 05_fast-ui-repairer
+|   |           |   |   |-- README.md
+|   |           |   |   |-- angular_fast_repair_policy.md
+|   |           |   |   |-- fast_ui_repairer_role.md
+|   |           |   |   |-- fast_ui_repairer_workflow.md
+|   |           |   |   |-- identity_addendum.md
+|   |           |   |   |-- prompt_templates.md
+|   |           |   |   |-- scope_and_stop_conditions.md
+|   |           |   |   `-- soul.md
+|   |           |   `-- README.md
+|   |           |-- systems-engineer
+|   |           |   |-- README.md
+|   |           |   |-- axium_role.md
+|   |           |   |-- axium_workflow.md
+|   |           |   |-- identity_addendum.md
+|   |           |   |-- prompt_generation_standards.md
+|   |           |   |-- prompt_templates.md
+|   |           |   |-- side_quests.md
+|   |           |   `-- soul.md
+|   |           `-- ui-designer
+|   |               |-- README.md
+|   |               |-- identity_addendum.md
+|   |               |-- prompt_templates.md
+|   |               |-- soul.md
+|   |               |-- ui_designer_role.md
+|   |               `-- ui_designer_workflow.md
+|   |-- context.root-files.example
+|   |   |-- README.example.md
+|   |   |-- corpus-graph.example.json
+|   |   |-- corpus_graph_content.example.js
+|   |   |-- corpus_graph_index_v0.example.md
+|   |   |-- corpus_graph_viewer.example.html
+|   |   |-- index.example.md
+|   |   `-- log.example.md
+|   |-- design
+|   |   |-- README.md
+|   |   |-- brand
+|   |   |   `-- README.md
+|   |   |-- mockups
+|   |   `-- packets
+|   `-- source-documents
+|       `-- monorepo-set-up-docs
+|           |-- angular-application-stand-up-docs
+|           |   |-- config-docs
+|           |   |   `-- example-config-files.md
+|           |   |-- styling
+|           |   |   |-- astro-uxds-how-to-add-custom-branding-styling.md
+|           |   |   |-- astro-uxds-mockup-and-wireframing-tools.md
+|           |   |   `-- project-rr-style-guide.md
+|           |   `-- vitest
+|           |       |-- example-vitests.md
+|           |       `-- vitest-config-files.md
+|           `-- mono-repo-orchestration-docs
+|               |-- mono-repo-helm-chart-setup.md
+|               |-- mono-repo-setup-example.md
+|               `-- mono-repo-vitest-setup.md
+|-- images
+|   `-- rr_logos
+|       |-- edited-image\ (1).jpg
+|       |-- edited-image\ (2).jpg
+|       |-- edited-image\ (3).jpg
+|       |-- edited-image\ (4).jpg
+|       |-- edited-image\ (5).jpg
+|       |-- edited-image\ (6).jpg
+|       |-- edited-image.jpg
+|       |-- image\ (10).jpg
+|       |-- image\ (11).jpg
+|       |-- image\ (12).jpg
+|       |-- image\ (13).jpg
+|       |-- image\ (14).jpg
+|       |-- image\ (15).jpg
+|       |-- image\ (16).jpg
+|       |-- image\ (17).jpg
+|       |-- image\ (18).jpg
+|       |-- image\ (19).jpg
+|       |-- image\ (20).jpg
+|       |-- image\ (21).jpg
+|       |-- image\ (22).jpg
+|       |-- image\ (23).jpg
+|       |-- image\ (24).jpg
+|       |-- image\ (25).jpg
+|       |-- image\ (26).jpg
+|       |-- image\ (27).jpg
+|       |-- image\ (28).jpg
+|       |-- image\ (29).jpg
+|       |-- image\ (30).jpg
+|       |-- image\ (31).jpg
+|       |-- image\ (32).jpg
+|       |-- image\ (33).jpg
+|       |-- image\ (34).jpg
+|       |-- image\ (35).jpg
+|       |-- image\ (36).jpg
+|       |-- image\ (37).jpg
+|       |-- image\ (38).jpg
+|       |-- image\ (39).jpg
+|       |-- image\ (40).jpg
+|       |-- image\ (41).jpg
+|       |-- image\ (42).jpg
+|       |-- image\ (43).jpg
+|       |-- image\ (44).jpg
+|       |-- image\ (45).jpg
+|       |-- image\ (46).jpg
+|       |-- image\ (47).jpg
+|       |-- image\ (48).jpg
+|       |-- image\ (49).jpg
+|       |-- image\ (50).jpg
+|       |-- image\ (7).jpg
+|       |-- image\ (8).jpg
+|       `-- image\ (9).jpg
+`-- scripts
+    |-- README.example.md
+    |-- README.md
+    |-- auth-break-glass.example.sh
+    |-- check-migration-collisions.mjs
+    |-- corpus-graph-areas.txt
+    |-- corpus-graph-claim-namespaces.txt
+    |-- corpus-graph-exclusions.txt
+    |-- corpus-graph-viewer.template.html
+    |-- corpus-graph.mjs
+    |-- gen-tool-cards.example.mjs
+    |-- local-ci.example.sh
+    |-- snapshot-file-tree.sh
+    |-- start_traidit.example.sh
+    |-- stop_traidit.example.sh
+    `-- test
+        `-- corpus-graph-claims.spec.mjs
+
+53 directories, 187 files

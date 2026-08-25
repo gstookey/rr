@@ -3,7 +3,7 @@
 ## Role of this file
 This file is the schema/governance layer for the Project Road Runner context system.
 
-It tells every agent working this repo — the Claude Code fleet (Axium, Rin, Marlow, Verin, Vera, Marin, and the rest of `.claude/agents/`), the quant-engineer fleet, and any future TrAInit-maintainer agents — how to behave when interacting with this repo-native context layer. *(Revised 2026-08-26)*
+It tells every agent working this repo — the Claude Code fleet (Axium, Rin, Marlow, Verin, Vera, Ember, Cadence — see `.claude/agents/`) and any future agents — how to behave when interacting with this repo-native context layer. *(Created 2026-08-25 — adopted from TrAIdit; last updated 2026-08-25)*
 ## About me:
 - Name: Graham
 - Role: Team Member and Lead Front End Software Engineer of Project Road Runner
@@ -68,7 +68,7 @@ When a new source arrives:
 When answering project questions:
 1. read `docs/context/index.md`
 2. read the relevant pages within `docs/context/`
-3. read the latest `docs/context/CURRENT_STATE` or session summary if recency matters
+3. read the latest `docs/CURRENT_STATE.md` or session summary if recency matters
 4. answer from compiled context first
 5. write durable answers back into context
 
@@ -106,7 +106,7 @@ Convention (BS-14): one `# [YYYY-MM-DD] <type> | <title>` header level, **newest
 ### Update `docs/context/governance/contradictions/register.md` when:
 - pages disagree materially
 - implementation diverges from milestone intent
-- a milestone says one thing and `docs/context/CURRENT_STATE.md` says another
+- a milestone says one thing and `docs/CURRENT_STATE.md` says another
 
 ## Operating-context compaction
 `docs/CURRENT_STATE.md` and `docs/context/canonical/current_priorities.md` carry **standing truth + active lane + open decisions only**, each readable in one ~15–20k-token window. Completed-arc detail moves to `docs/context/operations/milestones/` archives at closeout — move strata out rather than stacking. Prefer pointers over snapshots anywhere a doc would restate fast-moving state (the bootstrap pages are already pointer-based; keep them that way).
