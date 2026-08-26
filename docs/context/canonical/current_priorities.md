@@ -3,39 +3,56 @@ schema: corpus-doc/v1
 status: active
 title: Current Priorities
 areas: [planning, context-system]
-related: ["docs/CURRENT_STATE.md", "docs/context/canonical/isolated_network_constraints.md", "docs/context/governance/contradictions/register.md"]
-updated: 2026-08-25
+related: ["docs/CURRENT_STATE.md", "docs/context/canonical/isolated_network_constraints.md", "docs/context/canonical/two_island_model.md", "docs/context/governance/contradictions/register.md"]
+updated: 2026-08-26
 ---
 
 # Current Priorities
 
-**Created:** 2026-08-25 | **Last updated:** 2026-08-25 (Axium; SRC-012 ingested, lines of effort now known)
+**Created:** 2026-08-25 | **Last updated:** 2026-08-26 (Axium; reoriented around Milestone 1 — Legacy Island to Angular 19; board stood up)
 
 Compact operating context. Readable in one window. Standing truth lives in `docs/CURRENT_STATE.md`; this page is *sequencing and intent*.
 
 ## Goals (from AGENTS.md)
 
-- **Short-term:** plan and prepare to stand up RR's software technology stack and dev environment on an isolated network.
+- **Short-term:** plan and prepare to stand up RR's software technology stack and dev environment on isolated networks — **two** of them, see `two_island_model.md`.
 - **Long-term:** execute the plan, get RR into development, release a version within ~12 months (from 2026-08).
+
+## Milestone 1 — Legacy Island to Angular 19 minimum
+
+> "We HAVE to get legacy to 19 at minimum, so that's our first real goal. That's our first objective." — Graham, 2026-08-26
+
+Everything on the board is either **on Milestone 1's path** or is **discovery work that sizes it**. This is the organizing objective; other lanes are prepared, not pursued, until it is in hand.
+
+Why this and not the v22 stretch: v19 is a **hard floor** (it discharges the Angular 17 / Node 22.15 security exposure), while v22 is a preference whose cost is unknown until the estate inventory returns. And — verified 2026-08-25 — **Milestone 1 needs no Node change at all**: Node 22.15 already satisfies Angular 18 and 19. Only v22 needs a newer Node. Full matrix: `two_island_model.md`.
 
 ## What matters now
 
-1. **Get the context system merged and habitual.** This initialization PR. After it lands, every session opens from `bootstrap/START_HERE.md` and closes with the rollup checklist.
-2. **Close the highest-leverage unknowns before designing anything else.** Two of them gate the entire plan:
-   - the isolated-network constraints (`canonical/isolated_network_constraints.md` — mostly questions today);
-   - the monorepo layout decision (contradiction C-001).
-3. **Confirm the monorepo layout** (C-001 layout half; npm is decided per ADR-004) — it gates LOE-8 scaffolds.
+1. **Get the questionnaires out — one per island.** Their lead time is not ours to control, and most other planning is partly speculative until they return. Legacy Island's variant carries the highest-value questions ([S-01](https://github.com/gstookey/rr/issues/8)); Desert Island's assumes nothing despite being greenfield ([S-02](https://github.com/gstookey/rr/issues/9)).
+2. **Collect the legacy estate inventory** ([S-03](https://github.com/gstookey/rr/issues/10)). The largest body of work in the programme has no size at all until this returns, and it is the evidence that decides DR-04 (v19 floor vs v22 stretch).
+3. **Rehearse the v17→v18 hop here** ([S-14](https://github.com/gstookey/rr/issues/21)). The substantive work available today with **no external gate** — raw source is already in `docs/angular-upgrade-docs/`.
+4. **Close the cheap decisions** ([S-04](https://github.com/gstookey/rr/issues/11)): C-001's layout half (DR-05) and whether to ship the npm cache alongside the registry seed (DR-09). Graham's judgement only; free now, expensive once scaffolding starts.
+5. **The Node patch bump is independent and probably the cheapest risk reduction available** ([S-13](https://github.com/gstookey/rr/issues/20)): 22.15 → 22.23.2 is a patch inside the same LTS line, needs no Angular work, and closes the Node half of the security driver on its own.
 
-## Recommended first line of effort (Axium's opinion, 2026-08-25, revised after SRC-012)
+## Planning surface
 
-SRC-012 confirms the shape: eight lines of effort (`project_overview.md`). Recommend opening with **"Isolated-Network Readiness Packet"** — now concretely the intake for LOE-1 and the spine for LOE-4/5:
+Board: **Project Road Runner Roadmap** — `https://github.com/users/gstookey/projects/3`. Epics stood up 2026-08-26 with Graham's approval:
 
-- *Why first:* every stack choice already on the table (Angular 22, TS 6, Vitest, AstroUXDS, npm workspaces, Helm) is only real if it can be **installed, mirrored, built, and tested on the isolated network**. A stack that is elegant on the internet and unbuildable offline is theater. Knowing the transfer mechanism (approved mirror? one-way media? vetted tarball?) changes how we vendor dependencies, whether we pin exact versions now, whether we can use Claude Code there at all, and whether the fleet workflow (PRs, board, `gh`) survives the move.
-- *Shape:* a design packet under `docs/design/packets/` with (a) the island questionnaire (`isolated_network_constraints.md` unknowns, routed to whoever owns the network), (b) a **legacy-estate inventory template** for the 10+ v17 apps (Node version, package manager, lockfile, third-party deps, custom webpack, test runner) — the upgrade plan cannot be sized without it, (c) a version-pinned dependency manifest for the new stack with artifact sizes, (d) a "day-one on the island" runbook draft, (e) a decision register.
-- *Then, in parallel:* **LOE-6 Angular upgrade runbook v0** — the v17→v18 hop first, rehearsed on a throwaway v17 app on this side, because it is the highest-volume, highest-risk, most-repeated piece of work on the island and the only one with raw source already in the repo.
-- *Alternative if Graham disagrees:* "Monorepo Skeleton v0" — scaffold `client/common/server` (or `apps/*`) with Angular 22 + Vitest + AstroUXDS brand tokens, on the internet side, *provisionally*, with the explicit expiration that it gets re-validated once the network constraints are known. Faster dopamine, higher rework risk.
+| Epic | Workstream |
+|---|---|
+| [EP-01](https://github.com/gstookey/rr/issues/3) | Readiness & Discovery (both islands) |
+| [EP-02](https://github.com/gstookey/rr/issues/4) | Offline Supply Chain & Transfer Bundles |
+| [EP-03](https://github.com/gstookey/rr/issues/5) | Legacy Island — Angular v17 to v19+ upgrade **(carries Milestone 1)** |
+| [EP-04](https://github.com/gstookey/rr/issues/6) | Desert Island — environment stand-up |
+| [EP-05](https://github.com/gstookey/rr/issues/7) | Desert Island — new system scaffolds & stack docs (placeholder, no stories) |
 
-Graham chooses. Axium does not activate lanes.
+Seventeen stories (S-01..S-17) exist as sub-issues. **None has been activated** — creation is not activation (operating-contract rule 16); moving a story to In Progress still needs Graham's explicit approval. Story detail and sequence: `docs/design/packets/iso-net-readiness-01-design-packet/story_decomposition_v0.md`. Open decisions: `.../decision_register_v0.md` (DR-01..DR-10).
+
+## How we got here (historical, 2026-08-25)
+
+Axium recommended opening with the **Isolated-Network Readiness Packet** — the intake for LOE-1 and the spine for LOE-4/5 — on the reasoning that every stack choice on the table is only real if it can be installed, mirrored, built and tested offline, and that a stack elegant on the internet and unbuildable offline is theater. Graham accepted; the packet was cut on 2026-08-25 (`docs/design/packets/iso-net-readiness-01-design-packet/`). The alternative considered and not taken was a provisional monorepo skeleton first — faster progress, higher rework risk.
+
+The recommendation predated the two-island correction and spoke of "the island," singular. It was substantially right about sequencing and wrong about the shape of the target.
 
 ## Not now
 
