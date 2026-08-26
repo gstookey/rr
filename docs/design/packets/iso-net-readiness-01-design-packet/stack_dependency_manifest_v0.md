@@ -3,17 +3,21 @@ schema: corpus-doc/v1
 status: exploratory
 title: Stack Dependency Manifest v0 — pinned versions and bundle footprint
 areas: [technology-stack, isolated-network, dev-environment, monorepo]
-related: ["docs/context/canonical/technology_stack.md", "docs/context/governance/decisions/ADR-004-package-manager-npm.md", "docs/context/canonical/isolated_network_constraints.md", "docs/design/packets/iso-net-readiness-01-design-packet/README.md"]
-updated: 2026-08-25
+related: ["docs/context/canonical/technology_stack.md", "docs/context/canonical/two_island_model.md", "docs/context/governance/decisions/ADR-004-package-manager-npm.md", "docs/context/canonical/isolated_network_constraints.md", "docs/design/packets/iso-net-readiness-01-design-packet/README.md"]
+updated: 2026-08-26
 ---
 
 # Stack Dependency Manifest v0
 
-**Created:** 2026-08-25 | **Last updated:** 2026-08-25 | **Status:** `exploratory` — design direction, pins verified but not committed to
+**Created:** 2026-08-25 | **Last updated:** 2026-08-26 | **Status:** `exploratory` — design direction, pins verified but not committed to
 
 ## What this is
 
 The intended **new-project** stack (`docs/context/canonical/technology_stack.md`), expressed as a version-pinned list, with every pin verified against the live npm registry **on 2026-08-25** in the session that produced this document. Exact `npm view` output for each pin is in Appendix A.
+
+> **Which island:** sections 1–3 are the **Desert Island** stack (greenfield, the new system). **Appendix B is the Legacy Island hop matrix** — a different environment with a different target and its own per-hop bundles. See `docs/context/canonical/two_island_model.md`.
+>
+> **Expiration on the v22 pins below:** they hold only until **DR-04** closes. Because the two islands must be stack-synchronized at cluster deploy time, Desert Island's target follows whatever Legacy Island actually achieves. If Legacy Island stops at v19, every pin in section 2 moves to the v19 line. Nothing should be scaffolded on these pins before DR-04 closes.
 
 **This is not the implemented stack.** Nothing here is installed anywhere. It is the list a transfer bundle would be built from, at today's registry state.
 
@@ -297,20 +301,72 @@ lockfile package entries: 316
 
 ---
 
-# Appendix B — Legacy estate hop anchors
+# Appendix B — Legacy Island hop matrix (verified 2026-08-25)
 
-Verified `latest`-within-major for `@angular/core` on 2026-08-25, for use when planning the v17 → v22 hop chain. **Version pins for the hops are not settled here** — they are recorded so the transfer bundle's scope is visible before the estate inventory returns.
+Every hop's Angular version, Node requirement and TypeScript peer range, read from the registry. This is the controlling reference for the per-hop bundle stories ([S-07](https://github.com/gstookey/rr/issues/14) .. [S-11](https://github.com/gstookey/rr/issues/18)).
 
-| Hop target | `@angular/core` | `@angular/cli` |
-|---|---|---|
-| v17 (current estate) | `17.3.12` | `17.3.17` |
-| v18 | `18.2.14` | `18.2.21` |
-| v19 (**minimum target**) | `19.2.25` | `19.2.27` |
-| v20 | `20.3.29` | `20.3.34` |
-| v21 | `21.2.21` | `21.2.21` |
-| v22 (**stretch target**) | `22.1.3` | `22.1.5` |
+**Legacy Island runs Node 22.15** (Graham, 2026-08-26). The last column is the consequence.
+
+| Hop target | `@angular/core` | `@angular/cli` | Node requirement | TypeScript peer | TS pin (highest in window) | Runs on Node 22.15? |
+|---|---|---|---|---|---|---|
+| v17 *(current)* | `17.3.12` | `17.3.17` | `^18.13.0 \|\| >=20.9.0` | `>=5.2 <5.5` | 5.4.x | ✅ |
+| v18 | `18.2.14` | `18.2.21` | `^18.19.1 \|\| ^20.11.1 \|\| >=22.0.0` | `>=5.4 <5.6` | `5.5.4` | ✅ |
+| **v19 — floor** | `19.2.25` | `19.2.27` | `^18.19.1 \|\| ^20.11.1 \|\| >=22.0.0` | `>=5.5 <5.9` | `5.8.3` | ✅ |
+| v20 | `20.3.29` | `20.3.34` | `^20.19.0 \|\| ^22.12.0 \|\| >=24.0.0` | `>=5.8 <6.0` | `5.9.3` | ✅ |
+| v21 | `21.2.21` | `21.2.21` | `^20.19.0 \|\| ^22.12.0 \|\| >=24.0.0` | `>=5.9 <6.1` | `6.0.3` | ✅ |
+| **v22 — stretch** | `22.1.3` | `22.1.5` | `^22.22.3 \|\| ^24.15.0 \|\| >=26.0.0` | `>=6.0 <6.1` | `6.0.3` | ❌ needs ≥ 22.22.3 |
+
+## What the last column means
+
+1. **Milestone 1 (v19) requires no Node change on Legacy Island.** The Angular upgrade and the Node upgrade are **decoupled** — neither blocks the other.
+2. **v20 and v21 also require no Node change** (22.15 satisfies `^22.12.0`).
+3. **Only v22 requires a Node bump**, and only to `22.22.3+` **within the same major line** — the very patch bump security already argues for. There is no major-version Node migration anywhere in this plan.
+
+This substantially weakens the earlier assumption that the island's Node was a plausible hard ceiling on the Angular target (DR-03). It does **not** close DR-03: these are *published requirements*, and what change control will actually permit remains unanswered (questionnaire B2/B3).
+
+## Separately: the Node patch bump is worth doing on its own
+
+Node 22.15.0 shipped **2025-04-22**; the current 22.x patch is **22.23.2** (2026-07-28) and the line is still LTS (*Jod*). Legacy Island is ~15 months and 8 patch releases behind, which is the Node half of the security driver. The bump needs no Angular work and is probably the cheapest risk reduction in the programme ([S-06](https://github.com/gstookey/rr/issues/13) to bundle, [S-13](https://github.com/gstookey/rr/issues/20) to apply). The 22 line's end-of-life date is **`UNVERIFIED`** — `nodejs.org/dist/schedule.json` was not reachable in-session.
+
+## Bundle-scope consequence
+
+**Each hop needs its own toolchain present in the island's registry before that hop is attempted** — including the intermediates, not only the destination. Five hop bundles are on the board for exactly this reason. The TS pin column matters as much as the Angular one: a hop bundle carrying the wrong TypeScript is as broken as one missing Angular entirely.
+
+The ~89 MB measured for the Desert Island stack is **not** a per-hop estimate. Each hop bundle's real size is unmeasured (`UNVERIFIED`) and must be measured the same way before packing — the per-hop transitive sets differ, and older Angular versions drag different dependency trees.
+
+## Verification transcript
 
 ```
+$ npm view @angular/core@17.3.12 engines
+{ node: '^18.13.0 || >=20.9.0' }
+$ npm view @angular/compiler-cli@17.3.12 peerDependencies
+{ typescript: '>=5.2 <5.5', '@angular/compiler': '17.3.12' }
+
+$ npm view @angular/core@18.2.14 engines
+{ node: '^18.19.1 || ^20.11.1 || >=22.0.0' }
+$ npm view @angular/compiler-cli@18.2.14 peerDependencies
+{ typescript: '>=5.4 <5.6', '@angular/compiler': '18.2.14' }
+
+$ npm view @angular/core@19.2.25 engines
+{ node: '^18.19.1 || ^20.11.1 || >=22.0.0' }
+$ npm view @angular/compiler-cli@19.2.25 peerDependencies
+{ typescript: '>=5.5 <5.9', '@angular/compiler': '19.2.25' }
+
+$ npm view @angular/core@20.3.29 engines
+{ node: '^20.19.0 || ^22.12.0 || >=24.0.0' }
+$ npm view @angular/compiler-cli@20.3.29 peerDependencies
+{ typescript: '>=5.8 <6.0', '@angular/compiler': '20.3.29' }
+
+$ npm view @angular/core@21.2.21 engines
+{ node: '^20.19.0 || ^22.12.0 || >=24.0.0' }
+$ npm view @angular/compiler-cli@21.2.21 peerDependencies
+{ typescript: '>=5.9 <6.1', '@angular/compiler': '21.2.21' }
+
+$ npm view 'typescript@>=5.4 <5.6' version   # -> highest: 5.5.4
+$ npm view 'typescript@>=5.5 <5.9' version   # -> highest: 5.8.3
+$ npm view 'typescript@>=5.8 <6.0' version   # -> highest: 5.9.3
+$ npm view 'typescript@>=5.9 <6.1' version   # -> highest: 6.0.3
+
 $ npm view @angular/core dist-tags      # (excerpt)
 'v17-lts': '17.3.12', 'v18-lts': '18.2.14', 'v19-lts': '19.2.25',
 'v20-lts': '20.3.29', 'v21-lts': '21.2.21', latest: '22.1.3'
@@ -318,6 +374,11 @@ $ npm view @angular/core dist-tags      # (excerpt)
 $ npm view @angular/cli dist-tags       # (excerpt)
 'v17-lts': '17.3.17', 'v18-lts': '18.2.21', 'v19-lts': '19.2.27',
 'v20-lts': '20.3.34', 'v21-lts': '21.2.21', latest: '22.1.5'
+
+$ curl -sS https://nodejs.org/dist/index.json   # (Node 22 line, excerpt)
+v22.15.0  2025-04-22  lts=Jod
+v22.15.1  2025-05-14  lts=Jod
+v22.23.2  2026-07-28  lts=Jod   (current 22.x)
 ```
 
-Each hop's toolchain and its transitive dependencies must be present in the island's registry **before** that hop is attempted. Raw upgrade guidance per hop already lives in `docs/angular-upgrade-docs/`.
+Raw upgrade guidance per hop already lives in `docs/angular-upgrade-docs/`.

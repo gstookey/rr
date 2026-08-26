@@ -3,15 +3,15 @@ schema: corpus-doc/v1
 status: exploratory
 title: Decision Register v0 — Isolated-Network Readiness
 areas: [isolated-network, technology-stack, process-governance, planning]
-related: ["docs/context/governance/contradictions/register.md", "docs/context/governance/decisions/ADR-004-package-manager-npm.md", "docs/context/canonical/isolated_network_constraints.md", "docs/design/packets/iso-net-readiness-01-design-packet/README.md"]
-updated: 2026-08-25
+related: ["docs/context/canonical/two_island_model.md", "docs/context/governance/contradictions/register.md", "docs/context/governance/decisions/ADR-004-package-manager-npm.md", "docs/context/canonical/isolated_network_constraints.md", "docs/design/packets/iso-net-readiness-01-design-packet/README.md"]
+updated: 2026-08-26
 ---
 
 # Decision Register v0
 
-**Created:** 2026-08-25 | **Last updated:** 2026-08-25 | **Status:** `exploratory` — open decisions, none closed
+**Created:** 2026-08-25 | **Last updated:** 2026-08-26 | **Status:** `exploratory` — open decisions, none closed
 
-Decisions this packet **raises but cannot close**. Each carries options, what it blocks, and Axium's lean. A lean is a recommendation with reasoning attached, not a decision — none of these is settled, and none should be treated as settled by any downstream document.
+Decisions this packet **raises but cannot close**. DR-01..DR-09 were raised on 2026-08-25; **DR-10 was added on 2026-08-26** with the two-island model, and DR-03/DR-04 were materially revised the same day. Each carries options, what it blocks, and Axium's lean. A lean is a recommendation with reasoning attached, not a decision — none of these is settled, and none should be treated as settled by any downstream document.
 
 When one closes, it graduates to an ADR under `docs/context/governance/decisions/` (numbering continues at **ADR-005**) and is struck through here with a pointer.
 
@@ -19,13 +19,14 @@ When one closes, it graduates to an ADR under `docs/context/governance/decisions
 |---|---|---|---|
 | [DR-01](#dr-01) | Private registry: Verdaccio, existing Nexus/Artifactory, or cache-only | LOE-5 bundle shape, day-one runbook | Network owner (questionnaire A5), then Graham |
 | [DR-02](#dr-02) | Transfer strategy: one complete delivery vs. iterative | how much contingency we pack | Network owner (A2–A4), then Graham |
-| [DR-03](#dr-03) | Node ceiling vs. Angular ceiling | whether Angular 22 is reachable at all | Island reality (B2/B3) — not a preference |
-| [DR-04](#dr-04) | Legacy estate target: v19 floor or v22 stretch | LOE-6 size, bundle size | Graham, after the estate inventory |
+| [DR-03](#dr-03) | Node ceiling vs. Angular ceiling | the v22 stretch only *(de-risked 2026-08-26)* | Legacy Island change control (B2/B3) |
+| [DR-04](#dr-04) | Legacy estate target: v19 floor or v22 stretch | how far past Milestone 1 we go; conditional bundles | Graham, after the estate inventory + first real hop |
 | [DR-05](#dr-05) | Monorepo layout: `apps/*`+`packages/*` vs `client/common/server` | LOE-8 scaffolds | Graham (C-001 layout half) |
 | [DR-06](#dr-06) | Does `gstookey/rr` itself port up, or only an export? | how we write everything from now on | Governance (C1/C2), then Graham |
 | [DR-07](#dr-07) | Zone.js or zoneless | one dependency; change-detection model | Graham, at scaffold time |
 | [DR-08](#dr-08) | Express 5 vs. the blueprint's assumptions | gateway scaffolding | Graham/Marlow at LOE-8 |
 | [DR-09](#dr-09) | Ship the npm cache alongside the registry seed? | bundle contents, day-one resilience | Graham |
+| [DR-10](#dr-10) | How strictly must the two islands' stacks match, and when? | Desert Island pins; scaffold timing | Graham, with the deploy-topology owner |
 
 ---
 
@@ -71,27 +72,33 @@ When one closes, it graduates to an ADR under `docs/context/governance/decisions
 
 ### Node ceiling vs. Angular ceiling
 
-**Why it is open:** verified fact — Angular 22 requires Node `^22.22.3 || ^24.15.0 || >=26.0.0`. Unknown — what Node the island runs and whether it can be upgraded (B2/B3).
+**Status 2026-08-26: substantially de-risked, still open.**
 
-**This is not really a decision we make.** It is a fact we discover, which then decides for us. It is registered here because it is the constraint most likely to invalidate the rest of the plan, and it should be visible rather than assumed away.
+Graham confirmed Legacy Island runs **Node 22.15**. Combined with the per-hop requirements verified on 2026-08-25 (full matrix: [`stack_dependency_manifest_v0.md`](stack_dependency_manifest_v0.md) Appendix B), the picture changed materially:
 
-**Outcomes:**
+| Angular target | Node requirement | Runs on 22.15? |
+|---|---|---|
+| v18 | `^18.19.1 \|\| ^20.11.1 \|\| >=22.0.0` | ✅ |
+| **v19 (Milestone 1)** | `^18.19.1 \|\| ^20.11.1 \|\| >=22.0.0` | ✅ |
+| v20 | `^20.19.0 \|\| ^22.12.0 \|\| >=24.0.0` | ✅ |
+| v21 | `^20.19.0 \|\| ^22.12.0 \|\| >=24.0.0` | ✅ |
+| v22 | `^22.22.3 \|\| ^24.15.0 \|\| >=26.0.0` | ❌ needs ≥ 22.22.3 |
 
-| If the island's Node is… | Then |
-|---|---|
-| already in range | nothing changes |
-| older but upgradable | a Node upgrade becomes an early, change-controlled task; carry the installer; sequence it before everything |
-| older and **not** upgradable | Angular 22 is off the table for both the new project and the legacy estate. The target drops to whatever the achievable Node supports, `technology_stack.md` gets re-pinned downward, and the dependency manifest is rebuilt from scratch. |
+**What this changes:** the earlier framing — "Node may be a hard ceiling that invalidates the whole plan" — was too pessimistic. **Milestone 1 needs no Node change.** Neither do v20 or v21. Only v22 does, and only a **patch bump inside the same major line**.
 
-**Axium's lean: treat "Node is upgradable" as an assumption to be *tested early*, not planned around.** Concretely: B2 and B3 should be asked first and chased hardest, before any bundle is built, because a bundle built against the wrong Node ceiling is entirely wasted work.
+**Why it stays open:** these are the *published requirements*. Unanswered: whether Legacy Island's change control permits even a patch bump, and on what timescale (questionnaire B2/B3). The risk has moved from "may invalidate everything" to "may complicate the v22 stretch only."
 
----
+**Axium's lean: stop treating Node as the gating risk and start treating estate difficulty as the gating risk.** Concretely — the Node patch bump (22.15 → 22.23.2) should be pursued **on its own security merits**, decoupled from any Angular work ([S-06](https://github.com/gstookey/rr/issues/13) / [S-13](https://github.com/gstookey/rr/issues/20)). It is the cheapest risk reduction available, it closes the Node half of the security driver by itself, and as a side effect it removes v22's only runtime obstacle.
+
+**Closes when:** questionnaire B2 confirms the Node version and B3 answers the change-control question.
 
 ## DR-04
 
 ### Legacy estate target: v19 floor, or v22 stretch
 
-**Why it is open:** `project_overview.md` states v19 minimum, v22 if the effort can be carried. Whether it can be carried depends on the estate inventory, which does not exist yet.
+**Why it is open:** v19 minimum, v22 if the effort can be carried. Whether it can be carried depends on the estate inventory, which does not exist yet.
+
+**Two things changed on 2026-08-26.** First, **v19 is now Milestone 1** — a named objective, not one end of a range, and the security driver makes "do nothing" not an option. Second, **the Node obstacle to v22 largely evaporated** (DR-03): v20 and v21 need no runtime change at all, and v22 needs only a patch bump. The decision is now almost purely about **estate difficulty**, which is exactly what the inventory measures. Graham's stated preference is v22; his stated decider is effort.
 
 **The trade, stated honestly:**
 
@@ -102,6 +109,8 @@ When one closes, it graduates to an ADR under `docs/context/governance/decisions
 | **C. Split: v22 where cheap, v19 where expensive** | matches effort to reality | two toolchains coexisting in the estate indefinitely, which is its own ongoing tax |
 
 **Axium's lean: do not decide this yet, and resist the pressure to.** Decide after the inventory returns and after the **first** app has actually been upgraded end to end — the first real hop is worth more than any estimate. If forced to state a lean today: **C, with a bias toward B**, because the operational cost of two Angular versions across a dozen applications on a network where help is hard to get is usually underestimated.
+
+**A note on sequencing that makes this decision cheaper to defer:** the hops are sequential, so v20/v21/v22 are all *downstream* of Milestone 1 regardless. Deciding late costs nothing except bundle preparation lead time — which is why the conditional hop bundles ([S-09](https://github.com/gstookey/rr/issues/16), [S-10](https://github.com/gstookey/rr/issues/17), [S-11](https://github.com/gstookey/rr/issues/18)) are on the board now: prepared, not committed. If the answer turns out to be v19, they close as not-planned and nothing was lost but a little packing effort.
 
 **What would change my mind quickly:** an inventory that comes back with several apps on custom webpack or custom schematics. That distribution, not the app count, is the deciding evidence.
 
@@ -192,11 +201,34 @@ The day-one runbook's fallback path (`npm ci --offline --cache <dir>`) works **o
 
 ---
 
+## DR-10
+
+### How strictly must the two islands' stacks match, and when?
+
+**Why it is open:** new on 2026-08-26. Graham: *"It will need to match the target tech stack of Legacy Island, since the environments will be related at deploy time / in the cluster, so it all needs to be in sync."* That establishes **that** they must match; it does not establish **how exactly** or **at what point in time**.
+
+The distinction matters because the two islands move at very different speeds. Desert Island is greenfield and could be built this month; Legacy Island has 10+ applications of accumulated constraint and will take as long as it takes.
+
+| Option | Meaning | For | Against |
+|---|---|---|---|
+| **A. Exact lockstep** | same Angular major, same Node, same TS across both | zero cluster-time surprises; one set of docs and skills | Desert Island is held hostage to the estate's pace; nothing can be built until DR-04 closes |
+| **B. Same major, patch drift allowed** | both on Angular 19 (say), patches independent | practical; matches how versions actually diverge in real estates | needs a stated tolerance so "drift" does not quietly become "mismatch" |
+| **C. Converge by a deadline** | Desert Island builds on the intended stack now, both converge before first shared deploy | fastest progress on the greenfield half | the convergence work is real, unscheduled, and easy to defer past the point it is cheap |
+
+**Axium's lean: B, with C's discipline for the interim.** Concretely: build Desert Island on the intended stack *provisionally*, re-pin to Legacy Island's achieved major the moment DR-04 closes, and **do not scaffold anything on the v22 pins before then** — re-pinning a plan is free, re-pinning a scaffolded monorepo is not. Same-major with patch drift is the realistic steady state; exact lockstep is a promise that will be broken quietly rather than deliberately.
+
+**What I do not know and would want from whoever owns the cluster:** whether "related at deploy time" means shared runtime libraries, shared container base images, or simply co-residency. Those three imply very different strictness, and I am not going to guess which one applies. `[NEEDS GRAHAM]` / `[NEEDS DEPLOY-TOPOLOGY OWNER]`.
+
+**Blocks:** [S-17](https://github.com/gstookey/rr/issues/24) (Desert Island target-stack sync spec), and the timing of anything in EP-05.
+
+---
+
 ## How these close
 
-1. Questionnaire and inventory return → they answer **DR-01, DR-02, DR-03, DR-06** largely as facts rather than choices.
+1. Questionnaire and inventory return → they answer **DR-01, DR-02, DR-03, DR-06** largely as facts rather than choices. DR-03 is already half-answered by the hop matrix; what remains is a change-control question.
 2. Graham closes **DR-05** at any time (cheap now, expensive after LOE-8 starts) and **DR-09** at bundle-build time.
 3. **DR-04** waits deliberately for the first real upgrade hop.
 4. **DR-07** and **DR-08** close at scaffold time, inside LOE-8, not here.
+5. **DR-10** needs the deploy-topology owner as much as Graham, and should close before Desert Island is scaffolded rather than after.
 
 Each closure gets an ADR (from **ADR-005**), a `docs/context/log.md` entry, and — where it resolves C-001 — an update to the contradiction register.

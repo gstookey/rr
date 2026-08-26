@@ -3,12 +3,12 @@ schema: corpus-doc/v1
 status: active
 title: RR Context Wiki Index
 areas: [context-system]
-updated: 2026-08-25
+updated: 2026-08-26
 ---
 
 # RR Context Wiki Index
 
-**Created:** 2026-08-25 | **Last updated:** 2026-08-25 (design packet `iso-net-readiness-01` added)
+**Created:** 2026-08-25 | **Last updated:** 2026-08-26 (two-island model; board EP-01..EP-05 / S-01..S-17)
 
 Navigation spine for the RR context system. Update when a page is added, removed, or changes meaningfully.
 
@@ -19,7 +19,7 @@ Navigation spine for the RR context system. Update when a page is added, removed
 - [START_HERE (session bootstrap)](bootstrap/START_HERE.md)
 - [Context README](README.md) · [Repo AGENTS](../../AGENTS.md) · [Repo README](../../README.md)
 - [CURRENT_STATE](../CURRENT_STATE.md) — implementation truth
-- [Current Priorities](canonical/current_priorities.md) — what matters now + Axium's recommended first line of effort
+- [Current Priorities](canonical/current_priorities.md) — what matters now, oriented on **Milestone 1: Legacy Island to Angular 19 minimum**
 - [Context Log](log.md)
 - [Corpus Graph Index (generated)](corpus_graph_index_v0.md) — lookup: `node scripts/corpus-graph.mjs lookup <path-or-term>`; viewer: [`corpus_graph_viewer.html`](corpus_graph_viewer.html)
 - [Doc Hierarchy — which doc wins](governance/meta/rr_doc_overview.md)
@@ -30,6 +30,7 @@ Navigation spine for the RR context system. Update when a page is added, removed
 
 - [Canonical README](canonical/README.md)
 - [Project Overview](canonical/project_overview.md) — `[NEEDS GRAHAM]` markers
+- [**The Two-Island Model**](canonical/two_island_model.md) — Legacy Island + Desert Island, the verified hop matrix, Milestone 1. Read before anything environment-shaped.
 - [Technology Stack (intended)](canonical/technology_stack.md)
 - [Isolated Network Constraints](canonical/isolated_network_constraints.md)
 - [Context System](canonical/context_system.md)
@@ -39,14 +40,14 @@ Navigation spine for the RR context system. Update when a page is added, removed
 - [Design README](../design/README.md)
 - [Brand — Visual Identity](../design/brand/README.md)
 - Packets: [Isolated-Network Readiness (`iso-net-readiness-01`)](../design/packets/iso-net-readiness-01-design-packet/README.md) — `exploratory`, proposed not activated
-  - [Island Questionnaire v0](../design/packets/iso-net-readiness-01-design-packet/island_questionnaire_v0.md) · [Legacy Estate Inventory Template v0](../design/packets/iso-net-readiness-01-design-packet/legacy_estate_inventory_template_v0.md) · [Stack Dependency Manifest v0](../design/packets/iso-net-readiness-01-design-packet/stack_dependency_manifest_v0.md) · [Day One on the Island Runbook v0](../design/packets/iso-net-readiness-01-design-packet/day_one_on_the_island_runbook_v0.md) · [Decision Register v0 (DR-01..DR-09)](../design/packets/iso-net-readiness-01-design-packet/decision_register_v0.md) · [Story Decomposition v0 (S-01..S-06)](../design/packets/iso-net-readiness-01-design-packet/story_decomposition_v0.md)
+  - [Island Questionnaire v0](../design/packets/iso-net-readiness-01-design-packet/island_questionnaire_v0.md) · [Legacy Estate Inventory Template v0](../design/packets/iso-net-readiness-01-design-packet/legacy_estate_inventory_template_v0.md) · [Stack Dependency Manifest v0](../design/packets/iso-net-readiness-01-design-packet/stack_dependency_manifest_v0.md) · [Day One on the Island Runbook v0](../design/packets/iso-net-readiness-01-design-packet/day_one_on_the_island_runbook_v0.md) · [Decision Register v0 (DR-01..DR-10)](../design/packets/iso-net-readiness-01-design-packet/decision_register_v0.md) · [Story Decomposition v0 (S-01..S-17, board-linked)](../design/packets/iso-net-readiness-01-design-packet/story_decomposition_v0.md)
 - `mockups/` — empty
 
 # Governance
 
 - [Governance README](governance/README.md)
 - [Decisions (ADR index)](governance/decisions/README.md) — ADR-001 context system · ADR-002 merge gate · ADR-003 board/doctrine · ADR-004 npm (proposed)
-- [Contradiction Register](governance/contradictions/register.md) — C-001..C-006
+- [Contradiction Register](governance/contradictions/register.md) — C-001..C-008
 - [Meta](governance/meta/README.md)
 
 # Operations

@@ -87,6 +87,18 @@
       "governs": []
     },
     {
+      "path": "docs/context/canonical/two_island_model.md",
+      "title": "The Two-Island Model — Legacy Island and Desert Island",
+      "status": "active",
+      "areas": [
+        "isolated-network",
+        "dev-environment",
+        "planning",
+        "security"
+      ],
+      "governs": []
+    },
+    {
       "path": "docs/context/evidence/README.md",
       "title": "Evidence",
       "status": "active",
@@ -928,6 +940,11 @@
     },
     {
       "from": "docs/CURRENT_STATE.md",
+      "to": "docs/context/canonical/two_island_model.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/CURRENT_STATE.md",
       "to": "docs/context/index.md",
       "type": "related"
     },
@@ -963,6 +980,11 @@
     },
     {
       "from": "docs/context/canonical/current_priorities.md",
+      "to": "docs/context/canonical/two_island_model.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/canonical/current_priorities.md",
       "to": "docs/context/governance/contradictions/register.md",
       "type": "related"
     },
@@ -977,6 +999,11 @@
       "type": "related"
     },
     {
+      "from": "docs/context/canonical/isolated_network_constraints.md",
+      "to": "docs/context/canonical/two_island_model.md",
+      "type": "related"
+    },
+    {
       "from": "docs/context/canonical/project_overview.md",
       "to": "docs/context/canonical/isolated_network_constraints.md",
       "type": "related"
@@ -984,6 +1011,11 @@
     {
       "from": "docs/context/canonical/project_overview.md",
       "to": "docs/context/canonical/technology_stack.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/canonical/project_overview.md",
+      "to": "docs/context/canonical/two_island_model.md",
       "type": "related"
     },
     {
@@ -1004,6 +1036,26 @@
     {
       "from": "docs/context/canonical/technology_stack.md",
       "to": "docs/context/governance/contradictions/register.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/canonical/two_island_model.md",
+      "to": "docs/context/canonical/current_priorities.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/canonical/two_island_model.md",
+      "to": "docs/context/canonical/isolated_network_constraints.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/canonical/two_island_model.md",
+      "to": "docs/context/canonical/project_overview.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/canonical/two_island_model.md",
+      "to": "docs/context/canonical/technology_stack.md",
       "type": "related"
     },
     {
@@ -1153,6 +1205,11 @@
     },
     {
       "from": "docs/design/packets/iso-net-readiness-01-design-packet/README.md",
+      "to": "docs/context/canonical/two_island_model.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/iso-net-readiness-01-design-packet/README.md",
       "to": "docs/context/governance/decisions/ADR-004-package-manager-npm.md",
       "type": "related"
     },
@@ -1178,6 +1235,11 @@
     },
     {
       "from": "docs/design/packets/iso-net-readiness-01-design-packet/decision_register_v0.md",
+      "to": "docs/context/canonical/two_island_model.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/iso-net-readiness-01-design-packet/decision_register_v0.md",
       "to": "docs/context/governance/contradictions/register.md",
       "type": "related"
     },
@@ -1194,6 +1256,11 @@
     {
       "from": "docs/design/packets/iso-net-readiness-01-design-packet/island_questionnaire_v0.md",
       "to": "docs/context/canonical/isolated_network_constraints.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/iso-net-readiness-01-design-packet/island_questionnaire_v0.md",
+      "to": "docs/context/canonical/two_island_model.md",
       "type": "related"
     },
     {
@@ -1228,6 +1295,11 @@
     },
     {
       "from": "docs/design/packets/iso-net-readiness-01-design-packet/stack_dependency_manifest_v0.md",
+      "to": "docs/context/canonical/two_island_model.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/iso-net-readiness-01-design-packet/stack_dependency_manifest_v0.md",
       "to": "docs/context/governance/decisions/ADR-004-package-manager-npm.md",
       "type": "related"
     },
@@ -1239,6 +1311,11 @@
     {
       "from": "docs/design/packets/iso-net-readiness-01-design-packet/story_decomposition_v0.md",
       "to": "docs/context/canonical/current_priorities.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/iso-net-readiness-01-design-packet/story_decomposition_v0.md",
+      "to": "docs/context/canonical/two_island_model.md",
       "type": "related"
     },
     {

@@ -3,136 +3,172 @@ schema: corpus-doc/v1
 status: exploratory
 title: Story Decomposition v0 — Isolated-Network Readiness
 areas: [planning, isolated-network, process-governance]
-related: ["docs/context/team/agents/planning_surface_workflow.md", "docs/context/canonical/current_priorities.md", "docs/design/packets/iso-net-readiness-01-design-packet/README.md", "docs/design/packets/iso-net-readiness-01-design-packet/decision_register_v0.md"]
-updated: 2026-08-25
+related: ["docs/context/team/agents/planning_surface_workflow.md", "docs/context/canonical/current_priorities.md", "docs/context/canonical/two_island_model.md", "docs/design/packets/iso-net-readiness-01-design-packet/README.md", "docs/design/packets/iso-net-readiness-01-design-packet/decision_register_v0.md"]
+updated: 2026-08-26
 ---
 
 # Story Decomposition v0
 
-**Created:** 2026-08-25 | **Last updated:** 2026-08-25 | **Status:** `exploratory` — **proposals only. No board issues created. Nothing activated.**
+**Created:** 2026-08-25 | **Last updated:** 2026-08-26 (board stood up with Graham's approval; renumbered and expanded for the two-island model)
 
-> **Activation is Graham's.** Per `planning_surface_workflow.md` and operating-contract rule 16, a story is cut in docs (this file) and only *becomes* a board issue with Graham's explicit approval. Nothing below has been written to the GitHub Project. Axium does not activate lanes.
+> **Board status: created, not activated.** Graham approved standing up the epic structure and cutting these stories on 2026-08-26, so they now exist as issues. **None has been moved to In Progress.** Creating a story is not activating it (operating-contract rule 16) — activation still needs Graham's explicit go-ahead, per story.
 
-## Board conventions these follow
+## The board as it now stands
 
-Each candidate below is written to be **thin** — a title, one value line, a size, and a link to the controlling doc section. That is the entire board item. Scope, boundaries, and acceptance criteria stay in the packet documents and are **not** copied onto the board.
+Planning surface: **Project Road Runner Roadmap** — `https://github.com/users/gstookey/projects/3`, repo `gstookey/rr`.
 
-**Open question before any of these can be created:** which `EP-nn:` epic they attach to. The board's current epic structure has not been read from this repo (`CURRENT_STATE.md`: "Board content not verified from this repo as of 2026-08-25"). If no suitable epic exists, creating one is itself a structure change requiring Graham's approval plus a `log.md` entry.
+| Epic | Workstream | Stories |
+|---|---|---|
+| [EP-01](https://github.com/gstookey/rr/issues/3) | Readiness & Discovery (both islands) | S-01..S-04 |
+| [EP-02](https://github.com/gstookey/rr/issues/4) | Offline Supply Chain & Transfer Bundles | S-05..S-11 |
+| [EP-03](https://github.com/gstookey/rr/issues/5) | Legacy Island — Angular v17 to v19+ upgrade **(carries Milestone 1)** | S-12..S-15 |
+| [EP-04](https://github.com/gstookey/rr/issues/6) | Desert Island — environment stand-up | S-16, S-17 |
+| [EP-05](https://github.com/gstookey/rr/issues/7) | Desert Island — new system scaffolds & stack docs | none yet (placeholder) |
 
-Sizes are **S** (hours), **M** (a day or two), **L** (multi-day / externally gated). Several of these are gated on other people's responses, which makes calendar time and effort diverge sharply — noted per story.
+### Why these five
 
----
+- **EP-01 is cross-island on purpose.** Both islands need discovery, from possibly the same people, and splitting it would produce two half-empty epics that compete for the same attention.
+- **EP-02 is separate from the island epics** even though bundles serve both. Transfers are the programme's scarce resource — a shared cadence, a shared review queue, possibly a shared size cap. Keeping every bundle in one epic makes that queue visible as one queue. Split across island epics, nobody would ever see the whole transfer load at once.
+- **EP-03 and EP-04 are separate islands, separate work, separate people.** Legacy Island upgrades what exists; Desert Island creates what does not.
+- **EP-05 exists with no stories.** It is a deliberate placeholder for LOE-4/LOE-8, which are gated on DR-03/DR-05/DR-10 and on Desert Island existing at all. Naming it now stops scaffolding work from being quietly smuggled into another epic.
+- **LOE-7 (remote troubleshooting) has no epic** because it has no stories — it is an operating mode that switches on during execution. It gets an epic when it has work, not before.
 
-## S-01 — Send the island questionnaire
+### A convention note
 
-| Field | Value |
-|---|---|
-| **Value line** | Turns the project's highest-leverage unknowns into answers we can plan against. |
-| **Size** | **S** to send · **L** in calendar time — externally gated |
-| **Controlling doc** | [`island_questionnaire_v0.md`](island_questionnaire_v0.md) |
-| **Depends on** | Graham identifying the right recipients (questionnaire C5) |
-| **Done when** | The questionnaire is sent, and answers to **A5, A3, B2, B7** are back and registered under `docs/context/evidence/raw/`. |
+Stories carry an **`S-nn:` title prefix**, which the planning-surface workflow doc does not currently specify (it specifies `EP-nn:` for epics only). The prefix exists so docs and board map unambiguously onto each other, which is what the thin-board rule wants. **Flagging it as a convention addition** rather than assuming it: if Graham prefers unprefixed story titles, it is a cheap rename now and an annoying one later. Stories are also **unlabeled** — the `story` label did not exist and the workflow doc does not require one.
 
-Everything else in the preparation phase is partly speculative until this returns. It is small work and it should go out first, before anything is built, because the lead time is not ours to control.
+### Renumbering from the 2026-08-25 draft
 
----
+The first draft of this document proposed S-01..S-06 before the two-island model was known. Those identifiers were reassigned when the board was cut. **Anyone reading the 2026-08-25 handoff should use this map:**
 
-## S-02 — Collect the legacy estate inventory
-
-| Field | Value |
-|---|---|
-| **Value line** | Converts "10+ Angular apps, v17 → v19/v22" from a hope into an estimate with a spread. |
-| **Size** | **S** to issue · **L** to collect — roughly 15 minutes per app on the island |
-| **Controlling doc** | [`legacy_estate_inventory_template_v0.md`](legacy_estate_inventory_template_v0.md), §"How to fill this in offline, in 15 minutes per app" |
-| **Depends on** | Knowing who owns each application (questionnaire B7); possibly DR-06/C1 if app names cannot be written down on this side |
-| **Done when** | One filled row per application exists, apps are sorted into the three effort bands, and the result is synthesized into a canonical page. |
-
-**This is the single highest-value item in the packet.** The largest body of work in the whole programme — the estate upgrade — currently has no size at all. One filled table changes that. It can run fully in parallel with S-01.
-
----
-
-## S-03 — Freeze the pins and specify transfer bundle #1
-
-| Field | Value |
-|---|---|
-| **Value line** | Defines exactly what crosses the fence, so nothing is discovered missing after it is too late to add. |
-| **Size** | **M** |
-| **Controlling doc** | [`stack_dependency_manifest_v0.md`](stack_dependency_manifest_v0.md), §"First-order bundle budget" |
-| **Depends on** | DR-01 (registry), DR-02 (transfer strategy), DR-09 (ship the cache?); ideally S-01's A-section answers |
-| **Done when** | Pins are re-verified and re-dated; the archive set is produced with a checksum manifest; the bundle contents list is complete including the Node installer and every intermediate Angular toolchain the estate needs. |
-
-Note the trap this story exists to avoid: the **intermediate** Angular versions (v18/v19/v20/v21) must be in the bundle, not just the destination v22. It is easy to omit and expensive to discover on the island. Also note the manifest's re-verification rule — pins older than ~30 days are a draft, not a manifest.
+| Old (2026-08-25 draft) | New | Note |
+|---|---|---|
+| S-01 Send the island questionnaire | **S-01 + S-02** | split — one questionnaire per island |
+| S-02 Collect the legacy estate inventory | **S-03** | |
+| S-03 Freeze pins / bundle #1 | **S-05** | now explicitly the *Desert Island* bundle |
+| S-04 Rehearse day one | **S-16** | |
+| S-05 v17→v18 hop runbook | **S-14** | |
+| S-06 Close the cheap decisions | **S-04** | |
+| — | S-06..S-13, S-15, S-17 | new |
 
 ---
 
-## S-04 — Rehearse day one on a network-disabled machine
+# EP-01 — Readiness & Discovery
 
-| Field | Value |
-|---|---|
-| **Value line** | Finds the runbook's errors here, where they cost an hour, instead of there, where they cost a transfer cycle. |
-| **Size** | **M** |
-| **Controlling doc** | [`day_one_on_the_island_runbook_v0.md`](day_one_on_the_island_runbook_v0.md) — the whole document is the test script |
-| **Depends on** | S-03 (there must be a bundle to rehearse with) |
-| **Done when** | A machine with networking physically disabled has completed Steps 1–5, **including Step 5d** (`npm ci --offline`), and the runbook has been corrected everywhere reality disagreed with it. |
+### [S-01](https://github.com/gstookey/rr/issues/8) — Legacy Island questionnaire: send and collect
+**Value.** Turns Legacy Island's highest-leverage unknowns into answers we can plan against — registry, transfer mechanics, exact versions, app count and owners.
+**Size:** S to send · L in calendar time (externally gated). **Doc:** [`island_questionnaire_v0.md`](island_questionnaire_v0.md), Legacy Island variant.
+Send the full instrument. B7/B8 feed S-03 directly. **Add the not-yet-written question first:** do the two islands share a transfer mechanism?
 
-**The runbook is currently unrehearsed and says so at the top.** Until this story runs, it is a plausible draft, not a procedure — and `isolated_network_constraints.md` already commits us to rehearsing the port-up on a clean, network-disabled machine before the real one. Expect this to find real errors; that is the return on the story.
+### [S-02](https://github.com/gstookey/rr/issues/9) — Desert Island questionnaire: send and collect
+**Value.** Establishes what exists on a greenfield network before we plan to build on it.
+**Size:** S to send · L in calendar time. **Doc:** [`island_questionnaire_v0.md`](island_questionnaire_v0.md), Desert Island variant.
+Ask Section B even though the expected answer is "nothing is installed" — a questionnaire that assumes its own answers collects nothing, and several B questions have real answers on a greenfield network (OS, who provisions machines, whether a git server is planned).
 
-A worthwhile extension if the appetite is there: hand the corrected runbook to someone who did **not** write it and watch them follow it without helping. Everything they get stuck on is a defect in the document, and it is the closest available simulation of the island, where nobody can help at all.
+### [S-03](https://github.com/gstookey/rr/issues/10) — Legacy estate inventory: one filled row per application
+**Value.** Converts "10+ apps, v17 to v19/v22" from a hope into an estimate with a spread.
+**Size:** S to issue · L to collect (~15 min per app). **Doc:** [`legacy_estate_inventory_template_v0.md`](legacy_estate_inventory_template_v0.md).
+**Still the single highest-value item on the board.** It is now also the *deciding evidence for DR-04*, since the Node obstacle to v22 largely evaporated — what is left is estate difficulty, which only this measures.
 
----
-
-## S-05 — Angular v17 → v18 hop runbook, rehearsed
-
-| Field | Value |
-|---|---|
-| **Value line** | De-risks the highest-volume, most-repeated work in the programme by proving the first hop before it is done a dozen times. |
-| **Size** | **M–L** |
-| **Controlling doc** | `docs/angular-upgrade-docs/v17-to-v18/` (raw source); target output is a new LOE-6 packet |
-| **Depends on** | Nothing hard — a throwaway v17 app can be built on this side today. Sharper with S-02's inventory in hand. |
-| **Done when** | A throwaway v17 application has been taken to v18 on this side following a written procedure, and the procedure has been corrected to match what actually happened. |
-
-Recommended in `current_priorities.md` as the parallel track to this packet. It is the only major piece of work with raw source already in the repo, and it is genuinely parallel — it needs neither the questionnaire nor the bundle. **If Graham wants something moving while S-01/S-02 sit in other people's inboxes, this is that thing.**
-
-Caveat worth stating: a throwaway app rehearses the *mechanics* of the hop, not the estate's real difficulty, which lives in custom builders, custom schematics, and third-party libraries. It does not substitute for S-02.
+### [S-04](https://github.com/gstookey/rr/issues/11) — Close the cheap decisions (DR-05, DR-09)
+**Value.** Removes assumptions from the foundation before anything is built on them.
+**Size:** S — Graham's judgement only. **Doc:** [`decision_register_v0.md`](decision_register_v0.md).
 
 ---
 
-## S-06 — Close the cheap decisions
+# EP-02 — Offline Supply Chain & Transfer Bundles
 
-| Field | Value |
-|---|---|
-| **Value line** | Removes assumptions from the foundation before anything is built on top of them. |
-| **Size** | **S** |
-| **Controlling doc** | [`decision_register_v0.md`](decision_register_v0.md) — specifically DR-05 (layout) and DR-09 (ship the cache) |
-| **Depends on** | Graham's judgement only. No external input needed. |
-| **Done when** | DR-05 is closed as ADR-005, C-001 is fully resolved in the contradiction register, DR-09 is recorded, and `log.md` carries both. |
+### [S-05](https://github.com/gstookey/rr/issues/12) — Registry strategy + Desert Island stack bundle spec
+**Value.** Defines what a bundle *is* for RR — tarball set, lockfile, checksum manifest, verification step — and specifies the first one.
+**Size:** M · blocked on DR-01, DR-02, DR-09. **Doc:** [`stack_dependency_manifest_v0.md`](stack_dependency_manifest_v0.md) §"First-order bundle budget".
 
-DR-05 (the `apps/*` + `packages/*` layout, C-001's surviving half) is **cheap now and expensive after LOE-8 starts**. This packet proceeds on the assumption; the assumption should not survive into scaffolding unexamined.
+### [S-06](https://github.com/gstookey/rr/issues/13) — Bundle: supported Node 22.x for Legacy Island
+**Value.** Carries the runtime that closes the Node half of the security driver.
+**Size:** S to pack. **Doc:** [`two_island_model.md`](../../../context/canonical/two_island_model.md) §Node posture.
+Independent of every Angular hop. Pairs with S-13.
+
+### [S-07](https://github.com/gstookey/rr/issues/14) — Bundle: Angular v17 → v18 hop toolchain
+Angular 18.2.14 / CLI 18.2.21 / TypeScript 5.5.4. **Runs on Node 22.15 — no runtime change.** **Size:** M.
+
+### [S-08](https://github.com/gstookey/rr/issues/15) — Bundle: Angular v18 → v19 hop toolchain
+Angular 19.2.25 / CLI 19.2.27 / TypeScript 5.8.3. **Runs on Node 22.15.** **This bundle reaches Milestone 1's floor.** **Size:** M.
+
+### [S-09](https://github.com/gstookey/rr/issues/16) — Bundle: Angular v19 → v20 hop toolchain *(conditional)*
+Angular 20.3.29 / CLI 20.3.34 / TypeScript 5.9.3. Still no runtime change. **Conditional on DR-04.** **Size:** M.
+
+### [S-10](https://github.com/gstookey/rr/issues/17) — Bundle: Angular v20 → v21 hop toolchain *(conditional)*
+Angular 21.2.21 / CLI 21.2.21 / TypeScript 6.0.3. The last hop reachable without touching Node. **Conditional on DR-04.** **Size:** M.
+
+### [S-11](https://github.com/gstookey/rr/issues/18) — Bundle: Angular v21 → v22 hop toolchain + Node bump *(conditional)*
+Angular 22.1.3 / CLI 22.1.5 / TypeScript 6.0.3. **The only hop needing a Node change** (`^22.22.3 || ^24.15.0 || >=26.0.0`). **Conditional on DR-04**, couples to S-06. **Size:** M–L.
+
+> **The per-hop bundles are the reason this epic exists as its own workstream.** Each hop's toolchain must be in the island's registry *before* that hop is attempted — the intermediates, not just the destination. It is the easiest thing in the programme to under-order and the most expensive to discover late. Sizes per bundle are `UNVERIFIED`: the ~89 MB measured for the Desert Island stack is **not** a per-hop estimate, and each must be measured before packing.
 
 ---
 
-## Suggested sequence
+# EP-03 — Legacy Island: Angular v17 to v19+ *(carries Milestone 1)*
+
+### [S-12](https://github.com/gstookey/rr/issues/19) — Pre-upgrade build-health triage across the estate
+**Value.** An app that does not build today cannot be upgraded. Minutes now, a transfer cycle later.
+**Size:** S per app, folds into the S-03 inventory pass. **Doc:** [`legacy_estate_inventory_template_v0.md`](legacy_estate_inventory_template_v0.md) §step 6.
+
+### [S-13](https://github.com/gstookey/rr/issues/20) — Bump Legacy Island Node to a supported 22.x
+**Value.** Closes the Node security exposure independently of any Angular work — and it is a patch bump inside 22.x, not a major upgrade.
+**Size:** S technically · gated on change control. **Doc:** [`two_island_model.md`](../../../context/canonical/two_island_model.md) §Node posture.
+**Probably the cheapest risk reduction in the programme.** Needs no Angular work, blocks nothing, and as a side effect removes v22's only runtime obstacle.
+
+### [S-14](https://github.com/gstookey/rr/issues/21) — v17 → v18 hop runbook, rehearsed on this side
+**Value.** De-risks the highest-volume work by proving the first hop here before repeating it across 10+ apps there.
+**Size:** M–L · **no external gate.** **Doc:** `docs/angular-upgrade-docs/v17-to-v18/` (raw source).
+**The substantive work available today.** Caveat: a throwaway app rehearses the *mechanics*, not the estate's real difficulty (custom builders, custom schematics, third-party libraries). It does not substitute for S-03.
+
+### [S-15](https://github.com/gstookey/rr/issues/22) — v18 → v19 hop runbook, rehearsed on this side
+**Value.** The hop that reaches Milestone 1's floor, rehearsed here so the island executes a proven procedure.
+**Size:** M–L · follows S-14. **Doc:** `docs/angular-upgrade-docs/v18-to-v19/` (raw source).
+
+---
+
+# EP-04 — Desert Island: environment stand-up
+
+### [S-16](https://github.com/gstookey/rr/issues/23) — Rehearse the day-one runbook on a network-disabled machine
+**Value.** Finds the runbook's errors here, where they cost an hour, instead of there, where they cost a transfer cycle.
+**Size:** M · depends on S-05. **Doc:** [`day_one_on_the_island_runbook_v0.md`](day_one_on_the_island_runbook_v0.md).
+The runbook is currently unrehearsed and says so at the top. Worthwhile extension: hand the corrected version to someone who did not write it and watch them follow it without help — everything they get stuck on is a defect in the document.
+
+### [S-17](https://github.com/gstookey/rr/issues/24) — Desert Island target-stack sync spec
+**Value.** The two islands meet in the cluster at deploy time, so their stacks must agree. This pins what "in sync" means concretely.
+**Size:** S–M · gated on DR-04 and DR-10. **Doc:** [`two_island_model.md`](../../../context/canonical/two_island_model.md) §Stack synchronization.
+Follows Legacy Island's achieved target rather than leading it.
+
+---
+
+# Suggested sequence
 
 ```
 now, in parallel:
-  S-01 ──────────────────────────────► (external, weeks?)
-  S-02 ──────────────────────────────► (external, weeks?)
-  S-06 ──►                              (Graham, hours)
-  S-05 ──────────────────►              (real work, no external gate)
+  S-01, S-02 ──────────────────────────────►  (external, weeks?)
+  S-03       ──────────────────────────────►  (external, weeks?)
+  S-04       ──►                               (Graham, hours)
+  S-13/S-06  ──────────►                       (security, independent of Angular)
+  S-14       ──────────────────►               (real work, no external gate)
 
-once S-01's A-section answers land:
-              S-03 ──────►
-                     S-04 ──────►
+once S-01's Section-A answers land:
+              S-05 ──────►
+                     S-16 ──────►
+                     S-07 ──► S-08 ──►         (Milestone 1's bundles)
+
+after DR-04 closes (post first real hop):
+                            S-09 ─► S-10 ─► S-11
 ```
 
-**S-01, S-02 and S-06 should start immediately**; two of them are just waiting on other people and the third takes an afternoon. **S-05 is the substantive work available today** with no external dependency. **S-03 and S-04 are sequenced behind the questionnaire** — building a bundle before knowing the registry situation and the Node ceiling risks building the wrong bundle.
+**Start immediately:** S-01, S-02, S-03, S-04 (three are waiting on other people, one takes an afternoon), plus **S-13/S-06** — the Node bump is independent, cheap, and closes half the security driver on its own. **S-14 is the substantive engineering available today.** Everything else waits on the questionnaire, and correctly so: building a bundle before the registry situation is known risks building the wrong bundle.
 
-## What is deliberately not proposed here
+# What is deliberately not proposed
 
-- **Scaffolding the monorepo** (LOE-8). Explicitly out of scope for this packet, and premature until DR-03 and DR-05 close.
-- **Per-hop runbooks beyond v17→v18.** Write them after the first hop teaches us the real shape; writing five runbooks from documentation before rehearsing one is how five wrong runbooks get written.
-- **Container/Helm supply chain.** Flagged in the manifest as a separate supply chain. It needs its own packet and should not be quietly absorbed into this one.
+- **Scaffolding the monorepo** (LOE-8). Premature until DR-03, DR-05 and now **DR-10** close — the stack-sync constraint means Desert Island's pins are not settled.
+- **Per-hop runbooks beyond v18→v19.** Write them after the first hops teach us the real shape; five runbooks written from documentation before rehearsing one is how five wrong runbooks get written.
+- **Container/Helm supply chain.** A separate supply chain from npm, needing its own packet. Flagged, not absorbed.
 
 ---
 
-**Ask for Graham:** which of these to activate, and under which epic. Nothing moves to the board without that answer.
+**Ask for Graham:** which stories to move to **In Progress**. They exist; none is activated.

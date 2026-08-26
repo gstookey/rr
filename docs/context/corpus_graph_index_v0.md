@@ -68,16 +68,17 @@ Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-
 - UI Designer Workflow — `docs/context/team/agents/ui-designer/ui_designer_workflow.md` — areas: agent-fleet — governs: 0 — related: 0
 - Brand — Visual Identity — `docs/design/brand/README.md` — areas: brand-design, frontend, content-style — governs: 0 — related: 2
 
-## active (32)
+## active (33)
 
-- CURRENT_STATE — Project Road Runner — `docs/CURRENT_STATE.md` — areas: context-system, planning — governs: 0 — related: 2
+- CURRENT_STATE — Project Road Runner — `docs/CURRENT_STATE.md` — areas: context-system, planning — governs: 0 — related: 3
 - RR Context System — `docs/context/README.md` — areas: context-system — governs: 0 — related: 2
 - Canonical — Synthesized Current Truth — `docs/context/canonical/README.md` — areas: context-system — governs: 0 — related: 0
 - Context System — How This Corpus Is Organized — `docs/context/canonical/context_system.md` — areas: context-system, process-governance — governs: 0 — related: 2
-- Current Priorities — `docs/context/canonical/current_priorities.md` — areas: planning, context-system — governs: 0 — related: 3
-- Isolated Network Constraints — Known and Unknown — `docs/context/canonical/isolated_network_constraints.md` — areas: isolated-network, dev-environment, security, planning — governs: 0 — related: 2
-- Project Overview — Project Road Runner — `docs/context/canonical/project_overview.md` — areas: planning, isolated-network, dev-environment, brand-design — governs: 0 — related: 3
+- Current Priorities — `docs/context/canonical/current_priorities.md` — areas: planning, context-system — governs: 0 — related: 4
+- Isolated Network Constraints — Known and Unknown — `docs/context/canonical/isolated_network_constraints.md` — areas: isolated-network, dev-environment, security, planning — governs: 0 — related: 3
+- Project Overview — Project Road Runner — `docs/context/canonical/project_overview.md` — areas: planning, isolated-network, dev-environment, brand-design — governs: 0 — related: 4
 - Technology Stack — Intended (Design Direction) — `docs/context/canonical/technology_stack.md` — areas: technology-stack, system-architecture, monorepo, frontend, backend — governs: 0 — related: 3
+- The Two-Island Model — Legacy Island and Desert Island — `docs/context/canonical/two_island_model.md` — areas: isolated-network, dev-environment, planning, security — governs: 0 — related: 4
 - Evidence — `docs/context/evidence/README.md` — areas: context-system — governs: 0 — related: 0
 - Evidence — Images — `docs/context/evidence/images/README.md` — areas: context-system, brand-design — governs: 0 — related: 0
 - Evidence — Raw — `docs/context/evidence/raw/README.md` — areas: context-system — governs: 0 — related: 1
@@ -105,13 +106,13 @@ Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-
 
 ## exploratory (7)
 
-- Isolated-Network Readiness Packet (iso-net-readiness-01) — `docs/design/packets/iso-net-readiness-01-design-packet/README.md` — areas: isolated-network, dev-environment, technology-stack, planning — governs: 0 — related: 5
+- Isolated-Network Readiness Packet (iso-net-readiness-01) — `docs/design/packets/iso-net-readiness-01-design-packet/README.md` — areas: isolated-network, dev-environment, technology-stack, planning — governs: 0 — related: 6
 - Day One on the Island — Runbook v0 (draft, unrehearsed) — `docs/design/packets/iso-net-readiness-01-design-packet/day_one_on_the_island_runbook_v0.md` — areas: isolated-network, dev-environment, technology-stack — governs: 0 — related: 3
-- Decision Register v0 — Isolated-Network Readiness — `docs/design/packets/iso-net-readiness-01-design-packet/decision_register_v0.md` — areas: isolated-network, technology-stack, process-governance, planning — governs: 0 — related: 4
-- Island Questionnaire v0 — Isolated-Network Readiness — `docs/design/packets/iso-net-readiness-01-design-packet/island_questionnaire_v0.md` — areas: isolated-network, dev-environment, security, planning — governs: 0 — related: 2
+- Decision Register v0 — Isolated-Network Readiness — `docs/design/packets/iso-net-readiness-01-design-packet/decision_register_v0.md` — areas: isolated-network, technology-stack, process-governance, planning — governs: 0 — related: 5
+- Island Questionnaire v0 — Isolated-Network Readiness — `docs/design/packets/iso-net-readiness-01-design-packet/island_questionnaire_v0.md` — areas: isolated-network, dev-environment, security, planning — governs: 0 — related: 3
 - Legacy Estate Inventory Template v0 — Angular v17 applications — `docs/design/packets/iso-net-readiness-01-design-packet/legacy_estate_inventory_template_v0.md` — areas: isolated-network, frontend, dev-environment, planning — governs: 0 — related: 3
-- Stack Dependency Manifest v0 — pinned versions and bundle footprint — `docs/design/packets/iso-net-readiness-01-design-packet/stack_dependency_manifest_v0.md` — areas: technology-stack, isolated-network, dev-environment, monorepo — governs: 0 — related: 4
-- Story Decomposition v0 — Isolated-Network Readiness — `docs/design/packets/iso-net-readiness-01-design-packet/story_decomposition_v0.md` — areas: planning, isolated-network, process-governance — governs: 0 — related: 4
+- Stack Dependency Manifest v0 — pinned versions and bundle footprint — `docs/design/packets/iso-net-readiness-01-design-packet/stack_dependency_manifest_v0.md` — areas: technology-stack, isolated-network, dev-environment, monorepo — governs: 0 — related: 5
+- Story Decomposition v0 — Isolated-Network Readiness — `docs/design/packets/iso-net-readiness-01-design-packet/story_decomposition_v0.md` — areas: planning, isolated-network, process-governance — governs: 0 — related: 5
 
 ## founder-source (1)
 

@@ -3,13 +3,17 @@ schema: corpus-doc/v1
 status: exploratory
 title: Isolated-Network Readiness Packet (iso-net-readiness-01)
 areas: [isolated-network, dev-environment, technology-stack, planning]
-related: ["docs/context/canonical/isolated_network_constraints.md", "docs/context/canonical/project_overview.md", "docs/context/canonical/technology_stack.md", "docs/context/governance/decisions/ADR-004-package-manager-npm.md", "docs/context/canonical/current_priorities.md"]
-updated: 2026-08-25
+related: ["docs/context/canonical/two_island_model.md", "docs/context/canonical/isolated_network_constraints.md", "docs/context/canonical/project_overview.md", "docs/context/canonical/technology_stack.md", "docs/context/governance/decisions/ADR-004-package-manager-npm.md", "docs/context/canonical/current_priorities.md"]
+updated: 2026-08-26
 ---
 
 # Isolated-Network Readiness Packet — `iso-net-readiness-01`
 
-**Created:** 2026-08-25 | **Last updated:** 2026-08-25 | **Author:** Axium | **Status:** `exploratory` — design direction, not implementation truth, not activated work
+**Created:** 2026-08-25 | **Last updated:** 2026-08-26 | **Author:** Axium | **Status:** `exploratory` — design direction, not implementation truth
+
+> **Updated 2026-08-26 for the two-island model.** The packet was written against "the isolated network," singular. There are **two**: Legacy Island (10+ Angular v17 apps on Node 22.15) and Desert Island (greenfield). See `docs/context/canonical/two_island_model.md` — read it first; it now outranks this packet on anything environment-shaped.
+>
+> Also changed that day: **Milestone 1 is "Legacy Island to Angular 19 minimum"**, the board was stood up with Graham's approval (EP-01..EP-05, S-01..S-17), and the verified hop matrix showed that **Milestone 1 needs no Node change on Legacy Island**. The stories in this packet now exist as issues; **none is activated.**
 
 ## Why this packet exists
 
@@ -50,7 +54,7 @@ The standing design constraint that follows — **"reproducible offline from pin
 | **LOE-1 Preparation plan** | The questionnaire is the preparation phase's critical path: until it comes back, most preparation work is speculative. The story decomposition is the raw material for LOE-1's board stories. |
 | **LOE-4 Stack documentation** | The dependency manifest fixes *which versions* the stack docs must document. LOE-4's rule ("docs for each package at the exact versions to be installed") is unexecutable without a pinned list; this packet supplies the first one, dated and registry-verified. |
 | **LOE-5 Transfer bundles** | The manifest's measured tarball footprint plus the runbook's seeding procedure define what a bundle *is* for RR: a tarball set + a lockfile + a verification step, not a folder of hopeful downloads. Bundle #1 is specified here in all but the packing. |
-| **LOE-6 Legacy Angular upgrade** | The inventory template is the input the upgrade plan **cannot be sized without**. Ten-plus apps at v17 with unknown build tooling, unknown test runners, and unknown custom schematics is not a plan, it is a hope. One filled table converts it into an estimate. |
+| **LOE-6 Legacy Angular upgrade** | The inventory template is the input the upgrade plan **cannot be sized without**. Ten-plus apps at v17 with unknown build tooling, unknown test runners, and unknown custom schematics is not a plan, it is a hope. One filled table converts it into an estimate. The manifest's Appendix B now carries the **verified per-hop matrix** (Node + TypeScript requirements for every hop v17→v22) that the per-hop bundles are built from. |
 
 Secondary: **LOE-3** (set-up guides) inherits the runbook's "written for a human with no agent" standard as its house style. **LOE-2** (execution plan) begins where the runbook's last verification step succeeds.
 
@@ -58,7 +62,8 @@ Secondary: **LOE-3** (set-up guides) inherits the runbook's "written for a human
 
 - No answer here is presented as settled where it is not. Unanswered items are marked `[NEEDS GRAHAM]` or `[NEEDS NETWORK OWNER]`; unverifiable version pins are marked `UNVERIFIED`.
 - The version pins in the manifest were verified against the live npm registry **on 2026-08-25** and are true as of that date only. They will drift. The manifest states its own re-verification rule.
-- One assumption is being proceeded on rather than confirmed: the monorepo layout `apps/*` + `packages/*` (C-001, layout half). It is load-bearing for the story decomposition and nothing else in this packet; see the open questions in `decision_register_v0.md` (DR-05).
+- One assumption is being proceeded on rather than confirmed: the monorepo layout `apps/*` + `packages/*` (C-001, layout half). It is load-bearing for the story decomposition and nothing else in this packet; see `decision_register_v0.md` (DR-05).
+- The Desert Island pins in the manifest carry an **explicit expiration**: they hold only until DR-04 closes, because cluster-time stack synchronization makes Legacy Island's achieved target the binding one (DR-10).
 
 ## Reading order
 

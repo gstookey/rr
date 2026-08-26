@@ -1,4 +1,4 @@
-File tree as of Tue Aug 25 21:14:08 UTC 2026
+File tree as of Wed Aug 26 04:03:18 UTC 2026
 .
 |-- AGENTS.md
 |-- README.md
@@ -28,7 +28,8 @@ File tree as of Tue Aug 25 21:14:08 UTC 2026
 |   |   |   |-- current_priorities.md
 |   |   |   |-- isolated_network_constraints.md
 |   |   |   |-- project_overview.md
-|   |   |   `-- technology_stack.md
+|   |   |   |-- technology_stack.md
+|   |   |   `-- two_island_model.md
 |   |   |-- corpus-graph.json
 |   |   |-- corpus_graph_content.js
 |   |   |-- corpus_graph_index_v0.md
@@ -247,4 +248,4 @@ File tree as of Tue Aug 25 21:14:08 UTC 2026
     `-- test
         `-- corpus-graph-claims.spec.mjs
 
-53 directories, 194 files
+53 directories, 195 files

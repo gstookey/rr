@@ -3,13 +3,24 @@ schema: corpus-doc/v1
 status: exploratory
 title: Island Questionnaire v0 — Isolated-Network Readiness
 areas: [isolated-network, dev-environment, security, planning]
-related: ["docs/context/canonical/isolated_network_constraints.md", "docs/design/packets/iso-net-readiness-01-design-packet/README.md"]
-updated: 2026-08-25
+related: ["docs/context/canonical/isolated_network_constraints.md", "docs/context/canonical/two_island_model.md", "docs/design/packets/iso-net-readiness-01-design-packet/README.md"]
+updated: 2026-08-26
 ---
 
 # Island Questionnaire v0
 
-**Created:** 2026-08-25 | **Last updated:** 2026-08-25 | **Status:** `exploratory` — draft instrument, not yet sent
+**Created:** 2026-08-25 | **Last updated:** 2026-08-26 | **Status:** `exploratory` — draft instrument, not yet sent
+
+## Send this TWICE — once per island
+
+As of 2026-08-26 there are **two** target environments (`docs/context/canonical/two_island_model.md`), and they need separate answers from possibly different owners:
+
+- **Legacy Island** — 10+ Angular v17 apps on Node 22.15. Send the **full** questionnaire. Sections A and B carry the highest-value questions, and B7/B8 (app count, owners, build health) feed the estate inventory directly. Board: [S-01](https://github.com/gstookey/rr/issues/8).
+- **Desert Island** — greenfield; nothing exists on it yet. Send **Sections A and C in full**, and Section B **as written, not skipped**. Board: [S-02](https://github.com/gstookey/rr/issues/9).
+
+> **Why ask Desert Island about tooling that "obviously" is not there:** because a questionnaire that assumes its own answers collects nothing. "Nothing is installed" needs to be *stated by someone who looked*, not inferred by us. Several B questions also have real answers on a greenfield network — what OS the machines will run, who provisions them, whether a git server is planned — that we would never learn by skipping the section.
+
+Where a question is marked **[Legacy only]** below, skip it for Desert Island. Everything else is asked of both.
 
 ## For the person filling this in
 
@@ -41,7 +52,7 @@ Removable media, a data diode, an approved one-way gateway, a courier process, s
 
 A number with a unit. If there is no hard cap, say so and give the largest transfer you have actually seen go through.
 
-- **Why we need this:** our first delivery is on the order of **hundreds of megabytes to a few gigabytes** (the software toolchain itself is ~90 MB compressed; the runtime, the tooling, and the legacy-application dependencies are on top of that).
+- **Why we need this:** our first delivery is on the order of **hundreds of megabytes to a few gigabytes** (one software toolchain alone measures ~90 MB compressed; the runtime, the tooling, and — for Legacy Island — a **separate toolchain set per Angular version hop** are on top of that).
 - **What changes depending on the answer:** under ~500 MB we split the delivery into ordered parts and need a documented reassembly step. Over a few GB, one delivery covers it.
 
 ### A3. How long does a transfer take end to end, from "we hand it over" to "it is usable on the network"?
@@ -57,6 +68,8 @@ Include scanning, review, and approval time — not just the copy.
 - **What changes depending on the answer:** rare transfers mean we deliberately over-pack. Frequent transfers mean we pack lean and fetch what we missed.
 
 ### A5. Is there already an internal package registry on the network?
+
+*(Ask this of Desert Island too. The expected answer is "no" — get it said out loud rather than assumed.)*
 
 Specifically for JavaScript/Node packages — product names to look for: **Nexus**, **Artifactory**, **Verdaccio**, **npm Enterprise**, or an internal mirror at some URL. If yes, please give the URL and who administers it.
 
@@ -100,13 +113,13 @@ Please describe the process and who owns it, even roughly.
 
 ### B2. Is **Node.js** installed? Which version — the exact output of `node --version`, from a developer workstation and from a build machine if they differ.
 
-- **Why we need this:** this is a hard gate. The version of Angular we intend to use requires **Node 22.22.3 or newer within the 22.x line, or 24.15.0 or newer within 24.x, or 26.0.0 or newer** (verified against the package's published requirements, 2026-08-25). A Node older than that cannot build it, full stop.
-- **What changes depending on the answer:** if Node is older and **can** be upgraded, an upgrade becomes an early task and we carry the installer. If Node is older and **cannot** be upgraded, that constraint — not our preference — sets the ceiling on which Angular version the existing applications can reach, and we re-plan around it.
+- **Why we need this:** *(For Legacy Island we believe the answer is **Node 22.15** — please confirm or correct it, and say whether workstations and build hosts differ.)* Verified 2026-08-25 against the packages' published requirements: Node 22.15 already supports Angular **18, 19, 20 and 21**. Only **Angular 22** needs newer — `^22.22.3 || ^24.15.0 || >=26.0.0`.
+- **What changes depending on the answer:** if Node 22.15 is confirmed, **the v19 target needs no Node change at all** and the two upgrades decouple. Separately, 22.15 is ~15 months and 8 patch releases behind its own LTS line (current: 22.23.2) and carries known exposure — so a **patch-level bump inside 22.x** is worth doing on security grounds regardless of any Angular work, and is a much smaller change-control ask than a major upgrade.
 
-### B3. Can Node be upgraded on those machines, and who approves that?
+### B3. Can Node be upgraded on those machines, and who approves that? Specifically: what would it take to move from 22.15 to the current 22.23.x — a patch bump inside the same major line?
 
-- **Why we need this:** see B2. It is the difference between a task and a re-plan.
-- **What changes depending on the answer:** if not upgradable, the target for the existing applications drops from the ambitious end to the achievable end, and we say so in writing rather than discovering it mid-upgrade.
+- **Why we need this:** the remaining Node question is **permission and process**, not compatibility — see B2. We want to know the cost of a patch bump, because it is the cheapest security win available and it is also the only Node change Angular 22 would ever need.
+- **What changes depending on the answer:** if a patch bump is straightforward, the Angular 22 stretch loses its runtime obstacle entirely and the decision reduces to estate effort. If even a patch bump is hard, we plan the whole programme on 22.15 and the ceiling is Angular 21.
 
 ### B4. What is the output of `npm --version` on those same machines?
 
@@ -123,14 +136,14 @@ Please describe the process and who owns it, even roughly.
 - **Why we need this:** automated build/test is how a ten-plus-application upgrade stays honest.
 - **What changes depending on the answer:** no CI means the verification steps in our runbooks must be written as things a person runs and records, not as pipeline configuration.
 
-### B7. How many of the existing applications are there exactly, and who owns each one?
+### B7. [Legacy only] How many of the existing applications are there exactly, and who owns each one?
 
 A name and an owner per application is enough. A list of repository names works.
 
 - **Why we need this:** we have been working from "10+" and cannot size the work from that.
 - **What changes depending on the answer:** it converts the largest piece of work in the program from an unknown into an estimate. See the companion [`legacy_estate_inventory_template_v0.md`](legacy_estate_inventory_template_v0.md) — if you can get one row of that table filled per application, it is worth more than the rest of this questionnaire combined.
 
-### B8. Do the existing applications currently build successfully on the network today, from a clean checkout?
+### B8. [Legacy only] Do the existing applications currently build successfully on the network today, from a clean checkout?
 
 Yes / no / don't know, per application if it varies.
 
@@ -181,4 +194,4 @@ Name the process and its typical duration.
 
 ## After it comes back
 
-The answers to **A5, A3, B2, and B7** are the four that unblock the most downstream work. When they arrive, they update `docs/context/canonical/isolated_network_constraints.md` (moving items from "Unknown" to "Known") and close or re-shape the entries in [`decision_register_v0.md`](decision_register_v0.md). Answers are evidence: register the returned document under `docs/context/evidence/raw/` before synthesizing it.
+The answers to **A5, A3, B2, and B7** are the four that unblock the most downstream work. One question is **not yet in this document and should be**: whether the two islands share a transfer mechanism or each has its own — it changes bundle logistics materially. Add it before sending. When they arrive, they update `docs/context/canonical/isolated_network_constraints.md` (moving items from "Unknown" to "Known") and close or re-shape the entries in [`decision_register_v0.md`](decision_register_v0.md). Answers are evidence: register the returned document under `docs/context/evidence/raw/` before synthesizing it.
