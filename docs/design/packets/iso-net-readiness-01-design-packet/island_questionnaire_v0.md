@@ -9,7 +9,7 @@ updated: 2026-08-26
 
 # Island Questionnaire v0
 
-**Created:** 2026-08-25 | **Last updated:** 2026-08-26 | **Status:** `exploratory` — draft instrument, not yet sent
+**Created:** 2026-08-25 | **Last updated:** 2026-08-26 (B9 browser-binary question added from the v17→v18 rehearsal) | **Status:** `exploratory` — draft instrument, not yet sent
 
 ## Send this TWICE — once per island
 
@@ -150,7 +150,14 @@ Yes / no / don't know, per application if it varies.
 - **Why we need this:** you cannot upgrade an application that does not build. If some are already broken, that is a *pre-*upgrade task nobody has costed.
 - **What changes depending on the answer:** any "no" or "don't know" becomes a first-week investigation task before upgrade planning is meaningful.
 
-### B9. Is there anywhere on the network to host internal documentation — a wiki, a file share, a portal?
+### B9. [Legacy only] Is a web browser installed on the developer workstations and build machines? Which, and what is its path?
+
+Chrome, Chromium, Edge, Firefox — name and version if you can.
+
+- **Why we need this:** the Angular test runner used by v17-era applications (Karma) launches a **real browser** to run tests. That browser is an operating-system binary — it does **not** arrive with the software packages we transfer. Discovered by rehearsal on 2026-08-26, where the tests failed with `No binary for ChromeHeadless browser on your platform`.
+- **What changes depending on the answer:** if a browser is present, nothing. If not, the upgrade of 10+ applications proceeds **without the ability to run their tests** — losing the main regression safety net — and a browser becomes a transfer item on a completely different supply chain, with its own approval path. Worth knowing before the estate work starts rather than during it.
+
+### B10. Is there anywhere on the network to host internal documentation — a wiki, a file share, a portal?
 
 - **Why we need this:** the instructions we write have to live somewhere people can find them once they are on the network.
 - **What changes depending on the answer:** if there is nothing, documents travel as files inside the delivery and we structure them to be readable as plain files.

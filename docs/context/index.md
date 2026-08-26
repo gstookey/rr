@@ -8,7 +8,7 @@ updated: 2026-08-26
 
 # RR Context Wiki Index
 
-**Created:** 2026-08-25 | **Last updated:** 2026-08-26 (two-island model; board EP-01..EP-05 / S-01..S-17)
+**Created:** 2026-08-25 | **Last updated:** 2026-08-26 (packet `ng-hop-01`; v17→v18 hop rehearsed)
 
 Navigation spine for the RR context system. Update when a page is added, removed, or changes meaningfully.
 
@@ -39,7 +39,10 @@ Navigation spine for the RR context system. Update when a page is added, removed
 
 - [Design README](../design/README.md)
 - [Brand — Visual Identity](../design/brand/README.md)
-- Packets: [Isolated-Network Readiness (`iso-net-readiness-01`)](../design/packets/iso-net-readiness-01-design-packet/README.md) — `exploratory`, proposed not activated
+- Packets:
+- [Angular v17→v18 Hop (`ng-hop-01`)](../design/packets/ng-hop-01-v17-to-v18-design-packet/README.md) — `exploratory`; **rehearsed 2026-08-26**
+  - [v17→v18 Hop Runbook v1](../design/packets/ng-hop-01-v17-to-v18-design-packet/v17_to_v18_hop_runbook_v1.md) · [v18 Hop Bundle Manifest v0](../design/packets/ng-hop-01-v17-to-v18-design-packet/v18_hop_bundle_manifest_v0.md)
+- [Isolated-Network Readiness (`iso-net-readiness-01`)](../design/packets/iso-net-readiness-01-design-packet/README.md) — `exploratory`, proposed not activated
   - [Island Questionnaire v0](../design/packets/iso-net-readiness-01-design-packet/island_questionnaire_v0.md) · [Legacy Estate Inventory Template v0](../design/packets/iso-net-readiness-01-design-packet/legacy_estate_inventory_template_v0.md) · [Stack Dependency Manifest v0](../design/packets/iso-net-readiness-01-design-packet/stack_dependency_manifest_v0.md) · [Day One on the Island Runbook v0](../design/packets/iso-net-readiness-01-design-packet/day_one_on_the_island_runbook_v0.md) · [Decision Register v0 (DR-01..DR-10)](../design/packets/iso-net-readiness-01-design-packet/decision_register_v0.md) · [Story Decomposition v0 (S-01..S-17, board-linked)](../design/packets/iso-net-readiness-01-design-packet/story_decomposition_v0.md)
 - `mockups/` — empty
 

@@ -9,11 +9,12 @@ updated: 2026-08-25
 
 # Design
 
-**Created:** 2026-08-25 | **Last updated:** 2026-08-25 (packet `iso-net-readiness-01` added)
+**Created:** 2026-08-25 | **Last updated:** 2026-08-26 (packet `ng-hop-01` added)
 
 Design direction — future intent, never implementation truth (operating-contract rule 8).
 
 - `brand/` — visual identity: palette, type, logo usage, AstroUXDS token overrides.
 - `packets/` — design packets (`<TOPIC>-NN-design-packet/README.md` + decision register), the unit of design work Axium cuts and Graham accepts.
+  - [`ng-hop-01-v17-to-v18-design-packet/`](packets/ng-hop-01-v17-to-v18-design-packet/README.md) — Angular v17→v18 hop (2026-08-26, `exploratory`): **rehearsed** runbook v1 + measured v18 bundle manifest. First hop toward Milestone 1.
   - [`iso-net-readiness-01-design-packet/`](packets/iso-net-readiness-01-design-packet/README.md) — Isolated-Network Readiness (2026-08-25, `exploratory`, proposed not activated): island questionnaire, legacy-estate inventory template, pinned stack manifest, day-one runbook, decision register DR-01..DR-09, story candidates S-01..S-06.
 - `mockups/` — Cadence's HTML/static mockups, served by the `mockups` launch config on port 8137. None yet.
