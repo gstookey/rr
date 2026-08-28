@@ -8,7 +8,7 @@ updated: 2026-08-26
 
 # RR Context Wiki Index
 
-**Created:** 2026-08-25 | **Last updated:** 2026-08-26 (packet `ng-hop-01`; v17→v18 hop rehearsed)
+**Created:** 2026-08-25 | **Last updated:** 2026-08-28 (packet `ng-hop-02`; v18→v19 hop rehearsed — both Milestone 1 hops now written)
 
 Navigation spine for the RR context system. Update when a page is added, removed, or changes meaningfully.
 
@@ -40,6 +40,8 @@ Navigation spine for the RR context system. Update when a page is added, removed
 - [Design README](../design/README.md)
 - [Brand — Visual Identity](../design/brand/README.md)
 - Packets:
+- [Angular v18→v19 Hop (`ng-hop-02`)](../design/packets/ng-hop-02-v18-to-v19-design-packet/README.md) — `exploratory`; **rehearsed 2026-08-28**; reaches Milestone 1's floor
+  - [v18→v19 Hop Runbook v1](../design/packets/ng-hop-02-v18-to-v19-design-packet/v18_to_v19_hop_runbook_v1.md) · [v19 Hop Bundle Manifest v0](../design/packets/ng-hop-02-v18-to-v19-design-packet/v19_hop_bundle_manifest_v0.md)
 - [Angular v17→v18 Hop (`ng-hop-01`)](../design/packets/ng-hop-01-v17-to-v18-design-packet/README.md) — `exploratory`; **rehearsed 2026-08-26**
   - [v17→v18 Hop Runbook v1](../design/packets/ng-hop-01-v17-to-v18-design-packet/v17_to_v18_hop_runbook_v1.md) · [v18 Hop Bundle Manifest v0](../design/packets/ng-hop-01-v17-to-v18-design-packet/v18_hop_bundle_manifest_v0.md)
 - [Isolated-Network Readiness (`iso-net-readiness-01`)](../design/packets/iso-net-readiness-01-design-packet/README.md) — `exploratory`, proposed not activated

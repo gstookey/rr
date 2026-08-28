@@ -1,4 +1,4 @@
-File tree as of Wed Aug 26 16:54:43 UTC 2026
+File tree as of Fri Aug 28 12:57:56 UTC 2026
 .
 |-- AGENTS.md
 |-- README.md
@@ -161,10 +161,14 @@ File tree as of Wed Aug 26 16:54:43 UTC 2026
 |   |       |   |-- legacy_estate_inventory_template_v0.md
 |   |       |   |-- stack_dependency_manifest_v0.md
 |   |       |   `-- story_decomposition_v0.md
-|   |       `-- ng-hop-01-v17-to-v18-design-packet
+|   |       |-- ng-hop-01-v17-to-v18-design-packet
+|   |       |   |-- README.md
+|   |       |   |-- v17_to_v18_hop_runbook_v1.md
+|   |       |   `-- v18_hop_bundle_manifest_v0.md
+|   |       `-- ng-hop-02-v18-to-v19-design-packet
 |   |           |-- README.md
-|   |           |-- v17_to_v18_hop_runbook_v1.md
-|   |           `-- v18_hop_bundle_manifest_v0.md
+|   |           |-- v18_to_v19_hop_runbook_v1.md
+|   |           `-- v19_hop_bundle_manifest_v0.md
 |   `-- source-documents
 |       `-- monorepo-set-up-docs
 |           |-- angular-application-stand-up-docs
@@ -261,4 +265,4 @@ File tree as of Wed Aug 26 16:54:43 UTC 2026
     `-- test
         `-- corpus-graph-claims.spec.mjs
 
-64 directories, 197 files
+65 directories, 200 files

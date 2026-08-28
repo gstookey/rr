@@ -4,12 +4,12 @@ status: exploratory
 title: Stack Dependency Manifest v0 — pinned versions and bundle footprint
 areas: [technology-stack, isolated-network, dev-environment, monorepo]
 related: ["docs/context/canonical/technology_stack.md", "docs/context/canonical/two_island_model.md", "docs/context/governance/decisions/ADR-004-package-manager-npm.md", "docs/context/canonical/isolated_network_constraints.md", "docs/design/packets/iso-net-readiness-01-design-packet/README.md"]
-updated: 2026-08-26
+updated: 2026-08-28
 ---
 
 # Stack Dependency Manifest v0
 
-**Created:** 2026-08-25 | **Last updated:** 2026-08-26 (rehearsal correction) | **Status:** `exploratory` — design direction, pins verified but not committed to
+**Created:** 2026-08-25 | **Last updated:** 2026-08-28 (both Milestone 1 hops rehearsed) | **Status:** `exploratory` — design direction, pins verified but not committed to
 
 ## What this is
 
@@ -328,13 +328,25 @@ This substantially weakens the earlier assumption that the island's Node was a p
 
 Node 22.15.0 shipped **2025-04-22**; the current 22.x patch is **22.23.2** (2026-07-28) and the line is still LTS (*Jod*). Legacy Island is ~15 months and 8 patch releases behind, which is the Node half of the security driver. The bump needs no Angular work and is probably the cheapest risk reduction in the programme ([S-06](https://github.com/gstookey/rr/issues/13) to bundle, [S-13](https://github.com/gstookey/rr/issues/20) to apply). The 22 line's end-of-life date is **`UNVERIFIED`** — `nodejs.org/dist/schedule.json` was not reachable in-session.
 
-## Correction from the v17→v18 rehearsal (2026-08-26)
+## How `ng update` actually picks TypeScript (rehearsed, 2026-08-26 and 2026-08-28)
 
-The "TS pin (highest in window)" column is **the top of the accepted range, not what the hop requires**. Rehearsed on 2026-08-26: `ng update @angular/core@18 @angular/cli@18` **left TypeScript at `~5.4.2`** — Angular 18 accepts `>=5.4 <5.6`, and the v17-era 5.4.2 already satisfies it. The same is likely true of later hops: `ng update` moves TypeScript only when it must.
+Two hops have now been rehearsed, and together they turn the "TS pin" column from a note into a **rule**:
 
-**Bundle consequence:** carrying the existing TypeScript may be sufficient for a hop. Do not assume the top-of-window version is required, and do not omit the existing one on the assumption it will be replaced. Full detail: [`ng-hop-01` packet](../ng-hop-01-v17-to-v18-design-packet/README.md).
+| Hop | Angular's TS window | TS installed before | What `ng update` did |
+|---|---|---|---|
+| v17→v18 | `>=5.4 <5.6` | `5.4.5` | **nothing** — already satisfied |
+| v18→v19 | `>=5.5 <5.9` | `5.4.5` | moved to **`5.8.3`** — the top of the window |
 
-**Also found, and not visible in this table:** `ng update` downloads a **temporary newer CLI** before it does anything, so the registry must serve the *next* major's CLI before the app declares it; and Karma needs a **browser binary**, which is not an npm package and will not be in any tarball bundle.
+**`ng update` leaves TypeScript alone when the installed version already satisfies the new Angular's peer range; when it must move, it moves to the top of that range.** The same held for `zone.js` (untouched at v18; `0.14.10` → `0.15.1` at v19).
+
+**So the "TS pin (highest in window)" column below is a reliable upper bound and the version to carry** — carry it and you are covered either way. What it is *not* is a version every hop requires: hop 1 needed no TypeScript change at all.
+
+**Two other things the rehearsals found that this table cannot show:**
+
+- **`ng update` downloads a temporary newer CLI before it does anything** (confirmed on both hops). The registry must serve the *next* major's CLI **before** the application declares it — seeding from "what the upgraded app declares" is not sufficient.
+- **Karma needs a browser binary**, which is not an npm package and will not be in any tarball bundle. Neither hop has been validated by a passing test suite.
+
+Detail: [`ng-hop-01`](../ng-hop-01-v17-to-v18-design-packet/README.md) · [`ng-hop-02`](../ng-hop-02-v18-to-v19-design-packet/README.md).
 
 ## Bundle-scope consequence
 

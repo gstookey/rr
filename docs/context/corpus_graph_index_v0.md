@@ -104,7 +104,7 @@ Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-
 - Agents — Repo-Side Fleet — `docs/context/team/agents/README.md` — areas: agent-fleet, process-governance — governs: 0 — related: 2
 - Design — `docs/design/README.md` — areas: brand-design, planning — governs: 0 — related: 1
 
-## exploratory (10)
+## exploratory (13)
 
 - Isolated-Network Readiness Packet (iso-net-readiness-01) — `docs/design/packets/iso-net-readiness-01-design-packet/README.md` — areas: isolated-network, dev-environment, technology-stack, planning — governs: 0 — related: 6
 - Day One on the Island — Runbook v0 (draft, unrehearsed) — `docs/design/packets/iso-net-readiness-01-design-packet/day_one_on_the_island_runbook_v0.md` — areas: isolated-network, dev-environment, technology-stack — governs: 0 — related: 3
@@ -116,6 +116,9 @@ Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-
 - Angular Hop Packet 01 — v17 to v18 (ng-hop-01) — `docs/design/packets/ng-hop-01-v17-to-v18-design-packet/README.md` — areas: frontend, dev-environment, isolated-network, technology-stack — governs: 0 — related: 3
 - Angular v17 to v18 Hop Runbook v1 (rehearsed 2026-08-26) — `docs/design/packets/ng-hop-01-v17-to-v18-design-packet/v17_to_v18_hop_runbook_v1.md` — areas: frontend, dev-environment, isolated-network, technology-stack — governs: 0 — related: 3
 - v18 Hop Bundle Manifest v0 — what the registry needs before the hop — `docs/design/packets/ng-hop-01-v17-to-v18-design-packet/v18_hop_bundle_manifest_v0.md` — areas: isolated-network, technology-stack, frontend, dev-environment — governs: 0 — related: 3
+- Angular Hop Packet 02 — v18 to v19 (ng-hop-02) — Milestone 1's floor — `docs/design/packets/ng-hop-02-v18-to-v19-design-packet/README.md` — areas: frontend, dev-environment, isolated-network, technology-stack — governs: 0 — related: 3
+- Angular v18 to v19 Hop Runbook v1 (rehearsed 2026-08-28) — `docs/design/packets/ng-hop-02-v18-to-v19-design-packet/v18_to_v19_hop_runbook_v1.md` — areas: frontend, dev-environment, isolated-network, technology-stack — governs: 0 — related: 3
+- v19 Hop Bundle Manifest v0 — and the combined v18+v19 registry cost — `docs/design/packets/ng-hop-02-v18-to-v19-design-packet/v19_hop_bundle_manifest_v0.md` — areas: isolated-network, technology-stack, frontend, dev-environment — governs: 0 — related: 3
 
 ## founder-source (1)
 
