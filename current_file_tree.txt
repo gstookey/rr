@@ -1,4 +1,4 @@
-File tree as of Wed Aug 26 04:03:18 UTC 2026
+File tree as of Wed Aug 26 16:54:43 UTC 2026
 .
 |-- AGENTS.md
 |-- README.md
@@ -153,14 +153,18 @@ File tree as of Wed Aug 26 04:03:18 UTC 2026
 |   |   |-- brand
 |   |   |   `-- README.md
 |   |   `-- packets
-|   |       `-- iso-net-readiness-01-design-packet
+|   |       |-- iso-net-readiness-01-design-packet
+|   |       |   |-- README.md
+|   |       |   |-- day_one_on_the_island_runbook_v0.md
+|   |       |   |-- decision_register_v0.md
+|   |       |   |-- island_questionnaire_v0.md
+|   |       |   |-- legacy_estate_inventory_template_v0.md
+|   |       |   |-- stack_dependency_manifest_v0.md
+|   |       |   `-- story_decomposition_v0.md
+|   |       `-- ng-hop-01-v17-to-v18-design-packet
 |   |           |-- README.md
-|   |           |-- day_one_on_the_island_runbook_v0.md
-|   |           |-- decision_register_v0.md
-|   |           |-- island_questionnaire_v0.md
-|   |           |-- legacy_estate_inventory_template_v0.md
-|   |           |-- stack_dependency_manifest_v0.md
-|   |           `-- story_decomposition_v0.md
+|   |           |-- v17_to_v18_hop_runbook_v1.md
+|   |           `-- v18_hop_bundle_manifest_v0.md
 |   `-- source-documents
 |       `-- monorepo-set-up-docs
 |           |-- angular-application-stand-up-docs
@@ -178,58 +182,67 @@ File tree as of Wed Aug 26 04:03:18 UTC 2026
 |               |-- mono-repo-setup-example.md
 |               `-- mono-repo-vitest-setup.md
 |-- images
-|   `-- rr_logos
-|       |-- edited-image\ (1).jpg
-|       |-- edited-image\ (2).jpg
-|       |-- edited-image\ (3).jpg
-|       |-- edited-image\ (4).jpg
-|       |-- edited-image\ (5).jpg
-|       |-- edited-image\ (6).jpg
-|       |-- edited-image.jpg
-|       |-- image\ (10).jpg
-|       |-- image\ (11).jpg
-|       |-- image\ (12).jpg
-|       |-- image\ (13).jpg
-|       |-- image\ (14).jpg
-|       |-- image\ (15).jpg
-|       |-- image\ (16).jpg
-|       |-- image\ (17).jpg
-|       |-- image\ (18).jpg
-|       |-- image\ (19).jpg
-|       |-- image\ (20).jpg
-|       |-- image\ (21).jpg
-|       |-- image\ (22).jpg
-|       |-- image\ (23).jpg
-|       |-- image\ (24).jpg
-|       |-- image\ (25).jpg
-|       |-- image\ (26).jpg
-|       |-- image\ (27).jpg
-|       |-- image\ (28).jpg
-|       |-- image\ (29).jpg
-|       |-- image\ (30).jpg
-|       |-- image\ (31).jpg
-|       |-- image\ (32).jpg
-|       |-- image\ (33).jpg
-|       |-- image\ (34).jpg
-|       |-- image\ (35).jpg
-|       |-- image\ (36).jpg
-|       |-- image\ (37).jpg
-|       |-- image\ (38).jpg
-|       |-- image\ (39).jpg
-|       |-- image\ (40).jpg
-|       |-- image\ (41).jpg
-|       |-- image\ (42).jpg
-|       |-- image\ (43).jpg
-|       |-- image\ (44).jpg
-|       |-- image\ (45).jpg
-|       |-- image\ (46).jpg
-|       |-- image\ (47).jpg
-|       |-- image\ (48).jpg
-|       |-- image\ (49).jpg
-|       |-- image\ (50).jpg
-|       |-- image\ (7).jpg
-|       |-- image\ (8).jpg
-|       `-- image\ (9).jpg
+|   `-- rr_graphics
+|       |-- dark_theme
+|       |   |-- backgrounds
+|       |   |   |-- image\ (25).jpg
+|       |   |   |-- image\ (27).jpg
+|       |   |   |-- image\ (28).jpg
+|       |   |   |-- image\ (29).jpg
+|       |   |   |-- image\ (30).jpg
+|       |   |   |-- image\ (31).jpg
+|       |   |   |-- image\ (36).jpg
+|       |   |   |-- image\ (41).jpg
+|       |   |   |-- image\ (43).jpg
+|       |   |   |-- image\ (45).jpg
+|       |   |   |-- image\ (47).jpg
+|       |   |   `-- image\ (49).jpg
+|       |   |-- image\ (39).jpg
+|       |   |-- logos_16x9
+|       |   |   `-- image\ (33).jpg
+|       |   |-- logos_other
+|       |   |   |-- image\ (35).jpg
+|       |   |   `-- image\ (46).jpg
+|       |   |-- logos_square
+|       |   |   |-- image\ (26).jpg
+|       |   |   |-- image\ (32).jpg
+|       |   |   |-- image\ (34).jpg
+|       |   |   |-- image\ (37).jpg
+|       |   |   |-- image\ (38).jpg
+|       |   |   |-- image\ (40).jpg
+|       |   |   |-- image\ (42).jpg
+|       |   |   |-- image\ (44).jpg
+|       |   |   |-- image\ (48).jpg
+|       |   |   |-- image\ (50).jpg
+|       |   |   |-- rr_dark_logo_sq_01.jpg
+|       |   |   |-- rr_dark_logo_sq_02.jpg
+|       |   |   |-- rr_dark_logo_sq_03.jpg
+|       |   |   |-- rr_dark_logo_sq_04.jpg
+|       |   |   |-- rr_dark_logo_sq_05.jpg
+|       |   |   `-- rr_dark_logo_sq_06.jpg
+|       |   `-- rr_color_pallete_dark.jpg
+|       `-- light_theme
+|           |-- backgrounds
+|           |   |-- image\ (10).jpg
+|           |   |-- image\ (11).jpg
+|           |   |-- image\ (12).jpg
+|           |   |-- image\ (14).jpg
+|           |   |-- image\ (8).jpg
+|           |   `-- image\ (9).jpg
+|           |-- logos_16x9
+|           |   |-- image\ (17).jpg
+|           |   |-- image\ (19).jpg
+|           |   `-- image\ (20).jpg
+|           |-- logos_other
+|           |   `-- image\ (18).jpg
+|           |-- logos_square
+|           |   |-- image\ (13).jpg
+|           |   |-- image\ (15).jpg
+|           |   |-- image\ (16).jpg
+|           |   |-- image\ (21).jpg
+|           |   |-- image\ (22).jpg
+|           |   `-- image\ (23).jpg
+|           `-- rr_color_pallete_light.jpg
 `-- scripts
     |-- README.example.md
     |-- README.md
@@ -248,4 +261,4 @@ File tree as of Wed Aug 26 04:03:18 UTC 2026
     `-- test
         `-- corpus-graph-claims.spec.mjs
 
-53 directories, 195 files
+64 directories, 197 files

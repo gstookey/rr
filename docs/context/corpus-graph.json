@@ -930,6 +930,42 @@
         "process-governance"
       ],
       "governs": []
+    },
+    {
+      "path": "docs/design/packets/ng-hop-01-v17-to-v18-design-packet/README.md",
+      "title": "Angular Hop Packet 01 — v17 to v18 (ng-hop-01)",
+      "status": "exploratory",
+      "areas": [
+        "frontend",
+        "dev-environment",
+        "isolated-network",
+        "technology-stack"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/ng-hop-01-v17-to-v18-design-packet/v17_to_v18_hop_runbook_v1.md",
+      "title": "Angular v17 to v18 Hop Runbook v1 (rehearsed 2026-08-26)",
+      "status": "exploratory",
+      "areas": [
+        "frontend",
+        "dev-environment",
+        "isolated-network",
+        "technology-stack"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/ng-hop-01-v17-to-v18-design-packet/v18_hop_bundle_manifest_v0.md",
+      "title": "v18 Hop Bundle Manifest v0 — what the registry needs before the hop",
+      "status": "exploratory",
+      "areas": [
+        "isolated-network",
+        "technology-stack",
+        "frontend",
+        "dev-environment"
+      ],
+      "governs": []
     }
   ],
   "edges": [
@@ -1331,6 +1367,51 @@
     {
       "from": "docs/design/packets/iso-net-readiness-01-design-packet/story_decomposition_v0.md",
       "to": "docs/design/packets/iso-net-readiness-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ng-hop-01-v17-to-v18-design-packet/README.md",
+      "to": "docs/context/canonical/two_island_model.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ng-hop-01-v17-to-v18-design-packet/README.md",
+      "to": "docs/design/packets/iso-net-readiness-01-design-packet/legacy_estate_inventory_template_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ng-hop-01-v17-to-v18-design-packet/README.md",
+      "to": "docs/design/packets/iso-net-readiness-01-design-packet/stack_dependency_manifest_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ng-hop-01-v17-to-v18-design-packet/v17_to_v18_hop_runbook_v1.md",
+      "to": "docs/context/canonical/two_island_model.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ng-hop-01-v17-to-v18-design-packet/v17_to_v18_hop_runbook_v1.md",
+      "to": "docs/design/packets/ng-hop-01-v17-to-v18-design-packet/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ng-hop-01-v17-to-v18-design-packet/v17_to_v18_hop_runbook_v1.md",
+      "to": "docs/design/packets/ng-hop-01-v17-to-v18-design-packet/v18_hop_bundle_manifest_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ng-hop-01-v17-to-v18-design-packet/v18_hop_bundle_manifest_v0.md",
+      "to": "docs/context/canonical/two_island_model.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ng-hop-01-v17-to-v18-design-packet/v18_hop_bundle_manifest_v0.md",
+      "to": "docs/design/packets/iso-net-readiness-01-design-packet/stack_dependency_manifest_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ng-hop-01-v17-to-v18-design-packet/v18_hop_bundle_manifest_v0.md",
+      "to": "docs/design/packets/ng-hop-01-v17-to-v18-design-packet/v17_to_v18_hop_runbook_v1.md",
       "type": "related"
     }
   ]

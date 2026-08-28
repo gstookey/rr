@@ -2,6 +2,23 @@
 
 <!-- Convention (BS-14): one `# [YYYY-MM-DD] <type> | <title>` header level, newest-first — prepend below this comment. Types: ingest | decision | milestone | lint | governance | session -->
 
+# [2026-08-26] milestone | S-14 delivered — Angular v17→v18 hop REHEARSED, runbook v1 + measured bundle manifest (`ng-hop-01`)
+
+First docket item of the post-merge session, activated by Graham ("let's dive in"). Rather than writing the hop runbook from the upgrade guides, the hop was **actually performed** on the open-internet side: a default Angular 17.3 app created, built, tested, upgraded via `ng update @angular/core@18 @angular/cli@18`, and rebuilt. New packet `docs/design/packets/ng-hop-01-v17-to-v18-design-packet/` — runbook **v1** (rehearsed, not v0) with a verbatim transcript appendix, plus a measured v18 hop bundle manifest.
+
+**Three findings the upgrade guides do not carry, each of which would have cost a transfer cycle to discover on the island:**
+1. **`ng update` downloads a temporary newer CLI before it does anything** (`Installing a temporary Angular CLI versioned 18.2.21`). The island's registry must serve the *next* major's CLI **before** any `package.json` mentions it — seeding from "what the upgraded app declares" is not sufficient.
+2. **`ng update` fetches registry metadata for every dependency**, not just Angular's (22 on a bare app; far more on real ones). Any gap in the seeded registry surfaces here.
+3. **Karma launches a real browser binary, which is not an npm package** and will not be in any tarball bundle. Baseline tests failed with `No binary for ChromeHeadless browser on your platform`. If Legacy Island lacks a browser, the 10+ app upgrade proceeds **without its main regression safety net**. Added as questionnaire **B9**.
+
+**Also observed:** TypeScript was **not** bumped (stayed `~5.4.2`; Angular 18 accepts `>=5.4 <5.6`) — correcting the implication in `iso-net-readiness-01`'s hop matrix that the top-of-window pin is required. zone.js and rxjs unchanged. The optional `use-application-builder` migration was offered and deliberately **not** run (one variable at a time). Four core migrations ran, all "No changes made" — **on an app with no code in it**; on real estate code they will make real edits, especially the `HttpClientModule` → `provideHttpClient()` one. Build succeeded before (227.26 kB) and after (241.04 kB, +6%).
+
+**Measured v18 hop footprint** (partial delivery of S-07): 1,015 packages, 918 distinct tarballs, **≈70.0 MB** tarballs, ≈410 MB unpacked — a **floor**, from a bare app; the estate's own dependencies are unknown until S-03 returns. Registries deduplicate, so ten apps do not cost ten times this.
+
+**Honest limits:** rehearsed on a *bare* app — no custom webpack, custom schematics, third-party UI/state libraries, or real code. Tests never actually ran. **The offline path is unrehearsed** (the rehearsal used the public registry) and is the largest remaining risk in this hop.
+
+Board: S-14 (#21) activated by comment (this repo exposes no Project Status field via API). Docket also holds S-15 (v18→v19 rehearsal) and S-07/S-08 (bundle specs). Nothing else activated.
+
 # [2026-08-26] milestone | Two-island model captured; board stood up (EP-01..EP-05, S-01..S-17); Milestone 1 named
 
 Graham's direction (2026-08-26) corrected a structural error in the context system: the target is **two** isolated environments, not one. **Legacy Island** — 10+ Angular v17 apps on **Node 22.15**, must reach **v19 minimum** (v22 preferred, effort decides). **Desert Island** — greenfield, nothing on it; the new system is built and lives there. They deploy into a related cluster and must stay **stack-synchronized**, so Legacy Island's achieved target sets Desert Island's. Driver is **security exposure** in Angular 17 / Node 22.15, not modernization. New canonical page `canonical/two_island_model.md`; `project_overview.md`, `isolated_network_constraints.md` (now tagged [L]/[D]/[both]), `CURRENT_STATE.md` and `current_priorities.md` updated.
