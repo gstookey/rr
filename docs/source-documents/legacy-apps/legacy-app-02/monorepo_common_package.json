@@ -1,0 +1,17 @@
+{
+  "name": "@my-team/legacy-app-02-common",
+  "version": "1.0.0",
+  "private": "true",
+  "license": "ISC",
+  
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "tsc && fix-es-imports",
+    "test": "echo 'Common package defines no tests'"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@ssd_victor/fix-es-imports": "1.0.0",
+    "typescript": "5.2.2"
+  }
+}
