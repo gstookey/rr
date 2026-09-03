@@ -1,4 +1,4 @@
-File tree as of Thu Sep  3 22:13:44 UTC 2026
+File tree as of Thu Sep  3 22:34:06 UTC 2026
 .
 |-- AGENTS.md
 |-- README.md
@@ -78,7 +78,16 @@ File tree as of Thu Sep  3 22:13:44 UTC 2026
 |   |   |   `-- user-workflow
 |   |   |       `-- README.md
 |   |   |-- platform
-|   |   |   `-- README.md
+|   |   |   |-- README.md
+|   |   |   `-- research
+|   |   |       |-- README.md
+|   |   |       |-- cross_domain_solution_integration_brief_v0.md
+|   |   |       |-- data_fabric_brief_v0.md
+|   |   |       |-- ddd_domain_driven_design_brief_v0.md
+|   |   |       |-- ddd_ui_ux_brief_v0.md
+|   |   |       |-- event_message_bus_brief_v0.md
+|   |   |       |-- identity_stores_brief_v0.md
+|   |   |       `-- mac_stores_brief_v0.md
 |   |   `-- team
 |   |       |-- README.md
 |   |       `-- agents
@@ -154,6 +163,16 @@ File tree as of Thu Sep  3 22:13:44 UTC 2026
 |   |   |-- brand
 |   |   |   `-- README.md
 |   |   `-- packets
+|   |       |-- ddd-arch-01-design-packet
+|   |       |   |-- README.md
+|   |       |   |-- decision_register_v0.md
+|   |       |   |-- diagramming_approach_v0.md
+|   |       |   |-- diagrams
+|   |       |   |   |-- 01-context-desert-island.md
+|   |       |   |   |-- 01-context-desert-island.svg
+|   |       |   |   |-- 02-tier-model-building-floors.md
+|   |       |   |   `-- 02-tier-model-building-floors.svg
+|   |       |   `-- tier_model_exploration_v0.md
 |   |       |-- iso-net-readiness-01-design-packet
 |   |       |   |-- README.md
 |   |       |   |-- day_one_on_the_island_runbook_v0.md
@@ -419,4 +438,4 @@ File tree as of Thu Sep  3 22:13:44 UTC 2026
     `-- test
         `-- corpus-graph-claims.spec.mjs
 
-109 directories, 310 files
+112 directories, 326 files

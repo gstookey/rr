@@ -363,6 +363,103 @@
       "governs": []
     },
     {
+      "path": "docs/context/platform/research/README.md",
+      "title": "Architecture Research Corpus — DDD-ARCH-01 base briefs",
+      "status": "active",
+      "areas": [
+        "research",
+        "system-architecture",
+        "domain-driven-design",
+        "frontend"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/platform/research/cross_domain_solution_integration_brief_v0.md",
+      "title": "R6 — Cross Domain Solution (CDS) integration research brief v0",
+      "status": "exploratory",
+      "areas": [
+        "research",
+        "cross-domain",
+        "security",
+        "system-architecture"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/platform/research/data_fabric_brief_v0.md",
+      "title": "R2 — Data Fabric research brief v0",
+      "status": "exploratory",
+      "areas": [
+        "research",
+        "data-fabric",
+        "system-architecture",
+        "backend"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/platform/research/ddd_domain_driven_design_brief_v0.md",
+      "title": "R1 — Domain-Driven Design (DDD) research brief v0",
+      "status": "exploratory",
+      "areas": [
+        "research",
+        "domain-driven-design",
+        "system-architecture"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/platform/research/ddd_ui_ux_brief_v0.md",
+      "title": "R7 — UI/UX practice in relation to DDD (front-end architecture for a DDD system) research brief v0",
+      "status": "exploratory",
+      "areas": [
+        "research",
+        "ux",
+        "frontend",
+        "domain-driven-design",
+        "system-architecture"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/platform/research/event_message_bus_brief_v0.md",
+      "title": "R3 — Event / Message Bus (Kafka and alternatives) research brief v0",
+      "status": "exploratory",
+      "areas": [
+        "research",
+        "messaging",
+        "system-architecture",
+        "backend"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/platform/research/identity_stores_brief_v0.md",
+      "title": "R4 — Identity Stores, IdPs and Delegated User Management research brief v0",
+      "status": "exploratory",
+      "areas": [
+        "research",
+        "identity",
+        "auth",
+        "access-control",
+        "security"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/platform/research/mac_stores_brief_v0.md",
+      "title": "R5 — Mandatory Access Control (MAC) stores and label-based data research brief v0",
+      "status": "exploratory",
+      "areas": [
+        "research",
+        "access-control",
+        "security",
+        "backend"
+      ],
+      "governs": []
+    },
+    {
       "path": "docs/context/team/README.md",
       "title": "Team",
       "status": "active",
@@ -862,6 +959,74 @@
       "governs": []
     },
     {
+      "path": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "title": "DDD-ARCH-01 — Desert Island system architecture, front-end-first (packet charter)",
+      "status": "exploratory",
+      "areas": [
+        "system-architecture",
+        "domain-driven-design",
+        "frontend",
+        "planning"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
+      "title": "DDD-ARCH-01 — Decision Register v0 (DA-D1..DA-D10)",
+      "status": "exploratory",
+      "areas": [
+        "system-architecture",
+        "domain-driven-design",
+        "frontend",
+        "planning"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md",
+      "title": "DDD-ARCH-01 — Diagramming approach v0 (how we stand up and keep the architecture diagrams)",
+      "status": "exploratory",
+      "areas": [
+        "system-architecture",
+        "planning",
+        "process-governance"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/ddd-arch-01-design-packet/diagrams/01-context-desert-island.md",
+      "title": "DDD-ARCH-01 diagram 01 — System context, Desert Island (C4 L1)",
+      "status": "exploratory",
+      "areas": [
+        "system-architecture",
+        "domain-driven-design"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/ddd-arch-01-design-packet/diagrams/02-tier-model-building-floors.md",
+      "title": "DDD-ARCH-01 diagram 02 — Tier model, Building / Floors / Suites / Offices with the group overlay",
+      "status": "exploratory",
+      "areas": [
+        "system-architecture",
+        "frontend",
+        "domain-driven-design"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
+      "title": "DDD-ARCH-01 — Building / Floor / Suite / Office tier model exploration v0",
+      "status": "exploratory",
+      "areas": [
+        "system-architecture",
+        "domain-driven-design",
+        "frontend",
+        "ux"
+      ],
+      "governs": []
+    },
+    {
       "path": "docs/design/packets/iso-net-readiness-01-design-packet/README.md",
       "title": "Isolated-Network Readiness Packet (iso-net-readiness-01)",
       "status": "exploratory",
@@ -1316,6 +1481,146 @@
       "type": "related"
     },
     {
+      "from": "docs/context/platform/research/README.md",
+      "to": "docs/context/canonical/technology_stack.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/README.md",
+      "to": "docs/context/canonical/two_island_model.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/README.md",
+      "to": "docs/context/platform/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/cross_domain_solution_integration_brief_v0.md",
+      "to": "docs/context/platform/research/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/cross_domain_solution_integration_brief_v0.md",
+      "to": "docs/context/platform/research/event_message_bus_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/cross_domain_solution_integration_brief_v0.md",
+      "to": "docs/context/platform/research/identity_stores_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/cross_domain_solution_integration_brief_v0.md",
+      "to": "docs/context/platform/research/mac_stores_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/data_fabric_brief_v0.md",
+      "to": "docs/context/platform/research/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/data_fabric_brief_v0.md",
+      "to": "docs/context/platform/research/ddd_domain_driven_design_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/data_fabric_brief_v0.md",
+      "to": "docs/context/platform/research/event_message_bus_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/data_fabric_brief_v0.md",
+      "to": "docs/context/platform/research/mac_stores_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/ddd_domain_driven_design_brief_v0.md",
+      "to": "docs/context/platform/research/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/ddd_domain_driven_design_brief_v0.md",
+      "to": "docs/context/platform/research/ddd_ui_ux_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/ddd_domain_driven_design_brief_v0.md",
+      "to": "docs/context/platform/research/event_message_bus_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/ddd_ui_ux_brief_v0.md",
+      "to": "docs/context/canonical/technology_stack.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/ddd_ui_ux_brief_v0.md",
+      "to": "docs/context/platform/research/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/ddd_ui_ux_brief_v0.md",
+      "to": "docs/context/platform/research/ddd_domain_driven_design_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/ddd_ui_ux_brief_v0.md",
+      "to": "docs/context/platform/research/identity_stores_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/event_message_bus_brief_v0.md",
+      "to": "docs/context/platform/research/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/event_message_bus_brief_v0.md",
+      "to": "docs/context/platform/research/cross_domain_solution_integration_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/event_message_bus_brief_v0.md",
+      "to": "docs/context/platform/research/ddd_domain_driven_design_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/identity_stores_brief_v0.md",
+      "to": "docs/context/platform/research/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/identity_stores_brief_v0.md",
+      "to": "docs/context/platform/research/ddd_ui_ux_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/identity_stores_brief_v0.md",
+      "to": "docs/context/platform/research/mac_stores_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/mac_stores_brief_v0.md",
+      "to": "docs/context/platform/research/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/mac_stores_brief_v0.md",
+      "to": "docs/context/platform/research/cross_domain_solution_integration_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/mac_stores_brief_v0.md",
+      "to": "docs/context/platform/research/data_fabric_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/mac_stores_brief_v0.md",
+      "to": "docs/context/platform/research/identity_stores_brief_v0.md",
+      "type": "related"
+    },
+    {
       "from": "docs/context/team/agents/README.md",
       "to": "docs/context/team/agents/agent_operating_contract.md",
       "type": "related"
@@ -1368,6 +1673,121 @@
     {
       "from": "docs/design/brand/README.md",
       "to": "docs/context/governance/contradictions/register.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "to": "docs/context/canonical/technology_stack.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "to": "docs/context/canonical/two_island_model.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "to": "docs/context/platform/research/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
+      "to": "docs/context/governance/contradictions/register.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
+      "to": "docs/design/packets/iso-net-readiness-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md",
+      "to": "docs/context/canonical/isolated_network_constraints.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/diagrams/01-context-desert-island.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/diagrams/01-context-desert-island.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/diagrams/02-tier-model-building-floors.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/diagrams/02-tier-model-building-floors.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/diagrams/02-tier-model-building-floors.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
+      "to": "docs/context/platform/research/ddd_domain_driven_design_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
+      "to": "docs/context/platform/research/ddd_ui_ux_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
+      "to": "docs/context/platform/research/identity_stores_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
       "type": "related"
     },
     {
