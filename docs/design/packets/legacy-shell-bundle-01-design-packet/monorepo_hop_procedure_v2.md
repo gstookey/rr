@@ -52,10 +52,42 @@ Prerequisites: clean committed tree; registry (Nexus) serving the hop bundle **a
 | keycloak-angular (hand-bump) | 16.1.0 | 19.0.2 |
 | jest-preset-angular | (14.1.0 ok) | **pre-step → 14.6.2** |
 
+## The stretch rungs — 19→20, 20→21, 21→22 (rehearsed 2026-09-03, Graham's "go all the way" direction)
+
+The same procedure carries all three rungs; what changes per rung:
+
+| | 19→20 | 20→21 | 21→22 |
+|---|---|---|---|
+| @angular/* runtime | 20.3.30 | 21.2.22 | 22.1.5 |
+| cli/build-angular (= temp CLI) | 20.3.36 | 21.2.23 | 22.1.7 |
+| typescript | 5.5.4 → **5.9.3** (`>=5.8 <6.0`) | **unchanged** | 5.9.3 → **6.0.3** (`>=6.0 <6.1`) |
+| zone.js | unchanged 0.15.1 | unchanged | unchanged |
+| material/cdk | 20.2.14 | 21.2.14 | 22.1.5 |
+| @ngrx/* | 20.1.0 | 21.1.1 | 22.0.0 |
+| keycloak-angular (hand-bump) | 20.1.0 | 21.0.0 | 22.0.0 |
+| jest stack | unchanged (jpa 14.6.2 reaches `<21`) | **THE JEST-MAJOR RUNG** — see below | unchanged (jpa 16.2.0 reaches `<23`) |
+| Node | none (22.15 ok) | none | **≥ 22.22.3** — the ladder's only Node gate; rehearsed on **v22.23.2** (the same within-line patch bump S-13 already wants on security grounds) |
+
+**20→21 pre-step — the Jest major.** `jest-preset-angular` 16.2.0 (first version whose peers reach ng21) requires **jest ^30**, dragging: `jest`/`jest-environment-jsdom`/`babel-jest` `^30.5.1`, `@types/jest` `^30.0.0`, `ts-jest` `29.4.12`, `jsdom` `^26` (root) — across root/client/server — **plus a `setup-jest.ts` API rewrite**: the `jest-preset-angular/setup-jest` entrypoint is gone; the v16 form is
+```ts
+import { setupZoneTestEnv } from 'jest-preset-angular/setup-env/zone';
+setupZoneTestEnv();
+```
+(a bare import of the new path silently fails with `Need to call TestBed.initTestEnvironment() first`). Verified green on jest 30 at v20 *before* hopping.
+
+**21→22 known defects and forced edits (all observed, online and offline):**
+1. **All `@ngrx/*@22.0.0` migration schematics crash the v22 CLI** (`exports is not defined in ES module scope` — a CommonJS migration `.js` inside a `type: module` package). The version rewrites and install complete first; run cdk/material migrations individually (`--migrate-only --from=21` from the temp-root workspace — works there, clean) and **skip ngrx's, hand-checking the NgRx v22 migration guide on real apps** (`[UNVERIFIED]` what they would have edited).
+2. **TypeScript 6 hard-fails `moduleResolution: "node"`** (TS5107) — `ng build` breaks until the v17-era client tsconfig moves to `"bundler"`. No migration did this.
+3. **TS 6 + hoisted `@types/*` strictness**: plain-`tsc` packages without a `types` allowlist die on `@types/babel__core` ESM interop (TS1479); `"types": []` (or an explicit list) in their tsconfigs fixes it.
+4. Three core migrations edited source at phase 1 — the biggest code-touch of any rung.
+
 ## Effort signals per rung (DR-04 evidence)
 
 - **17→18:** no source edits on the shells (migrations no-op'd — real apps: expect HttpClientModule rewrites); 1 package.json edit by NgRx's `concatLatestFrom` migration; 3 third-party majors ride the hop (material/cdk, ngrx, keycloak-angular).
 - **18→19:** 1 source edit even on the near-empty shells (standalone migration touches **every declarable** on real apps); the jest-preset-angular plan-stage wall; the budget warning appears; otherwise the same shape.
+- **19→20:** quiet rung — TS to 5.9.3, one migration source edit, no new walls.
+- **20→21:** the **Jest-major rung** — 7 devDep bumps + a setup-file API rewrite in every app; Angular itself moved quietly (TS/zone unchanged).
+- **21→22:** the **heaviest rung** — TS 6 (two classes of forced tsconfig edits), three code-touching core migrations, the ngrx schematic defect, and the only Node gate. Budget-warning behavior unchanged. Still: both shells green including tests, same day.
 
 ## What this still does not cover
 

@@ -1011,7 +1011,7 @@
     },
     {
       "path": "docs/design/packets/legacy-shell-bundle-01-design-packet/v17_to_v19_bundle_manifest_v2.md",
-      "title": "v17→v19 Bundle Manifest v2 — the master pool, its slices, and the sizes",
+      "title": "Transfer Bundle Manifest v2 — the 17→22 master pool, its slices, and the sizes",
       "status": "exploratory",
       "areas": [
         "isolated-network",

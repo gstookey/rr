@@ -4,7 +4,7 @@
 #
 # WHAT IT DOES
 #   1. Unions every registry tarball referenced by the committed lock snapshots
-#      (legacy-shells/bundle/locks/{v17,v18,v19}/ + bundle/tempcli/{hop18,hop19}/),
+#      (legacy-shells/bundle/locks/{v17..v22}/ + bundle/tempcli/{hop18..hop22}/),
 #      filtered to linux-x64 platform binaries (the island: RHEL 9).
 #   2. Downloads each tarball from the npm registry, verifying the lockfile's sha512
 #      over the exact bytes. Registry tarballs are immutable, so the output is
@@ -21,8 +21,8 @@
 #   - Runtime: roughly 5-15 minutes depending on connection
 #
 # MODES (default: --cumulative)
-#   --cumulative               full 17->19 union (the master pool)
-#   --rung v17-baseline | 17-18 | 18-19
+#   --cumulative               full 17->22 union (the master pool)
+#   --rung v17-baseline | 17-18 | 18-19 | 19-20 | 20-21 | 21-22
 #                              just that rung's tarballs (per-rung port)
 #   --delta-from <MANIFEST.json>
 #                              only tarballs absent from a prior bundle's manifest --
@@ -50,6 +50,9 @@ node "$HERE/tools/lock-union.mjs" \
   --tag v17 "$L/v17/legacy-app-01.package-lock.json" "$L/v17/legacy-app-02.package-lock.json" \
   --tag v18 "$L/v18/legacy-app-01.package-lock.json" "$L/v18/legacy-app-02.package-lock.json" "$T/hop18/package-lock.json" \
   --tag v19 "$L/v19/legacy-app-01.package-lock.json" "$L/v19/legacy-app-02.package-lock.json" "$T/hop19/package-lock.json" \
+  --tag v20 "$L/v20/legacy-app-01.package-lock.json" "$L/v20/legacy-app-02.package-lock.json" "$T/hop20/package-lock.json" \
+  --tag v21 "$L/v21/legacy-app-01.package-lock.json" "$L/v21/legacy-app-02.package-lock.json" "$T/hop21/package-lock.json" \
+  --tag v22 "$L/v22/legacy-app-01.package-lock.json" "$L/v22/legacy-app-02.package-lock.json" "$T/hop22/package-lock.json" \
   > "$WORK/pool/union.tsv"
 
 node "$HERE/tools/fetch-tarballs.mjs" "$WORK/pool/union.tsv" "$WORK/pool/tarballs"
@@ -63,7 +66,7 @@ echo "== verifying pool against the committed SHA256SUMS =="
 STAMP=$(date +%F)
 case "${MODE[0]}" in
   --cumulative)
-    OUT="$WORK/rr-legacy-v17-v19-bundle-$STAMP"; mkdir -p "$OUT"
+    OUT="$WORK/rr-legacy-v17-v22-bundle-$STAMP"; mkdir -p "$OUT"
     node "$HERE/tools/slice-bundle.mjs" "$WORK/pool" "$OUT" ;;
   --rung)
     OUT="$WORK/rr-legacy-rung-${MODE[1]}-$STAMP"; mkdir -p "$OUT"
