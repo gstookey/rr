@@ -4,7 +4,7 @@ status: exploratory
 title: Angular Hop Packet 01 — v17 to v18 (ng-hop-01)
 areas: [frontend, dev-environment, isolated-network, technology-stack]
 related: ["docs/context/canonical/two_island_model.md", "docs/design/packets/iso-net-readiness-01-design-packet/stack_dependency_manifest_v0.md", "docs/design/packets/iso-net-readiness-01-design-packet/legacy_estate_inventory_template_v0.md"]
-updated: 2026-08-26
+updated: 2026-09-03
 ---
 
 # Angular Hop Packet 01 — v17 → v18 (`ng-hop-01`)
@@ -19,6 +19,8 @@ The first of the sequential hops that take **Legacy Island** from Angular v17 to
 |---|---|
 | [`v17_to_v18_hop_runbook_v1.md`](v17_to_v18_hop_runbook_v1.md) | the procedure, written from an actual rehearsal, with a verbatim transcript appendix |
 | [`v18_hop_bundle_manifest_v0.md`](v18_hop_bundle_manifest_v0.md) | what must be in the island's registry **before** the hop starts, with a measured footprint |
+
+> **Update 2026-09-03:** the hop has now been rehearsed on **estate-shaped monorepo shells** built from two real apps' package.jsons, and the picture changes materially there (TS/zone bumps, third-party peer group, two-phase sequencing, private-package metadata wall, Jest not Karma). Read [`legacy-shell-bundle-01/v17_to_v18_monorepo_runbook_delta_v1.md`](../legacy-shell-bundle-01-design-packet/v17_to_v18_monorepo_runbook_delta_v1.md) together with this runbook; its bundle manifest v1 supersedes this packet's v0 numbers as the working estimate.
 
 ## Why it says v1, not v0
 

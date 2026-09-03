@@ -4,12 +4,12 @@ status: exploratory
 title: Decision Register v0 — Isolated-Network Readiness
 areas: [isolated-network, technology-stack, process-governance, planning]
 related: ["docs/context/canonical/two_island_model.md", "docs/context/governance/contradictions/register.md", "docs/context/governance/decisions/ADR-004-package-manager-npm.md", "docs/context/canonical/isolated_network_constraints.md", "docs/design/packets/iso-net-readiness-01-design-packet/README.md"]
-updated: 2026-08-26
+updated: 2026-09-03
 ---
 
 # Decision Register v0
 
-**Created:** 2026-08-25 | **Last updated:** 2026-08-26 | **Status:** `exploratory` — open decisions, none closed
+**Created:** 2026-08-25 | **Last updated:** 2026-09-03 (evidence notes on DR-01, DR-06) | **Status:** `exploratory` — open decisions, none closed
 
 Decisions this packet **raises but cannot close**. DR-01..DR-09 were raised on 2026-08-25; **DR-10 was added on 2026-08-26** with the two-island model, and DR-03/DR-04 were materially revised the same day. Each carries options, what it blocks, and Axium's lean. A lean is a recommendation with reasoning attached, not a decision — none of these is settled, and none should be treated as settled by any downstream document.
 
@@ -45,6 +45,8 @@ When one closes, it graduates to an ADR under `docs/context/governance/decisions
 | **C. Cache-only, no server** (`npm ci --offline --cache <dir>`) | zero infrastructure; nothing to approve | does not serve other machines or the legacy estate; unwieldy across many projects; not a foundation |
 
 **Axium's lean: A if one exists, B if not, C never as the plan** — but C is worth *carrying* regardless (see DR-09). The runbook is written to branch on this at Step 0 precisely because we cannot pre-decide it.
+
+**Evidence 2026-09-03 (strong, not yet a closure):** Graham, describing porting the legacy package.jsons: *"uploaded to our nexus repo"* — **the island has a Nexus**. Option A is now the working assumption; Verdaccio demotes to a local rehearsal tool (it seeded and verified the offline bundle in `legacy-shell-bundle-01`) and to the insurance role already noted below. Still needed before closing as an ADR: the Nexus repo URL/name, upload rights, and whether it already holds the internal `@other-team/*`/`@ssd_victor/*`/`@my-team/*` packages (questionnaire A5 + new B11).
 
 **Note against my own lean:** if A turns out to be true, Verdaccio's ~11 MB stays in the bundle anyway as insurance until the day the existing registry is confirmed to actually accept our uploads. Eleven megabytes is cheaper than a blocked week.
 
@@ -148,6 +150,8 @@ Graham confirmed Legacy Island runs **Node 22.15**. Combined with the per-hop re
 **Axium's lean: A, and write for A starting immediately** — meaning: keep every document self-contained, avoid relying on links to internet resources for meaning, and keep the corpus readable as plain files. That discipline costs almost nothing if B turns out to be true, and saves the whole trail if A does.
 
 **Sub-question worth answering early (C1):** whether naming the legacy applications, their versions, and their owners is acceptable in an internet-hosted document. If it is not, we adopt placeholder naming *now* — retrofitting it later means rewriting history, and the inventory template already anticipates this.
+
+**Evidence 2026-09-03 (answers C1's sub-question in practice):** Graham committed the two legacy apps' real package.json files into this repo (`docs/source-documents/legacy-apps/`, anonymized scopes) — legacy dependency data may live here, and the C1 naming question is being handled by placeholder scoping (`@my-team`, `@other-team`). The repo-vs-export half of DR-06 itself remains open.
 
 ---
 

@@ -104,7 +104,7 @@ Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-
 - Agents — Repo-Side Fleet — `docs/context/team/agents/README.md` — areas: agent-fleet, process-governance — governs: 0 — related: 2
 - Design — `docs/design/README.md` — areas: brand-design, planning — governs: 0 — related: 1
 
-## exploratory (13)
+## exploratory (18)
 
 - Isolated-Network Readiness Packet (iso-net-readiness-01) — `docs/design/packets/iso-net-readiness-01-design-packet/README.md` — areas: isolated-network, dev-environment, technology-stack, planning — governs: 0 — related: 6
 - Day One on the Island — Runbook v0 (draft, unrehearsed) — `docs/design/packets/iso-net-readiness-01-design-packet/day_one_on_the_island_runbook_v0.md` — areas: isolated-network, dev-environment, technology-stack — governs: 0 — related: 3
@@ -113,6 +113,11 @@ Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-
 - Legacy Estate Inventory Template v0 — Angular v17 applications — `docs/design/packets/iso-net-readiness-01-design-packet/legacy_estate_inventory_template_v0.md` — areas: isolated-network, frontend, dev-environment, planning — governs: 0 — related: 3
 - Stack Dependency Manifest v0 — pinned versions and bundle footprint — `docs/design/packets/iso-net-readiness-01-design-packet/stack_dependency_manifest_v0.md` — areas: technology-stack, isolated-network, dev-environment, monorepo — governs: 0 — related: 5
 - Story Decomposition v0 — Isolated-Network Readiness — `docs/design/packets/iso-net-readiness-01-design-packet/story_decomposition_v0.md` — areas: planning, isolated-network, process-governance — governs: 0 — related: 5
+- Legacy Shell Bundle Packet 01 — estate-shaped v17→v18 hop and verified transfer bundle — `docs/design/packets/legacy-shell-bundle-01-design-packet/README.md` — areas: isolated-network, frontend, dev-environment, technology-stack — governs: 0 — related: 3
+- Nexus Upload Instructions v1 — getting the bundle into the island registry — `docs/design/packets/legacy-shell-bundle-01-design-packet/nexus_upload_instructions_v1.md` — areas: isolated-network, dev-environment — governs: 0 — related: 2
+- Offline Verification Transcript v1 — the bundle proven with zero internet — `docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v1.md` — areas: isolated-network, dev-environment, risk-gates — governs: 0 — related: 2
+- v17→v18 Monorepo Runbook Delta v1 — what changes on estate-shaped apps — `docs/design/packets/legacy-shell-bundle-01-design-packet/v17_to_v18_monorepo_runbook_delta_v1.md` — areas: frontend, isolated-network, dev-environment — governs: 0 — related: 2
+- v18 Transfer Bundle Manifest v1 — measured from the legacy shells, verified offline — `docs/design/packets/legacy-shell-bundle-01-design-packet/v18_transfer_bundle_manifest_v1.md` — areas: isolated-network, technology-stack, dev-environment — governs: 0 — related: 3
 - Angular Hop Packet 01 — v17 to v18 (ng-hop-01) — `docs/design/packets/ng-hop-01-v17-to-v18-design-packet/README.md` — areas: frontend, dev-environment, isolated-network, technology-stack — governs: 0 — related: 3
 - Angular v17 to v18 Hop Runbook v1 (rehearsed 2026-08-26) — `docs/design/packets/ng-hop-01-v17-to-v18-design-packet/v17_to_v18_hop_runbook_v1.md` — areas: frontend, dev-environment, isolated-network, technology-stack — governs: 0 — related: 3
 - v18 Hop Bundle Manifest v0 — what the registry needs before the hop — `docs/design/packets/ng-hop-01-v17-to-v18-design-packet/v18_hop_bundle_manifest_v0.md` — areas: isolated-network, technology-stack, frontend, dev-environment — governs: 0 — related: 3

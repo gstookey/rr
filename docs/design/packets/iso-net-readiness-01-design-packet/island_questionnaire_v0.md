@@ -4,7 +4,7 @@ status: exploratory
 title: Island Questionnaire v0 — Isolated-Network Readiness
 areas: [isolated-network, dev-environment, security, planning]
 related: ["docs/context/canonical/isolated_network_constraints.md", "docs/context/canonical/two_island_model.md", "docs/design/packets/iso-net-readiness-01-design-packet/README.md"]
-updated: 2026-08-26
+updated: 2026-09-03
 ---
 
 # Island Questionnaire v0
@@ -156,6 +156,15 @@ Chrome, Chromium, Edge, Firefox — name and version if you can.
 
 - **Why we need this:** the Angular test runner used by v17-era applications (Karma) launches a **real browser** to run tests. That browser is an operating-system binary — it does **not** arrive with the software packages we transfer. Discovered by rehearsal on 2026-08-26, where the tests failed with `No binary for ChromeHeadless browser on your platform`.
 - **What changes depending on the answer:** if a browser is present, nothing. If not, the upgrade of 10+ applications proceeds **without the ability to run their tests** — losing the main regression safety net — and a browser becomes a transfer item on a completely different supply chain, with its own approval path. Worth knowing before the estate work starts rather than during it.
+- **Weight revised 2026-09-03:** the two ported apps test with **Jest on jsdom, not Karma** — their suites ran offline with no browser at all (`legacy-shell-bundle-01` packet). If the rest of the estate matches, a browser matters for e2e and manual verification only. The question stays; its urgency drops unless some apps are Karma-based.
+
+### B11. [Legacy only] Three specifics about the npm registry (Nexus) and install environment
+
+1. Does Nexus already hold the **internal packages** — `@other-team/core-*`, `@ssd_victor/*`, and the apps' own `@my-team/*` workspace packages? Discovered by rehearsal (2026-09-03): `ng update` queries registry metadata for **every** dependency declared at a monorepo root, *including workspace-local `@my-team/*` packages npm never fetches* — a 404 on any of them **aborts the upgrade before it starts**.
+2. What **OS/architecture** are the developer workstations and build hosts (e.g. Linux x64)? Native-binary packages (esbuild, lmdb, rollup) are published per-platform, and a bundle built on one platform carries only that platform's binaries.
+3. Does anything actually **run puppeteer**? The estate pins an ancient puppeteer whose install tries to download a Chromium binary from the internet; offline installs need `PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true`, and if puppeteer is genuinely used, Chromium becomes a separate non-npm transfer item.
+
+- **What changes depending on the answers:** each "no/unknown" here is a specific, known way the first estate upgrade stalls; all three are cheap to answer and expensive to discover mid-hop.
 
 ### B10. Is there anywhere on the network to host internal documentation — a wiki, a file share, a portal?
 
