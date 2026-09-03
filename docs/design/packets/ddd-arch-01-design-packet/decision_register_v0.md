@@ -1,0 +1,38 @@
+---
+schema: corpus-doc/v1
+status: exploratory
+title: DDD-ARCH-01 — Decision Register v0 (DA-D1..DA-D10)
+areas: [system-architecture, domain-driven-design, frontend, planning]
+related: ["docs/design/packets/ddd-arch-01-design-packet/README.md", "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md", "docs/design/packets/iso-net-readiness-01-design-packet/decision_register_v0.md", "docs/context/governance/contradictions/register.md"]
+updated: 2026-09-03
+---
+
+# DDD-ARCH-01 — Decision Register v0
+
+**Created:** 2026-09-03 | **Last updated:** 2026-09-03 | **Author:** Axium | **Status:** all forks **open** — nothing ruled
+
+The ruling surface for the packet. Each fork lists the options, what decides it, Axium's lean (a lean is not a ruling), and which research brief informs it. Graham rules; rulings are recorded here with a date and echoed to `docs/context/log.md`. A fork whose evidence is still out says so rather than guessing.
+
+Numbering: `DA-Dn`. Cross-references: `DR-nn` = `iso-net-readiness-01` register; `C-nnn` = contradiction register; `Rn` = research brief.
+
+| # | Fork | Options | Decides it | Axium's lean (2026-09-03) | Informed by | Status |
+|---|---|---|---|---|---|---|
+| **DA-D1** | **What a Floor is.** Are L2 Floors organised by *user group / customer* or by *business capability (bounded context)*? | **A** capability-aligned (a Floor is minted by a bounded context; groups get *access* + *tailoring*) · **B** group-aligned (a Floor per customer/team) · **C** hybrid: capability Floors plus a group "lobby" that composes them | whether groups share capabilities (they almost always do) and whether any group has a genuinely separate domain | **A**, with the C lobby as the L1 shell's job. See `tier_model_exploration_v0.md` §3. | R1, R7 | open |
+| **DA-D2** | **Front-end composition strategy.** How Floors are built and deployed. | **A** one shell SPA + lazy feature libraries per Floor (modular-monolith front end) · **B** micro-frontends via Native/Module Federation, one remote per Floor · **C** one Angular *app per Floor* under a path prefix, sharing build-time libraries and a shell library; full navigation between Floors | team count and release cadence per Floor; isolated-network cost of a federation runtime; how much cross-Floor shared state exists | **C** as the default, **A** while there is one team, **B** only if independent runtime deployment is demanded by evidence. Rationale in `tier_model_exploration_v0.md` §5. | R7 | open — wait for R7 |
+| **DA-D3** | **Tenant / group addressing.** Does the group appear in the URL? | **A** group is a claim; URL is `/floor/suite/office` · **B** group is a path segment `/g/{group}/floor/...` · **C** A by default, B only for multi-group users via an explicit switcher | whether a user can belong to several groups at once; deep-link needs; per-domain deployments (R6) | **A** unless multi-group membership is real; then **C** | R4, R6, R7 | open |
+| **DA-D4** | **Repo topology.** | **A** one monorepo: `apps/*` (shell + Floors) + `packages/*` (base libraries) · **B** one repo per Floor, base library published to the island registry (Nexus) · **C** A now, B when a second team exists | team count; Nexus maturity on Desert Island (DR-01); C-001's layout half (DR-05) | **A** — and this packet strengthens the `apps/*`+`packages/*` lean in C-001 | R7, DR-05 | open |
+| **DA-D5** | **Identity substrate.** | **A** Keycloak (present in the legacy estate — `keycloak-angular` in both legacy apps' package.json), federated to the island directory · **B** directory-only (LDAP/AD) with app-side sessions · **C** something else the island mandates | what Legacy Island's cluster already runs; CAC/PKI requirements; who owns the IdP | **A**, pending island answers | R4 | open — needs island questionnaire |
+| **DA-D6** | **Authorization model for "each group has unique data privileges."** | **A** RBAC on groups, enforced at BFF + database RLS · **B** ABAC/labels (MAC-style) with a policy engine (OPA/Cedar) · **C** ReBAC (Zanzibar-style) · **D** A now, B when labels are a real requirement | whether data carries markings/labels; whether privileges are per-group or per-record | **D**, with the label model designed in from day one so B is a step, not a rewrite | R4, R5 | open |
+| **DA-D7** | **Delegated group administration.** | **A** IdP-native (Keycloak fine-grained admin / Organizations) · **B** app-owned admin "office" calling the IdP's admin API · **C** SCIM from an upstream system | whether the IdP is ours to configure; audit requirements | **B** on top of **A**: the IdP holds the truth, the app owns the UX | R4 | open |
+| **DA-D8** | **Diagram tooling.** | **A** Mermaid in Markdown (in-repo, GitHub-rendered) · **B** draw.io `.drawio.svg` (visio-esque, offline desktop editor) · **C** Structurizr DSL (C4 as code) · **D** A + B, C if the set outgrows hand-drawn | who edits on the island; GitHub rendering; offline editing | **D** — Mermaid first, draw.io for boards Graham will show people; see `diagramming_approach_v0.md` | — | open |
+| **DA-D9** | **Backend contract shape for the front end.** | **A** BFF per Floor, published-language DTOs in `@rr/common` · **B** one gateway, per-context APIs, no BFF · **C** GraphQL federation | number of Floors and teams; read-model shape per screen | **A** | R1, R3, R7 | open |
+| **DA-D10** | **Where the utility-window system lives.** The TrAIdit UWS pattern as the L4 "office" host mechanism. | **A** base library `@rr/windows` in L1 · **B** per-Floor · **C** not adopted | whether Offices are hosted as windows, panels, or route leaves | **A**, because an Office that can be opened anywhere is what makes it a *tool* rather than a page | R7 | open |
+
+## Forks deferred until domain input exists
+
+- **What the bounded contexts *are*.** Cannot be designed from research; needs the RR product purpose and an event-storming session with the island team (`[NEEDS GRAHAM]` in `project_overview.md`). The packet designs the *shape*; this fork fills it.
+- **Whether any data on Desert Island carries security labels at all.** Decides how much of R5/R6 applies on day one. Route to the program's security authority.
+
+## Ruling log
+
+*(empty — nothing ruled)*

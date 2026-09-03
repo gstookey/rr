@@ -8,7 +8,7 @@ updated: 2026-09-03
 
 # RR Context Wiki Index
 
-**Created:** 2026-08-25 | **Last updated:** 2026-09-03 (packet `legacy-shell-bundle-01`; legacy shells stood up, estate-shaped 17→18 hop rehearsed, transfer bundle verified offline)
+**Created:** 2026-08-25 | **Last updated:** 2026-09-03 (DDD-ARCH-01 packet opened + architecture research corpus R1..R7 under `platform/research/`; earlier the same day: packet `legacy-shell-bundle-01`)
 
 Navigation spine for the RR context system. Update when a page is added, removed, or changes meaningfully.
 
@@ -40,6 +40,8 @@ Navigation spine for the RR context system. Update when a page is added, removed
 - [Design README](../design/README.md)
 - [Brand — Visual Identity](../design/brand/README.md)
 - Packets:
+- [**DDD-ARCH-01 — Desert Island system architecture, front-end-first** (`ddd-arch-01`)](../design/packets/ddd-arch-01-design-packet/README.md) — `exploratory`, opened 2026-09-03 as a Graham-initiated side-quest beside Milestone 1
+  - [Decision Register v0 (DA-D1..DA-D10)](../design/packets/ddd-arch-01-design-packet/decision_register_v0.md) · [Tier Model Exploration v0](../design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md) · [Diagramming Approach v0](../design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md) · diagrams [01 context](../design/packets/ddd-arch-01-design-packet/diagrams/01-context-desert-island.md) · [02 tier model](../design/packets/ddd-arch-01-design-packet/diagrams/02-tier-model-building-floors.md)
 - [Legacy Shell Bundle (`legacy-shell-bundle-01`)](../design/packets/legacy-shell-bundle-01-design-packet/README.md) — `exploratory`; **rehearsed 2026-09-03 on estate-shaped shells; bundle verified offline**
   - [Monorepo Runbook Delta v1](../design/packets/legacy-shell-bundle-01-design-packet/v17_to_v18_monorepo_runbook_delta_v1.md) · [Transfer Bundle Manifest v1](../design/packets/legacy-shell-bundle-01-design-packet/v18_transfer_bundle_manifest_v1.md) · [Offline Verification Transcript v1](../design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v1.md) · [Nexus Upload Instructions v1](../design/packets/legacy-shell-bundle-01-design-packet/nexus_upload_instructions_v1.md)
   - Shells themselves: [`legacy-shells/README.md`](../../legacy-shells/README.md) — two approximated island monorepos, committed v17→v18 lock history
@@ -76,7 +78,8 @@ Navigation spine for the RR context system. Update when a page is added, removed
 
 # Platform
 
-- [Platform (reusable concepts)](platform/README.md) — empty
+- [Platform (reusable concepts)](platform/README.md)
+- [**Architecture Research Corpus** (R1..R7)](platform/research/README.md) — DDD · Data Fabric · Event/Message Buses · Identity Stores · MAC Stores · Cross Domain Solution integration · UI/UX in relation to DDD. `exploratory` research briefs, not doctrine; the base corpus for DDD-ARCH-01.
 
 # Evidence
 

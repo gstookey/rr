@@ -23,3 +23,11 @@ brand-design
 dev-environment
 isolated-network
 monorepo
+# Added 2026-09-03 (Axium, DDD-ARCH-01 research corpus): architecture research concepts
+domain-driven-design
+data-fabric
+messaging
+identity
+access-control
+cross-domain
+ux
