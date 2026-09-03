@@ -4,12 +4,12 @@ status: active
 title: Current Priorities
 areas: [planning, context-system]
 related: ["docs/CURRENT_STATE.md", "docs/context/canonical/isolated_network_constraints.md", "docs/context/canonical/two_island_model.md", "docs/context/governance/contradictions/register.md"]
-updated: 2026-08-26
+updated: 2026-09-03
 ---
 
 # Current Priorities
 
-**Created:** 2026-08-25 | **Last updated:** 2026-08-26 (Axium; reoriented around Milestone 1 — Legacy Island to Angular 19; board stood up)
+**Created:** 2026-08-25 | **Last updated:** 2026-09-03 (Axium; legacy shells stood up, estate-shaped 17→18 hop rehearsed, bundle verified offline)
 
 Compact operating context. Readable in one window. Standing truth lives in `docs/CURRENT_STATE.md`; this page is *sequencing and intent*.
 
@@ -30,7 +30,7 @@ Why this and not the v22 stretch: v19 is a **hard floor** (it discharges the Ang
 
 1. **Get the questionnaires out — one per island.** Their lead time is not ours to control, and most other planning is partly speculative until they return. Legacy Island's variant carries the highest-value questions ([S-01](https://github.com/gstookey/rr/issues/8)); Desert Island's assumes nothing despite being greenfield ([S-02](https://github.com/gstookey/rr/issues/9)).
 2. **Collect the legacy estate inventory** ([S-03](https://github.com/gstookey/rr/issues/10)). The largest body of work in the programme has no size at all until this returns, and it is the evidence that decides DR-04 (v19 floor vs v22 stretch).
-3. **Rehearse the v17→v18 hop here** ([S-14](https://github.com/gstookey/rr/issues/21)). The substantive work available today with **no external gate** — raw source is already in `docs/angular-upgrade-docs/`.
+3. **~~Rehearse the v17→v18 hop here~~ Done three times over** — bare app ([S-14](https://github.com/gstookey/rr/issues/21), 2026-08-26), and now **estate-shaped on shells of the two real apps with the transfer bundle verified offline** (packet `legacy-shell-bundle-01`, 2026-09-03, PR #28). What this lane needs next: Graham merges #28 and hand-jams the real config files; then the 18→19 hop on the shells (reaches Milestone 1's floor estate-shaped), then re-cut the bundle union.
 4. **Close the cheap decisions** ([S-04](https://github.com/gstookey/rr/issues/11)): C-001's layout half (DR-05) and whether to ship the npm cache alongside the registry seed (DR-09). Graham's judgement only; free now, expensive once scaffolding starts.
 5. **The Node patch bump is independent and probably the cheapest risk reduction available** ([S-13](https://github.com/gstookey/rr/issues/20)): 22.15 → 22.23.2 is a patch inside the same LTS line, needs no Angular work, and closes the Node half of the security driver on its own.
 

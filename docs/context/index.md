@@ -3,12 +3,12 @@ schema: corpus-doc/v1
 status: active
 title: RR Context Wiki Index
 areas: [context-system]
-updated: 2026-08-26
+updated: 2026-09-03
 ---
 
 # RR Context Wiki Index
 
-**Created:** 2026-08-25 | **Last updated:** 2026-08-28 (packet `ng-hop-02`; v18→v19 hop rehearsed — both Milestone 1 hops now written)
+**Created:** 2026-08-25 | **Last updated:** 2026-09-03 (packet `legacy-shell-bundle-01`; legacy shells stood up, estate-shaped 17→18 hop rehearsed, transfer bundle verified offline)
 
 Navigation spine for the RR context system. Update when a page is added, removed, or changes meaningfully.
 
@@ -40,6 +40,9 @@ Navigation spine for the RR context system. Update when a page is added, removed
 - [Design README](../design/README.md)
 - [Brand — Visual Identity](../design/brand/README.md)
 - Packets:
+- [Legacy Shell Bundle (`legacy-shell-bundle-01`)](../design/packets/legacy-shell-bundle-01-design-packet/README.md) — `exploratory`; **rehearsed 2026-09-03 on estate-shaped shells; bundle verified offline**
+  - [Monorepo Runbook Delta v1](../design/packets/legacy-shell-bundle-01-design-packet/v17_to_v18_monorepo_runbook_delta_v1.md) · [Transfer Bundle Manifest v1](../design/packets/legacy-shell-bundle-01-design-packet/v18_transfer_bundle_manifest_v1.md) · [Offline Verification Transcript v1](../design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v1.md) · [Nexus Upload Instructions v1](../design/packets/legacy-shell-bundle-01-design-packet/nexus_upload_instructions_v1.md)
+  - Shells themselves: [`legacy-shells/README.md`](../../legacy-shells/README.md) — two approximated island monorepos, committed v17→v18 lock history
 - [Angular v18→v19 Hop (`ng-hop-02`)](../design/packets/ng-hop-02-v18-to-v19-design-packet/README.md) — `exploratory`; **rehearsed 2026-08-28**; reaches Milestone 1's floor
   - [v18→v19 Hop Runbook v1](../design/packets/ng-hop-02-v18-to-v19-design-packet/v18_to_v19_hop_runbook_v1.md) · [v19 Hop Bundle Manifest v0](../design/packets/ng-hop-02-v18-to-v19-design-packet/v19_hop_bundle_manifest_v0.md)
 - [Angular v17→v18 Hop (`ng-hop-01`)](../design/packets/ng-hop-01-v17-to-v18-design-packet/README.md) — `exploratory`; **rehearsed 2026-08-26**

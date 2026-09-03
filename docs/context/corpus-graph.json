@@ -932,6 +932,61 @@
       "governs": []
     },
     {
+      "path": "docs/design/packets/legacy-shell-bundle-01-design-packet/README.md",
+      "title": "Legacy Shell Bundle Packet 01 — estate-shaped v17→v18 hop and verified transfer bundle",
+      "status": "exploratory",
+      "areas": [
+        "isolated-network",
+        "frontend",
+        "dev-environment",
+        "technology-stack"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/legacy-shell-bundle-01-design-packet/nexus_upload_instructions_v1.md",
+      "title": "Nexus Upload Instructions v1 — getting the bundle into the island registry",
+      "status": "exploratory",
+      "areas": [
+        "isolated-network",
+        "dev-environment"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v1.md",
+      "title": "Offline Verification Transcript v1 — the bundle proven with zero internet",
+      "status": "exploratory",
+      "areas": [
+        "isolated-network",
+        "dev-environment",
+        "risk-gates"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/legacy-shell-bundle-01-design-packet/v17_to_v18_monorepo_runbook_delta_v1.md",
+      "title": "v17→v18 Monorepo Runbook Delta v1 — what changes on estate-shaped apps",
+      "status": "exploratory",
+      "areas": [
+        "frontend",
+        "isolated-network",
+        "dev-environment"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/legacy-shell-bundle-01-design-packet/v18_transfer_bundle_manifest_v1.md",
+      "title": "v18 Transfer Bundle Manifest v1 — measured from the legacy shells, verified offline",
+      "status": "exploratory",
+      "areas": [
+        "isolated-network",
+        "technology-stack",
+        "dev-environment"
+      ],
+      "governs": []
+    },
+    {
       "path": "docs/design/packets/ng-hop-01-v17-to-v18-design-packet/README.md",
       "title": "Angular Hop Packet 01 — v17 to v18 (ng-hop-01)",
       "status": "exploratory",
@@ -1403,6 +1458,66 @@
     {
       "from": "docs/design/packets/iso-net-readiness-01-design-packet/story_decomposition_v0.md",
       "to": "docs/design/packets/iso-net-readiness-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/README.md",
+      "to": "docs/context/canonical/two_island_model.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/README.md",
+      "to": "docs/design/packets/iso-net-readiness-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/README.md",
+      "to": "docs/design/packets/ng-hop-01-v17-to-v18-design-packet/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/nexus_upload_instructions_v1.md",
+      "to": "docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v1.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/nexus_upload_instructions_v1.md",
+      "to": "docs/design/packets/legacy-shell-bundle-01-design-packet/v18_transfer_bundle_manifest_v1.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v1.md",
+      "to": "docs/design/packets/legacy-shell-bundle-01-design-packet/nexus_upload_instructions_v1.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v1.md",
+      "to": "docs/design/packets/legacy-shell-bundle-01-design-packet/v18_transfer_bundle_manifest_v1.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/v17_to_v18_monorepo_runbook_delta_v1.md",
+      "to": "docs/design/packets/legacy-shell-bundle-01-design-packet/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/v17_to_v18_monorepo_runbook_delta_v1.md",
+      "to": "docs/design/packets/ng-hop-01-v17-to-v18-design-packet/v17_to_v18_hop_runbook_v1.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/v18_transfer_bundle_manifest_v1.md",
+      "to": "docs/design/packets/legacy-shell-bundle-01-design-packet/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/v18_transfer_bundle_manifest_v1.md",
+      "to": "docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v1.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/v18_transfer_bundle_manifest_v1.md",
+      "to": "docs/design/packets/ng-hop-01-v17-to-v18-design-packet/v18_hop_bundle_manifest_v0.md",
       "type": "related"
     },
     {

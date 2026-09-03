@@ -4,18 +4,19 @@ status: active
 title: CURRENT_STATE — Project Road Runner
 areas: [context-system, planning]
 related: ["docs/context/canonical/current_priorities.md", "docs/context/canonical/two_island_model.md", "docs/context/index.md"]
-updated: 2026-08-26
+updated: 2026-09-03
 ---
 
 # CURRENT_STATE — Project Road Runner
 
-**Created:** 2026-08-25 | **Last updated:** 2026-08-26 (two-island model, board stood up, Milestone 1 named — Axium)
+**Created:** 2026-08-25 | **Last updated:** 2026-09-03 (legacy shells + estate-shaped 17→18 hop + offline-verified bundle — Axium)
 
 This file is **implementation truth**: what actually exists and works now. When design docs and this file disagree, this file wins for operational questions. Keep it compact — standing truth, active lane, open decisions. Completed-arc detail moves to `docs/context/operations/milestones/` at closeout.
 
 ## Standing truth
 
-- **Phase:** preparation / planning. No application code exists in this repo. No monorepo, no `package.json`, no CI.
+- **Phase:** preparation / planning. No RR application code exists. No CI. **`legacy-shells/` now holds two Angular monorepo shells** (approximations of the two ported island apps, built from their real package.jsons — `docs/source-documents/legacy-apps/`): committed v17→v18 lock history, no real app code; they model *external* island repos, not RR product space.
+- **The 17→18 hop is rehearsed estate-shaped and its transfer bundle is verified offline** (2026-09-03, packet `legacy-shell-bundle-01`): 1,311 tarballs / 143.4 MB, SHA-manifested, proven against a bundle-seeded registry inside a no-network namespace (v17 `npm ci`, full `ng update` replay, v18 `npm ci` — all green). The real apps test with **Jest, not Karma** — suites ran with no browser.
 - **What exists:** the repo-native context system (this docs corpus), the seven-role agent fleet harnesses under `.claude/agents/`, the merge-gate hook, the corpus-graph tooling (`scripts/corpus-graph.mjs`, green as of 2026-08-25), raw source material for the intended stack and brand.
 - **Decided:** package manager is npm (ADR-004, 2026-08-25).
 - **Intended stack (design direction, not implemented):** Angular 22 + TypeScript 6 + Vitest + NgRx SignalStore on the client; AstroUXDS design system with RR brand-token overrides; Node/Express gateway; shared TypeScript `common` library; npm-workspaces monorepo; Helm-chart-driven runtime config for Kubernetes. Source: `docs/source-documents/`. Canonical synthesis: `docs/context/canonical/technology_stack.md`.
@@ -27,9 +28,10 @@ This file is **implementation truth**: what actually exists and works now. When 
 
 ## Active lane
 
-- Repo initialization merged to `main` (`3d2d735`, PR #1).
-- **PR #2 open**: the Isolated-Network Readiness packet + the two-island model. Awaiting Graham's review + merge.
-- Milestone 1 is the organizing objective. Nothing is activated: 17 stories exist, none moved to In Progress.
+- Merged: PR #1 (repo init), PR #2 (readiness packet + two-island model), PR #25 (`ng-hop-01`), PR #26 (`ng-hop-02`), PR #27 (Graham: legacy package.jsons).
+- **PR #28 open**: legacy shells + estate-shaped 17→18 hop + verified transfer bundle (`legacy-shell-bundle-01`, delivers S-07's bundle half). Awaiting Graham's review + merge.
+- **Next after merge:** Graham hand-jams the real config files (angular.json, jest.config.cjs, setup-jest.ts, tsconfig*) into the shells; locks and hop then re-verified (angular.json build budgets = known re-check). 18→19 hop on the shells is the natural next docket item.
+- Milestone 1 is the organizing objective.
 
 ## Open decisions (Graham-gated)
 

@@ -1,0 +1,66 @@
+---
+schema: corpus-doc/v1
+status: exploratory
+title: Legacy Shells — approximated Legacy Island app monorepos
+areas: [isolated-network, frontend, dev-environment, technology-stack]
+related: ["docs/design/packets/legacy-shell-bundle-01-design-packet/README.md", "docs/context/canonical/two_island_model.md"]
+updated: 2026-09-03
+---
+
+# Legacy Shells
+
+**Created:** 2026-09-03 | **Status:** `exploratory` — approximations, not ports
+
+Two fresh Angular 17 monorepo shells built from the **real package.json files** of two Legacy Island applications (`docs/source-documents/legacy-apps/`). Their purpose is to approximate the island's **dependency lock shapes** so upgrade hops and transfer bundles can be rehearsed against something with the estate's real dependency surface. **They contain no real application code.**
+
+They live here in `legacy-shells/` — deliberately **outside** the future RR product space (`apps/*` / `packages/*`, C-001/DR-05) — because they model *external* island repositories, not parts of RR.
+
+- `legacy-app-01/` — npm workspaces: `packages/{common, client, server}`
+- `legacy-app-02/` — npm workspaces: `packages/{interface, common, client, server}`
+
+The committed `package-lock.json` at each root is the deliverable: the approximated island lock shape. `node_modules/` and build output are not committed.
+
+## What is real vs. placeholder
+
+| File | Status |
+|---|---|
+| `package.json` (root + each package) | **Real** — from Graham's hand-jammed copies, with the flagged corrections below |
+| `package-lock.json` (each root) | **Generated** here from those package.jsons against the public registry (Node v22.22.2, npm 10.9.7) |
+| `packages/client/angular.json`, `tsconfig*.json`, `src/**` | **Placeholder** — a default `ng new @17.3.17` app (`--style=scss --routing`); awaiting Graham's real configs |
+| `packages/client/jest.config.cjs`, `setup-jest.ts` | **Placeholder** — minimal `jest-preset-angular` wiring; awaiting Graham's real configs |
+| `packages/{common,server,interface}/src/**`, `tsconfig.json` | **Placeholder** — minimal compilable stubs |
+
+**Graham: paste your real files over the placeholders in place** — same paths, parent and children (`jest.config.cjs`, `angular.json`, `setup-jest.ts`, `tsconfig.json`, `tsconfig.spec.json`, and any others). Locks get re-checked after each drop.
+
+## Corrections made to the source package.jsons (each one flagged, none silent)
+
+1. **Private-scope packages omitted** — not on the public registry (verified 404): `@other-team/core-web-angular`, `@other-team/core-common`, `@other-team/core-node`, `@ssd_victor/fix-es-imports`, `@ssd_victor/merge-coverage`. They live only on the island's Nexus; **their transitive dependency trees are invisible to this rehearsal** (see honest-limits in the packet).
+2. **`puppeteer` `3.2.5` → `3.3.0`** — 3.2.5 does not exist on the public registry (3.x ends at 3.3.0). `[NEEDS GRAHAM]`: the version your Nexus actually serves.
+3. **`@types/stompjs: ^29.5.12` omitted** (server packages) — unresolvable anywhere (latest is 2.3.10); looks like a copy-paste of the `@types/jest` version. `[NEEDS GRAHAM]`: the real line.
+4. **`typescript-eslint/eslint-plugin|parser` → `@typescript-eslint/...`** (roots) — as written the names are invalid npm names (missing `@`).
+5. **app-02's references to `@my-team/legacy-app-01-common` → `legacy-app-02-common`** (root devDeps, server deps) — as written, app-02's install cannot resolve app-01's private workspace package. `[NEEDS GRAHAM]`: if app-02 *genuinely* depends on app-01's common package, that is a cross-app coupling with real supply-chain consequences (app-01-common must be published to Nexus) — say so and these get reverted.
+6. **`fix-es-imports` dropped from `build` scripts** (common/server/interface) — its package is private-scope (item 1).
+7. **Duplicate `@my-team/*-common` entry removed from server devDependencies** (it appears in both deps and devDeps in the source).
+8. **`packages/interface/package.json` invented entirely** — the source file is empty (0 bytes). Modeled on `common`. `[NEEDS GRAHAM]`: the real contents.
+9. **`angular.json` placed at each monorepo root** (not in `packages/client`) — running `ng update` from `packages/client` fails with `Package '@angular/core' is not a dependency` because the framework deps are declared at the root. The CLI workspace file must sit next to the package.json that declares `@angular/core`. `[NEEDS GRAHAM]`: your real angular.json drop settles where it actually lives.
+10. Root scripts kept verbatim otherwise — including app-02's `start`/`serve` pointing at `legacy-app-01-*` workspace names (suspected transcription artifact, harmless to the lock) and the root `"build": "npm run build"` self-recursion in both apps. `[NEEDS GRAHAM]`: confirm what the real root `build` script says.
+
+## Notable pins (observations, not corrections)
+
+- `typescript 5.2.2` — fine for ng17 (`>=5.2 <5.5`) but **below ng18's floor** (`>=5.4 <5.6`): unlike the bare-app rehearsal, **the 17→18 hop must move TypeScript here**.
+- `@ngrx/operators 17.0.0-beta.0` — a **beta pin** in production dependency lists.
+- **Two UI libraries at once**: `@astrouxds/angular ^7.20.0` (two majors behind the current v9) *and* Angular Material + CDK 17.
+- `keycloak-angular 15.1.0` pins `@angular/* ^17` — its major tracks Angular's, so every hop drags a keycloak-angular bump with it.
+- `express 4.18.2` (DR-08 context), `rxjs 7.8.1`, `zone.js 0.14.2`, `tslib 2.6.2`, `jsdom ^20` at root (distinct from jest's own jsdom), `@types/node ^22.10.10` (consistent with island Node 22.15).
+- **No `engines` field anywhere** — nothing machine-enforces the island's Node version.
+
+## Install / build
+
+```
+npm install            # at legacy-app-01/ or legacy-app-02/ root
+npx ng build           # in packages/client
+npx tsc                # in packages/common, server, interface
+npx jest               # in packages/client — runs on jsdom, no browser needed
+```
+
+Set `PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true` (and `PUPPETEER_SKIP_DOWNLOAD=true`) for installs: puppeteer's post-install Chromium download is not an npm-registry fetch and must not sneak into any bundle accounting.

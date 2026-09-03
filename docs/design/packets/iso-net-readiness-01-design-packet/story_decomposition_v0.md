@@ -4,14 +4,16 @@ status: exploratory
 title: Story Decomposition v0 — Isolated-Network Readiness
 areas: [planning, isolated-network, process-governance]
 related: ["docs/context/team/agents/planning_surface_workflow.md", "docs/context/canonical/current_priorities.md", "docs/context/canonical/two_island_model.md", "docs/design/packets/iso-net-readiness-01-design-packet/README.md", "docs/design/packets/iso-net-readiness-01-design-packet/decision_register_v0.md"]
-updated: 2026-08-28
+updated: 2026-09-03
 ---
 
 # Story Decomposition v0
 
-**Created:** 2026-08-25 | **Last updated:** 2026-08-28 (delivery status for S-14/S-15/S-07/S-08)
+**Created:** 2026-08-25 | **Last updated:** 2026-09-03 (S-07 delivered in full via legacy-shell-bundle-01)
 
 > **Delivery status (2026-08-28):** S-14 and S-15 are **delivered** (both Milestone 1 hops rehearsed — packets `ng-hop-01`, `ng-hop-02`); S-07 and S-08 are **delivered as measurements**, with their seeding/checksum halves still open under S-05. Everything else stands as written.
+>
+> **Delivery status (2026-09-03):** **S-07 is now delivered in full** pending PR #28 — estate-shaped bundle (1,311 tarballs / 143.4 MB) with SHA256 manifest, reproducible build script, **seeding procedure rehearsed** (npm-publish loop) and the whole 17→18 journey **verified offline** against the bundle-seeded registry (packet `legacy-shell-bundle-01`). This also discharges a large piece of S-16's spirit (the offline path is no longer unrehearsed) and de-risks S-05 (the seeding/checksum mechanics now exist and are written down); both remain open as stories. S-08's estate-shaped rerun (18→19 on the shells) is the proposed next docket item.
 >
 > **Board status: created, not activated.** Graham approved standing up the epic structure and cutting these stories on 2026-08-26, so they now exist as issues. **None has been moved to In Progress.** Creating a story is not activating it (operating-contract rule 16) — activation still needs Graham's explicit go-ahead, per story.
 
