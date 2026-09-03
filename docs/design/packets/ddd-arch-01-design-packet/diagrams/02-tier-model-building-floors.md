@@ -9,7 +9,7 @@ updated: 2026-09-03
 
 # 02 — Tier model: Building / Floors / Suites / Offices, with the group overlay
 
-**Created:** 2026-09-03 | **Status:** hypothesis (DA-D1 lean A, DA-D2 lean C, DA-D3 lean A — none ruled) | **Notation:** Mermaid flowchart
+**Created:** 2026-09-03 | **Status:** hypothesis (DA-D1 lean A, DA-D2 lean A *revised after R7*, DA-D3 lean A — none ruled) | **Notation:** Mermaid flowchart
 
 ## Purpose
 
@@ -24,11 +24,11 @@ flowchart LR
     idp[("Identity provider")]
     gw["Gateway"]
   end
-  subgraph L2["L2 · Floors — /floor (one bounded context each)"]
+  subgraph L2["L2 · Floors — /floor (one bounded context each; lazy, lint-fenced library sets + a BFF)"]
     direction TB
-    fa["apps/floor-a<br/>+ floor-a-bff"]
-    fb["apps/floor-b<br/>+ floor-b-bff"]
-    fn["apps/floor-n …<br/>(a new Floor = a new context)"]
+    fa["scope:floor-a libs<br/>+ floor-a-bff"]
+    fb["scope:floor-b libs<br/>+ floor-b-bff"]
+    fn["scope:floor-n …<br/>(a new Floor = a new context;<br/>promotable to its own app)"]
   end
   subgraph L3["L3 · Suites — /floor/suite (feature libraries)"]
     s1["floor-a-feature-suite-1"]
@@ -45,7 +45,7 @@ flowchart LR
     g3["tailoring: tokens · copy · defaults · enabled Offices"]
     g4["delegated admin: my group's users"]
   end
-  shell --> fa & fb & fn
+  shell -->|"loadChildren + CanMatch(claim)"| fa & fb & fn
   fa --> s1 & s2
   s1 --> o1
   s2 --> o2
@@ -61,6 +61,6 @@ flowchart LR
 
 ## Interpretation
 
-- **Floors never depend on each other.** Crossing Floors is an elevator ride (a full navigation under DA-D2 lean C); state that must survive it lives in the URL, the session, or the backend.
+- **Floors never depend on each other.** That fence is what makes a Floor promotable to its own app or remote later (DA-D2) without a refactor; under the current lean A, crossing Floors is a router navigation inside one app and shared state lives in the shell's root store.
 - **A group is not a tier.** It enters the picture through the identity provider's claims and lands on the overlay, which the shell and each Floor apply at runtime.
 - **A generic Office is promoted into L1 only when a second Floor needs it** (dashed) — the salvage rule, not speculation.

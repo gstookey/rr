@@ -9,7 +9,7 @@ updated: 2026-09-03
 
 # Current Priorities
 
-**Created:** 2026-08-25 | **Last updated:** 2026-09-03 (Axium; legacy shells stood up, estate-shaped 17→18 hop rehearsed, bundle verified offline)
+**Created:** 2026-08-25 | **Last updated:** 2026-09-03 (Axium; DDD-ARCH-01 side-quest opened beside Milestone 1; legacy shells + 17→18 hop earlier the same day)
 
 Compact operating context. Readable in one window. Standing truth lives in `docs/CURRENT_STATE.md`; this page is *sequencing and intent*.
 
@@ -34,6 +34,10 @@ Why this and not the v22 stretch: v19 is a **hard floor** (it discharges the Ang
 4. **Close the cheap decisions** ([S-04](https://github.com/gstookey/rr/issues/11)): C-001's layout half (DR-05) and whether to ship the npm cache alongside the registry seed (DR-09). Graham's judgement only; free now, expensive once scaffolding starts.
 5. **The Node patch bump is independent and probably the cheapest risk reduction available** ([S-13](https://github.com/gstookey/rr/issues/20)): 22.15 → 22.23.2 is a patch inside the same LTS line, needs no Angular work, and closes the Node half of the security driver on its own.
 
+## Side-quest lane — DDD-ARCH-01 (design only, beside Milestone 1)
+
+Opened 2026-09-03 at Graham's direction as a Context Enrichment Side-Quest: the Desert Island system architecture, **front-end first**. It does not displace Milestone 1 and activates nothing. What it needs next, in order: (1) Graham reads the seven briefs in `docs/context/platform/research/` (start with R7, then R1, R4); (2) rulings round 1 on `ddd-arch-01-design-packet/decision_register_v0.md` (DA-D1..D6, D8); (3) the harvested questions Q1..Q12 ride along with the island questionnaires (S-01/S-02) — **Q1, "what are the bounded contexts?", is the gate past which the packet cannot proceed without domain input**; (4) lexicon pass + redraw of the C4 set after the rulings.
+
 ## Planning surface
 
 Board: **Project Road Runner Roadmap** — `https://github.com/users/gstookey/projects/3`. Epics stood up 2026-08-26 with Graham's approval:
@@ -56,6 +60,6 @@ The recommendation predated the two-island correction and spoke of "the island,"
 
 ## Not now
 
-- Application feature design. No domain model exists yet for RR-the-product; anything written now would be invention.
+- Application feature design. No domain model exists yet for RR-the-product; anything written now would be invention. *(DDD-ARCH-01 respects this: it designs the shape — tiers, libraries, identity, contracts — and stops at the context map, which needs the island's domain experts.)*
 - Multi-user / auth / deployment topology beyond what the Helm blueprint sketches.
 - Porting Marin (orchestration coordinator) into `.claude/agents/` — only when a run needs it.

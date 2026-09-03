@@ -44,13 +44,13 @@ And it must give a home to the hierarchy Graham is picturing:
 | [`tier_model_exploration_v0.md`](tier_model_exploration_v0.md) | Axium's initial analysis of Building / Floor / Suite / Office against DDD, Team Topologies and IA practice — a hypothesis for R7 to test | hypothesis |
 | [`diagramming_approach_v0.md`](diagramming_approach_v0.md) | how architecture diagrams are stood up, kept, rendered, and edited on both sides of the fence | proposal |
 | `diagrams/` | the diagram set (C4-numbered, Mermaid first; draw.io where a visio-esque board earns it) | first two seeded |
-| Research corpus | [`docs/context/platform/research/`](../../../context/platform/research/README.md) — seven briefs R1..R7 | commissioned 2026-09-03 |
+| Research corpus | [`docs/context/platform/research/`](../../../context/platform/research/README.md) — seven briefs R1..R7 | **landed 2026-09-03** (~32k words; every unconfirmed claim marked `[UNVERIFIED]`) |
 
 ## Sequence
 
-1. **Research corpus lands** (R1..R7) → Graham reads; the briefs' "open questions for Graham" sections are harvested into the register.
+1. ✅ **Research corpus landed** (R1..R7, 2026-09-03) → Graham reads; the briefs' "open questions for Graham" sections are harvested into the register.
 2. **Lexicon pass** — one meaning per word across the seven briefs and this packet (the TrAIdit Concordance lesson: "playbook" drifted because two docs used one word two ways).
-3. **Rulings round 1** — DA-D1..DA-D6 (tier semantics, composition strategy, tenant addressing, repo topology, identity substrate, diagram tooling).
+3. **Rulings round 1** — DA-D1..DA-D6 + DA-D8 (tier semantics, composition strategy, tenant addressing, repo topology, identity substrate, authorization model, diagram tooling); the register's harvested questions Q1..Q12 go to the island owners in the same pass as the readiness questionnaires.
 4. **The C4 diagram set** — context → containers → components, redrawn after each ruling round.
 5. **Reference structure** — the monorepo skeleton on paper (`apps/*`, `packages/*`, library taxonomy, boundary rules), then a scaffold packet under EP-05 when Graham activates it.
 6. **Backend contract depth** — bounded contexts, published language package, BFF per floor, event topics, label model — to the depth the front end needs.

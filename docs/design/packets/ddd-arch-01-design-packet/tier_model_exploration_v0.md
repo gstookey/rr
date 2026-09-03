@@ -9,7 +9,7 @@ updated: 2026-09-03
 
 # Building / Floor / Suite / Office — tier model exploration v0
 
-**Created:** 2026-09-03 | **Last updated:** 2026-09-03 | **Author:** Axium | **Status:** `exploratory` — a **hypothesis** written before the research briefs landed, so that R7 has something concrete to confirm or break. Not doctrine. Forks live in the [decision register](decision_register_v0.md).
+**Created:** 2026-09-03 | **Last updated:** 2026-09-03 | **Author:** Axium | **Status:** `exploratory` — a **hypothesis** written before the research briefs landed, then reconciled with R7 the same day: R7 **confirms** DA-D1 (Floors = bounded contexts) and DA-D3 (tenant as claim) and **overturns** the DA-D2 lean (see §5). Not doctrine. Forks live in the [decision register](decision_register_v0.md).
 
 ## 1. The question, sharpened
 
@@ -25,7 +25,7 @@ DDD's answer, Team Topologies' answer and information-architecture practice all 
 | Tier | What it is (structure) | DDD / Team Topologies reading | Code shape | URL | Who owns it |
 |---|---|---|---|---|---|
 | **L1 Building** | the platform: shell, lobby/directory, session, design system + RR tokens, window system, telemetry, the published-language package; identity provider and gateway behind it | generic subdomains + the composition root; the **platform team's** product | `apps/shell` + `packages/@rr/*` base libraries; the IdP; the gateway | `building.com/` | platform team (Graham's) |
-| **L2 Floor** | one **bounded context** made visible: its own Angular application (or lazy area), its own BFF, its own read models, its own lexicon | a bounded context; a **stream-aligned team** owns one (or a few) | `apps/<floor>` + `packages/<floor>-*` libraries; `services/<floor>-bff` | `building.com/<floor>` | a stream-aligned team |
+| **L2 Floor** | one **bounded context** made visible: its own Angular application (or lazy area), its own BFF, its own read models, its own lexicon | a bounded context; a **stream-aligned team** owns one (or a few) | `packages/<floor>-*` library set (lazy behind `CanMatch`), promotable to `apps/<floor>`; `services/<floor>-bff` | `building.com/<floor>` | a stream-aligned team |
 | **L3 Suite** | a capability area *inside* the context — a coherent set of tasks with shared vocabulary and state | a sub-context / module; often the unit a squad within the team owns | lazy feature library `packages/<floor>-feature-<suite>` with its own routes and SignalStore | `building.com/<floor>/<suite>` | the Floor team (or a squad) |
 | **L4 Office** | a tool: one task-oriented surface (a route leaf, a panel, or a utility window) that may be reused in other Suites and Floors | a task (Vernon's task-based UI); a **primitive** if it is generic | feature library or windowed surface `packages/<floor>-office-<name>` or `packages/@rr/office-<name>` when generic | `.../<suite>/<office>` or a window id | whoever owns the Suite; generic Offices belong to L1 |
 
@@ -55,8 +55,8 @@ flowchart TB
     cfg["@rr/config — configuration-as-data loader"]
   end
   subgraph L2["L2 · Floors — one bounded context each"]
-    fa["apps/floor-a + floor-a-bff"]
-    fb["apps/floor-b + floor-b-bff"]
+    fa["scope:floor-a libs + floor-a-bff (lazy Floor)"]
+    fb["scope:floor-b libs + floor-b-bff (lazy Floor)"]
   end
   subgraph L3["L3 · Suites — feature libraries inside a Floor"]
     s1["floor-a-feature-suite-1"]
@@ -82,13 +82,17 @@ flowchart TB
 
 **Dependency rules (lint-enforced, the point of the taxonomy):** Floors depend on L1 only, never on each other. Suites depend on their Floor's shared libraries and L1. Offices depend on nothing above them. Nothing in L1 imports from a Floor. A generic Office is promoted into L1 only when a second Floor needs it (the salvage rule, not speculation).
 
-## 5. Composition strategy (DA-D2) — the lean and its honest cost
+## 5. Composition strategy (DA-D2) — the lean, revised the same day by R7
 
-The lean is **one Angular app per Floor under a path prefix, sharing build-time libraries and a shell library** (option C), with a single shell SPA (option A) as the right answer while there is one team, and runtime micro-frontends (option B) held back until independent runtime deployment is demanded by evidence.
+**Original lean (morning, before the briefs):** one Angular app per Floor under a path prefix (option C) — "add a new Angular application with ease", no federation runtime, independent builds. Its named cost was that crossing Floors is a full page load and cross-Floor state must live in URL/session/backend.
 
-Why C: it is literally "add a new Angular application for a new group with ease" — a new Floor is `ng generate application`, wire the base libraries, deploy under `/floor-name/`; each Floor builds and ships independently; there is no federation runtime to bundle and maintain on an isolated network; a Floor can be redeployed without touching the others.
+**Revised lean (after R7 landed):** **option A — one Angular app, each Floor a lazily loaded, lint-fenced library set behind a claims `CanMatch`, with a designed promotion path to B or C.** R7's evidence changed the lean, and this paragraph records the change rather than averaging the two:
 
-The cost, stated: crossing between Floors is a full page load (the "elevator" is a real elevator), and any state that must survive the crossing (session, selected context, open windows) has to live in the URL, the IdP session, or the backend — **never in memory**. That constraint is a feature: it forces the "presumed-global state" question (TrAIdit's playhead lesson) to be answered explicitly per item. R7 is asked to test this lean against the micro-frontend literature and Angular's current Native Federation state.
+- The promotion is cheap *only* if Floors never import across Floor boundaries — and that fence is required under every option anyway. With the fence in place, turning a Floor library set into its own app (C) or a federated remote (B) is a build-configuration change, not a refactor.
+- Option C multiplies what the island must mirror and pin (N copies of Angular + AstroUXDS + tokens), weakens shared navigation and state, and buys deploy independence that one organisation on one release train does not yet need.
+- R7's rule for when a Floor *does* become its own app is precise and evidence-based: a different release cadence, a team outside the release train, a cluster or compartment where the rest of the Building is not installed, or a different Angular major (the two-island case). None of those is "the Floor got big".
+
+What survives from the original lean: **"add a new Angular application with ease" is still true** — a new Floor is a new library set plus a route and a BFF; if it ever needs to be a separate app, the fence guarantees it can be. And the "presumed-global state" question (TrAIdit's playhead lesson) still has to be answered explicitly per item — under A it is answered in the shell's root store rather than forced into the URL.
 
 ## 6. URL design (DA-D3)
 

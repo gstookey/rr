@@ -9,7 +9,7 @@ updated: 2026-09-03
 
 # CURRENT_STATE — Project Road Runner
 
-**Created:** 2026-08-25 | **Last updated:** 2026-09-03 (legacy shells + estate-shaped 17→18 hop + offline-verified bundle — Axium)
+**Created:** 2026-08-25 | **Last updated:** 2026-09-03 (DDD-ARCH-01 packet + research corpus opened; earlier: legacy shells + estate-shaped 17→18 hop + offline-verified bundle — Axium)
 
 This file is **implementation truth**: what actually exists and works now. When design docs and this file disagree, this file wins for operational questions. Keep it compact — standing truth, active lane, open decisions. Completed-arc detail moves to `docs/context/operations/milestones/` at closeout.
 
@@ -19,6 +19,7 @@ This file is **implementation truth**: what actually exists and works now. When 
 - **The 17→18 hop is rehearsed estate-shaped and its transfer bundle is verified offline** (2026-09-03, packet `legacy-shell-bundle-01`): 1,311 tarballs / 143.4 MB, SHA-manifested, proven against a bundle-seeded registry inside a no-network namespace (v17 `npm ci`, full `ng update` replay, v18 `npm ci` — all green). The real apps test with **Jest, not Karma** — suites ran with no browser.
 - **What exists:** the repo-native context system (this docs corpus), the seven-role agent fleet harnesses under `.claude/agents/`, the merge-gate hook, the corpus-graph tooling (`scripts/corpus-graph.mjs`, green as of 2026-08-25), raw source material for the intended stack and brand.
 - **Decided:** package manager is npm (ADR-004, 2026-08-25).
+- **Architecture design opened (2026-09-03), nothing ruled:** `docs/design/packets/ddd-arch-01-design-packet/` (DA-D1..DA-D12 open) on top of the seven-brief research corpus `docs/context/platform/research/` (R1..R7, `exploratory`, `[UNVERIFIED]`-marked where sources were unreachable). Working hypothesis, confirmed by R7 and awaiting Graham: Floors = bounded contexts, groups = access/tailoring overlay, one app with lazy fenced Floors, tenant as a claim. No application code, no scaffold.
 - **Intended stack (design direction, not implemented):** Angular 22 + TypeScript 6 + Vitest + NgRx SignalStore on the client; AstroUXDS design system with RR brand-token overrides; Node/Express gateway; shared TypeScript `common` library; npm-workspaces monorepo; Helm-chart-driven runtime config for Kubernetes. Source: `docs/source-documents/`. Canonical synthesis: `docs/context/canonical/technology_stack.md`.
 - **Target environment: TWO isolated networks**, both with **no agent access**; artifacts cross as one-way compressed bundles. **Legacy Island** — 10+ Angular v17 apps on Node 22.15, to be upgraded there (v19 floor, v22 stretch). **Desert Island** — greenfield, nothing on it yet, where the new system is built. They deploy into a related cluster and must stay stack-synchronized. Model: `canonical/two_island_model.md`. Remaining unknowns: `canonical/isolated_network_constraints.md`.
 - **Verified 2026-08-25:** Node 22.15 already satisfies Angular 18/19/20/21; only Angular 22 needs a newer Node (`^22.22.3 || ^24.15.0 || >=26.0.0`). **Reaching the v19 floor requires no Node change on Legacy Island.**
@@ -31,7 +32,7 @@ This file is **implementation truth**: what actually exists and works now. When 
 - Merged: PR #1 (repo init), PR #2 (readiness packet + two-island model), PR #25 (`ng-hop-01`), PR #26 (`ng-hop-02`), PR #27 (Graham: legacy package.jsons).
 - **PR #28 open**: legacy shells + estate-shaped 17→18 hop + verified transfer bundle (`legacy-shell-bundle-01`, delivers S-07's bundle half). Awaiting Graham's review + merge.
 - **Next after merge:** Graham hand-jams the real config files (angular.json, jest.config.cjs, setup-jest.ts, tsconfig*) into the shells; locks and hop then re-verified (angular.json build budgets = known re-check). 18→19 hop on the shells is the natural next docket item.
-- Milestone 1 is the organizing objective.
+- Milestone 1 is the organizing objective. **Side-quest lane (design only):** DDD-ARCH-01 — next step is Graham reading R1..R7 and ruling round 1 (DA-D1..D6, D8); the packet is on branch `claude/ddd-architecture-research-01`, PR pending.
 
 ## Open decisions (Graham-gated)
 
