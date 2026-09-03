@@ -34,6 +34,17 @@ The first replay of this round reported all phases green — and was **invalid**
 
 The fresh offline cache's tarball URLs were exclusively `http://127.0.0.1:4873` throughout. App-02's hops were not replayed offline (identical dependency surface — zero marginal tarballs at every rung); its committed v17/v19 locks were verified directly.
 
+## Extension (same day): the stretch ladder, offline
+
+The registry was re-seeded with the full 17→22 pool (**2,102/2,102 published and byte-verified back out**), and the ladder continued on the same replay tree inside the netns, with the same exit-code discipline:
+
+| Phase | Result |
+|---|---|
+| 19→20 replay (both ng update phases + finalize) | ✅ P1/P2 exit 0 (12+6 rewrites) · install/build 0 · jest 3/3 |
+| 20→21 replay (Jest-30 pre-step + setup-jest rewrite + both phases + finalize) | ✅ P1/P2 exit 0 (11+6 rewrites) · install/build 0 · jest 3/3 on jest 30 |
+| 21→22 replay (scratch **Node v22.23.2** inside the netns; both phases; cdk/material migrations individually; ngrx migrations skipped — **the schematic crash reproduces identically offline**, confirming a package defect, not a network artifact; TS-6 tsconfig fixes; finalize) | ✅ P1 exit 0 (12 rewrites) · P2 127-as-expected then 6 rewrites confirmed + cdk/material MIG 0 · install/build 0 · jest 3/3 |
+| Committed v22 locks, both apps (`npm ci` + build + jest, Node 22.23.2) | ✅ all green |
+
 ## Verdict
 
-Every step of the island's Milestone-1 path — baseline reinstall, both hops end to end (temp-CLI fetches, both update phases, hand-bumps, full lock regenerations), builds, and the Jest test signal — completed against the pool-seeded registry with a physically severed network. Raw logs: session scratch `shellwork/logs2/`; the durable record is this transcript + the SHA manifest.
+Every step of the island's path — the Milestone-1 hops **and** the full stretch ladder to v22 — completed against the pool-seeded registry with a physically severed network, including every temp-CLI fetch and every full lock regeneration. The only rung needing anything beyond the pool is 21→22's Node ≥22.22.3, carried as a runtime artifact, not npm cargo. Raw logs: session scratch `shellwork/logs2/`; the durable record is this transcript + the SHA manifest.
