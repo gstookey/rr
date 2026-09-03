@@ -8,7 +8,7 @@ updated: 2026-09-03
 
 # RR Context Wiki Index
 
-**Created:** 2026-08-25 | **Last updated:** 2026-09-03 (packet `legacy-shell-bundle-01`; legacy shells stood up, estate-shaped 17→18 hop rehearsed, transfer bundle verified offline)
+**Created:** 2026-08-25 | **Last updated:** 2026-09-03 (Milestone 1 rehearsed end to end — both hops in the real layout, 17→19 pool verified offline; ADR-005)
 
 Navigation spine for the RR context system. Update when a page is added, removed, or changes meaningfully.
 
@@ -40,9 +40,10 @@ Navigation spine for the RR context system. Update when a page is added, removed
 - [Design README](../design/README.md)
 - [Brand — Visual Identity](../design/brand/README.md)
 - Packets:
-- [Legacy Shell Bundle (`legacy-shell-bundle-01`)](../design/packets/legacy-shell-bundle-01-design-packet/README.md) — `exploratory`; **rehearsed 2026-09-03 on estate-shaped shells; bundle verified offline**
-  - [Monorepo Runbook Delta v1](../design/packets/legacy-shell-bundle-01-design-packet/v17_to_v18_monorepo_runbook_delta_v1.md) · [Transfer Bundle Manifest v1](../design/packets/legacy-shell-bundle-01-design-packet/v18_transfer_bundle_manifest_v1.md) · [Offline Verification Transcript v1](../design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v1.md) · [Nexus Upload Instructions v1](../design/packets/legacy-shell-bundle-01-design-packet/nexus_upload_instructions_v1.md)
-  - Shells themselves: [`legacy-shells/README.md`](../../legacy-shells/README.md) — two approximated island monorepos, committed v17→v18 lock history
+- [Legacy Shell Bundle (`legacy-shell-bundle-01`)](../design/packets/legacy-shell-bundle-01-design-packet/README.md) — `exploratory`; **Milestone 1 rehearsed end to end 2026-09-03; 17→19 pool verified offline**
+  - [Monorepo Hop Procedure v2](../design/packets/legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v2.md) — **the island procedure** · [v17→v19 Bundle Manifest v2](../design/packets/legacy-shell-bundle-01-design-packet/v17_to_v19_bundle_manifest_v2.md) · [Offline Verification Transcript v2](../design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v2.md) · [Nexus Upload Instructions v1](../design/packets/legacy-shell-bundle-01-design-packet/nexus_upload_instructions_v1.md)
+  - Superseded evidence trail: runbook delta v1 · bundle manifest v1 · transcript v1 (in the same packet dir)
+  - Shells themselves: [`legacy-shells/README.md`](../../legacy-shells/README.md) — two approximated island monorepos **standing at Angular 19.2.25**, full v17→v19 lock history
 - [Angular v18→v19 Hop (`ng-hop-02`)](../design/packets/ng-hop-02-v18-to-v19-design-packet/README.md) — `exploratory`; **rehearsed 2026-08-28**; reaches Milestone 1's floor
   - [v18→v19 Hop Runbook v1](../design/packets/ng-hop-02-v18-to-v19-design-packet/v18_to_v19_hop_runbook_v1.md) · [v19 Hop Bundle Manifest v0](../design/packets/ng-hop-02-v18-to-v19-design-packet/v19_hop_bundle_manifest_v0.md)
 - [Angular v17→v18 Hop (`ng-hop-01`)](../design/packets/ng-hop-01-v17-to-v18-design-packet/README.md) — `exploratory`; **rehearsed 2026-08-26**
@@ -54,7 +55,7 @@ Navigation spine for the RR context system. Update when a page is added, removed
 # Governance
 
 - [Governance README](governance/README.md)
-- [Decisions (ADR index)](governance/decisions/README.md) — ADR-001 context system · ADR-002 merge gate · ADR-003 board/doctrine · ADR-004 npm (proposed)
+- [Decisions (ADR index)](governance/decisions/README.md) — ADR-001 context system · ADR-002 merge gate · ADR-003 board/doctrine · ADR-004 npm · **ADR-005 island stack sync (2026-09-03)**
 - [Contradiction Register](governance/contradictions/register.md) — C-001..C-008
 - [Meta](governance/meta/README.md)
 

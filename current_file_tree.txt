@@ -1,4 +1,4 @@
-File tree as of Thu Sep  3 15:24:48 UTC 2026
+File tree as of Thu Sep  3 20:36:31 UTC 2026
 .
 |-- AGENTS.md
 |-- README.md
@@ -51,6 +51,7 @@ File tree as of Thu Sep  3 15:24:48 UTC 2026
 |   |   |   |   |-- ADR-002-merge-gate.md
 |   |   |   |   |-- ADR-003-board-is-status-docs-are-doctrine.md
 |   |   |   |   |-- ADR-004-package-manager-npm.md
+|   |   |   |   |-- ADR-005-island-stack-sync.md
 |   |   |   |   `-- README.md
 |   |   |   `-- meta
 |   |   |       |-- README.md
@@ -163,9 +164,12 @@ File tree as of Thu Sep  3 15:24:48 UTC 2026
 |   |       |   `-- story_decomposition_v0.md
 |   |       |-- legacy-shell-bundle-01-design-packet
 |   |       |   |-- README.md
+|   |       |   |-- monorepo_hop_procedure_v2.md
 |   |       |   |-- nexus_upload_instructions_v1.md
 |   |       |   |-- offline_verification_transcript_v1.md
+|   |       |   |-- offline_verification_transcript_v2.md
 |   |       |   |-- v17_to_v18_monorepo_runbook_delta_v1.md
+|   |       |   |-- v17_to_v19_bundle_manifest_v2.md
 |   |       |   `-- v18_transfer_bundle_manifest_v1.md
 |   |       |-- ng-hop-01-v17-to-v18-design-packet
 |   |       |   |-- README.md
@@ -269,15 +273,34 @@ File tree as of Thu Sep  3 15:24:48 UTC 2026
 |-- legacy-shells
 |   |-- README.md
 |   |-- bundle
+|   |   |-- MANIFEST-2026-09-03-v18hop.json
 |   |   |-- MANIFEST.json
-|   |   `-- SHA256SUMS
+|   |   |-- SHA256SUMS
+|   |   |-- SHA256SUMS-2026-09-03-v18hop
+|   |   |-- locks
+|   |   |   |-- v17
+|   |   |   |   |-- legacy-app-01.package-lock.json
+|   |   |   |   `-- legacy-app-02.package-lock.json
+|   |   |   |-- v18
+|   |   |   |   |-- legacy-app-01.package-lock.json
+|   |   |   |   `-- legacy-app-02.package-lock.json
+|   |   |   `-- v19
+|   |   |       |-- legacy-app-01.package-lock.json
+|   |   |       `-- legacy-app-02.package-lock.json
+|   |   `-- tempcli
+|   |       |-- hop18
+|   |       |   |-- package-lock.json
+|   |       |   `-- package.json
+|   |       `-- hop19
+|   |           |-- package-lock.json
+|   |           `-- package.json
 |   |-- legacy-app-01
-|   |   |-- angular.json
 |   |   |-- package-lock.json
 |   |   |-- package.json
 |   |   `-- packages
 |   |       |-- client
 |   |       |   |-- README.md
+|   |       |   |-- angular.json
 |   |       |   |-- jest.config.cjs
 |   |       |   |-- package.json
 |   |       |   |-- setup-jest.ts
@@ -309,12 +332,12 @@ File tree as of Thu Sep  3 15:24:48 UTC 2026
 |   |           |       `-- index.ts
 |   |           `-- tsconfig.json
 |   |-- legacy-app-02
-|   |   |-- angular.json
 |   |   |-- package-lock.json
 |   |   |-- package.json
 |   |   `-- packages
 |   |       |-- client
 |   |       |   |-- README.md
+|   |       |   |-- angular.json
 |   |       |   |-- jest.config.cjs
 |   |       |   |-- package.json
 |   |       |   |-- setup-jest.ts
@@ -351,9 +374,13 @@ File tree as of Thu Sep  3 15:24:48 UTC 2026
 |   |           |       `-- index.ts
 |   |           `-- tsconfig.json
 |   `-- tools
-|       |-- build-v18-hop-bundle.sh
+|       |-- build-transfer-bundle.sh
 |       |-- extract-cache-tarballs.mjs
-|       `-- listcache.mjs
+|       |-- fetch-tarballs.mjs
+|       |-- listcache.mjs
+|       |-- lock-union.mjs
+|       |-- make-root-angular-json.mjs
+|       `-- slice-bundle.mjs
 `-- scripts
     |-- README.example.md
     |-- README.md
@@ -372,4 +399,4 @@ File tree as of Thu Sep  3 15:24:48 UTC 2026
     `-- test
         `-- corpus-graph-claims.spec.mjs
 
-96 directories, 276 files
+103 directories, 296 files

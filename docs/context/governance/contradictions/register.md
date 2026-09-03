@@ -3,12 +3,12 @@ schema: corpus-doc/v1
 status: active
 title: Contradiction Register
 areas: [process-governance, context-system]
-updated: 2026-08-26
+updated: 2026-09-03
 ---
 
 # Contradiction Register
 
-**Created:** 2026-08-25 | **Last updated:** 2026-08-26 (C-007, C-008 opened)
+**Created:** 2026-08-25 | **Last updated:** 2026-09-03 (C-008 governed by ADR-005)
 
 Numbered, never silently resolved. Status: `open` | `resolved (ADR/commit)` | `accepted tension`.
 
@@ -20,5 +20,5 @@ Numbered, never silently resolved. Status: `open` | `resolved (ADR/commit)` | `a
 | C-004 | 2026-08-25 | **Librarian checklist still lists TrAIdit-era pages** (`canonical/evaluation.md`, `versioning.md`, `implementation_program.md`, `operations/task-queue/`, `operations/milestones/rr_milestone_ledger.md`, feedback retrospectives) that do not exist in RR. | `context-librarian/context_librarian_checklist.md`, `context_maintenance_workflow.md`, `.claude/agents/rin-librarian.md` | open | Retargeted the milestone-ledger path on 2026-08-25; remaining page names left as "create-when-needed" markers. Rin to prune on first real closeout pass. |
 | C-005 | 2026-08-25 | **Brand guide references a companion `_roadrunner-tokens.scss`** that is not in the repo. | `docs/source-documents/.../project-rr-style-guide.md` §6 | open | Cadence/Graham: locate or author it in `docs/design/brand/`. |
 | C-007 | 2026-08-26 | **"The isolated network" (singular) vs. two islands.** Pages written 2026-08-25 describe one target environment. Graham corrected this on 2026-08-26: Legacy Island (10+ Angular v17 apps on Node 22.15) and Desert Island (greenfield). Several inherited sentences still read as singular. | `canonical/isolated_network_constraints.md`, packet docs, `technology_stack.md` | resolved (`canonical/two_island_model.md`, 2026-08-26) for the canonical pages · **residual singular phrasing remains** in packet docs and inherited prose | Axium retagged the canonical constraint page per island and added the model page. Rin to sweep residual "the island" phrasing on the next hygiene pass. |
-| C-008 | 2026-08-26 | **Desert Island stack pins vs. Legacy Island's achievable target.** The manifest pins Angular 22 for Desert Island; Legacy Island's hard floor is v19 and its ceiling is unknown. Cluster-time synchronization means they must match. | `docs/design/packets/iso-net-readiness-01-design-packet/stack_dependency_manifest_v0.md`, `canonical/two_island_model.md` | accepted tension (expires when DR-04 closes) | Deliberate: Desert Island plans on the intended stack *provisionally* with a stated expiration; re-pin when DR-04 closes. Do not scaffold on the v22 pins before then. DR-10 governs strictness. |
+| C-008 | 2026-08-26 | **Desert Island stack pins vs. Legacy Island's achievable target.** The manifest pins Angular 22 for Desert Island; Legacy Island's hard floor is v19 and its ceiling is unknown. Cluster-time synchronization means they must match. | `docs/design/packets/iso-net-readiness-01-design-packet/stack_dependency_manifest_v0.md`, `canonical/two_island_model.md` | accepted tension (expires when DR-04 closes) | Deliberate: Desert Island plans on the intended stack *provisionally* with a stated expiration; re-pin when DR-04 closes. Do not scaffold on the v22 pins before then. ~~DR-10 governs strictness~~ **ADR-005 (2026-09-03) now governs: the islands must match** — which raises this tension's stakes (legacy's landing version becomes Desert's launch version) without changing its resolution path (DR-04). |
 | C-006 | 2026-08-25 | **Project description exists in the Claude project but not in the repo.** `canonical/project_overview.md` is partial. | Claude project vs `docs/context/` | resolved (SRC-012, 2026-08-25) | Ingested into `project_overview.md` and `isolated_network_constraints.md`. |

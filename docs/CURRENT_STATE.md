@@ -15,8 +15,10 @@ This file is **implementation truth**: what actually exists and works now. When 
 
 ## Standing truth
 
-- **Phase:** preparation / planning. No RR application code exists. No CI. **`legacy-shells/` now holds two Angular monorepo shells** (approximations of the two ported island apps, built from their real package.jsons — `docs/source-documents/legacy-apps/`): committed v17→v18 lock history, no real app code; they model *external* island repos, not RR product space.
-- **The 17→18 hop is rehearsed estate-shaped and its transfer bundle is verified offline** (2026-09-03, packet `legacy-shell-bundle-01`): 1,311 tarballs / 143.4 MB, SHA-manifested, proven against a bundle-seeded registry inside a no-network namespace (v17 `npm ci`, full `ng update` replay, v18 `npm ci` — all green). The real apps test with **Jest, not Karma** — suites ran with no browser.
+- **Phase:** preparation / planning. No RR application code exists. No CI. **`legacy-shells/` holds two Angular monorepo shells** (approximations of the two ported island apps, from their real, Graham-corrected package.jsons): full v17→v18→v19 lock history committed, no real app code; they model *external* island repos, not RR product space. **Both shells stand at Angular 19.2.25 — Milestone 1's floor, estate-shaped.**
+- **Both Milestone-1 hops are rehearsed in the real layout** (angular.json in `packages/client/`; temp-root-angular.json bracket procedure — `legacy-shell-bundle-01/monorepo_hop_procedure_v2.md`) and the **17→19 master pool** (1,495 tarballs / 191.3 MB; per-rung slices v17 104.0 / hop-18 45.1 / hop-19 42.2 MB) is SHA-manifested, **verified offline** (netns, bundle-seeded registry, both hops replayed), and **rebuildable by a tested lock-driven script** — Graham's chosen delivery vehicle (`legacy-shells/tools/build-transfer-bundle.sh`). The real apps test with **Jest, not Karma** — suites ran green at v17/v18/v19 with no browser.
+- **Decided 2026-09-03: the two islands' stacks must match (ADR-005, closes DR-10).** Legacy's landing version becomes Desert Island's launch version. Graham has directed rehearsing the hop ladder to v22 (capability evidence for DR-04; only the 21→22 rung forces the island's Node patch bump).
+- **Island facts confirmed (Graham, 2026-09-03):** RHEL 9 / linux-x64 workstation; Nexus holds the `@my-team/*` metadata; `@ssd_victor/*` current on Nexus; `@other-team/*` upgraded independently by its owning team; nothing runs puppeteer and every island app's `.npmrc` carries `PUPPETEER_SKIP_DOWNLOAD=true`.
 - **What exists:** the repo-native context system (this docs corpus), the seven-role agent fleet harnesses under `.claude/agents/`, the merge-gate hook, the corpus-graph tooling (`scripts/corpus-graph.mjs`, green as of 2026-08-25), raw source material for the intended stack and brand.
 - **Decided:** package manager is npm (ADR-004, 2026-08-25).
 - **Intended stack (design direction, not implemented):** Angular 22 + TypeScript 6 + Vitest + NgRx SignalStore on the client; AstroUXDS design system with RR brand-token overrides; Node/Express gateway; shared TypeScript `common` library; npm-workspaces monorepo; Helm-chart-driven runtime config for Kubernetes. Source: `docs/source-documents/`. Canonical synthesis: `docs/context/canonical/technology_stack.md`.
@@ -28,10 +30,10 @@ This file is **implementation truth**: what actually exists and works now. When 
 
 ## Active lane
 
-- Merged: PR #1 (repo init), PR #2 (readiness packet + two-island model), PR #25 (`ng-hop-01`), PR #26 (`ng-hop-02`), PR #27 (Graham: legacy package.jsons).
-- **PR #28 open**: legacy shells + estate-shaped 17→18 hop + verified transfer bundle (`legacy-shell-bundle-01`, delivers S-07's bundle half). Awaiting Graham's review + merge.
-- **Next after merge:** Graham hand-jams the real config files (angular.json, jest.config.cjs, setup-jest.ts, tsconfig*) into the shells; locks and hop then re-verified (angular.json build budgets = known re-check). 18→19 hop on the shells is the natural next docket item.
-- Milestone 1 is the organizing objective.
+- Merged: PR #1 (repo init), PR #2 (readiness packet + two-island model), PR #25 (`ng-hop-01`), PR #26 (`ng-hop-02`), PR #27 + #28 + source-doc fixes (Graham: legacy package.jsons, shells + first bundle).
+- **Milestone-1 PR open** (this branch): reconciled shells walked 17→19 in the real layout, ADR-005, the 17→19 pool + slicer + tested rebuild script, offline verification v2, context sync. Awaiting Graham's review + merge.
+- **Next (Graham-directed):** the stretch ladder 19→20→21→22 on the standing shells, as a separate PR (S-09/S-10/S-11); then the bare-minimum-v22 and "golden" bundle variants. Config hand-jam is dropped (Graham's call) except an optional later paste of the two client angular.json files.
+- Milestone 1 is the organizing objective; the ladder is capability evidence for DR-04, which stays open.
 
 ## Open decisions (Graham-gated)
 

@@ -26,7 +26,7 @@ When one closes, it graduates to an ADR under `docs/context/governance/decisions
 | [DR-07](#dr-07) | Zone.js or zoneless | one dependency; change-detection model | Graham, at scaffold time |
 | [DR-08](#dr-08) | Express 5 vs. the blueprint's assumptions | gateway scaffolding | Graham/Marlow at LOE-8 |
 | [DR-09](#dr-09) | Ship the npm cache alongside the registry seed? | bundle contents, day-one resilience | Graham |
-| [DR-10](#dr-10) | How strictly must the two islands' stacks match, and when? | Desert Island pins; scaffold timing | Graham, with the deploy-topology owner |
+| ~~[DR-10](#dr-10)~~ | ~~How strictly must the two islands' stacks match, and when?~~ **CLOSED 2026-09-03 → [ADR-005](../../../context/governance/decisions/ADR-005-island-stack-sync.md): they must match** (granularity sub-question still `[NEEDS GRAHAM]`) | Desert Island pins; scaffold timing | ~~Graham, with the deploy-topology owner~~ closed by Graham |
 
 ---
 
@@ -46,7 +46,9 @@ When one closes, it graduates to an ADR under `docs/context/governance/decisions
 
 **Axium's lean: A if one exists, B if not, C never as the plan** — but C is worth *carrying* regardless (see DR-09). The runbook is written to branch on this at Step 0 precisely because we cannot pre-decide it.
 
-**Evidence 2026-09-03 (strong, not yet a closure):** Graham, describing porting the legacy package.jsons: *"uploaded to our nexus repo"* — **the island has a Nexus**. Option A is now the working assumption; Verdaccio demotes to a local rehearsal tool (it seeded and verified the offline bundle in `legacy-shell-bundle-01`) and to the insurance role already noted below. Still needed before closing as an ADR: the Nexus repo URL/name, upload rights, and whether it already holds the internal `@other-team/*`/`@ssd_victor/*`/`@my-team/*` packages (questionnaire A5 + new B11).
+**Evidence 2026-09-03 (strong, not yet a closure):** Graham, describing porting the legacy package.jsons: *"uploaded to our nexus repo"* — **the island has a Nexus**. Option A is now the working assumption; Verdaccio demotes to a local rehearsal tool (it seeded and verified the offline bundle in `legacy-shell-bundle-01`) and to the insurance role already noted below.
+
+**Firmed later the same day (B11 answered):** Nexus **holds the `@my-team/*` metadata** (the `ng update` metadata wall does not exist on the island), the `@ssd_victor/*` tree updates regularly there, and Graham has personally run a Nexus npm upload before (a stompjs port, via an upload script). Remaining before an ADR closes this: the Nexus repo URL/name and upload rights (A5), and the pre-port check of what it already serves (upload-instructions doc, "minimizing the port").
 
 **Note against my own lean:** if A turns out to be true, Verdaccio's ~11 MB stays in the bundle anyway as insurance until the day the existing registry is confirmed to actually accept our uploads. Eleven megabytes is cheaper than a blocked week.
 
@@ -115,6 +117,8 @@ Graham confirmed Legacy Island runs **Node 22.15**. Combined with the per-hop re
 **A note on sequencing that makes this decision cheaper to defer:** the hops are sequential, so v20/v21/v22 are all *downstream* of Milestone 1 regardless. Deciding late costs nothing except bundle preparation lead time — which is why the conditional hop bundles ([S-09](https://github.com/gstookey/rr/issues/16), [S-10](https://github.com/gstookey/rr/issues/17), [S-11](https://github.com/gstookey/rr/issues/18)) are on the board now: prepared, not committed. If the answer turns out to be v19, they close as not-planned and nothing was lost but a little packing effort.
 
 **What would change my mind quickly:** an inventory that comes back with several apps on custom webpack or custom schematics. That distribution, not the app count, is the deciding evidence.
+
+**Update 2026-09-03:** ADR-005 (islands must match) makes this a **two-island decision** — legacy's landing version becomes Desert Island's launch version, so stopping at v19 means the greenfield system launches three majors behind. Graham has directed rehearsing the ladder **to v22** ("let's continue this process for each rung all the way up... so we have the ability to go all the way if we can") — that builds *capability and effort evidence*, it does not close this DR. Effort signals per rehearsed rung are recorded in `legacy-shell-bundle-01/monorepo_hop_procedure_v2.md`. Also note (DR-03 adjacent): only the 21→22 rung forces the island's Node patch bump (22.15 → ≥22.22.3, within the 22.x line); 19→20 and 20→21 need no Node change.
 
 ---
 
@@ -206,6 +210,8 @@ The day-one runbook's fallback path (`npm ci --offline --cache <dir>`) works **o
 ---
 
 ## DR-10
+
+> **CLOSED 2026-09-03 — [ADR-005](../../../context/governance/decisions/ADR-005-island-stack-sync.md).** Graham: *"they need to match. Despite two separate islands, their deployment environments will be shared."* Effectively option A's strictness as the working posture; the exact-versions-vs-same-major granularity sub-question and the binding-layer question remain open inside the ADR (`[NEEDS GRAHAM]`), and until answered the strictest reading (identical exact versions) governs planning. The section below is preserved as the option analysis that fed the decision.
 
 ### How strictly must the two islands' stacks match, and when?
 

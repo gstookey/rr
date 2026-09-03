@@ -9,7 +9,7 @@ updated: 2026-09-03
 
 # Legacy Shell Bundle Packet 01 (`legacy-shell-bundle-01`)
 
-**Created:** 2026-09-03 | **Author:** Axium | **Status:** `exploratory` — rehearsed on approximated shells of the two real apps; not yet run against real estate code
+**Created:** 2026-09-03 | **Last updated:** 2026-09-03 (both Milestone-1 hops rehearsed estate-shaped in the real layout; 17→19 pool verified offline; delivery = the tested rebuild script) | **Author:** Axium | **Status:** `exploratory` — rehearsed on approximated shells of the two real apps; not yet run against real estate code
 
 ## What this packet is
 
@@ -17,10 +17,11 @@ The step between "the hop works on a bare app" (`ng-hop-01`) and "the hop works 
 
 | Document | What it is |
 |---|---|
-| [`v17_to_v18_monorepo_runbook_delta_v1.md`](v17_to_v18_monorepo_runbook_delta_v1.md) | what changes in the `ng-hop-01` runbook when the app is a real workspace monorepo with third-party Angular-coupled deps — six new findings, all observed |
-| [`v18_transfer_bundle_manifest_v1.md`](v18_transfer_bundle_manifest_v1.md) | measured bundle contents: 1,311 tarballs / 143.4 MB covering both apps' v17 baselines + the hop + v18 |
-| [`offline_verification_transcript_v1.md`](offline_verification_transcript_v1.md) | the offline proof: seeded registry, hard network isolation, v17 `npm ci`, full hop replay, v18 `npm ci` — all green |
-| [`nexus_upload_instructions_v1.md`](nexus_upload_instructions_v1.md) | how the bundle goes into Nexus (publish loop), with every unverified assumption marked |
+| [`monorepo_hop_procedure_v2.md`](monorepo_hop_procedure_v2.md) | **the island procedure** — 17→18 AND 18→19 in the real layout (angular.json in `packages/client/`), temp-root-angular.json bracket, per-hop version pairings, DR-04 effort signals |
+| [`v17_to_v19_bundle_manifest_v2.md`](v17_to_v19_bundle_manifest_v2.md) | **the master pool** — 1,495 tarballs / 191.3 MB with per-rung slices (v17: 104.0 · 17→18: 45.1 · 18→19: 42.2 MB) and the Nexus-already-serves-v17 insight |
+| [`offline_verification_transcript_v2.md`](offline_verification_transcript_v2.md) | the offline proof for the whole 17→19 pool — both hops replayed, netns isolation, plus the false-green catch and its lesson |
+| [`nexus_upload_instructions_v1.md`](nexus_upload_instructions_v1.md) | Nexus upload (publish loop), the node_modules-vs-tarballs callout, delta merge procedure, minimum-payload check |
+| `v17_to_v18_monorepo_runbook_delta_v1.md` · `v18_transfer_bundle_manifest_v1.md` · `offline_verification_transcript_v1.md` | **superseded** (2026-09-03) — kept as the evidence trail of the first rehearsal round |
 
 Machine artifacts live beside the shells: `legacy-shells/bundle/` (SHA256SUMS, MANIFEST.json) and `legacy-shells/tools/` (reproducible build + extraction scripts). The tarballs themselves are **not in git** (GitHub size limits); they were handed to Graham as a `.tar` and are reproducible via `legacy-shells/tools/build-v18-hop-bundle.sh`.
 
