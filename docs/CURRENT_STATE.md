@@ -9,7 +9,7 @@ updated: 2026-09-03
 
 # CURRENT_STATE — Project Road Runner
 
-**Created:** 2026-08-25 | **Last updated:** 2026-09-03 (legacy shells + estate-shaped 17→18 hop + offline-verified bundle — Axium)
+**Created:** 2026-08-25 | **Last updated:** 2026-09-03 (DDD-ARCH-01 packet + research corpus opened; earlier: legacy shells + estate-shaped 17→18 hop + offline-verified bundle — Axium)
 
 This file is **implementation truth**: what actually exists and works now. When design docs and this file disagree, this file wins for operational questions. Keep it compact — standing truth, active lane, open decisions. Completed-arc detail moves to `docs/context/operations/milestones/` at closeout.
 
@@ -21,6 +21,7 @@ This file is **implementation truth**: what actually exists and works now. When 
 - **Island facts confirmed (Graham, 2026-09-03):** RHEL 9 / linux-x64 workstation; Nexus holds the `@my-team/*` metadata; `@ssd_victor/*` current on Nexus; `@other-team/*` upgraded independently by its owning team; nothing runs puppeteer and every island app's `.npmrc` carries `PUPPETEER_SKIP_DOWNLOAD=true`.
 - **What exists:** the repo-native context system (this docs corpus), the seven-role agent fleet harnesses under `.claude/agents/`, the merge-gate hook, the corpus-graph tooling (`scripts/corpus-graph.mjs`, green as of 2026-08-25), raw source material for the intended stack and brand.
 - **Decided:** package manager is npm (ADR-004, 2026-08-25).
+- **Architecture design opened (2026-09-03), nothing ruled:** `docs/design/packets/ddd-arch-01-design-packet/` (DA-D1..DA-D12 open) on top of the seven-brief research corpus `docs/context/platform/research/` (R1..R7, `exploratory`, `[UNVERIFIED]`-marked where sources were unreachable). Working hypothesis, confirmed by R7 and awaiting Graham: Floors = bounded contexts, groups = access/tailoring overlay, one app with lazy fenced Floors, tenant as a claim. No application code, no scaffold.
 - **Intended stack (design direction, not implemented):** Angular 22 + TypeScript 6 + Vitest + NgRx SignalStore on the client; AstroUXDS design system with RR brand-token overrides; Node/Express gateway; shared TypeScript `common` library; npm-workspaces monorepo; Helm-chart-driven runtime config for Kubernetes. Source: `docs/source-documents/`. Canonical synthesis: `docs/context/canonical/technology_stack.md`.
 - **Target environment: TWO isolated networks**, both with **no agent access**; artifacts cross as one-way compressed bundles. **Legacy Island** — 10+ Angular v17 apps on Node 22.15, to be upgraded there (v19 floor, v22 stretch). **Desert Island** — greenfield, nothing on it yet, where the new system is built. They deploy into a related cluster and must stay stack-synchronized. Model: `canonical/two_island_model.md`. Remaining unknowns: `canonical/isolated_network_constraints.md`.
 - **Verified 2026-08-25:** Node 22.15 already satisfies Angular 18/19/20/21; only Angular 22 needs a newer Node (`^22.22.3 || ^24.15.0 || >=26.0.0`). **Reaching the v19 floor requires no Node change on Legacy Island.**
@@ -30,10 +31,11 @@ This file is **implementation truth**: what actually exists and works now. When 
 
 ## Active lane
 
-- Merged: PR #1 (repo init), PR #2 (readiness packet + two-island model), PR #25 (`ng-hop-01`), PR #26 (`ng-hop-02`), PR #27 + #28 + source-doc fixes (Graham: legacy package.jsons, shells + first bundle).
+- Merged: PR #1 (repo init), PR #2 (readiness packet + two-island model), PR #25 (`ng-hop-01`), PR #26 (`ng-hop-02`), PR #27 + #28 + source-doc fixes (Graham: legacy package.jsons, shells + first bundle), PR #30 (DDD-ARCH-01 architecture packet + research corpus).
 - **Milestone-1 PR open** (this branch): reconciled shells walked 17→19 in the real layout, ADR-005, the 17→19 pool + slicer + tested rebuild script, offline verification v2, context sync. Awaiting Graham's review + merge.
 - **Next (Graham-directed):** the stretch ladder 19→20→21→22 on the standing shells, as a separate PR (S-09/S-10/S-11); then the bare-minimum-v22 and "golden" bundle variants. Config hand-jam is dropped (Graham's call) except an optional later paste of the two client angular.json files.
 - Milestone 1 is the organizing objective; the ladder is capability evidence for DR-04, which stays open.
+- **Side-quest lane (design only):** DDD-ARCH-01 — packet + research corpus R1..R7 merged via PR #30; next step is Graham reading R1..R7 and ruling round 1 (DA-D1..D6, D8).
 
 ## Open decisions (Graham-gated)
 

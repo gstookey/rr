@@ -69,7 +69,7 @@ Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-
 - UI Designer Workflow — `docs/context/team/agents/ui-designer/ui_designer_workflow.md` — areas: agent-fleet — governs: 0 — related: 0
 - Brand — Visual Identity — `docs/design/brand/README.md` — areas: brand-design, frontend, content-style — governs: 0 — related: 2
 
-## active (33)
+## active (34)
 
 - CURRENT_STATE — Project Road Runner — `docs/CURRENT_STATE.md` — areas: context-system, planning — governs: 0 — related: 3
 - RR Context System — `docs/context/README.md` — areas: context-system — governs: 0 — related: 2
@@ -101,12 +101,26 @@ Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-
 - Session Rollup Checklist — `docs/context/operations/sessions/session_rollup_checklist.md` — areas: context-system, process-governance — governs: 0 — related: 1
 - User Workflow (Graham's operating loop) — `docs/context/operations/user-workflow/README.md` — areas: process-governance — governs: 0 — related: 2
 - Platform — Reusable Program Concepts — `docs/context/platform/README.md` — areas: context-system, process-governance — governs: 0 — related: 0
+- Architecture Research Corpus — DDD-ARCH-01 base briefs — `docs/context/platform/research/README.md` — areas: research, system-architecture, domain-driven-design, frontend — governs: 0 — related: 3
 - Team — `docs/context/team/README.md` — areas: agent-fleet — governs: 0 — related: 0
 - Agents — Repo-Side Fleet — `docs/context/team/agents/README.md` — areas: agent-fleet, process-governance — governs: 0 — related: 2
 - Design — `docs/design/README.md` — areas: brand-design, planning — governs: 0 — related: 1
 
-## exploratory (18)
+## exploratory (31)
 
+- R6 — Cross Domain Solution (CDS) integration research brief v0 — `docs/context/platform/research/cross_domain_solution_integration_brief_v0.md` — areas: research, cross-domain, security, system-architecture — governs: 0 — related: 4
+- R2 — Data Fabric research brief v0 — `docs/context/platform/research/data_fabric_brief_v0.md` — areas: research, data-fabric, system-architecture, backend — governs: 0 — related: 4
+- R1 — Domain-Driven Design (DDD) research brief v0 — `docs/context/platform/research/ddd_domain_driven_design_brief_v0.md` — areas: research, domain-driven-design, system-architecture — governs: 0 — related: 3
+- R7 — UI/UX practice in relation to DDD (front-end architecture for a DDD system) research brief v0 — `docs/context/platform/research/ddd_ui_ux_brief_v0.md` — areas: research, ux, frontend, domain-driven-design, system-architecture — governs: 0 — related: 4
+- R3 — Event / Message Bus (Kafka and alternatives) research brief v0 — `docs/context/platform/research/event_message_bus_brief_v0.md` — areas: research, messaging, system-architecture, backend — governs: 0 — related: 3
+- R4 — Identity Stores, IdPs and Delegated User Management research brief v0 — `docs/context/platform/research/identity_stores_brief_v0.md` — areas: research, identity, auth, access-control, security — governs: 0 — related: 3
+- R5 — Mandatory Access Control (MAC) stores and label-based data research brief v0 — `docs/context/platform/research/mac_stores_brief_v0.md` — areas: research, access-control, security, backend — governs: 0 — related: 4
+- DDD-ARCH-01 — Desert Island system architecture, front-end-first (packet charter) — `docs/design/packets/ddd-arch-01-design-packet/README.md` — areas: system-architecture, domain-driven-design, frontend, planning — governs: 0 — related: 6
+- DDD-ARCH-01 — Decision Register v0 (DA-D1..DA-D10) — `docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md` — areas: system-architecture, domain-driven-design, frontend, planning — governs: 0 — related: 4
+- DDD-ARCH-01 — Diagramming approach v0 (how we stand up and keep the architecture diagrams) — `docs/design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md` — areas: system-architecture, planning, process-governance — governs: 0 — related: 3
+- DDD-ARCH-01 diagram 01 — System context, Desert Island (C4 L1) — `docs/design/packets/ddd-arch-01-design-packet/diagrams/01-context-desert-island.md` — areas: system-architecture, domain-driven-design — governs: 0 — related: 2
+- DDD-ARCH-01 diagram 02 — Tier model, Building / Floors / Suites / Offices with the group overlay — `docs/design/packets/ddd-arch-01-design-packet/diagrams/02-tier-model-building-floors.md` — areas: system-architecture, frontend, domain-driven-design — governs: 0 — related: 3
+- DDD-ARCH-01 — Building / Floor / Suite / Office tier model exploration v0 — `docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md` — areas: system-architecture, domain-driven-design, frontend, ux — governs: 0 — related: 5
 - Isolated-Network Readiness Packet (iso-net-readiness-01) — `docs/design/packets/iso-net-readiness-01-design-packet/README.md` — areas: isolated-network, dev-environment, technology-stack, planning — governs: 0 — related: 6
 - Day One on the Island — Runbook v0 (draft, unrehearsed) — `docs/design/packets/iso-net-readiness-01-design-packet/day_one_on_the_island_runbook_v0.md` — areas: isolated-network, dev-environment, technology-stack — governs: 0 — related: 3
 - Decision Register v0 — Isolated-Network Readiness — `docs/design/packets/iso-net-readiness-01-design-packet/decision_register_v0.md` — areas: isolated-network, technology-stack, process-governance, planning — governs: 0 — related: 5
