@@ -1,6 +1,7 @@
 ---
 schema: corpus-doc/v1
-status: exploratory
+status: superseded
+superseded_by: "docs/design/packets/legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v2.md"
 title: v17→v18 Monorepo Runbook Delta v1 — what changes on estate-shaped apps
 areas: [frontend, isolated-network, dev-environment]
 related: ["docs/design/packets/ng-hop-01-v17-to-v18-design-packet/v17_to_v18_hop_runbook_v1.md", "docs/design/packets/legacy-shell-bundle-01-design-packet/README.md"]
@@ -8,6 +9,8 @@ updated: 2026-09-03
 ---
 
 # v17 → v18 Monorepo Runbook Delta v1
+
+> **Superseded 2026-09-03** by [`monorepo_hop_procedure_v2.md`](monorepo_hop_procedure_v2.md) — kept for its evidence trail (notably: the root-angular.json placement rehearsal and the first offline verification). The v2 procedure reflects the REAL app layout (angular.json in packages/client/, confirmed by Graham) and the reconciled dependency set (puppeteer 21.9.0 et al.).
 
 **Created:** 2026-09-03 | **Status:** `exploratory` — every finding below was observed on the legacy shells (2026-09-03, Node v22.22.2 / npm 10.9.7), not predicted. **Read together with** [`ng-hop-01/v17_to_v18_hop_runbook_v1.md`](../ng-hop-01-v17-to-v18-design-packet/v17_to_v18_hop_runbook_v1.md) — that procedure stands; this is what changes when the app is one of the estate's workspace monorepos.
 

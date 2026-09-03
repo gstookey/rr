@@ -1,6 +1,7 @@
 ---
 schema: corpus-doc/v1
-status: exploratory
+status: superseded
+superseded_by: "docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v2.md"
 title: Offline Verification Transcript v1 — the bundle proven with zero internet
 areas: [isolated-network, dev-environment, risk-gates]
 related: ["docs/design/packets/legacy-shell-bundle-01-design-packet/v18_transfer_bundle_manifest_v1.md", "docs/design/packets/legacy-shell-bundle-01-design-packet/nexus_upload_instructions_v1.md"]
@@ -8,6 +9,8 @@ updated: 2026-09-03
 ---
 
 # Offline Verification Transcript v1
+
+> **Superseded 2026-09-03** by [`offline_verification_transcript_v2.md`](offline_verification_transcript_v2.md) — kept for its evidence trail (notably: the root-angular.json placement rehearsal and the first offline verification). The v2 transcript reflects the REAL app layout (angular.json in packages/client/, confirmed by Graham) and the reconciled dependency set (puppeteer 21.9.0 et al.).
 
 **Created:** 2026-09-03 | **Status:** `exploratory` — performed 2026-09-03, Linux x64, Node v22.22.2, npm 10.9.7, Verdaccio 6.10.0
 
