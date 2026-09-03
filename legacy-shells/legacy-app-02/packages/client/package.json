@@ -12,13 +12,13 @@
     "start": "ng serve --port 4200"
   },
   "dependencies": {
-    "keycloak-angular": "20.1.0",
+    "keycloak-angular": "21.0.0",
     "keycloak-js": "23.0.7"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^20.3.36",
-    "@angular/cli": "^20.3.36",
-    "@angular/compiler-cli": "^20.3.30",
+    "@angular-devkit/build-angular": "^21.2.23",
+    "@angular/cli": "^21.2.23",
+    "@angular/compiler-cli": "^21.2.22",
     "@babel/core": "^7.24.0",
     "@babel/preset-env": "^7.24.0",
     "@types/jest": "^30.0.0",
