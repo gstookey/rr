@@ -57,7 +57,7 @@ Navigation spine for the RR context system. Update when a page is added, removed
 
 - [Governance README](governance/README.md)
 - [Decisions (ADR index)](governance/decisions/README.md) — ADR-001 context system · ADR-002 merge gate · ADR-003 board/doctrine · ADR-004 npm (proposed)
-- [Contradiction Register](governance/contradictions/register.md) — C-001..C-008
+- [Contradiction Register](governance/contradictions/register.md) — C-001..C-009
 - [Meta](governance/meta/README.md)
 
 # Operations
@@ -79,7 +79,7 @@ Navigation spine for the RR context system. Update when a page is added, removed
 # Platform
 
 - [Platform (reusable concepts)](platform/README.md)
-- [**Architecture Research Corpus** (R1..R7)](platform/research/README.md) — DDD · Data Fabric · Event/Message Buses · Identity Stores · MAC Stores · Cross Domain Solution integration · UI/UX in relation to DDD. `exploratory` research briefs, not doctrine; the base corpus for DDD-ARCH-01.
+- [**Architecture Research Corpus** (R1..R7)](platform/research/README.md) — DDD · Data Fabric · Event/Message Buses · Identity Stores · MAC Stores · Cross Domain Solution integration · UI/UX in relation to DDD. `exploratory` research briefs, not doctrine; the base corpus for DDD-ARCH-01. **Pass 2 (2026-09-03):** all seven modernized to the README's currency contract (2026 signal-first Angular idiom), each with a Modernization ledger.
 
 # Evidence
 
