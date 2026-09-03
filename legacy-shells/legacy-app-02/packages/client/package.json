@@ -12,13 +12,13 @@
     "start": "ng serve --port 4200"
   },
   "dependencies": {
-    "keycloak-angular": "21.0.0",
+    "keycloak-angular": "22.0.0",
     "keycloak-js": "23.0.7"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^21.2.23",
-    "@angular/cli": "^21.2.23",
-    "@angular/compiler-cli": "^21.2.22",
+    "@angular-devkit/build-angular": "^22.1.7",
+    "@angular/cli": "^22.1.7",
+    "@angular/compiler-cli": "^22.1.5",
     "@babel/core": "^7.24.0",
     "@babel/preset-env": "^7.24.0",
     "@types/jest": "^30.0.0",
@@ -31,7 +31,7 @@
     "node-forge": "^1.3.1",
     "puppeteer": "21.9.0",
     "ts-jest": "29.4.12",
-    "typescript": "5.9.3"
+    "typescript": "6.0.3"
   },
   "babel": {
     "presets": [
