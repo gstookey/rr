@@ -42,7 +42,8 @@ The committed `package-lock.json` at each root is the deliverable: the approxima
 6. **`fix-es-imports` dropped from `build` scripts** (common/server/interface) — its package is private-scope (item 1).
 7. **Duplicate `@my-team/*-common` entry removed from server devDependencies** (it appears in both deps and devDeps in the source).
 8. **`packages/interface/package.json` invented entirely** — the source file is empty (0 bytes). Modeled on `common`. `[NEEDS GRAHAM]`: the real contents.
-9. Root scripts kept verbatim otherwise — including app-02's `start`/`serve` pointing at `legacy-app-01-*` workspace names (suspected transcription artifact, harmless to the lock) and the root `"build": "npm run build"` self-recursion in both apps. `[NEEDS GRAHAM]`: confirm what the real root `build` script says.
+9. **`angular.json` placed at each monorepo root** (not in `packages/client`) — running `ng update` from `packages/client` fails with `Package '@angular/core' is not a dependency` because the framework deps are declared at the root. The CLI workspace file must sit next to the package.json that declares `@angular/core`. `[NEEDS GRAHAM]`: your real angular.json drop settles where it actually lives.
+10. Root scripts kept verbatim otherwise — including app-02's `start`/`serve` pointing at `legacy-app-01-*` workspace names (suspected transcription artifact, harmless to the lock) and the root `"build": "npm run build"` self-recursion in both apps. `[NEEDS GRAHAM]`: confirm what the real root `build` script says.
 
 ## Notable pins (observations, not corrections)
 
