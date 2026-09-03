@@ -55,7 +55,6 @@
     "@babel/preset-env": "^7.26.9",
     "@stomp/rx-stomp": "^2.2.0",
     "@stomp/stompjs": "^7.2.0",
-    "@my-team/legacy-app-02-common": "*",
     "@types/cors": "^2.8.17",
     "@types/jest": "^30.0.0",
     "@types/lodash": "^4.17.0",
