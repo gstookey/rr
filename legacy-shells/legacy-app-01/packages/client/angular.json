@@ -13,27 +13,27 @@
           "style": "scss"
         }
       },
-      "root": "packages/client",
-      "sourceRoot": "packages/client/src",
+      "root": "",
+      "sourceRoot": "src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "packages/client/dist/client",
-            "index": "packages/client/src/index.html",
-            "browser": "packages/client/src/main.ts",
+            "outputPath": "dist/client",
+            "index": "src/index.html",
+            "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
-            "tsConfig": "packages/client/tsconfig.app.json",
+            "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "packages/client/src/favicon.ico",
-              "packages/client/src/assets"
+              "src/favicon.ico",
+              "src/assets"
             ],
             "styles": [
-              "packages/client/src/styles.scss"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -86,14 +86,14 @@
               "zone.js",
               "zone.js/testing"
             ],
-            "tsConfig": "packages/client/tsconfig.spec.json",
+            "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "packages/client/src/favicon.ico",
-              "packages/client/src/assets"
+              "src/favicon.ico",
+              "src/assets"
             ],
             "styles": [
-              "packages/client/src/styles.scss"
+              "src/styles.scss"
             ],
             "scripts": []
           }

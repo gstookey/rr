@@ -1,6 +1,8 @@
 {
   "name": "@my-team/legacy-app-02-interface",
   "version": "1.0.0",
+  "main": "dist/index.js",
+  "type": "module",
   "private": "true",
   "license": "ISC",
   "scripts": {
@@ -8,8 +10,11 @@
     "build": "tsc",
     "test": "echo 'Interface package defines no tests'"
   },
-  "dependencies": {},
+  "dependencies": {
+    "tslib": "2.6.2"
+  },
   "devDependencies": {
+    "rimraf": "5.0.5",
     "typescript": "5.2.2"
   }
 }
