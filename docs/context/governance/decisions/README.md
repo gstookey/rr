@@ -16,5 +16,6 @@ updated: 2026-08-25
 | [ADR-002](ADR-002-merge-gate.md) | Merging to `main` is Graham's click, never an agent's | accepted | 2026-08-25 |
 | [ADR-003](ADR-003-board-is-status-docs-are-doctrine.md) | GitHub Project board is status; the docs corpus is doctrine | accepted | 2026-08-25 |
 | [ADR-004](ADR-004-package-manager-npm.md) | Package manager: npm (workspaces) for RR and the legacy estate | accepted | 2026-08-25 |
+| [ADR-005](ADR-005-island-stack-sync.md) | The two islands' stacks must match (closes DR-10) | accepted | 2026-09-03 |
 
 Format: Context / Decision / Consequences / Expiration (if the decision is a temporary constraint, say when it expires — AGENTS.md "What to avoid").

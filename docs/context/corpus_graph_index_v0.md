@@ -10,12 +10,13 @@ Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-
 ## doctrine (0)
 
 
-## accepted (55)
+## accepted (56)
 
 - ADR-001 — Adopt the TrAIdit context system and agent fleet for RR — `docs/context/governance/decisions/ADR-001-context-system-adopted-from-traidit.md` — areas: process-governance, context-system, agent-fleet — governs: 0 — related: 1
 - ADR-002 — Merging to main is Graham's click — `docs/context/governance/decisions/ADR-002-merge-gate.md` — areas: process-governance, agent-fleet — governs: 0 — related: 1
 - ADR-003 — The board is status; the docs are doctrine — `docs/context/governance/decisions/ADR-003-board-is-status-docs-are-doctrine.md` — areas: process-governance, planning — governs: 0 — related: 1
 - ADR-004 — Package manager and workspace tooling for RR (proposed: npm) — `docs/context/governance/decisions/ADR-004-package-manager-npm.md` — areas: technology-stack, monorepo, isolated-network, dev-environment — governs: 0 — related: 3
+- ADR-005 — The two islands' stacks must match — `docs/context/governance/decisions/ADR-005-island-stack-sync.md` — areas: isolated-network, system-architecture, technology-stack, planning — governs: 0 — related: 3
 - Agent Handoff Contract — `docs/context/team/agents/agent_handoff_contract.md` — areas: process-governance, agent-fleet — governs: 0 — related: 1
 - Agent Operating Contract — `docs/context/team/agents/agent_operating_contract.md` — areas: process-governance, agent-fleet — governs: 0 — related: 1
 - Agent Collaboration Model — `docs/context/team/agents/collaboration_model.md` — areas: agent-fleet, process-governance — governs: 0 — related: 0
@@ -68,7 +69,7 @@ Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-
 - UI Designer Workflow — `docs/context/team/agents/ui-designer/ui_designer_workflow.md` — areas: agent-fleet — governs: 0 — related: 0
 - Brand — Visual Identity — `docs/design/brand/README.md` — areas: brand-design, frontend, content-style — governs: 0 — related: 2
 
-## active (33)
+## active (34)
 
 - CURRENT_STATE — Project Road Runner — `docs/CURRENT_STATE.md` — areas: context-system, planning — governs: 0 — related: 3
 - RR Context System — `docs/context/README.md` — areas: context-system — governs: 0 — related: 2
@@ -100,12 +101,26 @@ Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-
 - Session Rollup Checklist — `docs/context/operations/sessions/session_rollup_checklist.md` — areas: context-system, process-governance — governs: 0 — related: 1
 - User Workflow (Graham's operating loop) — `docs/context/operations/user-workflow/README.md` — areas: process-governance — governs: 0 — related: 2
 - Platform — Reusable Program Concepts — `docs/context/platform/README.md` — areas: context-system, process-governance — governs: 0 — related: 0
+- Architecture Research Corpus — DDD-ARCH-01 base briefs — `docs/context/platform/research/README.md` — areas: research, system-architecture, domain-driven-design, frontend — governs: 0 — related: 3
 - Team — `docs/context/team/README.md` — areas: agent-fleet — governs: 0 — related: 0
 - Agents — Repo-Side Fleet — `docs/context/team/agents/README.md` — areas: agent-fleet, process-governance — governs: 0 — related: 2
 - Design — `docs/design/README.md` — areas: brand-design, planning — governs: 0 — related: 1
 
-## exploratory (18)
+## exploratory (31)
 
+- R6 — Cross Domain Solution (CDS) integration research brief v0 — `docs/context/platform/research/cross_domain_solution_integration_brief_v0.md` — areas: research, cross-domain, security, system-architecture — governs: 0 — related: 4
+- R2 — Data Fabric research brief v0 — `docs/context/platform/research/data_fabric_brief_v0.md` — areas: research, data-fabric, system-architecture, backend — governs: 0 — related: 4
+- R1 — Domain-Driven Design (DDD) research brief v0 — `docs/context/platform/research/ddd_domain_driven_design_brief_v0.md` — areas: research, domain-driven-design, system-architecture — governs: 0 — related: 3
+- R7 — UI/UX practice in relation to DDD (front-end architecture for a DDD system) research brief v0 — `docs/context/platform/research/ddd_ui_ux_brief_v0.md` — areas: research, ux, frontend, domain-driven-design, system-architecture — governs: 0 — related: 4
+- R3 — Event / Message Bus (Kafka and alternatives) research brief v0 — `docs/context/platform/research/event_message_bus_brief_v0.md` — areas: research, messaging, system-architecture, backend — governs: 0 — related: 3
+- R4 — Identity Stores, IdPs and Delegated User Management research brief v0 — `docs/context/platform/research/identity_stores_brief_v0.md` — areas: research, identity, auth, access-control, security — governs: 0 — related: 3
+- R5 — Mandatory Access Control (MAC) stores and label-based data research brief v0 — `docs/context/platform/research/mac_stores_brief_v0.md` — areas: research, access-control, security, backend — governs: 0 — related: 4
+- DDD-ARCH-01 — Desert Island system architecture, front-end-first (packet charter) — `docs/design/packets/ddd-arch-01-design-packet/README.md` — areas: system-architecture, domain-driven-design, frontend, planning — governs: 0 — related: 6
+- DDD-ARCH-01 — Decision Register v0 (DA-D1..DA-D10) — `docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md` — areas: system-architecture, domain-driven-design, frontend, planning — governs: 0 — related: 4
+- DDD-ARCH-01 — Diagramming approach v0 (how we stand up and keep the architecture diagrams) — `docs/design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md` — areas: system-architecture, planning, process-governance — governs: 0 — related: 3
+- DDD-ARCH-01 diagram 01 — System context, Desert Island (C4 L1) — `docs/design/packets/ddd-arch-01-design-packet/diagrams/01-context-desert-island.md` — areas: system-architecture, domain-driven-design — governs: 0 — related: 2
+- DDD-ARCH-01 diagram 02 — Tier model, Building / Floors / Suites / Offices with the group overlay — `docs/design/packets/ddd-arch-01-design-packet/diagrams/02-tier-model-building-floors.md` — areas: system-architecture, frontend, domain-driven-design — governs: 0 — related: 3
+- DDD-ARCH-01 — Building / Floor / Suite / Office tier model exploration v0 — `docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md` — areas: system-architecture, domain-driven-design, frontend, ux — governs: 0 — related: 5
 - Isolated-Network Readiness Packet (iso-net-readiness-01) — `docs/design/packets/iso-net-readiness-01-design-packet/README.md` — areas: isolated-network, dev-environment, technology-stack, planning — governs: 0 — related: 6
 - Day One on the Island — Runbook v0 (draft, unrehearsed) — `docs/design/packets/iso-net-readiness-01-design-packet/day_one_on_the_island_runbook_v0.md` — areas: isolated-network, dev-environment, technology-stack — governs: 0 — related: 3
 - Decision Register v0 — Isolated-Network Readiness — `docs/design/packets/iso-net-readiness-01-design-packet/decision_register_v0.md` — areas: isolated-network, technology-stack, process-governance, planning — governs: 0 — related: 5
@@ -114,10 +129,10 @@ Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-
 - Stack Dependency Manifest v0 — pinned versions and bundle footprint — `docs/design/packets/iso-net-readiness-01-design-packet/stack_dependency_manifest_v0.md` — areas: technology-stack, isolated-network, dev-environment, monorepo — governs: 0 — related: 5
 - Story Decomposition v0 — Isolated-Network Readiness — `docs/design/packets/iso-net-readiness-01-design-packet/story_decomposition_v0.md` — areas: planning, isolated-network, process-governance — governs: 0 — related: 5
 - Legacy Shell Bundle Packet 01 — estate-shaped v17→v18 hop and verified transfer bundle — `docs/design/packets/legacy-shell-bundle-01-design-packet/README.md` — areas: isolated-network, frontend, dev-environment, technology-stack — governs: 0 — related: 3
+- Monorepo Hop Procedure v2 — 17→18 and 18→19 in the real layout (angular.json in packages/client) — `docs/design/packets/legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v2.md` — areas: frontend, isolated-network, dev-environment — governs: 0 — related: 3
 - Nexus Upload Instructions v1 — getting the bundle into the island registry — `docs/design/packets/legacy-shell-bundle-01-design-packet/nexus_upload_instructions_v1.md` — areas: isolated-network, dev-environment — governs: 0 — related: 2
-- Offline Verification Transcript v1 — the bundle proven with zero internet — `docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v1.md` — areas: isolated-network, dev-environment, risk-gates — governs: 0 — related: 2
-- v17→v18 Monorepo Runbook Delta v1 — what changes on estate-shaped apps — `docs/design/packets/legacy-shell-bundle-01-design-packet/v17_to_v18_monorepo_runbook_delta_v1.md` — areas: frontend, isolated-network, dev-environment — governs: 0 — related: 2
-- v18 Transfer Bundle Manifest v1 — measured from the legacy shells, verified offline — `docs/design/packets/legacy-shell-bundle-01-design-packet/v18_transfer_bundle_manifest_v1.md` — areas: isolated-network, technology-stack, dev-environment — governs: 0 — related: 3
+- Offline Verification Transcript v2 — the 17→19 pool proven with zero internet — `docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v2.md` — areas: isolated-network, dev-environment, risk-gates — governs: 0 — related: 2
+- Transfer Bundle Manifest v2 — the 17→22 master pool, its slices, and the sizes — `docs/design/packets/legacy-shell-bundle-01-design-packet/v17_to_v19_bundle_manifest_v2.md` — areas: isolated-network, technology-stack, dev-environment — governs: 0 — related: 3
 - Angular Hop Packet 01 — v17 to v18 (ng-hop-01) — `docs/design/packets/ng-hop-01-v17-to-v18-design-packet/README.md` — areas: frontend, dev-environment, isolated-network, technology-stack — governs: 0 — related: 3
 - Angular v17 to v18 Hop Runbook v1 (rehearsed 2026-08-26) — `docs/design/packets/ng-hop-01-v17-to-v18-design-packet/v17_to_v18_hop_runbook_v1.md` — areas: frontend, dev-environment, isolated-network, technology-stack — governs: 0 — related: 3
 - v18 Hop Bundle Manifest v0 — what the registry needs before the hop — `docs/design/packets/ng-hop-01-v17-to-v18-design-packet/v18_hop_bundle_manifest_v0.md` — areas: isolated-network, technology-stack, frontend, dev-environment — governs: 0 — related: 3
@@ -132,5 +147,8 @@ Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-
 ## historical (0)
 
 
-## superseded (0)
+## superseded (3)
 
+- Offline Verification Transcript v1 — the bundle proven with zero internet — `docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v1.md` — areas: isolated-network, dev-environment, risk-gates — governs: 0 — related: 2
+- v17→v18 Monorepo Runbook Delta v1 — what changes on estate-shaped apps — `docs/design/packets/legacy-shell-bundle-01-design-packet/v17_to_v18_monorepo_runbook_delta_v1.md` — areas: frontend, isolated-network, dev-environment — governs: 0 — related: 2
+- v18 Transfer Bundle Manifest v1 — measured from the legacy shells, verified offline — `docs/design/packets/legacy-shell-bundle-01-design-packet/v18_transfer_bundle_manifest_v1.md` — areas: isolated-network, technology-stack, dev-environment — governs: 0 — related: 3

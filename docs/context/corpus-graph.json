@@ -199,6 +199,18 @@
       "governs": []
     },
     {
+      "path": "docs/context/governance/decisions/ADR-005-island-stack-sync.md",
+      "title": "ADR-005 — The two islands' stacks must match",
+      "status": "accepted",
+      "areas": [
+        "isolated-network",
+        "system-architecture",
+        "technology-stack",
+        "planning"
+      ],
+      "governs": []
+    },
+    {
       "path": "docs/context/governance/decisions/README.md",
       "title": "Decision Records (ADRs)",
       "status": "active",
@@ -347,6 +359,103 @@
       "areas": [
         "context-system",
         "process-governance"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/platform/research/README.md",
+      "title": "Architecture Research Corpus — DDD-ARCH-01 base briefs",
+      "status": "active",
+      "areas": [
+        "research",
+        "system-architecture",
+        "domain-driven-design",
+        "frontend"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/platform/research/cross_domain_solution_integration_brief_v0.md",
+      "title": "R6 — Cross Domain Solution (CDS) integration research brief v0",
+      "status": "exploratory",
+      "areas": [
+        "research",
+        "cross-domain",
+        "security",
+        "system-architecture"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/platform/research/data_fabric_brief_v0.md",
+      "title": "R2 — Data Fabric research brief v0",
+      "status": "exploratory",
+      "areas": [
+        "research",
+        "data-fabric",
+        "system-architecture",
+        "backend"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/platform/research/ddd_domain_driven_design_brief_v0.md",
+      "title": "R1 — Domain-Driven Design (DDD) research brief v0",
+      "status": "exploratory",
+      "areas": [
+        "research",
+        "domain-driven-design",
+        "system-architecture"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/platform/research/ddd_ui_ux_brief_v0.md",
+      "title": "R7 — UI/UX practice in relation to DDD (front-end architecture for a DDD system) research brief v0",
+      "status": "exploratory",
+      "areas": [
+        "research",
+        "ux",
+        "frontend",
+        "domain-driven-design",
+        "system-architecture"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/platform/research/event_message_bus_brief_v0.md",
+      "title": "R3 — Event / Message Bus (Kafka and alternatives) research brief v0",
+      "status": "exploratory",
+      "areas": [
+        "research",
+        "messaging",
+        "system-architecture",
+        "backend"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/platform/research/identity_stores_brief_v0.md",
+      "title": "R4 — Identity Stores, IdPs and Delegated User Management research brief v0",
+      "status": "exploratory",
+      "areas": [
+        "research",
+        "identity",
+        "auth",
+        "access-control",
+        "security"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/platform/research/mac_stores_brief_v0.md",
+      "title": "R5 — Mandatory Access Control (MAC) stores and label-based data research brief v0",
+      "status": "exploratory",
+      "areas": [
+        "research",
+        "access-control",
+        "security",
+        "backend"
       ],
       "governs": []
     },
@@ -850,6 +959,74 @@
       "governs": []
     },
     {
+      "path": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "title": "DDD-ARCH-01 — Desert Island system architecture, front-end-first (packet charter)",
+      "status": "exploratory",
+      "areas": [
+        "system-architecture",
+        "domain-driven-design",
+        "frontend",
+        "planning"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
+      "title": "DDD-ARCH-01 — Decision Register v0 (DA-D1..DA-D10)",
+      "status": "exploratory",
+      "areas": [
+        "system-architecture",
+        "domain-driven-design",
+        "frontend",
+        "planning"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md",
+      "title": "DDD-ARCH-01 — Diagramming approach v0 (how we stand up and keep the architecture diagrams)",
+      "status": "exploratory",
+      "areas": [
+        "system-architecture",
+        "planning",
+        "process-governance"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/ddd-arch-01-design-packet/diagrams/01-context-desert-island.md",
+      "title": "DDD-ARCH-01 diagram 01 — System context, Desert Island (C4 L1)",
+      "status": "exploratory",
+      "areas": [
+        "system-architecture",
+        "domain-driven-design"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/ddd-arch-01-design-packet/diagrams/02-tier-model-building-floors.md",
+      "title": "DDD-ARCH-01 diagram 02 — Tier model, Building / Floors / Suites / Offices with the group overlay",
+      "status": "exploratory",
+      "areas": [
+        "system-architecture",
+        "frontend",
+        "domain-driven-design"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
+      "title": "DDD-ARCH-01 — Building / Floor / Suite / Office tier model exploration v0",
+      "status": "exploratory",
+      "areas": [
+        "system-architecture",
+        "domain-driven-design",
+        "frontend",
+        "ux"
+      ],
+      "governs": []
+    },
+    {
       "path": "docs/design/packets/iso-net-readiness-01-design-packet/README.md",
       "title": "Isolated-Network Readiness Packet (iso-net-readiness-01)",
       "status": "exploratory",
@@ -944,6 +1121,17 @@
       "governs": []
     },
     {
+      "path": "docs/design/packets/legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v2.md",
+      "title": "Monorepo Hop Procedure v2 — 17→18 and 18→19 in the real layout (angular.json in packages/client)",
+      "status": "exploratory",
+      "areas": [
+        "frontend",
+        "isolated-network",
+        "dev-environment"
+      ],
+      "governs": []
+    },
+    {
       "path": "docs/design/packets/legacy-shell-bundle-01-design-packet/nexus_upload_instructions_v1.md",
       "title": "Nexus Upload Instructions v1 — getting the bundle into the island registry",
       "status": "exploratory",
@@ -956,6 +1144,17 @@
     {
       "path": "docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v1.md",
       "title": "Offline Verification Transcript v1 — the bundle proven with zero internet",
+      "status": "superseded",
+      "areas": [
+        "isolated-network",
+        "dev-environment",
+        "risk-gates"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v2.md",
+      "title": "Offline Verification Transcript v2 — the 17→19 pool proven with zero internet",
       "status": "exploratory",
       "areas": [
         "isolated-network",
@@ -967,7 +1166,7 @@
     {
       "path": "docs/design/packets/legacy-shell-bundle-01-design-packet/v17_to_v18_monorepo_runbook_delta_v1.md",
       "title": "v17→v18 Monorepo Runbook Delta v1 — what changes on estate-shaped apps",
-      "status": "exploratory",
+      "status": "superseded",
       "areas": [
         "frontend",
         "isolated-network",
@@ -976,9 +1175,20 @@
       "governs": []
     },
     {
+      "path": "docs/design/packets/legacy-shell-bundle-01-design-packet/v17_to_v19_bundle_manifest_v2.md",
+      "title": "Transfer Bundle Manifest v2 — the 17→22 master pool, its slices, and the sizes",
+      "status": "exploratory",
+      "areas": [
+        "isolated-network",
+        "technology-stack",
+        "dev-environment"
+      ],
+      "governs": []
+    },
+    {
       "path": "docs/design/packets/legacy-shell-bundle-01-design-packet/v18_transfer_bundle_manifest_v1.md",
       "title": "v18 Transfer Bundle Manifest v1 — measured from the legacy shells, verified offline",
-      "status": "exploratory",
+      "status": "superseded",
       "areas": [
         "isolated-network",
         "technology-stack",
@@ -1221,6 +1431,21 @@
       "type": "related"
     },
     {
+      "from": "docs/context/governance/decisions/ADR-005-island-stack-sync.md",
+      "to": "docs/context/canonical/two_island_model.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/governance/decisions/ADR-005-island-stack-sync.md",
+      "to": "docs/context/governance/contradictions/register.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/governance/decisions/ADR-005-island-stack-sync.md",
+      "to": "docs/design/packets/iso-net-readiness-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
       "from": "docs/context/governance/meta/assistant_role.md",
       "to": "docs/context/team/agents/systems-engineer/axium_role.md",
       "type": "related"
@@ -1253,6 +1478,146 @@
     {
       "from": "docs/context/operations/user-workflow/README.md",
       "to": "docs/context/operations/sessions/session_rollup_checklist.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/README.md",
+      "to": "docs/context/canonical/technology_stack.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/README.md",
+      "to": "docs/context/canonical/two_island_model.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/README.md",
+      "to": "docs/context/platform/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/cross_domain_solution_integration_brief_v0.md",
+      "to": "docs/context/platform/research/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/cross_domain_solution_integration_brief_v0.md",
+      "to": "docs/context/platform/research/event_message_bus_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/cross_domain_solution_integration_brief_v0.md",
+      "to": "docs/context/platform/research/identity_stores_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/cross_domain_solution_integration_brief_v0.md",
+      "to": "docs/context/platform/research/mac_stores_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/data_fabric_brief_v0.md",
+      "to": "docs/context/platform/research/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/data_fabric_brief_v0.md",
+      "to": "docs/context/platform/research/ddd_domain_driven_design_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/data_fabric_brief_v0.md",
+      "to": "docs/context/platform/research/event_message_bus_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/data_fabric_brief_v0.md",
+      "to": "docs/context/platform/research/mac_stores_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/ddd_domain_driven_design_brief_v0.md",
+      "to": "docs/context/platform/research/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/ddd_domain_driven_design_brief_v0.md",
+      "to": "docs/context/platform/research/ddd_ui_ux_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/ddd_domain_driven_design_brief_v0.md",
+      "to": "docs/context/platform/research/event_message_bus_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/ddd_ui_ux_brief_v0.md",
+      "to": "docs/context/canonical/technology_stack.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/ddd_ui_ux_brief_v0.md",
+      "to": "docs/context/platform/research/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/ddd_ui_ux_brief_v0.md",
+      "to": "docs/context/platform/research/ddd_domain_driven_design_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/ddd_ui_ux_brief_v0.md",
+      "to": "docs/context/platform/research/identity_stores_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/event_message_bus_brief_v0.md",
+      "to": "docs/context/platform/research/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/event_message_bus_brief_v0.md",
+      "to": "docs/context/platform/research/cross_domain_solution_integration_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/event_message_bus_brief_v0.md",
+      "to": "docs/context/platform/research/ddd_domain_driven_design_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/identity_stores_brief_v0.md",
+      "to": "docs/context/platform/research/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/identity_stores_brief_v0.md",
+      "to": "docs/context/platform/research/ddd_ui_ux_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/identity_stores_brief_v0.md",
+      "to": "docs/context/platform/research/mac_stores_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/mac_stores_brief_v0.md",
+      "to": "docs/context/platform/research/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/mac_stores_brief_v0.md",
+      "to": "docs/context/platform/research/cross_domain_solution_integration_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/mac_stores_brief_v0.md",
+      "to": "docs/context/platform/research/data_fabric_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/mac_stores_brief_v0.md",
+      "to": "docs/context/platform/research/identity_stores_brief_v0.md",
       "type": "related"
     },
     {
@@ -1308,6 +1673,121 @@
     {
       "from": "docs/design/brand/README.md",
       "to": "docs/context/governance/contradictions/register.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "to": "docs/context/canonical/technology_stack.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "to": "docs/context/canonical/two_island_model.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "to": "docs/context/platform/research/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
+      "to": "docs/context/governance/contradictions/register.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
+      "to": "docs/design/packets/iso-net-readiness-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md",
+      "to": "docs/context/canonical/isolated_network_constraints.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/diagrams/01-context-desert-island.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/diagrams/01-context-desert-island.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/diagrams/02-tier-model-building-floors.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/diagrams/02-tier-model-building-floors.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/diagrams/02-tier-model-building-floors.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
+      "to": "docs/context/platform/research/ddd_domain_driven_design_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
+      "to": "docs/context/platform/research/ddd_ui_ux_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
+      "to": "docs/context/platform/research/identity_stores_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
       "type": "related"
     },
     {
@@ -1476,6 +1956,21 @@
       "type": "related"
     },
     {
+      "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v2.md",
+      "to": "docs/design/packets/legacy-shell-bundle-01-design-packet/v17_to_v18_monorepo_runbook_delta_v1.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v2.md",
+      "to": "docs/design/packets/ng-hop-01-v17-to-v18-design-packet/v17_to_v18_hop_runbook_v1.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v2.md",
+      "to": "docs/design/packets/ng-hop-02-v18-to-v19-design-packet/v18_to_v19_hop_runbook_v1.md",
+      "type": "related"
+    },
+    {
       "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/nexus_upload_instructions_v1.md",
       "to": "docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v1.md",
       "type": "related"
@@ -1492,7 +1987,22 @@
     },
     {
       "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v1.md",
+      "to": "docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v2.md",
+      "type": "superseded_by"
+    },
+    {
+      "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v1.md",
       "to": "docs/design/packets/legacy-shell-bundle-01-design-packet/v18_transfer_bundle_manifest_v1.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v2.md",
+      "to": "docs/design/packets/legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v2.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v2.md",
+      "to": "docs/design/packets/legacy-shell-bundle-01-design-packet/v17_to_v19_bundle_manifest_v2.md",
       "type": "related"
     },
     {
@@ -1502,7 +2012,27 @@
     },
     {
       "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/v17_to_v18_monorepo_runbook_delta_v1.md",
+      "to": "docs/design/packets/legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v2.md",
+      "type": "superseded_by"
+    },
+    {
+      "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/v17_to_v18_monorepo_runbook_delta_v1.md",
       "to": "docs/design/packets/ng-hop-01-v17-to-v18-design-packet/v17_to_v18_hop_runbook_v1.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/v17_to_v19_bundle_manifest_v2.md",
+      "to": "docs/design/packets/legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v2.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/v17_to_v19_bundle_manifest_v2.md",
+      "to": "docs/design/packets/legacy-shell-bundle-01-design-packet/nexus_upload_instructions_v1.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/v17_to_v19_bundle_manifest_v2.md",
+      "to": "docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v2.md",
       "type": "related"
     },
     {
@@ -1514,6 +2044,11 @@
       "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/v18_transfer_bundle_manifest_v1.md",
       "to": "docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v1.md",
       "type": "related"
+    },
+    {
+      "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/v18_transfer_bundle_manifest_v1.md",
+      "to": "docs/design/packets/legacy-shell-bundle-01-design-packet/v17_to_v19_bundle_manifest_v2.md",
+      "type": "superseded_by"
     },
     {
       "from": "docs/design/packets/legacy-shell-bundle-01-design-packet/v18_transfer_bundle_manifest_v1.md",

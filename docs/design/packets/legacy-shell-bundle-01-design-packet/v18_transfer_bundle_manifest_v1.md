@@ -1,6 +1,7 @@
 ---
 schema: corpus-doc/v1
-status: exploratory
+status: superseded
+superseded_by: "docs/design/packets/legacy-shell-bundle-01-design-packet/v17_to_v19_bundle_manifest_v2.md"
 title: v18 Transfer Bundle Manifest v1 — measured from the legacy shells, verified offline
 areas: [isolated-network, technology-stack, dev-environment]
 related: ["docs/design/packets/legacy-shell-bundle-01-design-packet/README.md", "docs/design/packets/ng-hop-01-v17-to-v18-design-packet/v18_hop_bundle_manifest_v0.md", "docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v1.md"]
@@ -8,6 +9,8 @@ updated: 2026-09-03
 ---
 
 # v18 Transfer Bundle Manifest v1
+
+> **Superseded 2026-09-03** by [`v17_to_v19_bundle_manifest_v2.md`](v17_to_v19_bundle_manifest_v2.md) — kept for its evidence trail (notably: the root-angular.json placement rehearsal and the first offline verification). The v2 manifest reflects the REAL app layout (angular.json in packages/client/, confirmed by Graham) and the reconciled dependency set (puppeteer 21.9.0 et al.).
 
 **Created:** 2026-09-03 | **Status:** `exploratory` — measured on the approximated shells; supersedes the bare-app numbers in `ng-hop-01/v18_hop_bundle_manifest_v0.md` as the working estimate, **not** yet an estate manifest
 

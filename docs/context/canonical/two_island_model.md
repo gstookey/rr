@@ -4,12 +4,12 @@ status: active
 title: The Two-Island Model — Legacy Island and Desert Island
 areas: [isolated-network, dev-environment, planning, security]
 related: ["docs/context/canonical/project_overview.md", "docs/context/canonical/isolated_network_constraints.md", "docs/context/canonical/technology_stack.md", "docs/context/canonical/current_priorities.md"]
-updated: 2026-08-26
+updated: 2026-09-03
 ---
 
 # The Two-Island Model — Legacy Island and Desert Island
 
-**Created:** 2026-08-26 | **Last updated:** 2026-08-26 (Axium, from Graham's direction of 2026-08-25/26)
+**Created:** 2026-08-26 | **Last updated:** 2026-09-03 (ADR-005: islands must match)
 
 ## Why this page exists
 
@@ -97,6 +97,8 @@ Chosen because it is the smallest target that discharges the security driver, it
 The v22 question is deliberately **not** folded into Milestone 1. Bundles for the v19→v20→v21→v22 hops exist on the board ([S-09](https://github.com/gstookey/rr/issues/16), [S-10](https://github.com/gstookey/rr/issues/17), [S-11](https://github.com/gstookey/rr/issues/18)) so the shape of the stretch is visible and can be prepared for — but they are marked conditional on DR-04, which should be decided after the first real hop teaches us the true cost, not before.
 
 ## Stack synchronization
+
+> **Governing fact since 2026-09-03 — [ADR-005](../governance/decisions/ADR-005-island-stack-sync.md) (closes DR-10):** the two islands' stacks **must match** (Graham: shared deployment environments). Matching is an ongoing operating commitment — every future upgrade is a coordinated two-island event. Granularity (exact versions vs. same-major) is still `[NEEDS GRAHAM]`; the strictest reading governs until answered.
 
 Desert Island's stack target is **whatever Legacy Island actually achieves**, resolved when DR-04 closes. Until then:
 
