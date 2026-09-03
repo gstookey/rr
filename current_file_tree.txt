@@ -1,4 +1,4 @@
-File tree as of Thu Sep  3 22:34:06 UTC 2026
+File tree as of Thu Sep  3 23:24:53 UTC 2026
 .
 |-- AGENTS.md
 |-- README.md
@@ -173,6 +173,11 @@ File tree as of Thu Sep  3 22:34:06 UTC 2026
 |   |       |   |   |-- 02-tier-model-building-floors.md
 |   |       |   |   `-- 02-tier-model-building-floors.svg
 |   |       |   `-- tier_model_exploration_v0.md
+|   |       |-- first-app-hop-01-design-packet
+|   |       |   |-- README.md
+|   |       |   |-- field_hop_procedure_v1.md
+|   |       |   |-- field_notes_template_v0.md
+|   |       |   `-- preflight_checklist_v0.md
 |   |       |-- iso-net-readiness-01-design-packet
 |   |       |   |-- README.md
 |   |       |   |-- day_one_on_the_island_runbook_v0.md
@@ -438,4 +443,4 @@ File tree as of Thu Sep  3 22:34:06 UTC 2026
     `-- test
         `-- corpus-graph-claims.spec.mjs
 
-112 directories, 326 files
+113 directories, 330 files

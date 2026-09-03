@@ -1027,6 +1027,53 @@
       "governs": []
     },
     {
+      "path": "docs/design/packets/first-app-hop-01-design-packet/README.md",
+      "title": "First App Hop Packet 01 — the field kit for the first real application upgrade",
+      "status": "exploratory",
+      "areas": [
+        "frontend",
+        "isolated-network",
+        "dev-environment",
+        "planning"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/first-app-hop-01-design-packet/field_hop_procedure_v1.md",
+      "title": "Field Hop Procedure v1 — one Angular rung on a real app, on the island",
+      "status": "exploratory",
+      "areas": [
+        "frontend",
+        "isolated-network",
+        "dev-environment"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/first-app-hop-01-design-packet/field_notes_template_v0.md",
+      "title": "Field Notes Template v0 — what to capture during the first real hop",
+      "status": "exploratory",
+      "areas": [
+        "frontend",
+        "isolated-network",
+        "planning",
+        "risk-gates"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/first-app-hop-01-design-packet/preflight_checklist_v0.md",
+      "title": "Pre-flight Checklist v0 — before the first real application hop",
+      "status": "exploratory",
+      "areas": [
+        "frontend",
+        "isolated-network",
+        "dev-environment",
+        "risk-gates"
+      ],
+      "governs": []
+    },
+    {
       "path": "docs/design/packets/iso-net-readiness-01-design-packet/README.md",
       "title": "Isolated-Network Readiness Packet (iso-net-readiness-01)",
       "status": "exploratory",
@@ -1788,6 +1835,71 @@
     {
       "from": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
       "to": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/first-app-hop-01-design-packet/README.md",
+      "to": "docs/context/canonical/two_island_model.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/first-app-hop-01-design-packet/README.md",
+      "to": "docs/design/packets/iso-net-readiness-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/first-app-hop-01-design-packet/README.md",
+      "to": "docs/design/packets/iso-net-readiness-01-design-packet/legacy_estate_inventory_template_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/first-app-hop-01-design-packet/README.md",
+      "to": "docs/design/packets/legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v2.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/first-app-hop-01-design-packet/field_hop_procedure_v1.md",
+      "to": "docs/design/packets/first-app-hop-01-design-packet/field_notes_template_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/first-app-hop-01-design-packet/field_hop_procedure_v1.md",
+      "to": "docs/design/packets/first-app-hop-01-design-packet/preflight_checklist_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/first-app-hop-01-design-packet/field_hop_procedure_v1.md",
+      "to": "docs/design/packets/legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v2.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/first-app-hop-01-design-packet/field_notes_template_v0.md",
+      "to": "docs/design/packets/first-app-hop-01-design-packet/field_hop_procedure_v1.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/first-app-hop-01-design-packet/field_notes_template_v0.md",
+      "to": "docs/design/packets/iso-net-readiness-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/first-app-hop-01-design-packet/field_notes_template_v0.md",
+      "to": "docs/design/packets/iso-net-readiness-01-design-packet/legacy_estate_inventory_template_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/first-app-hop-01-design-packet/preflight_checklist_v0.md",
+      "to": "docs/design/packets/first-app-hop-01-design-packet/field_hop_procedure_v1.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/first-app-hop-01-design-packet/preflight_checklist_v0.md",
+      "to": "docs/design/packets/first-app-hop-01-design-packet/field_notes_template_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/first-app-hop-01-design-packet/preflight_checklist_v0.md",
+      "to": "docs/design/packets/legacy-shell-bundle-01-design-packet/nexus_upload_instructions_v1.md",
       "type": "related"
     },
     {

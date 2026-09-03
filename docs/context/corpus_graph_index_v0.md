@@ -106,7 +106,7 @@ Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-
 - Agents — Repo-Side Fleet — `docs/context/team/agents/README.md` — areas: agent-fleet, process-governance — governs: 0 — related: 2
 - Design — `docs/design/README.md` — areas: brand-design, planning — governs: 0 — related: 1
 
-## exploratory (31)
+## exploratory (35)
 
 - R6 — Cross Domain Solution (CDS) integration research brief v0 — `docs/context/platform/research/cross_domain_solution_integration_brief_v0.md` — areas: research, cross-domain, security, system-architecture — governs: 0 — related: 4
 - R2 — Data Fabric research brief v0 — `docs/context/platform/research/data_fabric_brief_v0.md` — areas: research, data-fabric, system-architecture, backend — governs: 0 — related: 4
@@ -121,6 +121,10 @@ Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-
 - DDD-ARCH-01 diagram 01 — System context, Desert Island (C4 L1) — `docs/design/packets/ddd-arch-01-design-packet/diagrams/01-context-desert-island.md` — areas: system-architecture, domain-driven-design — governs: 0 — related: 2
 - DDD-ARCH-01 diagram 02 — Tier model, Building / Floors / Suites / Offices with the group overlay — `docs/design/packets/ddd-arch-01-design-packet/diagrams/02-tier-model-building-floors.md` — areas: system-architecture, frontend, domain-driven-design — governs: 0 — related: 3
 - DDD-ARCH-01 — Building / Floor / Suite / Office tier model exploration v0 — `docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md` — areas: system-architecture, domain-driven-design, frontend, ux — governs: 0 — related: 5
+- First App Hop Packet 01 — the field kit for the first real application upgrade — `docs/design/packets/first-app-hop-01-design-packet/README.md` — areas: frontend, isolated-network, dev-environment, planning — governs: 0 — related: 4
+- Field Hop Procedure v1 — one Angular rung on a real app, on the island — `docs/design/packets/first-app-hop-01-design-packet/field_hop_procedure_v1.md` — areas: frontend, isolated-network, dev-environment — governs: 0 — related: 3
+- Field Notes Template v0 — what to capture during the first real hop — `docs/design/packets/first-app-hop-01-design-packet/field_notes_template_v0.md` — areas: frontend, isolated-network, planning, risk-gates — governs: 0 — related: 3
+- Pre-flight Checklist v0 — before the first real application hop — `docs/design/packets/first-app-hop-01-design-packet/preflight_checklist_v0.md` — areas: frontend, isolated-network, dev-environment, risk-gates — governs: 0 — related: 3
 - Isolated-Network Readiness Packet (iso-net-readiness-01) — `docs/design/packets/iso-net-readiness-01-design-packet/README.md` — areas: isolated-network, dev-environment, technology-stack, planning — governs: 0 — related: 6
 - Day One on the Island — Runbook v0 (draft, unrehearsed) — `docs/design/packets/iso-net-readiness-01-design-packet/day_one_on_the_island_runbook_v0.md` — areas: isolated-network, dev-environment, technology-stack — governs: 0 — related: 3
 - Decision Register v0 — Isolated-Network Readiness — `docs/design/packets/iso-net-readiness-01-design-packet/decision_register_v0.md` — areas: isolated-network, technology-stack, process-governance, planning — governs: 0 — related: 5
