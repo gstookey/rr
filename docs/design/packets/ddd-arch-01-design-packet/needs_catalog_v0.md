@@ -209,6 +209,7 @@ When one of these appears on two clusters, stop and run Boundary Test check 1.
 | customer | a tenant/group in RR | an external buyer | RR's word is *group*; reserve *customer* for the business sense |
 | environment | network / island | deployment target in a cluster | fix in the lexicon (ADR-005 already uses both senses) |
 | domain | security domain (R6) | DDD domain / bounded context | **say "security domain" or "bounded context" in full, always** |
+| quantum | Ford/Richards architecture quantum — what deploys independently with its own data (R8) | used loosely as "bounded context" or "microservice" | a Floor is a bounded context; it becomes its own *quantum* only when promoted — see R8 §7 |
 | user | a person | an account, a device, a service | fix in the lexicon (R4 glossary) |
 | transfer | physical movement | cross-domain crossing | two |
 | alert | needs action | for information | alert vs notification |
