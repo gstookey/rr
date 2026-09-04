@@ -9,7 +9,7 @@ updated: 2026-09-03
 
 # Architecture Research Corpus — DDD-ARCH-01 base briefs
 
-**Created:** 2026-09-03 | **Last updated:** 2026-09-03 (Axium; modernization pass 2 landed on all seven briefs the same evening)
+**Created:** 2026-09-03 | **Last updated:** 2026-09-03 (Axium; pass 2 landed; R8 architecture-quantum brief added from the first design dialog)
 
 ## Purpose
 
@@ -32,6 +32,7 @@ These are **reusable program concepts** (AGENTS.md's "reusable program concept" 
 | R5 | [`mac_stores_brief_v0.md`](mac_stores_brief_v0.md) | Mandatory Access Control stores — label-based data stores, security markings, multi-level data | per-group data privilege model |
 | R6 | [`cross_domain_solution_integration_brief_v0.md`](cross_domain_solution_integration_brief_v0.md) | Cross Domain Solution integration — CDS types, guards, marking standards, how applications integrate across domains | the unclassified-base / classified-tailoring split |
 | R7 | [`ddd_ui_ux_brief_v0.md`](ddd_ui_ux_brief_v0.md) | UI/UX practice in relation to DDD — front-end bounded contexts, micro-frontends vs modular monolith, Angular library architecture, task-based UI, permission-aware UI | the Building / Floor / Suite / Office tier model |
+| R8 | [`architecture_quantum_brief_v0.md`](architecture_quantum_brief_v0.md) | The **architecture quantum** (Ford / Richards, evolutionary-architecture school) and its exact relationship to the bounded context; granularity disintegrators/integrators; static vs dynamic coupling; fitness functions | the lexicon (Floor ≠ quantum); DA-D2 promotion rule; talking to colleagues who use the word |
 
 ## Brief template (binding for every brief in this folder)
 
