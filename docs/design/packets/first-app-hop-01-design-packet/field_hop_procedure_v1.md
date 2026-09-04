@@ -223,6 +223,12 @@ When one of these happens, **stop, record it in the field notes, and do not impr
 **F-9 — Tests fail after the hop that passed at baseline.**
 → This is exactly the signal this run exists to find. Do not skip, disable, or quarantine the test. Record the failure, the test name, and what the migration changed nearby. If the cause is not apparent in 30 minutes, stop the run and bring it back — a real migration defect on real code is a more valuable result than a green branch.
 
+**F-11 — `ng update` refuses citing an incompatible peer dependency on an `@other-team/*` package.**
+→ Expected and planned for. Re-run step 2 with `--force`, and add `--legacy-peer-deps` to the step-5 install. **Then, before calling the rung done: `npm ls @angular/core` must print exactly ONE version, and you must load the app and exercise a screen rendering `@other-team/core-web-angular` components.** A peer bypass is only proven by running the application — a build that succeeds says the linker was happy, not that dependency injection is intact. Decision table: [`island_execution_plan_v1.md`](island_execution_plan_v1.md) §1.
+
+**F-12 — `npm ls @angular/core` prints more than one version.**
+→ **Stop.** A package is carrying Angular as a regular dependency rather than a peer, and npm has nested a second copy. Two Angular instances in one application break DI at runtime while building cleanly. This is not a flag-bypassable condition — record it and take it to the package's owning team.
+
 **F-10 — Anything at all differs from an "expected observation" above.**
 → Not necessarily a problem, but always a finding. Record it. The rehearsals ran on shells with almost no source; divergence on real code is the whole point of the experiment.
 
