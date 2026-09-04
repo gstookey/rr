@@ -41,7 +41,7 @@ Why this and not the v22 stretch: v19 is a **hard floor** (it discharges the Ang
 
 ## Side-quest lane — DDD-ARCH-01 (design only, beside Milestone 1)
 
-Opened 2026-09-03 at Graham's direction as a Context Enrichment Side-Quest: the Desert Island system architecture, **front-end first**. It does not displace Milestone 1 and activates nothing. What it needs next, in order: (1) Graham reads the seven briefs in `docs/context/platform/research/` — **pass 2 (modernized to the 2026 signal-first idiom) supersedes his pass-1 read of R7**; start with R7 §4.2/§4.2a/§7, then R1, R4; (2) rulings round 1 on `ddd-arch-01-design-packet/decision_register_v0.md` (DA-D1..D6, D8) — pass 2 merged as PR #32; (3) the harvested questions Q1..Q12 ride along with the island questionnaires (S-01/S-02) — **Q1, "what are the bounded contexts?", is the gate past which the packet cannot proceed without domain input**; (4) lexicon pass + redraw of the C4 set after the rulings.
+Opened 2026-09-03 at Graham's direction as a Context Enrichment Side-Quest: the Desert Island system architecture, **front-end first**. It does not displace Milestone 1 and activates nothing. What it needs next, in order: (1) Graham reads the seven briefs in `docs/context/platform/research/` — **pass 2 (modernized to the 2026 signal-first idiom) supersedes his pass-1 read of R7**; start with R7 §4.2/§4.2a/§7, then R1, R4; (2) rulings round 1 on `ddd-arch-01-design-packet/decision_register_v0.md` (DA-D1..D6, D8) — pass 2 merged as PR #32; (3) the harvested questions Q1..Q12 ride along with the island questionnaires (S-01/S-02) — **Q1, "what are the bounded contexts?", is the gate past which the packet cannot proceed without domain input**; (4) lexicon pass + redraw of the C4 set after the rulings. **(5) ACME Workshop (EP-06):** the walking-skeleton reference app is cut (`acme-workshop-01-design-packet/`, S-18..S-25) — **S-18 (Foundation) starts on Graham's word**; slices ship as click-ready PRs, one proof each.
 
 ## Planning surface
 
@@ -54,6 +54,7 @@ Board: **Project Road Runner Roadmap** — `https://github.com/users/gstookey/pr
 | [EP-03](https://github.com/gstookey/rr/issues/5) | Legacy Island — Angular v17 to v19+ upgrade **(carries Milestone 1)** |
 | [EP-04](https://github.com/gstookey/rr/issues/6) | Desert Island — environment stand-up |
 | [EP-05](https://github.com/gstookey/rr/issues/7) | Desert Island — new system scaffolds & stack docs (placeholder, no stories) |
+| [EP-06](https://github.com/gstookey/rr/issues/37) | **ACME Workshop — the DDD reference application** (stories S-18..S-25, #38–#45; created 2026-09-03 with Graham's approval; **none activated**) |
 
 Seventeen stories (S-01..S-17) exist as sub-issues. **Seven are closed** as of the 2026-09-03 closeout — S-07, S-08, S-09, S-10, S-11, S-14, S-15, all delivered by PRs #25/#26/#28/#29/#31. Closing records a Graham-gated closeout; it is never itself a decision (rule 16). **Of the ten still open, none has been activated** — creation is not activation; moving a story to In Progress still needs Graham's explicit approval. Story detail and sequence: `docs/design/packets/iso-net-readiness-01-design-packet/story_decomposition_v0.md`. Open decisions: `.../decision_register_v0.md` (DR-01..DR-10).
 
