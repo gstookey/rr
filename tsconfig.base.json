@@ -1,0 +1,36 @@
+{
+  "//": "RR workspace TypeScript base. TS 6.0.x, two forced edits both predicted by the 21→22 rung findings (monorepo_hop_procedure_v2.md): moduleResolution MUST be 'bundler' (TS 6 hard-fails 'node', TS5107), and `baseUrl` is GONE (TS5101 is an error on 6.0 — `paths` entries are resolved relative to THIS file instead).",
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "preserve",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "declaration": false,
+    "sourceMap": true,
+    "experimentalDecorators": false,
+    "importHelpers": true,
+    "paths": {
+      "@rr/common": ["./packages/common/src/index.ts"],
+      "@rr/ui": ["./packages/ui/src/index.ts"],
+      "@rr/auth": ["./packages/auth/src/index.ts"],
+      "@rr/config": ["./packages/config/src/index.ts"],
+      "@rr/markings": ["./packages/markings/src/index.ts"],
+      "@rr/windows": ["./packages/windows/src/index.ts"],
+      "@rr/store-features": ["./packages/store-features/src/index.ts"],
+      "@rr/invent-domain": ["./packages/invent-domain/src/index.ts"],
+      "@rr/command-domain": ["./packages/command-domain/src/index.ts"],
+      "@rr/mock-oidc": ["./packages/mock-oidc/src/index.ts"]
+    }
+  }
+}

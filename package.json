@@ -1,0 +1,64 @@
+{
+  "name": "@rr/workspace",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Project Road Runner monorepo — ACME Workshop reference application (the DDD walking skeleton)",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=22.23.2 <23",
+    "npm": ">=10.9.0"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "services/*"
+  ],
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve shell",
+    "build": "ng build shell",
+    "build:libs": "ng build ui && ng build auth && ng build config && ng build markings && ng build windows && ng build store-features",
+    "build:node": "tsc -b tsconfig.build.json",
+    "test": "ng test shell --watch=false && npm run test --workspaces --if-present",
+    "lint": "eslint .",
+    "typecheck": "tsc -b --force tsconfig.typecheck.json",
+    "sheriff": "sheriff verify apps/shell/src/main.ts",
+    "gate": "bash scripts/local-ci.sh",
+    "seed:validate": "node scripts/seed.mjs --validate"
+  },
+  "dependencies": {
+    "@angular/cdk": "22.1.5",
+    "@angular/common": "22.1.5",
+    "@angular/compiler": "22.1.5",
+    "@angular/core": "22.1.5",
+    "@angular/forms": "22.1.5",
+    "@angular/platform-browser": "22.1.5",
+    "@angular/router": "22.1.5",
+    "@ngrx/signals": "22.0.0",
+    "express": "5.2.1",
+    "jose": "6.2.11",
+    "rxjs": "7.8.2",
+    "tslib": "2.8.1",
+    "zod": "4.5.4"
+  },
+  "devDependencies": {
+    "@angular/build": "22.1.7",
+    "@angular/cli": "22.1.7",
+    "@angular/compiler-cli": "22.1.5",
+    "@eslint/js": "9.39.5",
+    "@softarc/eslint-plugin-sheriff": "0.19.6",
+    "@softarc/sheriff-core": "0.19.6",
+    "@types/express": "5.0.6",
+    "@types/node": "26.4.1",
+    "angular-eslint": "22.2.0",
+    "eslint": "9.39.5",
+    "jsdom": "28.1.0",
+    "ng-packagr": "22.1.1",
+    "supertest": "7.2.2",
+    "@types/supertest": "7.2.1",
+    "tsx": "4.23.13",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.69.0",
+    "vitest": "4.0.18"
+  }
+}
