@@ -1,0 +1,10 @@
+{
+  "name": "@rr/command-domain",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Floor domain library for the command bounded context: value objects, view-model types and pure selectors. NO Angular, and no other Floor.",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  }
+}

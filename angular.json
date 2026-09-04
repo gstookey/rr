@@ -2,8 +2,7 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "npm",
-    "schematicCollections": ["angular-eslint/schematics"]
+    "packageManager": "npm"
   },
   "newProjectRoot": "packages",
   "projects": {
@@ -25,32 +24,213 @@
             "browser": "apps/shell/src/main.ts",
             "tsConfig": "apps/shell/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [{ "glob": "**/*", "input": "apps/shell/public" }],
-            "styles": ["apps/shell/src/styles.scss"]
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "apps/shell/public"
+              }
+            ],
+            "styles": [
+              "apps/shell/src/styles.scss"
+            ]
           },
           "configurations": {
             "production": {
               "budgets": [
-                { "type": "initial", "maximumWarning": "500kB", "maximumError": "1MB" },
-                { "type": "anyComponentStyle", "maximumWarning": "4kB", "maximumError": "8kB" }
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
               ],
               "outputHashing": "all"
             },
-            "development": { "optimization": false, "extractLicenses": false, "sourceMap": true }
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
           },
           "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular/build:dev-server",
           "configurations": {
-            "production": { "buildTarget": "shell:build:production" },
-            "development": { "buildTarget": "shell:build:development" }
+            "production": {
+              "buildTarget": "shell:build:production"
+            },
+            "development": {
+              "buildTarget": "shell:build:development"
+            }
           },
           "defaultConfiguration": "development"
         },
         "test": {
           "builder": "@angular/build:unit-test",
-          "options": { "tsConfig": "apps/shell/tsconfig.spec.json" }
+          "options": {
+            "tsConfig": "apps/shell/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "ui": {
+      "projectType": "library",
+      "root": "packages/ui",
+      "sourceRoot": "packages/ui/src",
+      "prefix": "rr",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ui/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ui/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "packages/ui/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "auth": {
+      "projectType": "library",
+      "root": "packages/auth",
+      "sourceRoot": "packages/auth/src",
+      "prefix": "rr",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/auth/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/auth/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "packages/auth/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "config": {
+      "projectType": "library",
+      "root": "packages/config",
+      "sourceRoot": "packages/config/src",
+      "prefix": "rr",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/config/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/config/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "packages/config/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "markings": {
+      "projectType": "library",
+      "root": "packages/markings",
+      "sourceRoot": "packages/markings/src",
+      "prefix": "rr",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/markings/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/markings/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "packages/markings/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "windows": {
+      "projectType": "library",
+      "root": "packages/windows",
+      "sourceRoot": "packages/windows/src",
+      "prefix": "rr",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/windows/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/windows/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "packages/windows/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "store-features": {
+      "projectType": "library",
+      "root": "packages/store-features",
+      "sourceRoot": "packages/store-features/src",
+      "prefix": "rr",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/store-features/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/store-features/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "packages/store-features/tsconfig.spec.json"
+          }
         }
       }
     }

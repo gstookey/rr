@@ -1,0 +1,18 @@
+{
+  "name": "@rr/config",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Configuration-as-data: the per-group navigation manifest, capability flags and theme tokens from /api/config.",
+  "scripts": {
+    "build": "ng build config",
+    "typecheck": "tsc --noEmit -p tsconfig.lib.json"
+  },
+  "peerDependencies": {
+    "@angular/common": "^22.1.0",
+    "@angular/core": "^22.1.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}
