@@ -3,7 +3,7 @@ schema: corpus-doc/v1
 status: exploratory
 title: DDD-ARCH-01 — Desert Island system architecture, front-end-first (packet charter)
 areas: [system-architecture, domain-driven-design, frontend, planning]
-related: ["docs/context/platform/research/README.md", "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md", "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md", "docs/design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md", "docs/design/packets/ddd-arch-01-design-packet/context_boundary_test_v0.md", "docs/design/packets/ddd-arch-01-design-packet/needs_catalog_v0.md", "docs/context/canonical/two_island_model.md", "docs/context/canonical/technology_stack.md"]
+related: ["docs/context/platform/research/README.md", "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md", "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md", "docs/design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md", "docs/design/packets/ddd-arch-01-design-packet/context_boundary_test_v0.md", "docs/design/packets/ddd-arch-01-design-packet/needs_catalog_v0.md", "docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md", "docs/context/canonical/two_island_model.md", "docs/context/canonical/technology_stack.md"]
 updated: 2026-09-03
 ---
 
@@ -44,6 +44,7 @@ And it must give a home to the hierarchy Graham is picturing:
 | [`tier_model_exploration_v0.md`](tier_model_exploration_v0.md) | Axium's initial analysis of Building / Floor / Suite / Office against DDD, Team Topologies and IA practice — a hypothesis for R7 to test | hypothesis |
 | [`context_boundary_test_v0.md`](context_boundary_test_v0.md) | **the instrument for "is this customer's need a different domain?"** — four checks, the variation ladder (six rungs, each with its home in code), the smells, a worksheet | proposed doctrine |
 | [`needs_catalog_v0.md`](needs_catalog_v0.md) | event-storming aid: how to run the session on the island, 17 need families with events/nouns/split questions, the same-word traps, needs → Floors | prompt list, not a spec |
+| [`practical_picture_v0.md`](practical_picture_v0.md) | **the rubber-meets-the-road companion:** the day-one repo tree, one screen as a request sequence, the tailoring mechanics table, the classification/identity pipeline, tech candidates DA-D13..D20, the seven-step build order with proofs | proposed |
 | [`diagramming_approach_v0.md`](diagramming_approach_v0.md) | how architecture diagrams are stood up, kept, rendered, and edited on both sides of the fence | proposal |
 | `diagrams/` | the diagram set (C4-numbered, Mermaid first; draw.io where a visio-esque board earns it) | first two seeded |
 | Research corpus | [`docs/context/platform/research/`](../../../context/platform/research/README.md) — seven briefs R1..R7 | **landed 2026-09-03** (~32k words; every unconfirmed claim marked `[UNVERIFIED]`) |
