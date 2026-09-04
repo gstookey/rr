@@ -19,6 +19,7 @@ It covers the first application only. The first one is an experiment; the tenth 
 
 | Document | What it is | When you use it |
 |---|---|---|
+| [`island_execution_plan_v1.md`](island_execution_plan_v1.md) | **the plan of record** — port the full ladder in one cycle, stage Nexus uploads per rung, and the `@other-team/*` peer decision | read first; it is the spine the other three hang off |
 | [`preflight_checklist_v0.md`](preflight_checklist_v0.md) | choosing the app, proving the registry is ready, capturing the baseline, and the escape hatch | **before** touching anything — the day before, ideally |
 | [`field_hop_procedure_v1.md`](field_hop_procedure_v1.md) | the hop itself, step by step, with expected observations and explicit STOP conditions | during the hop, one pass per rung |
 | [`field_notes_template_v0.md`](field_notes_template_v0.md) | what to write down as you go | during and immediately after |
@@ -59,6 +60,8 @@ The field notes are not paperwork. Each section feeds something specific:
 **In:** one Legacy Island application, rungs 17→18 and 18→19 (Milestone 1's floor). **Out:** the v20/v21/v22 stretch rungs (rehearsed but conditional on DR-04, which this run is meant to inform), the rest of the estate, the `@other-team/*` upgrade (its owning team's work — Graham coordinates separately), and the AstroUXDS 7→9 move.
 
 ## Open items this packet cannot close
+
+- **`@other-team/core-web-angular@1.6.0`'s peer declaration is unknown from this side**, and the rehearsals prove nothing about any of the three `@other-team/*` packages — they were stripped from the shells entirely (private, unresolvable from the public registry; zero tarballs in the pool). Resolved as a 60-second pre-flight check with a decision table rather than a scope expansion: [`island_execution_plan_v1.md`](island_execution_plan_v1.md) §1. Whether a `--force` bypass holds **at runtime** is `[UNVERIFIED]` and carries its own acceptance criterion.
 
 - **Real `angular.json` build budgets** are still unseen from this side. At v19 the shells produced a component-style budget **warning**; if a real app configures that budget as `maximumError` the same condition **fails the build**. The pre-flight captures the budget values before the hop for exactly this reason. `[NEEDS GRAHAM / island check]`
 - **The temp-root-`angular.json` generator does not rewrite paths inside `architect.*.configurations.*`** — only `options`. An app with `fileReplacements` (the usual `environment.prod.ts` swap) or configuration-level asset paths will need those prefixed by hand. Unexercised on the shells, which had no such configuration. Called out as STOP condition F-3.

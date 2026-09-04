@@ -162,7 +162,17 @@ List them plainly. This is the return channel — anything here becomes work on 
 
 ## 6 — For the record
 
-- Anything about the **`@other-team/*`** packages that surfaced (declined migrations, peer complaints, version pressure) — Graham coordinates these separately, but pressure observed here sizes that conversation:
+- **The `@other-team/*` peer check (pre-flight) — record the literal output:**
+
+  | Package | `peerDependencies` as declared | Wall hit? | Bypass used |
+  |---|---|---|---|
+  | `@other-team/core-web-angular@1.6.0` | | | |
+  | `@other-team/core-common@1.2.0` | | | |
+  | `@other-team/core-node@1.2.0` | | | |
+
+  - `npm ls @angular/core` after install — **how many versions printed?** ______ *(more than one = F-12, stop)*
+  - **Did you load the app and exercise a screen using `@other-team/core-web-angular` components? What happened?** *(the only real proof a peer bypass held)*
+- Anything else about the **`@other-team/*`** packages that surfaced (declined migrations, version pressure) — Graham coordinates these separately, but pressure observed here sizes that conversation:
 - Anything about **AstroUXDS** (rode both Milestone-1 hops untouched in rehearsal — did it here?):
 - Anything about **change control** — what approval was needed, how long it took, what was asked:
 - **Was the documentation wrong anywhere?** Be blunt. A procedure that reads well and misleads on the island is worse than no procedure.

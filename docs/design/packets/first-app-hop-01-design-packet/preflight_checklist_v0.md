@@ -36,9 +36,8 @@ The first app is an instrument, not a delivery. Choose for **information quality
 
 The single most expensive failure mode is discovering mid-hop that Nexus does not serve something. Every check here is cheap; each one costs a transfer cycle if skipped.
 
-- [ ] **Establish what Nexus already holds.** Export a package listing from Nexus and hand it to the `--delta-from` mode of the bundle script on the outside:
-      `legacy-shells/tools/build-transfer-bundle.sh <workdir> --delta-from <manifest>`
-      The estate builds on the island today, so Nexus very likely already serves the whole v17 surface. If it does, Milestone 1's real payload is roughly **87 MB of hop deltas**, not 191 MB. Measure it rather than assuming it in either direction.
+- [ ] **Decided 2026-09-04 — skip the `--delta-from` minimization.** Getting a Nexus package listing *off* the island costs days-to-weeks of paperwork; the bytes it would save are not worth that. The full ladder ports in one cycle and duplicate uploads return `409 Conflict`, which the upload loop already counts as success. Plan and sequencing: [`island_execution_plan_v1.md`](island_execution_plan_v1.md).
+- [ ] **Stage the upload one rung at a time** — the v18 surface now, v19 after the first hop lands, and so on. Beyond convenience this keeps Nexus's state matched to where the estate actually is: with the whole v22 surface present at once, a loose `^` range in an unrelated app's devDependencies can silently resolve higher than intended on its next install.
 - [ ] **Confirm the hop tarballs are uploaded and resolvable** — not merely uploaded. Upload procedure and the verification loop: [`nexus_upload_instructions_v1.md`](../legacy-shell-bundle-01-design-packet/nexus_upload_instructions_v1.md).
 - [ ] **Spot-check resolution from the workstation, not from the Nexus UI.** These must each print a version, from the app directory:
       ```
@@ -50,6 +49,13 @@ The single most expensive failure mode is discovering mid-hop that Nexus does no
       npm view keycloak-angular@16.1.0 version
       npm view keycloak-angular@19.0.2 version
       ```
+- [ ] **Read the `@other-team/*` peer declarations — this is the check that decides whether the hop starts at all.**
+      ```
+      npm view @other-team/core-web-angular@1.6.0 peerDependencies
+      npm view @other-team/core-common@1.2.0 peerDependencies
+      npm view @other-team/core-node@1.2.0 peerDependencies
+      ```
+      These three are **not** being bumped in this run, and the rehearsals prove nothing about them — they were stripped from the shells entirely (private packages, unresolvable from the public registry; zero `@other-team` tarballs in the pool). `ng update` refuses to proceed when an installed package declares a peer range the target would violate — **observed, not theorized**: `jest-preset-angular@14.1.0` blocked the 18→19 hop at the plan stage for exactly this reason. Full decision table, the `--force` / `--legacy-peer-deps` path, and the runtime acceptance criterion it carries: [`island_execution_plan_v1.md`](island_execution_plan_v1.md) §1.
 - [ ] **Confirm Nexus serves metadata for the private scopes** — `@my-team/*` (confirmed present, Graham 2026-09-03), `@ssd_victor/*`, `@other-team/*`:
       `npm view @my-team/<one-of-your-workspace-packages> version`
       This matters because `ng update` reads metadata for *every* declared dependency, including your own workspace packages, before it will compute a plan.
