@@ -1,13 +1,17 @@
 ---
 schema: corpus-doc/v1
-status: exploratory
+status: superseded
 title: DDD-ARCH-01 diagram 01 — System context, Desert Island (C4 L1)
 areas: [system-architecture, domain-driven-design]
 related: ["docs/design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md", "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md"]
+superseded_by: docs/design/packets/ddd-arch-01-design-packet/architecture-description/V1-system-context.md
 updated: 2026-09-03
 ---
 
 # 01 — System context, Desert Island (C4 level 1)
+
+> **Superseded 2026-09-03 by [V1 — System Context](../architecture-description/V1-system-context.md)** of the ACME Workshop Architecture Description. V1 draws the same picture with the reference application's real names, the conditional neighbours carrying their fork and question ids, and the directory and telemetry feed added. Kept as the record of what was drawn before ACME Workshop existed.
+
 
 **Created:** 2026-09-03 | **Status:** hypothesis (nothing ruled) | **Notation:** Mermaid C4
 

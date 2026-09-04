@@ -3,8 +3,8 @@ schema: corpus-doc/v1
 status: exploratory
 title: DDD-ARCH-01 — Desert Island system architecture, front-end-first (packet charter)
 areas: [system-architecture, domain-driven-design, frontend, planning]
-related: ["docs/context/platform/research/README.md", "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md", "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md", "docs/design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md", "docs/design/packets/ddd-arch-01-design-packet/context_boundary_test_v0.md", "docs/design/packets/ddd-arch-01-design-packet/needs_catalog_v0.md", "docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md", "docs/context/canonical/two_island_model.md", "docs/context/canonical/technology_stack.md"]
-updated: 2026-09-03
+related: ["docs/context/platform/research/README.md", "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md", "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md", "docs/design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md", "docs/design/packets/ddd-arch-01-design-packet/context_boundary_test_v0.md", "docs/design/packets/ddd-arch-01-design-packet/needs_catalog_v0.md", "docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md", "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md", "docs/context/canonical/two_island_model.md", "docs/context/canonical/technology_stack.md"]
+updated: 2026-09-04
 ---
 
 # DDD-ARCH-01 — Desert Island system architecture, front-end-first
@@ -46,7 +46,8 @@ And it must give a home to the hierarchy Graham is picturing:
 | [`needs_catalog_v0.md`](needs_catalog_v0.md) | event-storming aid: how to run the session on the island, 17 need families with events/nouns/split questions, the same-word traps, needs → Floors | prompt list, not a spec |
 | [`practical_picture_v0.md`](practical_picture_v0.md) | **the rubber-meets-the-road companion:** the day-one repo tree, one screen as a request sequence, the tailoring mechanics table, the classification/identity pipeline, tech candidates DA-D13..D20, the seven-step build order with proofs | proposed |
 | [`diagramming_approach_v0.md`](diagramming_approach_v0.md) | how architecture diagrams are stood up, kept, rendered, and edited on both sides of the fence | proposal |
-| `diagrams/` | the diagram set (C4-numbered, Mermaid first; draw.io where a visio-esque board earns it) | first two seeded |
+| [`architecture-description/`](architecture-description/README.md) | **the ISO/IEC/IEEE 42010-structured Architecture Description**: stakeholders & concerns, viewpoint catalog, twelve correspondence rules, decision index, known inconsistencies; views **V1..V8** (system context · container · context map · runtime · information & security · development · deployment & evolution · tier/IA) as Mermaid + rendered SVG | drafted 2026-09-04 (Trestle under Axium); every view `hypothesis` |
+| `diagrams/` | the two seed diagrams of 2026-09-03 — **superseded** by V1 and V8 | superseded |
 | Research corpus | [`docs/context/platform/research/`](../../../context/platform/research/README.md) — seven briefs R1..R7 | **landed 2026-09-03** (~32k words; every unconfirmed claim marked `[UNVERIFIED]`) |
 
 ## Sequence
