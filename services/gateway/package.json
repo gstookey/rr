@@ -1,0 +1,16 @@
+{
+  "name": "@rr/gateway",
+  "version": "0.0.0",
+  "private": true,
+  "description": "The BFF: Express 5. S0 is a skeleton — /healthz and a static /api/config only. Auth, sessions, per-Floor routers, RLS and SSE arrive in S1/S2/S3.",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "start": "tsx src/main.ts"
+  },
+  "dependencies": {
+    "express": "5.2.1"
+  }
+}

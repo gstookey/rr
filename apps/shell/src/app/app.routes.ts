@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { type Routes } from '@angular/router';
 
 /**
  * Empty by design in S0. Floors arrive as lazy `loadChildren` entries behind
