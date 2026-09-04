@@ -1,0 +1,80 @@
+# ACME Workshop — local development stack.
+#
+# NOT RUN BY THE AGENT FLEET. This file was authored and structurally validated
+# (YAML parse, image tags checked against the registries that are reachable) on
+# 2026-09-04, but no Docker daemon was available in the authoring environment, so
+# `docker compose up` has NEVER been executed against it. Graham's machine is the
+# first place it runs. See the S0 foundation notes' "not verified here" section.
+#
+#   docker compose -f infra/docker-compose.yml up
+#
+# Keycloak:  http://localhost:8080   (admin / admin — DEV ONLY)
+# Postgres:  localhost:5432          (acme / acme / db "acme")
+#
+# Keycloak runs in DEV MODE (`start-dev`): HTTP only, no hostname strictness, an
+# ephemeral H2 store. That is deliberate for S0 — the realm is imported from
+# source on every boot (AW-D8: realm as code), so there is no persisted identity
+# state anyone could edit by hand and forget to commit. Wiring Keycloak to the
+# Postgres below is an S1 decision, when sessions start to matter.
+
+name: acme-workshop
+
+services:
+  postgres:
+    image: postgres:18.6
+    container_name: acme-postgres
+    environment:
+      POSTGRES_DB: acme
+      POSTGRES_USER: acme
+      POSTGRES_PASSWORD: acme
+    ports:
+      - "5432:5432"
+    volumes:
+      - acme-postgres-data:/var/lib/postgresql/data
+      - ./postgres/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U acme -d acme"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+    restart: unless-stopped
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.7.3
+    container_name: acme-keycloak
+    command: ["start-dev", "--import-realm"]
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+      KC_HEALTH_ENABLED: "true"
+      KC_HTTP_ENABLED: "true"
+      KC_HOSTNAME_STRICT: "false"
+    ports:
+      - "8080:8080"
+      # The management port carries /health/* from Keycloak 25 on; the old
+      # /auth/health and /health on 8080 are gone.
+      - "9000:9000"
+    volumes:
+      - ./keycloak:/opt/keycloak/data/import:ro
+    healthcheck:
+      # UNVERIFIED HERE (no Docker daemon in the authoring environment). The
+      # Keycloak image carries no curl and no wget, so this is the community
+      # recipe: a raw TCP request to the management port's /health/ready, which
+      # Keycloak has served on 9000 since v25. If it misbehaves on Graham's
+      # machine the fallback is to delete this healthcheck block outright —
+      # nothing in S0 gates on Keycloak's health, only on Postgres's.
+      test:
+        - "CMD-SHELL"
+        - "exec 3<>/dev/tcp/127.0.0.1/9000; echo -e 'GET /health/ready HTTP/1.1\\nHost: localhost\\nConnection: close\\n\\n' >&3; grep -q 'UP' <&3"
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  acme-postgres-data:

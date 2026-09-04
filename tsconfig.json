@@ -1,0 +1,6 @@
+{
+  "//": "The workspace-root tsconfig. It exists for tools that resolve a tsconfig by walking UP from a source file — Sheriff and most editors — so that `@rr/*` path aliases and TS options are found from anywhere in the repo. Real compilation always happens through a project-level tsconfig (apps/shell/tsconfig.app.json, packages/*/tsconfig*.json, services/*/tsconfig*.json).",
+  "extends": "./tsconfig.base.json",
+  "files": [],
+  "include": []
+}

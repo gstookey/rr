@@ -1,0 +1,20 @@
+{
+  "name": "@rr/common",
+  "version": "0.0.0",
+  "private": true,
+  "description": "The published language: Zod 4 schemas + inferred types, one module per bounded context. Imported by the client AND the BFF; imports nothing internal.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "zod": "4.5.4"
+  }
+}

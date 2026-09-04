@@ -1,0 +1,17 @@
+{
+  "name": "@rr/mock-oidc",
+  "version": "0.0.0",
+  "private": true,
+  "description": "A tiny in-repo OIDC provider stub for CI-side proofs (AW-D7). Same claim shape as the Keycloak mappers; dev keys only; NEVER a production identity provider.",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "start": "tsx src/main.ts"
+  },
+  "dependencies": {
+    "express": "5.2.1",
+    "jose": "6.2.11"
+  }
+}

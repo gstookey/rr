@@ -1,0 +1,19 @@
+{
+  "//": "The EMIT config. `@rr/common` is the one package consumed both ways: the browser build compiles it from source through the tsconfig.base.json path alias, and Node (the gateway, scripts/seed.mjs) resolves it through the workspace symlink to this dist. moduleResolution is 'nodenext' here so compile-time and runtime resolution agree for the Node consumers.",
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "lib": ["ES2022"],
+    "types": ["node"],
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "importHelpers": false,
+    "paths": {}
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/**/*.spec.ts"]
+}
