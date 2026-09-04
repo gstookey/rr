@@ -8,7 +8,7 @@ updated: 2026-09-03
 
 # RR Context Wiki Index
 
-**Created:** 2026-08-25 | **Last updated:** 2026-09-03 (Milestone 1 rehearsed end to end — both hops in the real layout, 17→19 pool verified offline; ADR-005. Same day: DDD-ARCH-01 packet + architecture research corpus R1..R7 under `platform/research/`)
+**Created:** 2026-08-25 | **Last updated:** 2026-09-03 (post-merge closeout — the whole v17→v22 ladder is on `main`; `first-app-hop-01` field kit cut. Earlier the same day: ADR-005, DDD-ARCH-01 packet + architecture research corpus R1..R7 under `platform/research/`)
 
 Navigation spine for the RR context system. Update when a page is added, removed, or changes meaningfully.
 
@@ -42,7 +42,9 @@ Navigation spine for the RR context system. Update when a page is added, removed
 - Packets:
 - [**DDD-ARCH-01 — Desert Island system architecture, front-end-first** (`ddd-arch-01`)](../design/packets/ddd-arch-01-design-packet/README.md) — `exploratory`, opened 2026-09-03 as a Graham-initiated side-quest beside Milestone 1
   - [Decision Register v0 (DA-D1..DA-D10)](../design/packets/ddd-arch-01-design-packet/decision_register_v0.md) · [Tier Model Exploration v0](../design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md) · [**Context Boundary Test v0**](../design/packets/ddd-arch-01-design-packet/context_boundary_test_v0.md) · [**Needs Catalog v0** (event-storming aid)](../design/packets/ddd-arch-01-design-packet/needs_catalog_v0.md) · [Diagramming Approach v0](../design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md) · diagrams [01 context](../design/packets/ddd-arch-01-design-packet/diagrams/01-context-desert-island.md) · [02 tier model](../design/packets/ddd-arch-01-design-packet/diagrams/02-tier-model-building-floors.md)
-- [Legacy Shell Bundle (`legacy-shell-bundle-01`)](../design/packets/legacy-shell-bundle-01-design-packet/README.md) — `exploratory`; **Milestone 1 rehearsed end to end 2026-09-03; 17→19 pool verified offline**
+- [**First App Hop — the field kit for the first REAL application upgrade** (`first-app-hop-01`)](../design/packets/first-app-hop-01-design-packet/README.md) — `exploratory`, cut 2026-09-03; the current lane. Written for a person on RHEL 9 with no agent, no internet and change control
+  - [Pre-flight Checklist v0](../design/packets/first-app-hop-01-design-packet/preflight_checklist_v0.md) · [Field Hop Procedure v1](../design/packets/first-app-hop-01-design-packet/field_hop_procedure_v1.md) · [Field Notes Template v0](../design/packets/first-app-hop-01-design-packet/field_notes_template_v0.md)
+- [Legacy Shell Bundle (`legacy-shell-bundle-01`)](../design/packets/legacy-shell-bundle-01-design-packet/README.md) — `exploratory`; **the whole v17→v22 ladder rehearsed 2026-09-03; 17→22 pool (2,102 tarballs / 355.6 MB) verified offline**
   - [Monorepo Hop Procedure v2](../design/packets/legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v2.md) — **the island procedure** · [v17→v19 Bundle Manifest v2](../design/packets/legacy-shell-bundle-01-design-packet/v17_to_v19_bundle_manifest_v2.md) · [Offline Verification Transcript v2](../design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v2.md) · [Nexus Upload Instructions v1](../design/packets/legacy-shell-bundle-01-design-packet/nexus_upload_instructions_v1.md)
   - Superseded evidence trail: runbook delta v1 · bundle manifest v1 · transcript v1 (in the same packet dir)
   - Shells themselves: [`legacy-shells/README.md`](../../legacy-shells/README.md) — two approximated island monorepos **standing at Angular 19.2.25**, full v17→v19 lock history

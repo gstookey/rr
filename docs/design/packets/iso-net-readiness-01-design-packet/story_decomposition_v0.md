@@ -9,13 +9,16 @@ updated: 2026-09-03
 
 # Story Decomposition v0
 
-**Created:** 2026-08-25 | **Last updated:** 2026-09-03 (S-07 delivered in full via legacy-shell-bundle-01)
+**Created:** 2026-08-25 | **Last updated:** 2026-09-03 (post-merge closeout — seven delivered stories closed on the board)
 
 > **Delivery status (2026-08-28):** S-14 and S-15 are **delivered** (both Milestone 1 hops rehearsed — packets `ng-hop-01`, `ng-hop-02`); S-07 and S-08 are **delivered as measurements**, with their seeding/checksum halves still open under S-05. Everything else stands as written.
 >
 > **Delivery status (2026-09-03):** **S-07 is now delivered in full** pending PR #28 — estate-shaped bundle (1,311 tarballs / 143.4 MB) with SHA256 manifest, reproducible build script, **seeding procedure rehearsed** (npm-publish loop) and the whole 17→18 journey **verified offline** against the bundle-seeded registry (packet `legacy-shell-bundle-01`). This also discharges a large piece of S-16's spirit (the offline path is no longer unrehearsed) and de-risks S-05 (the seeding/checksum mechanics now exist and are written down); both remain open as stories. S-08's estate-shaped rerun (18→19 on the shells) is the proposed next docket item.
 >
 > **Delivery status (2026-09-03, second round — Milestone 1 rehearsed end to end):** PR #28 merged; Graham corrected the source package.jsons and answered the supply-chain questions; the shells were reconciled and re-walked 17→18→19 in the **real layout** (angular.json in `packages/client/` — `monorepo_hop_procedure_v2.md`). **S-15 and S-08 are delivered estate-shaped**: both Milestone-1 hops rehearsed on the real dependency surface, and the **17→19 master pool** (1,495 tarballs / 191.3 MB, per-rung slices) is SHA-manifested, offline-verified, and rebuildable by a tested lock-driven script (Graham's chosen delivery vehicle). **Graham additionally directed rehearsing the ladder to v22 — now DELIVERED** (S-09/S-10/S-11, own PR): all three stretch rungs rehearsed on both shells (Angular 22.1.5 / TS 6.0.3 on Node 22.23.2), 17→22 pool offline-verified, per-rung effort signals recorded. Capability evidence for DR-04, not its closure.
+>
+>
+> **Board status 2026-09-03 (post-merge closeout):** **seven stories are CLOSED** on the board — S-07, S-08, S-09, S-10, S-11, S-14, S-15 — each carrying a closure comment naming what delivered it. Closing records a Graham-gated closeout; it is never itself a decision (rule 16). **S-16 deliberately stays open**: the offline *bundle* path is rehearsed, but the *day-one runbook* it names is not, and the two are not the same claim. Fifteen issues remain open (5 epics + 10 stories). **DR-04 stays open** despite S-09/S-10/S-11 being delivered — those bundles are capability evidence for that decision, not its closure.
 >
 > **Board status: created, not activated.** Graham approved standing up the epic structure and cutting these stories on 2026-08-26, so they now exist as issues. **None has been moved to In Progress.** Creating a story is not activating it (operating-contract rule 16) — activation still needs Graham's explicit go-ahead, per story.
 

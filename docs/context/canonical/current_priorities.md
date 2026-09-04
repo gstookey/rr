@@ -9,7 +9,7 @@ updated: 2026-09-03
 
 # Current Priorities
 
-**Created:** 2026-08-25 | **Last updated:** 2026-09-03 (Axium; DDD-ARCH-01 side-quest opened beside Milestone 1; legacy shells + 17→18 hop earlier the same day)
+**Created:** 2026-08-25 | **Last updated:** 2026-09-03 (Axium; post-merge closeout — the ladder arc is on `main`; the lane is now the first REAL hop, `first-app-hop-01`)
 
 Compact operating context. Readable in one window. Standing truth lives in `docs/CURRENT_STATE.md`; this page is *sequencing and intent*.
 
@@ -30,13 +30,18 @@ Why this and not the v22 stretch: v19 is a **hard floor** (it discharges the Ang
 
 1. **Get the questionnaires out — one per island.** Their lead time is not ours to control, and most other planning is partly speculative until they return. Legacy Island's variant carries the highest-value questions ([S-01](https://github.com/gstookey/rr/issues/8)); Desert Island's assumes nothing despite being greenfield ([S-02](https://github.com/gstookey/rr/issues/9)).
 2. **Collect the legacy estate inventory** ([S-03](https://github.com/gstookey/rr/issues/10)). The largest body of work in the programme has no size at all until this returns, and it is the evidence that decides DR-04 (v19 floor vs v22 stretch).
-3. **~~Rehearse the hops~~ Milestone 1 is rehearsed end to end** — both hops estate-shaped on the real layout, shells standing at v19, the 17→19 pool offline-verified and rebuildable by a tested script (`legacy-shell-bundle-01`, 2026-09-03). What this lane needs next: Graham merges the Milestone-1 PR, checks what Nexus already serves (`--delta-from` — probably shrinks the port to ~87 MB), and guinea-pigs the first real app. **The stretch ladder to v22 is rehearsed** (S-09/S-10/S-11 — its own PR; per-rung effort evidence recorded for DR-04, which stays deliberately open until the inventory + first real hop). Next build item when Graham wants it: the specced "golden" bundle (greenfield seed + convergence target under ADR-005).
+3. **~~Rehearse the hops~~ The whole ladder is rehearsed and merged — the lane is now the first REAL hop.** All five rungs (17→22) are proven estate-shaped on the shells, the 17→22 pool is offline-verified and rebuildable by a tested script, and every per-rung effort signal is recorded (`legacy-shell-bundle-01`, PRs #29/#31). **This side has run out of things that meaningfully reduce risk.** What remains is measurement that only the island can produce, in this order:
+   1. **Graham runs `--delta-from` against a Nexus package listing** — turns the 355.6 MB pool into a measured payload (the estate builds on the island today, so Nexus probably already serves the whole v17 surface; if so Milestone 1 ports as ~87 MB of hop deltas).
+   2. **Graham guinea-pigs the first real application, 17→18→19**, using the field kit in [`first-app-hop-01`](../../design/packets/first-app-hop-01-design-packet/README.md). The shells carry the estate's dependency surface but almost no source, so the migrations' *code-editing* behaviour is still entirely unmeasured. **This is the single highest-value action available to the programme.**
+   3. What comes back seeds the S-03 inventory bands and is the evidence DR-04 has been waiting for.
+
+   Deliberately **not** built next: the specced "golden" bundle. It is capability for DR-04, and under ADR-005 its pins are bound to legacy's achieved ceiling — both unknown until step 2 returns. Available on request the moment Graham wants the option in hand.
 4. **Close the cheap decisions** ([S-04](https://github.com/gstookey/rr/issues/11)): C-001's layout half (DR-05) and whether to ship the npm cache alongside the registry seed (DR-09). Graham's judgement only; free now, expensive once scaffolding starts.
 5. **The Node patch bump is independent and probably the cheapest risk reduction available** ([S-13](https://github.com/gstookey/rr/issues/20)): 22.15 → 22.23.2 is a patch inside the same LTS line, needs no Angular work, and closes the Node half of the security driver on its own.
 
 ## Side-quest lane — DDD-ARCH-01 (design only, beside Milestone 1)
 
-Opened 2026-09-03 at Graham's direction as a Context Enrichment Side-Quest: the Desert Island system architecture, **front-end first**. It does not displace Milestone 1 and activates nothing. What it needs next, in order: (1) Graham reads the seven briefs in `docs/context/platform/research/` — **pass 2 (modernized to the 2026 signal-first idiom) supersedes his pass-1 read of R7**; start with R7 §4.2/§4.2a/§7, then R1, R4; (2) rulings round 1 on `ddd-arch-01-design-packet/decision_register_v0.md` (DA-D1..D6, D8); (3) the harvested questions Q1..Q12 ride along with the island questionnaires (S-01/S-02) — **Q1, "what are the bounded contexts?", is the gate past which the packet cannot proceed without domain input**; (4) lexicon pass + redraw of the C4 set after the rulings.
+Opened 2026-09-03 at Graham's direction as a Context Enrichment Side-Quest: the Desert Island system architecture, **front-end first**. It does not displace Milestone 1 and activates nothing. What it needs next, in order: (1) Graham reads the seven briefs in `docs/context/platform/research/` — **pass 2 (modernized to the 2026 signal-first idiom) supersedes his pass-1 read of R7**; start with R7 §4.2/§4.2a/§7, then R1, R4; (2) rulings round 1 on `ddd-arch-01-design-packet/decision_register_v0.md` (DA-D1..D6, D8) — pass 2 merged as PR #32; (3) the harvested questions Q1..Q12 ride along with the island questionnaires (S-01/S-02) — **Q1, "what are the bounded contexts?", is the gate past which the packet cannot proceed without domain input**; (4) lexicon pass + redraw of the C4 set after the rulings.
 
 ## Planning surface
 
@@ -50,7 +55,7 @@ Board: **Project Road Runner Roadmap** — `https://github.com/users/gstookey/pr
 | [EP-04](https://github.com/gstookey/rr/issues/6) | Desert Island — environment stand-up |
 | [EP-05](https://github.com/gstookey/rr/issues/7) | Desert Island — new system scaffolds & stack docs (placeholder, no stories) |
 
-Seventeen stories (S-01..S-17) exist as sub-issues. **None has been activated** — creation is not activation (operating-contract rule 16); moving a story to In Progress still needs Graham's explicit approval. Story detail and sequence: `docs/design/packets/iso-net-readiness-01-design-packet/story_decomposition_v0.md`. Open decisions: `.../decision_register_v0.md` (DR-01..DR-10).
+Seventeen stories (S-01..S-17) exist as sub-issues. **Seven are closed** as of the 2026-09-03 closeout — S-07, S-08, S-09, S-10, S-11, S-14, S-15, all delivered by PRs #25/#26/#28/#29/#31. Closing records a Graham-gated closeout; it is never itself a decision (rule 16). **Of the ten still open, none has been activated** — creation is not activation; moving a story to In Progress still needs Graham's explicit approval. Story detail and sequence: `docs/design/packets/iso-net-readiness-01-design-packet/story_decomposition_v0.md`. Open decisions: `.../decision_register_v0.md` (DR-01..DR-10).
 
 ## How we got here (historical, 2026-08-25)
 
