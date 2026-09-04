@@ -125,13 +125,14 @@ Capture the gate's exit code **directly** (`bash scripts/local-ci.sh > /tmp/ci.l
 | The stub and the realm have not drifted | `realm-parity.spec.ts`: 7 personas, 3 mappers, the user-profile declaration and the confidential client, all compared field by field |
 | The seed validates — and the validator is not a no-op | `node scripts/seed.mjs` → 137 marked rows OK; with one level changed to `TOP-SECRET` it fails and names the row |
 | Realm + compose parse and are pinned | `node scripts/check-infra.mjs` |
+| The compose file is valid **against the Compose spec** — not merely valid YAML | `docker compose -f infra/docker-compose.yml config` → **EXIT=0**. This command validates without a daemon, so it *is* available here; `check-infra.mjs` now runs it opportunistically and says "skipped" out loud when the CLI is absent |
 | The docs corpus is intact | `node scripts/corpus-graph.mjs check` → OK |
 
 ### NOT verified here (rule 11)
 
 | Thing | Why | Who verifies it |
 |---|---|---|
-| `docker compose up` | **No Docker daemon in the authoring environment.** A `docker` binary exists; nothing to talk to. | Graham, first run |
+| `docker compose up` | **No Docker daemon in the authoring environment** — the CLI (29.3.1) and the compose plugin (v5.1.1) are installed, but `docker info` reports `dial unix /var/run/docker.sock: no such file or directory`. So the file is spec-valid and nothing has ever been *started* from it. | Graham, first run |
 | The **Keycloak realm import** | same. The realm's export *shape* was checked field-by-field against the Keycloak project's own `testsuite/.../testrealm.json` on the `release/26.7` branch, and the three protocol-mapper provider IDs and the user-profile config key were read from 26.7 source — but Keycloak has never been asked to accept this file | Graham, first run |
 | The **`quay.io/keycloak/keycloak:26.7.3` tag exists** | quay.io is egress-blocked (`CONNECT tunnel failed, 403`). The version was confirmed as the latest 26.7.x from Maven Central's `org.keycloak:keycloak-core` metadata (`lastUpdated 2026-08-31`), which Keycloak publishes in lockstep with the image — an inference, not a check | Graham, first `docker compose pull` |
 | The Keycloak **healthcheck** command | it is the community `/dev/tcp` recipe against the management port; the image carries no `curl`. Nothing in S0 gates on Keycloak's health, so the fallback is simply to delete the block | Graham, first run |

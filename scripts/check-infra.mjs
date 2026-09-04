@@ -14,7 +14,11 @@
  *  - the realm JSON parses and contains no key Keycloak's Jackson mapper would
  *    reject (that mapper does NOT disable FAIL_ON_UNKNOWN_PROPERTIES, so a stray
  *    "$comment" aborts the import);
- *  - the compose mount and the realm file agree about where the realm lives.
+ *  - the compose mount and the realm file agree about where the realm lives;
+ *  - and, IF the docker CLI is installed, that `docker compose config` accepts
+ *    the file. That command validates against the Compose spec and needs no
+ *    daemon, so it is available even here — a strictly stronger check than a
+ *    YAML parse. It is skipped, loudly, when the CLI is absent.
  *
  * What it does NOT assert, and never claims to: that Keycloak starts, that the
  * realm imports, that the init SQL runs, or that RLS behaves.
@@ -22,6 +26,7 @@
 import { readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { spawnSync } from 'node:child_process';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const COMPOSE = join(ROOT, 'infra', 'docker-compose.yml');
@@ -92,11 +97,25 @@ if (realm) {
   }
 }
 
+// ---- compose, against the Compose spec (no daemon needed) ------------------
+let composeSchema = 'skipped (no docker CLI on PATH)';
+const probe = spawnSync('docker', ['--version'], { encoding: 'utf8' });
+if (probe.status === 0) {
+  const validated = spawnSync('docker', ['compose', '-f', COMPOSE, 'config'], { encoding: 'utf8' });
+  if (validated.status === 0) {
+    composeSchema = 'valid (`docker compose config`)';
+  } else {
+    fail(`docker compose config rejected the file:\n${(validated.stderr || validated.stdout || '').trim()}`);
+    composeSchema = 'INVALID';
+  }
+}
+
 if (failures.length > 0) {
   console.error(`infra: ${failures.length} problem(s)`);
   for (const f of failures) console.error(`  ${f}`);
   process.exit(1);
 }
 
-console.log(`infra: compose pins ${images.join(', ')}; realm '${realm.realm}' parses with ${realm.users.length} personas.`);
+console.log(`infra: compose pins ${images.join(', ')}; schema ${composeSchema}.`);
+console.log(`infra: realm '${realm.realm}' parses with ${realm.users.length} personas, no unknown-property keys.`);
 console.log('infra: NOT VERIFIED HERE — no Docker daemon. `docker compose up` and the realm import are Graham-side.');
