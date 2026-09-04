@@ -28,10 +28,16 @@ export const config: SheriffConfig = {
 
   modules: {
     // ---- L1 · The Building — the unclassified base (scope:platform) --------
-    'apps/shell/src': ['type:app', 'scope:platform'],
-    'services/gateway/src': ['type:app', 'scope:platform'],
+    // The Building COMPOSES the Floors (the shell lazy-loads them; the gateway
+    // mounts one router per Floor), so the two apps carry `scope:building`,
+    // which may reach every Floor. The base library below stays
+    // `scope:platform` and may reach none — that asymmetry is the doctrine.
+    'apps/shell/src': ['type:app', 'scope:building'],
+    'services/gateway/src': ['type:app', 'scope:building'],
 
-    'packages/common/src': ['type:util', 'scope:platform'],
+    // The published language may import NOTHING (R7 §4.2: `common` "may
+    // import: nothing"). Its own tag makes that a rule instead of a habit.
+    'packages/common/src': ['type:common', 'scope:platform'],
     'packages/mock-oidc/src': ['type:util', 'scope:platform'],
 
     'packages/ui/src': ['type:ui', 'scope:platform'],
@@ -64,21 +70,25 @@ export const config: SheriffConfig = {
     // ---- axis 1 · type (the layering) -------------------------------------
     // `type:app` is deliberately ABSENT from every value below: nothing
     // imports the shell, and nothing imports the gateway.
-    'type:app': ['type:feature', 'type:ui', 'type:data-access', 'type:domain', 'type:util'],
-    'type:feature': ['type:feature', 'type:ui', 'type:data-access', 'type:domain', 'type:util'],
+    'type:app': ['type:feature', 'type:ui', 'type:data-access', 'type:domain', 'type:util', 'type:common'],
+    'type:feature': ['type:feature', 'type:ui', 'type:data-access', 'type:domain', 'type:util', 'type:common'],
     // A `ui` library may not reach for data. This is the rule that keeps a
     // presentational package from quietly becoming a screen.
-    'type:ui': ['type:ui', 'type:domain', 'type:util'],
-    'type:data-access': ['type:data-access', 'type:domain', 'type:util'],
+    'type:ui': ['type:ui', 'type:domain', 'type:util', 'type:common'],
+    'type:data-access': ['type:data-access', 'type:domain', 'type:util', 'type:common'],
     // A domain library sees its own scope's domain/util and the published
     // language — nothing else, in either direction.
-    'type:domain': ['type:domain', 'type:util'],
-    'type:util': ['type:util'],
+    'type:domain': ['type:domain', 'type:util', 'type:common'],
+    'type:util': ['type:util', 'type:common'],
+    // The published language is a leaf: nothing internal, ever.
+    'type:common': noDependencies,
 
     // ---- axis 2 · scope (the Floors) --------------------------------------
     // The base never reaches INTO a Floor. This is the rule that keeps the
     // unclassified base library unclassified.
     'scope:platform': 'scope:platform',
+    // The Building composes every Floor; only the two apps carry this tag.
+    'scope:building': ['scope:building', 'scope:platform', 'scope:invent', 'scope:command', 'scope:vigilance', 'scope:front-desk'],
     // A Floor sees itself and the base. Never another Floor: Command consumes
     // Invent's events through @rr/common, never Invent's types.
     'scope:invent': ['scope:invent', 'scope:platform'],

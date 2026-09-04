@@ -6,10 +6,11 @@ coordinate resolves to a real facility, port, base or airfield. Names are
 invented; the two manufacturers, the B2B operator, the product lines and the
 serial prefixes exist nowhere.
 """
+from pathlib import Path
 import json, os, random
 
 random.seed(20260904)  # deterministic: the same seed must produce the same file
-ROOT = "/home/user/rr/services/gateway/seed"
+ROOT = str(Path(__file__).resolve().parent.parent / "services" / "gateway" / "seed")
 os.makedirs(ROOT, exist_ok=True)
 
 # An invented land-only box: interior farmland, roughly 120 km across.

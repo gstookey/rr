@@ -265,3 +265,14 @@ Floor libraries are matched by **placeholder patterns** (`packages/<scope>-domai
 4. **Node `engines`: floor or exact?** §2 argues the floor. If ADR-005 is read at its strictest (exact parity, everything), this becomes an exact pin — which is an ADR-005 consequence, not a build decision.
 5. **AstroUXDS is not wired**, by design (S1, after Cadence's mockup pass). Its availability on the island is still an open supply-chain question.
 6. The **`docker compose` stack is unrun**. The first person to run it should record what happened here, in this file.
+
+## Doctrine consulted (contract rule 17) and the review corrections
+
+**Doctrine consulted:** `practical_picture_v0.md` §1/§3/§6 · `tier_model_exploration_v0.md` §4 · `ddd_ui_ux_brief_v0.md` §4.2 · research README §Currency contract · `technology_stack.md` · ADR-004 · `monorepo_hop_procedure_v2.md` (its 21→22 tsconfig findings predicted both TS 6 failures) · the ACME packet (README, domain model, register AW-D6/7/8/11/12, slice decomposition S0).
+
+**Corrections applied by Axium after Verin's review (2026-09-04), before the PR was surfaced:**
+- `apps/shell` and `services/gateway` now carry `scope:building`, which may reach every Floor — the Building composes the Floors (lazy `loadChildren`, one router per Floor); the base library stays `scope:platform` and may reach none. Without this the shell could never have loaded a Floor in S1.
+- `@rr/common` now carries `type:common` with `noDependencies`: the published language provably imports nothing internal (R7 §4.2). `type:util → type:util` no longer covers it.
+- Dead root scripts removed/repointed (`build:node`; `typecheck` now runs the workspace scripts the gate runs). `scripts/gen-seed.py` no longer hardcodes an absolute path.
+- Docs: the S0 proof line says seven personas (the domain model's count); Cy's `TTW/NWL` compartment is explained by the new fork AW-D13 (compartment subsumption, Axium lean A); AW-D14 records the Telemetry/observability lexicon question raised by the architecture description.
+- Fence proof re-run after the config change: rejects the cross-Floor import, accepts the restored tree; `eslint .` clean; full gate re-run below.

@@ -62,7 +62,7 @@ Navigation spine for the RR context system. Update when a page is added, removed
 # Governance
 
 - [Governance README](governance/README.md)
-- [Decisions (ADR index)](governance/decisions/README.md) — ADR-001 context system · ADR-002 merge gate · ADR-003 board/doctrine · ADR-004 npm · **ADR-005 island stack sync (2026-09-03)**
+- [Decisions (ADR index)](governance/decisions/README.md) — ADR-001 context system · ADR-002 merge gate · ADR-003 board/doctrine · ADR-004 npm · **ADR-005 island stack sync (2026-09-03)** · **ADR-006 repo layout apps/packages/services (2026-09-04)**
 - [Contradiction Register](governance/contradictions/register.md) — C-001..C-009
 - [Meta](governance/meta/README.md)
 

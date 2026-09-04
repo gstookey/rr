@@ -18,10 +18,9 @@
     "start": "ng serve shell",
     "build": "ng build shell",
     "build:libs": "ng build ui && ng build auth && ng build config && ng build markings && ng build windows && ng build store-features",
-    "build:node": "tsc -b tsconfig.build.json",
     "test": "ng test shell --watch=false && npm run test --workspaces --if-present",
     "lint": "eslint .",
-    "typecheck": "tsc -b --force tsconfig.typecheck.json",
+    "typecheck": "npm run typecheck --workspaces --if-present",
     "sheriff": "sheriff verify apps/shell/src/main.ts",
     "gate": "bash scripts/local-ci.sh",
     "seed:validate": "node scripts/seed.mjs --validate"
