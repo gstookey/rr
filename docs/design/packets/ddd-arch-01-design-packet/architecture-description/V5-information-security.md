@@ -21,6 +21,8 @@ updated: 2026-09-03
 
 Answer three questions that are usually answered by hand-waving: **where does the subject come from**, **which layer guarantees what**, and **who may never be trusted**. This is the view the security and accreditation authority reads first, and the view that makes "each user group has data privileges unique to it" (Graham's requirement 3) into a mechanism rather than an intention.
 
+> **Ruled 2026-09-04 (AW-D13):** compartment dominance uses **prefix subsumption** — a subject holding `TTW` satisfies a row marked `TTW/NWL`; a subject holding only `TTW/NWL` does not satisfy a row marked `TTW`. This is the predicate the RLS policy and the per-subscriber event filter implement.
+
 ## Stakeholders and concerns framed
 
 | Stakeholder | Concern this view answers |

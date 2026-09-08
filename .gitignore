@@ -1,5 +1,5 @@
 # Angular specific
-/dist/
+dist/
 /out-tsc/
 /tmp/
 /coverage/
@@ -8,9 +8,12 @@
 .angular/
 
 # Node modules and dependency files
-/node_modules/
-/package-lock.json
+node_modules/
 /yarn.lock
+# NOTE (2026-09-04, ACME-WORKSHOP-01 S0): the ROOT package-lock.json is now
+# COMMITTED. It was ignored while this repo held no application code; the RR
+# npm workspace lives at the root from S0 on and `npm ci` — the local gate's
+# first step and the island's only reproducible install — requires it.
 
 # Environment files
 /.env
@@ -35,3 +38,6 @@ __MACOSX/
 # installs and build output are not.
 legacy-shells/**/node_modules/
 legacy-shells/**/dist/
+
+# ACME Workshop runtime artefacts (S0) — docker-compose bind volumes
+/infra/**/data/

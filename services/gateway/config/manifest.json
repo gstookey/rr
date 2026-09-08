@@ -1,0 +1,31 @@
+{
+  "$comment": "S0 PLACEHOLDER. Served verbatim by GET /api/config. In S1 this becomes a per-group selection driven by the session's claims — which is the mechanism that makes S4's proof (a third manufacturer with zero code changes) possible. Everything here is fictional.",
+  "schemaVersion": "acme-config/0",
+  "building": {
+    "name": "ACME Workshop",
+    "host": "acme-workshop.example"
+  },
+  "markingVocabulary": {
+    "$comment": "Invented. @rr/markings renders FROM this; it carries no vocabulary of its own.",
+    "levels": [
+      { "id": "OPEN", "rank": 0, "label": "OPEN", "colour": "--rr-marking-open" },
+      { "id": "PARTNER", "rank": 1, "label": "PARTNER", "colour": "--rr-marking-partner" },
+      { "id": "INTERNAL", "rank": 2, "label": "INTERNAL", "colour": "--rr-marking-internal" },
+      { "id": "RESTRICTED", "rank": 3, "label": "RESTRICTED", "colour": "--rr-marking-restricted" }
+    ],
+    "compartments": [
+      { "id": "TTW", "label": "Tick-Tock Watchworks" },
+      { "id": "MER", "label": "Meridian Wearables" },
+      { "id": "TTW/NWL", "label": "Northwind Logistics (operator of TTW devices)" }
+    ],
+    "bannerSeparator": "//"
+  },
+  "floors": [
+    { "id": "front-desk", "label": "Front Desk", "route": "/front-desk", "slice": "S7" },
+    { "id": "invent", "label": "Invent", "route": "/invent", "slice": "S2" },
+    { "id": "command", "label": "Command", "route": "/command", "slice": "S6" },
+    { "id": "vigilance", "label": "Vigilance", "route": "/vigilance", "slice": "S3" }
+  ],
+  "capabilities": [],
+  "theme": { "tokens": {} }
+}
