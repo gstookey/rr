@@ -9,9 +9,18 @@ updated: 2026-09-03
 
 # Current Priorities
 
-**Created:** 2026-08-25 | **Last updated:** 2026-09-03 (Axium; post-merge closeout — the ladder arc is on `main`; the lane is now the first REAL hop, `first-app-hop-01`)
+**Created:** 2026-08-25 | **Last updated:** 2026-09-08 (Axium; sync pass — ACME S0 merged and ruled a learning instrument (ADR-007); the two lanes now run in separate sessions)
 
 Compact operating context. Readable in one window. Standing truth lives in `docs/CURRENT_STATE.md`; this page is *sequencing and intent*.
+
+## Two lanes, two sessions (Graham, 2026-09-08)
+
+| Lane | Session | Scope |
+|---|---|---|
+| **Legacy Island / Angular upgrade** | the Axium thread | Milestone 1, the hop ladder, transfer bundles, `first-app-hop-01`, EP-01/02/03 |
+| **ACME Workshop / Desert Island** | a separate session | DDD-ARCH-01, EP-06 (S-18..S-25), the architecture description, EP-04/05 |
+
+Shared doctrine — this page, `CURRENT_STATE.md`, `two_island_model.md`, the decisions folder, the contradiction register — is common ground. Either lane may correct shared doctrine; **neither rewrites the other's packets** ([ADR-007](../governance/decisions/ADR-007-acme-workshop-is-a-learning-instrument.md) §Lane ownership).
 
 ## Goals (from AGENTS.md)
 
@@ -35,13 +44,17 @@ Why this and not the v22 stretch: v19 is a **hard floor** (it discharges the Ang
    2. **Graham guinea-pigs the first real application, 17→18→19**, using the field kit in [`first-app-hop-01`](../../design/packets/first-app-hop-01-design-packet/README.md). The shells carry the estate's dependency surface but almost no source, so the migrations' *code-editing* behaviour is still entirely unmeasured. **This is the single highest-value action available to the programme.**
    3. What comes back seeds the S-03 inventory bands and is the evidence DR-04 has been waiting for.
 
+   **Status 2026-09-08: unchanged and correctly idle.** PRs #33 and #35 landed the field kit and the execution plan on 2026-09-04; nothing on this side has moved since, because nothing on this side *can*. The lane resumes when field notes come back.
+
    Deliberately **not** built next: the specced "golden" bundle. It is capability for DR-04, and under ADR-005 its pins are bound to legacy's achieved ceiling — both unknown until step 2 returns. Available on request the moment Graham wants the option in hand.
-4. **Close the cheap decisions** ([S-04](https://github.com/gstookey/rr/issues/11)): C-001's layout half (DR-05) and whether to ship the npm cache alongside the registry seed (DR-09). Graham's judgement only; free now, expensive once scaffolding starts.
+4. **~~Close the cheap decisions~~ half done** ([S-04](https://github.com/gstookey/rr/issues/11)): C-001's layout half (DR-05) is **closed — ADR-006**, `apps/` + `packages/` + `services/`. Still open: whether to ship the npm cache alongside the registry seed (DR-09). Graham's judgement only.
 5. **The Node patch bump is independent and probably the cheapest risk reduction available** ([S-13](https://github.com/gstookey/rr/issues/20)): 22.15 → 22.23.2 is a patch inside the same LTS line, needs no Angular work, and closes the Node half of the security driver on its own.
 
 ## Side-quest lane — DDD-ARCH-01 (design only, beside Milestone 1)
 
-Opened 2026-09-03 at Graham's direction as a Context Enrichment Side-Quest: the Desert Island system architecture, **front-end first**. It does not displace Milestone 1 and activates nothing. What it needs next, in order: (1) Graham reads the seven briefs in `docs/context/platform/research/` — **pass 2 (modernized to the 2026 signal-first idiom) supersedes his pass-1 read of R7**; start with R7 §4.2/§4.2a/§7, then R1, R4; (2) rulings round 1 on `ddd-arch-01-design-packet/decision_register_v0.md` (DA-D1..D6, D8) — pass 2 merged as PR #32; (3) the harvested questions Q1..Q12 ride along with the island questionnaires (S-01/S-02) — **Q1, "what are the bounded contexts?", is the gate past which the packet cannot proceed without domain input**; (4) lexicon pass + redraw of the C4 set after the rulings. **(5) ACME Workshop (EP-06):** the walking-skeleton reference app is cut (`acme-workshop-01-design-packet/`, S-18..S-25) — **S-18 (Foundation) activated 2026-09-03, built and validated 2026-09-04, PR pending**; next slice S-19 (the Building) starts on Graham's word after S-18 merges. Two rulings requested: AW-D13 compartment subsumption, AW-D14 the Telemetry lexicon.
+Opened 2026-09-03 at Graham's direction as a Context Enrichment Side-Quest: the Desert Island system architecture, **front-end first**. It does not displace Milestone 1 and activates nothing. What it needs next, in order: (1) Graham reads the seven briefs in `docs/context/platform/research/` — **pass 2 (modernized to the 2026 signal-first idiom) supersedes his pass-1 read of R7**; start with R7 §4.2/§4.2a/§7, then R1, R4; (2) rulings round 1 on `ddd-arch-01-design-packet/decision_register_v0.md` (DA-D1..D6, D8) — pass 2 merged as PR #32; (3) the harvested questions Q1..Q12 ride along with the island questionnaires (S-01/S-02) — **Q1, "what are the bounded contexts?", is the gate past which the packet cannot proceed without domain input**; (4) lexicon pass + redraw of the C4 set after the rulings. **(5) ACME Workshop (EP-06):** **S-18 (Foundation) merged 2026-09-08 (PR #47)** and closed on the board; S-19 (the Building) is next and unactivated. AW-D13 and AW-D14 ruled 2026-09-04.
+
+**Ruled 2026-09-08 — ACME Workshop is a learning instrument, not the Desert Island scaffold ([ADR-007](../governance/decisions/ADR-007-acme-workshop-is-a-learning-instrument.md)).** It exists so Graham can see how DDD principles play out in real Angular code, and informs design only. Consequences: **C-008 is resolved for this lane** (the "do not scaffold on v22 pins" rule was aimed at the *real* LOE-8 scaffold, which it still binds — ACME ships nothing and is never re-pinned), and **DR-04's stakes return to their prior level** — it decides how far the legacy estate goes and therefore what Desert Island launches on, and nothing more. This lane is now run from a separate session.
 
 ## Planning surface
 
@@ -56,7 +69,7 @@ Board: **Project Road Runner Roadmap** — `https://github.com/users/gstookey/pr
 | [EP-05](https://github.com/gstookey/rr/issues/7) | Desert Island — new system scaffolds & stack docs (placeholder, no stories) |
 | [EP-06](https://github.com/gstookey/rr/issues/37) | **ACME Workshop — the DDD reference application** (stories S-18..S-25, #38–#45; created 2026-09-03 with Graham's approval; **none activated**) |
 
-Seventeen stories (S-01..S-17) exist as sub-issues. **Seven are closed** as of the 2026-09-03 closeout — S-07, S-08, S-09, S-10, S-11, S-14, S-15, all delivered by PRs #25/#26/#28/#29/#31. Closing records a Graham-gated closeout; it is never itself a decision (rule 16). **Of the ten still open, none has been activated** — creation is not activation; moving a story to In Progress still needs Graham's explicit approval. Story detail and sequence: `docs/design/packets/iso-net-readiness-01-design-packet/story_decomposition_v0.md`. Open decisions: `.../decision_register_v0.md` (DR-01..DR-10).
+Twenty-five stories (S-01..S-25) exist as sub-issues. **Eight are closed** — the seven below plus **S-18** (ACME Foundation, closed 2026-09-08). Of the original seventeen, **seven are closed** as of the 2026-09-03 closeout — S-07, S-08, S-09, S-10, S-11, S-14, S-15, all delivered by PRs #25/#26/#28/#29/#31. Closing records a Graham-gated closeout; it is never itself a decision (rule 16). **Of the ten still open, none has been activated** — creation is not activation; moving a story to In Progress still needs Graham's explicit approval. Story detail and sequence: `docs/design/packets/iso-net-readiness-01-design-packet/story_decomposition_v0.md`. Open decisions: `.../decision_register_v0.md` (DR-01..DR-10).
 
 ## How we got here (historical, 2026-08-25)
 

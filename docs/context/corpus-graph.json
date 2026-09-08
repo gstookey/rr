@@ -211,6 +211,30 @@
       "governs": []
     },
     {
+      "path": "docs/context/governance/decisions/ADR-006-repo-layout-apps-packages-services.md",
+      "title": "ADR-006 — Repository layout: apps/ + packages/ + services/ npm workspaces (closes C-001)",
+      "status": "accepted",
+      "areas": [
+        "monorepo",
+        "technology-stack",
+        "process-governance",
+        "system-architecture"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/governance/decisions/ADR-007-acme-workshop-is-a-learning-instrument.md",
+      "title": "ADR-007 — ACME Workshop is a learning instrument, not the Desert Island scaffold",
+      "status": "accepted",
+      "areas": [
+        "system-architecture",
+        "planning",
+        "domain-driven-design",
+        "technology-stack"
+      ],
+      "governs": []
+    },
+    {
       "path": "docs/context/governance/decisions/README.md",
       "title": "Decision Records (ADRs)",
       "status": "active",
@@ -371,6 +395,17 @@
         "system-architecture",
         "domain-driven-design",
         "frontend"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/context/platform/research/architecture_quantum_brief_v0.md",
+      "title": "R8 — The Architecture Quantum (Ford / Richards) and how it relates to DDD's bounded context — research brief v0",
+      "status": "exploratory",
+      "areas": [
+        "research",
+        "system-architecture",
+        "domain-driven-design"
       ],
       "governs": []
     },
@@ -959,6 +994,71 @@
       "governs": []
     },
     {
+      "path": "docs/design/packets/acme-workshop-01-design-packet/README.md",
+      "title": "ACME-WORKSHOP-01 — the DDD reference application (walking skeleton of the DDD-ARCH-01 architecture)",
+      "status": "exploratory",
+      "areas": [
+        "system-architecture",
+        "domain-driven-design",
+        "frontend",
+        "backend",
+        "identity",
+        "access-control",
+        "planning"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/acme-workshop-01-design-packet/decision_register_v0.md",
+      "title": "ACME-WORKSHOP-01 — Decision Register v0 (AW-D1..AW-D12)",
+      "status": "exploratory",
+      "areas": [
+        "system-architecture",
+        "domain-driven-design",
+        "frontend",
+        "backend",
+        "planning"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/acme-workshop-01-design-packet/domain_model_v0.md",
+      "title": "ACME-WORKSHOP-01 — Domain model v0 (contexts, aggregates, events, read models, tenants, lexicon)",
+      "status": "exploratory",
+      "areas": [
+        "domain-driven-design",
+        "system-architecture",
+        "backend",
+        "frontend"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/acme-workshop-01-design-packet/s0_foundation_notes_v0.md",
+      "title": "ACME-WORKSHOP-01 — S0 Foundation notes v0 (what was built, every pin, what is and is not verified, and the ACME lexicon card)",
+      "status": "exploratory",
+      "areas": [
+        "dev-environment",
+        "technology-stack",
+        "monorepo",
+        "frontend",
+        "backend"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/acme-workshop-01-design-packet/slice_decomposition_v0.md",
+      "title": "ACME-WORKSHOP-01 — Slice decomposition v0 (S0..S7 = board stories, each with its proof)",
+      "status": "exploratory",
+      "areas": [
+        "planning",
+        "system-architecture",
+        "frontend",
+        "backend"
+      ],
+      "governs": []
+    },
+    {
       "path": "docs/design/packets/ddd-arch-01-design-packet/README.md",
       "title": "DDD-ARCH-01 — Desert Island system architecture, front-end-first (packet charter)",
       "status": "exploratory",
@@ -967,6 +1067,148 @@
         "domain-driven-design",
         "frontend",
         "planning"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "title": "ACME Workshop Architecture Description (AD) — ISO/IEC/IEEE 42010-structured, DDD-ARCH-01",
+      "status": "exploratory",
+      "areas": [
+        "system-architecture",
+        "domain-driven-design",
+        "frontend",
+        "backend",
+        "security",
+        "identity",
+        "access-control",
+        "cross-domain",
+        "messaging"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V1-system-context.md",
+      "title": "AD View V1 — System Context (C4 level 1), ACME Workshop in its environment",
+      "status": "exploratory",
+      "areas": [
+        "system-architecture",
+        "domain-driven-design",
+        "security",
+        "cross-domain"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V2-container.md",
+      "title": "AD View V2 — Container (C4 level 2), ACME Workshop deployable units",
+      "status": "exploratory",
+      "areas": [
+        "system-architecture",
+        "frontend",
+        "backend",
+        "identity",
+        "messaging"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V3-context-map.md",
+      "title": "AD View V3 — Domain / Context Map (DDD strategic view) for ACME Workshop",
+      "status": "exploratory",
+      "areas": [
+        "domain-driven-design",
+        "system-architecture",
+        "messaging",
+        "identity"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V4-runtime-dynamic.md",
+      "title": "AD View V4 — Runtime / Dynamic, one screen and one cross-context event",
+      "status": "exploratory",
+      "areas": [
+        "system-architecture",
+        "backend",
+        "frontend",
+        "security",
+        "messaging"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V5-information-security.md",
+      "title": "AD View V5 — Information & Security, labels, subjects and enforcement points",
+      "status": "exploratory",
+      "areas": [
+        "security",
+        "identity",
+        "access-control",
+        "cross-domain",
+        "system-architecture"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V6-development-module.md",
+      "title": "AD View V6 — Development / Module, the monorepo and its fences",
+      "status": "exploratory",
+      "areas": [
+        "monorepo",
+        "frontend",
+        "backend",
+        "domain-driven-design",
+        "system-architecture"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V7-deployment-evolution.md",
+      "title": "AD View V7 — Deployment & Evolution, quanta, islands, security domains and fitness functions",
+      "status": "exploratory",
+      "areas": [
+        "system-architecture",
+        "isolated-network",
+        "cross-domain",
+        "security",
+        "dev-environment"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V8-tier-information-architecture.md",
+      "title": "AD View V8 — Tier / Information-Architecture, Building · Floors · Suites · Offices with the group overlay",
+      "status": "exploratory",
+      "areas": [
+        "frontend",
+        "ux",
+        "domain-driven-design",
+        "system-architecture",
+        "access-control"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/diagrams-manifest.md",
+      "title": "AD diagrams manifest — the eight views, their notations, statuses and redraw triggers",
+      "status": "exploratory",
+      "areas": [
+        "system-architecture",
+        "planning",
+        "process-governance"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/ddd-arch-01-design-packet/context_boundary_test_v0.md",
+      "title": "DDD-ARCH-01 — The Context Boundary Test v0 (when a customer's need is a different domain)",
+      "status": "exploratory",
+      "areas": [
+        "system-architecture",
+        "domain-driven-design",
+        "frontend",
+        "process-governance"
       ],
       "governs": []
     },
@@ -996,7 +1238,7 @@
     {
       "path": "docs/design/packets/ddd-arch-01-design-packet/diagrams/01-context-desert-island.md",
       "title": "DDD-ARCH-01 diagram 01 — System context, Desert Island (C4 L1)",
-      "status": "exploratory",
+      "status": "superseded",
       "areas": [
         "system-architecture",
         "domain-driven-design"
@@ -1006,11 +1248,37 @@
     {
       "path": "docs/design/packets/ddd-arch-01-design-packet/diagrams/02-tier-model-building-floors.md",
       "title": "DDD-ARCH-01 diagram 02 — Tier model, Building / Floors / Suites / Offices with the group overlay",
-      "status": "exploratory",
+      "status": "superseded",
       "areas": [
         "system-architecture",
         "frontend",
         "domain-driven-design"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/ddd-arch-01-design-packet/needs_catalog_v0.md",
+      "title": "DDD-ARCH-01 — Needs Catalog v0 (an event-storming aid for identifying and naming capabilities)",
+      "status": "exploratory",
+      "areas": [
+        "system-architecture",
+        "domain-driven-design",
+        "process-governance"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md",
+      "title": "DDD-ARCH-01 — The Practical Picture v0 (what the architecture looks like in a repo, at runtime, and in build order)",
+      "status": "exploratory",
+      "areas": [
+        "system-architecture",
+        "domain-driven-design",
+        "frontend",
+        "backend",
+        "identity",
+        "access-control",
+        "technology-stack"
       ],
       "governs": []
     },
@@ -1505,6 +1773,51 @@
       "type": "related"
     },
     {
+      "from": "docs/context/governance/decisions/ADR-006-repo-layout-apps-packages-services.md",
+      "to": "docs/context/governance/contradictions/register.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/governance/decisions/ADR-006-repo-layout-apps-packages-services.md",
+      "to": "docs/context/governance/decisions/ADR-004-package-manager-npm.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/governance/decisions/ADR-006-repo-layout-apps-packages-services.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/governance/decisions/ADR-006-repo-layout-apps-packages-services.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/governance/decisions/ADR-007-acme-workshop-is-a-learning-instrument.md",
+      "to": "docs/context/canonical/two_island_model.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/governance/decisions/ADR-007-acme-workshop-is-a-learning-instrument.md",
+      "to": "docs/context/governance/contradictions/register.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/governance/decisions/ADR-007-acme-workshop-is-a-learning-instrument.md",
+      "to": "docs/context/governance/decisions/ADR-005-island-stack-sync.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/governance/decisions/ADR-007-acme-workshop-is-a-learning-instrument.md",
+      "to": "docs/context/governance/decisions/ADR-006-repo-layout-apps-packages-services.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/governance/decisions/ADR-007-acme-workshop-is-a-learning-instrument.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/README.md",
+      "type": "related"
+    },
+    {
       "from": "docs/context/governance/meta/assistant_role.md",
       "to": "docs/context/team/agents/systems-engineer/axium_role.md",
       "type": "related"
@@ -1552,6 +1865,31 @@
     {
       "from": "docs/context/platform/research/README.md",
       "to": "docs/context/platform/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/architecture_quantum_brief_v0.md",
+      "to": "docs/context/platform/research/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/architecture_quantum_brief_v0.md",
+      "to": "docs/context/platform/research/ddd_domain_driven_design_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/architecture_quantum_brief_v0.md",
+      "to": "docs/context/platform/research/ddd_ui_ux_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/architecture_quantum_brief_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/context_boundary_test_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/context/platform/research/architecture_quantum_brief_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
       "type": "related"
     },
     {
@@ -1735,6 +2073,146 @@
       "type": "related"
     },
     {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/README.md",
+      "to": "docs/context/canonical/technology_stack.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/README.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/README.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/domain_model_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/README.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/slice_decomposition_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/context_boundary_test_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/decision_register_v0.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/decision_register_v0.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/slice_decomposition_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/decision_register_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/domain_model_v0.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/domain_model_v0.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/slice_decomposition_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/domain_model_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/context_boundary_test_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/domain_model_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/needs_catalog_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/s0_foundation_notes_v0.md",
+      "to": "docs/context/canonical/technology_stack.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/s0_foundation_notes_v0.md",
+      "to": "docs/context/governance/decisions/ADR-004-package-manager-npm.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/s0_foundation_notes_v0.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/s0_foundation_notes_v0.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/s0_foundation_notes_v0.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/domain_model_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/s0_foundation_notes_v0.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/slice_decomposition_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/s0_foundation_notes_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/s0_foundation_notes_v0.md",
+      "to": "docs/design/packets/legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v2.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/slice_decomposition_v0.md",
+      "to": "docs/context/team/agents/planning_surface_workflow.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/slice_decomposition_v0.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/slice_decomposition_v0.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/slice_decomposition_v0.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/domain_model_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/acme-workshop-01-design-packet/slice_decomposition_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md",
+      "type": "related"
+    },
+    {
       "from": "docs/design/packets/ddd-arch-01-design-packet/README.md",
       "to": "docs/context/canonical/technology_stack.md",
       "type": "related"
@@ -1751,6 +2229,16 @@
     },
     {
       "from": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/context_boundary_test_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/README.md",
       "to": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
       "type": "related"
     },
@@ -1761,6 +2249,576 @@
     },
     {
       "from": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/needs_catalog_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "to": "docs/context/canonical/technology_stack.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "to": "docs/context/canonical/two_island_model.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "to": "docs/context/platform/research/architecture_quantum_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/domain_model_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/slice_decomposition_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V1-system-context.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V2-container.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V3-context-map.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V4-runtime-dynamic.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V5-information-security.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V6-development-module.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V7-deployment-evolution.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V8-tier-information-architecture.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/diagrams-manifest.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/context_boundary_test_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V1-system-context.md",
+      "to": "docs/context/canonical/two_island_model.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V1-system-context.md",
+      "to": "docs/context/platform/research/cross_domain_solution_integration_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V1-system-context.md",
+      "to": "docs/context/platform/research/data_fabric_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V1-system-context.md",
+      "to": "docs/context/platform/research/event_message_bus_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V1-system-context.md",
+      "to": "docs/context/platform/research/identity_stores_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V1-system-context.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V1-system-context.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V1-system-context.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/domain_model_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V1-system-context.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V1-system-context.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V1-system-context.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/diagrams/01-context-desert-island.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V2-container.md",
+      "to": "docs/context/canonical/technology_stack.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V2-container.md",
+      "to": "docs/context/platform/research/architecture_quantum_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V2-container.md",
+      "to": "docs/context/platform/research/ddd_ui_ux_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V2-container.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V2-container.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V2-container.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/slice_decomposition_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V2-container.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V2-container.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V1-system-context.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V2-container.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V2-container.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V3-context-map.md",
+      "to": "docs/context/platform/research/architecture_quantum_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V3-context-map.md",
+      "to": "docs/context/platform/research/ddd_domain_driven_design_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V3-context-map.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V3-context-map.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/domain_model_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V3-context-map.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V3-context-map.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V2-container.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V3-context-map.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/context_boundary_test_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V3-context-map.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/needs_catalog_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V4-runtime-dynamic.md",
+      "to": "docs/context/platform/research/event_message_bus_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V4-runtime-dynamic.md",
+      "to": "docs/context/platform/research/identity_stores_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V4-runtime-dynamic.md",
+      "to": "docs/context/platform/research/mac_stores_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V4-runtime-dynamic.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/domain_model_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V4-runtime-dynamic.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/slice_decomposition_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V4-runtime-dynamic.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V4-runtime-dynamic.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V2-container.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V4-runtime-dynamic.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V5-information-security.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V4-runtime-dynamic.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V5-information-security.md",
+      "to": "docs/context/platform/research/cross_domain_solution_integration_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V5-information-security.md",
+      "to": "docs/context/platform/research/data_fabric_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V5-information-security.md",
+      "to": "docs/context/platform/research/identity_stores_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V5-information-security.md",
+      "to": "docs/context/platform/research/mac_stores_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V5-information-security.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V5-information-security.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/domain_model_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V5-information-security.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V5-information-security.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V4-runtime-dynamic.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V5-information-security.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V6-development-module.md",
+      "to": "docs/context/canonical/technology_stack.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V6-development-module.md",
+      "to": "docs/context/platform/research/architecture_quantum_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V6-development-module.md",
+      "to": "docs/context/platform/research/ddd_ui_ux_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V6-development-module.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/slice_decomposition_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V6-development-module.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V6-development-module.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V3-context-map.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V6-development-module.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V6-development-module.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V7-deployment-evolution.md",
+      "to": "docs/context/canonical/isolated_network_constraints.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V7-deployment-evolution.md",
+      "to": "docs/context/canonical/two_island_model.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V7-deployment-evolution.md",
+      "to": "docs/context/platform/research/architecture_quantum_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V7-deployment-evolution.md",
+      "to": "docs/context/platform/research/cross_domain_solution_integration_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V7-deployment-evolution.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/slice_decomposition_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V7-deployment-evolution.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V7-deployment-evolution.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V2-container.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V7-deployment-evolution.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V6-development-module.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V7-deployment-evolution.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V8-tier-information-architecture.md",
+      "to": "docs/context/platform/research/ddd_ui_ux_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V8-tier-information-architecture.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V8-tier-information-architecture.md",
+      "to": "docs/design/packets/acme-workshop-01-design-packet/domain_model_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V8-tier-information-architecture.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V8-tier-information-architecture.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V3-context-map.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V8-tier-information-architecture.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/context_boundary_test_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V8-tier-information-architecture.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/diagrams/02-tier-model-building-floors.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V8-tier-information-architecture.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/diagrams-manifest.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/diagrams-manifest.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V1-system-context.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/diagrams-manifest.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V2-container.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/diagrams-manifest.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V3-context-map.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/diagrams-manifest.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V4-runtime-dynamic.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/diagrams-manifest.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V5-information-security.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/diagrams-manifest.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V6-development-module.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/diagrams-manifest.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V7-deployment-evolution.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/diagrams-manifest.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V8-tier-information-architecture.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/diagrams-manifest.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/diagrams-manifest.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/diagrams/01-context-desert-island.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/diagrams-manifest.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/diagrams/02-tier-model-building-floors.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/context_boundary_test_v0.md",
+      "to": "docs/context/platform/research/ddd_domain_driven_design_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/context_boundary_test_v0.md",
+      "to": "docs/context/platform/research/ddd_ui_ux_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/context_boundary_test_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/context_boundary_test_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/context_boundary_test_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/needs_catalog_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/context_boundary_test_v0.md",
       "to": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
       "type": "related"
     },
@@ -1801,6 +2859,11 @@
     },
     {
       "from": "docs/design/packets/ddd-arch-01-design-packet/diagrams/01-context-desert-island.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V1-system-context.md",
+      "type": "superseded_by"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/diagrams/01-context-desert-island.md",
       "to": "docs/design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md",
       "type": "related"
     },
@@ -1808,6 +2871,11 @@
       "from": "docs/design/packets/ddd-arch-01-design-packet/diagrams/01-context-desert-island.md",
       "to": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
       "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/diagrams/02-tier-model-building-floors.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/architecture-description/V8-tier-information-architecture.md",
+      "type": "superseded_by"
     },
     {
       "from": "docs/design/packets/ddd-arch-01-design-packet/diagrams/02-tier-model-building-floors.md",
@@ -1821,6 +2889,71 @@
     },
     {
       "from": "docs/design/packets/ddd-arch-01-design-packet/diagrams/02-tier-model-building-floors.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/needs_catalog_v0.md",
+      "to": "docs/context/platform/research/ddd_domain_driven_design_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/needs_catalog_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/needs_catalog_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/context_boundary_test_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/needs_catalog_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md",
+      "to": "docs/context/canonical/technology_stack.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md",
+      "to": "docs/context/platform/research/ddd_ui_ux_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md",
+      "to": "docs/context/platform/research/event_message_bus_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md",
+      "to": "docs/context/platform/research/identity_stores_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md",
+      "to": "docs/context/platform/research/mac_stores_brief_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/README.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/context_boundary_test_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md",
+      "to": "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md",
       "to": "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md",
       "type": "related"
     },

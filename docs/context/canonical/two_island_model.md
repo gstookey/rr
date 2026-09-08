@@ -9,7 +9,7 @@ updated: 2026-09-03
 
 # The Two-Island Model — Legacy Island and Desert Island
 
-**Created:** 2026-08-26 | **Last updated:** 2026-09-03 (ADR-005: islands must match)
+**Created:** 2026-08-26 | **Last updated:** 2026-09-08 (ADR-007 re-scopes the v22-scaffold prohibition to the real Desert Island scaffold; earlier: ADR-005, islands must match)
 
 ## Why this page exists
 
@@ -103,7 +103,8 @@ The v22 question is deliberately **not** folded into Milestone 1. Bundles for th
 Desert Island's stack target is **whatever Legacy Island actually achieves**, resolved when DR-04 closes. Until then:
 
 - Desert Island planning proceeds on the **intended** stack in `technology_stack.md` (Angular 22 line), because it is greenfield and re-pinning downward is cheap while nothing is built.
-- **That is a working assumption with an explicit expiration:** it holds only until DR-04 closes. If Legacy Island stops at v19, Desert Island's pins move to the v19 line and `technology_stack.md` is re-pinned. Nothing should be scaffolded on the v22 pins before then ([S-17](https://github.com/gstookey/rr/issues/24)).
+- **That is a working assumption with an explicit expiration:** it holds only until DR-04 closes. If Legacy Island stops at v19, Desert Island's pins move to the v19 line and `technology_stack.md` is re-pinned. **The real Desert Island scaffold (LOE-8 / EP-05) must not be pinned before then** ([S-17](https://github.com/gstookey/rr/issues/24)) — its version is Legacy Island's achieved ceiling, not a free choice.
+- **This prohibition does NOT reach ACME Workshop** ([ADR-007](../governance/decisions/ADR-007-acme-workshop-is-a-learning-instrument.md), 2026-09-08). ACME is a **learning instrument** built to study how the DDD architecture behaves in real Angular code; it ships nothing and is never re-pinned, so committing it to the current framework costs the programme nothing whichever way DR-04 goes. Only the artifact that actually deploys is bound by stack sync.
 - The version-pinned manifest is per-target, not universal: expect **two** pin sets to exist simultaneously for a period — Legacy Island's achieved target and Desert Island's build target — and expect them to converge, not to have been identical all along.
 
 ## What is now known vs. still unknown

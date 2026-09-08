@@ -3,12 +3,12 @@ schema: corpus-doc/v1
 status: active
 title: Decision Records (ADRs)
 areas: [process-governance]
-updated: 2026-08-25
+updated: 2026-09-08
 ---
 
 # Decision Records
 
-**Created:** 2026-08-25
+**Created:** 2026-08-25 | **Last updated:** 2026-09-08 (ADR-006 and ADR-007 listed — ADR-006 had been merged without an index row)
 
 | ADR | Title | Status | Date |
 |---|---|---|---|
@@ -17,5 +17,7 @@ updated: 2026-08-25
 | [ADR-003](ADR-003-board-is-status-docs-are-doctrine.md) | GitHub Project board is status; the docs corpus is doctrine | accepted | 2026-08-25 |
 | [ADR-004](ADR-004-package-manager-npm.md) | Package manager: npm (workspaces) for RR and the legacy estate | accepted | 2026-08-25 |
 | [ADR-005](ADR-005-island-stack-sync.md) | The two islands' stacks must match (closes DR-10) | accepted | 2026-09-03 |
+| [ADR-006](ADR-006-repo-layout-apps-packages-services.md) | Repository layout: `apps/` + `packages/` + `services/` npm workspaces (closes C-001's layout half, DR-05) | accepted | 2026-09-04 |
+| [ADR-007](ADR-007-acme-workshop-is-a-learning-instrument.md) | ACME Workshop is a learning instrument, not the Desert Island scaffold (resolves C-008) | accepted | 2026-09-08 |
 
 Format: Context / Decision / Consequences / Expiration (if the decision is a temporary constraint, say when it expires — AGENTS.md "What to avoid").
