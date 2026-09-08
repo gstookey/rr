@@ -57,6 +57,13 @@ const adasBuilding: AppConfig = {
   markingVocabulary: vocabulary,
 };
 
+// NON-VACUITY, PINNED. `fay` (the CLAIM she holds) and `faysBuilding` (the
+// MANIFEST she is served) are two independent inputs, and the S1 proof depends
+// on them staying independent: the manifest decides what the Lobby lists, the
+// claim decides what the router will match. Editing them in lockstep would
+// silently collapse two mechanisms into one and the absence tests below would
+// keep passing while proving half as much. Verified 2026-09-08 by granting fay
+// the `invent` claim alone: exactly one spec turned red — the route-guard one.
 const fay: Me = {
   sub: 'mock|fay',
   username: 'fay',

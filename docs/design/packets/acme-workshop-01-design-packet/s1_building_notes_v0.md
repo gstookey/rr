@@ -98,7 +98,7 @@ apps/shell/src/app/
 
 **The fence improved the design.** `mac_stores_brief_v0` §6 sketches a `MarkingVocabularyStore` *inside* `@rr/markings`, with its own `httpResource`. Sheriff forbids it: `packages/markings/src` is `type:ui`, and `type:ui` may not import `type:data-access`. So the vocabulary arrives as a signal `input()` and the renderer is pure with respect to its data — strictly better than the sketch, and the fence found it rather than a reviewer. **The brief's sketch should be read as intent, not as a blueprint.**
 
-**`@rr/config` does not import `@rr/auth`.** §4.2a's sketch shows a store injecting the identity store to key its URL. Here that would have made `ng build config` depend on `dist/packages/auth` (see below), and the workspace typechecks before it builds libraries. The two stores stay independent and the shell composes them: it decides "signed out" from `/api/me` and never renders the config error in that case. **Cost, stated plainly:** a signed-out visitor causes one unrendered 401 on `/api/config`.
+**`@rr/config` does not import `@rr/auth`.** §4.2a's sketch shows a store injecting the identity store to key its URL. Here that would have made `ng build config` depend on `dist/packages/auth` (see below), and the workspace typechecks before it builds libraries. The two stores stay independent and the shell composes them: it decides "signed out" from `/api/me` and never renders the config error in that case. **Cost, restated after review (Verin, 2026-09-08):** an earlier draft of this line claimed a signed-out visitor causes one unrendered 401 on `/api/config`. On inspection that request does not happen in the routed app — `DomainConfigStore` is injected only by `BuildingComponent`, `LobbyPage` and `FloorLayoutComponent`, all of which sit behind the blocking `canActivateSignedIn()` guard, and Angular does not construct a component whose `CanActivate` redirects. The 401 is an artifact of `building.spec.ts`'s `enter()` helper, which injects the store unconditionally before navigating. The real behaviour is better than the note described; the note was wrong, not the code.
 
 **ng-packagr and the published language.** An Angular library's `rootDir` is its own `src`, so `@rr/common` must not resolve to SOURCE inside a lib build (TS6059). `markings`/`auth`/`config` now override that one path to `packages/common/dist/index.d.ts` — the same compile-time/runtime agreement the Node services make (S0 deviation 6). **This makes `local-ci.sh`'s ordering load-bearing**: "build `@rr/common`" must stay before "typecheck".
 
@@ -143,6 +143,14 @@ apps/shell/src/app/
 | **RP-initiated logout** | the mock provider advertises no `end_session_endpoint`, so that branch is written and untested | Graham, against Keycloak |
 | **Any real screen against the mockups** | no visual comparison was made; the mockups were read as a specification and implemented from the markup | Cadence / Graham |
 | Anything about **the island** | unchanged and untested by S1 | later |
+
+
+9. **`FloorEntry.arrivesIn` is a sixth field beyond AW-D15's ruled shape.** The ruling names `{ id, label, route, blurb, order }`; the schema adds an optional `arrivesIn` carrying the slice a Floor's content lands in (`"S2"`, `"S3"`), which the placeholder Floors render. It is **study scaffolding, not a product field** — it exists so a reader of the running Building can see which rooms are deliberately empty and when they fill. Recorded here because it expands a ruled schema, and a later reader should not have to diff the schema against the register to discover it. It leaves with the placeholders.
+
+## Two seams this slice leaves for later (recorded, not defects)
+
+- **`@rr/ui` currently hosts `acme-theme.scss`.** The package is tagged `type:ui, scope:platform` — the unclassified base — and its components correctly reference only `--rr-*` slots (AW-D22 holds at the component level). But a *named tenant's* theme file living inside the package described as the unclassified base is a seam **S4** must address explicitly when a second tenant's theme has to coexist: move the theme out, or parameterise it. Not a leak today with one tenant; a design question the moment there are two. (Verin, 2026-09-08.)
+- **`tsconfig.base.json` was reformatted wholesale** by the library-generation schematic (every existing `paths` entry re-wrapped, not only the four new ones). The diff content is correct; the churn is tooling noise, not a hidden change. Noted so a future `git blame` on that file is not misread.
 
 ## 9. How to run it
 
