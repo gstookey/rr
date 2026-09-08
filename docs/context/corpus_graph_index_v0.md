@@ -108,7 +108,7 @@ Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-
 - Agents — Repo-Side Fleet — `docs/context/team/agents/README.md` — areas: agent-fleet, process-governance — governs: 0 — related: 2
 - Design — `docs/design/README.md` — areas: brand-design, planning — governs: 0 — related: 1
 
-## exploratory (53)
+## exploratory (54)
 
 - R8 — The Architecture Quantum (Ford / Richards) and how it relates to DDD's bounded context — research brief v0 — `docs/context/platform/research/architecture_quantum_brief_v0.md` — areas: research, system-architecture, domain-driven-design — governs: 0 — related: 5
 - R6 — Cross Domain Solution (CDS) integration research brief v0 — `docs/context/platform/research/cross_domain_solution_integration_brief_v0.md` — areas: research, cross-domain, security, system-architecture — governs: 0 — related: 4
@@ -146,7 +146,8 @@ Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-
 - Island Execution Plan v1 — porting the full ladder and guinea-pigging the first app — `docs/design/packets/first-app-hop-01-design-packet/island_execution_plan_v1.md` — areas: frontend, isolated-network, dev-environment, planning — governs: 0 — related: 4
 - Pre-flight Checklist v0 — before the first real application hop — `docs/design/packets/first-app-hop-01-design-packet/preflight_checklist_v0.md` — areas: frontend, isolated-network, dev-environment, risk-gates — governs: 0 — related: 3
 - Isolated-Network Readiness Packet (iso-net-readiness-01) — `docs/design/packets/iso-net-readiness-01-design-packet/README.md` — areas: isolated-network, dev-environment, technology-stack, planning — governs: 0 — related: 6
-- Day One on the Island — Runbook v0 (draft, unrehearsed) — `docs/design/packets/iso-net-readiness-01-design-packet/day_one_on_the_island_runbook_v0.md` — areas: isolated-network, dev-environment, technology-stack — governs: 0 — related: 3
+- Day One on the Island — Runbook v1 (rehearsed 2026-09-08) — `docs/design/packets/iso-net-readiness-01-design-packet/day_one_on_the_island_runbook_v1.md` — areas: isolated-network, dev-environment, technology-stack — governs: 0 — related: 4
+- Day-One Rehearsal Transcript v1 — the runbook executed on a network-disabled machine (S-16) — `docs/design/packets/iso-net-readiness-01-design-packet/day_one_rehearsal_transcript_v1.md` — areas: isolated-network, dev-environment, risk-gates, technology-stack — governs: 0 — related: 4
 - Decision Register v0 — Isolated-Network Readiness — `docs/design/packets/iso-net-readiness-01-design-packet/decision_register_v0.md` — areas: isolated-network, technology-stack, process-governance, planning — governs: 0 — related: 5
 - Island Questionnaire v0 — Isolated-Network Readiness — `docs/design/packets/iso-net-readiness-01-design-packet/island_questionnaire_v0.md` — areas: isolated-network, dev-environment, security, planning — governs: 0 — related: 3
 - Legacy Estate Inventory Template v0 — Angular v17 applications — `docs/design/packets/iso-net-readiness-01-design-packet/legacy_estate_inventory_template_v0.md` — areas: isolated-network, frontend, dev-environment, planning — governs: 0 — related: 3
@@ -171,10 +172,11 @@ Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-
 ## historical (0)
 
 
-## superseded (5)
+## superseded (6)
 
 - DDD-ARCH-01 diagram 01 — System context, Desert Island (C4 L1) — `docs/design/packets/ddd-arch-01-design-packet/diagrams/01-context-desert-island.md` — areas: system-architecture, domain-driven-design — governs: 0 — related: 2
 - DDD-ARCH-01 diagram 02 — Tier model, Building / Floors / Suites / Offices with the group overlay — `docs/design/packets/ddd-arch-01-design-packet/diagrams/02-tier-model-building-floors.md` — areas: system-architecture, frontend, domain-driven-design — governs: 0 — related: 3
+- Day One on the Island — Runbook v0 (draft, unrehearsed) — `docs/design/packets/iso-net-readiness-01-design-packet/day_one_on_the_island_runbook_v0.md` — areas: isolated-network, dev-environment, technology-stack — governs: 0 — related: 3
 - Offline Verification Transcript v1 — the bundle proven with zero internet — `docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v1.md` — areas: isolated-network, dev-environment, risk-gates — governs: 0 — related: 2
 - v17→v18 Monorepo Runbook Delta v1 — what changes on estate-shaped apps — `docs/design/packets/legacy-shell-bundle-01-design-packet/v17_to_v18_monorepo_runbook_delta_v1.md` — areas: frontend, isolated-network, dev-environment — governs: 0 — related: 2
 - v18 Transfer Bundle Manifest v1 — measured from the legacy shells, verified offline — `docs/design/packets/legacy-shell-bundle-01-design-packet/v18_transfer_bundle_manifest_v1.md` — areas: isolated-network, technology-stack, dev-environment — governs: 0 — related: 3

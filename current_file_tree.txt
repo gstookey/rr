@@ -1,4 +1,4 @@
-File tree as of Tue Sep  8 18:59:05 UTC 2026
+File tree as of Tue Sep  8 19:46:54 UTC 2026
 .
 |-- AGENTS.md
 |-- README.md
@@ -232,6 +232,8 @@ File tree as of Tue Sep  8 18:59:05 UTC 2026
 |   |       |-- iso-net-readiness-01-design-packet
 |   |       |   |-- README.md
 |   |       |   |-- day_one_on_the_island_runbook_v0.md
+|   |       |   |-- day_one_on_the_island_runbook_v1.md
+|   |       |   |-- day_one_rehearsal_transcript_v1.md
 |   |       |   |-- decision_register_v0.md
 |   |       |   |-- island_questionnaire_v0.md
 |   |       |   |-- legacy_estate_inventory_template_v0.md
@@ -641,4 +643,4 @@ File tree as of Tue Sep  8 18:59:05 UTC 2026
 |-- tsconfig.base.json
 `-- tsconfig.json
 
-156 directories, 485 files
+156 directories, 487 files
