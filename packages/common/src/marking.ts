@@ -69,9 +69,18 @@ export function dominates(subject: SubjectClearance, row: Marking): boolean {
  * Compartments are joined with `, ` and NOT with `/`, because a B2B
  * sub-compartment already contains a `/` — `TTW/TTW/NWL` would be unreadable and,
  * worse, re-parseable into the wrong set.
+ *
+ * The separator defaults to ACME's `//` and is overridable because the served
+ * marking vocabulary carries it (`MarkingVocabulary.bannerSeparator`): a second
+ * island spells its banners differently, and the UI must never compose the
+ * string itself — it passes the vocabulary's separator to this one function.
+ *
+ * Note that the string is built from the marking's canonical IDs, never from the
+ * vocabulary's human labels. `TTW` is the compartment; "Tick-Tock Watchworks" is
+ * a tenant's name, and a tenant's name does not belong in a banner.
  */
-export function markingBanner(marking: Marking): string {
+export function markingBanner(marking: Marking, separator = '//'): string {
   return marking.compartments.length === 0
     ? marking.level
-    : `${marking.level}//${[...marking.compartments].sort().join(', ')}`;
+    : `${marking.level}${separator}${[...marking.compartments].sort().join(', ')}`;
 }

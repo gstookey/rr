@@ -1,0 +1,15 @@
+@let r = rendering();
+
+@if (r === undefined) {
+  <!-- Reserved, and deliberately blank. Nothing marking-shaped paints before the
+       vocabulary resolves: a banner that guesses and corrects itself a beat
+       later has already shown the reader a marking that was not true. -->
+  <span class="rr-banner__pending">{{ pendingLabel() }}</span>
+} @else if (r.resolved) {
+  <span class="rr-banner__swatch" aria-hidden="true"></span>
+  <span class="rr-banner__text" [title]="r.description">{{ r.banner }}</span>
+} @else {
+  <span class="rr-banner__swatch" aria-hidden="true"></span>
+  <span class="rr-banner__text">{{ r.label }}</span>
+  <span class="rr-banner__raw">{{ r.raw }}</span>
+}

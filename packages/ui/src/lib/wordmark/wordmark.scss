@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rr-wordmark__name {
+  font-size: var(--rr-text-lg);
+  letter-spacing: 0.02em;
+}
+
+.rr-wordmark__lead {
+  font-weight: 650;
+}
+
+.rr-wordmark__rest {
+  font-weight: 300;
+}
+
+.rr-wordmark__tier {
+  font-size: var(--rr-text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rr-ink-muted);
+}
