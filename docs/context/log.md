@@ -2,6 +2,20 @@
 
 <!-- Convention (BS-14): one `# [YYYY-MM-DD] <type> | <title>` header level, newest-first — prepend below this comment. Types: ingest | decision | milestone | lint | governance | session -->
 
+# [2026-09-08] decision | Bundle artifacts renamed to `angular-upgrade-bundle-*` (compliance)
+
+Graham, for compliance: delivered bundle files and folders are named for **what they are** — an Angular upgrade bundle — rather than for the project or the estate. He had already hand-renamed the six rung outputs he built; this makes the tooling produce the new names so a rebuild cannot drift back.
+
+`legacy-shells/tools/build-transfer-bundle.sh` now carries a single `BUNDLE_PREFIX="angular-upgrade-bundle"` and emits `angular-upgrade-bundle-v17-v22-<date>` (cumulative), `angular-upgrade-bundle-<rung>-<date>` (per-rung) and `angular-upgrade-bundle-delta-<date>`. All three modes were renamed, not just the rung mode Graham named — leaving the other two project-prefixed would have defeated the purpose; flagged to him as a judgement call rather than assumed silently.
+
+**The load-bearing detail, which the verification caught twice.** The bundle name is also the **directory inside the `.tar`** (`tar -cf <name>.tar <name>/`), so renaming an archive after the fact does **not** change what extraction produces on the island. Recorded in the script comment, in the upload instructions, and given to Graham as a repack command for the artifacts he already renamed by hand.
+
+**And the one the first verification pass found:** `nexus_upload_instructions_v1.md` is **copied into every bundle** as `NEXUS_UPLOAD.md`, and it quoted the old names — so the rename was incomplete until that doc changed. Fixed, along with `island_execution_plan_v1.md`. A second pass then found the retired prefix surviving in the *note explaining the rename*, inside a doc that ships to the island; reworded so the string does not travel at all. Both were only visible because the change was tested against real output rather than reasoned about.
+
+**Tested end to end, not asserted:** the script was run against the surviving 2,102-tarball pool (`--rung 17-18`, `--rung 21-22`, `--cumulative`). Pool verified `pool matches committed SHA256SUMS`; slices produced 184 / 45.1 MB, 206 / 72.1 MB and 2,102 / 355.6 MB exactly as before; `sha256sum -c` clean inside each bundle; `tar -tf` shows only the new prefix; and a `grep -r` over a produced bundle now finds no trace of the old one. **Checksums and contents are unchanged — this is a naming change only.**
+
+**Deliberately not changed:** `v18_transfer_bundle_manifest_v1.md` records "Delivered to Graham as `rr-legacy-v17-v18hop-bundle-2026-09-03.tar`" — a historical record of an actual delivery, in a `superseded` doc. Editing it would falsify the trail. Flagged to Graham rather than quietly rewritten.
+
 # [2026-09-08] milestone | S-16 DELIVERED — the day-one runbook rehearsed offline; four defects, v1 supersedes v0; DR-09 closed by necessity
 
 Graham activated S-16. The runbook was executed **verbatim** in a loopback-only network namespace against a purpose-built 119 MB bundle (Node 24.20.0 LTS installer, 619 tarballs / 91 MB, verdaccio 6.10.3, a fresh Angular 22.1 / TS 6.0 app with its lock and no `node_modules`), starting from a machine running Node **v22.22.2** — deliberately one patch below Angular 22's floor, so Step 1 was genuinely exercised. Negative control first: `curl` to registry.npmjs.org / nodejs.org / 1.1.1.1 all blocked with the proxy env both intact and cleared, and `npm view` hung and timed out — the exact symptom the runbook warns about. Direct exit-code discipline throughout, per the lesson from `offline_verification_transcript_v2.md`.

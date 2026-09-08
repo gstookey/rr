@@ -4,12 +4,14 @@ status: exploratory
 title: Nexus Upload Instructions v1 — getting the bundle into the island registry
 areas: [isolated-network, dev-environment]
 related: ["docs/design/packets/legacy-shell-bundle-01-design-packet/v18_transfer_bundle_manifest_v1.md", "docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v1.md"]
-updated: 2026-09-03
+updated: 2026-09-08
 ---
 
 # Nexus Upload Instructions v1
 
-**Created:** 2026-09-03 | **Last updated:** 2026-09-03 (pool/slicer, delta merge, node_modules callout; island facts from Graham folded in) | **Status:** `exploratory` — the *procedure shape* is verified (it is exactly how the offline Verdaccio was seeded, twice); everything Nexus-specific is marked **UNVERIFIED** because no Nexus instance was available to test against.
+**Created:** 2026-09-03 | **Last updated:** 2026-09-08 (naming convention; earlier: pool/slicer, delta merge, node_modules callout, island facts from Graham) | **Naming (2026-09-08, compliance):** delivered artifacts are named **`angular-upgrade-bundle-<slice>-<date>`** — for what they are, rather than for the project or the estate. The earlier project-prefixed names are retired; `build-transfer-bundle.sh` emits the new ones (see its `BUNDLE_PREFIX`). **The bundle name is also the directory *inside* the `.tar`,** so renaming an archive after the fact does not change what extraction produces — rebuild, or repack from a renamed directory.
+
+**Status:** `exploratory` — the *procedure shape* is verified (it is exactly how the offline Verdaccio was seeded, twice); everything Nexus-specific is marked **UNVERIFIED** because no Nexus instance was available to test against.
 
 ## If you have ported node_modules folders before, read this first
 
@@ -24,9 +26,9 @@ This bundle is **not** a node_modules tree. It is the **original published regis
 
 1. Unpack the delivered tar; verify integrity **first**:
    ```
-   tar -xf rr-legacy-v17-v18hop-bundle-2026-09-03.tar
-   cd rr-legacy-v17-v18hop-bundle-2026-09-03
-   sha256sum -c SHA256SUMS        # must report 1,311 OK, zero failures
+   tar -xf angular-upgrade-bundle-<slice>-<date>.tar
+   cd angular-upgrade-bundle-<slice>-<date>
+   sha256sum -c SHA256SUMS        # must report zero failures
    ```
 2. You need: the Nexus **npm-hosted** repository URL (e.g. `https://<nexus-host>/repository/npm-internal/`), and an account with npm publish rights to it. **UNVERIFIED**: the island Nexus's repo name, auth model, and whether the estate installs from a group repo that fronts this hosted one.
 
@@ -67,11 +69,11 @@ If the v17 surface is indeed present, the Milestone-1 payload is the two hop del
 A delta tar contains only the tarballs you do not already hold, **plus SHA256SUMS and MANIFEST.json covering the ENTIRE merged set**. By hand:
 
 ```
-tar -xf rr-legacy-v17-v18hop-bundle-2026-09-03.tar     # the bundle you already hold
-tar -xf rr-legacy-delta-vs-2026-09-03-bundle.tar
-cp -r rr-legacy-delta-vs-2026-09-03-bundle/tarballs/* rr-legacy-v17-v18hop-bundle-2026-09-03/tarballs/
-cp rr-legacy-delta-vs-2026-09-03-bundle/{SHA256SUMS,MANIFEST.json} rr-legacy-v17-v18hop-bundle-2026-09-03/
-cd rr-legacy-v17-v18hop-bundle-2026-09-03 && sha256sum -c SHA256SUMS --quiet && echo MERGED-SET-OK
+tar -xf angular-upgrade-bundle-<slice>-<date>.tar       # the bundle you already hold
+tar -xf angular-upgrade-bundle-delta-<date>.tar
+cp -r angular-upgrade-bundle-delta-<date>/tarballs/* angular-upgrade-bundle-<slice>-<date>/tarballs/
+cp angular-upgrade-bundle-delta-<date>/{SHA256SUMS,MANIFEST.json} angular-upgrade-bundle-<slice>-<date>/
+cd angular-upgrade-bundle-<slice>-<date> && sha256sum -c SHA256SUMS --quiet && echo MERGED-SET-OK
 ```
 
 The delta's SHA256SUMS/MANIFEST **supersede** the originals. Ten tarballs from the older bundle are not in the current manifest (the superseded `puppeteer@3.3.0` tree) — harmless: extra packages on Nexus hurt nothing, and `sha256sum -c` simply does not list them. Then run the upload loop over the merged `tarballs/` — `409 already present` responses are expected and fine.
