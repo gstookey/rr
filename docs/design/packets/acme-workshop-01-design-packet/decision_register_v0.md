@@ -49,10 +49,23 @@ Design questions the S1 mockups surfaced. Ruled here so Marlow builds against a 
 
 **Ambiguities Cadence surfaced, resolved:** *"the window chrome"* appears in the packet's fleet line but not in the S1 scope row — **the scope row wins; no `@rr/windows` in S1** (S1 has no Office to host a window over; AW-D10 lands in S2). *"Floor chrome"* with no Floor in S1 = Building chrome **with a Floor selected** (breadcrumb, current-Floor bar, labelled empty slot). **Banner top and bottom** is kept — exercising the mechanism is the study's job — with the bottom band permitted to collapse below a small-viewport breakpoint.
 
+
+## S1 build rulings (Axium, 2026-09-08) — answers to Marlow's open questions
+
+| # | Question | Ruling |
+|---|---|---|
+| **AW-D24** | **Zod parsing in the initial bundle** vs the 500 kB warning budget (700 kB raw / 150 kB transfer; the 1 MB error budget is not breached). | **Parse every response, and do not raise the budget.** A learning instrument exists to show the published language doing its job at runtime; a schema that only runs in dev builds teaches the opposite lesson. The warning is accepted, visible, and correct — it is the honest cost of the choice, and hiding it by moving the budget would be the actual defect. Revisit only if a real deployment constraint appears (there is none: nothing ships from ACME, ADR-007). |
+| **AW-D25** | **Manifest shape** — four fully-restated per-group manifests, or a **catalog + per-group selection**? | **Catalog + per-group selection**, as built. A tenant *selects from* the Building; it cannot re-describe it. Restated manifests would let two groups disagree about what Invent is called, which is the copy-paste failure the whole architecture exists to prevent. This is the S4 shape. |
+| **AW-D26** | **`landingFloor`** is served but nothing consumes it. | **Correct as built — not a defect.** AW-D17 rules that the Lobby always exists; a single-Floor tenant still needs somewhere to stand when her Floor fails and somewhere to sign out from. The field is carried so S2 can offer a redirect *as an affordance*, never as a replacement for the Lobby. |
+| **AW-D27** | **`dominates()` and AW-D13's prefix subsumption.** | **Resolved in S1 by Axium, not deferred.** Marlow correctly refused to patch half a rule (rule 7) and surfaced it; on inspection the predicate had **no production callers**, so correcting it created no divergence risk, and leaving a known-wrong rule in the published language of a *teaching* codebase is the anti-lesson. `dominates()` now implements prefix subsumption (`TTW` satisfies `TTW/NWL`; `TTW/NWL` does not satisfy `TTW`; the `/` test blocks `TTW` satisfying `TTWX`), with a test proven non-vacuous against the old predicate. **S2's RLS policy must mirror `satisfies()` exactly, prefix test and all** — that is now a code-level obligation with a reference implementation, not a prose one. |
+
+**Recorded as S2 prerequisites** (Marlow, not defects in S1): the BFF has **no token refresh** and **no back-channel logout** — nothing uses the access token yet, and both must land before S2's per-Floor routers call anything with it. RP-initiated logout is written but untested (the mock provider advertises no `end_session_endpoint`).
+
 ## Ruling log
 
 | Date | Fork | Ruling | Consequence |
 |---|---|---|---|
 | 2026-09-04 | **AW-D13** compartment subsumption | **A** — `TTW` dominates `TTW/NWL`: a manufacturer sees the devices its B2B customers operate; the customer sees only its own. | The dominance predicate is `subject_compartments ⊇ row_compartments` **with prefix subsumption**: holding `TTW` satisfies a row marked `TTW/NWL`. Binds `packages/common` `dominates()`, the Postgres RLS policy, and slice S3's per-subscriber SSE filter. |
+| 2026-09-08 | **AW-D24..AW-D27** | S1 build rulings (table above) | Zod parses every response; catalog+selection manifest; `landingFloor` carried not consumed; `dominates()` corrected to prefix subsumption in S1. |
 | 2026-09-08 | **AW-D15..AW-D23** | S1 design rulings (table above) | Bind the S1 manifest shape, error codes, token contract and chrome behaviour. |
 | 2026-09-04 | **AW-D14** the "telemetry" lexicon | **A** — **Telemetry** is the ACME device feed (an external bounded context); the platform sense is **observability**. | Binds every doc, label, package and diagram; AD KI-4 closes. |
