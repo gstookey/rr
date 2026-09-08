@@ -8,7 +8,7 @@ updated: 2026-09-03
 
 # RR Context Wiki Index
 
-**Created:** 2026-08-25 | **Last updated:** 2026-09-03 (post-merge closeout — the whole v17→v22 ladder is on `main`; `first-app-hop-01` field kit cut. Earlier the same day: ADR-005, DDD-ARCH-01 packet + architecture research corpus R1..R7 under `platform/research/`)
+**Created:** 2026-08-25 | **Last updated:** 2026-09-08 (sync pass — ACME Workshop S0 is real code on `main`; ADR-007 rules it a learning instrument and resolves C-008; the two lanes now run in separate sessions. Earlier: ADR-006 repo layout, the v17→v22 ladder, `first-app-hop-01`)
 
 Navigation spine for the RR context system. Update when a page is added, removed, or changes meaningfully.
 
@@ -62,7 +62,7 @@ Navigation spine for the RR context system. Update when a page is added, removed
 # Governance
 
 - [Governance README](governance/README.md)
-- [Decisions (ADR index)](governance/decisions/README.md) — ADR-001 context system · ADR-002 merge gate · ADR-003 board/doctrine · ADR-004 npm · **ADR-005 island stack sync (2026-09-03)** · **ADR-006 repo layout apps/packages/services (2026-09-04)**
+- [Decisions (ADR index)](governance/decisions/README.md) — ADR-001 context system · ADR-002 merge gate · ADR-003 board/doctrine · ADR-004 npm · **ADR-005 island stack sync (2026-09-03)** · **ADR-006 repo layout apps/packages/services (2026-09-04)** · **ADR-007 ACME Workshop is a learning instrument, not the scaffold (2026-09-08)**
 - [Contradiction Register](governance/contradictions/register.md) — C-001..C-009
 - [Meta](governance/meta/README.md)
 

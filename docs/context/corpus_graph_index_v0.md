@@ -10,13 +10,15 @@ Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-
 ## doctrine (0)
 
 
-## accepted (56)
+## accepted (58)
 
 - ADR-001 — Adopt the TrAIdit context system and agent fleet for RR — `docs/context/governance/decisions/ADR-001-context-system-adopted-from-traidit.md` — areas: process-governance, context-system, agent-fleet — governs: 0 — related: 1
 - ADR-002 — Merging to main is Graham's click — `docs/context/governance/decisions/ADR-002-merge-gate.md` — areas: process-governance, agent-fleet — governs: 0 — related: 1
 - ADR-003 — The board is status; the docs are doctrine — `docs/context/governance/decisions/ADR-003-board-is-status-docs-are-doctrine.md` — areas: process-governance, planning — governs: 0 — related: 1
 - ADR-004 — Package manager and workspace tooling for RR (proposed: npm) — `docs/context/governance/decisions/ADR-004-package-manager-npm.md` — areas: technology-stack, monorepo, isolated-network, dev-environment — governs: 0 — related: 3
 - ADR-005 — The two islands' stacks must match — `docs/context/governance/decisions/ADR-005-island-stack-sync.md` — areas: isolated-network, system-architecture, technology-stack, planning — governs: 0 — related: 3
+- ADR-006 — Repository layout: apps/ + packages/ + services/ npm workspaces (closes C-001) — `docs/context/governance/decisions/ADR-006-repo-layout-apps-packages-services.md` — areas: monorepo, technology-stack, process-governance, system-architecture — governs: 0 — related: 4
+- ADR-007 — ACME Workshop is a learning instrument, not the Desert Island scaffold — `docs/context/governance/decisions/ADR-007-acme-workshop-is-a-learning-instrument.md` — areas: system-architecture, planning, domain-driven-design, technology-stack — governs: 0 — related: 5
 - Agent Handoff Contract — `docs/context/team/agents/agent_handoff_contract.md` — areas: process-governance, agent-fleet — governs: 0 — related: 1
 - Agent Operating Contract — `docs/context/team/agents/agent_operating_contract.md` — areas: process-governance, agent-fleet — governs: 0 — related: 1
 - Agent Collaboration Model — `docs/context/team/agents/collaboration_model.md` — areas: agent-fleet, process-governance — governs: 0 — related: 0
@@ -106,8 +108,9 @@ Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-
 - Agents — Repo-Side Fleet — `docs/context/team/agents/README.md` — areas: agent-fleet, process-governance — governs: 0 — related: 2
 - Design — `docs/design/README.md` — areas: brand-design, planning — governs: 0 — related: 1
 
-## exploratory (36)
+## exploratory (53)
 
+- R8 — The Architecture Quantum (Ford / Richards) and how it relates to DDD's bounded context — research brief v0 — `docs/context/platform/research/architecture_quantum_brief_v0.md` — areas: research, system-architecture, domain-driven-design — governs: 0 — related: 5
 - R6 — Cross Domain Solution (CDS) integration research brief v0 — `docs/context/platform/research/cross_domain_solution_integration_brief_v0.md` — areas: research, cross-domain, security, system-architecture — governs: 0 — related: 4
 - R2 — Data Fabric research brief v0 — `docs/context/platform/research/data_fabric_brief_v0.md` — areas: research, data-fabric, system-architecture, backend — governs: 0 — related: 4
 - R1 — Domain-Driven Design (DDD) research brief v0 — `docs/context/platform/research/ddd_domain_driven_design_brief_v0.md` — areas: research, domain-driven-design, system-architecture — governs: 0 — related: 3
@@ -115,11 +118,27 @@ Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-
 - R3 — Event / Message Bus (Kafka and alternatives) research brief v0 — `docs/context/platform/research/event_message_bus_brief_v0.md` — areas: research, messaging, system-architecture, backend — governs: 0 — related: 3
 - R4 — Identity Stores, IdPs and Delegated User Management research brief v0 — `docs/context/platform/research/identity_stores_brief_v0.md` — areas: research, identity, auth, access-control, security — governs: 0 — related: 3
 - R5 — Mandatory Access Control (MAC) stores and label-based data research brief v0 — `docs/context/platform/research/mac_stores_brief_v0.md` — areas: research, access-control, security, backend — governs: 0 — related: 4
-- DDD-ARCH-01 — Desert Island system architecture, front-end-first (packet charter) — `docs/design/packets/ddd-arch-01-design-packet/README.md` — areas: system-architecture, domain-driven-design, frontend, planning — governs: 0 — related: 6
+- ACME-WORKSHOP-01 — the DDD reference application (walking skeleton of the DDD-ARCH-01 architecture) — `docs/design/packets/acme-workshop-01-design-packet/README.md` — areas: system-architecture, domain-driven-design, frontend, backend, identity, access-control, planning — governs: 0 — related: 8
+- ACME-WORKSHOP-01 — Decision Register v0 (AW-D1..AW-D12) — `docs/design/packets/acme-workshop-01-design-packet/decision_register_v0.md` — areas: system-architecture, domain-driven-design, frontend, backend, planning — governs: 0 — related: 3
+- ACME-WORKSHOP-01 — Domain model v0 (contexts, aggregates, events, read models, tenants, lexicon) — `docs/design/packets/acme-workshop-01-design-packet/domain_model_v0.md` — areas: domain-driven-design, system-architecture, backend, frontend — governs: 0 — related: 4
+- ACME-WORKSHOP-01 — S0 Foundation notes v0 (what was built, every pin, what is and is not verified, and the ACME lexicon card) — `docs/design/packets/acme-workshop-01-design-packet/s0_foundation_notes_v0.md` — areas: dev-environment, technology-stack, monorepo, frontend, backend — governs: 0 — related: 8
+- ACME-WORKSHOP-01 — Slice decomposition v0 (S0..S7 = board stories, each with its proof) — `docs/design/packets/acme-workshop-01-design-packet/slice_decomposition_v0.md` — areas: planning, system-architecture, frontend, backend — governs: 0 — related: 5
+- DDD-ARCH-01 — Desert Island system architecture, front-end-first (packet charter) — `docs/design/packets/ddd-arch-01-design-packet/README.md` — areas: system-architecture, domain-driven-design, frontend, planning — governs: 0 — related: 10
+- ACME Workshop Architecture Description (AD) — ISO/IEC/IEEE 42010-structured, DDD-ARCH-01 — `docs/design/packets/ddd-arch-01-design-packet/architecture-description/README.md` — areas: system-architecture, domain-driven-design, frontend, backend, security, identity, access-control, cross-domain, messaging — governs: 0 — related: 22
+- AD View V1 — System Context (C4 level 1), ACME Workshop in its environment — `docs/design/packets/ddd-arch-01-design-packet/architecture-description/V1-system-context.md` — areas: system-architecture, domain-driven-design, security, cross-domain — governs: 0 — related: 11
+- AD View V2 — Container (C4 level 2), ACME Workshop deployable units — `docs/design/packets/ddd-arch-01-design-packet/architecture-description/V2-container.md` — areas: system-architecture, frontend, backend, identity, messaging — governs: 0 — related: 10
+- AD View V3 — Domain / Context Map (DDD strategic view) for ACME Workshop — `docs/design/packets/ddd-arch-01-design-packet/architecture-description/V3-context-map.md` — areas: domain-driven-design, system-architecture, messaging, identity — governs: 0 — related: 8
+- AD View V4 — Runtime / Dynamic, one screen and one cross-context event — `docs/design/packets/ddd-arch-01-design-packet/architecture-description/V4-runtime-dynamic.md` — areas: system-architecture, backend, frontend, security, messaging — governs: 0 — related: 9
+- AD View V5 — Information & Security, labels, subjects and enforcement points — `docs/design/packets/ddd-arch-01-design-packet/architecture-description/V5-information-security.md` — areas: security, identity, access-control, cross-domain, system-architecture — governs: 0 — related: 9
+- AD View V6 — Development / Module, the monorepo and its fences — `docs/design/packets/ddd-arch-01-design-packet/architecture-description/V6-development-module.md` — areas: monorepo, frontend, backend, domain-driven-design, system-architecture — governs: 0 — related: 8
+- AD View V7 — Deployment & Evolution, quanta, islands, security domains and fitness functions — `docs/design/packets/ddd-arch-01-design-packet/architecture-description/V7-deployment-evolution.md` — areas: system-architecture, isolated-network, cross-domain, security, dev-environment — governs: 0 — related: 9
+- AD View V8 — Tier / Information-Architecture, Building · Floors · Suites · Offices with the group overlay — `docs/design/packets/ddd-arch-01-design-packet/architecture-description/V8-tier-information-architecture.md` — areas: frontend, ux, domain-driven-design, system-architecture, access-control — governs: 0 — related: 8
+- AD diagrams manifest — the eight views, their notations, statuses and redraw triggers — `docs/design/packets/ddd-arch-01-design-packet/architecture-description/diagrams-manifest.md` — areas: system-architecture, planning, process-governance — governs: 0 — related: 12
+- DDD-ARCH-01 — The Context Boundary Test v0 (when a customer's need is a different domain) — `docs/design/packets/ddd-arch-01-design-packet/context_boundary_test_v0.md` — areas: system-architecture, domain-driven-design, frontend, process-governance — governs: 0 — related: 6
 - DDD-ARCH-01 — Decision Register v0 (DA-D1..DA-D10) — `docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md` — areas: system-architecture, domain-driven-design, frontend, planning — governs: 0 — related: 4
 - DDD-ARCH-01 — Diagramming approach v0 (how we stand up and keep the architecture diagrams) — `docs/design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md` — areas: system-architecture, planning, process-governance — governs: 0 — related: 3
-- DDD-ARCH-01 diagram 01 — System context, Desert Island (C4 L1) — `docs/design/packets/ddd-arch-01-design-packet/diagrams/01-context-desert-island.md` — areas: system-architecture, domain-driven-design — governs: 0 — related: 2
-- DDD-ARCH-01 diagram 02 — Tier model, Building / Floors / Suites / Offices with the group overlay — `docs/design/packets/ddd-arch-01-design-packet/diagrams/02-tier-model-building-floors.md` — areas: system-architecture, frontend, domain-driven-design — governs: 0 — related: 3
+- DDD-ARCH-01 — Needs Catalog v0 (an event-storming aid for identifying and naming capabilities) — `docs/design/packets/ddd-arch-01-design-packet/needs_catalog_v0.md` — areas: system-architecture, domain-driven-design, process-governance — governs: 0 — related: 4
+- DDD-ARCH-01 — The Practical Picture v0 (what the architecture looks like in a repo, at runtime, and in build order) — `docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md` — areas: system-architecture, domain-driven-design, frontend, backend, identity, access-control, technology-stack — governs: 0 — related: 9
 - DDD-ARCH-01 — Building / Floor / Suite / Office tier model exploration v0 — `docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md` — areas: system-architecture, domain-driven-design, frontend, ux — governs: 0 — related: 5
 - First App Hop Packet 01 — the field kit for the first real application upgrade — `docs/design/packets/first-app-hop-01-design-packet/README.md` — areas: frontend, isolated-network, dev-environment, planning — governs: 0 — related: 4
 - Field Hop Procedure v1 — one Angular rung on a real app, on the island — `docs/design/packets/first-app-hop-01-design-packet/field_hop_procedure_v1.md` — areas: frontend, isolated-network, dev-environment — governs: 0 — related: 3
@@ -152,8 +171,10 @@ Lookup (the pre-build reflex): `node scripts/corpus-graph.mjs lookup <repo-path-
 ## historical (0)
 
 
-## superseded (3)
+## superseded (5)
 
+- DDD-ARCH-01 diagram 01 — System context, Desert Island (C4 L1) — `docs/design/packets/ddd-arch-01-design-packet/diagrams/01-context-desert-island.md` — areas: system-architecture, domain-driven-design — governs: 0 — related: 2
+- DDD-ARCH-01 diagram 02 — Tier model, Building / Floors / Suites / Offices with the group overlay — `docs/design/packets/ddd-arch-01-design-packet/diagrams/02-tier-model-building-floors.md` — areas: system-architecture, frontend, domain-driven-design — governs: 0 — related: 3
 - Offline Verification Transcript v1 — the bundle proven with zero internet — `docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v1.md` — areas: isolated-network, dev-environment, risk-gates — governs: 0 — related: 2
 - v17→v18 Monorepo Runbook Delta v1 — what changes on estate-shaped apps — `docs/design/packets/legacy-shell-bundle-01-design-packet/v17_to_v18_monorepo_runbook_delta_v1.md` — areas: frontend, isolated-network, dev-environment — governs: 0 — related: 2
 - v18 Transfer Bundle Manifest v1 — measured from the legacy shells, verified offline — `docs/design/packets/legacy-shell-bundle-01-design-packet/v18_transfer_bundle_manifest_v1.md` — areas: isolated-network, technology-stack, dev-environment — governs: 0 — related: 3
