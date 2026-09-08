@@ -3,7 +3,7 @@ schema: corpus-doc/v1
 status: exploratory
 title: ACME-WORKSHOP-01 — the DDD reference application (walking skeleton of the DDD-ARCH-01 architecture)
 areas: [system-architecture, domain-driven-design, frontend, backend, identity, access-control, planning]
-related: ["docs/design/packets/acme-workshop-01-design-packet/decision_register_v0.md", "docs/design/packets/acme-workshop-01-design-packet/slice_decomposition_v0.md", "docs/design/packets/acme-workshop-01-design-packet/domain_model_v0.md", "docs/design/packets/ddd-arch-01-design-packet/README.md", "docs/context/governance/decisions/ADR-007-acme-workshop-is-a-learning-instrument.md", "docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md", "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md", "docs/design/packets/ddd-arch-01-design-packet/context_boundary_test_v0.md", "docs/context/canonical/technology_stack.md"]
+related: ["docs/design/packets/acme-workshop-01-design-packet/decision_register_v0.md", "docs/design/packets/acme-workshop-01-design-packet/slice_decomposition_v0.md", "docs/design/packets/acme-workshop-01-design-packet/mockups/s1-building/README.md", "docs/design/packets/acme-workshop-01-design-packet/domain_model_v0.md", "docs/design/packets/ddd-arch-01-design-packet/README.md", "docs/context/governance/decisions/ADR-007-acme-workshop-is-a-learning-instrument.md", "docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md", "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md", "docs/design/packets/ddd-arch-01-design-packet/context_boundary_test_v0.md", "docs/context/canonical/technology_stack.md"]
 updated: 2026-09-08
 ---
 
@@ -70,6 +70,7 @@ Handling levels **OPEN < PARTNER < INTERNAL < RESTRICTED**, plus **compartments 
 |---|---|
 | [`domain_model_v0.md`](domain_model_v0.md) | the four contexts' aggregates, events, read models and commands; tenants and personas; the lexicon card per context; the seed data shape |
 | [`decision_register_v0.md`](decision_register_v0.md) | AW-D1..AW-D12 — the forks this build must rule (map engine offline, telemetry simulation, paywall model, process-as-data format, …) |
+| [`mockups/s1-building/`](mockups/s1-building/README.md) | **S1 mockups (Cadence, blocking pass):** the Building chrome, Lobby and sign-in surfaces, each drawn twice — Ada (four Floors) beside Fay (one) — so *absent, not disabled* is a picture; plus the fail-closed states (pre-hydration, `CONFIG_UNAVAILABLE`, unresolved marking) and the `--rr-*` token sketch |
 | [`slice_decomposition_v0.md`](slice_decomposition_v0.md) | slices S0..S7 = board stories, each with its scope, proof, and the fleet lane that runs it |
 
 ## Fleet model
