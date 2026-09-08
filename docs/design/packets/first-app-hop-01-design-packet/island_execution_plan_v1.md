@@ -81,7 +81,7 @@ Adding three projects × five rungs plus a dependency on another team's schedule
 legacy-shells/tools/build-transfer-bundle.sh ~/bundlework --cumulative
 ```
 
-Output: `~/bundlework/pool/{tarballs/,SHA256SUMS,MANIFEST.json}` plus a `.tar`. **2,102 tarballs / 355.6 MB.** Runtime 5–15 minutes; needs ~500 MB free. The script verifies each tarball's sha512 against the committed lockfiles as it fetches, then verifies the whole pool against `legacy-shells/bundle/SHA256SUMS`. Registry tarballs are immutable, so the output is byte-identical to the verified pool — **if `sha256sum -c` reports anything but zero failures, stop and report it; that is not a normal condition.**
+Output: `~/bundlework/pool/{tarballs/,SHA256SUMS,MANIFEST.json}` plus **`angular-upgrade-bundle-v17-v22-<date>.tar`** (naming changed 2026-09-08 for compliance; the per-rung slices are `angular-upgrade-bundle-<rung>-<date>.tar`). **2,102 tarballs / 355.6 MB.** Runtime 5–15 minutes; needs ~500 MB free. The script verifies each tarball's sha512 against the committed lockfiles as it fetches, then verifies the whole pool against `legacy-shells/bundle/SHA256SUMS`. Registry tarballs are immutable, so the output is byte-identical to the verified pool — **if `sha256sum -c` reports anything but zero failures, stop and report it; that is not a normal condition.**
 
 *(No `--delta-from`, per decision 2. No `--rung` — the whole ladder ports in one cycle, and the staging happens at the Nexus-upload step, not here.)*
 
@@ -90,8 +90,8 @@ Output: `~/bundlework/pool/{tarballs/,SHA256SUMS,MANIFEST.json}` plus a `.tar`. 
 **A3. Verify on arrival, before uploading anything:**
 
 ```
-tar -xf rr-legacy-v17-v22-bundle-<date>.tar
-cd rr-legacy-v17-v22-bundle-<date>
+tar -xf angular-upgrade-bundle-v17-v22-<date>.tar
+cd angular-upgrade-bundle-v17-v22-<date>
 sha256sum -c SHA256SUMS        # must report zero failures
 ```
 

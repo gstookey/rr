@@ -11,7 +11,8 @@
 #      byte-identical to the verified bundle — check it against the committed
 #      legacy-shells/bundle/SHA256SUMS.
 #   3. Emits <workdir>/pool/{tarballs/,SHA256SUMS,MANIFEST.json} and a .tar of the
-#      requested slice.
+#      requested slice, named angular-upgrade-bundle-<slice>-<date>.tar (see
+#      BUNDLE_PREFIX below -- renamed 2026-09-08 for compliance).
 #
 # PREREQUISITES
 #   - Node >= 20 and npm >= 10 (built with Node v22.22.2 / npm 10.9.7)
@@ -64,15 +65,21 @@ echo "== verifying pool against the committed SHA256SUMS =="
        echo "lock change. Diff the manifests before trusting the output."; }
 
 STAMP=$(date +%F)
+# Output naming. Changed 2026-09-08 at Graham's direction for COMPLIANCE: delivered
+# artifacts are named for what they are (an Angular upgrade bundle) rather than for the
+# project or the estate. The earlier project-prefixed names are retired. Change the prefix
+# HERE only -- it also becomes the directory name INSIDE the .tar, so renaming an archive
+# after the fact does not change what extraction produces.
+BUNDLE_PREFIX="angular-upgrade-bundle"
 case "${MODE[0]}" in
   --cumulative)
-    OUT="$WORK/rr-legacy-v17-v22-bundle-$STAMP"; mkdir -p "$OUT"
+    OUT="$WORK/${BUNDLE_PREFIX}-v17-v22-$STAMP"; mkdir -p "$OUT"
     node "$HERE/tools/slice-bundle.mjs" "$WORK/pool" "$OUT" ;;
   --rung)
-    OUT="$WORK/rr-legacy-rung-${MODE[1]}-$STAMP"; mkdir -p "$OUT"
+    OUT="$WORK/${BUNDLE_PREFIX}-${MODE[1]}-$STAMP"; mkdir -p "$OUT"
     node "$HERE/tools/slice-bundle.mjs" "$WORK/pool" "$OUT" --rung "${MODE[1]}" ;;
   --delta-from)
-    OUT="$WORK/rr-legacy-delta-$STAMP"; mkdir -p "$OUT"
+    OUT="$WORK/${BUNDLE_PREFIX}-delta-$STAMP"; mkdir -p "$OUT"
     node "$HERE/tools/slice-bundle.mjs" "$WORK/pool" "$OUT" --delta-from "${MODE[1]}" ;;
   *) echo "unknown mode ${MODE[0]}"; exit 2 ;;
 esac
