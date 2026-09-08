@@ -1,0 +1,10 @@
+{
+  "name": "@rr/shell",
+  "version": "0.0.0",
+  "private": true,
+  "description": "ACME Workshop — the Building: shell application (lobby, elevator, session). S0 renders one line and nothing else.",
+  "scripts": {
+    "build": "ng build shell",
+    "start": "ng serve shell"
+  }
+}

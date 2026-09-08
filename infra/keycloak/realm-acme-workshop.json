@@ -1,0 +1,435 @@
+{
+  "realm": "acme-workshop",
+  "displayName": "ACME Workshop",
+  "enabled": true,
+  "sslRequired": "none",
+  "registrationAllowed": false,
+  "resetPasswordAllowed": false,
+  "editUsernameAllowed": false,
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "accessTokenLifespan": 300,
+  "ssoSessionIdleTimeout": 1800,
+  "ssoSessionMaxLifespan": 36000,
+  "defaultSignatureAlgorithm": "RS256",
+  "roles": {
+    "realm": [
+      {
+        "name": "group-admin",
+        "description": "May administer their OWN group's membership through the Front Desk Floor. Keycloak's fine-grained admin permissions (FGAP V2) are what actually scope it server-side, in S7 \u2014 this role only makes the Office visible."
+      },
+      {
+        "name": "platform-admin",
+        "description": "ACME staff. Sees every Floor and every group."
+      }
+    ],
+    "client": {}
+  },
+  "groups": [
+    {
+      "name": "ttw",
+      "path": "/ttw",
+      "attributes": {
+        "tenant_kind": [
+          "manufacturer"
+        ],
+        "compartment": [
+          "TTW"
+        ],
+        "display_name": [
+          "Tick-Tock Watchworks"
+        ],
+        "floors": [
+          "invent",
+          "command",
+          "vigilance",
+          "front-desk"
+        ]
+      },
+      "realmRoles": [],
+      "subGroups": [
+        {
+          "name": "nwl",
+          "path": "/ttw/nwl",
+          "attributes": {
+            "tenant_kind": [
+              "b2b-customer"
+            ],
+            "compartment": [
+              "TTW/NWL"
+            ],
+            "display_name": [
+              "Northwind Logistics"
+            ],
+            "floors": [
+              "vigilance"
+            ]
+          },
+          "realmRoles": [],
+          "subGroups": []
+        }
+      ]
+    },
+    {
+      "name": "mer",
+      "path": "/mer",
+      "attributes": {
+        "tenant_kind": [
+          "manufacturer"
+        ],
+        "compartment": [
+          "MER"
+        ],
+        "display_name": [
+          "Meridian Wearables"
+        ],
+        "floors": [
+          "invent",
+          "command",
+          "front-desk"
+        ]
+      },
+      "realmRoles": [],
+      "subGroups": []
+    },
+    {
+      "name": "acme-staff",
+      "path": "/acme-staff",
+      "attributes": {
+        "tenant_kind": [
+          "platform-operator"
+        ],
+        "compartment": [
+          "TTW",
+          "TTW/NWL",
+          "MER"
+        ],
+        "display_name": [
+          "ACME staff"
+        ],
+        "floors": [
+          "invent",
+          "command",
+          "vigilance",
+          "front-desk"
+        ]
+      },
+      "realmRoles": [],
+      "subGroups": []
+    }
+  ],
+  "clientScopes": [
+    {
+      "name": "acme-workshop",
+      "description": "ACME Workshop's own claims: group membership (full paths), handling level and compartments. This scope is what makes the token say what the RLS policy needs to hear.",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "true",
+        "display.on.consent.screen": "false"
+      },
+      "protocolMappers": [
+        {
+          "name": "groups",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-group-membership-mapper",
+          "consentRequired": false,
+          "config": {
+            "claim.name": "groups",
+            "full.path": "true",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "userinfo.token.claim": "true",
+            "introspection.token.claim": "true"
+          }
+        },
+        {
+          "name": "handling level",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-attribute-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.attribute": "handling_level",
+            "claim.name": "handling_level",
+            "jsonType.label": "String",
+            "multivalued": "false",
+            "aggregate.attrs": "false",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "userinfo.token.claim": "true",
+            "introspection.token.claim": "true"
+          }
+        },
+        {
+          "name": "compartments",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-attribute-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.attribute": "compartments",
+            "claim.name": "compartments",
+            "jsonType.label": "String",
+            "multivalued": "true",
+            "aggregate.attrs": "true",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "userinfo.token.claim": "true",
+            "introspection.token.claim": "true"
+          }
+        }
+      ]
+    }
+  ],
+  "defaultDefaultClientScopes": [
+    "acme-workshop"
+  ],
+  "clients": [
+    {
+      "clientId": "acme-workshop-gateway",
+      "name": "ACME Workshop BFF",
+      "description": "The Express gateway. CONFIDENTIAL client, authorization-code flow, no browser-side token \u2014 the BFF/cookie pattern (DA-D17, BCP 212).",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "bearerOnly": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false,
+      "secret": "dev-only-not-a-secret",
+      "redirectUris": [
+        "http://localhost:3000/auth/callback"
+      ],
+      "webOrigins": [
+        "http://localhost:4200",
+        "http://localhost:3000"
+      ],
+      "baseUrl": "http://localhost:4200/",
+      "attributes": {
+        "post.logout.redirect.uris": "http://localhost:4200/*",
+        "pkce.code.challenge.method": "S256"
+      },
+      "defaultClientScopes": [
+        "profile",
+        "email",
+        "roles",
+        "web-origins",
+        "acme-workshop"
+      ],
+      "optionalClientScopes": []
+    }
+  ],
+  "users": [
+    {
+      "username": "ada",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Ada",
+      "lastName": "Vance",
+      "email": "ada@tick-tock.example",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "changeme",
+          "temporary": false
+        }
+      ],
+      "attributes": {
+        "handling_level": [
+          "INTERNAL"
+        ],
+        "compartments": [
+          "TTW"
+        ]
+      },
+      "groups": [
+        "/ttw"
+      ],
+      "realmRoles": []
+    },
+    {
+      "username": "bram",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Bram",
+      "lastName": "Oduya",
+      "email": "bram@tick-tock.example",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "changeme",
+          "temporary": false
+        }
+      ],
+      "attributes": {
+        "handling_level": [
+          "INTERNAL"
+        ],
+        "compartments": [
+          "TTW"
+        ]
+      },
+      "groups": [
+        "/ttw"
+      ],
+      "realmRoles": []
+    },
+    {
+      "username": "cy",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Cy",
+      "lastName": "Delacroix",
+      "email": "cy@tick-tock.example",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "changeme",
+          "temporary": false
+        }
+      ],
+      "attributes": {
+        "handling_level": [
+          "INTERNAL"
+        ],
+        "compartments": [
+          "TTW",
+          "TTW/NWL"
+        ]
+      },
+      "groups": [
+        "/ttw"
+      ],
+      "realmRoles": [
+        "group-admin"
+      ]
+    },
+    {
+      "username": "dee",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Dee",
+      "lastName": "Marchetti",
+      "email": "dee@meridian.example",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "changeme",
+          "temporary": false
+        }
+      ],
+      "attributes": {
+        "handling_level": [
+          "INTERNAL"
+        ],
+        "compartments": [
+          "MER"
+        ]
+      },
+      "groups": [
+        "/mer"
+      ],
+      "realmRoles": []
+    },
+    {
+      "username": "eli",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Eli",
+      "lastName": "Nakamura",
+      "email": "eli@meridian.example",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "changeme",
+          "temporary": false
+        }
+      ],
+      "attributes": {
+        "handling_level": [
+          "INTERNAL"
+        ],
+        "compartments": [
+          "MER"
+        ]
+      },
+      "groups": [
+        "/mer"
+      ],
+      "realmRoles": [
+        "group-admin"
+      ]
+    },
+    {
+      "username": "fay",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Fay",
+      "lastName": "Oyelaran",
+      "email": "fay@northwind.example",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "changeme",
+          "temporary": false
+        }
+      ],
+      "attributes": {
+        "handling_level": [
+          "PARTNER"
+        ],
+        "compartments": [
+          "TTW/NWL"
+        ]
+      },
+      "groups": [
+        "/ttw/nwl"
+      ],
+      "realmRoles": []
+    },
+    {
+      "username": "gus",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Gus",
+      "lastName": "Almeida",
+      "email": "gus@acme-workshop.example",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "changeme",
+          "temporary": false
+        }
+      ],
+      "attributes": {
+        "handling_level": [
+          "RESTRICTED"
+        ],
+        "compartments": [
+          "TTW",
+          "TTW/NWL",
+          "MER"
+        ]
+      },
+      "groups": [
+        "/acme-staff"
+      ],
+      "realmRoles": [
+        "platform-admin"
+      ]
+    }
+  ],
+  "components": {
+    "org.keycloak.userprofile.UserProfileProvider": [
+      {
+        "name": "declarative-user-profile",
+        "providerId": "declarative-user-profile",
+        "subComponents": {},
+        "config": {
+          "kc.user.profile.config": [
+            "{\"unmanagedAttributePolicy\": \"ENABLED\", \"attributes\": [{\"name\": \"username\", \"displayName\": \"${username}\", \"permissions\": {\"view\": [\"admin\", \"user\"], \"edit\": [\"admin\", \"user\"]}, \"validations\": {\"length\": {\"min\": 3, \"max\": 255}, \"username-prohibited-characters\": {}}, \"multivalued\": false}, {\"name\": \"email\", \"displayName\": \"${email}\", \"permissions\": {\"view\": [\"admin\", \"user\"], \"edit\": [\"admin\", \"user\"]}, \"validations\": {\"email\": {}, \"length\": {\"max\": 255}}, \"multivalued\": false}, {\"name\": \"firstName\", \"displayName\": \"${firstName}\", \"permissions\": {\"view\": [\"admin\", \"user\"], \"edit\": [\"admin\", \"user\"]}, \"validations\": {\"length\": {\"max\": 255}}, \"multivalued\": false}, {\"name\": \"lastName\", \"displayName\": \"${lastName}\", \"permissions\": {\"view\": [\"admin\", \"user\"], \"edit\": [\"admin\", \"user\"]}, \"validations\": {\"length\": {\"max\": 255}}, \"multivalued\": false}, {\"name\": \"handling_level\", \"displayName\": \"handling_level\", \"permissions\": {\"view\": [\"admin\", \"user\"], \"edit\": [\"admin\"]}, \"multivalued\": false}, {\"name\": \"compartments\", \"displayName\": \"compartments\", \"permissions\": {\"view\": [\"admin\", \"user\"], \"edit\": [\"admin\"]}, \"multivalued\": true}]}"
+          ]
+        }
+      }
+    ]
+  }
+}

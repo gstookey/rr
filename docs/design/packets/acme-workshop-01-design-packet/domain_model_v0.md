@@ -15,7 +15,7 @@ updated: 2026-09-03
 
 | Group (Keycloak) | Kind | Compartment | Gets Floors | Personas |
 |---|---|---|---|---|
-| **Tick-Tock Watchworks** (`TTW`) | manufacturer | `TTW` | Invent · Command · Vigilance · Front Desk | *Ada* (inventory manager), *Bram* (release engineer), *Cy* (TTW group admin) |
+| **Tick-Tock Watchworks** (`TTW`) | manufacturer | `TTW` (dominates `TTW/NWL`: a manufacturer sees the devices its B2B customers operate — Axium lean, AW-D13) | Invent · Command · Vigilance · Front Desk | *Ada* (inventory manager), *Bram* (release engineer), *Cy* (TTW group admin) |
 | **Meridian Wearables** (`MER`) | manufacturer | `MER` | Invent · Command · Front Desk (**no Vigilance** — proves manifest tailoring) | *Dee* (inventory), *Eli* (MER group admin) |
 | **Northwind Logistics** | B2B customer of TTW, operates 40 TTW devices | `TTW/NWL` | Vigilance only (own devices only) | *Fay* (fleet supervisor) |
 | **ACME staff** | platform operator | all | everything + Front Desk realm admin | *Gus* |
