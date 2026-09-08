@@ -35,7 +35,7 @@ The standing design constraint that follows — **"reproducible offline from pin
 | Turning network unknowns into answerable questions for the people who own the network | [`island_questionnaire_v0.md`](island_questionnaire_v0.md) |
 | The intake instrument that lets the legacy Angular upgrade be *sized* | [`legacy_estate_inventory_template_v0.md`](legacy_estate_inventory_template_v0.md) |
 | A version-pinned, registry-verified manifest of the intended new-project stack + measured bundle size | [`stack_dependency_manifest_v0.md`](stack_dependency_manifest_v0.md) |
-| A human-executable first-day sequence: Node, private registry, seed, verify an offline `npm ci` | [`day_one_on_the_island_runbook_v0.md`](day_one_on_the_island_runbook_v0.md) |
+| A human-executable first-day sequence: Node, private registry, seed, verify an offline `npm ci` | **[`day_one_on_the_island_runbook_v1.md`](day_one_on_the_island_runbook_v1.md)** — rehearsed 2026-09-08; v0 is `superseded` and must not be followed. Evidence: [`day_one_rehearsal_transcript_v1.md`](day_one_rehearsal_transcript_v1.md) |
 | Decisions this packet raises but cannot close | [`decision_register_v0.md`](decision_register_v0.md) |
 | Candidate board stories (proposals only — activation is Graham's) | [`story_decomposition_v0.md`](story_decomposition_v0.md) |
 
@@ -69,4 +69,4 @@ Secondary: **LOE-3** (set-up guides) inherits the runbook's "written for a human
 
 For Graham: this README → [`decision_register_v0.md`](decision_register_v0.md) → [`story_decomposition_v0.md`](story_decomposition_v0.md).
 For someone about to send the questionnaire out: [`island_questionnaire_v0.md`](island_questionnaire_v0.md) alone is self-contained by design.
-For someone on the island on day one: [`day_one_on_the_island_runbook_v0.md`](day_one_on_the_island_runbook_v0.md) plus a printed [`stack_dependency_manifest_v0.md`](stack_dependency_manifest_v0.md).
+For someone on the island on day one: **[`day_one_on_the_island_runbook_v1.md`](day_one_on_the_island_runbook_v1.md)** plus a printed [`stack_dependency_manifest_v0.md`](stack_dependency_manifest_v0.md). **Do not hand them v0** — it cannot be completed as written.

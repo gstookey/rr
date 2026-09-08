@@ -1368,10 +1368,33 @@
     {
       "path": "docs/design/packets/iso-net-readiness-01-design-packet/day_one_on_the_island_runbook_v0.md",
       "title": "Day One on the Island — Runbook v0 (draft, unrehearsed)",
+      "status": "superseded",
+      "areas": [
+        "isolated-network",
+        "dev-environment",
+        "technology-stack"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/iso-net-readiness-01-design-packet/day_one_on_the_island_runbook_v1.md",
+      "title": "Day One on the Island — Runbook v1 (rehearsed 2026-09-08)",
       "status": "exploratory",
       "areas": [
         "isolated-network",
         "dev-environment",
+        "technology-stack"
+      ],
+      "governs": []
+    },
+    {
+      "path": "docs/design/packets/iso-net-readiness-01-design-packet/day_one_rehearsal_transcript_v1.md",
+      "title": "Day-One Rehearsal Transcript v1 — the runbook executed on a network-disabled machine (S-16)",
+      "status": "exploratory",
+      "areas": [
+        "isolated-network",
+        "dev-environment",
+        "risk-gates",
         "technology-stack"
       ],
       "governs": []
@@ -3109,7 +3132,52 @@
     },
     {
       "from": "docs/design/packets/iso-net-readiness-01-design-packet/day_one_on_the_island_runbook_v0.md",
+      "to": "docs/design/packets/iso-net-readiness-01-design-packet/day_one_on_the_island_runbook_v1.md",
+      "type": "superseded_by"
+    },
+    {
+      "from": "docs/design/packets/iso-net-readiness-01-design-packet/day_one_on_the_island_runbook_v0.md",
       "to": "docs/design/packets/iso-net-readiness-01-design-packet/stack_dependency_manifest_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/iso-net-readiness-01-design-packet/day_one_on_the_island_runbook_v1.md",
+      "to": "docs/context/canonical/isolated_network_constraints.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/iso-net-readiness-01-design-packet/day_one_on_the_island_runbook_v1.md",
+      "to": "docs/design/packets/iso-net-readiness-01-design-packet/day_one_on_the_island_runbook_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/iso-net-readiness-01-design-packet/day_one_on_the_island_runbook_v1.md",
+      "to": "docs/design/packets/iso-net-readiness-01-design-packet/day_one_rehearsal_transcript_v1.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/iso-net-readiness-01-design-packet/day_one_on_the_island_runbook_v1.md",
+      "to": "docs/design/packets/legacy-shell-bundle-01-design-packet/nexus_upload_instructions_v1.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/iso-net-readiness-01-design-packet/day_one_rehearsal_transcript_v1.md",
+      "to": "docs/design/packets/iso-net-readiness-01-design-packet/day_one_on_the_island_runbook_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/iso-net-readiness-01-design-packet/day_one_rehearsal_transcript_v1.md",
+      "to": "docs/design/packets/iso-net-readiness-01-design-packet/decision_register_v0.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/iso-net-readiness-01-design-packet/day_one_rehearsal_transcript_v1.md",
+      "to": "docs/design/packets/legacy-shell-bundle-01-design-packet/nexus_upload_instructions_v1.md",
+      "type": "related"
+    },
+    {
+      "from": "docs/design/packets/iso-net-readiness-01-design-packet/day_one_rehearsal_transcript_v1.md",
+      "to": "docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v2.md",
       "type": "related"
     },
     {

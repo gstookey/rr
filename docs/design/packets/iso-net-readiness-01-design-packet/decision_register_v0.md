@@ -25,7 +25,7 @@ When one closes, it graduates to an ADR under `docs/context/governance/decisions
 | [DR-06](#dr-06) | Does `gstookey/rr` itself port up, or only an export? | how we write everything from now on | Governance (C1/C2), then Graham |
 | [DR-07](#dr-07) | Zone.js or zoneless | one dependency; change-detection model | Graham, at scaffold time |
 | [DR-08](#dr-08) | Express 5 vs. the blueprint's assumptions | gateway scaffolding | Graham/Marlow at LOE-8 |
-| [DR-09](#dr-09) | Ship the npm cache alongside the registry seed? | bundle contents, day-one resilience | Graham |
+| ~~[DR-09](#dr-09)~~ | ~~Ship the npm cache alongside the registry seed?~~ **CLOSED BY NECESSITY 2026-09-08** — the cache is REQUIRED, not insurance: without it the package server cannot be installed offline at all (`ENOTCACHED`). Evidence: [day-one rehearsal transcript v1](day_one_rehearsal_transcript_v1.md) Defect 1 | bundle contents, day-one resilience | ~~Graham~~ settled by rehearsal |
 | ~~[DR-10](#dr-10)~~ | ~~How strictly must the two islands' stacks match, and when?~~ **CLOSED 2026-09-03 → [ADR-005](../../../context/governance/decisions/ADR-005-island-stack-sync.md): they must match** (granularity sub-question still `[NEEDS GRAHAM]`) | Desert Island pins; scaffold timing | ~~Graham, with the deploy-topology owner~~ closed by Graham |
 
 ---

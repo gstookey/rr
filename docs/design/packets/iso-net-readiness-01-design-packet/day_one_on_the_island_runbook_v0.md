@@ -1,6 +1,7 @@
 ---
 schema: corpus-doc/v1
-status: exploratory
+status: superseded
+superseded_by: docs/design/packets/iso-net-readiness-01-design-packet/day_one_on_the_island_runbook_v1.md
 title: Day One on the Island — Runbook v0 (draft, unrehearsed)
 areas: [isolated-network, dev-environment, technology-stack]
 related: ["docs/context/canonical/isolated_network_constraints.md", "docs/design/packets/iso-net-readiness-01-design-packet/stack_dependency_manifest_v0.md", "docs/design/packets/iso-net-readiness-01-design-packet/README.md"]
@@ -9,7 +10,9 @@ updated: 2026-08-25
 
 # Day One on the Island — Runbook v0
 
-**Created:** 2026-08-25 | **Last updated:** 2026-08-25 | **Status:** `exploratory` — **DRAFT, NOT REHEARSED**
+**Created:** 2026-08-25 | **Last updated:** 2026-09-08 | **Status:** **`superseded` by [`day_one_on_the_island_runbook_v1.md`](day_one_on_the_island_runbook_v1.md)** (rehearsed 2026-09-08). Kept as the evidence trail.
+
+> **DO NOT FOLLOW THIS VERSION.** The S-16 rehearsal executed it on a network-disabled machine and it **could not be completed**: Step 2's `npm ci --offline` fails `ENOTCACHED` every time, Step 3's `npm adduser` leaves no credential so all 619 publishes fail, the publish loop needs `--provenance=false` and a tag retry, and **Step 5d does not test what it claims** — it passed against a completely empty registry. Findings: [`day_one_rehearsal_transcript_v1.md`](day_one_rehearsal_transcript_v1.md).
 
 > ## Read this before using this document
 >
