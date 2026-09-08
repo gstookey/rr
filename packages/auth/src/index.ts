@@ -8,5 +8,6 @@
  */
 export { PermissionStore } from './lib/permission-store';
 export { canMatchFloor } from './lib/floor-guards';
+export { canActivateSignedIn } from './lib/signed-in-guard';
 export { provideIdentityHydration } from './lib/identity-hydration';
 export { RR_AUTH_PACKAGE } from './lib/auth-package';

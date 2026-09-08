@@ -1,0 +1,5 @@
+{
+  "$comment": "Dev-server proxy. The SPA and the BFF are ONE ORIGIN in production, and the session cookie is same-origin — so the dev server has to be one origin too, or every /api call would be cross-site and the cookie would not ride along. `/auth/*` is proxied for the same reason: sign-in is a browser navigation to the gateway, not an XHR.",
+  "/api": { "target": "http://localhost:3000", "secure": false },
+  "/auth": { "target": "http://localhost:3000", "secure": false }
+}
