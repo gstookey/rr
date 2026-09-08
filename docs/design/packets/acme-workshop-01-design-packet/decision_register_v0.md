@@ -26,10 +26,13 @@ Cross-refs: `DA-Dn` = DDD-ARCH-01 register (inherited; ACME builds on its leans,
 | **AW-D9** | **Group = compartment AND org unit** for the showcase. | A yes (by construction) · B separate axes | **A** — states the R5 Q3 decision for ACME explicitly; the real program may rule differently | S1 | open |
 | **AW-D10** | **Utility-window host** for the Device inspector Office. | A port the TrAIdit UWS mechanism into `@rr/windows` (recast, not copy) · B route leaf only | **A** — it is the Office host and the lesson of the prior port | S2 | open |
 | **AW-D11** | **Local gate.** | A `scripts/local-ci.sh` mirror (lint · typecheck · Sheriff · Vitest · build · corpus check) · B GitHub Actions | **A** (no Actions budget assumption; the island has no Actions anyway) | S0 | open |
-| **AW-D13** | **Compartment subsumption** (surfaced by the AD, KI-5). Does `TTW` dominate `TTW/NWL`? | A yes — a manufacturer sees its B2B customers' devices; the customer sees only its own · B no — sibling compartments | **A** (the devices are the manufacturer's; the seed already gives Cy both compartments) | S2/S3 | open — needs Graham |
-| **AW-D14** | **"Telemetry" lexicon** (AD KI-4): the ACME device feed vs platform observability | A Telemetry = device feed; *observability* for the platform sense · B the reverse | **A** | — | open — needs Graham |
+| **AW-D13** | **Compartment subsumption** (surfaced by the AD, KI-5). Does `TTW` dominate `TTW/NWL`? | A yes — a manufacturer sees its B2B customers' devices; the customer sees only its own · B no — sibling compartments | **A** | S2/S3 | **RULED A (Graham, 2026-09-04)** |
+| **AW-D14** | **"Telemetry" lexicon** (AD KI-4): the ACME device feed vs platform observability | A Telemetry = device feed; *observability* for the platform sense · B the reverse | **A** | — | **RULED A (Graham, 2026-09-04)** |
 | **AW-D12** | **Where seed data lives.** | A JSON under `services/gateway/seed/` loaded by a script · B SQL migration | **A** | S0 | open |
 
 ## Ruling log
 
-*(empty)*
+| Date | Fork | Ruling | Consequence |
+|---|---|---|---|
+| 2026-09-04 | **AW-D13** compartment subsumption | **A** — `TTW` dominates `TTW/NWL`: a manufacturer sees the devices its B2B customers operate; the customer sees only its own. | The dominance predicate is `subject_compartments ⊇ row_compartments` **with prefix subsumption**: holding `TTW` satisfies a row marked `TTW/NWL`. Binds `packages/common` `dominates()`, the Postgres RLS policy, and slice S3's per-subscriber SSE filter. |
+| 2026-09-04 | **AW-D14** the "telemetry" lexicon | **A** — **Telemetry** is the ACME device feed (an external bounded context); the platform sense is **observability**. | Binds every doc, label, package and diagram; AD KI-4 closes. |

@@ -4,7 +4,7 @@ status: exploratory
 title: DDD-ARCH-01 — Diagramming approach v0 (how we stand up and keep the architecture diagrams)
 areas: [system-architecture, planning, process-governance]
 related: ["docs/design/packets/ddd-arch-01-design-packet/README.md", "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md", "docs/context/canonical/isolated_network_constraints.md"]
-updated: 2026-09-03
+updated: 2026-09-04
 ---
 
 # Diagramming approach v0
@@ -53,7 +53,11 @@ Plus two supplementary kinds we already know we need: **deployment** (what runs 
 5. **No classified content, ever**: no real hostnames, IPs, program names, or marking strings in a diagram. Diagrams are exactly the artifact most likely to be pasted into a slide.
 6. **One meaning per word** — labels use the packet lexicon (Building / Floor / Suite / Office / group / overlay), which the lexicon pass will freeze.
 
-## What is seeded now
+## What exists now (2026-09-04)
+
+- **`architecture-description/`** — the 42010-structured AD with views V1..V8 and rendered SVGs; the organising frame from this doc applied. Lesson recorded there as KI-9: Mermaid's native C4 renderer places boundaries last and collides labels, so V1/V2 are drawn as styled flowcharts carrying C4 semantics; V7 uses UML deployment stereotypes as `classDef`s.
+
+## What was seeded on 2026-09-03 (now superseded by V1 and V8)
 
 - `diagrams/01-context-desert-island.md` — C4 level 1, hypothesis.
 - `diagrams/02-tier-model-building-floors.md` — the Building/Floor/Suite/Office structure with the group overlay, hypothesis (the same picture as `tier_model_exploration_v0.md` §4, kept here as the canonical copy once the packet moves).

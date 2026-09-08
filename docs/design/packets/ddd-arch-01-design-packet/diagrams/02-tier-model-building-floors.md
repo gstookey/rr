@@ -1,13 +1,17 @@
 ---
 schema: corpus-doc/v1
-status: exploratory
+status: superseded
 title: DDD-ARCH-01 diagram 02 — Tier model, Building / Floors / Suites / Offices with the group overlay
 areas: [system-architecture, frontend, domain-driven-design]
 related: ["docs/design/packets/ddd-arch-01-design-packet/diagramming_approach_v0.md", "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md", "docs/design/packets/ddd-arch-01-design-packet/decision_register_v0.md"]
+superseded_by: docs/design/packets/ddd-arch-01-design-packet/architecture-description/V8-tier-information-architecture.md
 updated: 2026-09-03
 ---
 
 # 02 — Tier model: Building / Floors / Suites / Offices, with the group overlay
+
+> **Superseded 2026-09-03 by [V8 — Tier / Information Architecture](../architecture-description/V8-tier-information-architecture.md)** of the ACME Workshop Architecture Description. V8 draws the same tier model with ACME's Floors, Suites, Offices and routes, and separates the overlay's four sources. Kept as the record of the lettered-Floor hypothesis.
+
 
 **Created:** 2026-09-03 | **Status:** hypothesis (DA-D1 lean A, DA-D2 lean A *revised after R7*, DA-D3 lean A — none ruled) | **Notation:** Mermaid flowchart
 
