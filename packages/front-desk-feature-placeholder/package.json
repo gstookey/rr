@@ -1,0 +1,18 @@
+{
+  "name": "@rr/front-desk-feature-placeholder",
+  "version": "0.0.0",
+  "private": true,
+  "description": "PLACEHOLDER for the Front Desk Floor. S1 builds the Building, not the rooms: this library exists so the shell can prove a lazy, claim-gated `loadChildren` boundary against a real Floor library. It is DEMOLISHED when S7 builds the real one.",
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "peerDependencies": {
+    "@angular/common": "^22.1.0",
+    "@angular/core": "^22.1.0",
+    "@angular/router": "^22.1.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

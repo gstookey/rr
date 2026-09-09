@@ -47,20 +47,42 @@ const RANK: Readonly<Record<HandlingLevel, number>> = {
 };
 
 /**
+ * Does `held` satisfy the row compartment `required`?
+ *
+ * Yes when they are the same compartment, and yes when `held` is a PREFIX of
+ * `required` — holding `TTW` satisfies a row marked `TTW/NWL`. The relation is
+ * deliberately one-way: `TTW/NWL` does NOT satisfy `TTW`, because a B2B
+ * customer is inside its manufacturer's compartment, not beside it.
+ *
+ * The `/` test matters. Without it, `TTW` would also satisfy `TTWX`, and a
+ * compartment could be widened by choosing a name.
+ */
+function satisfies(held: string, required: string): boolean {
+  return held === required || required.startsWith(`${held}/`);
+}
+
+/**
  * The R5 dominance rule, on invented data: a subject may see a row when its
- * level dominates the row's level AND its compartment set contains every
- * compartment on the row.
+ * level dominates the row's level AND every compartment on the row is
+ * satisfied by some compartment the subject holds.
+ *
+ * Compartments nest, by AW-D13 (ruled 2026-09-04): dominance uses **prefix
+ * subsumption**, so a manufacturer sees the devices its B2B customers operate
+ * and the customer sees only its own. Ada (`TTW`) reads a `TTW/NWL` row; Fay
+ * (`TTW/NWL`) does not read a `TTW` row.
  *
  * This is the reference implementation of the rule. It is NOT the enforcement
- * point — Postgres RLS is (S2). It exists so the UI, the seed validator and the
- * BFF all agree on what the rule MEANS.
+ * point — Postgres RLS is (S2), and its SQL predicate must mirror `satisfies`
+ * exactly, prefix test and all. This function exists so the UI, the seed
+ * validator, the BFF and that policy all agree on what the rule MEANS.
  */
 export function dominates(subject: SubjectClearance, row: Marking): boolean {
   if (RANK[subject.level] < RANK[row.level]) {
     return false;
   }
-  const held = new Set(subject.compartments);
-  return row.compartments.every((c) => held.has(c));
+  return row.compartments.every((required) =>
+    subject.compartments.some((held) => satisfies(held, required)),
+  );
 }
 
 /**
@@ -69,9 +91,18 @@ export function dominates(subject: SubjectClearance, row: Marking): boolean {
  * Compartments are joined with `, ` and NOT with `/`, because a B2B
  * sub-compartment already contains a `/` — `TTW/TTW/NWL` would be unreadable and,
  * worse, re-parseable into the wrong set.
+ *
+ * The separator defaults to ACME's `//` and is overridable because the served
+ * marking vocabulary carries it (`MarkingVocabulary.bannerSeparator`): a second
+ * island spells its banners differently, and the UI must never compose the
+ * string itself — it passes the vocabulary's separator to this one function.
+ *
+ * Note that the string is built from the marking's canonical IDs, never from the
+ * vocabulary's human labels. `TTW` is the compartment; "Tick-Tock Watchworks" is
+ * a tenant's name, and a tenant's name does not belong in a banner.
  */
-export function markingBanner(marking: Marking): string {
+export function markingBanner(marking: Marking, separator = '//'): string {
   return marking.compartments.length === 0
     ? marking.level
-    : `${marking.level}//${[...marking.compartments].sort().join(', ')}`;
+    : `${marking.level}${separator}${[...marking.compartments].sort().join(', ')}`;
 }

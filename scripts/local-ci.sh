@@ -79,6 +79,9 @@ fi
 # It is the one package resolved two different ways: from source by the browser
 # build (tsconfig path alias) and from dist by Node (workspace symlink). The
 # seed validator is a Node consumer, so its dist has to exist first.
+# ORDER IS LOAD-BEARING: "build @rr/common" must stay ahead of "typecheck".
+# The Angular library builds resolve @rr/common from dist/ (ng-packagr rootDir),
+# so a typecheck that runs first sees a stale or missing published language.
 run "build @rr/common"      npm run build --workspace @rr/common
 
 # --- 3. Lint, including THE FENCE ---------------------------------------------

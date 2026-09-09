@@ -1,0 +1,40 @@
+<div class="rr-gate">
+  <div class="rr-card">
+    <rr-wordmark name="ACME Workshop" tier="Building · L1" />
+
+    @if (leaving()) {
+      <h1>Taking you to sign in…</h1>
+      <p class="rr-waiting"><span class="rr-waiting__bar" aria-hidden="true"></span> leaving this application</p>
+      <p>
+        If nothing happens in a few seconds,
+        <a [href]="loginHref()">continue manually</a>.
+      </p>
+      <p class="rr-footnote">Your session will be created by the gateway, not by this page.</p>
+    } @else {
+      @if (code(); as code) {
+        <!-- The screen is cleared FIRST, then the reason is named. -->
+        <div class="rr-alert" role="alert">
+          @if (code === 'SESSION_EXPIRED') {
+            <h1>Your session ended</h1>
+            <p>You were signed out because the session expired. Nothing you were looking at is still on screen.</p>
+          } @else {
+            <h1>Sign-in did not complete</h1>
+            <p>You were not signed in. Nothing you were looking at is still on screen.</p>
+          }
+          <span class="rr-alert__code">{{ code }}</span>
+        </div>
+        <!-- An ordinary link that LEAVES the application, not a fetch: the
+             redirect chain belongs to the gateway. -->
+        <a class="rr-btn" [href]="loginHref()" (click)="signIn($event)">Sign in again</a>
+      } @else {
+        <h1>You are signed out</h1>
+        <p>Sign in to see the Floors your group may enter.</p>
+        <a class="rr-btn" [href]="loginHref()" (click)="signIn($event)">Continue to sign in</a>
+      }
+      <p class="rr-footnote">
+        You will be sent to your organisation's sign-in service and returned here. This application never sees your
+        password.
+      </p>
+    }
+  </div>
+</div>

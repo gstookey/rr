@@ -5,11 +5,15 @@
   "description": "Configuration-as-data: the per-group navigation manifest, capability flags and theme tokens from /api/config.",
   "scripts": {
     "build": "ng build config",
-    "typecheck": "tsc --noEmit -p tsconfig.lib.json"
+    "typecheck": "tsc --noEmit -p tsconfig.lib.json",
+    "test": "ng test config --watch=false"
   },
   "peerDependencies": {
     "@angular/common": "^22.1.0",
-    "@angular/core": "^22.1.0"
+    "@angular/core": "^22.1.0",
+    "@rr/common": "*",
+    "@ngrx/signals": "^22.0.0",
+    "@angular/router": "^22.1.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

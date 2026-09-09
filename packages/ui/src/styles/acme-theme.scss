@@ -1,0 +1,108 @@
+/**
+ * THE ACME THEME — the tenant half of AW-D22.
+ *
+ * The base library (`@rr/markings`, `@rr/ui`) owns the SLOT NAMES (`--rr-*`) and
+ * ships no colours, no level names and no compartment names. This file owns the
+ * VALUES. A different island ships a different stylesheet and the same
+ * components render it.
+ *
+ * `--acme-*` is ACME's internal brand vocabulary; `--rr-*` is the contract the
+ * base library reads. Keeping both, with the mapping visible in one place, is
+ * what makes it obvious which names are portable and which are this tenant's.
+ *
+ * Values are Cadence's S1 token sketch
+ * (`mockups/s1-building/tokens.md`), reproduced exactly.
+ *
+ * NOTE (DA-D11): AstroUXDS is the eventual design system behind `@rr/ui`, and
+ * S1 deliberately adds NO Astro dependency — there is nothing yet for the façade
+ * to wrap. When it lands, each `--acme-*` below becomes either an override of an
+ * Astro custom property or an RR-specific property Astro has no equivalent for
+ * (the marking hues are the second kind, and Astro's own classification-marking
+ * component is not used: it carries a fixed classification enum).
+ */
+
+:root {
+  color-scheme: light dark;
+
+  /* --- ACME's own palette (tenant vocabulary) ------------------------------ */
+  --acme-ground: #f2f4f5;
+  --acme-surface: #ffffff;
+  --acme-sunk: #e8ebee;
+  --acme-ink: #191d21;
+  --acme-ink-muted: #5b656e;
+  --acme-rule: #ccd3d9;
+  --acme-rule-strong: #a8b2ba;
+  --acme-accent: #2d6d8c;
+  --acme-accent-ink: #ffffff;
+  --acme-danger: #8c3a2c;
+
+  --acme-marking-open: #5f6b76;
+  --acme-marking-partner: #5b5296;
+  --acme-marking-internal: #7a4a8e;
+  --acme-marking-restricted: #8c3d68;
+  --acme-marking-unresolved: #6a6a6a;
+
+  /* --- the `--rr-*` contract (what the base library reads) ----------------- */
+  --rr-ground: var(--acme-ground);
+  --rr-surface: var(--acme-surface);
+  --rr-sunk: var(--acme-sunk);
+  --rr-ink: var(--acme-ink);
+  --rr-ink-muted: var(--acme-ink-muted);
+  --rr-rule: var(--acme-rule);
+  --rr-rule-strong: var(--acme-rule-strong);
+  --rr-accent: var(--acme-accent);
+  --rr-accent-ink: var(--acme-accent-ink);
+  --rr-danger: var(--acme-danger);
+
+  /* The vocabulary served by /api/config names these SLOTS by string. */
+  --rr-marking-open: var(--acme-marking-open);
+  --rr-marking-partner: var(--acme-marking-partner);
+  --rr-marking-internal: var(--acme-marking-internal);
+  --rr-marking-restricted: var(--acme-marking-restricted);
+  --rr-marking-unresolved: var(--acme-marking-unresolved);
+
+  --rr-font-ui: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  /* Anything the machine also reads is monospace: routes, markings, error codes. */
+  --rr-font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+
+  --rr-text-xs: 0.6875rem;
+  --rr-text-sm: 0.8125rem;
+  --rr-text-md: 0.9375rem;
+  --rr-text-lg: 1.125rem;
+  --rr-text-xl: 1.5rem;
+
+  --rr-space-1: 4px;
+  --rr-space-2: 8px;
+  --rr-space-3: 12px;
+  --rr-space-4: 16px;
+  --rr-space-5: 24px;
+  --rr-space-6: 32px;
+  --rr-radius: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --acme-ground: #14181b;
+    --acme-surface: #1c2126;
+    --acme-sunk: #23292f;
+    --acme-ink: #e6eaed;
+    --acme-ink-muted: #9aa5ae;
+    --acme-rule: #333c44;
+    --acme-rule-strong: #4c5760;
+    --acme-accent: #6fb2d0;
+    --acme-accent-ink: #0d1114;
+    --acme-danger: #e08a78;
+
+    --acme-marking-open: #9aa6b1;
+    --acme-marking-partner: #a89ce4;
+    --acme-marking-internal: #c493dd;
+    --acme-marking-restricted: #e58cb6;
+    --acme-marking-unresolved: #9a9a9a;
+  }
+}
+
+/* Focus is visible and uniform everywhere in the Building. */
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--rr-accent);
+  outline-offset: 2px;
+}

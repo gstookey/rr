@@ -1,0 +1,13 @@
+<nav class="rr-floor__crumbs" aria-label="Breadcrumb">
+  <span>{{ buildingName() }}</span>
+  <span aria-hidden="true">/</span>
+  <strong>{{ entry()?.label }}</strong>
+</nav>
+
+<section class="rr-floor__slot">
+  <span class="rr-floor__title">{{ entry()?.label }} Floor mounts here</span>
+  <span class="rr-floor__meta">loadChildren('&#64;rr/invent-feature-*') behind canMatchFloor('invent')</span>
+  @if (entry()?.arrivesIn; as slice) {
+    <span class="rr-floor__slice">arrives {{ slice }}</span>
+  }
+</section>

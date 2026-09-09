@@ -1,11 +1,14 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 /**
- * The Building's root component.
+ * The application root: a router outlet and nothing else.
  *
- * S0 scope: this renders ONE line and nothing else. The lobby, the elevator,
- * sign-in/out and the Floor chrome are S1 (slice_decomposition_v0.md); do not
- * grow this component to meet them — it is the seam, not the surface.
+ * Every pixel of chrome belongs to a routed surface — the Building's banner and
+ * identity bar to `BuildingComponent`, the signed-out card to `SignInPage`. Root
+ * chrome would paint before the Building knows who is looking at it, which is
+ * exactly the pre-hydration leak the mockups' fail-closed states exist to
+ * prevent.
  *
  * `changeDetection: OnPush` is written explicitly even though it is the v22
  * default, so the file still says what it means after a Legacy-Island re-pin
@@ -14,8 +17,7 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 @Component({
   selector: 'rr-root',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `<h1>{{ headline() }}</h1>`,
+  imports: [RouterOutlet],
+  template: `<router-outlet />`,
 })
-export class App {
-  protected readonly headline = signal('ACME Workshop — Foundation');
-}
+export class App {}

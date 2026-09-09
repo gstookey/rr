@@ -1,0 +1,8 @@
+<span class="rr-chip__level">{{ levelLabel() }}</span>
+@for (compartment of shown(); track compartment) {
+  <span class="rr-chip__sep" aria-hidden="true">·</span>
+  <span class="rr-chip__compartment">{{ compartment }}</span>
+}
+@if (overflow() > 0) {
+  <span class="rr-chip__overflow">+{{ overflow() }}</span>
+}

@@ -1,0 +1,18 @@
+:host {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--rr-space-1);
+  border: 1px solid var(--rr-rule-strong);
+  border-left: 3px solid var(--rr-marking, var(--rr-rule-strong));
+  border-radius: var(--rr-radius);
+  padding: 0 var(--rr-space-2);
+  font: var(--rr-text-xs) / 1.6 var(--rr-font-mono);
+  letter-spacing: 0.06em;
+  /* AW-D21: the chip grows to `+n`, never to a scrollbar. */
+  white-space: nowrap;
+}
+
+.rr-chip__sep,
+.rr-chip__overflow {
+  color: var(--rr-ink-muted);
+}

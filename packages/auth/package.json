@@ -5,11 +5,15 @@
   "description": "Identity: the /api/me PermissionStore and CanMatchFn guard factories. The UI is never the enforcement point.",
   "scripts": {
     "build": "ng build auth",
-    "typecheck": "tsc --noEmit -p tsconfig.lib.json"
+    "typecheck": "tsc --noEmit -p tsconfig.lib.json",
+    "test": "ng test auth --watch=false"
   },
   "peerDependencies": {
     "@angular/common": "^22.1.0",
-    "@angular/core": "^22.1.0"
+    "@angular/core": "^22.1.0",
+    "@rr/common": "*",
+    "@ngrx/signals": "^22.0.0",
+    "@angular/router": "^22.1.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
