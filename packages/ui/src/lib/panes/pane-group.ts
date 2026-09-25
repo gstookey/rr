@@ -1,10 +1,10 @@
 import {
   ChangeDetectionStrategy, Component, DestroyRef, ElementRef,
-  computed, contentChildren, forwardRef, inject, input, output, signal,
+  computed, contentChildren, effect, forwardRef, inject, input, output, signal,
 } from '@angular/core';
 import { parseBasis } from './layout/basis';
 import { buildTrackList, gapLine, itemLine } from './layout/tracks';
-import { initialWeights, normalizeToPx, resetPair, resizePair } from './layout/weights';
+import { initialWeights, normalizeToPx, remapWeights, resetPair, resizePair } from './layout/weights';
 import { RrPaneResizeHandle } from './pane-resize-handle';
 import { RrPaneSizeStore } from './pane-size-store';
 import { RR_PANES_CONFIG } from './panes.config';
@@ -25,6 +25,13 @@ interface Boundary {
   readonly valueNow: number | null;
   readonly valueMin: number;
   readonly valueMax: number | null;
+}
+
+/** What the user did, and what it was done TO — so it can follow the items, or lapse. */
+interface UserLayout {
+  readonly key: string | null;
+  readonly items: readonly RrPaneItem[];
+  readonly weights: readonly number[];
 }
 
 /**
@@ -77,7 +84,8 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
   readonly resizable = input<boolean | null>(null);
   /** Px between items. Defaults from config. */
   readonly gap = input<number | null>(null);
-  /** Persist sizes to localStorage under this key. Omit to keep sizes in memory only. */
+  /** Persist sizes to localStorage under this key. Omit to keep sizes in memory only.
+   *  Changing it switches layouts: the new key's saved sizes (or the declared ones) apply. */
   readonly stateKey = input<string | null>(null);
 
   // ── As an item of a parent group ──
@@ -114,15 +122,15 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
   private readonly gapPx = computed(() => this.gap() ?? this.config.gap);
 
   // ── Sizes ──
-  /** Weights set by interaction. Null until the user resizes. */
-  private readonly userWeights = signal<number[] | null>(null);
-  /** True once weights are in px (after an interaction) — then valueNow is meaningful. */
-  private readonly normalized = signal(false);
+  /** Set by interaction. Null until the user resizes. Always px. */
+  private readonly userLayout = signal<UserLayout | null>(null);
   protected readonly resizingIndex = signal<number | null>(null);
   /** Briefly true around a keyboard resize, so it applies instantly (see flashInstant). */
   protected readonly instant = signal(false);
   private instantFrame: number | null = null;
-  private dragBase: number[] | null = null;
+  private dragBase: readonly number[] | null = null;
+
+  private readonly itemIds = computed(() => this.items().map((i) => i.itemId()));
 
   private readonly store = computed(() => {
     const key = this.stateKey();
@@ -131,17 +139,22 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
 
   /** Restored layout. Read during the FIRST change detection, so a persisted layout paints
    *  on first render — no jump, and no transition animating the restore. */
-  private readonly restored = computed(() => this.store()?.load(this.items().length) ?? null);
+  private readonly restored = computed(() => this.store()?.load(this.itemIds()) ?? null);
 
   private readonly declared = computed(() => initialWeights(this.items().map((i) => i.basisSpec())));
 
-  /** Precedence: what the user did → what was persisted → what was declared. */
-  readonly sizes = computed<readonly number[]>(() => {
-    const count = this.items().length;
-    const user = this.userWeights();
-    if (user && user.length === count) return user;
-    return this.restored() ?? this.declared();
+  /**
+   * The user's px weights, re-read against the CURRENT items: a size follows its pane when
+   * the items reorder, and lapses when one is added or removed or the stateKey changes.
+   */
+  private readonly userWeights = computed<readonly number[] | null>(() => {
+    const user = this.userLayout();
+    if (!user || user.key !== this.stateKey()) return null;
+    return remapWeights(user.items, user.weights, this.items());
   });
+
+  /** Precedence: what the user did → what was persisted → what was declared. */
+  readonly sizes = computed<readonly number[]>(() => this.userWeights() ?? this.restored() ?? this.declared());
 
   protected readonly trackList = computed(() => {
     const weights = this.sizes();
@@ -161,7 +174,8 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
     if (!this.isResizable()) return [];
     const items = this.items();
     const weights = this.sizes();
-    const px = this.normalized();
+    // Only user weights are px, and only px make aria-valuenow meaningful.
+    const px = this.userWeights() !== null;
     return items.slice(0, -1).map((item, i) => {
       const next = items[i + 1];
       return {
@@ -180,8 +194,17 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
 
   constructor() {
     // A drag end flushes explicitly; this catches a keyboard burst still inside the settle
-    // window when the group is torn down.
-    inject(DestroyRef).onDestroy(() => this.store()?.flush());
+    // window when the stateKey changes or the group is torn down — written now, under the
+    // key it belongs to, instead of by an orphaned timer later.
+    effect((onCleanup) => {
+      const store = this.store();
+      onCleanup(() => store?.flush());
+    });
+    inject(DestroyRef).onDestroy(() => {
+      if (this.instantFrame !== null && typeof cancelAnimationFrame === 'function') {
+        cancelAnimationFrame(this.instantFrame);
+      }
+    });
   }
 
   // ── RrPaneContainer ──
@@ -219,8 +242,7 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
 
   /** Back to the declared bases, and forget any persisted layout. */
   resetSizes(): void {
-    this.userWeights.set(null);
-    this.normalized.set(false);
+    this.userLayout.set(null);
     this.store()?.clear();
   }
 
@@ -238,7 +260,7 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
       this.onResizeEnd();
       return;
     }
-    this.userWeights.set(resizePair({ weights: this.dragBase, index, delta, ...this.bounds(index) }).weights);
+    this.setUserWeights(resizePair({ weights: this.dragBase, index, delta, ...this.bounds(index) }).weights);
   }
 
   protected onResizeEnd(): void {
@@ -254,7 +276,7 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
     // rendering, and a stale measurement drops steps.
     const base = this.currentPx();
     if (!base) return;
-    this.userWeights.set(resizePair({ weights: base, index, delta, ...this.bounds(index) }).weights);
+    this.setUserWeights(resizePair({ weights: base, index, delta, ...this.bounds(index) }).weights);
     this.commit(false);
   }
 
@@ -264,7 +286,7 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
     if (!base) return;
     const bounds = this.bounds(index);
     const target = to === 'min' ? bounds.minBefore : Infinity;
-    this.userWeights.set(resizePair({ weights: base, index, delta: target - base[index], ...bounds }).weights);
+    this.setUserWeights(resizePair({ weights: base, index, delta: target - base[index], ...bounds }).weights);
     this.commit(false);
   }
 
@@ -272,7 +294,7 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
     this.flashInstant();
     const base = this.currentPx();
     if (!base) return;
-    this.userWeights.set(resetPair(base, this.items().map((i) => i.basisSpec()), index, this.bounds(index)));
+    this.setUserWeights(resetPair(base, this.items().map((i) => i.basisSpec()), index, this.bounds(index)));
     this.commit(true);
   }
 
@@ -308,10 +330,13 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
     };
   }
 
+  private setUserWeights(weights: readonly number[]): void {
+    this.userLayout.set({ key: this.stateKey(), items: this.items(), weights });
+  }
+
   /** px weights for an interaction — measured once, then reused while they stay valid. */
-  private currentPx(): number[] | null {
-    const user = this.userWeights();
-    return this.normalized() && user?.length === this.items().length ? user : this.measure();
+  private currentPx(): readonly number[] | null {
+    return this.userWeights() ?? this.measure();
   }
 
   /**
@@ -319,7 +344,7 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
    * interaction a common unit. Returns null if the group is not laid out (hidden, detached,
    * server) — an interaction then simply does nothing rather than collapsing every item.
    */
-  private measure(): number[] | null {
+  private measure(): readonly number[] | null {
     const items = this.items();
     const axis = this.isInline() ? 'width' : 'height';
     const measured = items.map((item) => item.element.getBoundingClientRect()[axis]);
@@ -327,8 +352,7 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
     if (!measured.some((px, i) => !collapsed[i] && px > 0)) return null;
 
     const weights = normalizeToPx(this.sizes(), items.map((i) => i.basisSpec()), collapsed, measured);
-    this.userWeights.set(weights);
-    this.normalized.set(true);
+    this.setUserWeights(weights);
     return weights;
   }
 
@@ -356,7 +380,7 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
     const weights = this.userWeights();
     if (!weights) return;
     const store = this.store();
-    store?.save(weights);
+    store?.save(weights, this.itemIds());
     if (flush) store?.flush();
     this.resized.emit(weights);
   }

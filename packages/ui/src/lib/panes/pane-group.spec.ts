@@ -10,16 +10,16 @@ const rows = (el: HTMLElement): string => el.style.gridTemplateRows;
   standalone: true,
   imports: [RrPane, RrPaneGroup],
   template: `
-    <rr-pane-group #g="rrPaneGroup" class="outer" orientation="inline" [resizable]="true" [stateKey]="stateKey">
+    <rr-pane-group #g="rrPaneGroup" class="outer" orientation="inline" [resizable]="true" [stateKey]="stateKey()">
       <rr-pane label="Units" paneId="units" basis="30%" [(collapsed)]="unitsCollapsed" />
-      <rr-pane-group class="inner" orientation="block">
+      <rr-pane-group class="inner" groupId="work" orientation="block">
         <rr-pane label="Grid" paneId="grid" />
         <rr-pane label="Details" paneId="deck" />
       </rr-pane-group>
     </rr-pane-group>`,
 })
 class Host {
-  stateKey: string | null = null;
+  readonly stateKey = signal<string | null>(null);
   readonly unitsCollapsed = signal(false);
 }
 
@@ -197,25 +197,76 @@ describe('RrPaneGroup', () => {
 
   it('persists a resize under its stateKey and restores it on the FIRST render', async () => {
     const first = TestBed.createComponent(Host);
-    first.componentInstance.stateKey = 'demo';
+    first.componentInstance.stateKey.set('demo');
     await first.whenStable();
     stubSizes(first.nativeElement, { 'rr-pane': 300, '.inner': 700 });
     const handle = outer(first.nativeElement).querySelector(':scope > [role="separator"]') as HTMLElement;
     handle.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true })); // reset = flush
     first.destroy();
-    expect(JSON.parse(localStorage.getItem('rr-panes:demo') ?? 'null')).toEqual({ v: 1, weights: [300, 700] });
+    expect(JSON.parse(localStorage.getItem('rr-panes:demo') ?? 'null')).toEqual({
+      v: 1, weights: [300, 700], ids: ['units', 'work'],
+    });
 
     localStorage.setItem('rr-panes:demo', JSON.stringify({ v: 1, weights: [420, 580] }));
     const second = TestBed.createComponent(Host);
-    second.componentInstance.stateKey = 'demo';
+    second.componentInstance.stateKey.set('demo');
     await second.whenStable();
     expect(cols(outer(second.nativeElement))).toBe('minmax(80px, 420fr) 8px minmax(80px, 580fr)');
+  });
+
+  // WHY: a stateKey names a layout. Switching it must show THAT layout, and a write still
+  // settling for the old key must land under the old key now — not from an orphaned timer.
+  it('switches layouts when the stateKey changes, flushing the old key first', async () => {
+    localStorage.setItem('rr-panes:b', JSON.stringify({ v: 1, weights: [420, 580] }));
+    const f = TestBed.createComponent(Host);
+    f.componentInstance.stateKey.set('a');
+    await f.whenStable();
+    stubSizes(f.nativeElement, { 'rr-pane': 300, '.inner': 700 });
+    const handle = outer(f.nativeElement).querySelector(':scope > [role="separator"]') as HTMLElement;
+    handle.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true })); // settles later
+    await f.whenStable();
+    expect(localStorage.getItem('rr-panes:a')).toBeNull();
+
+    f.componentInstance.stateKey.set('b');
+    await f.whenStable();
+    expect(JSON.parse(localStorage.getItem('rr-panes:a') ?? 'null')?.weights).toEqual([316, 684]);
+    expect(cols(outer(f.nativeElement))).toBe('minmax(80px, 420fr) 8px minmax(80px, 580fr)');
+  });
+
+  // WHY: found in review — a keyboard step schedules two chained frames to re-enable the
+  // transition, and a group torn down inside that window must not leave them running.
+  // Angular's own scheduler also requests and cancels frames, so only a cancel made BY THE
+  // DESTROY, of a frame the keyboard step requested, counts.
+  it('cancels the frame a keyboard resize scheduled when destroyed', async () => {
+    let lastId = 0;
+    const issued: number[] = [];
+    const cancel = vi.fn();
+    vi.stubGlobal('requestAnimationFrame', vi.fn(() => {
+      issued.push(++lastId);
+      return lastId;
+    }));
+    vi.stubGlobal('cancelAnimationFrame', cancel);
+    try {
+      const f = TestBed.createComponent(Host);
+      await f.whenStable();
+      stubSizes(f.nativeElement, { 'rr-pane': 300, '.inner': 700 });
+      const handle = outer(f.nativeElement).querySelector(':scope > [role="separator"]') as HTMLElement;
+      issued.length = 0;
+      handle.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
+      const fromStep = [...issued];
+      cancel.mockClear();
+
+      f.destroy();
+      expect(cancel.mock.calls.some(([id]) => fromStep.includes(id))).toBe(true);
+    } finally {
+      vi.unstubAllGlobals();
+    }
   });
 
   it('forgets persisted sizes on resetSizes()', async () => {
     localStorage.setItem('rr-panes:demo', JSON.stringify({ v: 1, weights: [420, 580] }));
     const f = TestBed.createComponent(Host);
-    f.componentInstance.stateKey = 'demo';
+    f.componentInstance.stateKey.set('demo');
     await f.whenStable();
     groupOf(f).resetSizes();
     await f.whenStable();
@@ -244,5 +295,33 @@ describe('RrPaneGroup', () => {
     f.componentInstance.names.set(['a', 'b', 'c', 'd']);
     await f.whenStable();
     expect(cols(group).split(' 8px ')).toHaveLength(4);
+  });
+
+  // WHY: a size belongs to a pane, not to a position — found in review. Re-sort the list and
+  // the pane the user widened must stay wide.
+  it('keeps a resized size with its pane when the list reorders', async () => {
+    @Component({
+      standalone: true,
+      imports: [RrPane, RrPaneGroup],
+      template: `
+        <rr-pane-group orientation="inline" [resizable]="true">
+          @for (name of names(); track name) { <rr-pane [label]="name" [class]="name" /> }
+        </rr-pane-group>`,
+    })
+    class SortHost {
+      readonly names = signal(['a', 'b']);
+    }
+    const f = TestBed.createComponent(SortHost);
+    await f.whenStable();
+    stubSizes(f.nativeElement, { '.a': 300, '.b': 700 });
+    const group = f.nativeElement.querySelector('rr-pane-group') as HTMLElement;
+    const handle = group.querySelector(':scope > [role="separator"]') as HTMLElement;
+    handle.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
+    await f.whenStable();
+    expect(cols(group)).toBe('minmax(80px, 316fr) 8px minmax(80px, 684fr)');
+
+    f.componentInstance.names.set(['b', 'a']);
+    await f.whenStable();
+    expect(cols(group)).toBe('minmax(80px, 684fr) 8px minmax(80px, 316fr)');
   });
 });

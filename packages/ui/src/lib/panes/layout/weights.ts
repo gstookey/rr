@@ -136,6 +136,9 @@ export function resizePair(input: PairResizeInput): PairResizeResult {
  *
  *   flex + flex   → split by the ratio of their declared weights
  *   fixed + any   → the fixed item returns to its declared px (clamped); the other takes the rest
+ *   fixed + fixed → the item BEFORE the handle returns to its declared px; the one after takes
+ *                   the rest. Both can only be exact if the pair still sums to both bases,
+ *                   which a resize at a neighbouring handle may have changed.
  */
 export function resetPair(
   weights: readonly number[],
@@ -168,4 +171,26 @@ export function isUsableWeights(value: unknown, expectedLength: number): value i
     value.length === expectedLength &&
     value.every((w) => typeof w === 'number' && Number.isFinite(w) && w > 0)
   );
+}
+
+/**
+ * Carry weights saved against one item order over to another, by identity. This is what
+ * keeps a size with its pane when panes are reordered (an `@for` over a sorted list, say):
+ * weights alone are positional, and positional is wrong the moment the order changes.
+ *
+ * Returns null unless `from` and `to` hold exactly the same distinct keys — an added,
+ * removed or duplicated key means identity cannot be trusted, and the caller falls back.
+ */
+export function remapWeights<K>(from: readonly K[], weights: readonly number[], to: readonly K[]): number[] | null {
+  if (from.length !== weights.length || from.length !== to.length) return null;
+  const byKey = new Map<K, number>();
+  from.forEach((key, i) => byKey.set(key, weights[i]));
+  if (byKey.size !== from.length || new Set(to).size !== to.length) return null;
+  const next: number[] = [];
+  for (const key of to) {
+    const weight = byKey.get(key);
+    if (weight === undefined) return null;
+    next.push(weight);
+  }
+  return next;
 }

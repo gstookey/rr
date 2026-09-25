@@ -60,9 +60,11 @@ dynamic rather than static values copied into many places.
 
 ## Verification
 
-53 unit tests (Vitest/jsdom); ng-packagr, typecheck, ESLint and Sheriff green; and one Playwright
+61 unit tests (Vitest/jsdom); ng-packagr, typecheck, ESLint and Sheriff green; and one Playwright
 suite run against **both** the packaged library on Angular 22 (zoneless) and the byte-identical source
-on Angular 17.3.12 (zone.js) — every check passing on both. Detail: guide §10.
+on Angular 17.3.12 (zone.js) — every check passing on both. Verin's review found no blockers and
+three real gaps (an uncancelled frame on destroy, an orphaned write on a `stateKey` change, sizes
+keyed by position rather than pane), all fixed with tests shown failing first. Detail: guide §10.
 
 ## Open
 

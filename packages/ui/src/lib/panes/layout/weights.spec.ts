@@ -1,5 +1,5 @@
 import {
-  initialWeights, isFixed, isUsableWeights, normalizeToPx, resetPair, resizePair,
+  initialWeights, isFixed, isUsableWeights, normalizeToPx, remapWeights, resetPair, resizePair,
 } from './weights';
 import type { RrPaneBasis } from '../panes.types';
 
@@ -107,6 +107,11 @@ describe('resetPair', () => {
     expect(resetPair([400, 600], [px(280), fr(1)], 0, open)).toEqual([280, 720]);
     expect(resetPair([600, 400], [fr(1), px(280)], 0, open)).toEqual([720, 280]);
   });
+
+  it('between two fixed items, returns the one before the handle to its declared px', () => {
+    // A neighbouring resize grew this pair to 600, so both cannot be exact again.
+    expect(resetPair([350, 250], [px(200), px(300)], 0, open)).toEqual([200, 400]);
+  });
 });
 
 describe('isUsableWeights', () => {
@@ -118,5 +123,20 @@ describe('isUsableWeights', () => {
     expect(isUsableWeights([1, NaN, 3], 3)).toBe(false);
     expect(isUsableWeights('1,2,3', 3)).toBe(false);
     expect(isUsableWeights(null, 3)).toBe(false);
+  });
+});
+
+describe('remapWeights', () => {
+  // WHY: a size belongs to a pane, not to a position. Reorder the panes and each size must
+  // move with its own.
+  it('carries each weight over to the same key in the new order', () => {
+    expect(remapWeights(['a', 'b', 'c'], [1, 2, 3], ['c', 'a', 'b'])).toEqual([3, 1, 2]);
+  });
+
+  it('refuses when a key was added, removed or duplicated — identity is then unknowable', () => {
+    expect(remapWeights(['a', 'b'], [1, 2], ['a', 'c'])).toBeNull();
+    expect(remapWeights(['a', 'b'], [1, 2], ['a', 'b', 'c'])).toBeNull();
+    expect(remapWeights(['a', 'a'], [1, 2], ['a', 'a'])).toBeNull();
+    expect(remapWeights(['a', 'b'], [1, 2], ['a', 'a'])).toBeNull();
   });
 });

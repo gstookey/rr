@@ -19,8 +19,9 @@ import { noDependencies, type SheriffConfig } from '@softarc/sheriff-core';
  * `[type:domain, scope:invent]` must satisfy BOTH the type rule and the scope
  * rule. That AND is what makes one flat table express two independent axes.
  *
- * A module is a directory with a barrel `index.ts`, so the module paths below
- * end in `/src`, which is where each package's `index.ts` lives.
+ * A module is a directory with a barrel `index.ts`, so a package's module path
+ * ends in `/src`, which is where its `index.ts` lives. A module nested inside a
+ * package ends wherever its own barrel lives.
  */
 export const config: SheriffConfig = {
   version: 1,

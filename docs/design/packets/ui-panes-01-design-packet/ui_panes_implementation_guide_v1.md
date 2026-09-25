@@ -220,7 +220,9 @@ rescaled with its siblings, so it returns at the size it left at.
 ### 3.5 Reset · `resetPair()`
 
 Double-click or Enter restores one pair to its declared proportions, still conserving the pair — so
-resetting one splitter never moves another pane.
+resetting one splitter never moves another pane. Between two **fixed** items the one *before* the
+handle returns to its declared px and the other takes the rest; both are exact only if the pair
+still sums to both bases, which a resize at a neighbouring handle may have changed.
 
 ---
 
@@ -234,6 +236,12 @@ TrAIdit's workstation:
 - **A stored layout is validated** — wrong length, zero, `NaN`, foreign shape → discarded, not rendered.
 - **Storage failure is a silent no-op** (private mode, quota, disabled).
 - **Nothing runs on the server.**
+- **A size is saved with its item's id**, so it follows its pane if the order changes. That needs
+  ids that are stable across reloads: give panes a `paneId`, and nested groups a `groupId`. Without
+  them, generated ids are assigned in render order and restore degrades to exactly positional.
+- **Changing `stateKey` switches layouts.** Anything still settling for the old key is written under
+  the old key at once, and the new key's saved sizes (or the declared ones) apply. The same flush
+  runs when the group is destroyed.
 
 Weights are unitless, so a layout saved on a large monitor restores proportionally on a laptop.
 
@@ -363,6 +371,9 @@ runtime `TypeError` with no compile error (v1 shipped this).
 2. Turns their bases into one grid track each (§3), placing item *i* on line `2i+1`.
 3. When `resizable`, places a splitter in each gap track.
 4. Owns every size. Precedence: **what the user did → what was persisted → what was declared.**
+   What the user did is recorded against the items it was done *to*: if the items reorder, each
+   size moves with its own pane; if one is added or removed, the user sizes lapse and the
+   persisted or declared ones apply.
 
 ### 7.2 Imperative API
 
@@ -475,8 +486,9 @@ the feature changes**.
 
 ## 10. Verification record
 
-**Unit tests — 53, Vitest/jsdom, in `rr`:** layout math (24), persistence (5), pane (9), group (15,
-incl. `@for` panes, nested discovery, first-frame restore). jsdom has **no layout engine** — grid tracks
+**Unit tests — 61, Vitest/jsdom, in `rr`:** layout math (27), persistence (7), pane (9), group (18,
+incl. `@for` panes, nested discovery, first-frame restore, sizes following a reorder, switching
+`stateKey`, and destroy cancelling a pending frame). jsdom has **no layout engine** — grid tracks
 don't compute and sizes are zero — so these cover behaviour, state and accessibility, stubbing sizes
 where a test needs them.
 
@@ -498,6 +510,14 @@ copied source was checked byte-identical to `rr`'s.
 
 **Gates:** `ng build ui` (ng-packagr, partial compilation), typecheck, ESLint (incl. angular-eslint
 selector prefixes), Sheriff — all green.
+
+**Review round (Verin).** No blockers; three real gaps fixed, each with a test shown **failing
+against the pre-fix source** before it passed: (1) the keyboard resize's two chained animation
+frames were not cancelled on destroy; (2) changing `stateKey` left the old key's settling write to
+an orphaned timer; (3) user and persisted sizes were positional, so reordering panes moved a size
+onto the wrong pane — now keyed by identity in memory and by id in storage. The fixes added an
+`effect()` cleanup, so both browser suites were re-run: identical results on 22 and 17.3.12, and
+17.3's effect source was read to confirm the cleanup runs before a re-run and on destroy.
 
 ---
 
@@ -528,6 +548,7 @@ selector prefixes), Sheriff — all green.
 | A drag does nothing | A neighbour is collapsed (the handle is inert), or the group is not laid out yet |
 | "Collapse all" misses a pane | The pane is not an item — wrapped in a plain `<div>` rather than direct, `@if` or `@for` |
 | Persisted sizes ignored | Item count changed since they were saved (deliberately discarded), or a different `stateKey` |
+| A saved size restores onto the wrong pane after reordering | The items have no stable ids — give each pane a `paneId` and each nested group a `groupId` |
 | `TypeError: <x>_rN is not a function` | A template ref shadows a member — rename the ref |
 
 ---
@@ -536,6 +557,7 @@ selector prefixes), Sheriff — all green.
 
 - **A flex pane's `max` is enforced during resizing, not as the container grows** — `fr` has no cap.
   Use a fixed (`px`) basis for anything that must never exceed a width.
+- **Reset between two fixed items** restores only the one before the handle exactly (§3.5).
 - **No drag-to-collapse snap** (dragging a pane below its minimum does not collapse it). A natural
   next feature; the pairwise model has room for it.
 - **`content-visibility`** is Baseline since September 2024. Where unsupported the body still

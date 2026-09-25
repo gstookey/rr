@@ -1,4 +1,4 @@
-import { isUsableWeights } from './layout/weights';
+import { isUsableWeights, remapWeights } from './layout/weights';
 
 /**
  * Persists a group's size weights to localStorage.
@@ -14,10 +14,16 @@ import { isUsableWeights } from './layout/weights';
  *  • SSR-safe: no storage, no timers, nothing touched on the server.
  *
  * Weights are unitless, so a layout saved on one screen restores proportionally on another.
+ *
+ * Each weight is saved with the id of the item it belongs to, so a size follows its pane when
+ * the order changes. That needs ids that are stable across reloads — give panes a `paneId`.
+ * Generated ids are assigned in render order, so they degrade to exactly positional restore,
+ * which is also what a snapshot saved without ids gets.
  */
 interface StoredLayout {
   readonly v: 1;
   readonly weights: number[];
+  readonly ids?: string[];
 }
 
 const hasStorage = (): boolean => {
@@ -30,28 +36,31 @@ const hasStorage = (): boolean => {
 
 export class RrPaneSizeStore {
   private timer: ReturnType<typeof setTimeout> | null = null;
-  private pending: number[] | null = null;
+  private pending: StoredLayout | null = null;
 
   constructor(
     private readonly key: string,
     private readonly settleMs = 200,
   ) {}
 
-  load(expectedLength: number): number[] | null {
+  /** The stored weights in the order of `ids` (the group's items now), or null. */
+  load(ids: readonly string[]): number[] | null {
     if (!hasStorage()) return null;
     try {
       const raw = localStorage.getItem(this.key);
       if (!raw) return null;
       const parsed = JSON.parse(raw) as Partial<StoredLayout> | null;
-      return parsed?.v === 1 && isUsableWeights(parsed.weights, expectedLength) ? parsed.weights : null;
+      if (parsed?.v !== 1 || !isUsableWeights(parsed.weights, ids.length)) return null;
+      const saved = Array.isArray(parsed.ids) ? parsed.ids : null;
+      return (saved && remapWeights(saved, parsed.weights, ids)) ?? parsed.weights;
     } catch {
       return null;
     }
   }
 
   /** Schedule a write. Repeated calls inside the settle window coalesce into one. */
-  save(weights: readonly number[]): void {
-    this.pending = weights.map((w) => Math.round(w * 100) / 100);
+  save(weights: readonly number[], ids: readonly string[]): void {
+    this.pending = { v: 1, weights: weights.map((w) => Math.round(w * 100) / 100), ids: [...ids] };
     if (this.timer !== null) clearTimeout(this.timer);
     this.timer = setTimeout(() => this.flush(), this.settleMs);
   }
@@ -62,11 +71,10 @@ export class RrPaneSizeStore {
       clearTimeout(this.timer);
       this.timer = null;
     }
-    const weights = this.pending;
+    const layout = this.pending;
     this.pending = null;
-    if (weights === null || !hasStorage()) return;
+    if (layout === null || !hasStorage()) return;
     try {
-      const layout: StoredLayout = { v: 1, weights };
       localStorage.setItem(this.key, JSON.stringify(layout));
     } catch {
       // best effort — quota, private mode or disabled storage

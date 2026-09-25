@@ -48,12 +48,15 @@ Slot: `<button rrPaneHeader>` puts extra content in the header.
 | `orientation` | `'inline' \| 'block'` | `'inline'` | Items side by side, or stacked. Panes inherit it |
 | `resizable` | `boolean` | config (`false`) | Drag and keyboard splitters between items |
 | `gap` | `number` | config (`8`) | px between items; the splitter's track when resizable |
-| `stateKey` | `string` | none | Persist sizes to localStorage under this key |
+| `stateKey` | `string` | none | Persist sizes to localStorage under this key. Changing it switches layouts |
 | `basis` / `min` / `max` / `label` | | | As a nested item of a parent group |
 
 Output: `resized` (size weights). Signal: `sizes`. `exportAs: 'rrPaneGroup'`:
 `collapseAll()`, `expandAll()`, `collapse(id)`, `expand(id)`, `toggle(id)`, `resetSizes()` — all
 reach into nested groups.
+
+Sizes belong to panes, not positions: reorder the items and each size moves with its own. For that
+to survive a reload, give panes a `paneId` and nested groups a `groupId`.
 
 ## Configuration — every number lives in one place
 
