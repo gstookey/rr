@@ -2,6 +2,18 @@
 
 <!-- Convention (BS-14): one `# [YYYY-MM-DD] <type> | <title>` header level, newest-first — prepend below this comment. Types: ingest | decision | milestone | lint | governance | session -->
 
+# [2026-09-25] decision | UI-PANES-01 — collapsible, resizable panes land in `@rr/ui` (v2), pending merge
+
+Graham asked for his v1 collapsible-pane primitive — first built inside a single work feature — to become a reusable library component: simple to instantiate, any arrangement, configurable, and without the same window size copied into many places. His rulings (A–E) are recorded in `docs/design/packets/ui-panes-01-design-packet/README.md`: `model()` collapse with a separate force overlay; panes own their state with group escape hatches; chevron `start | end` only; **drag-to-resize built now** behind `[resizable]`, modelled on TrAIdit's workstation; and buildable source rather than a spec.
+
+**Where and which version.** Built into `@rr/ui` (`packages/ui/src/lib/panes/`), tagged as its own Sheriff `type:ui` module. The first consumer is on Angular 17.3 while `rr` is on 22, and a v22-built package cannot be consumed by 17.3 — so the source is written to the 17.3 ∩ 22 API intersection and serves both: copied today, imported after the upgrade.
+
+**The design move.** Each item is one CSS Grid track and the browser does the arithmetic — nothing is measured until a handle is grabbed, and there is no `ResizeObserver`, so a container or PiP resize runs no JavaScript. An early draft made every item proportional; it was corrected (own commit) before anything depended on it, into fixed (`px`) and flex (`%`/`fr`) items, because it broke the fixed-sidebar layout.
+
+**Tested against real output, not reasoned about.** 53 unit tests; then one Playwright suite run against the packaged library on Angular 22 (zoneless) **and** the byte-identical source on Angular 17.3.12 (zone.js), all checks passing on both. The browser found two defects jsdom could not: collapse-all stopped at direct children, and keyboard resizes ran through the collapse transition so the screen lagged the announced `aria-valuenow`. Both fixed.
+
+**Deliberately not done:** `apps/shell` is frozen at S0 by its own comments, so no demo route was added; the demo ran in a throwaway app outside the repo. No board story was activated.
+
 # [2026-09-08] decision | Bundle artifacts renamed to `angular-upgrade-bundle-*` (compliance)
 
 Graham, for compliance: delivered bundle files and folders are named for **what they are** — an Angular upgrade bundle — rather than for the project or the estate. He had already hand-renamed the six rung outputs he built; this makes the tooling produce the new names so a rebuild cannot drift back.
