@@ -14,7 +14,8 @@ import type { RrPaneBasis, RrPaneOrientation } from './panes.types';
  */
 export interface RrPaneItem {
   readonly itemId: Signal<string>;
-  readonly basis: Signal<RrPaneBasis>;
+  /** Parsed `basis`. Named `basisSpec` so it cannot collide with a `basis` input. */
+  readonly basisSpec: Signal<RrPaneBasis>;
   readonly minSize: Signal<number>;
   readonly maxSize: Signal<number | null>;
   readonly isCollapsed: Signal<boolean>;

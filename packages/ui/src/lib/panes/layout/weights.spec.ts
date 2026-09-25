@@ -1,29 +1,52 @@
-import { isUsableWeights, resetPair, resizePair, weightsFromBases } from './weights';
+import {
+  initialWeights, isFixed, isUsableWeights, normalizeToPx, resetPair, resizePair,
+} from './weights';
 import type { RrPaneBasis } from '../panes.types';
 
 const px = (value: number): RrPaneBasis => ({ unit: 'px', value });
 const pct = (value: number): RrPaneBasis => ({ unit: '%', value });
 const fr = (value: number): RrPaneBasis => ({ unit: 'fr', value });
-const sum = (xs: readonly number[]): number => xs.reduce((a, b) => a + b, 0);
 
-describe('weightsFromBases', () => {
-  // WHY: weights equal to the px each item occupies make the switch from declared tracks
-  // to weight tracks invisible — no layout jump on first interaction.
-  it('produces weights equal to the px each item would occupy', () => {
-    expect(weightsFromBases([pct(30), fr(1)], 1000)).toEqual([300, 700]);
-    expect(weightsFromBases([px(240), fr(1), fr(1)], 1000)).toEqual([240, 380, 380]);
-    expect(weightsFromBases([fr(1), fr(3)], 800)).toEqual([200, 600]);
+describe('initialWeights', () => {
+  // WHY: initial weights need no measurement, so the first render — and server rendering —
+  // is already the final layout. No post-render swap, no flash.
+  it('derives weights from declared bases alone', () => {
+    expect(initialWeights([pct(30), fr(1)])).toEqual([30, 70]);
+    expect(initialWeights([fr(1), fr(3)])).toEqual([25, 75]);
+    expect(initialWeights([fr(1), fr(1)])).toEqual([50, 50]);
   });
 
-  it('the weights of a fully-shared layout sum to the shared space', () => {
-    expect(sum(weightsFromBases([pct(25), px(100), fr(2), fr(1)], 1200))).toBeCloseTo(1200);
+  it('keeps a fixed item at its px and lets flex items share the rest', () => {
+    expect(initialWeights([px(280), fr(1)])).toEqual([280, 100]);
+    expect(initialWeights([px(280), pct(30), fr(1)])).toEqual([280, 30, 70]);
   });
 
-  // WHY: over-committed fixed items must not make fr items disappear — they fall to `min`.
-  it('gives fr items a positive token weight when fixed items over-commit the space', () => {
-    const w = weightsFromBases([px(900), fr(1)], 600);
-    expect(w[0]).toBe(900);
+  // WHY: over-committed percentages must not make an fr item vanish — it falls to its min.
+  it('gives fr items a positive token weight when percentages claim everything', () => {
+    const w = initialWeights([pct(100), fr(1)]);
     expect(w[1]).toBeGreaterThan(0);
+  });
+
+  it('classifies px as fixed and % / fr as flex', () => {
+    expect([isFixed(px(1)), isFixed(pct(1)), isFixed(fr(1))]).toEqual([true, false, false]);
+  });
+});
+
+describe('normalizeToPx', () => {
+  it('re-expresses expanded items as their rendered px', () => {
+    expect(normalizeToPx([30, 70], [pct(30), fr(1)], [false, false], [300, 700])).toEqual([300, 700]);
+  });
+
+  // WHY: a collapsed flex pane must come back at the size it left at. Its remembered weight
+  // is in the OLD unit, so it has to be rescaled with its siblings, not copied.
+  it('rescales a collapsed flex item by the same factor as the expanded flex items', () => {
+    // three flex items 25/25/50 of a 1000px flex space; the first is collapsed
+    const w = normalizeToPx([25, 25, 50], [fr(1), fr(1), fr(2)], [true, false, false], [0, 250, 500]);
+    expect(w).toEqual([250, 250, 500]);
+  });
+
+  it('leaves a collapsed fixed item at its px', () => {
+    expect(normalizeToPx([280, 100], [px(280), fr(1)], [true, false], [0, 900])).toEqual([280, 900]);
   });
 });
 
@@ -31,8 +54,6 @@ describe('resizePair', () => {
   const base = {
     weights: [300, 700, 500],
     index: 0,
-    pxBefore: 300,
-    pxAfter: 700,
     minBefore: 100,
     maxBefore: null,
     minAfter: 100,
@@ -42,14 +63,13 @@ describe('resizePair', () => {
   it('moves the boundary by the pointer delta', () => {
     const r = resizePair({ ...base, delta: 50 });
     expect(r.pxBefore).toBe(350);
-    expect(r.weights[0] / (r.weights[0] + r.weights[1])).toBeCloseTo(350 / 1000);
+    expect(r.weights).toEqual([350, 650, 500]);
   });
 
-  // WHY: this is what guarantees a drag between two panes never moves a THIRD pane — the
-  // pair's combined weight is conserved, so the fr unit is unchanged.
-  it('conserves the pair weight and leaves every other item untouched', () => {
+  // WHY: this is the guarantee that dragging between two panes never moves a THIRD pane.
+  it('conserves the pair and leaves every other item untouched', () => {
     const r = resizePair({ ...base, delta: -120 });
-    expect(r.weights[0] + r.weights[1]).toBeCloseTo(1000);
+    expect(r.weights[0] + r.weights[1]).toBe(1000);
     expect(r.weights[2]).toBe(500);
   });
 
@@ -59,33 +79,38 @@ describe('resizePair', () => {
   });
 
   it('clamps so the item AFTER the handle never leaves its bounds either', () => {
-    expect(resizePair({ ...base, delta: 1000 }).pxBefore).toBe(900); // after stops at min 100
-    expect(resizePair({ ...base, delta: -250, maxAfter: 800 }).pxBefore).toBe(200); // after capped at 800
+    expect(resizePair({ ...base, delta: 1000 }).pxBefore).toBe(900);
+    expect(resizePair({ ...base, delta: -250, maxAfter: 800 }).pxBefore).toBe(200);
   });
 
   it('refuses to move rather than violate an unsatisfiable pair of constraints', () => {
-    const r = resizePair({ ...base, delta: 10, minBefore: 600, minAfter: 600 });
-    expect(r.weights).toEqual(base.weights);
+    expect(resizePair({ ...base, delta: 10, minBefore: 600, minAfter: 600 }).weights).toEqual(base.weights);
   });
 
-  it('ignores an index with no neighbour, and a zero-size pair', () => {
+  it('ignores an index with no neighbour, and an empty pair', () => {
     expect(resizePair({ ...base, index: 2, delta: 10 }).weights).toEqual(base.weights);
-    expect(resizePair({ ...base, pxBefore: 0, pxAfter: 0, delta: 10 }).weights).toEqual(base.weights);
+    expect(resizePair({ ...base, weights: [0, 0], delta: 10 }).weights).toEqual([0, 0]);
   });
 });
 
 describe('resetPair', () => {
-  it('restores the declared ratio without disturbing the rest', () => {
-    const r = resetPair([100, 900, 500], [300, 700, 500], 0);
-    expect(r[0] / (r[0] + r[1])).toBeCloseTo(0.3);
-    expect(r[0] + r[1]).toBeCloseTo(1000);
+  const open = { minBefore: 50, maxBefore: null, minAfter: 50, maxAfter: null };
+
+  it('restores two flex items to their declared ratio, conserving the pair', () => {
+    const r = resetPair([100, 900, 500], [pct(30), fr(1), fr(1)], 0, open);
+    expect(r[0] + r[1]).toBe(1000);
+    expect(r[0] / 1000).toBeCloseTo(30 / (30 + 35), 5); // declared 30 vs the fr share
     expect(r[2]).toBe(500);
+  });
+
+  it('returns a fixed item to its declared px', () => {
+    expect(resetPair([400, 600], [px(280), fr(1)], 0, open)).toEqual([280, 720]);
+    expect(resetPair([600, 400], [fr(1), px(280)], 0, open)).toEqual([720, 280]);
   });
 });
 
 describe('isUsableWeights', () => {
-  // WHY: localStorage is shared, user-editable and outlives deployments. A stale or corrupt
-  // snapshot must be rejected, not rendered.
+  // WHY: storage outlives deployments. Stale or hand-edited values must be rejected.
   it('accepts only a right-length array of positive finite numbers', () => {
     expect(isUsableWeights([1, 2, 3], 3)).toBe(true);
     expect(isUsableWeights([1, 2], 3)).toBe(false);

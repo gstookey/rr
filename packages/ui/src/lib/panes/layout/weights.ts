@@ -1,59 +1,93 @@
 import type { RrPaneBasis } from '../panes.types';
 
 /**
- * Size weights — the whole resizing model, as pure functions.
+ * Size weights — the whole sizing model, as pure functions.
  *
  * Created: 2026-09-25
  *
- * THE MODEL. Every item in a group owns a WEIGHT. An expanded item renders as the grid
- * track `minmax(<min>px, <weight>fr)`, so CSS Grid hands out the shared space in proportion
- * to the weights. The browser does the arithmetic; this file only decides the weights.
+ * TWO KINDS OF ITEM, chosen by the unit the consumer writes:
  *
- * Consequences worth knowing:
- *  • Weights are unitless, so a layout saved on a large monitor restores proportionally on
- *    a small one, and a window resize (including PiP) rescales with no JavaScript at all.
- *  • A collapsed item keeps its weight but renders `0fr`, so its space flows to its
- *    siblings in proportion — and returns when it expands. No redistribution math.
- *  • A drag moves weight between exactly two neighbours and keeps their SUM constant, so
- *    the fr unit — and therefore every other item's size — is untouched.
+ *   FIXED  (`basis="280px"`)        renders as `minmax(<min>px, <weight>px)`.
+ *                                   Holds its width when the container resizes.
+ *   FLEX   (`basis="30%"`, `"1fr"`) renders as `minmax(<min>px, <weight>fr)`.
+ *                                   Shares whatever the fixed items leave.
+ *
+ * That is the ordinary desktop layout — a fixed sidebar beside a flexible main area — and
+ * CSS Grid does all of its arithmetic. A container resize, including a PiP relocation,
+ * needs no JavaScript and no ResizeObserver.
+ *
+ * UNITS. A fixed item's weight is always px. A flex item's weight is relative: initially
+ * "percent of the flex space"; after any interaction the group normalises every weight to
+ * px, which is still a valid relative weight for an `fr` track and makes pairwise
+ * resizing uniform across both kinds.
  */
+
+export const isFixed = (basis: RrPaneBasis): boolean => basis.unit === 'px';
+
+/** A flex item that has lost all of its space still gets a token weight, so it renders at
+ *  its `min` instead of vanishing. */
+const TOKEN_WEIGHT = 0.001;
 
 /**
- * Convert declared bases into weights, measured against `sharedPx` — the space the
- * expanded items share (group axis minus handle tracks minus collapsed items).
+ * Initial weights, straight from the declared bases — NO measurement required, so the very
+ * first render (and server rendering) is already the final layout.
  *
- * The returned weights are, deliberately, the px each item would occupy right now. So the
- * first `fr` layout is pixel-identical to the declared bases — switching from declared
- * tracks to weight tracks is invisible.
+ *   [30%, 1fr]      → [30, 70]         the fr item takes what the % items leave
+ *   [1fr, 3fr]      → [25, 75]
+ *   [280px, 1fr]    → [280, 100]       fixed px; the lone flex item takes all flex space
  */
-export function weightsFromBases(bases: readonly RrPaneBasis[], sharedPx: number): number[] {
-  const shared = Math.max(0, sharedPx);
-  let fixedPx = 0;
+export function initialWeights(bases: readonly RrPaneBasis[]): number[] {
+  let pctTotal = 0;
   let frTotal = 0;
-  for (const basis of bases) {
-    if (basis.unit === 'px') fixedPx += basis.value;
-    else if (basis.unit === '%') fixedPx += (basis.value / 100) * shared;
-    else frTotal += basis.value;
+  for (const b of bases) {
+    if (b.unit === '%') pctTotal += b.value;
+    else if (b.unit === 'fr') frTotal += b.value;
   }
-  const remainder = shared - fixedPx;
+  const frShare = Math.max(0, 100 - pctTotal);
 
-  return bases.map((basis) => {
-    if (basis.unit === 'px') return basis.value;
-    if (basis.unit === '%') return (basis.value / 100) * shared;
-    // fr: split what the fixed items left. If they over-committed the space, give fr items
-    // a token weight so they render at their `min` rather than vanishing.
-    return remainder > 0 && frTotal > 0 ? (remainder * basis.value) / frTotal : basis.value;
+  return bases.map((b) => {
+    if (b.unit === 'px') return b.value;
+    if (b.unit === '%') return Math.max(b.value, TOKEN_WEIGHT);
+    return frTotal > 0 && frShare > 0 ? (frShare * b.value) / frTotal : TOKEN_WEIGHT;
+  });
+}
+
+/**
+ * Re-express every weight in px, using the sizes the items are rendered at right now.
+ * Visually a no-op — it is how an interaction gets a common unit to work in.
+ *
+ * `measuredPx[i]` must be the rendered size of item i along the axis. Collapsed items are
+ * not measured (they are at their rail size); a collapsed flex item's remembered weight is
+ * rescaled by the same factor as the expanded flex items, so it returns at the right size.
+ */
+export function normalizeToPx(
+  weights: readonly number[],
+  bases: readonly RrPaneBasis[],
+  collapsed: readonly boolean[],
+  measuredPx: readonly number[],
+): number[] {
+  let oldFlex = 0;
+  let pxFlex = 0;
+  for (let i = 0; i < weights.length; i++) {
+    if (!collapsed[i] && !isFixed(bases[i])) {
+      oldFlex += weights[i];
+      pxFlex += measuredPx[i];
+    }
+  }
+  const scale = oldFlex > 0 && pxFlex > 0 ? pxFlex / oldFlex : 1;
+
+  return weights.map((w, i) => {
+    if (!collapsed[i]) return Math.max(measuredPx[i], TOKEN_WEIGHT);
+    return isFixed(bases[i]) ? w : Math.max(w * scale, TOKEN_WEIGHT);
   });
 }
 
 export interface PairResizeInput {
+  /** Must already be px — see normalizeToPx. */
   readonly weights: readonly number[];
   /** Index of the item BEFORE the handle. The item after it is `index + 1`. */
   readonly index: number;
-  /** Current rendered size of both items along the axis, in px. */
-  readonly pxBefore: number;
-  readonly pxAfter: number;
-  /** Proposed movement of the boundary, in px. Positive grows the item before it. */
+  /** Proposed movement of the boundary, px. Positive grows the item before it. */
   readonly delta: number;
   readonly minBefore: number;
   readonly maxBefore: number | null;
@@ -68,53 +102,63 @@ export interface PairResizeResult {
 }
 
 /**
- * Move the boundary between two neighbours. Pure.
+ * Move the boundary between two neighbours. Pure, px-based.
  *
- * The pair's combined px and combined weight are both conserved; the delta is clamped so
- * that NEITHER item leaves its own [min, max]. If the two items' constraints cannot both be
- * met, the weights are returned unchanged rather than violating either one.
+ * The pair's combined size is conserved, so NO other item moves. The delta is clamped so
+ * that neither item leaves its own [min, max]; if both sets of constraints cannot be met,
+ * the weights are returned unchanged rather than violating either one.
  */
 export function resizePair(input: PairResizeInput): PairResizeResult {
-  const { weights, index, pxBefore, pxAfter, delta } = input;
-  const unchanged: PairResizeResult = { weights: [...weights], pxBefore };
+  const { weights, index, delta } = input;
   const after = index + 1;
+  const pxBefore = weights[index] ?? 0;
+  const unchanged: PairResizeResult = { weights: [...weights], pxBefore };
   if (index < 0 || after >= weights.length) return unchanged;
 
-  const pairPx = pxBefore + pxAfter;
-  const pairWeight = weights[index] + weights[after];
-  if (!(pairPx > 0) || !(pairWeight > 0)) return unchanged;
+  const pair = weights[index] + weights[after];
+  if (!(pair > 0)) return unchanged;
 
-  // The item before may take the range that keeps BOTH items inside their bounds.
-  const lo = Math.max(input.minBefore, pairPx - (input.maxAfter ?? Infinity));
-  const hi = Math.min(input.maxBefore ?? Infinity, pairPx - input.minAfter);
+  // The item before may take any size that keeps BOTH items inside their bounds.
+  const lo = Math.max(input.minBefore, pair - (input.maxAfter ?? Infinity));
+  const hi = Math.min(input.maxBefore ?? Infinity, pair - input.minAfter);
   if (lo > hi) return unchanged;
 
   const nextBefore = Math.min(hi, Math.max(lo, pxBefore + delta));
   const next = [...weights];
-  next[index] = (pairWeight * nextBefore) / pairPx;
-  next[after] = pairWeight - next[index];
+  next[index] = nextBefore;
+  next[after] = pair - nextBefore;
   return { weights: next, pxBefore: nextBefore };
 }
 
 /**
- * Restore a pair to its declared proportions WITHOUT disturbing any other item: the pair's
- * combined weight is kept, and only the split between them returns to the original ratio.
- * This is the double-click / Enter "reset" on a handle.
+ * Restore one pair to its declared proportions, conserving the pair's combined size so no
+ * other item moves. This is the double-click / Enter "reset" on a handle. `weights` must be px.
+ *
+ *   flex + flex   → split by the ratio of their declared weights
+ *   fixed + any   → the fixed item returns to its declared px (clamped); the other takes the rest
  */
 export function resetPair(
   weights: readonly number[],
-  initial: readonly number[],
+  bases: readonly RrPaneBasis[],
   index: number,
+  bounds: { minBefore: number; maxBefore: number | null; minAfter: number; maxAfter: number | null },
 ): number[] {
   const after = index + 1;
-  if (index < 0 || after >= weights.length || after >= initial.length) return [...weights];
-  const pairWeight = weights[index] + weights[after];
-  const initialPair = initial[index] + initial[after];
-  if (!(initialPair > 0)) return [...weights];
-  const next = [...weights];
-  next[index] = (pairWeight * initial[index]) / initialPair;
-  next[after] = pairWeight - next[index];
-  return next;
+  if (index < 0 || after >= weights.length) return [...weights];
+  const pair = weights[index] + weights[after];
+  const initial = initialWeights(bases);
+  const a = bases[index];
+  const b = bases[after];
+
+  let target: number;
+  if (isFixed(a)) target = a.value;
+  else if (isFixed(b)) target = pair - b.value;
+  else {
+    const ratio = initial[index] + initial[after];
+    target = ratio > 0 ? (pair * initial[index]) / ratio : pair / 2;
+  }
+
+  return resizePair({ weights, index, delta: target - weights[index], ...bounds }).weights;
 }
 
 /** A stored layout is only trusted if it has the right shape and every weight is usable. */
