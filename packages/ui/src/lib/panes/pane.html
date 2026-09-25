@@ -1,0 +1,47 @@
+<div
+  #headerEl
+  class="rr-pane__header"
+  [attr.tabindex]="canToggle() ? null : -1">
+  @if (collapsible()) {
+    <button
+      #toggleBtn
+      type="button"
+      class="rr-pane__toggle"
+      [attr.id]="toggleId()"
+      [attr.aria-expanded]="!isCollapsed()"
+      [attr.aria-controls]="bodyId()"
+      [disabled]="forceCollapsed()"
+      (click)="toggle()">
+      <!-- A 7px square wearing two borders is a chevron; its rotation is set in CSS. Pure
+           CSS rather than an icon component: no dependency, and no shadow root to carry
+           across a PiP relocation. -->
+      <span class="rr-pane__chevron" aria-hidden="true"></span>
+      <span class="rr-pane__sr-only">{{ label() }}</span>
+    </button>
+  }
+
+  <span class="rr-pane__title" [attr.id]="titleId()">{{ label() }}</span>
+
+  <!-- Extra header content: `<button rrPaneHeader>`. No marker directive is needed —
+       `select` matches the attribute structurally, so there is nothing to import. -->
+  <span class="rr-pane__actions"><ng-content select="[rrPaneHeader]" /></span>
+</div>
+
+@if (showRail()) {
+  <div class="rr-pane__rail" aria-hidden="true">
+    <span class="rr-pane__rail-label">{{ label() }}</span>
+  </div>
+}
+
+<!-- The body stays MOUNTED while collapsed. Destroying it would lose scroll offsets,
+     in-flight focus and the state of anything inside (tabs, iframes, canvases). -->
+<div
+  #bodyEl
+  class="rr-pane__body"
+  role="region"
+  [attr.id]="bodyId()"
+  [attr.aria-labelledby]="titleId()"
+  [attr.inert]="isCollapsed() ? '' : null"
+  [attr.aria-hidden]="isCollapsed() ? 'true' : null">
+  <ng-content />
+</div>

@@ -1,0 +1,242 @@
+// <rr-pane> — Created: 2026-09-25
+//
+// THEMING CONTRACT. Every custom property below is READ with an inline fallback, so the pane
+// renders correctly in an app that defines none of them. Override any of them on :root, on a
+// group, or on one pane. A `var()` here is always a read — never a declaration.
+//
+//   --rr-pane-surface          body background      (falls back to Astro's surface token)
+//   --rr-pane-header-surface   header bar background
+//   --rr-pane-border           border + header rule
+//   --rr-pane-radius           corner radius
+//   --rr-pane-text             primary ink
+//   --rr-pane-text-dim         title + rail label
+//   --rr-pane-text-muted       toggle at rest
+//   --rr-pane-control-hover    toggle hover wash
+//   --rr-pane-focus            focus ring
+//
+// Two properties are SET BY THE COMPONENT from config and must not be overridden in CSS,
+// because the group's track arithmetic reads the same config value:
+//   --rr-pane-header-size   --rr-pane-rail-size
+// Change those through provideRrPanes() or the [headerSize] / [railSize] inputs.
+
+// ── :host is INTERNAL layout only. No size, no flex, no grid placement of its own — those
+//    come from the group. The two min-*: 0 are not self-sizing; they PERMIT a track to
+//    shrink the pane below its content, without which a grid item refuses to go under
+//    min-content and the collapse silently stops at content width. ──
+:host {
+  box-sizing: border-box;
+  display: grid;
+  // One explicit column, and every child explicitly placed. Rail and body share one cell;
+  // with an auto column, auto-placement would put them in DIFFERENT columns, grow an
+  // implicit second column and render the header at half width.
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  min-inline-size: 0;
+  min-block-size: 0;
+  overflow: hidden;
+  background: var(--rr-pane-surface, var(--color-background-surface-default, #1b2d3e));
+  border: 1px solid var(--rr-pane-border, rgb(150 190 220 / 14%));
+  border-radius: var(--rr-pane-radius, 6px);
+  color: var(--rr-pane-text, #e6ebef);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.rr-pane__header {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  block-size: var(--rr-pane-header-size, 28px);
+  padding-inline: 6px;
+  border-block-end: 1px solid var(--rr-pane-border, rgb(150 190 220 / 14%));
+  background: var(--rr-pane-header-surface, rgb(0 0 0 / 14%));
+  user-select: none;
+  outline: none;
+}
+
+.rr-pane__header:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--rr-pane-focus, #67b9d4);
+}
+
+.rr-pane__title {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--rr-pane-text-dim, #9aa4ad);
+}
+
+.rr-pane__actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.rr-pane__actions:empty {
+  display: none;
+}
+
+// ── Toggle ────────────────────────────────────────────────────────────────
+.rr-pane__toggle {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 20px;
+  block-size: 20px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--rr-pane-text-muted, #77828b);
+  cursor: pointer;
+}
+
+.rr-pane__toggle:hover:not(:disabled) {
+  background: var(--rr-pane-control-hover, rgb(255 255 255 / 8%));
+  color: var(--rr-pane-text, #e6ebef);
+}
+
+.rr-pane__toggle:focus-visible {
+  outline: 2px solid var(--rr-pane-focus, #67b9d4);
+  outline-offset: 1px;
+}
+
+.rr-pane__toggle:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+// `chevronPosition="end"` moves ONLY the toggle; title and actions keep source order.
+:host([data-chevron='end']) .rr-pane__toggle {
+  order: 9;
+}
+
+// ── Chevron ───────────────────────────────────────────────────────────────
+// A 7px square with two borders. BROWSER-VERIFIED mapping, because reasoning gets it 90°
+// wrong: with border-inline-end + border-block-end,
+//     45deg → down    135deg → left    225deg → up    315deg → right
+// The chevron always points where the pane WILL GO.
+.rr-pane__chevron {
+  inline-size: 7px;
+  block-size: 7px;
+  border-inline-end: 1.5px solid currentColor;
+  border-block-end: 1.5px solid currentColor;
+  transform: rotate(225deg);
+  transition: transform var(--rr-pane-duration, 160ms) ease;
+}
+
+// block: collapses upward into its header.
+:host([data-orientation='block']) .rr-pane__chevron { transform: rotate(225deg); } // up
+:host([data-orientation='block'][data-collapsed]) .rr-pane__chevron { transform: rotate(45deg); } // down
+
+// inline: the toggle sits on the edge facing the content and points the way the pane moves.
+// At 'end' (a start-side pane, e.g. a left sidebar): ‹ to collapse, › to expand.
+// At 'start' (an end-side pane, e.g. a right sidebar): › to collapse, ‹ to expand.
+:host([data-orientation='inline'][data-chevron='end']) .rr-pane__chevron { transform: rotate(135deg); }
+:host([data-orientation='inline'][data-chevron='end'][data-collapsed]) .rr-pane__chevron { transform: rotate(315deg); }
+:host([data-orientation='inline'][data-chevron='start']) .rr-pane__chevron { transform: rotate(315deg); }
+:host([data-orientation='inline'][data-chevron='start'][data-collapsed]) .rr-pane__chevron { transform: rotate(135deg); }
+
+// In a right-to-left layout the inline axis is mirrored, so horizontal chevrons flip.
+:host-context([dir='rtl'])[data-orientation='inline'] .rr-pane__chevron {
+  scale: -1 1;
+}
+
+// ── Collapsed: inline ─────────────────────────────────────────────────────
+// The pane is a rail: the header keeps only the toggle, centred.
+:host([data-orientation='inline'][data-collapsed]) .rr-pane__header {
+  justify-content: center;
+  padding-inline: 2px;
+}
+
+:host([data-orientation='inline'][data-collapsed]) .rr-pane__title,
+:host([data-orientation='inline'][data-collapsed]) .rr-pane__actions {
+  display: none;
+}
+
+// ── Collapsed: block ──────────────────────────────────────────────────────
+// Only the body goes. The header — title, toggle and actions — is unchanged, so the
+// chevron does not move and the pane reads as a normal collapsed section. The header rule
+// is dropped because the pane's own border now closes the bar.
+:host([data-orientation='block'][data-collapsed]) .rr-pane__header {
+  border-block-end: none;
+}
+
+// ── Rail ──────────────────────────────────────────────────────────────────
+.rr-pane__rail {
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  // `writing-mode` lives on the CONTAINER, not the label. It is inherited, and inheritance
+  // crosses Angular's view encapsulation where selector matching cannot — so if the rail
+  // ever carries projected content, that content rotates too.
+  writing-mode: vertical-rl;
+  // `row` is deliberate: under vertical-rl the inline axis is vertical, so a `row` flex line
+  // runs TOP-TO-BOTTOM. `column` fights the writing mode and clips the label.
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  min-inline-size: 0;
+  min-block-size: 0;
+  padding-block: 8px;
+  overflow: hidden;
+}
+
+.rr-pane__rail-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--rr-pane-text-dim, #9aa4ad);
+}
+
+// ── Body ──────────────────────────────────────────────────────────────────
+.rr-pane__body {
+  grid-column: 1;
+  grid-row: 2;
+  min-inline-size: 0;
+  min-block-size: 0;
+  overflow: auto;
+}
+
+:host([data-collapsed]) .rr-pane__body {
+  // Skips rendering the subtree while keeping it in the DOM — so it is not re-created on
+  // expand. Browser support: Baseline since Sept 2024. Where unsupported, the body still
+  // collapses (size 0 + inert); only the rendering saving is lost.
+  content-visibility: hidden;
+  block-size: 0;
+  inline-size: 0;
+  overflow: hidden;
+}
+
+// ── Utility ───────────────────────────────────────────────────────────────
+.rr-pane__sr-only {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rr-pane__chevron {
+    transition: none;
+  }
+}

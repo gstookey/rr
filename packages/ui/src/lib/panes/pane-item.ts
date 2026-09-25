@@ -14,6 +14,10 @@ import type { RrPaneBasis, RrPaneOrientation } from './panes.types';
  */
 export interface RrPaneItem {
   readonly itemId: Signal<string>;
+  /** Accessible name — used to label the resize handle after this item. */
+  readonly itemLabel: Signal<string>;
+  /** Id of the region a handle resizes, for `aria-controls`. Null if none. */
+  readonly regionId: Signal<string | null>;
   /** Parsed `basis`. Named `basisSpec` so it cannot collide with a `basis` input. */
   readonly basisSpec: Signal<RrPaneBasis>;
   readonly minSize: Signal<number>;
