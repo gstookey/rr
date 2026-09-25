@@ -1,0 +1,26 @@
+<ng-content />
+
+<!-- Handles sit in the GAP tracks between items. They are real grid items, placed by line,
+     so their order in the DOM does not matter. Rendered only when the group is resizable. -->
+@for (b of boundaries(); track b.index) {
+  <div
+    rrPaneResizeHandle
+    [style.grid-column]="isInline() ? b.line : '1'"
+    [style.grid-row]="isInline() ? '1' : b.line"
+    [orientation]="orientation()"
+    [disabled]="b.disabled"
+    [label]="b.label"
+    [controls]="b.controls"
+    [valueNow]="b.valueNow"
+    [valueMin]="b.valueMin"
+    [valueMax]="b.valueMax"
+    [step]="config.keyboardStep"
+    [stepLarge]="config.keyboardStepLarge"
+    (resizeStart)="onResizeStart(b.index)"
+    (resizeMove)="onResizeMove(b.index, $event)"
+    (resizeEnd)="onResizeEnd()"
+    (resizeStep)="onResizeStep(b.index, $event)"
+    (resizeExtreme)="onResizeExtreme(b.index, $event)"
+    (resizeReset)="onResizeReset(b.index)"
+    (handleFocus)="onHandleFocus()"></div>
+}

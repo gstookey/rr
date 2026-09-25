@@ -41,6 +41,9 @@ export const config: SheriffConfig = {
     'packages/mock-oidc/src': ['type:util', 'scope:platform'],
 
     'packages/ui/src': ['type:ui', 'scope:platform'],
+    // A module of its own INSIDE @rr/ui (it has a barrel), so the rest of @rr/ui reaches
+    // the pane layout only through its public API — never its internals.
+    'packages/ui/src/lib/panes': ['type:ui', 'scope:platform'],
     'packages/markings/src': ['type:ui', 'scope:platform'],
     'packages/windows/src': ['type:ui', 'scope:platform'],
 

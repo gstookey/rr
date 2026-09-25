@@ -1,0 +1,111 @@
+// <rr-pane-group> — Created: 2026-09-25
+//
+// Theming (all read with fallbacks):
+//   --rr-pane-handle-hover    splitter line on hover
+//   --rr-pane-handle-active   splitter line while dragging / focused
+//   --rr-pane-focus           keyboard focus ring
+//
+// Set by the component from config — change through provideRrPanes(), not CSS:
+//   --rr-pane-duration
+
+// The group FILLS its container: give the container a size, and the group does the rest.
+// As a nested item, 100% is 100% of the grid area its parent assigned it.
+:host {
+  box-sizing: border-box;
+  display: grid;
+  inline-size: 100%;
+  block-size: 100%;
+  min-inline-size: 0;
+  min-block-size: 0;
+  overflow: hidden;
+}
+
+// Tracks only animate when they keep their type — which the track list guarantees.
+:host([data-orientation='inline']) {
+  transition: grid-template-columns var(--rr-pane-duration, 160ms) ease;
+}
+
+:host([data-orientation='block']) {
+  transition: grid-template-rows var(--rr-pane-duration, 160ms) ease;
+}
+
+// While dragging, the layout must follow the pointer exactly. A transition here makes the
+// panes lag behind the cursor.
+:host([data-resizing]) {
+  transition: none;
+  user-select: none;
+}
+
+:host([data-resizing][data-orientation='inline']) {
+  cursor: col-resize;
+}
+
+:host([data-resizing][data-orientation='block']) {
+  cursor: row-resize;
+}
+
+// ── Handle ────────────────────────────────────────────────────────────────
+.rr-pane-handle {
+  position: relative;
+  z-index: 1;
+  touch-action: none;
+  outline: none;
+}
+
+:host([data-orientation='inline']) .rr-pane-handle { cursor: col-resize; }
+:host([data-orientation='block']) .rr-pane-handle { cursor: row-resize; }
+
+// A wider invisible hit area than the gap itself, so a small gap is still easy to grab.
+.rr-pane-handle::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+:host([data-orientation='inline']) .rr-pane-handle::before { inset-inline: -4px; }
+:host([data-orientation='block']) .rr-pane-handle::before { inset-block: -4px; }
+
+// The visible line: absent at rest, drawn on hover, focus and drag.
+.rr-pane-handle::after {
+  content: '';
+  position: absolute;
+  background: transparent;
+  border-radius: 1px;
+  transition: background-color 120ms ease;
+}
+
+:host([data-orientation='inline']) .rr-pane-handle::after {
+  inset-block: 0;
+  inset-inline-start: calc(50% - 1px);
+  inline-size: 2px;
+}
+
+:host([data-orientation='block']) .rr-pane-handle::after {
+  inset-inline: 0;
+  inset-block-start: calc(50% - 1px);
+  block-size: 2px;
+}
+
+.rr-pane-handle:hover::after {
+  background: var(--rr-pane-handle-hover, rgb(103 185 212 / 45%));
+}
+
+.rr-pane-handle[data-dragging]::after,
+.rr-pane-handle:focus-visible::after {
+  background: var(--rr-pane-handle-active, var(--rr-pane-focus, #67b9d4));
+}
+
+.rr-pane-handle[aria-disabled='true'] {
+  cursor: default;
+}
+
+.rr-pane-handle[aria-disabled='true']::after {
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host,
+  .rr-pane-handle::after {
+    transition: none;
+  }
+}
