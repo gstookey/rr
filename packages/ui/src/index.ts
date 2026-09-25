@@ -8,3 +8,6 @@
  * S0: AstroUXDS is NOT wired yet — that is S1 after Cadence's mockup pass.
  */
 export { RR_UI_PACKAGE } from './lib/ui-package';
+
+// Collapsible, resizable pane layout — see lib/panes/README.md.
+export * from './lib/panes';
