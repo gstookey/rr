@@ -98,6 +98,27 @@ describe('RrPaneGroup', () => {
     expect(inner(f.nativeElement).querySelectorAll('[role="separator"]')).toHaveLength(0);
   });
 
+  // WHY: "collapse all" on a layout root means every pane in it — found in the browser,
+  // where it had only collapsed the root's direct panes and left nested ones open.
+  it('reaches into nested groups for collapseAll / expandAll and for ids', async () => {
+    const f = TestBed.createComponent(Host);
+    await f.whenStable();
+    const g = groupOf(f);
+    const collapsed = () => panes(f.nativeElement).map((p) => p.hasAttribute('data-collapsed'));
+
+    g.collapseAll();
+    await f.whenStable();
+    expect(collapsed()).toEqual([true, true, true]);
+
+    g.expand('deck');
+    await f.whenStable();
+    expect(collapsed()).toEqual([true, true, false]);
+
+    g.expandAll();
+    await f.whenStable();
+    expect(collapsed()).toEqual([false, false, false]);
+  });
+
   it('exposes an imperative API through exportAs', async () => {
     const f = TestBed.createComponent(Host);
     await f.whenStable();
@@ -130,6 +151,21 @@ describe('RrPaneGroup', () => {
     handle.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft', shiftKey: true, bubbles: true }));
     await f.whenStable();
     expect(cols(outer(f.nativeElement))).toBe('minmax(80px, 252fr) 8px minmax(80px, 748fr)');
+  });
+
+  // WHY: found in the browser — a keyboard step ran through the collapse transition, so held
+  // keys rubber-banded and the screen lagged the announced aria-valuenow. Handle-driven
+  // changes must suppress the transition; only collapse animates.
+  it('suppresses the transition for a keyboard resize', async () => {
+    const f = TestBed.createComponent(Host);
+    await f.whenStable();
+    stubSizes(f.nativeElement, { 'rr-pane': 300, '.inner': 700 });
+    const handle = outer(f.nativeElement).querySelector(':scope > [role="separator"]') as HTMLElement;
+    expect(outer(f.nativeElement).hasAttribute('data-resizing')).toBe(false);
+
+    handle.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
+    await f.whenStable();
+    expect(outer(f.nativeElement).hasAttribute('data-resizing')).toBe(true);
   });
 
   it('Home sends the pane to its minimum; Enter restores the declared split', async () => {

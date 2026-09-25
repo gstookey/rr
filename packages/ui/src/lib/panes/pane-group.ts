@@ -62,7 +62,7 @@ interface Boundary {
   host: {
     class: 'rr-pane-group',
     '[attr.data-orientation]': 'orientation()',
-    '[attr.data-resizing]': 'resizingIndex() !== null ? "" : null',
+    '[attr.data-resizing]': 'resizingIndex() !== null || instant() ? "" : null',
     '[style.grid-template-columns]': 'isInline() ? trackList() : "minmax(0, 1fr)"',
     '[style.grid-template-rows]': 'isInline() ? "minmax(0, 1fr)" : trackList()',
     '[style.grid-column]': 'placement()?.column ?? null',
@@ -119,6 +119,9 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
   /** True once weights are in px (after an interaction) — then valueNow is meaningful. */
   private readonly normalized = signal(false);
   protected readonly resizingIndex = signal<number | null>(null);
+  /** Briefly true around a keyboard resize, so it applies instantly (see flashInstant). */
+  protected readonly instant = signal(false);
+  private instantFrame: number | null = null;
   private dragBase: number[] | null = null;
 
   private readonly store = computed(() => {
@@ -190,12 +193,15 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
   }
 
   // ── Imperative API — reachable as <rr-pane-group #g="rrPaneGroup"> ──
+  // Every method reaches INTO nested groups: "collapse all" on a layout's root means every
+  // pane in it, and an id is unique across the whole layout, not just one level.
+
   collapseAll(): void {
-    for (const item of this.items()) item.setCollapsed?.(true);
+    this.setAll(true);
   }
 
   expandAll(): void {
-    for (const item of this.items()) item.setCollapsed?.(false);
+    this.setAll(false);
   }
 
   collapse(id: string): void {
@@ -243,6 +249,7 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
   }
 
   protected onResizeStep(index: number, delta: number): void {
+    this.flashInstant();
     // Base on the STORED size, not re-measured DOM (TrAIdit F2): key-repeat outruns
     // rendering, and a stale measurement drops steps.
     const base = this.currentPx();
@@ -252,6 +259,7 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
   }
 
   protected onResizeExtreme(index: number, to: 'min' | 'max'): void {
+    this.flashInstant();
     const base = this.currentPx();
     if (!base) return;
     const bounds = this.bounds(index);
@@ -261,6 +269,7 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
   }
 
   protected onResizeReset(index: number): void {
+    this.flashInstant();
     const base = this.currentPx();
     if (!base) return;
     this.userWeights.set(resetPair(base, this.items().map((i) => i.basisSpec()), index, this.bounds(index)));
@@ -273,8 +282,20 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
   }
 
   // ── Internals ──
+  private setAll(collapsed: boolean): void {
+    for (const item of this.items()) {
+      if (item instanceof RrPaneGroup) item.setAll(collapsed);
+      else item.setCollapsed?.(collapsed);
+    }
+  }
+
   private find(id: string): RrPaneItem | undefined {
-    return this.items().find((item) => item.itemId() === id);
+    for (const item of this.items()) {
+      if (item.itemId() === id) return item;
+      const nested = item instanceof RrPaneGroup ? item.find(id) : undefined;
+      if (nested) return nested;
+    }
+    return undefined;
   }
 
   private bounds(index: number) {
@@ -309,6 +330,26 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
     this.userWeights.set(weights);
     this.normalized.set(true);
     return weights;
+  }
+
+  /**
+   * THE SPLITTER MOVES INSTANTLY; ONLY COLLAPSE ANIMATES.
+   *
+   * Found in the browser: a keyboard step ran through the 160ms collapse transition, so a
+   * held arrow key rubber-banded, and for 160ms the screen disagreed with the aria-valuenow a
+   * screen reader had just announced. Dragging already suppresses the transition; this does
+   * the same for keyboard, Home/End and reset, re-enabling it two frames later.
+   */
+  private flashInstant(): void {
+    this.instant.set(true);
+    if (typeof requestAnimationFrame !== 'function') return;
+    if (this.instantFrame !== null) cancelAnimationFrame(this.instantFrame);
+    this.instantFrame = requestAnimationFrame(() => {
+      this.instantFrame = requestAnimationFrame(() => {
+        this.instantFrame = null;
+        this.instant.set(false);
+      });
+    });
   }
 
   private commit(flush: boolean): void {
