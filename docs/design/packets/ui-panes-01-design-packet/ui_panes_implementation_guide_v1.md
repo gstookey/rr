@@ -5,7 +5,7 @@ title: UI-PANES-01 — Collapsible, resizable panes (v2) — implementation guid
 areas: [frontend, ux, code]
 governs: ["packages/ui/src/lib/panes/**"]
 related: ["docs/design/packets/ui-panes-01-design-packet/README.md"]
-updated: 2026-09-25
+updated: 2026-09-29
 ---
 
 # Collapsible, resizable panes — v2 implementation guide
@@ -546,6 +546,7 @@ onto the wrong pane — now keyed by identity in memory and by id in storage. Th
 | The group renders at zero height | Its container has no height. `:host { display: block; height: 100% }` on the host, and a sized ancestor |
 | Collapse snaps instead of animating | A track changed type — check a custom `basis` isn't mixing kinds mid-life; or `prefers-reduced-motion` is on |
 | A drag does nothing | A neighbour is collapsed (the handle is inert), or the group is not laid out yet |
+| The resize cursor shows on a splitter beside a collapsed pane | The orientation cursor rules must carry `:not([aria-disabled='true'])`. A separate `[aria-disabled]` override never wins: encapsulation makes the `:host(…)` rules more specific |
 | "Collapse all" misses a pane | The pane is not an item — wrapped in a plain `<div>` rather than direct, `@if` or `@for` |
 | Persisted sizes ignored | Item count changed since they were saved (deliberately discarded), or a different `stateKey` |
 | A saved size restores onto the wrong pane after reordering | The items have no stable ids — give each pane a `paneId` and each nested group a `groupId` |
