@@ -494,14 +494,16 @@ the feature changes**.
 
 ## 10. Verification record
 
-**Unit tests — 117, 100% coverage, one set of specs, two runners.** Layout math (30: basis 2,
-tracks 6, weights 22), persistence (13), config (3), resize handle (19), pane (19), group (33). The
-same files pass unchanged under **Vitest** in `rr` (Angular 22, zoneless) and under **Jest** (Angular
-17.3.12, zone.js, jest-preset-angular 14, jsdom 20), where they reach **100% statements, branches,
-functions and lines** on every logic file, with the threshold enforced. Types, the DI tokens
-(`pane-item.ts`), the barrel and the test helpers are excluded. jsdom has **no layout engine**
-(grid tracks don't compute and sizes are zero), so the specs cover behaviour, state and
-accessibility, and stub sizes where a test needs them. How to run them in your app: §10.1.
+**Unit tests — 109, 100% coverage, plain Jest style.** Layout math (30: basis 2, tracks 6,
+weights 22), persistence (11), config (3), resize handle (18), pane (16), group (31). The specs are
+written the way an Angular team writes Jest tests: `jest.fn`, `jest.spyOn`, `jest.useFakeTimers`,
+`fixture.detectChanges()`. They reach **100% statements, branches, functions and lines** on every
+logic file under **Jest** (Angular 17.3.12, zone.js, jest-preset-angular 14, jsdom 20), with the
+threshold enforced; types, the DI tokens (`pane-item.ts`) and the barrel are excluded. The same
+files pass under **Vitest** in `rr` (Angular 22, zoneless), where a two-line setup file maps `jest`
+to Vitest's `vi`. jsdom has **no layout engine** (grid tracks don't compute and sizes are zero), so
+the specs cover behaviour, state and accessibility, and stub sizes where a test needs them. How to
+run them in your app: §10.1.
 
 **Browser — Chromium, Playwright, the same script against both builds:**
 
@@ -539,31 +541,42 @@ in `resetPair`, a `getComputedStyle` check reachable only from event handlers, a
 default, out-of-range item guards on live handles, and a `cancelAnimationFrame` existence check.
 Both browser suites were re-run on the result: identical on 22 and 17.3.12.
 
+**Simplification round.** The first 100% version ran under both runners through a helper file of
+hand-written spies, clocks and stubs. It worked, but it was not how anyone writes Angular tests,
+so it was removed: the specs are now plain Jest, and `rr` bridges to Vitest in its own setup file
+instead. Three more guards went with it, each behaviour-neutral: `hasStorage()` became a single
+`try { return !!localStorage }` (the server case throws and is caught; `null` is falsy), the focus
+rescue dropped an `instanceof` check that `contains(null)` already covers, and `flashInstant()`
+dropped a `requestAnimationFrame` existence check (it runs only from key and pointer handlers).
+Both browser suites re-run: identical on 22 and 17.3.12.
+
 ### 10.1 Running the specs in your app (Jest)
 
-The specs use no runner API beyond `describe` / `it` / `expect`. Stubbing, spying and timing go
-through `testing/panes-testing.ts`, which is plain TypeScript, so the same files run under Jest or
-Vitest. Copy the folder **with** its `*.spec.ts` files and `testing/`. Then:
+The specs are ordinary Jest specs. Copy the folder **with** its `*.spec.ts` files; nothing else is
+needed. Two things in them are deliberate:
 
-- **Change detection is explicit.** Under zone.js, `await fixture.whenStable()` does **not** render.
-  Zoneless it does, which is why a spec that only awaits it passes on 22 and renders nothing on
-  17.3. The helper `settle(fixture)` runs `detectChanges()` → `whenStable()` → `detectChanges()`
-  and behaves the same on both.
-- **`PointerEvent`** only arrived in jsdom 22, and Jest 29 ships jsdom 20. `pointer()` falls back
-  to a `MouseEvent` carrying a `pointerId`, which is all the handle reads.
-- **Coverage.** Point `collectCoverageFrom` at the folder and exclude what is not logic:
+- **`fixture.detectChanges()` after every change, never `await fixture.whenStable()` alone.**
+  Under zone.js, `whenStable()` does not render; zoneless it does. `detectChanges()` renders on both.
+- **Pointer events are plain `MouseEvent`s** (`new MouseEvent('pointerdown', …)`). jsdom only gained
+  `PointerEvent` in v22 and Jest 29 ships jsdom 20; the handle reads only the position and button.
+
+For coverage, point `collectCoverageFrom` at the folder and exclude what is not logic:
 
 ```js
 // jest.config.js — alongside your existing preset: 'jest-preset-angular'
 collectCoverageFrom: [
   '<panes folder>/**/*.ts',
-  '!**/*.spec.ts', '!**/testing/**', '!**/index.ts', '!**/panes.types.ts', '!**/pane-item.ts',
+  '!**/*.spec.ts', '!**/index.ts', '!**/panes.types.ts', '!**/pane-item.ts',
 ],
 coverageThreshold: { global: { statements: 100, branches: 100, functions: 100, lines: 100 } },
 ```
 
 Verified exactly that way: a Jest 29.7 + jest-preset-angular 14.1.1 project on Angular 17.3.12
-ran the folder byte-identical to `rr` at 117/117 and 100% on all four metrics.
+ran the folder byte-identical to `rr` at 109/109 and 100% on all four metrics.
+
+In `rr` the same files run under Vitest because `packages/ui/test-setup.ts` (wired through the
+test target's `setupFiles`) sets `globalThis.jest = vi`. That file is not part of the panes folder
+and is never copied.
 
 ---
 
@@ -584,8 +597,8 @@ ran the folder byte-identical to `rr` at 117/117 and 100% on all four metrics.
 12. **Source stays inside the 17.3 ∩ 22 API intersection** until the 17.3 app has upgraded.
 13. **An effect decides from signals, never from DOM its own template renders.** From Angular 19
     effects run before the template updates, so that DOM is one render stale.
-14. **Specs use no runner API.** `describe` / `it` / `expect` and `testing/panes-testing.ts` only,
-    so one set of specs passes under Jest and Vitest alike.
+14. **Specs are plain Jest.** No test helpers of our own; `rr` adapts to them (`jest` = `vi`), not
+    the other way round, so the consuming app copies them unchanged.
 
 ---
 
@@ -601,7 +614,7 @@ ran the folder byte-identical to `rr` at 117/117 and 100% on all four metrics.
 | Persisted sizes ignored | Item count changed since they were saved (deliberately discarded), or a different `stateKey` |
 | A saved size restores onto the wrong pane after reordering | The items have no stable ids — give each pane a `paneId` and each nested group a `groupId` |
 | `TypeError: <x>_rN is not a function` | A template ref shadows a member — rename the ref |
-| A spec passes in `rr` but renders nothing under Jest | It awaited `whenStable()` without `detectChanges()`. Use `settle(fixture)` (§10.1) |
+| A spec passes in `rr` but renders nothing under Jest | It awaited `whenStable()` without calling `fixture.detectChanges()` (§10.1) |
 
 ---
 

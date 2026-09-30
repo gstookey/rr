@@ -144,7 +144,7 @@ export class RrPane implements RrPaneItem {
       if (!this.isCollapsed() || !isBrowser) return;
       const body = this.bodyRef()?.nativeElement;
       const active = (this.element.getRootNode() as Document | ShadowRoot).activeElement;
-      if (!(active instanceof HTMLElement) || !body?.contains(active)) return;
+      if (!body?.contains(active)) return; // contains(null) is false: nothing focused
       const toggle = this.canToggle() ? this.toggleRef()?.nativeElement : undefined;
       (toggle ?? this.headerRef()?.nativeElement)?.focus();
     });

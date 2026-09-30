@@ -375,7 +375,7 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
    */
   private flashInstant(): void {
     this.instant.set(true);
-    if (typeof requestAnimationFrame !== 'function') return;
+    // Only ever called from a key or pointer handler — so always in a browser.
     if (this.instantFrame !== null) cancelAnimationFrame(this.instantFrame);
     this.instantFrame = requestAnimationFrame(() => {
       this.instantFrame = requestAnimationFrame(() => {

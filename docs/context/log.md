@@ -2,6 +2,12 @@
 
 <!-- Convention (BS-14): one `# [YYYY-MM-DD] <type> | <title>` header level, newest-first — prepend below this comment. Types: ingest | decision | milestone | lint | governance | session -->
 
+# [2026-09-30] milestone | UI-PANES-01 — panes specs simplified to plain Jest, still 100%
+
+Graham, reading PR #55: the runner-neutral helper (`testing/panes-testing.ts`, hand-written spies, a manual clock, descriptor patching) worked but read as non-human, and he wanted the simplest tests that still reach 100%. The helper is gone. The specs are now written as an Angular team writes Jest tests — `jest.fn`, `jest.spyOn`, `jest.useFakeTimers`, `fixture.detectChanges()`, plain `MouseEvent`s — and `rr` adapts to them rather than the reverse: `packages/ui/test-setup.ts`, wired through the ui test target's `setupFiles`, sets `globalThis.jest = vi`. The consuming app copies the specs unchanged.
+
+Three behaviour-neutral simplifications removed the need for unusual tests: `hasStorage()` is one `try { return !!localStorage }`, the focus rescue drops an `instanceof` that `contains(null)` already covers, and `flashInstant()` drops a `requestAnimationFrame` existence check (handler-only). Result: **109 specs, 100% statements/branches/functions/lines under Jest on Angular 17.3.12** (threshold enforced), 109/109 under Vitest here; both browser suites identical on 22 and 17.3.12. The regression tests for PR #55's two fixes (forced-collapse focus, `resetSizes()`) are kept.
+
 # [2026-09-30] milestone | UI-PANES-01 — panes specs at 100% coverage, runnable under Jest and Vitest
 
 Graham asked for 100% unit-test coverage of the panes library in the Jest framework his app uses. `rr` runs Vitest, so the specs were made **runner-neutral** rather than moved to Jest: they use only `describe` / `it` / `expect`, and stub, record and time through a plain helper (`packages/ui/src/lib/panes/testing/panes-testing.ts`, not exported, never shipped). The same files pass **117/117 under Vitest here (Angular 22, zoneless) and under Jest (Angular 17.3.12, zone.js, jest-preset-angular 14, jsdom 20)**, with 100% statements, branches, functions and lines on every logic file, the threshold enforced. The Jest run was a scratch project matching the consuming app; nothing about Jest was added to `rr`.

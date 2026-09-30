@@ -83,7 +83,8 @@ this folder; an app on 22 imports `@rr/ui`.
 
 ## Testing
 
-117 specs, 100% statement / branch / function / line coverage. They use no test-runner API, only
-`describe` / `it` / `expect` plus the plain helpers in `testing/panes-testing.ts`, so the same
-files pass under **Vitest** here and under **Jest** in an Angular 17.3 app. Copy `testing/` along
-with the specs. Details, and the Jest coverage config: the implementation guide §10.1.
+109 specs, 100% statement / branch / function / line coverage, written as ordinary Jest specs
+(`jest.fn`, `jest.spyOn`, `jest.useFakeTimers`, `fixture.detectChanges()`). Copy them with the
+folder and they run in a Jest app as they are. Here in `rr` they run under Vitest through
+`packages/ui/test-setup.ts`, which maps `jest` to `vi`. The Jest coverage config is in the
+implementation guide §10.1.

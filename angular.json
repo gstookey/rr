@@ -99,7 +99,10 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "tsConfig": "packages/ui/tsconfig.spec.json"
+            "tsConfig": "packages/ui/tsconfig.spec.json",
+            "setupFiles": [
+              "packages/ui/test-setup.ts"
+            ]
           }
         }
       }

@@ -26,9 +26,11 @@ interface StoredLayout {
   readonly ids?: string[];
 }
 
+/** False on the server (the name is undefined, so reading it throws), where a host sets it
+ *  to null, and where the browser blocks storage (reading it throws a SecurityError). */
 const hasStorage = (): boolean => {
   try {
-    return typeof localStorage !== 'undefined' && localStorage !== null;
+    return !!localStorage;
   } catch {
     return false;
   }
