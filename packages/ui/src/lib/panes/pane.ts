@@ -133,16 +133,20 @@ export class RrPane implements RrPaneItem {
     //  • the active element is read from the host's ROOT NODE, so it works inside a
     //    shadow root — `document.activeElement` stops at the shadow host;
     //  • nothing runs on the server.
+    // The TARGET is chosen from state, never from the DOM: from Angular 19 a component's
+    // effects run BEFORE its template updates, so in the pass that force-collapses a pane
+    // the toggle is not yet `disabled`. Reading the DOM, the rescue focused a toggle that the
+    // same render then disabled, and focus fell to <body> (found writing the coverage specs;
+    // 17.x runs effects after the template and was unaffected). The header is always
+    // `tabindex="-1"` for the same reason: focusable before this render lands.
     // It writes no signals, so it needs no allowSignalWrites at 17.x and behaves the same at 22.
     effect(() => {
       if (!this.isCollapsed() || !isBrowser) return;
       const body = this.bodyRef()?.nativeElement;
-      if (!body) return;
-      const root = this.element.getRootNode() as Document | ShadowRoot;
-      const active = root.activeElement;
-      if (!(active instanceof HTMLElement) || !body.contains(active)) return;
-      const toggle = this.toggleRef()?.nativeElement;
-      (toggle && !toggle.disabled ? toggle : this.headerRef()?.nativeElement)?.focus();
+      const active = (this.element.getRootNode() as Document | ShadowRoot).activeElement;
+      if (!(active instanceof HTMLElement) || !body?.contains(active)) return;
+      const toggle = this.canToggle() ? this.toggleRef()?.nativeElement : undefined;
+      (toggle ?? this.headerRef()?.nativeElement)?.focus();
     });
   }
 
