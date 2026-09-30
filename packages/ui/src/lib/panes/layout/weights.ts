@@ -156,10 +156,9 @@ export function resetPair(
   let target: number;
   if (isFixed(a)) target = a.value;
   else if (isFixed(b)) target = pair - b.value;
-  else {
-    const ratio = initial[index] + initial[after];
-    target = ratio > 0 ? (pair * initial[index]) / ratio : pair / 2;
-  }
+  // Two flex items: split by their declared ratio. initialWeights gives every flex item at
+  // least TOKEN_WEIGHT, so the ratio's denominator is never zero.
+  else target = (pair * initial[index]) / (initial[index] + initial[after]);
 
   return resizePair({ weights, index, delta: target - weights[index], ...bounds }).weights;
 }
