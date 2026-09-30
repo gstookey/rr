@@ -560,6 +560,16 @@ needed. Two things in them are deliberate:
 - **Pointer events are plain `MouseEvent`s** (`new MouseEvent('pointerdown', …)`). jsdom only gained
   `PointerEvent` in v22 and Jest 29 ships jsdom 20; the handle reads only the position and button.
 
+- **They work with real or fake timers.** No spec switches the timer mode mid-test (under zone.js
+  with `fakeTimers: { enableGlobally: true }`, switching back to real timers leaves `setTimeout`
+  undefined for the rest of the file). The one test that needs animation frames holds them with
+  `jest.spyOn(globalThis, 'requestAnimationFrame')` and runs them itself.
+- **They need jsdom's real `localStorage` and `getComputedStyle`.** A `setup-jest.ts` that replaces
+  either (the "global mocks" block from jest-preset-angular's old README replaces
+  `getComputedStyle`, and a hand-rolled `localStorage` object is common) breaks the storage and
+  right-to-left specs. Verified: with those mocks, 2 and 4 specs fail respectively; without them,
+  109/109.
+
 For coverage, point `collectCoverageFrom` at the folder and exclude what is not logic:
 
 ```js
