@@ -52,8 +52,13 @@
   outline: none;
 }
 
-:host([data-orientation='inline']) .rr-pane-handle { cursor: col-resize; }
-:host([data-orientation='block']) .rr-pane-handle { cursor: row-resize; }
+// Only a live splitter offers the resize cursor. A splitter beside a collapsed pane is
+// disabled and falls back to the ordinary cursor. The exclusion lives HERE, not in a later
+// `[aria-disabled]` override: Angular's encapsulation adds an attribute to every selector,
+// which makes these :host rules more specific than any plain class-plus-attribute override,
+// so such an override never wins (found in the field: the resize cursor showed on a rail).
+:host([data-orientation='inline']) .rr-pane-handle:not([aria-disabled='true']) { cursor: col-resize; }
+:host([data-orientation='block']) .rr-pane-handle:not([aria-disabled='true']) { cursor: row-resize; }
 
 // A wider invisible hit area than the gap itself, so a small gap is still easy to grab.
 .rr-pane-handle::before {
@@ -93,10 +98,6 @@
 .rr-pane-handle[data-dragging]::after,
 .rr-pane-handle:focus-visible::after {
   background: var(--rr-pane-handle-active, var(--rr-pane-focus, #67b9d4));
-}
-
-.rr-pane-handle[aria-disabled='true'] {
-  cursor: default;
 }
 
 .rr-pane-handle[aria-disabled='true']::after {
