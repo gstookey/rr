@@ -1,7 +1,8 @@
+<!-- tabindex -1: never in the tab order, but always a valid target for focus rescue. -->
 <div
   #headerEl
   class="rr-pane__header"
-  [attr.tabindex]="canToggle() ? null : -1">
+  tabindex="-1">
   @if (collapsible()) {
     <button
       #toggleBtn

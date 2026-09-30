@@ -80,3 +80,10 @@ CSS custom properties, all read with fallbacks: `--rr-pane-surface`, `--rr-pane-
 Written to the API intersection of **Angular 17.3 and 22**, and verified on both: the packaged
 library at 22 (zoneless) and the identical source at 17.3.12 (zone.js). An app on 17.3 copies
 this folder; an app on 22 imports `@rr/ui`.
+
+## Testing
+
+117 specs, 100% statement / branch / function / line coverage. They use no test-runner API, only
+`describe` / `it` / `expect` plus the plain helpers in `testing/panes-testing.ts`, so the same
+files pass under **Vitest** here and under **Jest** in an Angular 17.3 app. Copy `testing/` along
+with the specs. Details, and the Jest coverage config: the implementation guide §10.1.

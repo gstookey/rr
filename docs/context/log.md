@@ -2,6 +2,14 @@
 
 <!-- Convention (BS-14): one `# [YYYY-MM-DD] <type> | <title>` header level, newest-first — prepend below this comment. Types: ingest | decision | milestone | lint | governance | session -->
 
+# [2026-09-30] milestone | UI-PANES-01 — panes specs at 100% coverage, runnable under Jest and Vitest
+
+Graham asked for 100% unit-test coverage of the panes library in the Jest framework his app uses. `rr` runs Vitest, so the specs were made **runner-neutral** rather than moved to Jest: they use only `describe` / `it` / `expect`, and stub, record and time through a plain helper (`packages/ui/src/lib/panes/testing/panes-testing.ts`, not exported, never shipped). The same files pass **117/117 under Vitest here (Angular 22, zoneless) and under Jest (Angular 17.3.12, zone.js, jest-preset-angular 14, jsdom 20)**, with 100% statements, branches, functions and lines on every logic file, the threshold enforced. The Jest run was a scratch project matching the consuming app; nothing about Jest was added to `rr`.
+
+**What running under Jest exposed first:** the existing specs only awaited `whenStable()`, which renders zoneless but not under zone.js, so 9 of them saw an empty template on 17.3. A `settle()` helper now runs change detection explicitly on both.
+
+**Two real defects found by reaching full coverage**, each fixed with a test shown failing against the pre-fix source: (1) on Angular 19+, where effects run before the template, the focus rescue focused a toggle that the same render disabled, so a forced collapse dropped focus to `<body>` (reproduced in Chromium on 22; 17.3 unaffected); it now chooses its target from state. (2) `resetSizes()` cleared storage but kept showing the layout it had restored from it; `restored` now reads an epoch that `resetSizes()` bumps. Five unreachable guards were removed rather than excluded from coverage. Both browser suites re-run: identical results on 22 and 17.3.12. Guide §6.6, §10, §10.1 (running the specs under Jest), invariants 13–14.
+
 # [2026-09-25] decision | UI-PANES-01 — collapsible, resizable panes land in `@rr/ui` (v2), pending merge
 
 Graham asked for his v1 collapsible-pane primitive — first built inside a single work feature — to become a reusable library component: simple to instantiate, any arrangement, configurable, and without the same window size copied into many places. His rulings (A–E) are recorded in `docs/design/packets/ui-panes-01-design-packet/README.md`: `model()` collapse with a separate force overlay; panes own their state with group escape hatches; chevron `start | end` only; **drag-to-resize built now** behind `[resizable]`, modelled on TrAIdit's workstation; and buildable source rather than a spec.

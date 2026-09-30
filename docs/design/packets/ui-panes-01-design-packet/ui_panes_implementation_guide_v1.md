@@ -5,7 +5,7 @@ title: UI-PANES-01 — Collapsible, resizable panes (v2) — implementation guid
 areas: [frontend, ux, code]
 governs: ["packages/ui/src/lib/panes/**"]
 related: ["docs/design/packets/ui-panes-01-design-packet/README.md"]
-updated: 2026-09-29
+updated: 2026-09-30
 ---
 
 # Collapsible, resizable panes — v2 implementation guide
@@ -351,6 +351,14 @@ inert, so focus moves to the toggle first. Rebuilt to close all three holes v1's
 | `document.activeElement` stops at a shadow host | reads the host's **root node** |
 | ran on the server | browser-only |
 
+**The target is chosen from state, never from the DOM.** From Angular 19 a component's effects run
+*before* its template updates, so in the pass that force-collapses a pane the toggle is not yet
+`disabled`. Reading the DOM, the rescue focused a toggle that the same render then disabled, and
+focus fell to `<body>` (found writing the coverage specs; confirmed in Chromium on 22; 17.x runs
+effects after the template and was unaffected). The rescue now picks the toggle only while
+`canToggle()`, and the header otherwise. The header is a static `tabindex="-1"`: out of the tab
+order, but already focusable before that render lands.
+
 The body stays **mounted** while collapsed — destroying it loses scroll offsets, focus, and the state
 of anything inside it (tabs, iframes, canvases).
 
@@ -486,11 +494,14 @@ the feature changes**.
 
 ## 10. Verification record
 
-**Unit tests — 61, Vitest/jsdom, in `rr`:** layout math (27), persistence (7), pane (9), group (18,
-incl. `@for` panes, nested discovery, first-frame restore, sizes following a reorder, switching
-`stateKey`, and destroy cancelling a pending frame). jsdom has **no layout engine** — grid tracks
-don't compute and sizes are zero — so these cover behaviour, state and accessibility, stubbing sizes
-where a test needs them.
+**Unit tests — 117, 100% coverage, one set of specs, two runners.** Layout math (30: basis 2,
+tracks 6, weights 22), persistence (13), config (3), resize handle (19), pane (19), group (33). The
+same files pass unchanged under **Vitest** in `rr` (Angular 22, zoneless) and under **Jest** (Angular
+17.3.12, zone.js, jest-preset-angular 14, jsdom 20), where they reach **100% statements, branches,
+functions and lines** on every logic file, with the threshold enforced. Types, the DI tokens
+(`pane-item.ts`), the barrel and the test helpers are excluded. jsdom has **no layout engine**
+(grid tracks don't compute and sizes are zero), so the specs cover behaviour, state and
+accessibility, and stub sizes where a test needs them. How to run them in your app: §10.1.
 
 **Browser — Chromium, Playwright, the same script against both builds:**
 
@@ -519,6 +530,41 @@ onto the wrong pane — now keyed by identity in memory and by id in storage. Th
 `effect()` cleanup, so both browser suites were re-run: identical results on 22 and 17.3.12, and
 17.3's effect source was read to confirm the cleanup runs before a re-run and on destroy.
 
+**Coverage round.** Reaching 100% found two real defects, each fixed with a test shown **failing
+against the pre-fix source** first: (1) the focus rescue lost focus on a forced collapse on Angular
+19+ (§6.6); (2) `resetSizes()` cleared storage but kept showing the layout it had restored from
+it, because storage is not a signal. `restored` now also reads an epoch that `resetSizes()` bumps.
+Five guards that could never run were removed rather than excluded from coverage: a ratio fallback
+in `resetPair`, a `getComputedStyle` check reachable only from event handlers, a track-weight
+default, out-of-range item guards on live handles, and a `cancelAnimationFrame` existence check.
+Both browser suites were re-run on the result: identical on 22 and 17.3.12.
+
+### 10.1 Running the specs in your app (Jest)
+
+The specs use no runner API beyond `describe` / `it` / `expect`. Stubbing, spying and timing go
+through `testing/panes-testing.ts`, which is plain TypeScript, so the same files run under Jest or
+Vitest. Copy the folder **with** its `*.spec.ts` files and `testing/`. Then:
+
+- **Change detection is explicit.** Under zone.js, `await fixture.whenStable()` does **not** render.
+  Zoneless it does, which is why a spec that only awaits it passes on 22 and renders nothing on
+  17.3. The helper `settle(fixture)` runs `detectChanges()` → `whenStable()` → `detectChanges()`
+  and behaves the same on both.
+- **`PointerEvent`** only arrived in jsdom 22, and Jest 29 ships jsdom 20. `pointer()` falls back
+  to a `MouseEvent` carrying a `pointerId`, which is all the handle reads.
+- **Coverage.** Point `collectCoverageFrom` at the folder and exclude what is not logic:
+
+```js
+// jest.config.js — alongside your existing preset: 'jest-preset-angular'
+collectCoverageFrom: [
+  '<panes folder>/**/*.ts',
+  '!**/*.spec.ts', '!**/testing/**', '!**/index.ts', '!**/panes.types.ts', '!**/pane-item.ts',
+],
+coverageThreshold: { global: { statements: 100, branches: 100, functions: 100, lines: 100 } },
+```
+
+Verified exactly that way: a Jest 29.7 + jest-preset-angular 14.1.1 project on Angular 17.3.12
+ran the folder byte-identical to `rr` at 117/117 and 100% on all four metrics.
+
 ---
 
 ## 11. Invariants — do not lose these
@@ -536,6 +582,10 @@ onto the wrong pane — now keyed by identity in memory and by id in storage. Th
     selector aimed at the projected node.
 11. **No deep imports.** Everything a consumer needs is on the public API.
 12. **Source stays inside the 17.3 ∩ 22 API intersection** until the 17.3 app has upgraded.
+13. **An effect decides from signals, never from DOM its own template renders.** From Angular 19
+    effects run before the template updates, so that DOM is one render stale.
+14. **Specs use no runner API.** `describe` / `it` / `expect` and `testing/panes-testing.ts` only,
+    so one set of specs passes under Jest and Vitest alike.
 
 ---
 
@@ -551,6 +601,7 @@ onto the wrong pane — now keyed by identity in memory and by id in storage. Th
 | Persisted sizes ignored | Item count changed since they were saved (deliberately discarded), or a different `stateKey` |
 | A saved size restores onto the wrong pane after reordering | The items have no stable ids — give each pane a `paneId` and each nested group a `groupId` |
 | `TypeError: <x>_rN is not a function` | A template ref shadows a member — rename the ref |
+| A spec passes in `rr` but renders nothing under Jest | It awaited `whenStable()` without `detectChanges()`. Use `settle(fixture)` (§10.1) |
 
 ---
 

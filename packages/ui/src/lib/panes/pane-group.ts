@@ -137,9 +137,17 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
     return key ? new RrPaneSizeStore(this.config.storagePrefix + key) : null;
   });
 
+  /** Bumped when the persisted layout is forgotten. Storage is not a signal, so without it
+   *  `restored` would keep serving the layout resetSizes() had just cleared (found writing
+   *  the coverage specs: the persisted sizes stayed on screen until a reload). */
+  private readonly storageEpoch = signal(0);
+
   /** Restored layout. Read during the FIRST change detection, so a persisted layout paints
    *  on first render — no jump, and no transition animating the restore. */
-  private readonly restored = computed(() => this.store()?.load(this.itemIds()) ?? null);
+  private readonly restored = computed(() => {
+    this.storageEpoch();
+    return this.store()?.load(this.itemIds()) ?? null;
+  });
 
   private readonly declared = computed(() => initialWeights(this.items().map((i) => i.basisSpec())));
 
@@ -161,7 +169,7 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
     return buildTrackList(
       this.items().map((item, i) => ({
         basis: item.basisSpec(),
-        weight: weights[i] ?? 1,
+        weight: weights[i],
         collapsed: item.isCollapsed(),
         collapsedSize: item.collapsedSize(),
         min: item.minSize(),
@@ -200,10 +208,9 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
       const store = this.store();
       onCleanup(() => store?.flush());
     });
+    // A frame id exists only if requestAnimationFrame ran — and so cancelAnimationFrame exists.
     inject(DestroyRef).onDestroy(() => {
-      if (this.instantFrame !== null && typeof cancelAnimationFrame === 'function') {
-        cancelAnimationFrame(this.instantFrame);
-      }
+      if (this.instantFrame !== null) cancelAnimationFrame(this.instantFrame);
     });
   }
 
@@ -244,6 +251,7 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
   resetSizes(): void {
     this.userLayout.set(null);
     this.store()?.clear();
+    this.storageEpoch.update((n) => n + 1);
   }
 
   // ── Handle events ──
@@ -256,7 +264,7 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
     if (!this.dragBase) return;
     // Defensive (TrAIdit F3): if either neighbour collapsed mid-drag, stop resizing.
     const items = this.items();
-    if (items[index]?.isCollapsed() || items[index + 1]?.isCollapsed()) {
+    if (items[index].isCollapsed() || items[index + 1].isCollapsed()) {
       this.onResizeEnd();
       return;
     }
@@ -320,13 +328,14 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
     return undefined;
   }
 
+  /** `index` is always a live boundary: a handle exists only while both its neighbours do. */
   private bounds(index: number) {
-    const items = this.items();
+    const [before, after] = [this.items()[index], this.items()[index + 1]];
     return {
-      minBefore: items[index]?.minSize() ?? 0,
-      maxBefore: items[index]?.maxSize() ?? null,
-      minAfter: items[index + 1]?.minSize() ?? 0,
-      maxAfter: items[index + 1]?.maxSize() ?? null,
+      minBefore: before.minSize(),
+      maxBefore: before.maxSize(),
+      minAfter: after.minSize(),
+      maxAfter: after.maxSize(),
     };
   }
 

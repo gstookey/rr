@@ -146,7 +146,8 @@ export class RrPaneResizeHandle {
     return this.orientation() === 'inline' ? event.clientX : event.clientY;
   }
 
+  /** Only ever called from a pointer or key handler — i.e. in a browser, never on a server. */
   private isRtl(): boolean {
-    return typeof getComputedStyle === 'function' && getComputedStyle(this.host).direction === 'rtl';
+    return getComputedStyle(this.host).direction === 'rtl';
   }
 }

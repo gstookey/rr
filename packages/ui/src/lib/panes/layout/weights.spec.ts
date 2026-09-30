@@ -48,6 +48,17 @@ describe('normalizeToPx', () => {
   it('leaves a collapsed fixed item at its px', () => {
     expect(normalizeToPx([280, 100], [px(280), fr(1)], [true, false], [0, 900])).toEqual([280, 900]);
   });
+
+  // WHY: with no expanded flex item there is nothing to measure a scale against — a
+  // collapsed flex item must keep its weight, not be scaled by 0 or divided by it.
+  it('keeps collapsed flex weights as they are when no flex item is expanded', () => {
+    expect(normalizeToPx([30, 280], [pct(30), px(280)], [true, false], [0, 280])).toEqual([30, 280]);
+    expect(normalizeToPx([30, 70], [pct(30), fr(1)], [true, true], [0, 0])).toEqual([30, 70]);
+  });
+
+  it('gives an expanded item that measures zero a token weight, never zero', () => {
+    expect(normalizeToPx([50, 50], [fr(1), fr(1)], [false, false], [0, 900])[0]).toBeGreaterThan(0);
+  });
 });
 
 describe('resizePair', () => {
@@ -87,8 +98,9 @@ describe('resizePair', () => {
     expect(resizePair({ ...base, delta: 10, minBefore: 600, minAfter: 600 }).weights).toEqual(base.weights);
   });
 
-  it('ignores an index with no neighbour, and an empty pair', () => {
+  it('ignores an index with no neighbour, no item, and an empty pair', () => {
     expect(resizePair({ ...base, index: 2, delta: 10 }).weights).toEqual(base.weights);
+    expect(resizePair({ ...base, index: -1, delta: 10 })).toEqual({ weights: base.weights, pxBefore: 0 });
     expect(resizePair({ ...base, weights: [0, 0], delta: 10 }).weights).toEqual([0, 0]);
   });
 });
@@ -106,6 +118,11 @@ describe('resetPair', () => {
   it('returns a fixed item to its declared px', () => {
     expect(resetPair([400, 600], [px(280), fr(1)], 0, open)).toEqual([280, 720]);
     expect(resetPair([600, 400], [fr(1), px(280)], 0, open)).toEqual([720, 280]);
+  });
+
+  it('ignores an index outside the items', () => {
+    expect(resetPair([400, 600], [px(280), fr(1)], -1, open)).toEqual([400, 600]);
+    expect(resetPair([400, 600], [px(280), fr(1)], 1, open)).toEqual([400, 600]);
   });
 
   it('between two fixed items, returns the one before the handle to its declared px', () => {
