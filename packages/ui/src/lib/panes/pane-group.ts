@@ -137,9 +137,17 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
     return key ? new RrPaneSizeStore(this.config.storagePrefix + key) : null;
   });
 
+  /** Bumped when the persisted layout is forgotten. Storage is not a signal, so without it
+   *  `restored` would keep serving the layout resetSizes() had just cleared (found writing
+   *  the coverage specs: the persisted sizes stayed on screen until a reload). */
+  private readonly storageEpoch = signal(0);
+
   /** Restored layout. Read during the FIRST change detection, so a persisted layout paints
    *  on first render — no jump, and no transition animating the restore. */
-  private readonly restored = computed(() => this.store()?.load(this.itemIds()) ?? null);
+  private readonly restored = computed(() => {
+    this.storageEpoch();
+    return this.store()?.load(this.itemIds()) ?? null;
+  });
 
   private readonly declared = computed(() => initialWeights(this.items().map((i) => i.basisSpec())));
 
@@ -244,6 +252,7 @@ export class RrPaneGroup implements RrPaneItem, RrPaneContainer {
   resetSizes(): void {
     this.userLayout.set(null);
     this.store()?.clear();
+    this.storageEpoch.update((n) => n + 1);
   }
 
   // ── Handle events ──
