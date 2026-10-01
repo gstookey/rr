@@ -4,12 +4,18 @@
     "outDir": "../../dist/out-tsc/config",
     "declaration": true,
     "declarationMap": true,
-    "types": []
+    "types": [],
+    "paths": {
+      "@rr/common": [
+        "../common/dist/index.d.ts"
+      ]
+    }
   },
   "include": [
     "src/**/*.ts"
   ],
   "exclude": [
     "**/*.spec.ts"
-  ]
+  ],
+  "//": "The ng-packagr lib build sets rootDir to this package's src, so `@rr/common` must NOT resolve to its SOURCE through the workspace path alias (TS6059: not under rootDir). It resolves to the BUILT declarations instead \u2014 the same compile-time/runtime agreement the Node services make (S0 notes, deviation 6). `local-ci.sh` builds @rr/common before it typechecks anything, which is why that ordering is load-bearing rather than incidental."
 }

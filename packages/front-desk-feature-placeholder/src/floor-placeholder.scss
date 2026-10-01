@@ -1,0 +1,54 @@
+/* The empty room is drawn AS an empty room. A placeholder filled with plausible
+   content would make S1 look like a failure instead of a foundation. */
+:host {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--rr-space-3);
+  padding: var(--rr-space-4);
+}
+
+.rr-floor__crumbs {
+  display: flex;
+  gap: var(--rr-space-2);
+  font: var(--rr-text-sm) / 1.5 var(--rr-font-mono);
+  color: var(--rr-ink-muted);
+}
+
+.rr-floor__crumbs strong {
+  color: var(--rr-ink);
+  font-weight: 600;
+}
+
+.rr-floor__slot {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--rr-space-2);
+  padding: var(--rr-space-5);
+  border: 1px dashed var(--rr-rule-strong);
+  border-radius: var(--rr-radius);
+  background: var(--rr-sunk);
+  color: var(--rr-ink-muted);
+  text-align: center;
+}
+
+.rr-floor__title {
+  color: var(--rr-ink);
+  font-size: var(--rr-text-sm);
+  font-weight: 600;
+}
+
+.rr-floor__meta {
+  font: var(--rr-text-xs) / 1.5 var(--rr-font-mono);
+}
+
+.rr-floor__slice {
+  border: 1px solid var(--rr-rule-strong);
+  border-radius: var(--rr-radius);
+  padding: 0 var(--rr-space-2);
+  font-size: var(--rr-text-xs);
+  letter-spacing: 0.08em;
+}

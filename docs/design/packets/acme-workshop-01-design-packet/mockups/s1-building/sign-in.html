@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ACME Workshop — S1 mockup: the sign-in surface</title>
+<!--
+  ACME-WORKSHOP-01 · S1 "The Building" · mockup 3 of 3 — the signed-out surface.
+  Static, self-contained, no script, no network. Every name is fictional.
+  There is deliberately NO credential form: sign-in is a full-page navigation to
+  the gateway, which drives the OIDC code flow (BFF / BCP 212, DA-D17). No token,
+  no credential and no identity-provider SDK ever enters this application.
+-->
+<style>
+  :root {
+    color-scheme: light dark;
+    --acme-ground: #f2f4f5;
+    --acme-surface: #ffffff;
+    --acme-sunk: #e8ebee;
+    --acme-ink: #191d21;
+    --acme-ink-muted: #5b656e;
+    --acme-rule: #ccd3d9;
+    --acme-rule-strong: #a8b2ba;
+    --acme-accent: #2d6d8c;
+    --acme-accent-ink: #ffffff;
+    --acme-danger: #8c3a2c;
+
+    --acme-font-ui: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --acme-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    --acme-text-xs: 0.6875rem;
+    --acme-text-sm: 0.8125rem;
+    --acme-text-md: 0.9375rem;
+    --acme-text-lg: 1.125rem;
+    --acme-text-xl: 1.5rem;
+
+    --acme-space-1: 4px;
+    --acme-space-2: 8px;
+    --acme-space-3: 12px;
+    --acme-space-4: 16px;
+    --acme-space-5: 24px;
+    --acme-space-6: 32px;
+    --acme-radius: 2px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --acme-ground: #14181b;
+      --acme-surface: #1c2126;
+      --acme-sunk: #23292f;
+      --acme-ink: #e6eaed;
+      --acme-ink-muted: #9aa5ae;
+      --acme-rule: #333c44;
+      --acme-rule-strong: #4c5760;
+      --acme-accent: #6fb2d0;
+      --acme-accent-ink: #0d1114;
+      --acme-danger: #e08a78;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: var(--acme-space-6); background: var(--acme-ground); color: var(--acme-ink); font: var(--acme-text-md)/1.5 var(--acme-font-ui); }
+  .doc { max-width: 1500px; margin: 0 auto; }
+  .doc > header { border-bottom: 1px solid var(--acme-rule); padding-bottom: var(--acme-space-4); margin-bottom: var(--acme-space-5); }
+  .doc h1 { font-size: var(--acme-text-xl); margin: 0 0 var(--acme-space-2); }
+  .doc h2 { font-size: var(--acme-text-lg); margin: var(--acme-space-6) 0 var(--acme-space-3); }
+  .doc .lede { color: var(--acme-ink-muted); max-width: 78ch; margin: 0; }
+  .doc code { font-family: var(--acme-font-mono); font-size: 0.92em; }
+  figure { margin: 0; }
+  figcaption { margin-top: var(--acme-space-3); color: var(--acme-ink-muted); font-size: var(--acme-text-sm); line-height: 1.55; }
+  figcaption b { color: var(--acme-ink); font-weight: 600; }
+  .seam-tag { display: inline-block; font-size: var(--acme-text-xs); letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--acme-rule-strong); border-radius: var(--acme-radius); padding: 1px var(--acme-space-2); margin-right: var(--acme-space-2); color: var(--acme-ink-muted); }
+  .trio { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: var(--acme-space-6); }
+
+  /* ===== THE MOCKED APPLICATION ===== */
+  .app { background: var(--acme-surface); border: 1px solid var(--acme-rule-strong); border-radius: var(--acme-radius); display: flex; flex-direction: column; min-height: 360px; overflow: hidden; }
+  .banner-void {
+    border-bottom: 1px dashed var(--acme-rule-strong);
+    background: var(--acme-sunk);
+    padding: var(--acme-space-2) var(--acme-space-3);
+    text-align: center;
+    font-size: var(--acme-text-xs);
+    color: var(--acme-ink-muted);
+    font-style: italic;
+  }
+  .gate { flex: 1; display: flex; align-items: center; justify-content: center; padding: var(--acme-space-6) var(--acme-space-5); }
+  .card { width: 100%; max-width: 360px; display: flex; flex-direction: column; gap: var(--acme-space-4); }
+  .wordmark .name { font-size: var(--acme-text-xl); font-weight: 650; letter-spacing: 0.02em; }
+  .wordmark .name span { font-weight: 300; }
+  .tier { font-size: var(--acme-text-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--acme-ink-muted); margin-top: var(--acme-space-1); }
+  .card h1 { font-size: var(--acme-text-lg); margin: 0; font-weight: 600; }
+  .card p { margin: 0; font-size: var(--acme-text-sm); color: var(--acme-ink-muted); }
+  .btn { display: inline-block; text-align: center; border: 1px solid var(--acme-accent); background: var(--acme-accent); color: var(--acme-accent-ink); border-radius: var(--acme-radius); padding: var(--acme-space-2) var(--acme-space-4); font-size: var(--acme-text-md); text-decoration: none; }
+  .btn--quiet { background: transparent; color: var(--acme-accent); }
+  .btn:focus-visible { outline: 2px solid var(--acme-accent); outline-offset: 2px; }
+  .footnote { border-top: 1px solid var(--acme-rule); padding-top: var(--acme-space-3); font-size: var(--acme-text-xs); color: var(--acme-ink-muted); }
+  .alert { border: 1px solid var(--acme-rule-strong); border-left: 3px solid var(--acme-danger); background: var(--acme-sunk); border-radius: var(--acme-radius); padding: var(--acme-space-3); }
+  .alert h1 { font-size: var(--acme-text-md); margin: 0 0 var(--acme-space-1); }
+  .alert p { font-size: var(--acme-text-sm); }
+  .alert .code { display: block; margin-top: var(--acme-space-2); font-family: var(--acme-font-mono); font-size: var(--acme-text-xs); }
+  .waiting { display: flex; align-items: center; gap: var(--acme-space-2); font-size: var(--acme-text-sm); color: var(--acme-ink-muted); }
+  .waiting .bar { height: 3px; flex: 1; background: linear-gradient(90deg, var(--acme-accent) 0 40%, var(--acme-rule) 40% 100%); border-radius: 2px; }
+
+  ol.flow { margin: var(--acme-space-2) 0 0; padding-left: 1.25rem; font-size: var(--acme-text-sm); color: var(--acme-ink-muted); }
+  ol.flow code { color: var(--acme-ink); }
+  ol.flow li { margin-bottom: var(--acme-space-1); }
+</style>
+</head>
+<body>
+<div class="doc">
+
+<header>
+  <h1>ACME Workshop — S1 mockup 3 of 3: the sign-in surface</h1>
+  <p class="lede">
+    There is no username field and no password field on this page, and that absence is the design.
+    Sign-in is a <em>full-page navigation away</em> to the gateway, which runs the OIDC authorization-code flow with
+    Keycloak and returns the browser to <code>/</code> holding nothing but an <code>HttpOnly</code> session cookie.
+    The Angular application never receives a credential, never receives a token, and carries no identity-provider SDK
+    — so there is nothing in it for a script on the page to steal.
+  </p>
+</header>
+
+<div class="trio">
+
+  <!-- ---------- signed out ---------- -->
+  <figure>
+    <div class="app">
+      <div class="banner-void">no marking banner — nothing is on screen to mark, and no vocabulary is served to an anonymous caller</div>
+      <div class="gate">
+        <div class="card">
+          <div class="wordmark">
+            <div class="name">ACME <span>Workshop</span></div>
+            <div class="tier">Building · L1</div>
+          </div>
+          <h1>You are signed out</h1>
+          <p>Sign in to see the Floors your group may enter.</p>
+          <a class="btn" href="#">Continue to sign in</a>
+          <p class="footnote">
+            You will be sent to your organisation's sign-in service and returned here.
+            ACME Workshop never sees your password.
+          </p>
+        </div>
+      </div>
+    </div>
+    <figcaption>
+      <span class="seam-tag">no token in the browser</span>
+      <b>Signed out — the default state.</b> One verb, one destination, no form. The button is an ordinary link that
+      leaves the single-page application (<code>&lt;a href="/auth/login"&gt;</code>, not an <code>fetch</code>), because
+      the redirect chain belongs to the gateway.
+      <ol class="flow">
+        <li>browser → <code>GET /auth/login</code> (gateway)</li>
+        <li>gateway → Keycloak authorization endpoint (<code>openid-client</code>, PKCE)</li>
+        <li>person authenticates <em>at Keycloak</em>, never here</li>
+        <li>Keycloak → <code>GET /auth/callback</code>; the gateway exchanges the code, stores the tokens in its
+            Postgres session table, and sets an <code>HttpOnly</code>, <code>SameSite</code> cookie</li>
+        <li>redirect to <code>/</code>; the shell calls <code>/api/me</code> and <code>/api/config</code> with the cookie</li>
+      </ol>
+    </figcaption>
+  </figure>
+
+  <!-- ---------- leaving ---------- -->
+  <figure>
+    <div class="app">
+      <div class="banner-void">no marking banner</div>
+      <div class="gate">
+        <div class="card">
+          <div class="wordmark">
+            <div class="name">ACME <span>Workshop</span></div>
+            <div class="tier">Building · L1</div>
+          </div>
+          <h1>Taking you to sign in…</h1>
+          <div class="waiting"><span class="bar" aria-hidden="true"></span><span>leaving ACME Workshop</span></div>
+          <p>If nothing happens in a few seconds, <a href="#">continue manually</a>.</p>
+          <p class="footnote">Your session will be created by the gateway, not by this page.</p>
+        </div>
+      </div>
+    </div>
+    <figcaption>
+      <span class="seam-tag">no token in the browser</span>
+      <b>Leaving.</b> A named, honest hand-off state rather than a blank flash. It says <em>leaving</em> on purpose:
+      the reader should be able to see, from the UI alone, that authentication happens somewhere else. The manual
+      link exists because a redirect that fails silently is the worst way to learn that a gateway is down.
+    </figcaption>
+  </figure>
+
+  <!-- ---------- session expired / sign-in failed ---------- -->
+  <figure>
+    <div class="app">
+      <div class="banner-void">no marking banner</div>
+      <div class="gate">
+        <div class="card">
+          <div class="wordmark">
+            <div class="name">ACME <span>Workshop</span></div>
+            <div class="tier">Building · L1</div>
+          </div>
+          <div class="alert" role="alert">
+            <h1>Your session ended</h1>
+            <p>You were signed out because the session expired. Nothing you were looking at is still on screen.</p>
+            <span class="code">SESSION_EXPIRED · GET /api/me → 401</span>
+          </div>
+          <a class="btn" href="#">Sign in again</a>
+          <p class="footnote">
+            A sign-in that fails shows the same surface with <code>SIGN_IN_FAILED</code> and no detail about
+            which account, group or Floor was involved.
+          </p>
+        </div>
+      </div>
+    </div>
+    <figcaption>
+      <span class="seam-tag">error</span><span class="seam-tag">identity</span>
+      <b>Session expired, and the near-identical sign-in failure.</b> Both land here; both clear the screen first.
+      The error text names <em>what happened to you</em>, never what exists on the other side of it — "no such group",
+      "you lack the Vigilance claim" and "wrong tenant" are all the same absence to a signed-out visitor, which is the
+      no-leak contract applied to error copy (<code>mac_stores_brief_v0</code> §6: forbidden and non-existent yield the
+      same response).
+    </figcaption>
+  </figure>
+
+</div>
+
+<h2>What is deliberately not here</h2>
+<p class="lede">
+  No credential form, no "remember me", no password reset, no account chooser, no multi-tenant "which organisation?"
+  picker (a group is a claim, never something the browser asserts — V8, DA-D3), no branding per tenant on the signed-out
+  page: before a session exists, ACME does not know whose brand to wear, and guessing from a hostname or a URL parameter
+  would be the first tenancy leak in the Building.
+</p>
+
+</div>
+</body>
+</html>

@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+/**
+ * The Building's global stylesheet.
+ *
+ * It does exactly one thing: pull in the ACME theme from `@rr/ui`, which
+ * supplies the `--rr-*` custom-property VALUES the base library's components
+ * reference but never ship (AW-D22). Every other rule in this application lives
+ * in a component's own stylesheet.
+ *
+ * Resolved through `stylePreprocessorOptions.includePaths` in `angular.json`
+ * rather than a deep relative path, so the seam is named in configuration
+ * instead of buried in `../../../`.
+ */
+@use 'acme-theme';
+
+html,
+body {
+  margin: 0;
+  background: var(--rr-ground);
+}

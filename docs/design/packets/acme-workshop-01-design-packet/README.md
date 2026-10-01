@@ -3,19 +3,21 @@ schema: corpus-doc/v1
 status: exploratory
 title: ACME-WORKSHOP-01 — the DDD reference application (walking skeleton of the DDD-ARCH-01 architecture)
 areas: [system-architecture, domain-driven-design, frontend, backend, identity, access-control, planning]
-related: ["docs/design/packets/acme-workshop-01-design-packet/decision_register_v0.md", "docs/design/packets/acme-workshop-01-design-packet/slice_decomposition_v0.md", "docs/design/packets/acme-workshop-01-design-packet/domain_model_v0.md", "docs/design/packets/ddd-arch-01-design-packet/README.md", "docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md", "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md", "docs/design/packets/ddd-arch-01-design-packet/context_boundary_test_v0.md", "docs/context/canonical/technology_stack.md"]
-updated: 2026-09-03
+related: ["docs/design/packets/acme-workshop-01-design-packet/decision_register_v0.md", "docs/design/packets/acme-workshop-01-design-packet/slice_decomposition_v0.md", "docs/design/packets/acme-workshop-01-design-packet/mockups/s1-building/README.md", "docs/design/packets/acme-workshop-01-design-packet/domain_model_v0.md", "docs/design/packets/ddd-arch-01-design-packet/README.md", "docs/context/governance/decisions/ADR-007-acme-workshop-is-a-learning-instrument.md", "docs/design/packets/ddd-arch-01-design-packet/practical_picture_v0.md", "docs/design/packets/ddd-arch-01-design-packet/tier_model_exploration_v0.md", "docs/design/packets/ddd-arch-01-design-packet/context_boundary_test_v0.md", "docs/context/canonical/technology_stack.md"]
+updated: 2026-09-08
 ---
 
 # ACME-WORKSHOP-01 — the DDD reference application
 
-**Created:** 2026-09-03 | **Last updated:** 2026-09-03 | **Author:** Axium, from Graham's rulings of 2026-09-03 | **Status:** `exploratory` — packet cut; board epic [EP-06 (#37)](https://github.com/gstookey/rr/issues/37) + stories stood up; **build NOT activated** (creation is not activation, rule 16)
+**Created:** 2026-09-03 | **Last updated:** 2026-09-08 (ADR-007: learning instrument, not the scaffold) | **Author:** Axium, from Graham's rulings of 2026-09-03 | **Status:** `exploratory` — under build. **S-18 (S0 Foundation) merged 2026-09-08 (PR #47)**; **S-19 (S1 The Building) activated 2026-09-08**; S-20..S-25 stood up and unactivated (creation is not activation, rule 16)
 
 ## What this is
 
 **ACME Workshop** is a fictional product built to prove the DDD-ARCH-01 architecture in running code: a hub application for **smart-watch manufacturers** and their B2B customers, covering the supply chain from factory to wearer. It is the **walking skeleton** from `practical_picture_v0.md` §6 (steps 0–6) on a domain with enough meat to template and pattern-build from: real tenancy (several manufacturers, each with B2B customers), a natural need-to-know model (a manufacturer's data is its own compartment), an event flow between contexts (Command tasks a device; Vigilance shows the result), a map, and a paywall.
 
-It is built **in this repo, in the real layout** (`apps/`, `packages/`, `services/` — Graham's ruling, closing C-001's layout half), so it becomes the LOE-8 scaffold for Desert Island rather than a throwaway. When the real Floors arrive they replace ACME's, not the platform.
+It is built **in this repo, in the real layout** (`apps/`, `packages/`, `services/` — [ADR-006](../../../context/governance/decisions/ADR-006-repo-layout-apps-packages-services.md)), because a study conducted in the real layout is the only kind that teaches anything about the real layout.
+
+**ACME Workshop is a learning instrument, not the Desert Island scaffold** ([ADR-007](../../../context/governance/decisions/ADR-007-acme-workshop-is-a-learning-instrument.md), 2026-09-08). Its output is *understanding* — how the tier model, Floor boundaries, claims-driven tailoring and markings behave in real Angular code. **Nothing ships from it.** An earlier draft of this README claimed it "becomes the LOE-8 scaffold for Desert Island"; ADR-007 supersedes that sentence, and this paragraph replaces it. Two consequences worth carrying into every slice: ACME is never re-pinned if the estate stops short of v22 (it is read as a study on the then-current framework), and **legibility outranks hardening** — a slice's job is to make a seam visible to a reader, not to survive production.
 
 **Everything in it is invented.** Manufacturers, devices, people, markings and vocabularies are fictional; no real classification string, program name, hostname or address appears anywhere. That is what keeps it portable across the fence.
 
@@ -68,6 +70,7 @@ Handling levels **OPEN < PARTNER < INTERNAL < RESTRICTED**, plus **compartments 
 |---|---|
 | [`domain_model_v0.md`](domain_model_v0.md) | the four contexts' aggregates, events, read models and commands; tenants and personas; the lexicon card per context; the seed data shape |
 | [`decision_register_v0.md`](decision_register_v0.md) | AW-D1..AW-D12 — the forks this build must rule (map engine offline, telemetry simulation, paywall model, process-as-data format, …) |
+| [`mockups/s1-building/`](mockups/s1-building/README.md) | **S1 mockups (Cadence, blocking pass):** the Building chrome, Lobby and sign-in surfaces, each drawn twice — Ada (four Floors) beside Fay (one) — so *absent, not disabled* is a picture; plus the fail-closed states (pre-hydration, `CONFIG_UNAVAILABLE`, unresolved marking) and the `--rr-*` token sketch |
 | [`slice_decomposition_v0.md`](slice_decomposition_v0.md) | slices S0..S7 = board stories, each with its scope, proof, and the fleet lane that runs it |
 
 ## Fleet model

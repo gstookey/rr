@@ -1,0 +1,23 @@
+<nav class="rr-elevator" aria-label="Floors">
+  <h2>Elevator · Floors</h2>
+  <ul>
+    <li class="rr-elevator__lobby">
+      <a routerLink="/" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive ariaCurrentWhenActive="page">
+        <span class="rr-elevator__label">Lobby</span>
+        <span class="rr-elevator__route">/</span>
+      </a>
+    </li>
+    @for (floor of config.floors(); track floor.id) {
+      <li>
+        <a [routerLink]="floor.route" routerLinkActive ariaCurrentWhenActive="page">
+          <span class="rr-elevator__label">{{ floor.label }}</span>
+          <span class="rr-elevator__route">{{ floor.route }}</span>
+        </a>
+      </li>
+    }
+  </ul>
+</nav>
+
+<main class="rr-floor-content">
+  <router-outlet />
+</main>

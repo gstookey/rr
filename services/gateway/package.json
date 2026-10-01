@@ -2,7 +2,7 @@
   "name": "@rr/gateway",
   "version": "0.0.0",
   "private": true,
-  "description": "The BFF: Express 5. S0 is a skeleton — /healthz and a static /api/config only. Auth, sessions, per-Floor routers, RLS and SSE arrive in S1/S2/S3.",
+  "description": "The BFF: Express 5. S1 adds OIDC sign-in (openid-client, PKCE, confidential client), a Postgres-backed session store, and the two reads the Building hydrates from: /api/me and /api/config (per-group manifest). No token ever reaches the browser.",
   "type": "module",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
@@ -11,6 +11,14 @@
     "start": "tsx src/main.ts"
   },
   "dependencies": {
-    "express": "5.2.1"
+    "@rr/common": "*",
+    "connect-pg-simple": "10.0.0",
+    "express": "5.2.1",
+    "express-session": "1.19.0",
+    "openid-client": "6.8.8",
+    "pg": "8.23.0"
+  },
+  "devDependencies": {
+    "@rr/mock-oidc": "*"
   }
 }

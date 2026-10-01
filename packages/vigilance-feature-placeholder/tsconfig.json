@@ -1,0 +1,14 @@
+{
+  "//": "Typecheck only. This library is compiled from SOURCE by the shell's build through the workspace path alias (it has no ng-packagr target), because nothing consumes it as a published package.",
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "types": [],
+    "noEmit": true
+  },
+  "angularCompilerOptions": {
+    "strictTemplates": true
+  },
+  "include": [
+    "src/**/*.ts"
+  ]
+}

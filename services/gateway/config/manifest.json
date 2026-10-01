@@ -1,31 +1,83 @@
 {
-  "$comment": "S0 PLACEHOLDER. Served verbatim by GET /api/config. In S1 this becomes a per-group selection driven by the session's claims — which is the mechanism that makes S4's proof (a third manufacturer with zero code changes) possible. Everything here is fictional.",
-  "schemaVersion": "acme-config/0",
-  "building": {
-    "name": "ACME Workshop",
-    "host": "acme-workshop.example"
-  },
+  "$comment": "THE TAILORING SURFACE. Everything that differs between two tenants of ACME Workshop lives in this file — and nowhere in any component. S4's proof (a third manufacturer with zero code changes) is an edit to this file plus a realm group. Everything here is fictional.",
+  "schemaVersion": "acme-config/1",
+  "building": { "name": "ACME Workshop", "host": "acme-workshop.example" },
+
+  "$comment.floorCatalog": "Every Floor the Building knows how to mount, with its own label, route, blurb and order. A group SELECTS from this catalog; it never re-describes a Floor. `order` is what the manifest is served in — capability Floors in packet order, Front Desk last (AW-D15).",
+  "floorCatalog": [
+    {
+      "id": "invent",
+      "label": "Invent",
+      "route": "/invent",
+      "blurb": "Products, specs and the device registry.",
+      "order": 10,
+      "arrivesIn": "S2"
+    },
+    {
+      "id": "command",
+      "label": "Command",
+      "route": "/command",
+      "blurb": "Campaigns, distribution vectors, entitlements.",
+      "order": 20,
+      "arrivesIn": "S6"
+    },
+    {
+      "id": "vigilance",
+      "label": "Vigilance",
+      "route": "/vigilance",
+      "blurb": "Fleet, positions, health, offline devices.",
+      "order": 30,
+      "arrivesIn": "S3"
+    },
+    {
+      "id": "front-desk",
+      "label": "Front Desk",
+      "route": "/front-desk",
+      "blurb": "People and groups; manage my group.",
+      "order": 90,
+      "arrivesIn": "S7"
+    }
+  ],
+
+  "$comment.markingVocabulary": "Invented. @rr/markings renders FROM this and ships no level names, compartment names or colours of its own. `colourToken` names a --rr-* CSS custom property SLOT; the ACME theme stylesheet in @rr/ui supplies the value (AW-D22).",
   "markingVocabulary": {
-    "$comment": "Invented. @rr/markings renders FROM this; it carries no vocabulary of its own.",
     "levels": [
-      { "id": "OPEN", "rank": 0, "label": "OPEN", "colour": "--rr-marking-open" },
-      { "id": "PARTNER", "rank": 1, "label": "PARTNER", "colour": "--rr-marking-partner" },
-      { "id": "INTERNAL", "rank": 2, "label": "INTERNAL", "colour": "--rr-marking-internal" },
-      { "id": "RESTRICTED", "rank": 3, "label": "RESTRICTED", "colour": "--rr-marking-restricted" }
+      { "id": "OPEN", "rank": 0, "label": "OPEN", "colourToken": "--rr-marking-open" },
+      { "id": "PARTNER", "rank": 1, "label": "PARTNER", "colourToken": "--rr-marking-partner" },
+      { "id": "INTERNAL", "rank": 2, "label": "INTERNAL", "colourToken": "--rr-marking-internal" },
+      { "id": "RESTRICTED", "rank": 3, "label": "RESTRICTED", "colourToken": "--rr-marking-restricted" }
     ],
     "compartments": [
       { "id": "TTW", "label": "Tick-Tock Watchworks" },
       { "id": "MER", "label": "Meridian Wearables" },
       { "id": "TTW/NWL", "label": "Northwind Logistics (operator of TTW devices)" }
     ],
-    "bannerSeparator": "//"
+    "bannerSeparator": "//",
+    "unresolved": { "label": "UNRESOLVED MARKING", "colourToken": "--rr-marking-unresolved" }
   },
-  "floors": [
-    { "id": "front-desk", "label": "Front Desk", "route": "/front-desk", "slice": "S7" },
-    { "id": "invent", "label": "Invent", "route": "/invent", "slice": "S2" },
-    { "id": "command", "label": "Command", "route": "/command", "slice": "S6" },
-    { "id": "vigilance", "label": "Vigilance", "route": "/vigilance", "slice": "S3" }
-  ],
-  "capabilities": [],
-  "theme": { "tokens": {} }
+
+  "$comment.groups": "Keyed by the Keycloak group PATH exactly as the `groups` claim carries it (full paths — /ttw/nwl is not /ttw). The asymmetry below is deliberate and is S4's seed: MER has no Vigilance Floor; Northwind has ONLY Vigilance.",
+  "groups": {
+    "/ttw": {
+      "displayName": "Tick-Tock Watchworks",
+      "marking": { "level": "INTERNAL", "compartments": ["TTW"] },
+      "floors": ["invent", "command", "vigilance", "front-desk"]
+    },
+    "/ttw/nwl": {
+      "displayName": "Northwind Logistics",
+      "marking": { "level": "PARTNER", "compartments": ["TTW/NWL"] },
+      "floors": ["vigilance"],
+      "landingFloor": "vigilance"
+    },
+    "/mer": {
+      "displayName": "Meridian Wearables",
+      "marking": { "level": "INTERNAL", "compartments": ["MER"] },
+      "floors": ["invent", "command", "front-desk"]
+    },
+    "/acme-staff": {
+      "displayName": "ACME staff",
+      "marking": { "level": "RESTRICTED", "compartments": ["TTW", "TTW/NWL", "MER"] },
+      "floors": ["invent", "command", "vigilance", "front-desk"]
+    }
+  }
 }

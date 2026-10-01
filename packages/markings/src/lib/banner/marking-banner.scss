@@ -1,0 +1,53 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--rr-space-2);
+  background: var(--rr-sunk);
+  /* Colour is never the only cue: the level WORD is always beside the rule. */
+  border-bottom: 2px solid var(--rr-marking, var(--rr-rule-strong));
+  padding: var(--rr-space-2) var(--rr-space-3);
+  font: 600 var(--rr-text-xs) / 1.35 var(--rr-font-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  /* Reserved height, so the content does not jump when the marking arrives. */
+  min-height: 28px;
+}
+
+:host(.rr-banner--foot) {
+  border-bottom: 0;
+  border-top: 2px solid var(--rr-marking, var(--rr-rule-strong));
+}
+
+:host(.rr-banner--unresolved) {
+  border-bottom-style: dashed;
+  color: var(--rr-marking, var(--rr-ink-muted));
+}
+
+:host(.rr-banner--foot.rr-banner--unresolved) {
+  border-top-style: dashed;
+}
+
+.rr-banner__swatch {
+  width: 9px;
+  height: 9px;
+  flex: none;
+  border-radius: 1px;
+  background: var(--rr-marking, var(--rr-rule-strong));
+}
+
+.rr-banner__pending {
+  color: var(--rr-ink-muted);
+  font-family: var(--rr-font-ui);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.rr-banner__raw {
+  color: var(--rr-ink-muted);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}

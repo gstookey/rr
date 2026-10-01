@@ -37,4 +37,24 @@ describe('Marking — the published language\'s one real schema in S0', () => {
       'INTERNAL//TTW, TTW/NWL',
     );
   });
+
+  it('nests compartments by prefix subsumption, one way only (AW-D13)', () => {
+    // Ada holds TTW; Northwind's devices are marked TTW/NWL. A manufacturer
+    // sees the devices its B2B customers operate.
+    const ada: SubjectClearance = { level: 'INTERNAL', compartments: ['TTW'] };
+    const nwlRow: Marking = { level: 'PARTNER', compartments: ['TTW/NWL'] };
+    expect(dominates(ada, nwlRow)).toBe(true);
+
+    // Fay holds only TTW/NWL. The relation does not run the other way: she
+    // sees her own rows and nothing of Tick-Tock's.
+    const fay: SubjectClearance = { level: 'PARTNER', compartments: ['TTW/NWL'] };
+    expect(dominates(fay, nwlRow)).toBe(true);
+    expect(dominates(fay, { level: 'PARTNER', compartments: ['TTW'] })).toBe(false);
+
+    // A sibling compartment is not subsumed, and a name that merely starts
+    // with a held compartment is not either — the '/' is load-bearing.
+    expect(dominates(ada, { level: 'PARTNER', compartments: ['MER'] })).toBe(false);
+    expect(dominates(ada, { level: 'PARTNER', compartments: ['TTWX'] })).toBe(false);
+    expect(dominates(ada, { level: 'PARTNER', compartments: ['TTW/NWL/SUB'] })).toBe(true);
+  });
 });

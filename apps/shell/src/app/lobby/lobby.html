@@ -1,0 +1,27 @@
+<h1>Floors</h1>
+
+<p class="rr-lobby__sub">
+  @if (count() === 1) {
+    One Floor is open to {{ actingAs() }}.
+  } @else {
+    {{ count() }} Floors are open to {{ actingAs() }}.
+  }
+</p>
+
+<!-- `@for` over the manifest, in the order it was served. Never sorted here:
+     order is manifest data, and a sort would be the Building taking back an
+     opinion the tenant owns. -->
+<ul class="rr-lobby__floors">
+  @for (floor of config.floors(); track floor.id) {
+    <li>
+      <a class="rr-floor-card" [routerLink]="floor.route">
+        <span class="rr-floor-card__name">{{ floor.label }}</span>
+        <span class="rr-floor-card__route">{{ floor.route }}</span>
+        <span class="rr-floor-card__what">{{ floor.blurb }}</span>
+        @if (floor.arrivesIn; as slice) {
+          <span class="rr-floor-card__slice">arrives {{ slice }}</span>
+        }
+      </a>
+    </li>
+  }
+</ul>

@@ -1,10 +1,14 @@
 {
-  "//": "RR workspace TypeScript base. TS 6.0.x, two forced edits both predicted by the 21→22 rung findings (monorepo_hop_procedure_v2.md): moduleResolution MUST be 'bundler' (TS 6 hard-fails 'node', TS5107), and `baseUrl` is GONE (TS5101 is an error on 6.0 — `paths` entries are resolved relative to THIS file instead).",
+  "//": "RR workspace TypeScript base. TS 6.0.x, two forced edits both predicted by the 21\u219222 rung findings (monorepo_hop_procedure_v2.md): moduleResolution MUST be 'bundler' (TS 6 hard-fails 'node', TS5107), and `baseUrl` is GONE (TS5101 is an error on 6.0 \u2014 `paths` entries are resolved relative to THIS file instead).",
   "compilerOptions": {
     "target": "ES2022",
     "module": "preserve",
     "moduleResolution": "bundler",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
@@ -21,16 +25,48 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "paths": {
-      "@rr/common": ["./packages/common/src/index.ts"],
-      "@rr/ui": ["./packages/ui/src/index.ts"],
-      "@rr/auth": ["./packages/auth/src/index.ts"],
-      "@rr/config": ["./packages/config/src/index.ts"],
-      "@rr/markings": ["./packages/markings/src/index.ts"],
-      "@rr/windows": ["./packages/windows/src/index.ts"],
-      "@rr/store-features": ["./packages/store-features/src/index.ts"],
-      "@rr/invent-domain": ["./packages/invent-domain/src/index.ts"],
-      "@rr/command-domain": ["./packages/command-domain/src/index.ts"],
-      "@rr/mock-oidc": ["./packages/mock-oidc/src/index.ts"]
+      "@rr/common": [
+        "./packages/common/src/index.ts"
+      ],
+      "@rr/ui": [
+        "./packages/ui/src/index.ts"
+      ],
+      "@rr/auth": [
+        "./packages/auth/src/index.ts"
+      ],
+      "@rr/config": [
+        "./packages/config/src/index.ts"
+      ],
+      "@rr/markings": [
+        "./packages/markings/src/index.ts"
+      ],
+      "@rr/windows": [
+        "./packages/windows/src/index.ts"
+      ],
+      "@rr/store-features": [
+        "./packages/store-features/src/index.ts"
+      ],
+      "@rr/invent-domain": [
+        "./packages/invent-domain/src/index.ts"
+      ],
+      "@rr/command-domain": [
+        "./packages/command-domain/src/index.ts"
+      ],
+      "@rr/mock-oidc": [
+        "./packages/mock-oidc/src/index.ts"
+      ],
+      "@rr/invent-feature-placeholder": [
+        "./packages/invent-feature-placeholder/src/index.ts"
+      ],
+      "@rr/command-feature-placeholder": [
+        "./packages/command-feature-placeholder/src/index.ts"
+      ],
+      "@rr/vigilance-feature-placeholder": [
+        "./packages/vigilance-feature-placeholder/src/index.ts"
+      ],
+      "@rr/front-desk-feature-placeholder": [
+        "./packages/front-desk-feature-placeholder/src/index.ts"
+      ]
     }
   }
 }

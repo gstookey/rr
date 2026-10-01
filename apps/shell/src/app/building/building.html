@@ -1,0 +1,72 @@
+<!-- Top band. It renders NOTHING until the served vocabulary can account for the
+     marking, and its height is reserved so the page does not jump when it can. -->
+<rr-marking-banner
+  class="rr-building__banner"
+  placement="top"
+  [marking]="config.marking()"
+  [vocabulary]="config.vocabulary()"
+/>
+
+<header class="rr-building__identity">
+  <rr-wordmark [name]="config.buildingName() ?? 'ACME Workshop'" tier="Building · L1" />
+
+  @if (permissions.isAuthenticated()) {
+    <!-- Three separate lines because they are three separate facts: who you are,
+         which group you are acting as, and what you are cleared for. -->
+    <div class="rr-whoami">
+      <span class="rr-whoami__person">{{ permissions.subjectName() }}</span>
+      <span class="rr-whoami__acting">acting as {{ permissions.actingAs() }}</span>
+      @if (permissions.clearance(); as clearance) {
+        <rr-marking-chip
+          [level]="clearance.level"
+          [compartments]="clearance.compartments"
+          [vocabulary]="config.vocabulary()"
+        />
+      }
+      <span class="rr-whoami__session">
+        session cookie ·
+        <button type="button" class="rr-link" (click)="signOut()">sign out</button>
+      </span>
+    </div>
+  } @else {
+    <!-- Signed out: the whole block is ABSENT, not a placeholder avatar. -->
+  }
+</header>
+
+@if (config.isUnavailable()) {
+  <section class="rr-notice" role="alert">
+    <h1>The Building cannot be opened</h1>
+    <p>
+      Your session is valid, but the Building's configuration did not load, so {{ config.buildingName() ?? 'this
+      application' }} does not know which Floors you may enter. Nothing has been shown to you in the meantime.
+    </p>
+    <p class="rr-notice__code">CONFIG_UNAVAILABLE · GET /api/config</p>
+    <div class="rr-notice__actions">
+      <button type="button" class="rr-btn" (click)="retryConfig()">Try again</button>
+      <button type="button" class="rr-btn rr-btn--quiet" (click)="signOut()">Sign out</button>
+    </div>
+  </section>
+} @else if (config.isReady()) {
+  <router-outlet />
+} @else {
+  <div class="rr-hydrating">
+    <nav class="rr-hydrating__rail" aria-hidden="true">
+      <span class="rr-skeleton rr-skeleton--wide"></span>
+      <span class="rr-skeleton rr-skeleton--mid"></span>
+      <span class="rr-skeleton rr-skeleton--narrow"></span>
+    </nav>
+    <p class="rr-hydrating__slot">waiting on /api/me and /api/config</p>
+  </div>
+}
+
+<!-- Bottom band (mac_stores_brief_v0 §6: top AND bottom of every marked screen).
+     It collapses below a small-viewport breakpoint — the mechanism is exercised,
+     the vertical cost is not paid on a phone. -->
+<rr-marking-banner
+  class="rr-building__banner rr-building__banner--foot"
+  placement="bottom"
+  [marking]="config.marking()"
+  [vocabulary]="config.vocabulary()"
+/>
+
+<a class="rr-skip" routerLink="/">Lobby</a>

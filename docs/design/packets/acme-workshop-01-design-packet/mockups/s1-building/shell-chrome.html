@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ACME Workshop — S1 mockup: the Building chrome</title>
+<!--
+  ACME-WORKSHOP-01 · S1 "The Building" · mockup 1 of 3 — the Building chrome.
+  Static, self-contained, no script, no network. Every name is fictional.
+  Doctrine: tier_model_exploration_v0 §2/§4 · practical_picture_v0 §2/§3 ·
+  mac_stores_brief_v0 §6 · ddd_ui_ux_brief_v0 §4.5 · V8-tier-information-architecture.
+-->
+<style>
+  :root {
+    color-scheme: light dark;
+
+    /* --- ground / ink / rule ------------------------------------------- */
+    --acme-ground: #f2f4f5;
+    --acme-surface: #ffffff;
+    --acme-sunk: #e8ebee;
+    --acme-ink: #191d21;
+    --acme-ink-muted: #5b656e;
+    --acme-rule: #ccd3d9;
+    --acme-rule-strong: #a8b2ba;
+    --acme-accent: #2d6d8c;
+    --acme-accent-ink: #ffffff;
+    --acme-danger: #8c3a2c;
+
+    /* --- marking hues (ACME's own invention; NOT any real convention) ---- */
+    --acme-marking-open: #5f6b76;
+    --acme-marking-partner: #5b5296;
+    --acme-marking-internal: #7a4a8e;
+    --acme-marking-restricted: #8c3d68;
+    --acme-marking-unresolved: #6a6a6a;
+
+    /* --- type ----------------------------------------------------------- */
+    --acme-font-ui: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --acme-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    --acme-text-xs: 0.6875rem;  /* 11px — portion marks, meta */
+    --acme-text-sm: 0.8125rem;  /* 13px — dense UI */
+    --acme-text-md: 0.9375rem;  /* 15px — body */
+    --acme-text-lg: 1.125rem;   /* 18px — surface title */
+    --acme-text-xl: 1.5rem;     /* 24px — page title */
+
+    /* --- rhythm (4px grid, Astro's) ------------------------------------- */
+    --acme-space-1: 4px;
+    --acme-space-2: 8px;
+    --acme-space-3: 12px;
+    --acme-space-4: 16px;
+    --acme-space-5: 24px;
+    --acme-space-6: 32px;
+    --acme-radius: 2px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --acme-ground: #14181b;
+      --acme-surface: #1c2126;
+      --acme-sunk: #23292f;
+      --acme-ink: #e6eaed;
+      --acme-ink-muted: #9aa5ae;
+      --acme-rule: #333c44;
+      --acme-rule-strong: #4c5760;
+      --acme-accent: #6fb2d0;
+      --acme-accent-ink: #0d1114;
+      --acme-danger: #e08a78;
+
+      --acme-marking-open: #9aa6b1;
+      --acme-marking-partner: #a89ce4;
+      --acme-marking-internal: #c493dd;
+      --acme-marking-restricted: #e58cb6;
+      --acme-marking-unresolved: #9a9a9a;
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: var(--acme-space-6);
+    background: var(--acme-ground);
+    color: var(--acme-ink);
+    font: var(--acme-text-md)/1.5 var(--acme-font-ui);
+  }
+
+  /* ===== the mockup document's own furniture (NOT part of the design) ==== */
+  .doc { max-width: 1500px; margin: 0 auto; }
+  .doc > header { border-bottom: 1px solid var(--acme-rule); padding-bottom: var(--acme-space-4); margin-bottom: var(--acme-space-5); }
+  .doc h1 { font-size: var(--acme-text-xl); margin: 0 0 var(--acme-space-2); letter-spacing: 0.01em; }
+  .doc h2 { font-size: var(--acme-text-lg); margin: var(--acme-space-6) 0 var(--acme-space-3); }
+  .doc .lede { color: var(--acme-ink-muted); max-width: 76ch; margin: 0; }
+  .doc code { font-family: var(--acme-font-mono); font-size: 0.92em; }
+
+  figure { margin: 0; }
+  figcaption {
+    margin-top: var(--acme-space-3);
+    color: var(--acme-ink-muted);
+    font-size: var(--acme-text-sm);
+    line-height: 1.55;
+    max-width: 62ch;
+  }
+  figcaption b { color: var(--acme-ink); font-weight: 600; }
+  .seam-tag {
+    display: inline-block;
+    font-size: var(--acme-text-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid var(--acme-rule-strong);
+    border-radius: var(--acme-radius);
+    padding: 1px var(--acme-space-2);
+    margin-right: var(--acme-space-2);
+    color: var(--acme-ink-muted);
+  }
+  .pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(430px, 1fr)); gap: var(--acme-space-6); }
+  .trio { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--acme-space-5); }
+
+  /* ===== THE MOCKED APPLICATION ========================================= */
+  .app {
+    background: var(--acme-surface);
+    border: 1px solid var(--acme-rule-strong);
+    border-radius: var(--acme-radius);
+    display: flex;
+    flex-direction: column;
+    min-height: 380px;
+    overflow: hidden;
+  }
+
+  /* --- marking banner (top and bottom of every screen) ------------------ */
+  .banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--acme-space-2);
+    background: var(--acme-sunk);
+    border-bottom: 2px solid var(--acme-marking, var(--acme-rule-strong));
+    padding: var(--acme-space-2) var(--acme-space-3);
+    font-size: var(--acme-text-xs);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: var(--acme-font-mono);
+  }
+  .banner--foot { border-bottom: 0; border-top: 2px solid var(--acme-marking, var(--acme-rule-strong)); }
+  .banner .swatch {
+    width: 9px; height: 9px;
+    background: var(--acme-marking, var(--acme-rule-strong));
+    border-radius: 1px;
+    flex: none;
+  }
+  .banner--empty { color: var(--acme-ink-muted); font-style: italic; letter-spacing: 0.04em; text-transform: none; font-family: var(--acme-font-ui); }
+  .banner--unresolved { border-bottom-style: dashed; color: var(--acme-marking-unresolved); }
+
+  /* --- identity bar ----------------------------------------------------- */
+  .identity {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--acme-space-4);
+    padding: var(--acme-space-3) var(--acme-space-4);
+    border-bottom: 1px solid var(--acme-rule);
+  }
+  .wordmark { display: flex; flex-direction: column; gap: 2px; }
+  .wordmark .name { font-size: var(--acme-text-lg); font-weight: 650; letter-spacing: 0.02em; }
+  .wordmark .name span { font-weight: 300; }
+  .tier {
+    font-size: var(--acme-text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--acme-ink-muted);
+  }
+
+  .whoami { text-align: right; display: flex; flex-direction: column; gap: 2px; font-size: var(--acme-text-sm); }
+  .whoami .person { font-weight: 600; }
+  .whoami .acting { color: var(--acme-ink-muted); }
+  .whoami .clearance {
+    font-family: var(--acme-font-mono);
+    font-size: var(--acme-text-xs);
+    letter-spacing: 0.06em;
+  }
+  .whoami .session { color: var(--acme-ink-muted); font-size: var(--acme-text-xs); }
+  .whoami a { color: var(--acme-accent); }
+
+  .chip {
+    display: inline-block;
+    border: 1px solid var(--acme-rule-strong);
+    border-left: 3px solid var(--acme-marking, var(--acme-rule-strong));
+    border-radius: var(--acme-radius);
+    padding: 0 var(--acme-space-2);
+    font-family: var(--acme-font-mono);
+    font-size: var(--acme-text-xs);
+    letter-spacing: 0.06em;
+  }
+
+  /* --- body: elevator + content slot ------------------------------------ */
+  .body { display: grid; grid-template-columns: 208px 1fr; flex: 1; }
+  .elevator { border-right: 1px solid var(--acme-rule); padding: var(--acme-space-3) 0; background: var(--acme-surface); }
+  .elevator h2 {
+    font-size: var(--acme-text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--acme-ink-muted);
+    margin: 0 0 var(--acme-space-2);
+    padding: 0 var(--acme-space-4);
+    font-weight: 600;
+  }
+  .elevator ul { list-style: none; margin: 0; padding: 0; }
+  .elevator a {
+    display: block;
+    padding: var(--acme-space-2) var(--acme-space-4);
+    border-left: 3px solid transparent;
+    color: inherit;
+    text-decoration: none;
+  }
+  .elevator a:hover { background: var(--acme-sunk); }
+  .elevator a[aria-current="page"] { background: var(--acme-sunk); border-left-color: var(--acme-accent); font-weight: 600; }
+  .elevator .floor-label { display: block; }
+  .elevator .floor-route { display: block; font-family: var(--acme-font-mono); font-size: var(--acme-text-xs); color: var(--acme-ink-muted); }
+  .elevator .lobby-link { margin-bottom: var(--acme-space-3); }
+
+  .content { padding: var(--acme-space-4); display: flex; flex-direction: column; gap: var(--acme-space-3); }
+  .crumbs { font-size: var(--acme-text-sm); color: var(--acme-ink-muted); font-family: var(--acme-font-mono); }
+  .crumbs strong { color: var(--acme-ink); font-weight: 600; }
+  .slot {
+    flex: 1;
+    border: 1px dashed var(--acme-rule-strong);
+    border-radius: var(--acme-radius);
+    background: var(--acme-sunk);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--acme-space-2);
+    text-align: center;
+    padding: var(--acme-space-5);
+    color: var(--acme-ink-muted);
+  }
+  .slot .slot-title { font-size: var(--acme-text-sm); font-weight: 600; color: var(--acme-ink); }
+  .slot .slot-meta { font-family: var(--acme-font-mono); font-size: var(--acme-text-xs); }
+  .slot .later { border: 1px solid var(--acme-rule-strong); border-radius: var(--acme-radius); padding: 0 var(--acme-space-2); font-size: var(--acme-text-xs); letter-spacing: 0.08em; }
+
+  /* --- state tiles ------------------------------------------------------ */
+  .app--state { min-height: 250px; }
+  .skeleton { background: var(--acme-sunk); border-radius: var(--acme-radius); display: block; height: 10px; }
+  .skeleton--wide { width: 82%; }
+  .skeleton--mid { width: 60%; }
+  .skeleton--narrow { width: 40%; }
+  .stack { display: flex; flex-direction: column; gap: var(--acme-space-2); padding: var(--acme-space-3) var(--acme-space-4); }
+  .notice {
+    margin: var(--acme-space-4);
+    border: 1px solid var(--acme-rule-strong);
+    border-left: 3px solid var(--acme-danger);
+    border-radius: var(--acme-radius);
+    padding: var(--acme-space-3) var(--acme-space-4);
+    background: var(--acme-sunk);
+  }
+  .notice h3 { margin: 0 0 var(--acme-space-1); font-size: var(--acme-text-sm); }
+  .notice p { margin: 0 0 var(--acme-space-2); font-size: var(--acme-text-sm); color: var(--acme-ink-muted); }
+  .notice .code { font-family: var(--acme-font-mono); font-size: var(--acme-text-xs); }
+  .btn {
+    display: inline-block;
+    border: 1px solid var(--acme-accent);
+    background: var(--acme-accent);
+    color: var(--acme-accent-ink);
+    border-radius: var(--acme-radius);
+    padding: var(--acme-space-1) var(--acme-space-3);
+    font-size: var(--acme-text-sm);
+    text-decoration: none;
+  }
+  .btn--quiet { background: transparent; color: var(--acme-accent); }
+</style>
+</head>
+<body>
+<div class="doc">
+
+<header>
+  <h1>ACME Workshop — S1 mockup 1 of 3: the Building chrome</h1>
+  <p class="lede">
+    The Building (L1) is chrome and nothing else: a marking banner rendered from the runtime vocabulary,
+    the application identity, the <em>elevator</em> (Floor navigation), the acting-as affordance, and an empty
+    content slot where a Floor (L2) will mount from S2 onward. Two personas are drawn side by side because the
+    difference between them <em>is</em> the deliverable: the same code, two manifests, two different Buildings.
+    Everything here is fictional — names, manufacturers, markings and the marking vocabulary itself.
+  </p>
+</header>
+
+<h2>1 · Signed in — the same chrome, two subjects</h2>
+
+<div class="pair">
+
+  <!-- ============================ ADA ============================ -->
+  <figure>
+    <div class="app" style="--acme-marking: var(--acme-marking-internal);">
+      <div class="banner"><span class="swatch" aria-hidden="true"></span> INTERNAL//TTW</div>
+
+      <header class="identity">
+        <div class="wordmark">
+          <div class="name">ACME <span>Workshop</span></div>
+          <div class="tier">Building · L1</div>
+        </div>
+        <div class="whoami">
+          <div class="person">Ada Vance</div>
+          <div class="acting">acting as Tick-Tock Watchworks</div>
+          <div class="clearance"><span class="chip" style="--acme-marking: var(--acme-marking-internal);">INTERNAL · TTW</span></div>
+          <div class="session">session cookie · <a href="#">sign out</a></div>
+        </div>
+      </header>
+
+      <div class="body">
+        <nav class="elevator" aria-label="Floors">
+          <h2>Elevator · Floors</h2>
+          <ul>
+            <li class="lobby-link"><a href="#"><span class="floor-label">Lobby</span><span class="floor-route">/</span></a></li>
+            <li><a href="#" aria-current="page"><span class="floor-label">Invent</span><span class="floor-route">/invent</span></a></li>
+            <li><a href="#"><span class="floor-label">Command</span><span class="floor-route">/command</span></a></li>
+            <li><a href="#"><span class="floor-label">Vigilance</span><span class="floor-route">/vigilance</span></a></li>
+            <li><a href="#"><span class="floor-label">Front Desk</span><span class="floor-route">/front-desk</span></a></li>
+          </ul>
+        </nav>
+        <main class="content">
+          <div class="crumbs">ACME Workshop / <strong>Invent</strong></div>
+          <div class="slot">
+            <span class="slot-title">Invent Floor mounts here</span>
+            <span class="slot-meta">loadChildren('packages/invent-feature-*') behind CanMatch('floor:invent')</span>
+            <span class="later">S2+</span>
+          </div>
+        </main>
+      </div>
+
+      <div class="banner banner--foot"><span class="swatch" aria-hidden="true"></span> INTERNAL//TTW</div>
+    </div>
+    <figcaption>
+      <span class="seam-tag">identity</span><span class="seam-tag">claims → manifest</span><span class="seam-tag">markings</span>
+      <b>Ada Vance (Tick-Tock Watchworks, <code>INTERNAL · TTW</code>)</b> — four Floors, because her group's manifest
+      lists four. The banner string is <code>markingBanner()</code> over the <em>screen's</em> marking
+      (<code>INTERNAL//TTW</code>), rendered through the vocabulary <code>/api/config</code> served; the chip beside her
+      name is her <em>subject clearance</em>, a display convenience only. Those two are different things and the design
+      keeps them apart: one describes the data on screen, the other describes the reader.
+    </figcaption>
+  </figure>
+
+  <!-- ============================ FAY ============================ -->
+  <figure>
+    <div class="app" style="--acme-marking: var(--acme-marking-partner);">
+      <div class="banner"><span class="swatch" aria-hidden="true"></span> PARTNER//TTW/NWL</div>
+
+      <header class="identity">
+        <div class="wordmark">
+          <div class="name">ACME <span>Workshop</span></div>
+          <div class="tier">Building · L1</div>
+        </div>
+        <div class="whoami">
+          <div class="person">Fay Oyelaran</div>
+          <div class="acting">acting as Northwind Logistics</div>
+          <div class="clearance"><span class="chip" style="--acme-marking: var(--acme-marking-partner);">PARTNER · TTW/NWL</span></div>
+          <div class="session">session cookie · <a href="#">sign out</a></div>
+        </div>
+      </header>
+
+      <div class="body">
+        <nav class="elevator" aria-label="Floors">
+          <h2>Elevator · Floors</h2>
+          <ul>
+            <li class="lobby-link"><a href="#"><span class="floor-label">Lobby</span><span class="floor-route">/</span></a></li>
+            <li><a href="#" aria-current="page"><span class="floor-label">Vigilance</span><span class="floor-route">/vigilance</span></a></li>
+          </ul>
+        </nav>
+        <main class="content">
+          <div class="crumbs">ACME Workshop / <strong>Vigilance</strong></div>
+          <div class="slot">
+            <span class="slot-title">Vigilance Floor mounts here</span>
+            <span class="slot-meta">loadChildren('packages/vigilance-feature-*') behind CanMatch('floor:vigilance')</span>
+            <span class="later">S3+</span>
+          </div>
+        </main>
+      </div>
+
+      <div class="banner banner--foot"><span class="swatch" aria-hidden="true"></span> PARTNER//TTW/NWL</div>
+    </div>
+    <figcaption>
+      <span class="seam-tag">absent, not disabled</span><span class="seam-tag">exactly one Floor</span>
+      <b>Fay Oyelaran (Northwind Logistics, <code>PARTNER · TTW/NWL</code>)</b> — one Floor. Look for the greyed-out
+      Invent, Command and Front Desk entries: <b>there are none, and that is the proof.</b> An unentitled Floor is
+      <em>absent</em> — the route never matches, the chunk is never fetched, the nav item is never rendered — not
+      disabled, not hidden in the DOM (<code>ddd_ui_ux_brief_v0</code> §4.5). Nothing on this screen tells Fay that
+      Invent exists, and no part of this chrome is an enforcement point: the BFF re-checks every request regardless.
+      Her banner reads <code>PARTNER//TTW/NWL</code> from the same vocabulary that produced Ada's — one vocabulary,
+      two subjects.
+    </figcaption>
+  </figure>
+
+</div>
+
+<h2>2 · The states the chrome must have before a Floor exists</h2>
+
+<div class="trio">
+
+  <!-- ---------- pre-hydration ---------- -->
+  <figure>
+    <div class="app app--state">
+      <div class="banner banner--empty">no marking painted yet</div>
+      <header class="identity">
+        <div class="wordmark">
+          <div class="name">ACME <span>Workshop</span></div>
+          <div class="tier">Building · L1</div>
+        </div>
+        <div class="whoami">
+          <span class="skeleton skeleton--wide" style="width: 96px;"></span>
+          <span class="skeleton skeleton--mid" style="width: 120px; margin-top: 6px;"></span>
+        </div>
+      </header>
+      <div class="body">
+        <nav class="elevator" aria-label="Floors">
+          <h2>Elevator · Floors</h2>
+          <div class="stack" aria-hidden="true">
+            <span class="skeleton skeleton--wide"></span>
+            <span class="skeleton skeleton--mid"></span>
+            <span class="skeleton skeleton--narrow"></span>
+          </div>
+        </nav>
+        <main class="content">
+          <div class="slot"><span class="slot-meta">waiting on /api/me and /api/config</span></div>
+        </main>
+      </div>
+      <div class="banner banner--foot banner--empty">no marking painted yet</div>
+    </div>
+    <figcaption>
+      <span class="seam-tag">loading</span>
+      <b>Pre-hydration.</b> The banner region is <em>reserved but empty</em>: until the marking vocabulary resolves,
+      nothing marking-shaped paints (<code>mac_stores_brief_v0</code> §6 — <code>@if (vocab.hasValue())</code>).
+      The elevator is skeletal rather than guessed; a shell that renders a default Floor list and corrects it a beat
+      later has just leaked a Floor that may not be yours. Reserving the banner's height also keeps the content from
+      jumping when it arrives.
+    </figcaption>
+  </figure>
+
+  <!-- ---------- config unavailable ---------- -->
+  <figure>
+    <div class="app app--state">
+      <div class="banner banner--empty">no marking painted yet</div>
+      <header class="identity">
+        <div class="wordmark">
+          <div class="name">ACME <span>Workshop</span></div>
+          <div class="tier">Building · L1</div>
+        </div>
+        <div class="whoami">
+          <div class="person">Ada Vance</div>
+          <div class="session">session cookie · <a href="#">sign out</a></div>
+        </div>
+      </header>
+      <div class="notice">
+        <h3>The Building cannot be opened</h3>
+        <p>Your session is valid, but the Building's configuration did not load, so ACME Workshop does not know which
+           Floors you may enter. Nothing has been shown to you in the meantime.</p>
+        <p class="code">CONFIG_UNAVAILABLE · GET /api/config</p>
+        <a class="btn" href="#">Try again</a>
+        <a class="btn btn--quiet" href="#">Sign out</a>
+      </div>
+      <div class="banner banner--foot banner--empty">no marking painted yet</div>
+    </div>
+    <figcaption>
+      <span class="seam-tag">error</span>
+      <b>Manifest unavailable.</b> Fail closed and say so. No elevator is drawn, no Floor is guessed from a cached
+      manifest, and the banner stays empty because no vocabulary arrived. The typed code is the gateway's own
+      (<code>services/gateway/src/app.ts</code> returns <code>CONFIG_UNAVAILABLE</code>) — the error the user reads
+      and the error the log records are the same string.
+    </figcaption>
+  </figure>
+
+  <!-- ---------- unresolved marking ---------- -->
+  <figure>
+    <div class="app app--state" style="--acme-marking: var(--acme-marking-unresolved);">
+      <div class="banner banner--unresolved"><span class="swatch" aria-hidden="true"></span> UNRESOLVED MARKING</div>
+      <header class="identity">
+        <div class="wordmark">
+          <div class="name">ACME <span>Workshop</span></div>
+          <div class="tier">Building · L1</div>
+        </div>
+        <div class="whoami">
+          <div class="person">Gus Almeida</div>
+          <div class="acting">acting as ACME staff</div>
+          <div class="clearance"><span class="chip" style="--acme-marking: var(--acme-marking-restricted);">RESTRICTED · TTW, TTW/NWL, MER</span></div>
+        </div>
+      </header>
+      <main class="content">
+        <div class="slot">
+          <span class="slot-title">Content withheld</span>
+          <span class="slot-meta">marking { level: "INTERNAL", compartments: ["TTW/QRS"] } is not in the served vocabulary</span>
+        </div>
+      </main>
+      <div class="banner banner--foot banner--unresolved"><span class="swatch" aria-hidden="true"></span> UNRESOLVED MARKING</div>
+    </div>
+    <figcaption>
+      <span class="seam-tag">markings from data</span>
+      <b>A marking the vocabulary cannot resolve.</b> It renders as an explicit unresolved state — dashed rule, the
+      literal words, and the raw marking shown as data — never as a guessed string and never silently as OPEN.
+      The vocabulary is served, not compiled in: <code>@rr/markings</code> ships shapes and primitives, zero level
+      names, zero compartment names, zero colours (<code>mac_stores_brief_v0</code> §6). This tile is the reason that
+      rule exists, drawn.
+    </figcaption>
+  </figure>
+
+</div>
+
+<h2>3 · What is deliberately not here</h2>
+<p class="lede">
+  No Floor content, no Suite tabs, no Office toolbar, no device table, no map, no utility-window chrome, no group
+  switcher, no theme picker. S1's product is the seam, not the surface: prove that the chrome around an empty room
+  is built from identity and configuration, and every later slice fills a room without touching the Building.
+</p>
+
+</div>
+</body>
+</html>

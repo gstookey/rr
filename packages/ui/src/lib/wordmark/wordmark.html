@@ -1,0 +1,9 @@
+<span class="rr-wordmark__name">
+  <span class="rr-wordmark__lead">{{ lead() }}</span>
+  @if (rest()) {
+    <span class="rr-wordmark__rest">{{ rest() }}</span>
+  }
+</span>
+@if (tier()) {
+  <span class="rr-wordmark__tier">{{ tier() }}</span>
+}

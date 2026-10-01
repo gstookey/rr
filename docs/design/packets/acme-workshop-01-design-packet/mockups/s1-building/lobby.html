@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ACME Workshop — S1 mockup: the Lobby (/)</title>
+<!--
+  ACME-WORKSHOP-01 · S1 "The Building" · mockup 2 of 3 — the Lobby at `/`.
+  Static, self-contained, no script, no network. Every name is fictional.
+  Doctrine: V8-tier-information-architecture (lobby lists only the Floors this
+  subject may enter) · practical_picture_v0 §3 (manifest) · ddd_ui_ux_brief_v0 §4.5.
+-->
+<style>
+  :root {
+    color-scheme: light dark;
+    --acme-ground: #f2f4f5;
+    --acme-surface: #ffffff;
+    --acme-sunk: #e8ebee;
+    --acme-ink: #191d21;
+    --acme-ink-muted: #5b656e;
+    --acme-rule: #ccd3d9;
+    --acme-rule-strong: #a8b2ba;
+    --acme-accent: #2d6d8c;
+    --acme-accent-ink: #ffffff;
+    --acme-danger: #8c3a2c;
+
+    --acme-marking-open: #5f6b76;
+    --acme-marking-partner: #5b5296;
+    --acme-marking-internal: #7a4a8e;
+    --acme-marking-restricted: #8c3d68;
+
+    --acme-font-ui: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --acme-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    --acme-text-xs: 0.6875rem;
+    --acme-text-sm: 0.8125rem;
+    --acme-text-md: 0.9375rem;
+    --acme-text-lg: 1.125rem;
+    --acme-text-xl: 1.5rem;
+
+    --acme-space-1: 4px;
+    --acme-space-2: 8px;
+    --acme-space-3: 12px;
+    --acme-space-4: 16px;
+    --acme-space-5: 24px;
+    --acme-space-6: 32px;
+    --acme-radius: 2px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --acme-ground: #14181b;
+      --acme-surface: #1c2126;
+      --acme-sunk: #23292f;
+      --acme-ink: #e6eaed;
+      --acme-ink-muted: #9aa5ae;
+      --acme-rule: #333c44;
+      --acme-rule-strong: #4c5760;
+      --acme-accent: #6fb2d0;
+      --acme-accent-ink: #0d1114;
+      --acme-danger: #e08a78;
+      --acme-marking-open: #9aa6b1;
+      --acme-marking-partner: #a89ce4;
+      --acme-marking-internal: #c493dd;
+      --acme-marking-restricted: #e58cb6;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: var(--acme-space-6);
+    background: var(--acme-ground); color: var(--acme-ink);
+    font: var(--acme-text-md)/1.5 var(--acme-font-ui);
+  }
+  .doc { max-width: 1500px; margin: 0 auto; }
+  .doc > header { border-bottom: 1px solid var(--acme-rule); padding-bottom: var(--acme-space-4); margin-bottom: var(--acme-space-5); }
+  .doc h1 { font-size: var(--acme-text-xl); margin: 0 0 var(--acme-space-2); }
+  .doc h2 { font-size: var(--acme-text-lg); margin: var(--acme-space-6) 0 var(--acme-space-3); }
+  .doc .lede { color: var(--acme-ink-muted); max-width: 78ch; margin: 0; }
+  .doc code { font-family: var(--acme-font-mono); font-size: 0.92em; }
+  figure { margin: 0; }
+  figcaption { margin-top: var(--acme-space-3); color: var(--acme-ink-muted); font-size: var(--acme-text-sm); line-height: 1.55; max-width: 64ch; }
+  figcaption b { color: var(--acme-ink); font-weight: 600; }
+  .seam-tag { display: inline-block; font-size: var(--acme-text-xs); letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--acme-rule-strong); border-radius: var(--acme-radius); padding: 1px var(--acme-space-2); margin-right: var(--acme-space-2); color: var(--acme-ink-muted); }
+  .pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)); gap: var(--acme-space-6); }
+
+  /* ===== THE MOCKED APPLICATION ===== */
+  .app { background: var(--acme-surface); border: 1px solid var(--acme-rule-strong); border-radius: var(--acme-radius); display: flex; flex-direction: column; overflow: hidden; }
+  .banner {
+    display: flex; align-items: center; justify-content: center; gap: var(--acme-space-2);
+    background: var(--acme-sunk);
+    border-bottom: 2px solid var(--acme-marking, var(--acme-rule-strong));
+    padding: var(--acme-space-2) var(--acme-space-3);
+    font-family: var(--acme-font-mono); font-size: var(--acme-text-xs);
+    letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600;
+  }
+  .banner--foot { border-bottom: 0; border-top: 2px solid var(--acme-marking, var(--acme-rule-strong)); }
+  .banner .swatch { width: 9px; height: 9px; background: var(--acme-marking, var(--acme-rule-strong)); border-radius: 1px; flex: none; }
+
+  .identity { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--acme-space-4); padding: var(--acme-space-3) var(--acme-space-4); border-bottom: 1px solid var(--acme-rule); }
+  .wordmark .name { font-size: var(--acme-text-lg); font-weight: 650; letter-spacing: 0.02em; }
+  .wordmark .name span { font-weight: 300; }
+  .tier { font-size: var(--acme-text-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--acme-ink-muted); }
+  .whoami { text-align: right; display: flex; flex-direction: column; gap: 2px; font-size: var(--acme-text-sm); }
+  .whoami .person { font-weight: 600; }
+  .whoami .acting { color: var(--acme-ink-muted); }
+  .whoami .session { color: var(--acme-ink-muted); font-size: var(--acme-text-xs); }
+  .whoami a { color: var(--acme-accent); }
+  .chip { display: inline-block; border: 1px solid var(--acme-rule-strong); border-left: 3px solid var(--acme-marking, var(--acme-rule-strong)); border-radius: var(--acme-radius); padding: 0 var(--acme-space-2); font-family: var(--acme-font-mono); font-size: var(--acme-text-xs); letter-spacing: 0.06em; }
+
+  .lobby { padding: var(--acme-space-5) var(--acme-space-4); display: flex; flex-direction: column; gap: var(--acme-space-4); }
+  .lobby > h1 { font-size: var(--acme-text-lg); margin: 0; font-weight: 600; }
+  .lobby > p.sub { margin: calc(-1 * var(--acme-space-3)) 0 0; color: var(--acme-ink-muted); font-size: var(--acme-text-sm); }
+  .floors { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: var(--acme-space-3); }
+  .floor-card { display: block; text-decoration: none; color: inherit; border: 1px solid var(--acme-rule); border-left: 3px solid var(--acme-accent); border-radius: var(--acme-radius); padding: var(--acme-space-3); background: var(--acme-surface); }
+  .floor-card:hover { background: var(--acme-sunk); }
+  .floor-card .fl-name { font-weight: 650; font-size: var(--acme-text-md); }
+  .floor-card .fl-route { font-family: var(--acme-font-mono); font-size: var(--acme-text-xs); color: var(--acme-ink-muted); display: block; margin-bottom: var(--acme-space-2); }
+  .floor-card .fl-what { font-size: var(--acme-text-sm); color: var(--acme-ink-muted); display: block; }
+  .floor-card .fl-slice { display: inline-block; margin-top: var(--acme-space-2); font-size: var(--acme-text-xs); letter-spacing: 0.08em; color: var(--acme-ink-muted); border: 1px solid var(--acme-rule); border-radius: var(--acme-radius); padding: 0 var(--acme-space-2); }
+
+  .single-note { border: 1px solid var(--acme-rule); border-left: 3px solid var(--acme-rule-strong); border-radius: var(--acme-radius); padding: var(--acme-space-3); font-size: var(--acme-text-sm); color: var(--acme-ink-muted); background: var(--acme-sunk); }
+
+  pre.manifest { margin: var(--acme-space-3) 0 0; background: var(--acme-sunk); border: 1px solid var(--acme-rule); border-radius: var(--acme-radius); padding: var(--acme-space-3); overflow-x: auto; font-family: var(--acme-font-mono); font-size: var(--acme-text-xs); line-height: 1.5; color: var(--acme-ink); }
+  pre.manifest .cmt { color: var(--acme-ink-muted); }
+  .src-label { margin-top: var(--acme-space-4); font-size: var(--acme-text-xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--acme-ink-muted); }
+</style>
+</head>
+<body>
+<div class="doc">
+
+<header>
+  <h1>ACME Workshop — S1 mockup 2 of 3: the Lobby at <code>/</code></h1>
+  <p class="lede">
+    The Lobby is the Building's directory: it lists <em>only</em> the Floors this subject may enter, and that list is
+    not a constant in the shell — it is <code>/api/config</code>'s per-group manifest, rendered. Each variant below is
+    printed beside the manifest fragment that produced it, so the seam is readable rather than asserted. At <code>/</code>
+    the directory <em>is</em> the page; the elevator rail (see mockup 1) appears once you are standing on a Floor.
+  </p>
+</header>
+
+<div class="pair">
+
+  <!-- ============================ ADA ============================ -->
+  <figure>
+    <div class="app" style="--acme-marking: var(--acme-marking-internal);">
+      <div class="banner"><span class="swatch" aria-hidden="true"></span> INTERNAL//TTW</div>
+      <header class="identity">
+        <div class="wordmark">
+          <div class="name">ACME <span>Workshop</span></div>
+          <div class="tier">Building · L1 · Lobby</div>
+        </div>
+        <div class="whoami">
+          <div class="person">Ada Vance</div>
+          <div class="acting">acting as Tick-Tock Watchworks</div>
+          <div><span class="chip" style="--acme-marking: var(--acme-marking-internal);">INTERNAL · TTW</span></div>
+          <div class="session">session cookie · <a href="#">sign out</a></div>
+        </div>
+      </header>
+      <main class="lobby">
+        <h1>Floors</h1>
+        <p class="sub">Four Floors are open to Tick-Tock Watchworks.</p>
+        <ul class="floors">
+          <li><a class="floor-card" href="#">
+            <span class="fl-name">Invent</span><span class="fl-route">/invent</span>
+            <span class="fl-what">Products, specs and the device registry.</span>
+            <span class="fl-slice">arrives S2</span>
+          </a></li>
+          <li><a class="floor-card" href="#">
+            <span class="fl-name">Command</span><span class="fl-route">/command</span>
+            <span class="fl-what">Campaigns, distribution vectors, entitlements.</span>
+            <span class="fl-slice">arrives S6</span>
+          </a></li>
+          <li><a class="floor-card" href="#">
+            <span class="fl-name">Vigilance</span><span class="fl-route">/vigilance</span>
+            <span class="fl-what">Fleet, positions, health, offline devices.</span>
+            <span class="fl-slice">arrives S3</span>
+          </a></li>
+          <li><a class="floor-card" href="#">
+            <span class="fl-name">Front Desk</span><span class="fl-route">/front-desk</span>
+            <span class="fl-what">People and groups; manage my group.</span>
+            <span class="fl-slice">arrives S7</span>
+          </a></li>
+        </ul>
+      </main>
+      <div class="banner banner--foot"><span class="swatch" aria-hidden="true"></span> INTERNAL//TTW</div>
+    </div>
+
+    <div class="src-label">produced by — manifest for group <code>/ttw</code></div>
+<pre class="manifest">GET /api/config   <span class="cmt">(session: ada · group /ttw)</span>
+{
+  "building": { "name": "ACME Workshop" },
+  "floors": [
+    { "id": "invent",     "label": "Invent",     "route": "/invent" },
+    { "id": "command",    "label": "Command",    "route": "/command" },
+    { "id": "vigilance",  "label": "Vigilance",  "route": "/vigilance" },
+    { "id": "front-desk", "label": "Front Desk", "route": "/front-desk" }
+  ],
+  "markingVocabulary": { <span class="cmt">levels · compartments · bannerSeparator "//"</span> }
+}</pre>
+
+    <figcaption>
+      <span class="seam-tag">claims → manifest</span>
+      <b>Ada's Lobby.</b> Keycloak's group <code>/ttw</code> carries <code>floors: [invent, command, vigilance,
+      front-desk]</code>; the gateway turns the session's claims into this manifest, and the Lobby renders it in the
+      order the manifest gives — the shell holds no Floor list of its own and no <code>if (group === 'TTW')</code>
+      anywhere. The <em>arrives Sn</em> tags are the study's honesty marker (no Floor is built yet in S1), not a
+      product element; they come from the manifest's <code>slice</code> field and leave with it.
+    </figcaption>
+  </figure>
+
+  <!-- ============================ FAY ============================ -->
+  <figure>
+    <div class="app" style="--acme-marking: var(--acme-marking-partner);">
+      <div class="banner"><span class="swatch" aria-hidden="true"></span> PARTNER//TTW/NWL</div>
+      <header class="identity">
+        <div class="wordmark">
+          <div class="name">ACME <span>Workshop</span></div>
+          <div class="tier">Building · L1 · Lobby</div>
+        </div>
+        <div class="whoami">
+          <div class="person">Fay Oyelaran</div>
+          <div class="acting">acting as Northwind Logistics</div>
+          <div><span class="chip" style="--acme-marking: var(--acme-marking-partner);">PARTNER · TTW/NWL</span></div>
+          <div class="session">session cookie · <a href="#">sign out</a></div>
+        </div>
+      </header>
+      <main class="lobby">
+        <h1>Floors</h1>
+        <p class="sub">One Floor is open to Northwind Logistics.</p>
+        <ul class="floors">
+          <li><a class="floor-card" href="#">
+            <span class="fl-name">Vigilance</span><span class="fl-route">/vigilance</span>
+            <span class="fl-what">Fleet, positions, health, offline devices.</span>
+            <span class="fl-slice">arrives S3</span>
+          </a></li>
+        </ul>
+        <p class="single-note">
+          <b>One Floor.</b> The Lobby still exists and is still reachable at <code>/</code>; it is not replaced by an
+          automatic jump into Vigilance. A Building whose front door silently teleports you gives its single-Floor
+          tenants no place to sign out from, and no place to stand when the Floor fails to load.
+        </p>
+      </main>
+      <div class="banner banner--foot"><span class="swatch" aria-hidden="true"></span> PARTNER//TTW/NWL</div>
+    </div>
+
+    <div class="src-label">produced by — manifest for group <code>/ttw/nwl</code></div>
+<pre class="manifest">GET /api/config   <span class="cmt">(session: fay · group /ttw/nwl)</span>
+{
+  "building": { "name": "ACME Workshop" },
+  "floors": [
+    { "id": "vigilance", "label": "Vigilance", "route": "/vigilance" }
+  ],
+  "markingVocabulary": { <span class="cmt">the same vocabulary Ada is served</span> }
+}</pre>
+
+    <figcaption>
+      <span class="seam-tag">absent, not disabled</span><span class="seam-tag">exactly one Floor</span>
+      <b>Fay's Lobby — the same component, a different manifest.</b> Three cards are not dimmed, not padlocked, not
+      captioned "upgrade": they were never rendered, because they are not in her manifest and their routes will not
+      match (<code>CanMatch</code> falls through; the chunk is never fetched). Northwind is a B2B customer of
+      Tick-Tock, so its rows sit in the sub-compartment <code>TTW/NWL</code> — which Ada's <code>TTW</code> dominates
+      and Dee's <code>MER</code> does not. <b>Open question for the build:</b> whether a single-Floor manifest should
+      also carry a <code>landingFloor</code> so the elevator opens on Vigilance after sign-in, without ever removing
+      the Lobby itself.
+    </figcaption>
+  </figure>
+
+</div>
+
+<h2>What is deliberately not here</h2>
+<p class="lede">
+  No per-Floor status, counts, badges or activity — those need read models that do not exist until S2/S3, and a Lobby
+  that summarises data it has not been authorised to read is exactly the leak this architecture is built to prevent.
+  No group switcher (nobody in the seed holds two groups; register question Q2). No tenant theming beyond the token
+  hooks in <code>tokens.md</code> — that is S4's proof, not S1's.
+</p>
+
+</div>
+</body>
+</html>

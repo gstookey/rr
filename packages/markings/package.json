@@ -5,11 +5,13 @@
   "description": "Marking renderers \u2014 banner, portion mark, chip \u2014 driven by a runtime vocabulary. Carries no marking strings of its own.",
   "scripts": {
     "build": "ng build markings",
-    "typecheck": "tsc --noEmit -p tsconfig.lib.json"
+    "typecheck": "tsc --noEmit -p tsconfig.lib.json",
+    "test": "ng test markings --watch=false"
   },
   "peerDependencies": {
     "@angular/common": "^22.1.0",
-    "@angular/core": "^22.1.0"
+    "@angular/core": "^22.1.0",
+    "@rr/common": "*"
   },
   "dependencies": {
     "tslib": "^2.3.0"

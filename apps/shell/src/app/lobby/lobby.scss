@@ -1,0 +1,63 @@
+:host {
+  display: block;
+  flex: 1;
+  padding: var(--rr-space-5) var(--rr-space-4);
+}
+
+h1 {
+  margin: 0 0 var(--rr-space-1);
+  font-size: var(--rr-text-lg);
+}
+
+.rr-lobby__sub {
+  margin: 0 0 var(--rr-space-4);
+  color: var(--rr-ink-muted);
+  font-size: var(--rr-text-sm);
+}
+
+.rr-lobby__floors {
+  display: grid;
+  gap: var(--rr-space-3);
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rr-floor-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--rr-space-1);
+  padding: var(--rr-space-3);
+  border: 1px solid var(--rr-rule-strong);
+  border-radius: var(--rr-radius);
+  color: inherit;
+  text-decoration: none;
+}
+
+.rr-floor-card:hover {
+  background: var(--rr-sunk);
+}
+
+.rr-floor-card__name {
+  font-weight: 600;
+}
+
+.rr-floor-card__route {
+  color: var(--rr-ink-muted);
+  font: var(--rr-text-xs) / 1.5 var(--rr-font-mono);
+}
+
+.rr-floor-card__what {
+  color: var(--rr-ink-muted);
+  font-size: var(--rr-text-sm);
+}
+
+.rr-floor-card__slice {
+  align-self: flex-start;
+  padding: 0 var(--rr-space-2);
+  border: 1px solid var(--rr-rule-strong);
+  border-radius: var(--rr-radius);
+  font-size: var(--rr-text-xs);
+  letter-spacing: 0.08em;
+}

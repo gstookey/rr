@@ -32,7 +32,12 @@
             ],
             "styles": [
               "apps/shell/src/styles.scss"
-            ]
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "packages/ui/src/styles"
+              ]
+            }
           },
           "configurations": {
             "production": {
@@ -68,7 +73,10 @@
               "buildTarget": "shell:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "proxyConfig": "apps/shell/proxy.conf.json"
+          }
         },
         "test": {
           "builder": "@angular/build:unit-test",

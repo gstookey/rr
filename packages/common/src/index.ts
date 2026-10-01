@@ -9,6 +9,8 @@
  * FENCE: this package imports nothing internal — see README.md.
  */
 export * from './marking.js';
+export * from './errors.js';
+export * from './building.js';
 export * as frontDesk from './front-desk.js';
 export * as invent from './invent.js';
 export * as command from './command.js';
