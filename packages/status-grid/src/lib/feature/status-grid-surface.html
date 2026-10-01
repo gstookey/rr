@@ -1,6 +1,9 @@
 <rr-pane-group orientation="inline" [resizable]="true" stateKey="status-grid">
   <rr-pane label="Units" paneId="units" basis="30%" [min]="240">
-    <p>unit list</p>
+    <rr-sg-unit-list
+      [items]="store.unitItems()"
+      [selectedId]="store.selectedUnitId()"
+      (unitSelect)="store.selectUnit($event)" />
   </rr-pane>
   <rr-pane-group orientation="block" groupId="work" [resizable]="true">
     <rr-pane label="Status grid" paneId="grid" [min]="160">
