@@ -1,0 +1,55 @@
+@if (state() === 'ready') {
+  <!-- Tabs: a native ARIA tablist with roving tabindex. One panel, whose cards follow the active tab. -->
+  <div class="tabs" role="tablist" [attr.aria-label]="tablistLabel()">
+    @for (element of elements(); track element.id; let i = $index) {
+      <button
+        #tabButton
+        type="button"
+        class="tab"
+        role="tab"
+        [id]="tabId(i)"
+        [attr.aria-selected]="i === activeIndex()"
+        [attr.aria-controls]="panelId"
+        [attr.tabindex]="i === activeIndex() ? 0 : -1"
+        (click)="select(i)"
+        (keydown)="onKeydown($event, i)">
+        <rr-sg-status-dot [status]="element.status" />
+        <span>{{ element.name }}</span>
+        <span class="sr-only">, {{ statusLabel[element.status] }}</span>
+      </button>
+    }
+  </div>
+
+  <!-- The panel is the scroller AND the size container: the card grid steps 4 → 3 → 2 → 1 columns by
+       the panel's width, and when the deck is short the cards scroll rather than squeeze.
+       tabindex 0: nothing inside is focusable, so the panel itself must be, to scroll by keyboard. -->
+  <div class="panel" role="tabpanel" tabindex="0" [id]="panelId" [attr.aria-labelledby]="tabId(activeIndex())">
+    <div class="cards" role="list">
+      @for (attribute of shown()?.attributes ?? []; track attribute.id) {
+        <rr-sg-attribute-card [attribute]="attribute" />
+      }
+    </div>
+  </div>
+} @else {
+  <!-- ONE message element across every non-ready state, so a change of state is a live-region update. -->
+  <div class="message" role="status">
+    @switch (state()) {
+      @case ('idle') {
+        <p class="message__title">Select a cell in the grid</p>
+        <p class="message__hint">Arrow keys move through the grid · Enter selects</p>
+      }
+      @case ('future') {
+        <p class="message__title"><rr-sg-status-dot status="NO_DATA" />{{ futureMessage() }}</p>
+      }
+      @case ('pending') {
+        <p class="message__title"><rr-sg-status-dot status="PENDING" />Awaiting validation</p>
+      }
+      @case ('error') {
+        <p class="message__title"><rr-sg-status-dot status="ERROR" />Retrieval failed — no verdict for this sample</p>
+      }
+      @case ('empty') {
+        <p class="message__title">No element detail for this sample</p>
+      }
+    }
+  </div>
+}

@@ -1,0 +1,113 @@
+<!-- Metadata header: which unit, its test window, now, and the elapsed counts — which double as the legend. -->
+<header class="meta">
+  <div class="meta__unit">
+    <span class="meta__name">{{ unit()?.name ?? 'No unit selected' }}</span>
+    <span class="meta__window">{{ windowLabel() }}</span>
+  </div>
+  <ul class="meta__counts" aria-label="Elapsed samples by status">
+    @for (status of legend; track status) {
+      <li class="meta__count">
+        <rr-sg-status-dot [status]="status" />
+        <span class="meta__count-label">{{ statusLabel[status] }}</span>
+        <span class="meta__count-value">{{ counts()[status] }}</span>
+      </li>
+    }
+  </ul>
+  <span class="meta__now">now {{ nowLabel() }}</span>
+</header>
+
+<!-- Day ribbon: each hour's worst elapsed status, and a bracket showing where the grid is scrolled. -->
+@if (ribbon().length) {
+  <div class="ribbon" role="group" aria-label="Day overview — choose an hour to scroll to it">
+    @for (hour of ribbon(); track hour.id) {
+      <button
+        type="button"
+        class="ribbon__hour"
+        [attr.data-status]="hour.status"
+        [style.flex-grow]="hour.span"
+        [attr.aria-label]="hour.label + ', ' + statusLabel[hour.status]"
+        (click)="scrollToColumn(hour.startIndex)"></button>
+    }
+    <span class="ribbon__bracket" aria-hidden="true" [style.left.%]="bracket().left" [style.width.%]="bracket().width"></span>
+  </div>
+}
+
+<!-- The banner is a FLOW row, never an overlay: an overlay would paint over the sticky time header. -->
+@if (counts().ERROR > 0) {
+  <div class="banner" role="status">
+    <rr-sg-status-dot status="ERROR" />
+    <span>Retrieval failed for {{ counts().ERROR }} {{ counts().ERROR === 1 ? 'sample' : 'samples' }} — those cells show ERROR because no verdict could be obtained.</span>
+  </div>
+}
+
+@if (rows().length === 0) {
+  <p class="empty">{{ unit() ? 'This unit has no components to show.' : 'Select a unit to see its status grid.' }}</p>
+} @else {
+  <div
+    #scroller
+    class="grid"
+    role="grid"
+    tabindex="0"
+    [attr.aria-label]="(unit()?.name ?? '') + ' status by component and time'"
+    [attr.aria-rowcount]="rows().length"
+    [attr.aria-colcount]="axis().columns.length + 1"
+    [attr.aria-activedescendant]="activeId()"
+    [style.grid-template-columns]="columnsTemplate()"
+    [style.grid-template-rows]="rowsTemplate()"
+    (click)="onClick($event)"
+    (pointerover)="onPointerOver($event)"
+    (pointerleave)="onPointerLeave()"
+    (focus)="onFocus()"
+    (keydown)="onKeydown($event)"
+    (scroll)="onScroll($event)">
+    <div class="corner" aria-hidden="true"></div>
+    @for (hour of axis().hourGroups; track hour.id) {
+      <div class="hour" aria-hidden="true" [style.grid-column]="'span ' + hour.span">{{ hour.label }}</div>
+    }
+    @for (column of axis().columns; track column.index) {
+      <div class="minute" aria-hidden="true" [class.minute--hour]="column.startsHour">{{ column.showMinute ? column.minuteLabel : '' }}</div>
+    }
+
+    @for (row of rows(); track row.component.id; let r = $index) {
+      <div class="row" role="row">
+        <div class="label" role="rowheader" [id]="rowLabelId(r)">
+          <rr-sg-status-dot [status]="row.rollup" />
+          <span class="label__name">{{ row.component.name }}</span>
+        </div>
+        @for (status of row.cells; track c; let c = $index) {
+          <div
+            class="cell"
+            role="gridcell"
+            [id]="cellId(r, c)"
+            [attr.data-r]="r"
+            [attr.data-c]="c"
+            [attr.data-status]="status"
+            [attr.aria-label]="cellLabels()[r][c]"
+            [attr.aria-selected]="r === selected()?.row && c === selected()?.column ? 'true' : null"></div>
+        }
+      </div>
+    }
+    <div class="end-rule" aria-hidden="true"><span>end of components · {{ rows().length }} of {{ rows().length }}</span></div>
+
+    <!-- Overlays: each ONE absolutely-positioned grid item, placed by the grid itself. -->
+    @for (rule of hourRules(); track rule.id) {
+      <div class="hour-rule" aria-hidden="true" [class.hour-rule--anchor]="rule.anchor" [style.grid-column]="rule.column"></div>
+    }
+    @if (nowColumn(); as column) {
+      <div class="now" aria-hidden="true" [style.grid-column]="column"></div>
+    }
+    @if (hovered(); as h) {
+      <div class="hover" aria-hidden="true" [style.grid-area]="areaOf(h)"></div>
+    }
+    @if (selected(); as s) {
+      <div class="ring" aria-hidden="true" [style.grid-area]="areaOf(s)"></div>
+    }
+    @if (active(); as a) {
+      <div class="focus-ring" aria-hidden="true" [style.grid-area]="areaOf(a)"></div>
+    }
+  </div>
+}
+
+@if (tooltip(); as tip) {
+  <div class="tooltip" role="tooltip" [class.tooltip--below]="tip.below" [style.left.px]="tip.x" [style.top.px]="tip.y">{{ tip.text }}</div>
+}

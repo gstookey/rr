@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Status Grid — Round 3 mockups (panes v2 · unit list · details deck)</title>
+<style>
+/* =========================================================================
+   Status Grid — ROUND 3. Rebuilt on UI-PANES-01 v2; Unit List and Details
+   Deck designed properly. Dark Astro look. Self-contained: no network.
+
+   FIDELITY LEDGER
+     MEASURED (R1/R2): 18px footprint · 12px disc · normal #56F000 · surface #1B2D3E
+     PUBLISHED (Astro status palette, unverified vs 7.20.0): caution / critical /
+        serious / standby fills
+     FROM THE PANES SOURCE (packages/ui/src/lib/panes/pane.scss, pane-group.scss):
+        28px header · 24px rail (+2 border) · 8px gap · 6px radius · header wash
+        rgb(0 0 0/14%) · border rgb(150 190 220/14%) · cyan #67b9d4 focus/splitter
+     MY EYE: every other neutral, the lattice alphas, the diff tint, the hyphen.
+   Every --sg-* token below is the CSS custom-property FALLBACK the
+   implementation should ship (design note §3). Relationships, not gospel.
+   ========================================================================= */
+:root{
+  --page-bg:#0a0f14; --page-fg:#c6d0d9; --page-dim:#7f8c97; --page-rule:#243039; --pink:#ff2d95;
+}
+.frame,.kit,.sm,.slate-demo{
+  --sg-base:#101923;
+  --sg-surface:#1b2d3e;
+  --sg-surface-sunken:#172735;
+  --sg-surface-raised:#21364a;
+  --sg-field:#132230;
+  --sg-border:rgb(150 190 220 / 14%);
+  --sg-border-strong:rgb(150 190 220 / 26%);
+  --sg-rule:rgb(150 190 220 / 8%);
+  --sg-text-1:#e6ebef; --sg-text-2:#9aa4ad; --sg-text-3:#8a96a1;
+  --sg-accent:#67b9d4; --sg-accent-tint:rgb(103 185 212 / 16%);
+  --sg-focus:#67b9d4;
+  --sg-hover:rgb(255 255 255 / 6%);
+  --sg-normal:#56f000; --sg-caution:#fce83a; --sg-critical:#ff3838; --sg-serious:#ffb302; --sg-standby:#2dccff;
+  --sg-nodata:#62798e;
+  --sg-diff-ink:#ff7a7a; --sg-diff-tint:rgb(255 56 56 / 12%); --sg-diff-edge:rgb(255 56 56 / 55%);
+  --sg-serious-tint:rgb(255 179 2 / 10%);
+  --sg-now:#dbe7f0;
+  --sg-lat-cell:rgb(150 190 220 / 7.5%); --sg-lat-row:rgb(150 190 220 / 11.5%);
+  --sg-lat-row5:rgb(150 190 220 / 19%); --sg-lat-hour:rgb(150 190 220 / 22%); --sg-lat-anchor:#4e7392;
+  --gut:140px;
+  font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size:12px; line-height:1.3; color:var(--sg-text-1);
+}
+.mono{font-family:"Roboto Mono",ui-monospace,Menlo,Consolas,monospace}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--page-bg);color:var(--page-fg);font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size:13px;line-height:1.45;padding:20px 24px 160px}
+h1{font-size:22px;margin:0 0 6px;font-weight:500;color:#e8eff5}
+h2{font-size:17px;margin:46px 0 4px;font-weight:500;color:#e6edf3;border-top:1px solid var(--page-rule);padding-top:18px}
+h3{font-size:13px;margin:22px 0 8px;font-weight:500;color:#b9c4cf}
+p{margin:4px 0 10px;max-width:1180px}
+.lede{color:var(--page-dim);max-width:1180px}
+code{font-family:"Roboto Mono",ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:#9fd0e8}
+.toolbar{position:sticky;top:0;z-index:99;background:rgb(10 15 20 / 95%);border-bottom:1px solid var(--page-rule);
+  padding:8px 0 10px;margin-bottom:10px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.toolbar button{background:#16202b;color:#c9d1d9;border:1px solid var(--page-rule);padding:3px 9px;font:inherit;font-size:12px;cursor:pointer}
+.toolbar button[aria-pressed=true]{border-color:#67b9d4;color:#9fd0e8}
+.toolbar label{font-size:12px;color:var(--page-dim);cursor:pointer}
+.notebox{border:1px dashed var(--pink);color:var(--pink);padding:8px 10px;margin:10px 0 14px;max-width:1180px;
+  background:rgb(255 45 149 / 6%);font-size:12px}
+.notebox::before{content:"DESIGNER NOTE — not UI · ";font-weight:700;letter-spacing:.4px}
+.pinkey{display:grid;grid-template-columns:repeat(2,minmax(0,580px));gap:2px 28px;font-size:12px;color:var(--pink);margin:8px 0 0}
+.pinkey b{display:inline-block;width:18px;height:18px;border-radius:50%;background:var(--pink);color:#fff;text-align:center;
+  font:700 10px/18px sans-serif;margin-right:6px}
+body.hidenotes .notebox,body.hidenotes .pin,body.hidenotes .pinkey{display:none}
+figure{margin:0 0 26px}
+figcaption{font-size:12px;color:var(--page-dim);padding:0 0 6px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+figcaption b{color:#e6edf3;font-weight:500}
+body.z75 .frame{zoom:.75} body.z55 .frame{zoom:.55}
+
+/* =========================================================================
+   FRAME = the utility window's .uw-content (1618 × 773), composed exactly as
+   ui_panes_implementation_guide_v1 §8: inline group [Units 30% | gap | block
+   group [Grid 1fr / gap / Details 1fr]]. Track definitions mirror the panes
+   layout math: flex item = minmax(min, w fr); collapsed = minmax(size, 0fr).
+   ========================================================================= */
+.frame{width:1618px;height:773px;position:relative;overflow:hidden;background:var(--sg-base);
+  display:grid;grid-template-rows:minmax(0,1fr);grid-template-columns:minmax(240px,30fr) 8px minmax(80px,70fr)}
+.frame.ucol{grid-template-columns:minmax(26px,0fr) 8px minmax(80px,70fr)}
+.vgroup{display:grid;min-width:0;min-height:0;grid-template-columns:minmax(0,1fr);
+  grid-template-rows:minmax(80px,1fr) 8px minmax(80px,1fr)}
+
+/* ---- <rr-pane>, transcribed from pane.scss ---- */
+.pane{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);min-width:0;min-height:0;
+  overflow:hidden;background:var(--sg-surface);border:1px solid var(--sg-border);border-radius:6px;color:var(--sg-text-1)}
+.pane-h{grid-column:1;grid-row:1;display:flex;align-items:center;gap:6px;height:28px;padding:0 6px;
+  border-bottom:1px solid var(--sg-border);background:rgb(0 0 0 / 14%);user-select:none;min-width:0}
+.pane-title{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;
+  font-weight:600;letter-spacing:.02em;text-transform:uppercase;color:#9aa4ad}
+.pane-act{flex:0 0 auto;display:flex;align-items:center;gap:8px;min-width:0}
+.tog{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;padding:0;border:0;
+  border-radius:4px;background:transparent;color:#77828b;cursor:pointer}
+.pane[data-chevron=end] .tog{order:9}
+.chev{width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(225deg)}
+.pane[data-orientation=block][data-collapsed] .chev{transform:rotate(45deg)}
+.pane[data-orientation=inline][data-chevron=end] .chev{transform:rotate(135deg)}
+.pane[data-orientation=inline][data-chevron=end][data-collapsed] .chev{transform:rotate(315deg)}
+.pane[data-orientation=inline][data-collapsed] .pane-h{justify-content:center;padding:0 2px}
+.pane[data-orientation=inline][data-collapsed] .pane-title,.pane[data-orientation=inline][data-collapsed] .pane-act{display:none}
+.pane[data-orientation=block][data-collapsed] .pane-h{border-bottom:none}
+.rail{grid-column:1;grid-row:2;display:flex;writing-mode:vertical-rl;flex-direction:row;align-items:center;
+  padding:8px 0;overflow:hidden;min-height:0}
+.rail-l{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;color:#9aa4ad}
+.pane-b{grid-column:1;grid-row:2;min-width:0;min-height:0;overflow:auto}
+.pane[data-collapsed] .pane-b{display:none}
+
+/* ---- splitter (pane-group.scss): invisible at rest, line on hover/drag ---- */
+.split{position:relative;min-width:0;min-height:0}
+.split::after{content:"";position:absolute;background:transparent;border-radius:1px}
+.split.inline::after{top:0;bottom:0;left:calc(50% - 1px);width:2px}
+.split.block::after{left:0;right:0;top:calc(50% - 1px);height:2px}
+.split.hover::after{background:rgb(103 185 212 / 45%)}
+.split.drag::after{background:var(--sg-accent)}
+.split .cur{position:absolute;z-index:40;pointer-events:none}
+
+/* ---- the one status symbol: 12px disc in an 18px cell, or the hyphen ---- */
+.g{flex:0 0 18px;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;position:relative;z-index:2}
+.g::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--fill)}
+.g.nd::after{width:8px;height:2px;border-radius:1px;background:var(--sg-nodata)}
+.s-VALID{--fill:var(--sg-normal)} .s-PARTIAL{--fill:var(--sg-caution)} .s-INVALID{--fill:var(--sg-critical)}
+.s-ERROR{--fill:var(--sg-serious)} .s-PENDING{--fill:var(--sg-standby)}
+
+/* ---- small controls ---- */
+.btn{display:inline-flex;align-items:center;height:22px;padding:0 10px;border:1px solid var(--sg-border-strong);border-radius:3px;
+  background:transparent;color:var(--sg-text-1);font:inherit;font-size:11px;white-space:nowrap}
+.chip{display:inline-flex;align-items:center;gap:3px;height:20px;padding:0 8px 0 1px;border:1px solid var(--sg-border-strong);
+  border-radius:10px;background:var(--sg-surface-raised);font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--sg-text-1)}
+
+/* =========================================================================
+   STATUS GRID (pane body)
+   ========================================================================= */
+.sg{display:flex;flex-direction:column;height:100%;min-height:0}
+.sg-meta{flex:0 0 auto;padding:0 10px;border-bottom:1px solid var(--sg-border);overflow:hidden}
+.sg-m1{display:flex;align-items:center;gap:16px;height:28px;white-space:nowrap;min-width:0}
+.sg-unit{font-size:13px;font-weight:600;letter-spacing:.02em}
+.kvi{display:inline-flex;gap:5px;align-items:baseline;font-size:11px;color:var(--sg-text-2)}
+.kvi b{color:var(--sg-text-1);font-weight:500;font-variant-numeric:tabular-nums}
+.legend{margin-left:auto;display:flex;gap:12px;align-items:center}
+.lg{display:inline-flex;align-items:center;gap:2px;font-size:11px;color:var(--sg-text-2)}
+.lg b{color:var(--sg-text-1);font-weight:500;font-variant-numeric:tabular-nums;margin-left:3px}
+.sg-rib{display:flex;align-items:center;gap:8px;height:22px}
+.rib-l{font-size:10px;color:var(--sg-text-3);font-variant-numeric:tabular-nums;flex:0 0 auto}
+.rib{position:relative;flex:1 1 auto;height:14px;display:flex;gap:1px;align-items:center}
+.seg{flex:1 1 0;height:6px;background:var(--fill);border-radius:1px;position:relative}
+.seg.h6{margin-left:3px}
+.seg.fut{background:rgb(150 190 220 / 12%)}
+.seg.erru::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:3px;border-radius:1px;background:var(--sg-serious)}
+.seg.hv{outline:1px solid var(--sg-text-1);outline-offset:2px}
+.rib-br{position:absolute;top:0;bottom:0;border:1px solid rgb(219 231 240 / 70%);border-radius:2px;background:rgb(255 255 255 / 5%);pointer-events:none}
+.rib-now{position:absolute;top:-1px;bottom:-1px;width:2px;background:var(--sg-now);box-shadow:0 0 0 1px rgb(0 0 0 / 45%)}
+.sg-ban{flex:0 0 auto;display:flex;align-items:center;gap:8px;min-height:26px;padding:2px 10px;background:var(--sg-serious-tint);
+  box-shadow:inset 3px 0 0 var(--sg-serious);border-bottom:1px solid var(--sg-border);font-size:11px;line-height:1.25}
+.sg-ban .txt{flex:1 1 auto;min-width:0}
+.sg-ban .tag{font-weight:600;letter-spacing:.06em;font-size:10px;margin-right:4px}
+
+.sg-sc{flex:1 1 auto;min-height:0;overflow:auto;position:relative}
+.sg-sc::-webkit-scrollbar,.pane-b::-webkit-scrollbar,.cards::-webkit-scrollbar{width:12px;height:12px}
+.sg-sc::-webkit-scrollbar-track,.pane-b::-webkit-scrollbar-track,.cards::-webkit-scrollbar-track{background:var(--sg-surface-sunken)}
+.sg-sc::-webkit-scrollbar-thumb,.pane-b::-webkit-scrollbar-thumb,.cards::-webkit-scrollbar-thumb{background:#3c536a;border:3px solid var(--sg-surface-sunken);border-radius:6px}
+.sg-sc::-webkit-scrollbar-corner{background:var(--sg-surface-sunken)}
+.sg-in{width:max-content;min-width:100%;position:relative}
+.sg-head{position:sticky;top:0;z-index:6;background:var(--sg-surface-sunken);width:max-content;min-width:100%}
+.trow{display:grid;grid-template-columns:var(--gut) repeat(var(--n),18px);position:relative}
+.trow.h{height:22px;border-bottom:1px solid var(--sg-rule)}
+.trow.m{height:20px;border-bottom:1px solid var(--sg-border-strong)}
+.corner{position:sticky;left:0;z-index:4;background:var(--sg-surface-sunken);border-right:1px solid var(--sg-border-strong);
+  padding:0 8px;display:flex;align-items:center;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--sg-text-3);white-space:nowrap}
+.hh{font-size:10px;color:var(--sg-text-2);padding-left:4px;display:flex;align-items:center;white-space:nowrap;overflow:hidden;
+  font-variant-numeric:tabular-nums;position:relative;z-index:2}
+.hm{font-size:10px;color:var(--sg-text-3);display:flex;align-items:center;justify-content:center;position:relative;
+  font-variant-numeric:tabular-nums;z-index:2}
+.hm.tk::after{content:"";position:absolute;bottom:0;left:50%;width:1px;height:4px;background:var(--sg-lat-hour)}
+.xh{background:var(--sg-accent-tint);color:var(--sg-text-1)}
+.corner.xh,.rl.xh{background:linear-gradient(var(--sg-accent-tint),var(--sg-accent-tint)),var(--sg-surface)}
+.sg-rows{position:relative}
+.gr{display:grid;grid-template-columns:var(--gut) repeat(var(--n),18px);height:var(--band,32px);border-bottom:1px solid var(--sg-lat-row);
+  background-image:repeating-linear-gradient(to right,var(--sg-lat-cell) 0 1px,transparent 1px 18px);background-position:var(--gut) 0;background-repeat:repeat-y}
+.sg[data-band=dense] .gr{background-image:none;border-bottom-color:rgb(150 190 220 / 8.5%)}
+.sg[data-band=dense] .gr.r5{border-bottom-color:var(--sg-lat-row5)}
+.rl{position:sticky;left:0;z-index:5;background:var(--sg-surface);border-right:1px solid var(--sg-border-strong);display:flex;align-items:center;
+  padding:0 8px;font-size:11px;color:var(--sg-text-1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.rl span{overflow:hidden;text-overflow:ellipsis}
+.c{position:relative;display:flex;align-items:center;justify-content:center}
+.c.hov{background:var(--sg-hover)}
+.c.sel::after{content:"";position:absolute;left:-1px;top:calc(50% - 10px);width:20px;height:20px;border:2px solid var(--sg-accent);border-radius:3px;z-index:6}
+.c.foc::before{content:"";position:absolute;left:-4px;top:calc(50% - 13px);width:26px;height:26px;border:2px dashed var(--sg-focus);border-radius:4px;z-index:7}
+.vl{position:absolute;top:0;bottom:0;width:1px;background:var(--sg-lat-hour);z-index:1;pointer-events:none}
+.vl.a{width:2px;background:var(--sg-lat-anchor)}
+.nowl{position:absolute;top:0;bottom:0;width:2px;background:var(--sg-now);box-shadow:0 0 0 1px rgb(0 0 0 / 45%);z-index:3;pointer-events:none}
+.endr{height:16px;border-top:1px dashed var(--sg-border-strong);display:flex;align-items:center}
+.endr span{position:sticky;left:8px;font-size:10px;color:var(--sg-text-3);letter-spacing:.02em;padding:0 6px 0 0}
+.tip{position:absolute;z-index:30;display:flex;align-items:center;gap:2px;height:24px;padding:0 9px 0 3px;background:#0d1620;
+  border:1px solid var(--sg-border-strong);border-radius:3px;color:#eef2f6;font-size:11px;white-space:nowrap;box-shadow:0 2px 6px rgb(0 0 0 / 40%)}
+.tip.below::after{top:-5px;bottom:auto;transform:rotate(225deg)}
+.tip::after{content:"";position:absolute;left:12px;bottom:-5px;width:8px;height:8px;background:#0d1620;border-right:1px solid var(--sg-border-strong);
+  border-bottom:1px solid var(--sg-border-strong);transform:rotate(45deg)}
+
+/* =========================================================================
+   UNIT LIST (pane body is the scroller; the filter row is sticky inside it)
+   ========================================================================= */
+.ul{min-height:100%;display:flex;flex-direction:column}
+.ul-f{position:sticky;top:0;z-index:3;flex:0 0 auto;display:flex;align-items:center;gap:10px;height:40px;padding:0 10px;
+  background:var(--sg-surface);border-bottom:1px solid var(--sg-border)}
+.ul-f.scrolled{box-shadow:0 5px 8px -4px rgb(0 0 0 / 55%)}
+.srch{flex:1 1 auto;min-width:0;display:flex;align-items:center;gap:7px;height:26px;padding:0 4px 0 8px;background:var(--sg-field);
+  border:1px solid var(--sg-border-strong);border-radius:3px;font-size:12px;color:var(--sg-text-1)}
+.srch.focus{outline:2px solid var(--sg-focus);outline-offset:1px}
+.srch .q{flex:1 1 auto;min-width:0;overflow:hidden;white-space:nowrap}
+.srch .ph{color:var(--sg-text-3)}
+.srch .caret{display:inline-block;width:1px;height:13px;background:var(--sg-text-1);vertical-align:-2px;margin-left:1px}
+.mag{flex:0 0 auto;position:relative;width:12px;height:12px}
+.mag::before{content:"";position:absolute;left:0;top:0;width:8px;height:8px;border:1.5px solid var(--sg-text-2);border-radius:50%}
+.mag::after{content:"";position:absolute;left:8px;top:8px;width:5px;height:1.5px;background:var(--sg-text-2);transform:rotate(45deg);transform-origin:0 0}
+.clr{flex:0 0 auto;width:18px;height:18px;border:0;border-radius:3px;background:transparent;color:var(--sg-text-2);font-size:14px;line-height:18px;padding:0}
+.ul-n{flex:0 0 auto;font-size:11px;color:var(--sg-text-2);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ul-n b{color:var(--sg-text-1);font-weight:500}
+.ul-l{list-style:none;margin:0;padding:0}
+.ur{display:grid;grid-template-columns:18px minmax(0,1fr) auto;gap:8px;align-items:center;height:28px;padding:0 12px 0 10px;
+  border-bottom:1px solid var(--sg-rule);position:relative;cursor:pointer}
+.ur .uid{font-size:12px;font-weight:500;letter-spacing:.02em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ur .uw{font-size:11px;color:var(--sg-text-2);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ur .uw .run{color:var(--sg-text-1)}
+.ur.hov{background:var(--sg-hover)}
+.ur.sel{background:var(--sg-accent-tint);box-shadow:inset 3px 0 0 var(--sg-accent)}
+.ur.sel .uid{font-weight:600}
+.ur.foc::after{content:"";position:absolute;inset:2px 3px 2px 5px;border:2px dashed var(--sg-focus);border-radius:3px;pointer-events:none}
+.ur mark{background:none;color:var(--sg-text-1);font-weight:700;text-decoration:underline;text-decoration-thickness:2px;
+  text-underline-offset:3px;text-decoration-color:var(--sg-text-2)}
+.ul-empty{padding:36px 16px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px}
+.ul-empty .t1{font-size:12px;color:var(--sg-text-1)}
+.ul-empty .t2{font-size:11px;color:var(--sg-text-2)}
+
+/* =========================================================================
+   DETAILS DECK
+   ========================================================================= */
+.ctx{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--sg-text-1);white-space:nowrap;font-variant-numeric:tabular-nums}
+.ctx .none{color:var(--sg-text-3);font-size:11px}
+.dk{display:flex;flex-direction:column;height:100%;min-height:0}
+.tabs{flex:0 0 auto;display:flex;height:33px;border-bottom:1px solid var(--sg-border);padding:0 6px;overflow-x:auto;overflow-y:hidden}
+.tab{position:relative;display:flex;align-items:center;gap:2px;padding:0 12px 0 8px;font-size:12px;color:var(--sg-text-2);white-space:nowrap;cursor:pointer;height:32px}
+.tab.on{color:var(--sg-text-1);font-weight:500}
+.tab.on::after{content:"";position:absolute;left:8px;right:8px;bottom:0;height:2px;background:var(--sg-accent);border-radius:1px 1px 0 0}
+.tab.hov{color:var(--sg-text-1);background:var(--sg-hover)}
+.tab.foc::before{content:"";position:absolute;inset:4px 2px 5px 2px;border:2px dashed var(--sg-focus);border-radius:3px}
+.cards{flex:1 1 auto;min-height:0;overflow:auto;padding:10px 12px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  grid-auto-rows:135px;gap:8px;align-content:start;container-type:inline-size}
+.card{display:flex;flex-direction:column;justify-content:space-between;padding:10px 12px 10px 12px;background:var(--sg-surface-raised);
+  border:1px solid var(--sg-border);border-radius:4px;position:relative;min-width:0}
+.ch{display:flex;align-items:baseline;justify-content:space-between;gap:8px;min-width:0}
+.cn{font-size:12px;font-weight:500;color:var(--sg-text-1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cf{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--sg-text-2);white-space:nowrap}
+.kvs{display:flex;flex-direction:column;gap:4px}
+.kv{display:grid;grid-template-columns:64px minmax(0,1fr);align-items:center;gap:0 8px}
+.kv .k{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--sg-text-2)}
+.kv .v{font-family:"Roboto Mono",ui-monospace,Menlo,Consolas,monospace;font-size:14px;line-height:24px;height:24px;padding:0 6px;margin-left:-6px;
+  border-radius:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card.mis{border-color:var(--sg-diff-edge);box-shadow:inset 3px 0 0 var(--sg-critical)}
+.card.mis .cf{color:var(--sg-diff-ink)}
+.card.mis .act .v{color:var(--sg-diff-ink);background:var(--sg-diff-tint)}
+.card.miss{background:var(--sg-surface);border-style:dashed;border-color:var(--sg-border-strong)}
+.card.miss .cn{color:var(--sg-text-2)}
+.card.miss .act .v{font-family:inherit;font-size:12px;font-style:italic;color:var(--sg-text-3)}
+.dmsg{flex:1 1 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:0 24px}
+.dmsg .m1{font-size:13px;color:var(--sg-text-1);display:flex;align-items:center;gap:2px}
+.dmsg .m2{font-size:11px;color:var(--sg-text-2);max-width:520px}
+.dmsg .btn{margin-top:6px}
+
+/* ---- review-document exhibits (never UI) ---- */
+.pin{position:absolute;z-index:60;width:18px;height:18px;border-radius:50%;background:var(--pink);color:#fff;
+  font:700 10px/18px sans-serif;text-align:center;box-shadow:0 0 0 2px #0a0f14;pointer-events:none}
+.smgrid{display:grid;grid-template-columns:repeat(2,max-content);gap:18px 18px;align-items:start}
+.smcap{font-size:12px;color:var(--page-dim);margin:0 0 4px}
+.smcap b{color:#e6edf3;font-weight:500}
+.sm{zoom:.7;background:var(--sg-base);padding:0}
+.kits{display:flex;flex-wrap:wrap;gap:22px;align-items:flex-start}
+.kitbox{border:1px solid var(--page-rule);background:#0d151c;padding:10px}
+.kitbox h4{margin:0 0 8px;font-size:12px;font-weight:500;color:#dfe8ef}
+.kitbox .sub{font-size:11px;color:var(--page-dim);margin:6px 0 0;max-width:520px}
+.kit{background:var(--sg-surface);border:1px solid var(--sg-border);border-radius:6px;overflow:hidden;position:relative}
+.kl{font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--pink);padding:0 0 2px 2px}
+.slate{display:flex;gap:16px;flex-wrap:wrap;margin:10px 0 4px}
+.opt{border:1px solid var(--page-rule);background:#0d151c;padding:10px;width:560px}
+.opt.rec{border-color:#2f6d4a;box-shadow:inset 0 0 0 1px rgb(47 109 74 / 35%)}
+.opt h4{margin:0 0 8px;font-size:12px;font-weight:500;color:#dfe8ef;display:flex;justify-content:space-between;gap:8px}
+.opt h4 .badge{font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:1px 6px;border:1px solid var(--page-rule);color:var(--page-dim)}
+.opt.rec h4 .badge{border-color:#2f6d4a;color:#7fc47f}
+.opt p{font-size:12px;color:var(--page-dim);margin:8px 0 0}
+.slate-demo{background:var(--sg-base);padding:8px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<h1>Status Grid — Round 3 mockups · panes v2, Unit List, Details Deck</h1>
+<p class="lede">
+  The window is now composed from <code>UI-PANES-01</code> v2 exactly as its guide §8 writes it: an inline, resizable
+  group of <b>Units</b> (30%, min 240) | 8px splitter | a block group of <b>Status Grid</b> / 8px splitter / <b>Details</b>.
+  Every frame is the window's true content box, <b>1618 × 773</b>, at 100%. Pane chrome is transcribed from
+  <code>pane.scss</code>: 28px header, 24px rail (+2 border), 6px radius, chevron on the edge facing the content.
+  <b>now = 15:42Z.</b> 100 irregular columns (bursts at 02/09/12/21h, sparse 05/10/17/22h). All values on this page are
+  the <code>--sg-*</code> fallbacks the design note §3 tabulates.
+</p>
+<div class="toolbar">
+  <span style="font-size:11px;color:var(--page-dim)">ZOOM</span>
+  <button data-z="100" aria-pressed="true">100%</button><button data-z="75" aria-pressed="false">75%</button><button data-z="55" aria-pressed="false">55%</button>
+  <span style="color:var(--page-rule)">|</span>
+  <label><input type="checkbox" id="tglNote" checked> pink designer notes &amp; pins</label>
+  <span style="color:var(--page-rule)">|</span>
+  <a href="#f1" style="color:#9fd0e8">F1</a><a href="#f2" style="color:#9fd0e8">F2</a><a href="#f3" style="color:#9fd0e8">F3</a>
+  <a href="#f4" style="color:#9fd0e8">F4</a><a href="#f5" style="color:#9fd0e8">F5</a><a href="#f6" style="color:#9fd0e8">F6 forks</a>
+</div>
+
+<h2 id="f1">F1 · Ready — the canonical frame</h2>
+<figure>
+  <figcaption><b>WTG-04 selected · Gearbox · 04:15Z (PARTIAL) selected · deck on Vibration Sensor A: 2 mismatches, 1 missing ·
+    Converter retrieval failed → ERROR row + flow banner · now-marker at the left edge of 15:45</b></figcaption>
+  <div id="F1"></div>
+  <div class="pinkey" id="F1key"></div>
+</figure>
+<div class="notebox">The DayRibbon here is rendered to Axium's rule (segment = the hour's worst elapsed status) and it shows
+the cost of that rule honestly: one failed component paints every elapsed hour at least amber, so the ribbon stops locating
+the INVALID clusters it exists to locate. F6 fork 2 is the fix I recommend. Everything else in this frame is to the letter.</div>
+
+<h2 id="f2">F2 · Units collapsed to the rail · block splitter mid-drag</h2>
+<figure>
+  <figcaption><b>Units → 26px rail (24 + border) · the grid gains 26 columns (54 → 80 visible) · the Grid/Details splitter is being
+    dragged down: line solid cyan, row-resize cursor, the deck's card area scrolls rather than squeezing a card</b></figcaption>
+  <div id="F2"></div>
+</figure>
+<div class="notebox">The inline splitter beside the rail draws nothing and offers no cursor — the panes make a handle beside a
+collapsed pane inert. The rail carries only the label: v2's rail is the pane's own and takes no projected content, so R2's
+dot-rail is gone. Nothing is lost, because the grid header names the selected unit. The deck kept <b>Vibration Sensor A</b> across the
+selection change (Gearbox 04:15Z → Generator 11:15Z) because the new sample has that element too.</div>
+
+<h2 id="f3">F3 · Dense — 20 components, 90 units, filter typed</h2>
+<figure>
+  <figcaption><b>20 rows → band at the 18px floor, vertical scroll, T3 cell texture shed, 5-row counting rule · filter "3" → 18 of 90,
+    partial-match underline · hover on WTG-38</b></figcaption>
+  <div id="F3"></div>
+</figure>
+
+<h2 id="f4">F4 · Details Deck — every state, plus collapsed</h2>
+<p class="lede">Small multiples at 70% (layout is the true 1127 × 382 pane; type is scaled by the zoom, not resized). The header
+right-hand side carries the selection context in every state, so a collapsed deck still names what is selected.</p>
+<div class="smgrid" id="F4"></div>
+
+<h2 id="f5">F5 · Interaction detail</h2>
+<div class="kits" id="F5"></div>
+
+<h2 id="f6">F6 · Forks — three real decisions, each with a recommendation</h2>
+<div id="F6"></div>
+
+<script>
+/* =========================================================================
+   DATA — one deterministic dataset drives every frame.
+   ========================================================================= */
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);
+  t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+const pad=n=>String(n).padStart(2,'0');
+const AX=[];for(let h=0;h<24;h++){const ms=[2,9,12,21].includes(h)?[0,10,20,30,40,50]:[5,10,17,22].includes(h)?[0,20,40]:[0,15,30,45];
+  ms.forEach(m=>AX.push({h,m,t:h+m/60,label:pad(h)+':'+pad(m)+'Z'}));}
+const N=AX.length;
+const NOW_T=15+42/60, NOW_LABEL='15:42Z';
+const NOWCOL=AX.findIndex(c=>c.t>NOW_T);            // first FUTURE column (15:45)
+const col=(h,m)=>AX.findIndex(c=>c.h===h&&c.m===m);
+const RANK={INVALID:5,ERROR:4,PARTIAL:3,VALID:2,PENDING:1};   // Astro order: critical>serious>caution>normal>standby
+const COMPS7=['Gearbox','Generator','Yaw Drive','Pitch System','Converter','Nacelle Sensors','Tower'];
+const COMPS20=COMPS7.concat(['Main Bearing','Hub','Blade A','Blade B','Blade C','Brake','Cooling','Hydraulics','Transformer',
+  'Anemometer','Met Mast Link','SCADA Link','Aviation Light']);
+const ELEMENTS=['Oil Temp Probe','Vibration Sensor A','Vibration Sensor B','Filter Pressure','Shaft Speed','Bearing Temp','Lube Pump'];
+
+function makeData(n,seed,o={}){
+  const R=rng(seed);
+  return Array.from({length:n},(_,r)=>AX.map((c,i)=>{
+    if(i>=NOWCOL) return 'NO_DATA';
+    if((o.error||[]).includes(r)) return 'ERROR';
+    let s='VALID';const x=R();
+    if(x<(o.pPart??.03)) s='PARTIAL'; else if(x<(o.pInv??.038)) s='INVALID'; else if(x<.043) s='PENDING';
+    for(const k of (o.clusters||[])) if(k.r===r&&i>=k.a&&i<=k.b){const y=R();s=y<.5?'PARTIAL':y<.78?'INVALID':'VALID';}
+    if((o.tail||[]).includes(r)&&i>=NOWCOL-2) s='PENDING';
+    return s;}));
+}
+function counts(d){const k={VALID:0,PARTIAL:0,INVALID:0,ERROR:0,PENDING:0};d.forEach(r=>r.forEach(s=>{if(s in k)k[s]++;}));return k;}
+function hourWorst(d,h){let w=null;AX.forEach((c,i)=>{if(c.h!==h||i>=NOWCOL)return;d.forEach(r=>{const s=r[i];if(!w||RANK[s]>RANK[w])w=s;});});return w;}
+function hourWorstVerdict(d,h){let w=null,err=false;AX.forEach((c,i)=>{if(c.h!==h||i>=NOWCOL)return;d.forEach(r=>{const s=r[i];
+  if(s==='ERROR'){err=true;return;} if(!w||RANK[s]>RANK[w])w=s;});});return {w,err};}
+
+/* F1 — WTG-04: a Gearbox incident around 04:00–05:00, Pitch System trouble at 09h, Converter fetch failed */
+const D1=makeData(7,11,{error:[4],tail:[1,5],clusters:[{r:0,a:col(4,0),b:col(4,45)},{r:3,a:col(9,10),b:col(9,50)},{r:5,a:col(13,30),b:col(14,15)}]});
+D1[0][col(4,15)]='PARTIAL';
+/* F2 — WTG-07: no failure, so no banner */
+const D2=makeData(7,29,{tail:[2],clusters:[{r:1,a:col(11,0),b:col(11,45)},{r:6,a:col(6,15),b:col(7,0)}]});
+D2[1][col(11,15)]='INVALID';
+/* F3 — WTG-33, 20 components */
+const D3=makeData(20,47,{tail:[3,11],clusters:[{r:9,a:col(7,0),b:col(8,15)},{r:14,a:col(12,0),b:col(12,50)},{r:2,a:col(10,0),b:col(10,40)}]});
+D3[3][col(8,45)]='VALID';
+
+/* deck payloads */
+const VIB_A_F1=[
+  {n:'Sample Rate',e:'25.6 kHz',a:'25.6 kHz'},
+  {n:'Range Min',e:'-16.0 g',a:'-16.0 g'},
+  {n:'Range Max',e:'16.0 g',a:'8.0 g',f:'mis'},
+  {n:'Calibration Offset',e:'0.00',a:'0.13',f:'mis'},
+  {n:'Firmware Rev',e:'4.2.1',a:'4.2.1'},
+  {n:'Scaling Factor',e:'1.0000',a:null,f:'miss'},
+  {n:'Units',e:'g',a:'g'},
+  {n:'Last Cal Date',e:'2026-06-30',a:'2026-06-30'}];
+const VIB_A_F2=VIB_A_F1.map(c=>c.n==='Range Max'?c:{...c,a:c.e,f:undefined}).map(c=>c.n==='Firmware Rev'?{...c,a:'4.1.9',f:'mis'}:c);
+const ALL_MATCH=VIB_A_F1.map(c=>({...c,a:c.e,f:undefined}));
+const TABS_F1={'Oil Temp Probe':'VALID','Vibration Sensor A':'PARTIAL','Vibration Sensor B':'VALID','Filter Pressure':'PARTIAL',
+  'Shaft Speed':'VALID','Bearing Temp':'VALID','Lube Pump':'VALID'};
+const TABS_F2={...TABS_F1,'Vibration Sensor A':'INVALID','Filter Pressure':'VALID','Bearing Temp':'INVALID'};
+const TABS_F3=Object.fromEntries(ELEMENTS.map(e=>[e,'VALID']));
+
+/* units */
+const UNITS14=[
+  ['WTG-01','VALID','c','00:00','23:55'],['WTG-02','PARTIAL','c','00:00','23:55'],['WTG-03','INVALID','c','00:00','12:00'],
+  ['WTG-04','INVALID','c','00:00','23:55'],['WTG-05','VALID','r','06:00'],['WTG-06','PENDING','r','15:00'],
+  ['WTG-07','PARTIAL','c','00:00','23:55'],['WTG-08','PARTIAL','c','00:00','23:55'],['WTG-09','VALID','c','00:00','08:00'],
+  ['WTG-10','NO_DATA','s','18:00'],['WTG-11','ERROR','c','00:00','23:55'],['WTG-12','VALID','c','00:00','23:55'],
+  ['WTG-13','PARTIAL','r','04:00'],['WTG-14','NO_DATA','s','22:00']];
+const UNITS90=(()=>{const R=rng(5);return Array.from({length:90},(_,i)=>{const id='WTG-'+pad(i+1);const x=R();
+  const s=x<.5?'VALID':x<.72?'PARTIAL':x<.84?'INVALID':x<.9?'ERROR':x<.95?'PENDING':'NO_DATA';
+  return s==='NO_DATA'?[id,s,'s',pad(16+Math.floor(R()*7))+':00']:x<.58?[id,s,'r',pad(Math.floor(R()*12))+':00']:[id,s,'c','00:00','23:55'];});})();
+
+/* =========================================================================
+   RENDERERS — markup mirrors the component split: pane chrome / unit list /
+   grid (meta · ribbon · banner · scroller) / deck (header ctx · tabs · cards)
+   ========================================================================= */
+const G=s=>s==='NO_DATA'?'<span class="g nd"></span>':`<span class="g s-${s}"></span>`;
+const NAME={VALID:'Valid',PARTIAL:'Partial',INVALID:'Invalid',ERROR:'Error',PENDING:'Pending',NO_DATA:'No data'};
+
+function pane({label,orient='block',collapsed=false,actions='',body='',pin=''}){
+  const chev=orient==='inline'?'end':'start';
+  return `<section class="pane" data-orientation="${orient}" data-chevron="${chev}" ${collapsed?'data-collapsed':''}>
+    <div class="pane-h" ${pin}><button class="tog" type="button" aria-expanded="${!collapsed}" aria-label="${label}"><span class="chev"></span></button>
+      <span class="pane-title">${label}</span>${actions?`<span class="pane-act">${actions}</span>`:''}</div>
+    ${collapsed&&orient==='inline'?`<div class="rail"><span class="rail-l">${label}</span></div>`:''}
+    <div class="pane-b">${collapsed?'':body}</div></section>`;
+}
+
+/* ---------- unit list ---------- */
+function winText(u){
+  if(u[2]==='c') return `${u[3]}–${u[4]}Z`;
+  if(u[2]==='r') return `${u[3]}Z · <span class="run">running</span>`;
+  return `scheduled ${u[3]}Z`;
+}
+function hi(id,q){if(!q)return id;const i=id.indexOf(q);return i<0?id:id.slice(0,i)+'<mark>'+q+'</mark>'+id.slice(i+q.length);}
+function unitList({units,sel,foc,hov,q='',total,scrolled=false,fieldFocus=false,pins=false}){
+  const list=q?units.filter(u=>u[0].includes(q)):units;
+  const n=q?`<b>${list.length}</b> of ${total||units.length}`:`<b>${units.length}</b> units`;
+  const field=q?`<span class="q">${q}<span class="caret"></span></span><button class="clr" aria-label="Clear filter">×</button>`
+               :`<span class="q ph">Search units</span>`;
+  let body;
+  if(!list.length){
+    body=`<div class="ul-empty" role="status"><div class="t1">No units match ‘${q}’</div><div class="t2">Filter matches unit IDs.</div><button class="btn">Clear filter</button></div>`;
+  } else {
+    body=`<ul class="ul-l" role="listbox" aria-label="Units">${list.map(u=>`<li class="ur${u[0]===sel?' sel':''}${u[0]===foc?' foc':''}${u[0]===hov?' hov':''}"
+      role="option" aria-selected="${u[0]===sel}" ${pins&&u[0]===sel?'data-pin="3"':''}>${G(u[1])}<span class="uid">${hi(u[0],q)}</span><span class="uw">${winText(u)}</span></li>`).join('')}</ul>`;
+  }
+  return `<div class="ul"><div class="ul-f${scrolled?' scrolled':''}" ${pins?'data-pin="2"':''}><label class="srch${fieldFocus?' focus':''}"><span class="mag"></span>${field}</label>
+    <span class="ul-n" aria-live="polite">${n}</span></div>${body}</div>`;
+}
+
+/* ---------- grid ---------- */
+function minuteMask(cols){
+  const lab=new Array(cols.length).fill(false);let last=-99;
+  cols.forEach((c,i)=>{const start=i===0||c.h!==cols[i-1].h;
+    if(start){if(last===i-1)lab[last]=false;lab[i]=true;last=i;}
+    else if(i-last>=2){lab[i]=true;last=i;}});
+  return lab;
+}
+function groups(cols){const g=[];cols.forEach((c,i)=>{if(!g.length||g[g.length-1].h!==c.h)g.push({h:c.h,start:i,span:0});g[g.length-1].span++;});return g;}
+/* the scroller: hour tier · minute tier · rows · end rule. cols = an AX slice; rows = [{name, cells}] */
+function scroller({cols,rows,nowIdx=-1,sel=null,foc=null,hov=null,total,pins=false}){
+  const n=cols.length, mask=minuteMask(cols), grp=groups(cols);
+  const xc=sel?sel.i:-1;
+  const lines=grp.map(g=>{const a=g.h%6===0;return `<div class="vl${a?' a':''}" style="left:calc(var(--gut) + ${g.start*18}px${a?' - 1px':''})"></div>`;}).join('');
+  const now=nowIdx>0&&nowIdx<n?`<div class="nowl" style="left:calc(var(--gut) + ${nowIdx*18-1}px)" PIN8></div>`:'';
+  const hh=grp.map(g=>`<div class="hh${xc>=g.start&&xc<g.start+g.span?' xh':''}" style="grid-column:span ${g.span}">${g.span>=3?pad(g.h)+':00Z':pad(g.h)}</div>`).join('');
+  const hm=cols.map((c,i)=>`<div class="hm${mask[i]||i===xc?'':' tk'}${i===xc?' xh':''}">${mask[i]||i===xc?pad(c.m):''}</div>`).join('');
+  const body=rows.map((r,ri)=>`<div class="gr${ri%5===4?' r5':''}" role="row"><div class="rl${sel&&sel.r===ri?' xh':''}" role="rowheader"><span>${r.name}</span></div>${
+    r.cells.map((s,i)=>{const k=[];if(sel&&sel.r===ri&&sel.i===i)k.push('sel');if(foc&&foc.r===ri&&foc.i===i)k.push('foc');if(hov&&hov.r===ri&&hov.i===i)k.push('hov');
+      return `<div class="c ${k.join(' ')}" role="gridcell" ${pins&&k.includes('sel')?'data-pin="7"':''}>${G(s)}</div>`;}).join('')}</div>`).join('');
+  return `<div class="sg-in" style="--n:${n}">
+    <div class="sg-head">${lines}${now.replace('PIN8',pins?'data-pin="8"':'')}
+      <div class="trow h"><div class="corner">Component</div>${hh}</div>
+      <div class="trow m"><div class="corner">min</div>${hm}</div></div>
+    <div class="sg-rows">${lines}${now.replace('PIN8','')}${body}</div>
+    <div class="endr"><span ${pins?'data-pin="9"':''}>end of components · ${rows.length} of ${total||rows.length}</span></div></div>`;
+}
+function ribbon(d,{mode='worst',pins=false,hoverHour=-1}={}){
+  const segs=[];for(let h=0;h<24;h++){
+    let cls='seg',st='';
+    if(mode==='worst'){const w=hourWorst(d,h);if(!w)cls+=' fut';else cls+=' s-'+w;}
+    else{const {w,err}=hourWorstVerdict(d,h);if(!w&&!err)cls+=' fut';else{cls+=' s-'+(w||'ERROR');if(err)cls+=' erru';}}
+    if(h&&h%6===0)cls+=' h6'; if(h===hoverHour)cls+=' hv';
+    segs.push(`<div class="${cls}" title="${pad(h)}:00–${pad(h+1)}:00Z"></div>`);}
+  return `<div class="sg-rib" ${pins?'data-pin="5"':''}><span class="rib-l">00Z</span><div class="rib">${segs.join('')}
+    <div class="rib-br"></div><div class="rib-now" style="left:calc(${(NOW_T/24*100).toFixed(3)}% - 1px)"></div></div><span class="rib-l">24Z</span></div>`;
+}
+function grid({unit,win,d,comps,sel=null,startCol=0,banner=null,pins=false,ribMode='worst'}){
+  const k=counts(d);
+  const legend=['VALID','PARTIAL','INVALID','ERROR','PENDING'].map(s=>`<span class="lg">${G(s)}${NAME[s]}<b>${k[s]}</b></span>`).join('')+
+    `<span class="lg">${G('NO_DATA')}No data</span>`;
+  const rows=comps.map((name,r)=>({name,cells:d[r]}));
+  const ban=banner?`<div class="sg-ban" role="status" ${pins?'data-pin="6"':''}>${G('ERROR')}<span class="txt"><span class="tag">ERROR</span>${banner}</span><button class="btn">Retry</button></div>`:'';
+  return `<div class="sg" data-start="${startCol}">
+    <div class="sg-meta"><div class="sg-m1" ${pins?'data-pin="4"':''}><span class="sg-unit">${unit}</span>
+      <span class="kvi">Window <b>${win}</b></span><span class="kvi">Now <b>${NOW_LABEL}</b></span>
+      <span class="legend" aria-label="Elapsed samples by status">${legend}</span></div>${ribbon(d,{mode:ribMode,pins})}</div>
+    ${ban}<div class="sg-sc" tabindex="0" role="grid" aria-label="Status grid for ${unit}">${scroller({cols:AX,rows,nowIdx:NOWCOL,sel,pins,total:comps.length})}</div></div>`;
+}
+
+/* ---------- deck ---------- */
+function ctx(comp,t,s){return `<span class="ctx">${comp} · ${t}<span class="chip">${G(s)}${NAME[s]}</span></span>`;}
+function tabs(map,active,{hov='',foc='',pins=false}={}){
+  return `<div class="tabs" role="tablist" ${pins?'data-pin="11"':''}>${Object.entries(map).map(([e,s])=>
+    `<div class="tab${e===active?' on':''}${e===hov?' hov':''}${e===foc?' foc':''}" role="tab" aria-selected="${e===active}">${G(s)}${e}</div>`).join('')}</div>`;
+}
+function card(c,pins=false){
+  const cls=c.f==='mis'?' mis':c.f==='miss'?' miss':'';
+  const flag=c.f==='mis'?'◄ mismatch':c.f==='miss'?'missing':'match';
+  const pin=pins&&c.n==='Calibration Offset'?'data-pin="12"':pins&&c.n==='Scaling Factor'?'data-pin="13"':'';
+  return `<div class="card${cls}" role="listitem" ${pin}><div class="ch"><span class="cn">${c.n}</span><span class="cf">${flag}</span></div>
+    <div class="kvs"><div class="kv"><span class="k">Expected</span><span class="v">${c.e}</span></div>
+    <div class="kv act"><span class="k">Actual</span><span class="v">${c.a==null?'value not received':c.a}</span></div></div></div>`;
+}
+function deckBody(st){
+  if(st.kind==='ready') return `<div class="dk">${tabs(st.tabs,st.active,{pins:st.pins})}<div class="cards" role="tabpanel" aria-label="${st.active}"><div style="display:contents" role="list">${st.cards.map(c=>card(c,st.pins)).join('')}</div></div></div>`;
+  const M={
+    none:[``,`Select a cell in the grid`,`Arrow keys move through the grid · Enter selects`],
+    nodata:[G('NO_DATA'),`Not sampled yet — ${st.t} is in the future`,`Samples arrive roughly every 10–15 minutes. Now is ${NOW_LABEL}.`],
+    pending:[G('PENDING'),`Awaiting validation`,`The ${st.t} sample has not been validated yet. Results appear here when it is.`],
+    error:[G('ERROR'),`Retrieval failed — no verdict for this sample`,`The request for ${st.comp} failed, so none of its samples carry a verdict.`]}[st.kind];
+  return `<div class="dk"><div class="dmsg" role="status"><div class="m1">${M[0]}${M[1]}</div><div class="m2">${M[2]}</div>${st.kind==='error'?'<button class="btn">Retry Converter</button>':''}</div></div>`;
+}
+function deckPane(st,collapsed=false){
+  const act=st.kind==='none'?'<span class="ctx"><span class="none">No sample selected</span></span>':ctx(st.comp,st.t,st.s);
+  return pane({label:'Details',actions:act,body:deckBody(st),collapsed,pin:st.pins?'data-pin="10"':''});
+}
+
+/* ---------- frame ---------- */
+function frame({list,grid:gHtml,deck,ucol=false,rows='minmax(80px,1fr) 8px minmax(80px,1fr)',splitV='',splitH='',cursor=false}){
+  const units=pane({label:'Units',orient:'inline',collapsed:ucol,body:list,pin:list&&list.includes('data-pin')?'data-pin="1"':''});
+  const cur=cursor?`<svg class="cur" width="22" height="26" viewBox="0 0 22 26" style="left:46%;top:-9px"><path d="M11 1 L16 7 H13 V11 H19 V15 H13 V19 H16 L11 25 L6 19 H9 V15 H3 V11 H9 V7 H6 Z" fill="#fff" stroke="#000" stroke-width="1"/></svg>`:'';
+  return `<div class="frame${ucol?' ucol':''}">${units}<div class="split inline ${splitV}" role="separator" aria-orientation="vertical"></div>
+    <div class="vgroup" style="grid-template-rows:${rows}">${pane({label:'Status Grid',body:gHtml})}
+    <div class="split block ${splitH}" role="separator" aria-orientation="horizontal">${cur}</div>${deck}</div></div>`;
+}
+
+/* =========================================================================
+   F1–F3
+   ========================================================================= */
+document.getElementById('F1').innerHTML=frame({
+  list:unitList({units:UNITS14,sel:'WTG-04',pins:true}),
+  grid:grid({unit:'WTG-04',win:'00:00–23:55Z',d:D1,comps:COMPS7,sel:{r:0,i:col(4,15)},startCol:col(4,0),pins:true,
+    banner:'Retrieval failed for <b>Converter</b> (1 of 7 components) — its samples carry no verdict.'}),
+  deck:deckPane({kind:'ready',comp:'Gearbox',t:'04:15Z',s:'PARTIAL',tabs:TABS_F1,active:'Vibration Sensor A',cards:VIB_A_F1,pins:true})});
+const KEY=['Units pane — 28px header, chevron at the end facing the content (‹)','Sticky filter row: search field + count',
+  'Selected unit — 3px cyan bar + cyan tint','Metadata header: unit · window · now · counts that are the legend',
+  'DayRibbon — 24 hour segments, viewport bracket, now tick','ERROR banner — a flow row, only while an ERROR cell exists',
+  'Selection — one solid ring + crosshair tint on hour, minute and row label','Now-marker — left edge of the first future column',
+  'End rule — slack collects below it','Deck context projected into the pane header (rrPaneHeader) — survives collapse',
+  'Native small tabs — one per Element, each with its status dot','MISMATCH — red edge, red actual on a diff tint, ◄ flag',
+  'MISSING — dashed, flat, “value not received”'];
+document.getElementById('F1key').innerHTML=KEY.map((t,i)=>`<div><b>${i+1}</b>${t}</div>`).join('');
+
+document.getElementById('F2').innerHTML=frame({ucol:true,splitH:'drag',cursor:true,rows:'minmax(80px,440fr) 8px minmax(80px,325fr)',
+  grid:grid({unit:'WTG-07',win:'00:00–23:55Z',d:D2,comps:COMPS7,sel:{r:1,i:col(11,15)},startCol:0}),
+  deck:deckPane({kind:'ready',comp:'Generator',t:'11:15Z',s:'INVALID',tabs:TABS_F2,active:'Vibration Sensor A',cards:VIB_A_F2})});
+
+document.getElementById('F3').innerHTML=frame({
+  list:unitList({units:UNITS90,sel:'WTG-33',hov:'WTG-38',q:'3',total:90}),
+  grid:grid({unit:'WTG-33',win:'00:00–23:55Z',d:D3,comps:COMPS20,sel:{r:3,i:col(8,45)},startCol:col(6,0)}),
+  deck:deckPane({kind:'ready',comp:'Pitch System',t:'08:45Z',s:'VALID',tabs:TABS_F3,active:'Vibration Sensor A',cards:ALL_MATCH})});
+
+/* =========================================================================
+   F4 — deck small multiples
+   ========================================================================= */
+const SM=[
+  ['Nothing selected','the empty state is an instruction, not a blank',{kind:'none'}],
+  ['Future NO_DATA cell','selectable; never fetched (R2 annex R8)',{kind:'nodata',comp:'Gearbox',t:'18:30Z',s:'NO_DATA'}],
+  ['PENDING','past-or-present, not yet validated',{kind:'pending',comp:'Pitch System',t:'15:30Z',s:'PENDING'}],
+  ['ERROR','no fetch; Retry is the component refetch the banner also calls',{kind:'error',comp:'Converter',t:'13:15Z',s:'ERROR'}],
+  ['Ready','tabs + attribute cards (F1 at full size)',{kind:'ready',comp:'Gearbox',t:'04:15Z',s:'PARTIAL',tabs:TABS_F1,active:'Vibration Sensor A',cards:VIB_A_F1}],
+  ['Collapsed','block pane → its 30px header bar; the context stays',{kind:'ready',comp:'Gearbox',t:'04:15Z',s:'PARTIAL',tabs:TABS_F1,active:'Vibration Sensor A',cards:VIB_A_F1},true]];
+document.getElementById('F4').innerHTML=SM.map(([t,w,st,col])=>`<div><div class="smcap"><b>${t}</b> — ${w}</div>
+  <div class="sm"><div style="width:1127px;height:${col?30:382}px;display:grid;grid-template-rows:minmax(0,1fr)">${deckPane(st,!!col)}</div></div></div>`).join('');
+
+/* =========================================================================
+   F5 — interaction detail kits
+   ========================================================================= */
+function kit(title,sub,inner,zoom,w){return `<div class="kitbox"><h4>${title}</h4><div style="zoom:${zoom}"><div class="kit" style="width:${w}px">${inner}</div></div><p class="sub">${sub}</p></div>`;}
+const sub=(a,b)=>AX.slice(a,b);
+const miniRows=(d,names,a,b)=>names.map((nm,r)=>({name:nm,cells:d[r].slice(a,b)}));
+const A0=col(4,0),A1=col(6,30);
+function mini(o,band=26){return `<div class="sg" style="height:auto"><div class="sg-sc" style="overflow:hidden;--band:${band}px">${scroller(o)}</div></div>`;}
+const tipAt=(r,i,text,s,band=26)=>`<div class="tip below" style="left:calc(var(--gut) + ${i*18-7}px);top:${42+(r+1)*band+4}px">${G(s)}${text}</div>`;
+const A2=col(7,0);
+let k5='';
+k5+=kit('Grid — selection ring vs keyboard focus ring (×2)',
+  'Solid 2px cyan ring = the selected sample (Gearbox 04:15Z) + crosshair tint on its hour, minute and row label. Dashed 2px ring, drawn 3px further out = the active descendant (Yaw Drive 05:20Z) while the grid has focus. Moving focus never moves selection; Enter/Space does.',
+  mini({cols:sub(A0,A1),rows:miniRows(D1,COMPS7.slice(0,4),A0,A1),sel:{r:0,i:1},foc:{r:2,i:6},total:7}),2,140+18*(A1-A0));
+k5+=kit('Grid — hover tint + the one tooltip (×2)',
+  'Hover tints the whole cell band (neutral 6% white — cyan is reserved for selection). After 300ms one delegated tooltip reads <code>Gearbox · 04:15Z · PARTIAL</code>. Same cell selected + focused: both rings, nested.',
+  `<div style="position:relative">${mini({cols:sub(A0,A2),rows:miniRows(D1,COMPS7.slice(0,4),A0,A2),hov:{r:0,i:1},sel:{r:2,i:9},foc:{r:2,i:9},total:7})}
+   <div style="position:absolute;inset:0;pointer-events:none"><div style="position:relative;--gut:140px">${tipAt(0,1,'Gearbox · 04:15Z · PARTIAL','PARTIAL')}</div></div></div>`,2,140+18*(A2-A0));
+const LR=[['WTG-03','INVALID','c','00:00','12:00'],['WTG-04','INVALID','c','00:00','23:55'],['WTG-05','VALID','r','06:00'],['WTG-06','PENDING','r','15:00'],['WTG-10','NO_DATA','s','18:00']];
+k5+=kit('Unit list rows — rest · hover · focus · selected · selected+focus (×2)',
+  'Rows 28px. Rest: dot · id · window. Hover: neutral 6% tint. Focus (active descendant): dashed cyan ring, inset. Selected: 3px cyan bar + 16% cyan tint + id at 600. Selection follows Enter/click, not arrows — same contract as the grid.',
+  `<div class="ul-l">${[['rest',LR[0],''],['hover',LR[2],'hov'],['focus',LR[3],'foc'],['selected',LR[1],'sel'],['selected + focus',LR[4],'sel foc']].map(([l,u,c])=>
+   `<div class="kl" style="padding:4px 0 1px 6px">${l}</div><div class="ur ${c}">${G(u[1])}<span class="uid">${u[0]}</span><span class="uw">${winText(u)}</span></div>`).join('')}</div>`,2,300);
+k5+=kit('Deck tabs — rest · hover · focus · selected (×2)',
+  'Native small tabs, 32px. Selected: text-1 at 500 + 2px cyan underline inset 8px. Hover: neutral tint. Focus: dashed cyan ring (roving tabindex; arrows activate — the payload is already loaded).',
+  `<div style="display:flex;padding:0 6px;border-bottom:1px solid var(--sg-border)">
+   <div class="tab">${G('VALID')}Oil Temp Probe</div><div class="tab hov">${G('VALID')}Shaft Speed</div>
+   <div class="tab foc">${G('PARTIAL')}Filter Pressure</div><div class="tab on">${G('PARTIAL')}Vibration Sensor A</div></div>
+   <div style="display:flex;font-size:9px;color:var(--pink);padding:2px 0 4px 14px;gap:0"><span style="width:124px">rest</span><span style="width:110px">hover</span><span style="width:126px">focus</span><span>selected</span></div>`,2,560);
+k5+=kit('Attribute cards — match · mismatch · missing (×1.5)',
+  'Match is quiet (flag in text-2). Mismatch reads as a diff: 3px critical edge, red-tinted border, the ACTUAL line in #ff7a7a on a 12% red tint (4.9:1 on the card), ◄ flag. Missing is flat and dashed on the pane surface, “value not received” in italic text-3 — absence is muted, never alarming.',
+  `<div style="display:grid;grid-template-columns:repeat(3,269px);grid-auto-rows:135px;gap:8px;padding:10px 12px">${card(VIB_A_F1[4])}${card(VIB_A_F1[3])}${card(VIB_A_F1[5])}</div>`,1.5,849);
+k5+=kit('Unit list — scrolled under the sticky filter · empty filter (×1)',
+  'Left: 90 units scrolled; rows pass under the filter row, which gains a soft bottom shadow only while scrolled. Right: no match — the message names the query and offers the way out; the count reads 0 of 90.',
+  `<div style="display:flex;gap:0"><div style="width:300px;height:260px;overflow:hidden;border-right:1px solid var(--sg-border)"><div style="position:relative">
+     ${unitList({units:UNITS90,sel:'WTG-41',total:90,scrolled:true,fieldFocus:false}).replace('<ul class="ul-l"','<ul class="ul-l" style="margin-top:-560px"')}</div></div>
+   <div style="width:300px;height:260px;overflow:hidden">${unitList({units:UNITS90,q:'xyz',total:90,fieldFocus:true})}</div></div>`,1,602);
+k5+=kit('DayRibbon — hover a segment (×2)',
+  'Segments are buttons: hover outlines one and its tooltip reads <code>14:00–15:00Z · worst INVALID · click to scroll</code>. The bracket is the scroller’s viewport, drawn neutral (it is a position, not a selection). The now tick shares the now-marker’s ink.',
+  `<div style="padding:4px 10px 26px;position:relative">${ribbon(D1,{hoverHour:14})}
+   <div class="tip" style="left:${10+24+ (14/24)*500}px;top:30px;transform:translateX(-50%)">${G('INVALID')}14:00–15:00Z · worst INVALID · click to scroll</div></div>`,2,580);
+k5+=kit('Splitters — rest · hover · drag · inert (×2)',
+  'From pane-group.scss: nothing at rest; 45% cyan line on hover; solid cyan while dragging or focused; beside a collapsed pane the handle is inert — no line, no cursor.',
+  `<div style="display:flex;gap:18px;padding:10px 14px;background:var(--sg-base)">${['','hover','drag','inert'].map(s=>
+   `<div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="display:grid;grid-template-columns:40px 8px 40px;height:60px">
+    <div class="pane" style="border-radius:4px"></div><div class="split inline ${s==='inert'?'':s}"></div><div class="pane" style="border-radius:4px"></div></div>
+    <span class="kl">${s||'rest'}</span></div>`).join('')}</div>`,2,420);
+document.getElementById('F5').innerHTML=k5;
+
+/* =========================================================================
+   F6 — forks
+   ========================================================================= */
+function opt(rec,title,badge,demo,text){return `<div class="opt${rec?' rec':''}"><h4><span>${title}</span><span class="badge">${badge}</span></h4><div class="slate-demo">${demo}</div><p>${text}</p></div>`;}
+const strip=`<div style="display:flex;align-items:center;gap:8px;height:28px;padding:0 10px;border-bottom:1px solid var(--sg-border);font-size:12px">${ctx('Gearbox','04:15Z','PARTIAL').replace('class="ctx"','class="ctx" style="flex:1"')}<span style="color:var(--sg-text-2);font-size:11px">7 elements</span></div>`;
+const deckTop=(inHeader)=>`<div style="width:540px;height:150px;display:grid;grid-template-rows:minmax(0,1fr)">${pane({label:'Details',
+  actions:inHeader?ctx('Gearbox','04:15Z','PARTIAL'):'',body:`<div class="dk">${inHeader?'':strip}${tabs({'Oil Temp Probe':'VALID','Vibration Sensor A':'PARTIAL','Vibration Sensor B':'VALID'},'Vibration Sensor A')}
+  <div class="cards" style="grid-template-columns:repeat(2,minmax(0,1fr))">${card(VIB_A_F1[0])}${card(VIB_A_F1[3])}</div></div>`})}</div>`;
+let f6='<h3>Fork 1 — where the deck\'s selection context lives</h3><div class="slate">';
+f6+=opt(false,'A · A context strip in the deck body','Axium D-deck · rejected',deckTop(false),
+  'Costs a 28px row inside a 353px body: 28 + 33 tabs + 2 × 135 + 8 gap + 20 padding = 359px, so the second card row clips by 6px at the default 50/50 split (measured). And it disappears when the deck collapses, which is exactly when you need to know what is selected.');
+f6+=opt(true,'B · Projected into the pane header (rrPaneHeader)','recommended · rendered in F1–F4',deckTop(true),
+  'The header is a 28px bar that is paid for anyway. Context sits right-aligned beside the title; the body gets the 28px back (two card rows fit with 22px to spare, measured), and a collapsed deck still says <i>Gearbox · 04:15Z · PARTIAL</i>. This is the slot the panes guide §6.3 built for this.');
+f6+='</div><h3>Fork 2 — the DayRibbon when a component\'s retrieval failed</h3><div class="slate">';
+const ribDemo=m=>`<div class="kit" style="width:540px;padding:2px 8px">${ribbon(D1,{mode:m})}</div>`;
+f6+=opt(false,'A · Segment = worst elapsed status (ERROR ranks second)','Axium D-grid · as rendered in F1',ribDemo('worst'),
+  'Truthful, but one failed row turns every elapsed hour amber or red. The ribbon now repeats the banner and stops locating the INVALID and PARTIAL clusters in the other six components, which was its job.');
+f6+=opt(true,'B · Segment = worst verdict; ERROR as a 3px amber underline','recommended',ribDemo('verdict'),
+  'Colour ranks the verdicts only (INVALID > PARTIAL > VALID > PENDING). Any hour that holds an ERROR sample gets an amber underline. Both facts stay legible: the 04h and 09h incidents read red/yellow, and the failure reads as a continuous amber rule. It is one extra branch in the same hourly reduction.');
+f6+='</div><h3>Fork 3 — the accent: one cyan for selection, focus and splitters</h3><div class="slate">';
+const accDemo=(a)=>`<div class="kit" style="width:540px;--sg-accent:${a};--sg-focus:${a};--sg-accent-tint:${a}29;display:grid;grid-template-columns:240px 1fr;gap:10px;padding:8px">
+  <div><div class="ur sel">${G('INVALID')}<span class="uid">WTG-04</span><span class="uw">00:00–23:55Z</span></div><div class="ur foc">${G('PENDING')}<span class="uid">WTG-06</span><span class="uw">15:00Z · <span class="run">running</span></span></div></div>
+  <div style="display:flex;align-items:center;gap:14px"><div class="c sel" style="width:18px;height:32px">${G('PENDING')}</div><div class="c foc" style="width:18px;height:32px">${G('VALID')}</div>
+  <div class="tab on" style="height:30px">${G('VALID')}Shaft Speed</div></div></div>`;
+f6+=opt(true,'A · #67b9d4 — the panes\' own cyan','recommended · rendered throughout',accDemo('#67b9d4'),
+  'The panes already paint their focus ring and splitter in #67b9d4. Using it for selection too keeps the window to one interactive hue. It is desaturated, so a ring around a PENDING (#2DCCFF) disc still reads as chrome rather than as a second status.');
+f6+=opt(false,'B · Astro interactive #4DACFF','viable · set one token',accDemo('#4dacff'),
+  'Matches every other Astro button in the work app. If this is chosen, point <code>--rr-pane-focus</code> and <code>--sg-accent</code> at the same value at <code>:root</code>. Two blues in one window (R2 used #4DACFF beside the panes\' #67b9d4) is the outcome to avoid. Weaker against PENDING: same saturation, nearer in lightness.');
+f6+='</div><div class="notebox">Not forks (decided in the note): unit list sort is natural by ID, no grouping; cards keep attribute order rather than mismatches-first; the tab fallback when the persisted element is absent is the first tab, not the worst one. Each one protects spatial memory while the operator arrows through cells.</div>';
+document.getElementById('F6').innerHTML=f6;
+
+/* =========================================================================
+   LAYOUT PASS — what the implementation measures: band from the scroller's
+   measured height (B2), scroll position, ribbon viewport bracket, pins.
+   ========================================================================= */
+function layout(){
+  document.querySelectorAll('.frame .sg').forEach(sg=>{
+    const sc=sg.querySelector('.sg-sc');const rows=sc.querySelectorAll('.sg-rows .gr').length;
+    const avail=sc.clientHeight-22-20-16;
+    const band=Math.max(18,Math.min(32,Math.floor(avail/rows)));
+    sc.style.setProperty('--band',band+'px');
+    sg.dataset.band=band<20?'dense':band<26?'tight':'roomy';
+    sc.scrollLeft=(+sg.dataset.start||0)*18;
+    const first=Math.round(sc.scrollLeft/18),vis=Math.floor((sc.clientWidth-140)/18),last=Math.min(N-1,first+vis-1);
+    const t0=AX[first].t,t1=last+1<N?AX[last+1].t:24;
+    const br=sg.querySelector('.rib-br');if(br){br.style.left=(t0/24*100)+'%';br.style.width=((t1-t0)/24*100)+'%';}
+    sg.dataset.visibleCols=vis;sg.dataset.band_px=band;
+  });
+  document.querySelectorAll('.kit .rib-br').forEach(br=>{br.style.left=(4/24*100)+'%';br.style.width=(13.5/24*100)+'%';});
+  document.querySelectorAll('.slate-demo .rib-br').forEach(br=>{br.style.left=(4/24*100)+'%';br.style.width=(13.5/24*100)+'%';});
+  document.querySelectorAll('.pin').forEach(p=>p.remove());
+  document.querySelectorAll('.frame').forEach(f=>{
+    const fr=f.getBoundingClientRect();const FR={1:.5,4:.42,5:.5,10:.5,2:.0};
+    f.querySelectorAll('[data-pin]').forEach(el=>{const r=el.getBoundingClientRect();const p=document.createElement('div');p.className='pin';p.textContent=el.dataset.pin;
+      const z=parseFloat(getComputedStyle(f).zoom)||1;
+      p.style.left=Math.max(0,(r.left-fr.left+(FR[el.dataset.pin]||0)*r.width)/z-6)+'px';p.style.top=Math.max(0,(r.top-fr.top)/z-6)+'px';f.appendChild(p);});
+  });
+}
+layout();
+document.querySelectorAll('.toolbar button[data-z]').forEach(b=>b.addEventListener('click',()=>{
+  document.body.classList.remove('z75','z55');if(b.dataset.z!=='100')document.body.classList.add('z'+b.dataset.z);
+  document.querySelectorAll('.toolbar button[data-z]').forEach(x=>x.setAttribute('aria-pressed',x===b));layout();}));
+document.getElementById('tglNote').addEventListener('change',e=>document.body.classList.toggle('hidenotes',!e.target.checked));
+</script>
+</body>
+</html>

@@ -30,7 +30,8 @@
       "@rr/store-features": ["./packages/store-features/src/index.ts"],
       "@rr/invent-domain": ["./packages/invent-domain/src/index.ts"],
       "@rr/command-domain": ["./packages/command-domain/src/index.ts"],
-      "@rr/mock-oidc": ["./packages/mock-oidc/src/index.ts"]
+      "@rr/mock-oidc": ["./packages/mock-oidc/src/index.ts"],
+      "@rr/status-grid": ["./packages/status-grid/src/index.ts"]
     }
   }
 }

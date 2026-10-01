@@ -1,0 +1,123 @@
+// <rr-sg-details-deck> — Created: 2026-10-01
+//
+// Fills the pane body: tab strip, then the card panel taking the rest. Tokens read with fallbacks;
+// define --rr-sg-* at :root in the GLOBAL sheet (host tokens do not survive the pop-out).
+
+:host {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr); // tabs · panel
+  block-size: 100%;
+  min-block-size: 0;
+  color: var(--rr-sg-text, #e6ebef);
+  font-size: 12px;
+}
+
+// ── Tabs: 32px + a 1px rule. Scroll sideways; never wrap. ─────────────────────
+.tabs {
+  display: flex;
+  min-inline-size: 0;
+  padding: 0 6px;
+  border-block-end: 1px solid var(--rr-sg-border, rgb(150 190 220 / 14%));
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+}
+
+.tab {
+  position: relative;
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  block-size: 32px;
+  margin: 0;
+  padding: 0 12px 0 8px;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 12px;
+  color: var(--rr-sg-text-dim, #9aa4ad);
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+}
+.tab:hover {
+  color: var(--rr-sg-text, #e6ebef);
+  background: var(--rr-sg-hover, rgb(255 255 255 / 6%)); // hover is never cyan
+}
+.tab[aria-selected='true'] {
+  color: var(--rr-sg-text, #e6ebef);
+  font-weight: 500;
+}
+.tab[aria-selected='true']::after {
+  content: '';
+  position: absolute;
+  inset: auto 8px 0;
+  block-size: 2px;
+  border-radius: 1px 1px 0 0;
+  background: var(--rr-sg-accent, #67b9d4);
+}
+// Dashed: the keyboard position inside a composite widget that also shows a solid selection.
+.tab:focus-visible::before {
+  content: '';
+  position: absolute;
+  inset: 4px 2px 5px;
+  border: 2px dashed var(--rr-sg-focus, #67b9d4);
+  border-radius: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+// ── Panel: the scroller and the size container ───────────────────────────────
+.panel {
+  min-block-size: 0;
+  overflow: auto;
+  container-type: inline-size;
+  outline: none;
+}
+.panel:focus-visible { box-shadow: inset 0 0 0 2px var(--rr-sg-focus, #67b9d4); }
+
+// Always four columns at full width — a fixed 4 × 2 keeps every attribute in the same slot from
+// sample to sample (auto-fill would give 6 + 2). Fixed 135px rows: the panel scrolls, cards never squeeze.
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: 135px;
+  gap: 8px;
+  align-content: start;
+  padding: 10px 12px;
+}
+@container (max-width: 1000px) { .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@container (max-width: 760px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@container (max-width: 500px) { .cards { grid-template-columns: minmax(0, 1fr); } }
+
+// ── Message: replaces tabs and panel in every state but 'ready' ──────────────
+.message {
+  grid-row: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 24px;
+  text-align: center;
+}
+.message__title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 13px;
+}
+.message__hint {
+  margin: 0;
+  font-size: 11px;
+  color: var(--rr-sg-text-dim, #9aa4ad);
+}

@@ -1,0 +1,236 @@
+// <rr-sg-status-grid> — Created: 2026-10-01
+//
+// Geometry (--rr-sg-cell, --rr-sg-gap, --rr-sg-gutter) is set on the host by the component — its
+// one source is status-grid.ts. Everything else is a token with a fallback; define the --rr-sg-*
+// tokens at :root in the GLOBAL stylesheet to theme them (component-host tokens do not survive
+// the pop-out).
+
+:host {
+  position: relative; // the tooltip's containing block
+  display: grid;
+  grid-template-rows: auto auto auto minmax(0, 1fr); // meta · ribbon · banner · grid
+  block-size: 100%;
+  min-block-size: 0;
+  color: var(--rr-sg-text, #e6ebef);
+  font-size: 12px;
+}
+
+// ── Metadata header ─────────────────────────────────────────────────────────
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 6px 10px;
+  border-block-end: 1px solid var(--rr-sg-border, rgb(150 190 220 / 14%));
+}
+.meta__unit { display: flex; align-items: baseline; gap: 10px; min-inline-size: 0; }
+.meta__name { font-size: 13px; font-weight: 600; }
+.meta__window,
+.meta__now { color: var(--rr-sg-text-dim, #9aa4ad); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.meta__counts { display: flex; gap: 12px; margin: 0 0 0 auto; padding: 0; list-style: none; }
+.meta__count { display: flex; align-items: center; gap: 5px; color: var(--rr-sg-text-dim, #9aa4ad); }
+.meta__count-value { color: var(--rr-sg-text, #e6ebef); font-variant-numeric: tabular-nums; }
+
+// ── Day ribbon ───────────────────────────────────────────────────────────────
+.ribbon {
+  position: relative;
+  display: flex;
+  gap: 1px;
+  block-size: 10px;
+  margin: 6px 10px 4px calc(var(--rr-sg-gutter) + 10px);
+}
+.ribbon__hour {
+  flex: 1 1 0;
+  min-inline-size: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 1px;
+  background: var(--rr-sg-ribbon-fill, rgb(160 180 200 / 18%));
+  cursor: pointer;
+}
+.ribbon__hour[data-status='VALID'] { --rr-sg-ribbon-fill: var(--rr-sg-status-valid, #56f000); }
+.ribbon__hour[data-status='PARTIAL'] { --rr-sg-ribbon-fill: var(--rr-sg-status-partial, #fce83a); }
+.ribbon__hour[data-status='INVALID'] { --rr-sg-ribbon-fill: var(--rr-sg-status-invalid, #ff3838); }
+.ribbon__hour[data-status='ERROR'] { --rr-sg-ribbon-fill: var(--rr-sg-status-error, #ffb302); }
+.ribbon__hour[data-status='PENDING'] { --rr-sg-ribbon-fill: var(--rr-sg-status-pending, #2dccff); }
+.ribbon__hour:not([data-status='NO_DATA']) { opacity: 0.7; }
+.ribbon__hour:focus-visible { outline: 2px solid var(--rr-sg-focus, #67b9d4); outline-offset: 1px; }
+.ribbon__bracket {
+  position: absolute;
+  inset-block: -3px;
+  border: 1px solid var(--rr-sg-text, #e6ebef);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+// ── Banner — a flow row, so it pushes the grid down rather than painting over it ─────
+.banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-block-size: 26px;
+  padding: 4px 10px;
+  background: var(--rr-sg-banner, rgb(255 179 2 / 10%));
+  border-block: 1px solid var(--rr-sg-status-error, #ffb302);
+}
+
+.empty { margin: auto; color: var(--rr-sg-text-dim, #9aa4ad); }
+
+// ── The grid: scroller AND grid container ─────────────────────────────────────
+.grid {
+  position: relative; // containing block for the absolutely-positioned overlays
+  grid-row: 4;
+  display: grid;
+  gap: var(--rr-sg-gap);
+  align-content: start; // band slack collects at the bottom, never centred
+  overflow: auto;
+  min-block-size: 0;
+  background: var(--rr-sg-lattice, rgb(150 190 220 / 9%)); // what shows through the 1px gaps
+  outline: none;
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  .grid { scroll-behavior: auto; }
+}
+
+.label,
+.cell,
+.end-rule { background: var(--rr-sg-surface, #1b2d3e); }
+
+// Sticky regions. The corner sits above both tiers and the gutter; the time tiers are sunken.
+.corner,
+.hour,
+.minute { background: var(--rr-sg-surface-sunken, #172735); }
+.corner { position: sticky; inset: 0 auto auto 0; z-index: 4; grid-row: 1 / 3; grid-column: 1; }
+.hour {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 3;
+  grid-row: 1;
+  padding-inline-start: 4px;
+  font-size: 10px;
+  line-height: 20px;
+  color: var(--rr-sg-text-dim, #9aa4ad);
+  white-space: nowrap;
+  overflow: hidden;
+}
+.minute {
+  position: sticky;
+  inset-block-start: calc(20px + var(--rr-sg-gap));
+  z-index: 3;
+  grid-row: 2;
+  font-size: 10px;
+  line-height: 18px;
+  text-align: center;
+  color: var(--rr-sg-text-muted, #8a96a1);
+  font-variant-numeric: tabular-nums;
+}
+.minute--hour { color: var(--rr-sg-text-dim, #9aa4ad); }
+
+.row { display: contents; }
+.label {
+  position: sticky;
+  inset-inline-start: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-inline: 8px;
+  min-inline-size: 0;
+}
+.label__name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+// One cell = one sample: a 12px disc drawn by CSS, or a hyphen for NO_DATA.
+.cell {
+  position: relative;
+  scroll-margin: calc(38px + 2 * var(--rr-sg-gap)) 0 0 calc(var(--rr-sg-gutter) + var(--rr-sg-gap));
+  cursor: pointer;
+}
+.cell::before {
+  content: '';
+  position: absolute;
+  inset: 50% auto auto 50%;
+  inline-size: 12px;
+  block-size: 12px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--rr-sg-cell-fill);
+}
+.cell[data-status='VALID'] { --rr-sg-cell-fill: var(--rr-sg-status-valid, #56f000); }
+.cell[data-status='PARTIAL'] { --rr-sg-cell-fill: var(--rr-sg-status-partial, #fce83a); }
+.cell[data-status='INVALID'] { --rr-sg-cell-fill: var(--rr-sg-status-invalid, #ff3838); }
+.cell[data-status='ERROR'] { --rr-sg-cell-fill: var(--rr-sg-status-error, #ffb302); }
+.cell[data-status='PENDING'] { --rr-sg-cell-fill: var(--rr-sg-status-pending, #2dccff); }
+.cell[data-status='NO_DATA']::before {
+  inline-size: 8px;
+  block-size: 2px;
+  border-radius: 1px;
+  background: var(--rr-sg-nodata, #62798e);
+}
+
+.end-rule {
+  grid-column: 1 / -1;
+  padding-block: 4px;
+  font-size: 10px;
+  color: var(--rr-sg-text-muted, #8a96a1);
+}
+// The label stays in view however far the grid is scrolled sideways.
+.end-rule span { position: sticky; inset-inline-start: 8px; }
+
+// ── Overlays: absolutely positioned GRID ITEMS. Their grid-row / grid-column make the grid area
+//    their containing block, so the browser places them over the right cell at any band height,
+//    and they take no part in auto-placement. ──────────────────────────────────
+.hour-rule,
+.now,
+.hover,
+.ring,
+.focus-ring {
+  position: absolute;
+  pointer-events: none;
+}
+.hour-rule {
+  grid-row: 1 / -2;
+  inset-block: 0;
+  inset-inline-start: calc(-1 * var(--rr-sg-gap));
+  inline-size: 1px;
+  z-index: 1;
+  background: var(--rr-sg-lattice-hour, rgb(150 190 220 / 22%));
+}
+.hour-rule--anchor { inline-size: 2px; background: var(--rr-sg-lattice-anchor, #4e7392); }
+.now {
+  grid-row: 1 / -2;
+  inset-block: 0;
+  inset-inline-start: -2px;
+  inline-size: 2px;
+  z-index: 3;
+  background: var(--rr-sg-now, #dbe7f0);
+}
+.hover { inset: 0; background: var(--rr-sg-hover, rgb(255 255 255 / 6%)); }
+.ring {
+  inset: -1px;
+  z-index: 1;
+  border: 2px solid var(--rr-sg-accent, #67b9d4);
+  border-radius: 2px;
+}
+.focus-ring {
+  display: none;
+  inset: -3px;
+  z-index: 1;
+  border: 2px dashed var(--rr-sg-focus, #67b9d4);
+  border-radius: 3px;
+}
+.grid:focus-visible .focus-ring { display: block; }
+
+// ── Tooltip: one element, positioned by the component within the host ─────────
+.tooltip {
+  position: absolute;
+  z-index: 10;
+  padding: 4px 8px;
+  border-radius: 3px;
+  background: var(--rr-sg-tooltip, #101923);
+  border: 1px solid var(--rr-sg-border, rgb(150 190 220 / 14%));
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translate(-50%, -100%);
+}
+.tooltip--below { transform: translate(-50%, 0); }

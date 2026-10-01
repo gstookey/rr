@@ -1,0 +1,31 @@
+<rr-pane-group orientation="inline" [resizable]="true" stateKey="status-grid">
+  <rr-pane label="Units" paneId="units" basis="30%" [min]="240">
+    <rr-sg-unit-list
+      [items]="store.unitItems()"
+      [selectedId]="store.selectedUnitId()"
+      (unitSelect)="store.selectUnit($event)" />
+  </rr-pane>
+  <rr-pane-group orientation="block" groupId="work" [resizable]="true">
+    <rr-pane label="Status grid" paneId="grid" [min]="160">
+      <rr-sg-status-grid
+        [unit]="store.selectedUnit()"
+        [axis]="store.axis()"
+        [rows]="store.rows()"
+        [elapsedCount]="store.elapsedCount()"
+        [counts]="store.counts()"
+        [hourWorst]="store.hourWorst()"
+        [selected]="store.selectedPosition()"
+        [nowMs]="time.now()"
+        (cellSelect)="store.selectCell($event)" />
+    </rr-pane>
+    <rr-pane label="Details" paneId="deck" [min]="140">
+      <rr-sg-sample-context rrPaneHeader [sample]="store.selectedSample()" />
+      <rr-sg-details-deck
+        [state]="store.deckState()"
+        [sample]="store.selectedSample()"
+        [elements]="store.elements()"
+        [activeElement]="store.activeElement()"
+        (elementSelect)="store.selectElement($event)" />
+    </rr-pane>
+  </rr-pane-group>
+</rr-pane-group>

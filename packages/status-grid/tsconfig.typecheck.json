@@ -1,0 +1,9 @@
+{
+  "//": "Typecheck only. The feature layer reads @rr/ui's SOURCE through tsconfig.base paths, and TypeScript 6 defaults rootDir to this folder — so the root is widened to the repo here. The packaged build (tsconfig.lib.prod.json) resolves @rr/ui from dist instead and needs no such thing.",
+  "extends": "./tsconfig.lib.json",
+  "compilerOptions": {
+    "rootDir": "../..",
+    "declaration": false,
+    "declarationMap": false
+  }
+}
