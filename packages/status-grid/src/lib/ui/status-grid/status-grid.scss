@@ -166,10 +166,12 @@
 
 .end-rule {
   grid-column: 1 / -1;
-  padding: 4px 8px;
+  padding-block: 4px;
   font-size: 10px;
   color: var(--rr-sg-text-muted, #8a96a1);
 }
+// The label stays in view however far the grid is scrolled sideways.
+.end-rule span { position: sticky; inset-inline-start: 8px; }
 
 // ── Overlays: absolutely positioned GRID ITEMS. Their grid-row / grid-column make the grid area
 //    their containing block, so the browser places them over the right cell at any band height,
