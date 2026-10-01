@@ -37,8 +37,6 @@ function mouse(el: HTMLElement, type: string, x = 0) {
   el.dispatchEvent(new MouseEvent(type, { clientX: x, bubbles: true }));
 }
 
-const nextFrame = () => new Promise((resolve) => requestAnimationFrame(resolve));
-
 describe('RrPaneGroup', () => {
   let fixture: ComponentFixture<TestHost>;
   let host: TestHost;
@@ -317,7 +315,11 @@ describe('RrPaneGroup', () => {
       expect(outer.style.gridTemplateColumns).toBe('minmax(80px, 300fr) 8px minmax(80px, 700fr)');
     });
 
-    it('turns the collapse animation off while resizing, and back on two frames later', async () => {
+    it('turns the collapse animation off while resizing, and back on two frames later', () => {
+      // Hold the animation frames and run them by hand. No timers are involved, so this works
+      // the same with real or fake timers.
+      const frames: FrameRequestCallback[] = [];
+      jest.spyOn(globalThis, 'requestAnimationFrame').mockImplementation((callback) => frames.push(callback));
       create();
       layOut();
 
@@ -326,8 +328,7 @@ describe('RrPaneGroup', () => {
       fixture.detectChanges();
       expect(outer.hasAttribute('data-resizing')).toBe(true);
 
-      await nextFrame();
-      await nextFrame();
+      while (frames.length) frames.shift()!(0);
       fixture.detectChanges();
       expect(outer.hasAttribute('data-resizing')).toBe(false);
     });

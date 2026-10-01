@@ -2,6 +2,10 @@
 
 <!-- Convention (BS-14): one `# [YYYY-MM-DD] <type> | <title>` header level, newest-first — prepend below this comment. Types: ingest | decision | milestone | lint | governance | session -->
 
+# [2026-10-01] lint | UI-PANES-01 — panes specs hardened against consuming-app Jest setups
+
+While Graham ported the specs, `main`'s specs were re-run in the 17.3 Jest harness under the settings a consuming app commonly has. Clean under `resetMocks`, `restoreMocks`, `clearMocks` and `teardown.destroyAfterEach: false`. **Global fake timers broke one spec:** the animation-frame test awaited real frames (5 s timeout). A first fix that switched to fake timers inside the test made it worse (12 failures): under zone.js, switching back to real timers leaves `setTimeout` undefined for the rest of the file. The test now holds the frames with `jest.spyOn(globalThis, 'requestAnimationFrame')` and runs them itself, with no timer involvement: 109/109 with real or global fake timers, 100% coverage, and 109/109 under Vitest. Also documented (guide §10.1): the specs need jsdom's real `localStorage` and `getComputedStyle`; the common setup-jest mocks of either break 4 and 2 specs respectively.
+
 # [2026-09-30] milestone | UI-PANES-01 — panes specs simplified to plain Jest, still 100%
 
 Graham, reading PR #55: the runner-neutral helper (`testing/panes-testing.ts`, hand-written spies, a manual clock, descriptor patching) worked but read as non-human, and he wanted the simplest tests that still reach 100%. The helper is gone. The specs are now written as an Angular team writes Jest tests — `jest.fn`, `jest.spyOn`, `jest.useFakeTimers`, `fixture.detectChanges()`, plain `MouseEvent`s — and `rr` adapts to them rather than the reverse: `packages/ui/test-setup.ts`, wired through the ui test target's `setupFiles`, sets `globalThis.jest = vi`. The consuming app copies the specs unchanged.
