@@ -1,0 +1,4 @@
+# Python packages to stage as wheels for the Nexus pypi-hosted repository. Created 2026-10-01.
+# Neither source list names any PyPI package (the Black VS Code extension bundles its own black),
+# so this is intentionally empty. Add exact pins (name==version), one per line; the bundle
+# script downloads cp312 / manylinux x86_64 wheels (plus their dependencies) for them.

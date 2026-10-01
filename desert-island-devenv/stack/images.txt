@@ -1,0 +1,18 @@
+# Container images for the air-gapped bundle. Created 2026-10-01.
+# Format: <image reference>   # provenance / why
+# The build script pulls linux/amd64, records the digest, and saves each image as a tar.
+# Tags are recorded with digests in IMAGES.lock at build time -- the digest is the pin.
+#
+# --- architect's list ---
+docker.io/library/eclipse-temurin:25.0.4.1_1-jdk     # "Java 25 Temurin Image" (exact build; 25-jdk floats)
+docker.io/library/postgres:18.6                       # "Postgres 18.6 Image"
+docker.io/dpage/pgadmin4:9.17                         # "Pgadmin 9.17 Image"
+docker.io/library/rabbitmq:4.3.5-management           # "RabbitMQ 4.3.5 Image" (-management adds the admin UI; plain 4.3.5 also exists)
+docker.io/testcontainers/ryuk:0.14.0                  # CORRECTED from 0.9.0: Testcontainers 2.0.5 hard-codes ryuk:0.14.0 (1.20.1 used 0.8.1; 0.9.0 matches neither)
+#
+# --- ADDED-IN-VETTING (not on the source list): images the listed Testcontainers modules pull, missing from the list ---
+docker.io/testcontainers/sshd:1.3.0                   # Testcontainers 2.0.5 host-port exposure (used by the selenium module)
+docker.io/apache/kafka:4.2.1                          # testcontainers-kafka (Kafka 4.2.1 = the client version Boot 4.1.1 manages)
+docker.io/mockserver/mockserver:8.0.0                 # testcontainers-mockserver; 8.0.0 (2026-09-15) matches the mockserver-client-java the harvest bundles
+docker.io/selenium/standalone-chrome:latest           # testcontainers-selenium -- NEEDS ARCHITECT: pin a version; "latest" is resolved to a digest at build time
+quay.io/keycloak/keycloak:26.7.4                      # the server keycloak-js/keycloak-angular talk to. The FE list's "keycloak-connect 26.7.4" matches this SERVER version, not the npm adapter (newest adapter: 26.1.1)

@@ -1,0 +1,43 @@
+# Back-end harvest version catalog -- created 2026-10-01.
+# This project is NOT an application. Building it makes Gradle resolve (and the bundle script
+# capture) every artifact a Spring Boot 4.1.1 / Java 25 service on the island will need,
+# including the tool jars Checkstyle, PMD, JaCoCo and Spotless fetch lazily at task time.
+# Each pin cites its source; "BOM" = managed by spring-boot-dependencies 4.1.1, so the island's
+# own builds resolve the same version without declaring it.
+[versions]
+java = "25"                           # architect: Java 25 (Temurin 25.0.4.1+1)
+spring-boot = "4.1.1"                 # architect
+spring-dependency-management = "1.1.7" # what start.spring.io generates for Boot 4.1.1
+testcontainers = "2.0.5"              # CORRECTED from 1.20.1: Boot 4.1.1's BOM manages 2.0.5; 2.x renamed the modules
+checkstyle = "14.1.0"                 # architect
+pmd = "7.27.0"                        # architect
+spotless = "8.10.2"                   # architect (Gradle plugin)
+cucumber = "7.34.7"                   # architect
+logstash-logback-encoder = "9.0"      # architect wrote "0.0"; 9.0 is current and is the Jackson 3 line Boot 4 uses -- NEEDS ARCHITECT
+freefair-lombok = "9.5.0"             # architect's "lombok gradle plugin 9.5.0" (io.freefair.lombok)
+lombok = "1.18.46"                    # CORRECTED: the architect's "lombok 9.5.0" is the plugin version; the library is 1.18.x (BOM: 1.18.46)
+jackson2 = "2.21.5"                   # architect "jackson fasterxml 2.21" -> BOM jackson-2-bom 2.21.5 (Boot 4 itself defaults to Jackson 3.1.5)
+h2-architect = "2.3.232"              # architect "H2 2.3" (newest 2.3.x); NOTE the BOM manages 2.4.240 -- both are harvested
+jacoco = "0.8.15"                     # CORRECTED from 0.8.12: 0.8.12 cannot instrument Java 25 classes (official support from 0.8.14)
+jakarta-xml-bind = "4.0.5"            # architect (= BOM)
+threeten-extra = "1.8.0"              # architect
+commons-math3 = "3.6.1"               # architect "Apache Commons 3.6.1" -- the only Commons artifact at 3.6.1. AMBIGUOUS, see below
+commons-lang3 = "3.20.0"              # BOM; harvested in case "Apache Commons" meant commons-lang3 -- NEEDS ARCHITECT
+mockserver = "8.0.0"                  # ADDED-IN-VETTING: testcontainers-mockserver needs the client library (provided scope); matches the 8.0.0 image
+
+[libraries]
+cucumber-bom = { module = "io.cucumber:cucumber-bom", version.ref = "cucumber" }
+logstash-logback-encoder = { module = "net.logstash.logback:logstash-logback-encoder", version.ref = "logstash-logback-encoder" }
+jackson2-bom = { module = "com.fasterxml.jackson:jackson-bom", version.ref = "jackson2" }
+h2-architect = { module = "com.h2database:h2", version.ref = "h2-architect" }
+threeten-extra = { module = "org.threeten:threeten-extra", version.ref = "threeten-extra" }
+commons-math3 = { module = "org.apache.commons:commons-math3", version.ref = "commons-math3" }
+commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commons-lang3" }
+mockserver-client = { module = "org.mock-server:mockserver-client-java", version.ref = "mockserver" }
+jakarta-xml-bind-api = { module = "jakarta.xml.bind:jakarta.xml.bind-api", version.ref = "jakarta-xml-bind" }
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management" }
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+freefair-lombok = { id = "io.freefair.lombok", version.ref = "freefair-lombok" }
