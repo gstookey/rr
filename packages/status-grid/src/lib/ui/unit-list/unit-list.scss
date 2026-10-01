@@ -1,0 +1,170 @@
+// <rr-sg-unit-list> — Created: 2026-10-01
+//
+// Everything is a token with a fallback; define the --rr-sg-* tokens at :root in the GLOBAL
+// stylesheet to theme them (component-host tokens do not survive the pop-out).
+//
+// The PANE BODY (`.rr-pane__body`, overflow: auto) is the scroller. The host is a plain block in
+// it, as tall as its content, so the filter row's `position: sticky` sticks to the pane body's
+// top for the whole list. Nothing here may set overflow on the host — that would make the HOST
+// the scroll container and the filter row would scroll away with the rows.
+
+:host {
+  display: block;
+  color: var(--rr-sg-text, #e6ebef);
+  font-size: 12px;
+}
+
+// ── Filter row ──────────────────────────────────────────────────────────────
+.filter {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 1; // above the rows that scroll under it
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  block-size: 40px;
+  padding: 0 10px;
+  background: var(--rr-sg-surface, #1b2d3e);
+  border-block-end: 1px solid var(--rr-sg-border, rgb(150 190 220 / 14%));
+}
+
+// The soft shadow shows only once the list is scrolled. Scroll-driven, so no JavaScript watches
+// the pane body; where unsupported the row is simply flat.
+@supports (animation-timeline: scroll()) {
+  .filter {
+    animation: rr-sg-unit-list-lift linear both;
+    animation-timeline: scroll(nearest block);
+    animation-range: 0 8px;
+  }
+}
+@keyframes rr-sg-unit-list-lift {
+  from { box-shadow: none; }
+  to { box-shadow: 0 5px 8px -4px rgb(0 0 0 / 55%); }
+}
+
+.filter__field {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  box-sizing: border-box;
+  block-size: 26px;
+  padding: 0 8px;
+  border: 1px solid var(--rr-sg-border-strong, rgb(150 190 220 / 26%));
+  border-radius: 3px;
+  background: var(--rr-sg-field, #132230);
+  color: var(--rr-sg-text, #e6ebef);
+  font: inherit;
+  font-size: 12px;
+}
+.filter__field::placeholder { color: var(--rr-sg-text-muted, #8a96a1); }
+.filter__field:focus-visible { outline: 2px solid var(--rr-sg-focus, #67b9d4); outline-offset: 1px; }
+
+.filter__count {
+  flex: none;
+  font-size: 11px;
+  color: var(--rr-sg-text-dim, #9aa4ad);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.filter__count b { color: var(--rr-sg-text, #e6ebef); font-weight: 500; }
+
+// ── Listbox ─────────────────────────────────────────────────────────────────
+.listbox {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  outline: none; // the dashed ring on the active option is the focus indicator
+}
+// Focused with no active option (the filter hid it): ring the list itself, so focus never vanishes.
+.listbox:focus-visible:not([aria-activedescendant]) {
+  outline: 2px dashed var(--rr-sg-focus, #67b9d4);
+  outline-offset: -2px;
+}
+
+.option {
+  position: relative; // the focus ring's containing block
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  block-size: 28px;
+  padding: 0 12px 0 10px;
+  border-block-end: 1px solid var(--rr-sg-rule, rgb(150 190 220 / 8%));
+  cursor: pointer;
+}
+.option rr-sg-status-dot { justify-self: center; }
+// Hover is a neutral wash, never the accent: the accent means "selected".
+.option:hover { background: var(--rr-sg-hover, rgb(255 255 255 / 6%)); }
+.option.option--selected { // after :hover, and as specific, so the tint wins on hover
+  background: var(--rr-sg-accent-tint, rgb(103 185 212 / 16%));
+  box-shadow: inset 3px 0 0 var(--rr-sg-accent, #67b9d4);
+}
+
+// Dashed = the keyboard position inside a composite widget; only while the listbox has
+// keyboard focus, so a mouse user never sees it.
+.listbox:focus-visible .option--active::after {
+  content: '';
+  position: absolute;
+  inset: 2px 3px 2px 5px;
+  border: 2px dashed var(--rr-sg-focus, #67b9d4);
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+.option__name {
+  overflow: hidden;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.option--selected .option__name { font-weight: 600; }
+
+// The matched run: weight and an underline, NO colour — colour is spent on status and selection.
+.option__match {
+  background: none;
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline 2px var(--rr-sg-text-dim, #9aa4ad);
+  text-underline-offset: 3px;
+}
+
+.option__window {
+  font-size: 11px;
+  color: var(--rr-sg-text-dim, #9aa4ad);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.option__running { color: var(--rr-sg-text, #e6ebef); }
+
+// ── Empty state ─────────────────────────────────────────────────────────────
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 36px 16px;
+  text-align: center;
+}
+.empty__title,
+.empty__hint { margin: 0; }
+.empty__hint { font-size: 11px; color: var(--rr-sg-text-dim, #9aa4ad); }
+.empty__clear {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  block-size: 22px;
+  padding: 0 10px;
+  border: 1px solid var(--rr-sg-border-strong, rgb(150 190 220 / 26%));
+  border-radius: 3px;
+  background: transparent;
+  color: var(--rr-sg-text, #e6ebef);
+  font: inherit;
+  font-size: 11px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.empty__clear:hover { background: var(--rr-sg-hover, rgb(255 255 255 / 6%)); }
+.empty__clear:focus-visible { outline: 2px solid var(--rr-sg-focus, #67b9d4); outline-offset: 1px; }
