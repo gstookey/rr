@@ -16,7 +16,13 @@
         (cellSelect)="store.selectCell($event)" />
     </rr-pane>
     <rr-pane label="Details" paneId="deck" [min]="140">
-      <p>details deck</p>
+      <rr-sg-sample-context rrPaneHeader [sample]="store.selectedSample()" />
+      <rr-sg-details-deck
+        [state]="store.deckState()"
+        [sample]="store.selectedSample()"
+        [elements]="store.elements()"
+        [activeElement]="store.activeElement()"
+        (elementSelect)="store.selectElement($event)" />
     </rr-pane>
   </rr-pane-group>
 </rr-pane-group>

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RR_PANES } from '@rr/ui';
 import { StatusGridStore, TimeSource } from '../data-access';
-import { StatusGrid } from '../ui';
+import { DetailsDeck, SampleContext, StatusGrid } from '../ui';
 
 /**
  * `<rr-sg-status-grid-surface>` — the utility window's content: the three panes, wired to the store.
@@ -18,7 +18,7 @@ import { StatusGrid } from '../ui';
   selector: 'rr-sg-status-grid-surface',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RR_PANES, StatusGrid],
+  imports: [RR_PANES, StatusGrid, SampleContext, DetailsDeck],
   templateUrl: './status-grid-surface.html',
   styleUrl: './status-grid-surface.scss',
 })
