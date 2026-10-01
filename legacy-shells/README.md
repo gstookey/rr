@@ -4,16 +4,27 @@ status: exploratory
 title: Legacy Shells — approximated Legacy Island app monorepos
 areas: [isolated-network, frontend, dev-environment, technology-stack]
 related: ["docs/design/packets/legacy-shell-bundle-01-design-packet/README.md", "docs/context/canonical/two_island_model.md"]
-updated: 2026-09-03
+updated: 2026-10-01
 ---
 
 # Legacy Shells
 
-**Created:** 2026-09-03 | **Status:** `exploratory` — approximations, not ports
+**Created:** 2026-09-03 | **Last updated:** 2026-10-01 (re-based on the exact-pinned sources, re-walked 17 → **22.2.1**, `tools/hop.sh`) | **Status:** `exploratory` — approximations, not ports
 
 Two Angular monorepo shells built from the **real package.json files** of two Legacy Island applications (`docs/source-documents/legacy-apps/`, including Graham's 2026-09-03 corrections: puppeteer 21.9.0, `@types/stompjs ^2.3.9`, real interface package content, fixed cross-app refs). Their purpose is to approximate the island's **dependency lock shapes** so upgrade hops and transfer bundles can be rehearsed against something with the estate's real dependency surface. **They contain no real application code.**
 
-**Current state: both shells stand at Angular 19.2.25** (Milestone 1's floor), having been walked 17→18→19 by the procedure in `docs/design/packets/legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v2.md`. The full v17→v18→v19 lock history is in git; lock snapshots for bundle-building live in `bundle/locks/`. Each shell root carries the island's `.npmrc` convention (`PUPPETEER_SKIP_DOWNLOAD=true` — per Graham, present in every island app).
+**Current state (2026-10-01): both shells stand at Angular 22.2.1**, walked 17 → 18 → 19 → 20 → 21 → 22.2.1 by `tools/hop.sh` (procedure: `docs/design/packets/legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v3.md`) after being **re-based on Graham's exact-pinned package.json files** (main 4dec9c4 — the versions actually installed on the island, no `^`). Their v17 baseline is regenerated from those sources by `tools/shells-from-source.mjs`, which prints every correction it applies. Per-rung lock snapshots for bundle-building live in `bundle/locks/v17..v22/` (+ `bundle/tempcli/hop18..hop22/` for `ng update`'s temporary CLI); the pool they define is `bundle/SHA256SUMS` + `bundle/MANIFEST.json` (2,202 tarballs / 375.9 MB; the 2026-09-03 pool is archived beside it for `--delta-from`). Each shell root carries the island's `.npmrc` convention (`PUPPETEER_SKIP_DOWNLOAD=true`).
+
+### Tools (`tools/`)
+
+| Tool | Does |
+|---|---|
+| `build-transfer-bundle.sh` | the ladder bundle (cumulative / one rung / delta) from the committed locks — see the [bundling scripts guide](../docs/context/operations/user-workflow/bundling_scripts_guide_v1.md) |
+| `hop.sh <app> <rung> <step>` | one rung, one step at a time (check · pre · phase1 · phase2 · pins · teardown · validate · all); ships in every bundle |
+| `upload-to-nexus.sh` + `npm-load-package.sh` | load a bundle into Nexus (`npm publish`, staged with `--through <rung>`, npm-metadata verify + repair); ship in every bundle |
+| `make-root-angular-json.mjs` / `port-root-angular-json.mjs` | the temporary root `angular.json`, and carrying migration edits back into `packages/client/angular.json` |
+| `shells-from-source.mjs` | regenerate the shells' v17 package.json files from `docs/source-documents/legacy-apps/` |
+| `lock-union.mjs` · `fetch-tarballs.mjs` · `slice-bundle.mjs` | the pool machinery (npm and pnpm v9 lockfiles; shared with the dev-environment bundles) |
 
 They live here in `legacy-shells/` — deliberately **outside** the future RR product space (`apps/*` / `packages/*`, C-001/DR-05) — because they model *external* island repositories, not parts of RR.
 
@@ -35,6 +46,8 @@ The committed `package-lock.json` at each root is the deliverable: the approxima
 **Graham: paste your real files over the placeholders in place** — same paths, parent and children (`jest.config.cjs`, `angular.json`, `setup-jest.ts`, `tsconfig.json`, `tsconfig.spec.json`, and any others). Locks get re-checked after each drop.
 
 ## Corrections made to the source package.jsons (each one flagged, none silent)
+
+**As of 2026-10-01 only three remain** (applied by `tools/shells-from-source.mjs`, which prints each): **C1** private-scope packages dropped (`@other-team/*`, `@ssd_victor/*` — not on the public registry); **C2** `&& fix-es-imports` stripped from build scripts (its package is private-scope); **C3** app-02's root `start`/`serve` scripts pointed at app-02's own workspaces. Graham's 2026-10-01 source update resolved the rest (puppeteer 21.9.0, `@types/stompjs` 2.3.9, the `@typescript-eslint` names, app-02's own common package, the real interface package). Notable changes in the sources: **app-02 has no NgRx at all**, and app-02's Material/CDK is **17.0.4** (app-01: 17.3.10). The historical list below is kept for its rationale.
 
 1. **Private-scope packages omitted** — not on the public registry (verified 404): `@other-team/core-web-angular`, `@other-team/core-common`, `@other-team/core-node`, `@ssd_victor/fix-es-imports`, `@ssd_victor/merge-coverage`. They live only on the island's Nexus; **their transitive dependency trees are invisible to this rehearsal** (see honest-limits in the packet).
 2. **`puppeteer` `3.2.5` → `3.3.0`** — 3.2.5 does not exist on the public registry (3.x ends at 3.3.0). `[NEEDS GRAHAM]`: the version your Nexus actually serves.
