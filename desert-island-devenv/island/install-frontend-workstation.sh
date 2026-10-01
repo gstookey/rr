@@ -2,7 +2,7 @@
 # install-frontend-workstation.sh -- set up one RHEL 9 workstation for front-end work from the
 # front-end bundle. Created 2026-10-01; rehearsed in a RHEL 9 (UBI 9) container (see packet).
 #
-#   sudo ./install-frontend-workstation.sh system   # once per machine: Node, uv, VS Code RPM,
+#   sudo ./install-frontend-workstation.sh system   # once per machine: Node (+npm), pnpm, uv, VS Code RPM,
 #                                                    # Playwright browsers, Cypress binary, Prisma
 #                                                    # engine, /etc/profile.d + global npmrc
 #   ./install-frontend-workstation.sh user          # once per developer: VS Code extensions +
@@ -53,6 +53,15 @@ update-notifier=false
 NPMRC
   echo "node $(/usr/local/bin/node --version), npm $(/usr/local/bin/npm --version)"
 
+  # pnpm (2026-10-01: both package managers ship; each app picks its own). It is an npm package
+  # with no dependencies: installed from this bundle's own tarball when present, else from Nexus.
+  log "pnpm $PNPM_VERSION -> $PREFIX/node/bin"
+  local pt="$BUNDLE_DIR/npm/tarballs/pnpm-$PNPM_VERSION.tgz"
+  if [ "${FROM_NEXUS:-0}" = 1 ] || [ ! -f "$pt" ]; then pt="pnpm@$PNPM_VERSION"; fi
+  "$PREFIX/node/bin/npm" install -g --prefix "$PREFIX/node" "$pt" --no-audit --no-fund >/dev/null || die "pnpm $PNPM_VERSION did not install"
+  for b in pnpm pnpx; do ln -sf "$PREFIX/node/bin/$b" "/usr/local/bin/$b"; done
+  echo "pnpm $(/usr/local/bin/pnpm --version)"
+
   log "uv $UV_VERSION -> /usr/local/bin"
   local ua; ua=$(getfile "uv/$UV_VERSION/uv-x86_64-unknown-linux-gnu.tar.gz")
   tar -xzf "$ua" -C /usr/local/bin --strip-components=1 uv-x86_64-unknown-linux-gnu/uv uv-x86_64-unknown-linux-gnu/uvx
@@ -71,6 +80,9 @@ NPMRC
   cat > /etc/profile.d/devenv-frontend.sh <<PROFILE
 # Written by install-frontend-workstation.sh on $(date +%F). Air-gapped front-end tooling.
 export PATH="$PREFIX/node/bin:\$PATH"
+# npm and pnpm both read npm_config_* from the environment, so this one line points both at Nexus
+# whatever npmrc a project carries (the global npmrc above says the same for npm).
+export npm_config_registry="$(repo_url "$NPM_REPO")/"
 # Binaries npm packages would otherwise download from the internet during npm ci:
 export CYPRESS_INSTALL_BINARY="$PREFIX/cypress/$CYPRESS_VERSION/cypress.zip"
 export PRISMA_ENGINES_MIRROR="$RAWURL/prisma-engines"

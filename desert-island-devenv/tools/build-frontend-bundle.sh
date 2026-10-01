@@ -4,9 +4,11 @@
 # Created 2026-10-01 (Axium). Rehearsal results: docs/design/packets/desert-island-devenv-01-design-packet/.
 #
 # WHAT IT PRODUCES  <workdir>/devenv-frontend-bundle-<date>.tar containing:
-#   npm/            every registry tarball the vetted stack's lockfile references (linux-x64),
-#                   sha512-verified against the lockfile, + SHA256SUMS, MANIFEST.json, the
-#                   package.json and package-lock.json that define it   -> Nexus npm-hosted
+#   npm/            every registry tarball the vetted stack's lockfiles reference (linux-x64),
+#                   sha512-verified against the lockfile, + SHA256SUMS, MANIFEST.json and the
+#                   files that define it: the example stack (package.json + pnpm-lock.yaml --
+#                   locked to pnpm, 2026-10-01) and package-managers/ (pnpm itself + only-allow,
+#                   npm-locked). npm ships inside Node.                 -> Nexus npm-hosted
 #   raw/            binaries laid out exactly as they go into Nexus raw-hosted:
 #                     nodejs/       Node.js linux-x64 tarball + SHASUMS256.txt (nodejs.org layout)
 #                     vscode/       VS Code RPM (Microsoft's published sha256 verified)
@@ -25,8 +27,9 @@
 #   Behind a proxy: export HTTPS_PROXY as usual (Node's fetch is told to honour it).
 #
 # USAGE   build-frontend-bundle.sh <workdir> [--relock] [--skip-browsers] [--skip-vscode]
-#   --relock         regenerate stack/frontend/package-lock.json from package.json first (pins
-#                    are exact, so only transitive versions can move) -- commit the result
+#   --relock         regenerate stack/frontend/pnpm-lock.yaml (with the pinned pnpm) and
+#                    stack/package-managers/package-lock.json from their package.json files first
+#                    (pins are exact, so only transitive versions can move) -- commit the result
 #   --skip-browsers  omit Cypress + Playwright binaries (~400 MB) for a quick trial run
 #   --skip-vscode    omit the VS Code RPM and extensions
 #
@@ -79,26 +82,32 @@ export PATH="$TOOLNODE/bin:$PATH"
 echo "node $(node --version), npm $(npm --version)"
 
 # ---------------------------------------------------------------- 2. npm package pool
-log "2/9 npm package pool from the committed lockfile"
-FE="$STACK/frontend"
+log "2/9 npm package pool from the committed lockfiles (example stack: pnpm; tools: npm)"
+FE="$STACK/frontend"; PM="$STACK/package-managers"
+PNPM_VERSION=$(node "$ROOT/tools/lock-version.mjs" "$PM/package-lock.json" pnpm 2>/dev/null || node -p 'require(process.argv[1]).dependencies.pnpm' "$PM/package.json")
 if [ "$RELOCK" = 1 ]; then
-  ( cd "$FE" && rm -f package-lock.json && npm install --package-lock-only --ignore-scripts --no-audit --no-fund )
-  echo "lockfile regenerated -- review and commit stack/frontend/package-lock.json"
+  ( cd "$PM" && rm -f package-lock.json && npm install --package-lock-only --ignore-scripts --no-audit --no-fund )
+  [ -x "$CACHE/pnpm-$PNPM_VERSION/bin/pnpm" ] || npm install -g --prefix "$CACHE/pnpm-$PNPM_VERSION" "pnpm@$PNPM_VERSION" --no-audit --no-fund
+  ( cd "$FE" && rm -f pnpm-lock.yaml && "$CACHE/pnpm-$PNPM_VERSION/bin/pnpm" install --lockfile-only --ignore-scripts )
+  echo "lockfiles regenerated -- review and commit stack/frontend/pnpm-lock.yaml and stack/package-managers/package-lock.json"
 fi
-[ -f "$FE/package-lock.json" ] || die "no lockfile at $FE/package-lock.json (run with --relock)"
+[ -f "$FE/pnpm-lock.yaml" ] || die "no lockfile at $FE/pnpm-lock.yaml (run with --relock)"
+[ -f "$PM/package-lock.json" ] || die "no lockfile at $PM/package-lock.json (run with --relock)"
 mkdir -p "$OUT/npm"
-node "$LEGACY_TOOLS/lock-union.mjs" "$FE/package-lock.json" > "$CACHE/union.tsv"
+node "$LEGACY_TOOLS/lock-union.mjs" "$FE/pnpm-lock.yaml" "$PM/package-lock.json" > "$CACHE/union.tsv"
 # Reuse tarballs from a previous run's pool instead of re-downloading them, then drop any the
 # current lockfile no longer names (fetch-tarballs writes SHA256SUMS for exactly the union).
 [ -d "$CACHE/npm-tarballs" ] && cp -al "$CACHE/npm-tarballs" "$OUT/npm/tarballs"
 node "$LEGACY_TOOLS/fetch-tarballs.mjs" "$CACHE/union.tsv" "$OUT/npm/tarballs"
 rm -rf "$CACHE/npm-tarballs" && cp -al "$OUT/npm/tarballs" "$CACHE/npm-tarballs"
 ( cd "$OUT/npm/tarballs" && comm -23 <(ls | LC_ALL=C sort) <(sed 's#.*tarballs/##' ../SHA256SUMS | LC_ALL=C sort) | xargs -r rm -f )
-cp "$FE/package.json" "$FE/package-lock.json" "$OUT/npm/"
+cp "$FE/package.json" "$FE/pnpm-lock.yaml" "$OUT/npm/"
+mkdir -p "$OUT/npm/package-managers"; cp "$PM/package.json" "$PM/package-lock.json" "$OUT/npm/package-managers/"
 ( cd "$OUT/npm" && sha256sum -c SHA256SUMS --quiet ) || die "npm pool failed its own SHA256SUMS"
 
 # Versions of the binaries are derived from the lock, never typed twice.
-lockver() { node -e 'const l=require(process.argv[1]); const e=l.packages["node_modules/"+process.argv[2]]; if(!e) process.exit(3); console.log(e.version)' "$FE/package-lock.json" "$1"; }
+[ -f "$OUT/npm/tarballs/pnpm-$PNPM_VERSION.tgz" ] || die "pnpm $PNPM_VERSION is not in the pool"
+lockver() { node "$ROOT/tools/lock-version.mjs" "$FE/pnpm-lock.yaml" "$1" || die "$1 is not in $FE/pnpm-lock.yaml"; }
 CYPRESS_VERSION=$(lockver cypress); PLAYWRIGHT_VERSION=$(lockver playwright-core)
 PRISMA_COMMIT=$(lockver @prisma/engines-version | sed 's/.*\.//')
 echo "from lockfile: cypress $CYPRESS_VERSION, playwright $PLAYWRIGHT_VERSION, prisma engines $PRISMA_COMMIT"
@@ -178,9 +187,11 @@ else echo "  no Python packages requested (stack/python/requirements.txt is empt
 # ---------------------------------------------------------------- 9. island scripts + checksums + tar
 log "9/9 island scripts, checksums, archive"
 rm -rf "$OUT/island"; cp -r "$ROOT/island" "$OUT/island"; rm -f "$OUT/island/devenv.conf" "$OUT/island/backend.versions.env"
+cp "$LEGACY_TOOLS/npm-load-package.sh" "$OUT/island/lib/"      # shared npm loader (per-package + metadata repair)
 # Exact versions + file names for the island installer (it never guesses a version).
 cat > "$OUT/island/frontend.versions.env" <<VERS
 NODE_VERSION=$NODE_VERSION
+PNPM_VERSION=$PNPM_VERSION
 UV_VERSION=$UV_VERSION
 VSCODE_VERSION=$VSCODE_VERSION
 VSCODE_RPM=$([ "$SKIP_VSCODE" = 0 ] && basename "$RPM" || true)
@@ -191,7 +202,7 @@ VERS
 cat > "$OUT/BUNDLE-INFO.txt" <<INFO
 bundle:   $NAME
 built:    $(date -u +%FT%TZ) on $(uname -sr)
-node:     $NODE_VERSION   vscode: $VSCODE_VERSION   uv: $UV_VERSION
+node:     $NODE_VERSION (npm $(npm --version))   pnpm: $PNPM_VERSION   vscode: $VSCODE_VERSION   uv: $UV_VERSION
 cypress:  $CYPRESS_VERSION   playwright: $PLAYWRIGHT_VERSION ($PLAYWRIGHT_BROWSERS)   prisma engine: $PRISMA_COMMIT ($PRISMA_BINARY_TARGETS)
 npm pool: $(node -e 'const m=require(process.argv[1]); console.log(m.count+" tarballs, "+(m.totalBytes/1e6).toFixed(1)+" MB")' "$OUT/npm/MANIFEST.json")
 browsers: $([ "$SKIP_BROWSERS" = 1 ] && echo OMITTED || echo included)   vscode: $([ "$SKIP_VSCODE" = 1 ] && echo OMITTED || echo included)

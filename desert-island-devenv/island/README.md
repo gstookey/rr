@@ -12,11 +12,11 @@ Written for someone on the isolated network **with no internet and no one to ask
 | front-end | `raw/` | Nexus **raw-hosted** | Node.js, VS Code RPM + extensions, uv, Cypress binary, Playwright browsers, Prisma engine |
 | front-end | `pypi/` | Nexus **pypi-hosted** | Python wheels (only if any were requested) |
 | back-end | `maven/` | Nexus **maven-hosted** | every Java artifact and Gradle plugin the locked back-end build needs |
-| back-end | `raw/` | Nexus **raw-hosted** | Temurin JDK, Gradle, Eclipse IDE, Helm, kubectl |
+| back-end | `raw/` | Nexus **raw-hosted** | Temurin JDK, Gradle, Eclipse IDE, Docker CE RPMs (+ Docker's signing key), kubectl, Helm 3 + 4, kind |
 | back-end | `images/` | Nexus **docker-hosted** | container images (`IMAGES.lock` lists each tag with its digest) |
 | both | `island/` | — | these scripts |
 
-**Not in the bundles — from the RHEL 9 installation media / your RHEL repositories:** `python3.12 python3.12-pip python3.12-devel`, `podman` (+ `podman-docker` if you want the `docker` command), `skopeo`, `git`, `jq`, and the desktop libraries VS Code needs (dnf resolves those itself).
+**Not in the bundles — from the RHEL 9 installation media / your RHEL repositories:** `python3.12 python3.12-pip python3.12-devel`, `skopeo` (optional, for the image loader), `git`, `jq`, Docker CE's dependencies (`container-selinux`, `libseccomp`, `iptables-nft`, `nftables` — dnf pulls them when the installer installs the bundled Docker RPMs), and the desktop libraries VS Code needs (dnf resolves those itself). **Do not install `podman-docker`** — it owns `/usr/bin/docker` and conflicts with Docker CE (ADR-008: the team uses Docker).
 
 ## Order of operations
 
@@ -77,18 +77,22 @@ What they set up — so nothing ever reaches for the internet:
 - **Packages that download binaries during `npm ci`** are pointed at local copies: Cypress (`CYPRESS_INSTALL_BINARY`), Prisma (`PRISMA_ENGINES_MIRROR` → raw-hosted), Playwright (`PLAYWRIGHT_BROWSERS_PATH`, download off), chromedriver and puppeteer downloads off. All in `/etc/profile.d/devenv-frontend.sh`.
 - **Gradle:** `~/.gradle/init.d/devenv-nexus.init.gradle.kts` **replaces** every repository any build declares with `maven-hosted` (Gradle fails on an unreachable repository rather than skipping it, so leaving `mavenCentral()` in place would break builds).
 - **Gradle wrapper:** projects whose `gradle-wrapper.properties` points at `services.gradle.org` cannot download Gradle. Either run the installed `gradle`, or set `distributionUrl` to `<NEXUS>/repository/raw-hosted/gradle/distributions/gradle-<version>-bin.zip`.
-- **Testcontainers:** `~/.testcontainers.properties` sends Docker Hub images to your Nexus registry. On rootless Podman the reaper container (Ryuk) is disabled — containers left by a crashed test run need removing by hand (`podman ps -a`).
+- **Testcontainers:** `~/.testcontainers.properties` sends Docker Hub images (and Ryuk, its clean-up container, which stays on under Docker) to your Nexus registry.
+- **Docker:** `install-backend-workstation.sh system` installs Docker CE from the bundle (signatures checked against Docker's key), writes `/etc/docker/daemon.json` with the Nexus registry under `insecure-registries` while it is plain HTTP, enables the service, and adds the user who ran `sudo` to the `docker` group — **root-equivalent**, in Docker's own words (`DOCKER_ADD_USER=0` to skip). Log out and back in afterwards.
+- **kind:** `./kind-cluster.sh create [name]` — node image (`kindest/node:v1.30.13`, matching the 1.30 cluster) from Nexus; every node may pull from the Nexus registry. Name images by their Nexus address in manifests (`nexus:8082/postgres:18.6`).
+- **pnpm and npm:** both installed; `npm_config_registry` (in `/etc/profile.d/devenv-frontend.sh`) points both at Nexus. Each app chooses its package manager (ADR-008); the example stack uses pnpm.
+- **npm metadata:** `load-nexus.sh` loads npm packages with `npm publish` (Nexus's components API keeps only ~10 metadata fields and drops `ng-update`), the versions of each package one at a time (concurrent versions can drop out of Nexus's metadata), each with an explicit dist-tag, and then verifies every version is listed completely, re-publishing any that is not (all found 2026-10-01). It borrows the bundle's own Node if the loading machine has no npm. **If you loaded with an older copy of the script, run `./load-nexus.sh npm` again** — it repairs in place.
 - **Eclipse:** Lombok's agent is added to `eclipse.ini`; without it Lombok code shows false errors.
 
 ### 5. Prove it — do not declare success before this passes
 
-`prove-install.sh frontend` installs the **entire** locked front-end stack with a brand-new empty npm cache, so only Nexus can supply it, then checks the Angular CLI, TypeScript 6.0, Prisma's engine, Cypress, Playwright (launches headless Chromium) and uv. `prove-install.sh backend` rebuilds the bundled harvest project with an empty Gradle cache — Spring Boot context, Cucumber, Checkstyle, PMD, JaCoCo, Spotless — then pulls an image from your registry.
+`prove-install.sh frontend` installs the **entire** locked front-end stack with pnpm from a brand-new empty store (and npm with its own empty cache), so only Nexus can supply it, then checks the Angular CLI, TypeScript 6.0, Prisma's engine, Cypress, Playwright (launches headless Chromium) and uv. `prove-install.sh backend` rebuilds the bundled harvest project with an empty Gradle cache — Spring Boot context, Cucumber, Checkstyle, PMD, JaCoCo, Spotless — and, where Docker is usable, runs a **real Testcontainers Postgres** from your registry, pulls an image, and builds a **kind** cluster whose node and pod images come from Nexus (`SKIP_KIND=1` to skip that part).
 
 Expect `RESULT: N passed, 0 failed` and `GREEN`. Every `FAIL` line names what failed; the log path is printed.
 
 | FAIL on | Most likely | Do |
 |---|---|---|
-| `npm ci ... from Nexus` with `404` / `ETARGET` | a package missing from Nexus — a failed upload | check `load-failures.txt`; record name + version |
+| `npm ci` / `pnpm install` / `ng update` with `404` / `ETARGET` / `No matching version found` | a version missing from Nexus **or from its npm metadata** | run `./load-nexus.sh npm` again (repairs metadata); then check `load-failures.txt`; record name + version |
 | `npm ci` with `EINTEGRITY` | file damaged after verification | re-load that package |
 | Playwright launch | missing system libraries | `dnf install nss atk at-spi2-atk cups-libs libdrm libxkbcommon libXcomposite libXdamage libXrandr mesa-libgbm pango alsa-lib` |
 | harvest build: `Could not resolve` | an artifact missing from maven-hosted | record the full coordinate |

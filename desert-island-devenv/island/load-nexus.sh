@@ -30,13 +30,16 @@ fi
 # exists URL -> 0 if Nexus already serves it (HEAD 200)
 exists() { [ "$(curl -s -o /dev/null -w '%{http_code}' -u "$NEXUS_CREDS" -I "$1")" = 200 ]; }
 export -f exists
-export NEXUS_CREDS NEXUS_URL FAILS
+export NEXUS_CREDS NEXUS_URL FAILS NPM_REPO
 
 summary() { # part uploaded present failed
   printf '  %-7s uploaded=%-6s already-present=%-6s FAILED=%s\n' "$1" "$2" "$3" "$4"; }
 count() { grep -c "^$1 " "$2" 2>/dev/null || true; }
 
-# ---- npm: Nexus components API (stores the tarball bytes as delivered -> lockfile sha512 holds)
+# ---- npm: `npm publish`, one package per job, its versions one at a time, then a metadata verify +
+# repair pass (lib/npm-load-package.sh -- found 2026-10-01: Nexus's components API keeps only ~10
+# metadata fields, and concurrent versions of one package can drop out of its metadata). The tarball
+# bytes are stored as delivered, so every lockfile's sha512 still holds.
 load_npm() {
   [ -d "$BUNDLE_DIR/npm/tarballs" ] || return 0
   log "npm -> $(repo_url "$NPM_REPO")"
@@ -45,15 +48,25 @@ load_npm() {
   node_free_manifest_paths() { grep -oE '"(file|url)": "[^"]*"' "$BUNDLE_DIR/npm/MANIFEST.json" | cut -d'"' -f4 | paste - - ; }
   node_free_manifest_paths | while IFS=$'\t' read -r file url; do
     printf '%s\t%s\n' "$file" "${url#*://*/}"; done > "$LOGS/npm-paths.tsv"
-  REG="$(repo_url "$NPM_REPO")" BD="$BUNDLE_DIR" xargs -P "$JOBS" -L1 bash -c '
-    file="$0"; path="$1"
-    if exists "$REG/$path"; then echo "present $file"; exit 0; fi
-    code=$(curl -s -o /dev/null -w "%{http_code}" -u "$NEXUS_CREDS" -X POST \
-      -F "npm.asset=@$BD/npm/tarballs/$file;type=application/x-compressed" \
-      "$NEXUS_URL/service/rest/v1/components?repository='"$NPM_REPO"'")
-    if [ "$code" = 204 ]; then echo "uploaded $file"; else echo "failed $file HTTP $code"; echo "npm $file HTTP $code" >> "$FAILS"; fi
-  ' < "$LOGS/npm-paths.tsv" >> "$res"
-  summary npm "$(count uploaded "$res")" "$(count present "$res")" "$(count failed "$res")"
+  # One package per job: versions of a package go up one at a time, then its npm metadata is
+  # verified and repaired if Nexus dropped a version (found 2026-10-01 -- see lib/npm-load-package.sh).
+  [ -x "$HERE_LIB/npm-load-package.sh" ] || die "lib/npm-load-package.sh missing -- rebuild the bundle"
+  if ! command -v npm >/dev/null; then             # npm publish needs npm: borrow the Node this bundle carries
+    local nt nd; nt=$(ls "$BUNDLE_DIR"/raw/nodejs/*/node-*-linux-x64.tar.xz 2>/dev/null | sed -n 1p)
+    [ -n "$nt" ] || die "npm not found on this machine, and this bundle carries no Node to borrow it from"
+    nd="$(mktemp -d)"; tar -xJf "$nt" -C "$nd" --strip-components=1; export PATH="$nd/bin:$PATH"
+    echo "  using the bundle's own Node $(node --version) / npm $(npm --version) to publish"
+  fi
+  local npmrc; npmrc="$(mktemp)"; chmod 600 "$npmrc"
+  printf '//%s/:_auth=%s\n' "$(repo_url "$NPM_REPO" | sed -E 's#^[a-z]+://##')" "$(printf '%s' "$NEXUS_CREDS" | base64 | tr -d '\n')" > "$npmrc"
+  cut -f2 "$LOGS/npm-paths.tsv" | sed 's#/-/.*##' | sort -u > "$LOGS/npm-packages.txt"
+  CREDS="$NEXUS_CREDS" NPMRC="$npmrc" TARBALLS="$BUNDLE_DIR/npm/tarballs" PATHS="$LOGS/npm-paths.tsv" \
+    xargs -P "$JOBS" -n1 "$HERE_LIB/npm-load-package.sh" < "$LOGS/npm-packages.txt" >> "$res"
+  rm -f "$npmrc"
+  grep -E '^(failed|unrepaired) ' "$res" | sed 's/^/npm /' >> "$FAILS" || true
+  local rp; rp=$(count repaired "$res"); [ "$rp" != 0 ] && echo "  npm metadata repaired for $rp version(s) Nexus had dropped"
+  summary npm "$(count published "$res")" "$(count present "$res")" "$(( $(count failed "$res") + $(count unrepaired "$res") ))"
+
 }
 
 # ---- raw: plain PUT, path preserved (raw/ is laid out exactly as it should appear in Nexus)

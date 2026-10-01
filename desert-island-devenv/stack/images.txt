@@ -16,3 +16,4 @@ docker.io/apache/kafka:4.2.1                          # testcontainers-kafka (Ka
 docker.io/mockserver/mockserver:8.0.0                 # testcontainers-mockserver; 8.0.0 (2026-09-15) matches the mockserver-client-java the harvest bundles
 docker.io/selenium/standalone-chrome:latest           # testcontainers-selenium -- NEEDS ARCHITECT: pin a version; "latest" is resolved to a digest at build time
 quay.io/keycloak/keycloak:26.7.4                      # the server keycloak-js/keycloak-angular talk to. The FE list's "keycloak-connect 26.7.4" matches this SERVER version, not the npm adapter (newest adapter: 26.1.1)
+docker.io/kindest/node:v1.30.13                       # ADDED 2026-10-01: kind node image for local clusters (kind v0.29.0; matches the 1.30 cluster). Pushed to Nexus as kindest/node:v1.30.13

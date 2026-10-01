@@ -10,7 +10,8 @@
 #             fetch lazily at task time                                 -> Nexus maven-hosted
 #   raw/      binaries, laid out as they go into Nexus raw-hosted:
 #               temurin/  JDK tarball        gradle/distributions/  Gradle zip (wrapper target)
-#               eclipse/  Eclipse IDE        helm/  kubectl/        CLI tools
+#               eclipse/  Eclipse IDE        helm/  kubectl/  kind/  CLI tools
+#               docker-ce/rhel9/  Docker CE RPMs + Docker's signing key (Docker is not on RHEL media)
 #   images/   container images saved as docker-archive tars + IMAGES.lock (tag -> digest)
 #                                                                       -> Nexus docker-hosted
 #   island/   load-nexus.sh, install-backend-workstation.sh, Gradle init script, templates
@@ -35,6 +36,10 @@
 #   DOCKERHUB_MIRROR=mirror.gcr.io (or your organisation's pull-through cache) to pull Docker Hub
 #   images through it: the content and digests are identical, IMAGES.lock records the mirror,
 #   and the images keep their Docker Hub names.
+#
+# kind's binary is a GitHub release asset. Where GitHub is unreachable, KIND_LOCAL_BINARY=<path>
+#   bundles a locally built kind instead -- BUNDLE-INFO.txt then says so, and that bundle is a
+#   rehearsal artefact, not one to ship.
 #
 # USAGE   build-backend-bundle.sh <workdir> [--skip-images] [--skip-eclipse] [--keep-gradle-home] [--refresh-images]
 #   --refresh-images    re-pull every image. By default an image already saved by a previous run
@@ -135,16 +140,39 @@ if [ "$SKIP_ECLIPSE" = 0 ]; then
   check sha512sum "$(awk '{print $1}' "$RAW/eclipse/$ECLIPSE_RELEASE/$ET.sha512")" "$RAW/eclipse/$ECLIPSE_RELEASE/$ET"
 else log "4/7 SKIPPED Eclipse (--skip-eclipse)"; ET=""; fi
 
-# ---------------------------------------------------------------- 5. Helm + kubectl
-log "5/7 Helm $HELM_VERSION, kubectl $KUBECTL_VERSION"
-HT="helm-$HELM_VERSION-linux-amd64.tar.gz"
-fetch "https://get.helm.sh/$HT.sha256sum" "$RAW/helm/$HELM_VERSION/$HT.sha256sum"; fetch "https://get.helm.sh/$HT" "$RAW/helm/$HELM_VERSION/$HT"
-check sha256sum "$(awk '{print $1}' "$RAW/helm/$HELM_VERSION/$HT.sha256sum")" "$RAW/helm/$HELM_VERSION/$HT"
+# ---------------------------------------------------------------- 5. Kubernetes tools + Docker CE
+log "5/7 Helm $HELM_VERSION + $HELM4_VERSION, kubectl $KUBECTL_VERSION, kind $KIND_VERSION, Docker CE RPMs"
+for hv in "$HELM_VERSION" "$HELM4_VERSION"; do
+  HT="helm-$hv-linux-amd64.tar.gz"
+  fetch "https://get.helm.sh/$HT.sha256sum" "$RAW/helm/$hv/$HT.sha256sum"; fetch "https://get.helm.sh/$HT" "$RAW/helm/$hv/$HT"
+  check sha256sum "$(awk '{print $1}' "$RAW/helm/$hv/$HT.sha256sum")" "$RAW/helm/$hv/$HT"
+done
 KD="$RAW/kubectl/$KUBECTL_VERSION/linux/amd64"
 fetch "https://dl.k8s.io/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl.sha256" "$KD/kubectl.sha256"
 fetch "https://dl.k8s.io/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl" "$KD/kubectl"
 check sha256sum "$(cat "$KD/kubectl.sha256")" "$KD/kubectl"
-echo "  NOTE: kubectl $KUBECTL_VERSION is a placeholder -- it must be within one minor of the island cluster"
+KN="$RAW/kind/$KIND_VERSION"
+if [ -n "${KIND_LOCAL_BINARY:-}" ]; then
+  place "$KIND_LOCAL_BINARY" "$KN/kind-linux-amd64"; ( cd "$KN" && sha256sum kind-linux-amd64 > kind-linux-amd64.sha256sum )
+  KIND_NOTE="LOCAL BUILD from $KIND_LOCAL_BINARY -- NOT the release binary; re-cut with GitHub access before shipping"
+else
+  KB="https://github.com/kubernetes-sigs/kind/releases/download/$KIND_VERSION"
+  fetch "$KB/kind-linux-amd64.sha256sum" "$KN/kind-linux-amd64.sha256sum"; fetch "$KB/kind-linux-amd64" "$KN/kind-linux-amd64"
+  check sha256sum "$(awk '{print $1}' "$KN/kind-linux-amd64.sha256sum")" "$KN/kind-linux-amd64"
+  KIND_NOTE="release binary, sha256 verified"
+fi
+echo "  kind: $KIND_NOTE"
+DD="$RAW/docker-ce/rhel9"
+fetch "https://download.docker.com/linux/rhel/gpg" "$DD/docker-ce.gpg"
+if command -v gpg >/dev/null; then
+  fp=$(gpg --show-keys --with-colons "$DD/docker-ce.gpg" 2>/dev/null | awk -F: '/^fpr/{print $10; exit}')
+  [ "$fp" = "$DOCKER_GPG_FINGERPRINT" ] || die "Docker signing key fingerprint is '$fp', expected $DOCKER_GPG_FINGERPRINT"
+  echo "  Docker signing key fingerprint verified"
+else echo "  NOTE: gpg not on this machine -- key fingerprint not checked here (the island installer checks it before trusting the RPMs)"; fi
+echo "$DOCKER_CE_RPMS" | while read -r f sum; do
+  [ -n "$f" ] || continue
+  fetch "$DOCKER_CE_BASEURL/Packages/$f" "$DD/$f"; check sha256sum "$sum" "$DD/$f"; echo "  $f"
+done
 
 # ---------------------------------------------------------------- 6. container images
 if [ "$SKIP_IMAGES" = 0 ]; then
@@ -196,7 +224,12 @@ GRADLE_VERSION=$GRADLE_VERSION
 ECLIPSE_RELEASE=$ECLIPSE_RELEASE
 ECLIPSE_TARBALL=$ET
 HELM_VERSION=$HELM_VERSION
+HELM4_VERSION=$HELM4_VERSION
 KUBECTL_VERSION=$KUBECTL_VERSION
+KIND_VERSION=$KIND_VERSION
+KIND_NODE_TAG=$KIND_NODE_TAG
+DOCKER_CE_RPM_FILES="$(echo "$DOCKER_CE_RPMS" | awk 'NF{printf "%s ", $1}')"
+DOCKER_GPG_FINGERPRINT=$DOCKER_GPG_FINGERPRINT
 LOMBOK_VERSION=$(grep -E '^lombok *=' "$STACK/backend/gradle/libs.versions.toml" | cut -d'"' -f2)
 VERS
 # The harvest project ships too: prove-install.sh rebuilds it on the island against Nexus alone.
@@ -206,7 +239,8 @@ cat > "$OUT/BUNDLE-INFO.txt" <<INFO
 bundle:   $NAME
 built:    $(date -u +%FT%TZ) on $(uname -sr)
 jdk:      Temurin $V   gradle: $GRADLE_VERSION   eclipse: $([ -n "$ET" ] && echo "$ECLIPSE_RELEASE ($ECLIPSE_PACKAGE)" || echo OMITTED)
-helm:     $HELM_VERSION   kubectl: $KUBECTL_VERSION (placeholder -- match the cluster)
+k8s:      kubectl $KUBECTL_VERSION  helm $HELM_VERSION (+ helm4 $HELM4_VERSION)  kind $KIND_VERSION ($KIND_NOTE), node image $KIND_NODE_TAG
+docker:   $(echo "$DOCKER_CE_RPMS" | awk 'NF{printf "%s ", $1}')
 maven:    $GAVS POMs, $(du -sh "$MV" | cut -f1)   harvest tests: $TESTS run, $FAILED failed
 images:   $([ "$SKIP_IMAGES" = 1 ] && echo OMITTED || echo "$(grep -vc '^#' "$OUT/images/IMAGES.lock") images")
 start with: island/README.md
