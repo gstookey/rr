@@ -74,7 +74,7 @@
           <rr-sg-status-dot [status]="row.rollup" />
           <span class="label__name">{{ row.component.name }}</span>
         </div>
-        @for (status of row.cells; track $index; let c = $index) {
+        @for (status of row.cells; track c; let c = $index) {
           <div
             class="cell"
             role="gridcell"
