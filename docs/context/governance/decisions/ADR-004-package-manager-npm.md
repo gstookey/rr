@@ -9,7 +9,7 @@ updated: 2026-08-25
 
 # ADR-004 — Package manager and workspace tooling for RR
 
-**Date:** 2026-08-25 | **Status:** **accepted** by Graham 2026-08-25 ("npm it is. Lock it in.") | Resolves C-001 (package-manager half)
+**Date:** 2026-08-25 | **Status:** **accepted** by Graham 2026-08-25 ("npm it is. Lock it in.") | Resolves C-001 (package-manager half) | **Amended 2026-10-01 by [ADR-008](ADR-008-desert-island-devenv-baseline.md):** the "No pnpm on the island" clause no longer applies to Desert Island — npm and pnpm are both available there and each app chooses; RR and the legacy estate remain on npm
 
 ## Context
 

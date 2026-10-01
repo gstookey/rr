@@ -4,12 +4,12 @@ status: exploratory
 title: Legacy Shell Bundle Packet 01 — estate-shaped v17→v18 hop and verified transfer bundle
 areas: [isolated-network, frontend, dev-environment, technology-stack]
 related: ["docs/design/packets/ng-hop-01-v17-to-v18-design-packet/README.md", "docs/context/canonical/two_island_model.md", "docs/design/packets/iso-net-readiness-01-design-packet/decision_register_v0.md"]
-updated: 2026-09-03
+updated: 2026-10-01
 ---
 
 # Legacy Shell Bundle Packet 01 (`legacy-shell-bundle-01`)
 
-**Created:** 2026-09-03 | **Last updated:** 2026-09-03 (both Milestone-1 hops rehearsed estate-shaped in the real layout; 17→19 pool verified offline; delivery = the tested rebuild script) | **Author:** Axium | **Status:** `exploratory` — rehearsed on approximated shells of the two real apps; not yet run against real estate code
+**Created:** 2026-09-03 | **Last updated:** 2026-10-01 (v3: exact-pinned re-base, full ladder to 22.2.1 scripted, Nexus-tested loader; earlier: both Milestone-1 hops rehearsed estate-shaped in the real layout) | **Author:** Axium | **Status:** `exploratory` — rehearsed on approximated shells of the two real apps; not yet run against real estate code
 
 ## What this packet is
 
@@ -17,6 +17,9 @@ The step between "the hop works on a bare app" (`ng-hop-01`) and "the hop works 
 
 | Document | What it is |
 |---|---|
+| [`monorepo_hop_procedure_v3.md`](monorepo_hop_procedure_v3.md) | **the island procedure (2026-10-01)** — 17 → **22.2.1**, scripted as `tools/hop.sh`, re-based on the exact-pinned apps; ships in every bundle as `LADDER.md` |
+| [`nexus_upload_instructions_v2.md`](nexus_upload_instructions_v2.md) | **loading a bundle (2026-10-01)** — `upload-to-nexus.sh` (`npm publish`, `--through <rung>`, npm-metadata verify + repair); ships as `NEXUS_UPLOAD.md` |
+| [`offline_verification_transcript_v3.md`](offline_verification_transcript_v3.md) | the whole ladder replayed **offline against Nexus**, loaded only by the bundle's own uploader |
 | [`monorepo_hop_procedure_v2.md`](monorepo_hop_procedure_v2.md) | **the island procedure** — 17→18 AND 18→19 in the real layout (angular.json in `packages/client/`), temp-root-angular.json bracket, per-hop version pairings, DR-04 effort signals |
 | [`v17_to_v19_bundle_manifest_v2.md`](v17_to_v19_bundle_manifest_v2.md) | **the master pool** — 1,495 tarballs / 191.3 MB with per-rung slices (v17: 104.0 · 17→18: 45.1 · 18→19: 42.2 MB) and the Nexus-already-serves-v17 insight |
 | [`offline_verification_transcript_v2.md`](offline_verification_transcript_v2.md) | the offline proof for the whole 17→19 pool — both hops replayed, netns isolation, plus the false-green catch and its lesson |

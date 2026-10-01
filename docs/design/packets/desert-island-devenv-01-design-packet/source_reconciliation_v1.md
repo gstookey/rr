@@ -85,6 +85,8 @@ Also worth naming, not contradictions: the list carries **two unit-test runners*
 
 ## Decisions for Graham
 
+> **Settled 2026-10-01 — see [ADR-008](../../../context/governance/decisions/ADR-008-desert-island-devenv-baseline.md).** Graham accepted every recommendation below and deferred the rest to Axium, with three answers of his own: **D-1 → both npm and pnpm** (each app chooses; the examples use pnpm), **D-8 → newest Nexus** (the legacy island runs 3.81), **D-9 → Docker, plus kind** (not Podman). D-7 remains open. O-1 partly answered: the cluster Graham can see is **v1.30.4**. The table is kept as the reasoning of record.
+
 | ID | Decision | Axium's recommendation |
 |---|---|---|
 | **D-1** | pnpm or npm on Desert Island (C-011) | **npm**, per ADR-004 — nothing on the island changed the premise. If you do want pnpm, it's a lockfile regeneration plus one tarball; the pool doesn't change |

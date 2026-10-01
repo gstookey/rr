@@ -1,13 +1,16 @@
 ---
 schema: corpus-doc/v1
-status: exploratory
+status: superseded
+superseded_by: "docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v3.md"
 title: Offline Verification Transcript v2 — the 17→19 pool proven with zero internet
 areas: [isolated-network, dev-environment, risk-gates]
 related: ["docs/design/packets/legacy-shell-bundle-01-design-packet/v17_to_v19_bundle_manifest_v2.md", "docs/design/packets/legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v2.md"]
-updated: 2026-09-03
+updated: 2026-10-01
 ---
 
 # Offline Verification Transcript v2
+
+> **Superseded 2026-10-01 by [`offline_verification_transcript_v3.md`](offline_verification_transcript_v3.md)** — the full ladder to 22.2.1, replayed against a real Nexus loaded only by the bundle's own uploader (this v2 used Verdaccio, which keeps npm metadata Nexus can lose).
 
 **Created:** 2026-09-03 | Linux x64, Node v22.22.2, npm 10.9.7, Verdaccio 6.10.0. Verifies the **17→19 master pool** (1,495 tarballs / 191.3 MB) end to end.
 

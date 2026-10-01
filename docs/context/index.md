@@ -8,7 +8,7 @@ updated: 2026-09-03
 
 # RR Context Wiki Index
 
-**Created:** 2026-08-25 | **Last updated:** 2026-10-01 (`desert-island-devenv-01` — the Desert Island workstation stack list, its two transfer bundles and the Nexus load path, rehearsed offline; SRC-013..015; C-011..C-014. Earlier, 2026-09-08: S-16 rehearsal — the day-one runbook executed offline, four defects found, v1 supersedes v0; DR-09 closed by necessity. Earlier the same day: ADR-007, ADR-006, the v17→v22 ladder, `first-app-hop-01`)
+**Created:** 2026-08-25 | **Last updated:** 2026-10-01 (later the same day: Graham's decisions → **ADR-008**; DevOps stack list **v2**; the **bundling scripts guide**; the legacy ladder **re-walked to 22.2.1** on the exact-pinned apps — hop procedure v3, Nexus upload v2, offline transcript v3. Earlier: `desert-island-devenv-01` — the Desert Island workstation stack list, its two transfer bundles and the Nexus load path, rehearsed offline; SRC-013..015; C-011..C-014)
 
 Navigation spine for the RR context system. Update when a page is added, removed, or changes meaningfully.
 
@@ -41,7 +41,7 @@ Navigation spine for the RR context system. Update when a page is added, removed
 - [Brand — Visual Identity](../design/brand/README.md)
 - Packets:
 - [**DESERT-ISLAND-DEVENV-01 — the workstation stack, its two transfer bundles, the Nexus load path** (`desert-island-devenv-01`)](../design/packets/desert-island-devenv-01-design-packet/README.md) — `exploratory`, cut 2026-10-01 at Graham's request (EP-04 work); **both bundles built and rehearsed end to end on offline RHEL 9 against Nexus**; not activated
-  - [**DevOps Tech Stack List v1**](../design/packets/desert-island-devenv-01-design-packet/devops_tech_stack_list_v1.md) — hand this to DevOps · [Source Reconciliation v1](../design/packets/desert-island-devenv-01-design-packet/source_reconciliation_v1.md) — corrections, C-011..C-014, decisions D-1..D-9 · [Bundle Rehearsal Transcript v1](../design/packets/desert-island-devenv-01-design-packet/bundle_rehearsal_transcript_v1.md)
+  - [**DevOps Tech Stack List v2**](../design/packets/desert-island-devenv-01-design-packet/devops_tech_stack_list_v2.md) — **hand this to DevOps** (npm + pnpm, Docker CE + kind, k8s tools for the 1.30 cluster, Angular 22.2.1) · [Bundle Rehearsal Transcript v2](../design/packets/desert-island-devenv-01-design-packet/bundle_rehearsal_transcript_v2.md) (incl. the Nexus npm-metadata finding) · [**Bundling Scripts Guide v1**](operations/user-workflow/bundling_scripts_guide_v1.md) — every bundle script, start to finish · earlier: [**DevOps Tech Stack List v1**](../design/packets/desert-island-devenv-01-design-packet/devops_tech_stack_list_v1.md) — hand this to DevOps · [Source Reconciliation v1](../design/packets/desert-island-devenv-01-design-packet/source_reconciliation_v1.md) — corrections, C-011..C-014, decisions D-1..D-9 · [Bundle Rehearsal Transcript v1](../design/packets/desert-island-devenv-01-design-packet/bundle_rehearsal_transcript_v1.md)
   - Tooling: [`desert-island-devenv/`](../../desert-island-devenv/README.md) — `stack/` pins, `tools/build-{frontend,backend}-bundle.sh`, `island/` (travels in the bundles)
 - [**ACME-WORKSHOP-01 — the DDD reference application** (`acme-workshop-01`)](../design/packets/acme-workshop-01-design-packet/README.md) — `exploratory`, cut 2026-09-03; EP-06 (#37), stories S-18..S-25 (#38–#45); **not activated**
   - [Domain Model v0](../design/packets/acme-workshop-01-design-packet/domain_model_v0.md) · [Decision Register v0 (AW-D1..AW-D12)](../design/packets/acme-workshop-01-design-packet/decision_register_v0.md) · [Slice Decomposition v0 (S0..S7)](../design/packets/acme-workshop-01-design-packet/slice_decomposition_v0.md)
@@ -51,7 +51,7 @@ Navigation spine for the RR context system. Update when a page is added, removed
 - [**First App Hop — the field kit for the first REAL application upgrade** (`first-app-hop-01`)](../design/packets/first-app-hop-01-design-packet/README.md) — `exploratory`, cut 2026-09-03; the current lane. Written for a person on RHEL 9 with no agent, no internet and change control
   - [**Island Execution Plan v1**](../design/packets/first-app-hop-01-design-packet/island_execution_plan_v1.md) — the plan of record · [Pre-flight Checklist v0](../design/packets/first-app-hop-01-design-packet/preflight_checklist_v0.md) · [Field Hop Procedure v1](../design/packets/first-app-hop-01-design-packet/field_hop_procedure_v1.md) · [Field Notes Template v0](../design/packets/first-app-hop-01-design-packet/field_notes_template_v0.md)
 - [Legacy Shell Bundle (`legacy-shell-bundle-01`)](../design/packets/legacy-shell-bundle-01-design-packet/README.md) — `exploratory`; **the whole v17→v22 ladder rehearsed 2026-09-03; 17→22 pool (2,102 tarballs / 355.6 MB) verified offline**
-  - [Monorepo Hop Procedure v2](../design/packets/legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v2.md) — **the island procedure** · [v17→v19 Bundle Manifest v2](../design/packets/legacy-shell-bundle-01-design-packet/v17_to_v19_bundle_manifest_v2.md) · [Offline Verification Transcript v2](../design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v2.md) · [Nexus Upload Instructions v1](../design/packets/legacy-shell-bundle-01-design-packet/nexus_upload_instructions_v1.md)
+  - [**Monorepo Hop Procedure v3**](../design/packets/legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v3.md) — **the island procedure (2026-10-01): 17 → 22.2.1, scripted (`tools/hop.sh`)**, ships as `LADDER.md` · [Nexus Upload Instructions v2](../design/packets/legacy-shell-bundle-01-design-packet/nexus_upload_instructions_v2.md) · [Offline Verification Transcript v3](../design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v3.md) · superseded: [Monorepo Hop Procedure v2](../design/packets/legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v2.md) — **the island procedure** · [v17→v19 Bundle Manifest v2](../design/packets/legacy-shell-bundle-01-design-packet/v17_to_v19_bundle_manifest_v2.md) · [Offline Verification Transcript v2](../design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v2.md) · [Nexus Upload Instructions v1](../design/packets/legacy-shell-bundle-01-design-packet/nexus_upload_instructions_v1.md)
   - Superseded evidence trail: runbook delta v1 · bundle manifest v1 · transcript v1 (in the same packet dir)
   - Shells themselves: [`legacy-shells/README.md`](../../legacy-shells/README.md) — two approximated island monorepos **standing at Angular 19.2.25**, full v17→v19 lock history
 - [Angular v18→v19 Hop (`ng-hop-02`)](../design/packets/ng-hop-02-v18-to-v19-design-packet/README.md) — `exploratory`; **rehearsed 2026-08-28**; reaches Milestone 1's floor
@@ -65,7 +65,7 @@ Navigation spine for the RR context system. Update when a page is added, removed
 # Governance
 
 - [Governance README](governance/README.md)
-- [Decisions (ADR index)](governance/decisions/README.md) — ADR-001 context system · ADR-002 merge gate · ADR-003 board/doctrine · ADR-004 npm · **ADR-005 island stack sync (2026-09-03)** · **ADR-006 repo layout apps/packages/services (2026-09-04)** · **ADR-007 ACME Workshop is a learning instrument, not the scaffold (2026-09-08)**
+- [Decisions (ADR index)](governance/decisions/README.md) — ADR-001 context system · ADR-002 merge gate · ADR-003 board/doctrine · ADR-004 npm · **ADR-005 island stack sync (2026-09-03)** · **ADR-006 repo layout apps/packages/services (2026-09-04)** · **ADR-007 ACME Workshop is a learning instrument, not the scaffold (2026-09-08)** · **ADR-008 Desert Island dev-environment baseline (2026-10-01; amends ADR-004)**
 - [Contradiction Register](governance/contradictions/register.md) — C-001..C-014
 - [Meta](governance/meta/README.md)
 
@@ -76,7 +76,7 @@ Navigation spine for the RR context system. Update when a page is added, removed
 - Sessions: [SESSION_LOG](operations/sessions/SESSION_LOG.md) · [Rollup Checklist](operations/sessions/session_rollup_checklist.md) · [2026-08-25 Repo Initialization Plan](operations/sessions/2026-08-25_repo_initialization_plan.md)
 - [Feedback](operations/feedback/README.md) · [Raw backlog](operations/feedback/raw/user_feedback_backlog.md)
 - [Reviews](operations/reviews/README.md)
-- [User Workflow](operations/user-workflow/README.md)
+- [User Workflow](operations/user-workflow/README.md) · [**Bundling Scripts Guide v1**](operations/user-workflow/bundling_scripts_guide_v1.md) — build, port, load and use every transfer bundle
 
 # Team / Agents
 
@@ -93,7 +93,7 @@ Navigation spine for the RR context system. Update when a page is added, removed
 # Evidence
 
 - [Evidence README](evidence/README.md)
-- [Source Register](evidence/raw/source_register.md) — SRC-001..SRC-015
+- [Source Register](evidence/raw/source_register.md) — SRC-001..SRC-016
 - Raw: `evidence/raw/project-road-runner-description.txt` (SRC-012, founder source)
 - [Raw](evidence/raw/README.md) · [Images](evidence/images/README.md)
 - Raw source folders (registered, not moved): `../source-documents/`, `../angular-upgrade-docs/`, `../../images/rr_logos/`

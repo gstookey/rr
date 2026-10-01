@@ -4,7 +4,7 @@ status: active
 title: Technology Stack — Intended (Design Direction)
 areas: [technology-stack, system-architecture, monorepo, frontend, backend]
 related: ["docs/context/canonical/isolated_network_constraints.md", "docs/context/governance/contradictions/register.md", "docs/context/evidence/raw/source_register.md"]
-updated: 2026-09-03
+updated: 2026-10-01
 ---
 
 # Technology Stack — Intended (Design Direction)
@@ -12,6 +12,8 @@ updated: 2026-09-03
 **Created:** 2026-08-25 | **Last updated:** 2026-09-03 (Axium; three Angular lines corrected against the v22 changelog — surfaced by the DDD-ARCH-01 modernization pass)
 
 > **2026-10-01 — new proposed stack lists, reconciled, NOT adopted.** SRC-013 (front-end, Angular 22.2 + Nx + pnpm + Tailwind + NgRx Store + Prisma …) and SRC-014 (the architect's Java 25 / Spring Boot 4.1 back end) were vetted and bundled in [`desert-island-devenv-01`](../../design/packets/desert-island-devenv-01-design-packet/source_reconciliation_v1.md). They contradict this page in places (C-011 pnpm, C-012 Nx, C-013 Angular 22.2 vs 22.1, C-014 a second server runtime). This page stays as written until Graham rules D-1..D-9; then it is re-synthesized.
+>
+> **2026-10-01, later — ADR-008** settles the Desert Island *dev-environment* questions: npm **and** pnpm on the island (each app chooses; RR itself and the legacy estate stay npm — ADR-004 amended only in its island clause), Docker CE + kind on workstations, **Angular 22.2.1 as the shared landing patch for both islands** (ADR-005), Kubernetes client tools pinned to the cluster's minor (1.30 until O-1 says otherwise). Nx ships in the pool but adoption is per app; the RR repo's workspace engine is unchanged here.
 
 **Implementation status:** nothing below is stood up. This is the synthesized *intended* stack from `docs/source-documents/`. It becomes truth only when `docs/CURRENT_STATE.md` says so.
 

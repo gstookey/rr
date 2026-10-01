@@ -1,20 +1,19 @@
 ---
 schema: corpus-doc/v1
-status: superseded
-superseded_by: docs/design/packets/desert-island-devenv-01-design-packet/devops_tech_stack_list_v2.md
-title: DevOps Tech Stack List v1 — the air-gapped RHEL 9 full-stack development environment (vetted 2026-10-01)
+status: exploratory
+title: DevOps Tech Stack List v2 — the air-gapped RHEL 9 full-stack development environment (Graham's decisions folded in, 2026-10-01)
 areas: [technology-stack, dev-environment, isolated-network, frontend, backend, security]
-related: ["docs/design/packets/desert-island-devenv-01-design-packet/source_reconciliation_v1.md", "docs/design/packets/desert-island-devenv-01-design-packet/bundle_rehearsal_transcript_v1.md", "desert-island-devenv/README.md", "desert-island-devenv/island/README.md"]
+related: ["docs/design/packets/desert-island-devenv-01-design-packet/devops_tech_stack_list_v1.md", "docs/design/packets/desert-island-devenv-01-design-packet/source_reconciliation_v1.md", "docs/design/packets/desert-island-devenv-01-design-packet/bundle_rehearsal_transcript_v2.md", "docs/context/operations/user-workflow/bundling_scripts_guide_v1.md", "desert-island-devenv/README.md", "desert-island-devenv/island/README.md"]
 updated: 2026-10-01
 ---
 
-# DevOps Tech Stack List v1 — air-gapped RHEL 9 full-stack development environment
+# DevOps Tech Stack List v2 — air-gapped RHEL 9 full-stack development environment
 
-> **Superseded 2026-10-01 by [`devops_tech_stack_list_v2.md`](devops_tech_stack_list_v2.md)** — Graham's decisions folded in (npm + pnpm, Docker CE + kind, kubectl/Helm for the 1.30 cluster, Angular 22.2.1, newest Nexus; [ADR-008](../../../context/governance/decisions/ADR-008-desert-island-devenv-baseline.md)). **Hand DevOps v2.**
+**Created:** 2026-10-01 (Axium) | **Status:** `exploratory` — **supersedes [v1](devops_tech_stack_list_v1.md)** (same day): Graham's answers of 2026-10-01 folded in — **npm *and* pnpm** shipped (the example stack locked to pnpm), **Docker CE + kind** instead of Podman, Kubernetes client tools matched to the **1.30** cluster, Angular **22.2.1** on both islands (D-2), the newest Nexus. Vetted against the live registries and vendor sites on **2026-10-01**; **both bundles rebuilt from these pins and rehearsed end to end** against Nexus on offline RHEL 9 machines ([transcript v2](bundle_rehearsal_transcript_v2.md)). Versions drift: re-check before a re-cut.
 
-**Created:** 2026-10-01 (Axium) | **Status:** `exploratory` — vetted against the live registries and vendor sites on **2026-10-01**; **both bundles built from these pins and rehearsed end to end** against Nexus on an offline RHEL 9 machine ([transcript](bundle_rehearsal_transcript_v1.md)). Versions drift: re-check before a re-cut.
+**What changed from v1, in one place:** §1 Docker CE replaces Podman (RPMs now *in* the back-end bundle) · §2 pnpm **10.34.6** bundled (10.15.0 carried 10+ advisories) · §3 Angular `22.2.0 → 22.2.1` (17 packages), `uuid 11.1.1` added (pnpm does not auto-install the peer npm did), lockfile is now `pnpm-lock.yaml` · §5 kubectl **v1.31.14**, Helm **v3.18.6** as `helm` + **v4.3.0** as `helm4`, kind **v0.29.0** · §6 `kindest/node:v1.30.13` added · §8 Nexus: target the newest release · §9 updated.
 
-**Audience:** the DevOps team standing up the workstations and the new Nexus. **Graham-facing rationale** (why each correction, open decisions D-1..D-9): [`source_reconciliation_v1.md`](source_reconciliation_v1.md). **How to build and load:** `desert-island-devenv/README.md` (connected side) and `desert-island-devenv/island/README.md` (island side — it travels in the bundles).
+**Audience:** the DevOps team standing up the workstations and the new Nexus. **Graham-facing rationale** (why each correction; decisions D-1..D-9 and how they were settled): [`source_reconciliation_v1.md`](source_reconciliation_v1.md). **How to build and load:** [`bundling_scripts_guide_v1.md`](../../../context/operations/user-workflow/bundling_scripts_guide_v1.md) (every bundle script, start to finish), `desert-island-devenv/README.md` (connected side) and `desert-island-devenv/island/README.md` (island side — it travels in the bundles).
 
 **Legend:** ✅ as proposed · 🔧 corrected (did not exist / incompatible) · 🛡 moved within its major line to clear a published security advisory · ➕ added (required by the listed set, or missing from it) · ⚠ kept, with a caveat · ❓ needs a decision — see the reconciliation doc.
 
@@ -22,10 +21,10 @@ updated: 2026-10-01
 
 | | Front-end bundle | Back-end bundle |
 |---|---|---|
-| File | `devenv-frontend-bundle-<date>.tar` — **1.31 GB** | `devenv-backend-bundle-<date>.tar` — **3.66 GB** |
+| File | `devenv-frontend-bundle-<date>.tar` — **1.34 GB** | `devenv-backend-bundle-<date>.tar` — **__BE_SIZE__** |
 | Built by | `desert-island-devenv/tools/build-frontend-bundle.sh` | `desert-island-devenv/tools/build-backend-bundle.sh` |
-| Into Nexus | npm-hosted (1,542 packages, 260 MB), raw-hosted, pypi-hosted | maven-hosted (605 artifacts / 1,228 files, 331 MB), raw-hosted, docker-hosted (10 images) |
-| On each workstation | Node, npm config, uv, VS Code + 8 extensions, Cypress / Playwright / Prisma binaries | Temurin JDK, Gradle, Eclipse (+ Lombok agent), Helm, kubectl, Gradle → Nexus redirect, Testcontainers → Nexus registry |
+| Into Nexus | npm-hosted (1,554 packages, 291 MB — incl. pnpm), raw-hosted, pypi-hosted | maven-hosted (605 artifacts / 1,228 files, 331 MB), raw-hosted (incl. Docker CE RPMs), docker-hosted (11 images, incl. the kind node image) |
+| On each workstation | Node + npm, **pnpm**, uv, VS Code + 8 extensions, Cypress / Playwright / Prisma binaries | Temurin JDK, Gradle, Eclipse (+ Lombok agent), **Docker CE**, kubectl, Helm 3 + 4, **kind**, Gradle → Nexus redirect, Testcontainers → Nexus registry |
 
 ## 1. Platform — from the RHEL 9 media, not the bundles
 
@@ -33,7 +32,8 @@ updated: 2026-10-01
 |---|---|---|---|
 | Red Hat Enterprise Linux | 9.x, x86_64 | island | rehearsed on RHEL **9.8** (UBI 9 image) |
 | Python | **3.12.x** (`python3.12`, `-pip`, `-devel`) | RHEL 9 AppStream | the list said 3.12.3; RHEL 9.8 ships **3.12.14** — you get whatever your RHEL minor ships (Red Hat back-ports fixes) |
-| Podman (+ `podman-docker`), skopeo | 5.8.x / 1.22.x on 9.8 | AppStream | container runtime for Testcontainers and the image loader. Docker CE is not in RHEL (decision D-9) |
+| **Docker CE's dependencies** — `container-selinux`, `libseccomp`, `iptables-nft`, `nftables`, `tar`, `xz` | per RHEL minor | BaseOS / AppStream | `dnf` pulls them when the installer installs the bundled Docker RPMs (all present in the UBI 9 repos — verified). **Do not install `podman-docker`**: it owns `/usr/bin/docker` and conflicts with Docker CE |
+| skopeo | 1.22.x on 9.8 | AppStream | optional: the image loader prefers it (no daemon needed); falls back to `docker` |
 | git, jq | 2.52 / **1.6** | AppStream / BaseOS | jq 1.6 = the list's version; RHEL's build carries Red Hat's security fixes |
 | VS Code's GUI libraries (GTK3, NSS, libxkbfile, xdg-utils, …) | — | BaseOS/AppStream | `dnf` resolves them when the VS Code RPM is installed |
 | Playwright Chromium libraries | — | BaseOS/AppStream | `nss atk at-spi2-atk cups-libs libdrm libxkbcommon libXcomposite libXdamage libXrandr mesa-libgbm pango alsa-lib` |
@@ -49,7 +49,8 @@ updated: 2026-10-01
 | Cypress binary | 16.1.1 (from the lockfile) | ✅ | installed from a local zip via `CYPRESS_INSTALL_BINARY` |
 | Playwright browsers | 1.63.0: Chromium 153.0.8010.12 + headless shell + ffmpeg | 🛡 | Firefox/WebKit not staged: Playwright's Firefox build targets newer glibc than RHEL 9, WebKit has no RHEL build |
 | Prisma schema engine | commit `0edf323e…`, `rhel-openssl-3.0.x` | ➕ | Prisma's install step downloads it; served from raw-hosted via `PRISMA_ENGINES_MIRROR` |
-| pnpm | 10.15.0 | ❓ | **not bundled** — ADR-004 chose npm (decision D-1). The npm pool serves pnpm equally if that changes |
+| pnpm | 10.15.0 → **10.34.6** | 🛡 | **bundled** (D-1, Graham 2026-10-01: ship both; each app picks; the examples use pnpm). 10.15.0 carries 10+ advisories (several high: lifecycle-script bypass, lockfile-integrity bypass, path traversals) — all fixed by 10.34.6, the newest 10.x. Installed globally from its own tarball; `npm_config_registry` points npm *and* pnpm at Nexus. pnpm 10 blocks dependency install scripts by default: the example allows only `cypress`, `prisma`, `@prisma/engines`, `esbuild` (all offline-safe) and keeps `chromedriver` blocked |
+| only-allow | 1.2.2 | ➕ | the example's `preinstall: npx only-allow pnpm` fetches it from Nexus |
 
 **VS Code extensions** (installed in this order; dependencies first):
 
@@ -67,26 +68,26 @@ updated: 2026-10-01
 
 ## 3. Front-end npm stack (front-end bundle → npm-hosted)
 
-Generated from `stack/frontend/package.json` against the source list. **92 direct packages; the lockfile resolves 2,004 entries, of which the 1,542 linux-x64 tarballs are bundled** (npm installs only the matching platform binaries). After the corrections: **26 residual advisories, 0 critical** (was 53 / 2 critical) — see §7.
+Generated from `stack/frontend/package.json` against the source list, **locked with pnpm** (`stack/frontend/pnpm-lock.yaml`, `packageManager: pnpm@10.34.6`). **93 direct packages; the lockfile resolves 1,820 entries, of which the 1,551 linux-x64 tarballs are bundled** (+3 for pnpm/only-allow). After the corrections: **22 residual advisories, 0 critical** (was 53 / 2 critical) — see §7. The Angular rows read **22.2.1** wherever the source said 22.2.0 (D-2: one patch on both islands; 22.2.1 shipped 2026-09-30 and is where the legacy ladder lands).
 
 | Package | Proposed | Bundled | | Why |
 |---|---|---|---|---|
-| `@angular-devkit/build-angular` | 22.2.0 | **22.2.0** | ⚠ | deprecated upstream (Webpack); kept for legacy-app parity. |
-| `@angular/animations` | 22.2.0 | **22.2.0** | ⚠ | deprecated upstream in v22 (use `animate.enter/leave`); kept — legacy code uses it. |
-| `@angular/build` | — | **22.2.0** | ➕ | added: the current Angular builder (the listed `@angular-devkit/build-angular` is the deprecated Webpack wrapper around it). |
-| `@angular/cdk` | 22.2.0 | **22.2.0** | ✅ |  |
-| `@angular/cli` | 22.2.0 | **22.2.0** | ✅ |  |
-| `@angular/common` | 22.2.0 | **22.2.0** | ✅ |  |
-| `@angular/compiler` | 22.2.0 | **22.2.0** | ✅ |  |
-| `@angular/compiler-cli` | 22.2.0 | **22.2.0** | ✅ |  |
-| `@angular/core` | 22.2.0 | **22.2.0** | ✅ |  |
-| `@angular/forms` | 22.2.0 | **22.2.0** | ✅ |  |
-| `@angular/material` | 22.2.0 | **22.2.0** | ✅ |  |
-| `@angular/platform-browser` | 22.2.0 | **22.2.0** | ✅ |  |
-| `@angular/platform-browser-dynamic` | 22.2.0 | **22.2.0** | ⚠ | deprecated upstream; kept — `jest-preset-angular@16` peers it. |
-| `@angular/platform-server` | — | **22.2.0** | ➕ | added: required peer of `@angular/ssr`. |
-| `@angular/router` | 22.2.0 | **22.2.0** | ✅ |  |
-| `@angular/ssr` | 22.2.0 | **22.2.0** | ✅ |  |
+| `@angular-devkit/build-angular` | 22.2.0 | **22.2.1** | ⚠ | deprecated upstream (Webpack); kept for legacy-app parity. |
+| `@angular/animations` | 22.2.0 | **22.2.1** | ⚠ | deprecated upstream in v22 (use `animate.enter/leave`); kept — legacy code uses it. |
+| `@angular/build` | — | **22.2.1** | ➕ | added: the current Angular builder (the listed `@angular-devkit/build-angular` is the deprecated Webpack wrapper around it). |
+| `@angular/cdk` | 22.2.0 | **22.2.1** | 🔧 | D-2: same patch as the legacy ladder's landing  |
+| `@angular/cli` | 22.2.0 | **22.2.1** | 🔧 | D-2: same patch as the legacy ladder's landing  |
+| `@angular/common` | 22.2.0 | **22.2.1** | 🔧 | D-2: same patch as the legacy ladder's landing  |
+| `@angular/compiler` | 22.2.0 | **22.2.1** | 🔧 | D-2: same patch as the legacy ladder's landing  |
+| `@angular/compiler-cli` | 22.2.0 | **22.2.1** | 🔧 | D-2: same patch as the legacy ladder's landing  |
+| `@angular/core` | 22.2.0 | **22.2.1** | 🔧 | D-2: same patch as the legacy ladder's landing  |
+| `@angular/forms` | 22.2.0 | **22.2.1** | 🔧 | D-2: same patch as the legacy ladder's landing  |
+| `@angular/material` | 22.2.0 | **22.2.1** | 🔧 | D-2: same patch as the legacy ladder's landing  |
+| `@angular/platform-browser` | 22.2.0 | **22.2.1** | 🔧 | D-2: same patch as the legacy ladder's landing  |
+| `@angular/platform-browser-dynamic` | 22.2.0 | **22.2.1** | ⚠ | deprecated upstream; kept — `jest-preset-angular@16` peers it. |
+| `@angular/platform-server` | — | **22.2.1** | ➕ | added: required peer of `@angular/ssr`. |
+| `@angular/router` | 22.2.0 | **22.2.1** | 🔧 | D-2: same patch as the legacy ladder's landing  |
+| `@angular/ssr` | 22.2.0 | **22.2.1** | 🔧 | D-2: same patch as the legacy ladder's landing  |
 | `@astrouxds/angular` | 9.0.0 | **9.0.0** | ✅ |  |
 | `@astrouxds/astro-web-components` | 9.0.0 | **8.0.0** | 🔧 | 9.0.0 does not exist (newest is 8.0.0); `@astrouxds/angular@9.0.0` itself depends on `^8.0.0`. |
 | `@babel/core` | 7.24.0 | **7.29.7** | 🛡 | 7.24.0 → newest 7.x (low advisory, sourceMappingURL file read). |
@@ -144,7 +145,7 @@ Generated from `stack/frontend/package.json` against the source list. **92 direc
 | `keycloak-js` | 26.2.4 | **26.2.4** | ✅ |  |
 | `lodash` | 4.17.21 | **4.18.1** | 🛡 | 4.17.21 → 4.18.1 (high: `_.template` code injection; prototype pollution). |
 | `luxon` | 3.2.1 | **3.2.1** | ✅ |  |
-| `ng-packagr` | — | **22.2.0** | ➕ | added: builds Angular libraries in a monorepo; peer of `@nx/angular`. |
+| `ng-packagr` | — | **22.2.1** | ➕ | added: builds Angular libraries in a monorepo; peer of `@nx/angular`. |
 | `node-forge` | 1.3.1 | **1.4.0** | 🛡 | 1.3.1 → 1.4.0 (high: ASN.1 recursion, basicConstraints bypass). |
 | `nx` | 23.1.2 | **23.1.2** | ❓⚠ | not in current doctrine (technology_stack.md: npm workspaces, no Nx). Residual high advisories via Nx's exactly-pinned axios / smol-toml — not fixable downstream. |
 | `pg` | 8.13.1 | **8.13.1** | ✅ |  |
@@ -159,6 +160,7 @@ Generated from `stack/frontend/package.json` against the source list. **92 direc
 | `tslib` | 2.8.1 | **2.8.1** | ✅ |  |
 | `typescript` | 6.0.3 | **6.0.3** | ✅ |  |
 | `typescript-eslint` | — | **8.71.0** | ➕ | added: flat-config entry point for typescript-eslint 8. |
+| `uuid` | — | **11.1.1** | ➕ | added (v2): `@stomp/rx-stomp@2.2.0` peers `uuid >=9 <12`. npm auto-installed it; pnpm wires the peer to the 8.3.2 `sockjs` brings, so it is declared explicitly. |
 | `vite` | 6.1.1 | **6.4.3** | 🛡 | 6.1.1 → 6.4.3 (`server.fs.deny` bypasses; bundled esbuild dev-server advisory). |
 | `vitest` | 3.0.5 | **4.1.11** | 🔧 | 3.0.5 is incompatible: Angular 22.2 `@angular/build` requires `^4.0.8 || ^5.0.0`. 4.1.11 also clears a **critical** advisory present through 4.1.10. |
 | `ws` | 8.18.0 | **8.22.0** | 🛡 | 8.18.0 → 8.22.0 (high: memory disclosure / DoS). |
@@ -200,8 +202,10 @@ Resolved by building `stack/backend` (Spring Boot 4.1.1 harvest project) on Java
 | Component | Proposed | Bundled | | Notes |
 |---|---|---|---|---|
 | Eclipse IDE | 4.41 | **2026-09 R** (platform 4.41.0), "Enterprise Java and Web Developers", sha512 verified | ✅ | 593 MB. Includes Buildship (Gradle). The installer adds the **Lombok agent** to `eclipse.ini`. Checkstyle/PMD *Eclipse plugins* are not bundled (the Gradle tasks cover the checks) |
-| Helm | 4.0.5 | **v4.0.5** | ✅ | v4.3.0 is newer |
-| kubectl | "5.0.4" | **v1.37.1 — placeholder** | 🔧❓ | there is no kubectl 5.x; 5.0.4 is the Kustomize version older kubectl prints. **Must be set to the island cluster's minor ±1 (O-1)** |
+| kubectl | "5.0.4" | **v1.31.14** | 🔧 | there is no kubectl 5.x (5.0.4 is the Kustomize version older kubectl prints). The cluster Graham can see reports **server v1.30.4**; kubectl is supported within ±1 minor, so 1.31 serves 1.30, 1.31 and 1.32 servers. (The legacy workstation's 1.35 client is outside that window.) **Confirm the Desert Island cluster's version (O-1)** |
+| Helm | 4.0.5 | **v3.18.6** as `helm` + **v4.3.0** as `helm4` | 🔧🛡 | Helm's skew table: **4.0.x supports 1.31–1.34 — not 1.30**, and 4.0.5 has 2 HIGH advisories (fixed only in 4.1.4+, which supports 1.32+). **3.18.x is the newest line supporting 1.30** (1 moderate advisory, fixed only in lines that drop 1.30). Both ship; when the cluster reaches 1.34, `helm4` becomes `helm` (one line in `stack/backend.env`) |
+| kind | — (Graham: "we use kind") | **v0.29.0** + node image `kindest/node:v1.30.13` | ➕ | the kind release whose node images include 1.30 (v0.33.0, current, builds 1.33+ only), so local clusters match the 1.30 server. `island/kind-cluster.sh create` makes a cluster whose node image *and* pod images come from Nexus |
+| Docker CE | — (Graham: "Docker is what we use") | **29.8.2** + containerd.io 2.3.6, buildx 0.37.1, compose 5.5.1 (RPMs for RHEL 9) | ➕ | not on RHEL media, so the RPMs travel in the bundle — sha256 from Docker's repository metadata, GPG signatures checked on the island against Docker's key (fingerprint `060A 61C5 1B55 8A7F 742B 77AA C52F EB6B 621E 9F35`). Installer writes `insecure-registries` for the Nexus registry while it is plain HTTP and adds the installing user to the `docker` group (root-equivalent, per Docker's own docs). Testcontainers runs with **Ryuk on** |
 | jq | 1.6 | from RHEL media | ✅ | see §1 |
 
 ## 6. Container images (back-end bundle → docker-hosted)
@@ -220,10 +224,11 @@ Saved as `docker-archive` tars, pushed by `load-nexus.sh` (skopeo preferred). **
 | `mockserver/mockserver:8.0.0` | ➕ | `sha256:b8426e0b3c80…` | 156 MB | for `testcontainers-mockserver` |
 | `selenium/standalone-chrome:latest` | ➕❓ | `sha256:7efe71e7e4a8…` | 970 MB | for `testcontainers-selenium`; pin a version (A-4) |
 | `keycloak/keycloak:26.7.4` (quay.io) | ➕ | `sha256:82a77884f3af…` | 256 MB | the identity server keycloak-js needs; matches the "26.7.4" in the source list |
+| `kindest/node:v1.30.13` | ➕ | `sha256:397209b3d947…` | __KIND_SIZE__ | kind v0.29.0's 1.30 node image (v2) — local clusters at the cluster's minor |
 
 Full digests: `images/IMAGES.lock` in the bundle.
 
-## 7. Residual security advisories (26) — known, not fixable downstream
+## 7. Residual security advisories (22 under pnpm) — known, not fixable downstream
 
 All four chains are **development-time tooling or a deprecated library**; none is in Angular's runtime. Each needs an owner's accept-or-replace decision before the island's security review sees it.
 
@@ -238,9 +243,10 @@ All four chains are **development-time tooling or a deprecated library**; none i
 
 | Item | Value |
 |---|---|
-| Product | Sonatype Nexus Repository 3. **Community Edition (3.77+) refuses every upload until an administrator accepts Sonatype's EULA** — rehearsed on 3.96.4. Licensing / edition is decision D-8. CE also has published usage limits — **[UNVERIFIED]** whether they affect a ~2,200-component instance; check Sonatype's current CE terms |
+| Product | Sonatype Nexus Repository 3 — **target the newest release: 3.96.4 (2026-09-30)** (Graham: "latest and greatest, assuming compatible"; the legacy island runs **3.81**). The scripts use long-standing REST endpoints (repositories, components, assets, docker v2), exercised on 3.76.1 and — up to the EULA gate — on 3.96.4. **Community Edition (3.77+) refuses every upload until an administrator accepts Sonatype's EULA**; the scripts detect that and stop with Sonatype's text. If the island's 3.81 is CE, your organisation has already accepted it once; edition/licensing is still D-8. CE usage limits **[UNVERIFIED]** for a ~2,300-component instance |
 | Repositories | `npm-hosted`, `maven-hosted` (MIXED, permissive layout), `raw-hosted`, `pypi-hosted`, `docker-hosted` (own HTTP connector, e.g. 8082) — `island/nexus-create-repos.sh` creates them |
 | Realms | npm Bearer Token, Docker Bearer Token (the script enables them) |
+| **Loading npm packages** | **with `npm publish`, not Nexus's components REST API** — found 2026-10-01: the components API keeps ~10 metadata fields and drops `ng-update` (so `ng update` can't see Angular's package groups) and more; and concurrent uploads of one package's versions can drop versions from the metadata. The shipped loaders publish one package's versions at a time with explicit dist-tags, then verify and repair the metadata — re-running them repairs any earlier load. If DevOps loads npm packages by other means, check: `npm view @angular/core@22.2.1 ng-update.packageGroup` must print a list |
 | Read access | anonymous read, or per-developer credentials — O-3 |
 | Request size | the largest upload is ~600 MB (Eclipse); a reverse proxy in front of Nexus must allow it — O-4 |
 | TLS | the scripts assume plain HTTP until a CA exists — O-2 |
@@ -249,7 +255,6 @@ All four chains are **development-time tooling or a deprecated library**; none i
 ## 9. What is deliberately not in either bundle
 
 - **Python packages** — none were listed (`stack/python/requirements.txt` is empty; the Black extension bundles its own formatter). The mechanism is in place.
-- **A local Kubernetes** (kind / k3d / minikube) — none listed; only the clients (helm, kubectl).
-- **Docker CE** — not in RHEL; Podman is (D-9).
+- **k3d / minikube** — kind is the team's choice and is bundled (v2).
 - **Maven plugins, Eclipse marketplace plugins, Firefox/WebKit for Playwright** — see the notes above.
 - **Anything for the legacy estate** — the legacy Angular upgrade pool is a separate bundle (`legacy-shells/tools/build-transfer-bundle.sh`). The two use the same tooling.

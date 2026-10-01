@@ -1,13 +1,16 @@
 ---
 schema: corpus-doc/v1
-status: exploratory
+status: superseded
+superseded_by: "docs/design/packets/legacy-shell-bundle-01-design-packet/nexus_upload_instructions_v2.md"
 title: Nexus Upload Instructions v1 — getting the bundle into the island registry
 areas: [isolated-network, dev-environment]
 related: ["docs/design/packets/legacy-shell-bundle-01-design-packet/v18_transfer_bundle_manifest_v1.md", "docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v1.md"]
-updated: 2026-09-08
+updated: 2026-10-01
 ---
 
 # Nexus Upload Instructions v1
+
+> **Superseded 2026-10-01 by [`nexus_upload_instructions_v2.md`](nexus_upload_instructions_v2.md)** — use the bundled `upload-to-nexus.sh` (components API, staged `--through <rung>`, npm-metadata repair). The `npm publish` loop below was never run against Nexus; and **parallel uploads can make Nexus drop versions from package metadata** (found 2026-10-01) — the new loader prevents and repairs that.
 
 **Created:** 2026-09-03 | **Last updated:** 2026-09-08 (naming convention; earlier: pool/slicer, delta merge, node_modules callout, island facts from Graham) | **Naming (2026-09-08, compliance):** delivered artifacts are named **`angular-upgrade-bundle-<slice>-<date>`** — for what they are, rather than for the project or the estate. The earlier project-prefixed names are retired; `build-transfer-bundle.sh` emits the new ones (see its `BUNDLE_PREFIX`). **The bundle name is also the directory *inside* the `.tar`,** so renaming an archive after the fact does not change what extraction produces — rebuild, or repack from a renamed directory.
 

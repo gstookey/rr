@@ -4,10 +4,12 @@ status: exploratory
 title: Transfer Bundle Manifest v2 — the 17→22 master pool, its slices, and the sizes
 areas: [isolated-network, technology-stack, dev-environment]
 related: ["docs/design/packets/legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v2.md", "docs/design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v2.md", "docs/design/packets/legacy-shell-bundle-01-design-packet/nexus_upload_instructions_v1.md"]
-updated: 2026-09-03
+updated: 2026-10-01
 ---
 
 # Transfer Bundle Manifest v2 — the 17→22 master pool + slices
+
+> **Numbers superseded 2026-10-01:** the pool is now **2,202 tarballs / 375.9 MB** for 17 → 22.2.1 on the exact-pinned locks (v17 baseline 1,220 / 116.3 MB · 17-18: 196 / 51.9 · 18-19: 154 / 42.2 · 19-20: 211 / 41.9 · 20-21: 195 / 51.1 · 21-22: 226 / 72.5 MB). See `legacy-shells/bundle/MANIFEST.json` and [offline_verification_transcript_v3.md](offline_verification_transcript_v3.md). The method below is unchanged.
 
 *(Filename retains its v17-v19 origin; extended to the full ladder the same day.)*
 
