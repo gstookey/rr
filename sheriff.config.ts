@@ -52,6 +52,16 @@ export const config: SheriffConfig = {
     'packages/config/src': ['type:data-access', 'scope:platform'],
     'packages/store-features/src': ['type:data-access', 'scope:platform'],
 
+    // ---- Status Grid — Graham's utility-window feature ----------------------
+    // Not an ACME Floor (ACME is a learning instrument, ADR-007): a real work feature, kept in one
+    // package so it ports as one folder, with each layer its own module so the layering is
+    // enforced rather than hoped for. The barrel is the feature's public face.
+    'packages/status-grid/src': ['type:feature', 'scope:status-grid'],
+    'packages/status-grid/src/lib/domain': ['type:domain', 'scope:status-grid'],
+    'packages/status-grid/src/lib/data-access': ['type:data-access', 'scope:status-grid'],
+    'packages/status-grid/src/lib/ui': ['type:ui', 'scope:status-grid'],
+    'packages/status-grid/src/lib/feature': ['type:feature', 'scope:status-grid'],
+
     // ---- L2 · Floors — one bounded context each ---------------------------
     // Placeholder patterns, so a Floor library added in S2..S7 is fenced the
     // moment it exists rather than the moment someone remembers to edit this
@@ -99,6 +109,8 @@ export const config: SheriffConfig = {
     'scope:command': ['scope:command', 'scope:platform'],
     'scope:vigilance': ['scope:vigilance', 'scope:platform'],
     'scope:front-desk': ['scope:front-desk', 'scope:platform'],
+    // The Status Grid sees itself and the base (it composes @rr/ui's panes) — never a Floor.
+    'scope:status-grid': ['scope:status-grid', 'scope:platform'],
   },
 
   entryPoints: {
@@ -112,5 +124,6 @@ export const config: SheriffConfig = {
     'store-features': 'packages/store-features/src/index.ts',
     'invent-domain': 'packages/invent-domain/src/index.ts',
     'command-domain': 'packages/command-domain/src/index.ts',
+    'status-grid': 'packages/status-grid/src/index.ts',
   },
 };

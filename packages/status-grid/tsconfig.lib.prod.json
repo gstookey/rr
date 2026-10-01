@@ -1,0 +1,13 @@
+{
+  "//": "The packaged build resolves @rr/ui from its BUILT output (ng-packagr will not compile another library's source); typecheck and tests use source through tsconfig.base paths. build:libs builds ui first.",
+  "extends": "./tsconfig.lib.json",
+  "compilerOptions": {
+    "declarationMap": false,
+    "paths": {
+      "@rr/ui": ["../../dist/packages/ui"]
+    }
+  },
+  "angularCompilerOptions": {
+    "compilationMode": "partial"
+  }
+}

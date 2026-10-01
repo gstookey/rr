@@ -17,7 +17,7 @@
     "ng": "ng",
     "start": "ng serve shell",
     "build": "ng build shell",
-    "build:libs": "ng build ui && ng build auth && ng build config && ng build markings && ng build windows && ng build store-features",
+    "build:libs": "ng build ui && ng build auth && ng build config && ng build markings && ng build windows && ng build store-features && ng build status-grid",
     "test": "ng test shell --watch=false && npm run test --workspaces --if-present",
     "lint": "eslint .",
     "typecheck": "npm run typecheck --workspaces --if-present",

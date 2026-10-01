@@ -1,0 +1,21 @@
+{
+  "name": "@rr/status-grid",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Status Grid utility-window feature: unit list, status grid, details deck, composed on @rr/ui panes. Layered domain → data-access → ui → feature, each a Sheriff module.",
+  "scripts": {
+    "build": "ng build status-grid",
+    "test": "ng test status-grid --watch=false",
+    "typecheck": "tsc --noEmit -p tsconfig.typecheck.json"
+  },
+  "peerDependencies": {
+    "@angular/common": "^22.1.0",
+    "@angular/core": "^22.1.0",
+    "@ngrx/signals": "^22.0.0",
+    "@rr/ui": "0.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}
