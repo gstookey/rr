@@ -109,12 +109,19 @@ part in auto-placement.
 - **Day ribbon:** one `<button>` per hour group, `flex-grow` set to the group's column span, and
   coloured by `hourWorst[i]`. If `hourWorst` is shorter than the groups, the extra hours fall back
   to NO_DATA. A click scrolls that hour's first column to the left edge
-  (`scrollTo({ left: column × 19, behavior: 'smooth' })`).
+  (`scrollTo({ left: column × 19 })`). The smoothness comes from `scroll-behavior: smooth` on the
+  grid, which a `prefers-reduced-motion: reduce` media query turns off.
 - **Bracket:** shows which share of the day is in view, from the scroller's `scrollLeft` and
-  `clientWidth`. It is measured after render, on scroll, and on resize. The `ResizeObserver`
-  watches the **host, not the scroller**: the scroller is re-created whenever the grid returns
-  from its empty state, and an observer on it would be left watching a discarded element. A unit
-  change also re-measures after the next render (`ngOnChanges`).
+  `clientWidth`. It is measured on scroll and by a `ResizeObserver` on the scroller, which reports
+  once when it starts observing and again on every resize (a splitter drag, a collapse, the window).
+  Two details matter:
+  - **The observer follows the scroller.** The scroller is re-created whenever the grid comes back
+    from its empty state, so an `effect` re-points the observer at whatever `viewChild('scroller')`
+    currently holds. The effect writes no signal, so it is legal and behaves the same on 17.3 and 22.
+  - **The measurement runs inside `NgZone`.** An observer's callback runs outside Angular's zone.
+    On a zone.js app (17.3), a signal written there is not rendered until some unrelated event, so
+    the bracket would stay put after a collapse. **This was observed on the 17.3 build and fixed**
+    with `zone.run(() => this.measure(...))`. Zoneless (22), `run` just calls through.
 - **Banner:** shown while `counts.ERROR > 0`. It is a **flow row** that pushes the grid down, never
   an overlay, which would paint over the sticky time tiers.
 - **Now-marker:** a 2 px line at the left edge of the first future column (`grid-column:
@@ -157,6 +164,7 @@ you move, which suits 2,880 cells.
 | Home / End | the first / last column of the row |
 | PageUp / PageDown | 10 columns left / right, clamped |
 | Enter / Space | **selects** the active cell (`cellSelect`) |
+| with Alt, Ctrl or Meta held | left to the browser and the OS (Alt+← is Back) |
 | anything else | left to the browser (Tab leaves the grid) |
 
 - **Focus never moves selection.** Arrows move the dashed ring, and only Enter, Space or a click
@@ -168,8 +176,9 @@ you move, which suits 2,880 cells.
   `aria-activedescendant`.
 - The dashed ring shows only under `.grid:focus-visible`, so a mouse user never sees it.
 - **A different unit resets** the keyboard position, hover and tooltip (`ngOnChanges` on `unit`).
-  They index rows and columns that may not exist in the new grid. Other input changes (the clock
-  ticking, new counts) leave them alone.
+  They index rows and columns that may not exist in the new grid. The comparison is **by id**: a
+  fresh object for the same unit (a reload of the unit list) keeps the operator's place. Other
+  input changes (the clock ticking, new counts) leave them alone.
 
 Accessible names (`Gearbox, 04:15Z, Partial`) are built **once per data change** in a `computed`,
 not formatted in the template on every check of every cell.
@@ -180,9 +189,9 @@ not formatted in the template on every check of every cell.
 
 This is the feature's one status symbol, used in the grid's legend and labels, the list and the
 deck. It is light DOM with an empty template, so the host element *is* the symbol: a 12 px disc
-coloured from `data-status`, or an 8×2 hyphen for NO_DATA. It is decorative (`aria-hidden`) by
-default, because the row, cell or tab around it already carries the status in its accessible name.
-`[labelled]="true"` makes it announce itself (`role=img`, `aria-label`). It replaces Astro's
+coloured from `data-status`, or an 8×2 hyphen for NO_DATA. It is always decorative
+(`aria-hidden`): the row, cell, tab or chip around it carries the status in text or in its
+accessible name, so status never depends on colour alone. It replaces Astro's
 `rux-status` for three reasons:
 
 - every `rux-status` is a shadow root, which the pop-out would have to walk;
@@ -201,20 +210,20 @@ see the foundation guide §5.
 
 ---
 
-## 8. The spec (`status-grid.spec.ts`, 35 tests)
+## 8. The spec (`status-grid.spec.ts`, 37 tests)
 
 The fixture is six columns over two hours and two components, one of them failed, with four
 columns elapsed. A comment at the top of the spec draws the expected grid.
 
 | Group | Pins |
 |---|---|
-| header | name, window (open and closed), now, counts; the no-unit and no-component empty states; the banner appears only with ERROR |
+| header | name, window (open and closed), now, counts; the no-unit and no-component empty states; the banner appears only with ERROR, and says "1 sample" / "4 samples" |
 | cells | 12 cells with the projected statuses and accessible names; `aria-rowcount`/`colcount`; the selected cell's `aria-selected` and ring area; the now-marker's column and its two bounds; the hour rules and anchor |
 | day ribbon | status per hour with the NO_DATA fallback; spans; a click scrolls 4 × 19 px; a click with no grid is harmless; the bracket at 50% / 50% |
 | pointer | click selects, a missed click does nothing; hover area; the tooltip only after the delay, with its text; below near the top and above further down (with position); no restart within a cell; leaving clears; scroll hides it; destroy drops a pending tooltip |
-| keyboard | keys ignored before focus; the three starting positions; position kept on refocus; every movement key and its clamping; `scrollIntoView` when supported; Enter and Space select; other keys pass through |
-| a different unit | resets keyboard, hover and pending tooltip; other input changes don't |
-| resize observation | observes the host, re-measures, and disconnects on destroy; not on the server; runs without `ResizeObserver` |
+| keyboard | keys ignored before focus; the three starting positions; position kept on refocus; every movement key and its clamping; `scrollIntoView` when supported; Enter and Space select; other keys, and Alt/Ctrl/Meta chords, pass through |
+| a different unit | resets keyboard, hover and pending tooltip; a fresh object for the same unit doesn't, nor do other input changes |
+| resize observation | observes the scroller, re-measures, and disconnects on destroy; follows a re-created scroller; not on the server; renders without `ResizeObserver` |
 
 The tooltip delay is held by `holdTooltipTimers()`. It spies on `setTimeout`, holds only the
 300 ms callbacks, and runs them by hand, so no test depends on the timer mode.
@@ -223,16 +232,20 @@ The tooltip delay is held by `holdTooltipTimers()`. It spies on `setTimeout`, ho
 
 ## 9. Porting to 17.3
 
-**Nothing differs.** The same files ran on Angular 17.3.12 + Jest 29 at 100% (see the README).
-These are the 17.3 ∩ 22 features it relies on:
+**Nothing differs.** The same files ran on Angular 17.3.12 + Jest 29 at 100%, built AOT with
+`strictTemplates`, and behaved identically in Chromium (see the README). These are the 17.3 ∩ 22
+features it relies on:
 
-- signal `input()` / `output()` (17.1 / 17.3) with `fixture.componentRef.setInput` in specs;
+- signal `input()` / `output()` (17.1 / 17.3), with `fixture.componentRef.setInput` in specs;
 - `ngOnChanges` firing for signal inputs;
 - `viewChild()` (17.2);
-- `afterNextRender(fn, { injector })` (17.0);
-- `@if` / `@for` (17.0).
+- one `effect()` that **writes no signal** (it only re-points the observer), so effect timing,
+  which moved in 19, cannot change what it does;
+- `NgZone.run` for the one callback that arrives outside Angular (the observer);
+- `@if` / `@for` (17.0). In a `@for` that aliases `$index` (`let c = $index`), 17 requires
+  `track c`: `track $index` there fails AOT with NG9. JIT under Jest does not catch it.
 
-It uses no `linkedSignal`, no `@let` and no `effect`.
+It uses no `linkedSignal`, no `@let`, and no signal-writing effect.
 
 ---
 
@@ -243,7 +256,10 @@ It uses no `linkedSignal`, no `@let` and no `effect`.
 2. **Nesting an overlay inside a cell.** Overlays are grid items of `.grid` (which is
    `position: relative`); placed inside a cell, a ring would be clipped and scroll with it.
 3. **A CDK overlay for the tooltip.** It works until the window pops out.
-4. **Observing the scroller.** It is re-created; observe the host.
-5. **Formatting labels in the template.** That is 2,880 string builds per check. Keep the
+4. **Observing the scroller once.** It is re-created with the empty state; re-point the observer
+   (the effect) or it watches a discarded element.
+5. **Writing signals from a callback Angular did not start** (an observer, a third-party listener)
+   without `NgZone.run`. Fine on 22; on a 17.3 zone.js app nothing repaints.
+6. **Formatting labels in the template.** That is 2,880 string builds per check. Keep the
    `cellLabels` computed.
-6. **Forgetting `scrollIntoView` after a key move.** The ring walks off-screen.
+7. **Forgetting `scrollIntoView` after a key move.** The ring walks off-screen.

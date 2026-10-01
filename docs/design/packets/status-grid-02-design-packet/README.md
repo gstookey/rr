@@ -92,7 +92,41 @@ v2, simplified, and with the list and deck designed and built for the first time
 
 ## Verification
 
-*(Filled in at the end of the build. See the PR for the exact commands.)*
+Everything below was run on the branch tip.
+
+| Check | Result |
+|---|---|
+| Vitest, Angular 22.1 zoneless (`ng test status-grid`) | **165/165**, in 16 spec files |
+| Jest 29, Angular 17.3.12, `@ngrx/signals` 17.2, zone.js (a scratch project matching the work app; the package copied byte-identical) | **165/165**, and **100% statements, branches, functions and lines** on every file (threshold enforced) |
+| The same, with `fakeTimers: { enableGlobally: true }` | 165/165 |
+| The same, with `resetMocks` + `restoreMocks` + `clearMocks` | 165/165 |
+| Angular 17.3 AOT build with `strictTemplates` (the whole package, mounted in an app) | Clean. It caught one real 17-only error that Jest's JIT cannot: `track $index` beside a `let c = $index` alias (fixed: `track c`) |
+| Browser: one Playwright flow (list keys, Enter, filter, empty filter, cell click, grid keys, deck tab arrows, future cell, collapse Units) against **both** builds | **Identical** observations on 22 and 17.3; zero console errors or warnings |
+| Ribbon bracket after collapsing Units (grid 1127 → 1582 px wide) | 44% → 65% on **both**. Before the review fix it stayed at 44% on 17.3: an observer callback ran outside the zone |
+| Measured at the 1618 × 773 window | Units 483 px; grid and details 1127 × 383; bands 32 px (29 px with the ERROR banner); cards 269 × 135; collapsing Units gives 26 / 1584 px. All match R3 |
+| `bash scripts/local-ci.sh` | **EXIT=0** (lint + Sheriff, typecheck, every test suite, library builds, corpus check) |
+| Verin review | Approve with should-fix, nothing blocking. Fixed: zone-safe measuring (confirmed on 17.3), `TimeSource` outside the zone, unit reset by id, samples matched by instant, detail fetched only for a verdict, `unitItems` emitting only on a phase change, modifier chords left to the browser, the observer following a re-created scroller, dead code removed, and guide drift. Recorded as streaming-arc work: foundation guide §6 |
+
+## Design-note items not built in this arc
+
+R3 specified these, and this arc leaves them out. Each is small and none blocks the feature:
+
+- the hour tier as `columnheader[aria-colspan]` (the time tiers are `aria-hidden`; each cell's
+  accessible name carries its time);
+- the crosshair tint on the selected cell's hour, minute and row label, and forcing on a masked
+  minute label for the selected column;
+- the ribbon segment's own tooltip (`14:00–15:00Z · worst INVALID · click to scroll`): it has an
+  accessible name, not a hover tooltip;
+- "no data, not due yet" wording in a NO_DATA cell's name (it reads "No data yet");
+- Retry, on the banner and in the deck (with the WebSocket arc).
+
+## Conventions worth knowing
+
+- **Repeat choices.** The list does not emit the unit that is already selected; the grid and the
+  deck re-emit, and the store's methods are no-ops for a repeat. Either way nothing happens twice.
+- **Names.** Selectors are prefixed (`rr-sg-*`); TypeScript names (`StatusGrid`, `Unit`,
+  `TimeSource`, …) are not. If they collide in your app, import them under an alias
+  (`import { Unit as SgUnit } from …`) rather than renaming the source.
 
 ## Open
 

@@ -68,7 +68,7 @@ the package, four Sheriff modules enforce the layering:
 | Module | Tag | May import |
 |---|---|---|
 | `domain/` | `type:domain` | nothing (pure TypeScript, no Angular) |
-| `data-access/` | `type:data-access` | `domain` · `@angular/core` · `@ngrx/signals` |
+| `data-access/` | `type:data-access` | `domain` · `@angular/core` · `@angular/common` · `@ngrx/signals` |
 | `ui/` | `type:ui` | `domain` · `@angular/*` (never the store) |
 | `feature/` | `type:feature` | everything above · `@rr/ui` (the panes) |
 
@@ -186,7 +186,10 @@ is the WebSocket arc's seam (§6).
 ### 3.2 The clock (`time-source.ts`)
 
 `TimeSource.now` is a **signal**, updated every 30 s and only in the browser. On a server, an
-interval would hold the process open. Why not call `Date.now()` in a computed? A computed that calls
+interval would hold the process open. On a zone.js app (17.3) the interval is started **outside**
+the zone and each tick writes **inside** it (`runOutsideAngular` / `run`). That way the change is
+rendered, but the interval is not a permanent pending task: `whenStable()` in your specs settles
+and the app's stability is not held open by a clock. Zoneless (22), both calls just call through. Why not call `Date.now()` in a computed? A computed that calls
 `Date.now()` captures no dependency, so it never invalidates: the NO_DATA boundary would freeze at
 first render. Override it in tests and demos:
 
@@ -218,7 +221,7 @@ calls `loadUnits()`.
 |---|---|
 | `loadUnits()` | reads units; keeps the selection if it still exists, else selects the first |
 | `selectUnit(id)` | no-op if unchanged; else loads that unit's grid and clears cell and detail |
-| `selectCell(coord)` | no-op without a unit, or for the same cell (**no toggle-off**); else loads the detail |
+| `selectCell(coord)` | no-op without a unit, or for the same cell (**no toggle-off**); else selects it, and fetches the detail **only for a verdict** (VALID, PARTIAL, INVALID). A NO_DATA, PENDING or ERROR sample has none, so nothing is asked for |
 | `selectElement(id)` | records the tab |
 
 Two notes:
@@ -227,8 +230,10 @@ Two notes:
   tab if the new sample has that element, else the first. Because it is derived, it heals itself
   when the element list changes. Nothing has to reset it.
 - **`deckState` decides what the deck says**: `idle` (nothing selected), `future` (NO_DATA),
-  `pending`, `error`, `empty` (judged, no detail), or `ready`. No detail is fetched for a NO_DATA
-  or ERROR sample in the real backend either.
+  `pending`, `error`, `empty` (judged, no detail), or `ready`.
+- **`unitItems` emits only when a unit changes phase.** It reads the clock, so it re-runs every
+  tick, but its `equal` compares each unit and phase, so the list re-renders a few times a day
+  rather than every 30 s.
 
 ### 3.4 Fixtures (`turbine-fixtures.ts`)
 
@@ -295,12 +300,18 @@ The next arc makes the data push-based. The seam is the data source and the thre
 that call it:
 
 - `units()`, `unitGrid()` and `sampleDetail()` become subscriptions or async requests. Each arriving
-  message lands in state with the same single `patchState`. New samples append to `grid.samples`
-  (and `timestamps`).
+  message lands in state with the same single `patchState`. New samples arrive as a **new**
+  `grid` (new arrays): never mutate an array already handed to `patchState`, because newer
+  `@ngrx/signals` freezes state in development and 17.2 would simply not notify.
+- **Two things the push method must do that the sync arc never needed.** (1) When a sample
+  arrives for the *selected* cell and turns it from PENDING into a verdict, fetch its detail.
+  Today `elements` is fetched once, at selection, so without this the deck would read "empty".
+  (2) When `loadUnits()` keeps the selected unit, refresh its grid as well.
 - Loading and error flags join the state (`deckState` gains `loading`; the ERROR banner and deck
   gain the Retry that R3 drew and this arc deliberately omits).
-- **Nothing in `domain/`, `ui/` or the surface changes.** The projection already treats any sample
-  as authoritative over the clock, and every pane is already a pure function of its inputs.
+- **Nothing in `domain/`, `ui/` or the surface needs to change.** The projection already treats
+  any sample as authoritative over the clock, and the panes take everything as inputs. Their only
+  local state is UI position (the keyboard, hover and filter), which resets when its unit changes.
 
 ---
 

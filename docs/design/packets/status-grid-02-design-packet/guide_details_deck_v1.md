@@ -2,7 +2,8 @@
 schema: corpus-doc/v1
 status: active
 title: Status Grid — Details Deck implementation guide (v1)
-areas: [frontend, ux]
+areas: [frontend, ux, code]
+governs: ["packages/status-grid/src/lib/ui/details-deck/**"]
 related: ["docs/design/packets/status-grid-02-design-packet/mockups_r3_design_note.md", "docs/design/packets/ui-panes-01-design-packet/ui_panes_implementation_guide_v1.md"]
 updated: 2026-10-01
 ---
@@ -10,7 +11,7 @@ updated: 2026-10-01
 # Status Grid — Details Deck implementation guide (v1)
 
 **Created:** 2026-10-01 | **Author:** Marlow | **Status:** `active`. Built and tested on Angular 22
-(Vitest) and 17.3.12 (Jest 29); not yet browser-verified. Pending Graham's merge.
+(Vitest) and 17.3.12 (Jest 29), and checked in Chromium on both (see the packet README). Pending Graham's merge.
 **Source of truth:** `packages/status-grid/src/lib/ui/details-deck/` · **Design:** `mockups_r3_design_note.md` §3–§8
 
 **This guide explains the source. It does not copy it.** Copy the folder. The excerpts below are short
@@ -185,8 +186,8 @@ nothing inside it is focusable, and a keyboard user must still be able to scroll
 - **Arrow Right/Left** move to the next/previous tab and **wrap** (APG). **Home/End** go to the
   first/last tab. Each of these **activates**: it emits `elementSelect` and moves focus to the new tab.
   The payload is already loaded, so making the operator press Enter would gain nothing. Each also calls
-  `preventDefault()`. Every other key is left alone. Enter and Space on a focused tab are native
-  button clicks.
+  `preventDefault()`. Every other key, and any key with Alt, Ctrl or Meta held, is left alone. Enter and
+  Space on a focused tab are native button clicks.
 - **Moves count from the tab the key was pressed on**, which the template passes as `$index`, not from
   `activeIndex()`. Focus moves synchronously, but the new `activeElement` comes back through the store
   on the next render. Counting from `activeIndex` would make a held arrow key repeat from a stale tab.
@@ -280,8 +281,8 @@ Coverage on the 17.3 harness is 100% statements/branches/functions/lines for all
   `input.required()`, `output()` (17.3), `computed()`, `viewChildren()` (17.2), `@if`/`@for`/`@switch`,
   and a `host` object. It does not use `@let`, `linkedSignal`, effects, `HostBinding`/`HostListener`,
   or NgModules.
-- **Export them.** Add the three to the `ui` barrel, and add `SampleContext` and `DetailsDeck` to the
-  surface's `imports`:
+- **Already exported and wired.** The `ui` barrel exports all three, and the surface imports
+  `SampleContext` and `DetailsDeck`. Copy the package and they come with it. The barrel lines are:
   ```ts
   export * from './details-deck/sample-context';
   export * from './details-deck/attribute-card';
@@ -313,7 +314,8 @@ Coverage on the 17.3 harness is 100% statements/branches/functions/lines for all
 | A spec renders nothing under Jest | It awaited `whenStable()` without `fixture.detectChanges()` |
 
 **Known limitations:**
-- Not browser-verified yet. The geometry follows the design note but has not been measured.
+- Measured in Chromium at the 1618 × 773 window: cards 269 × 135, two rows fit the 383 px Details pane
+  at the default split, and the context stays in the header when the deck collapses.
 - Arrow keys are not mirrored in RTL.
 - A `ready` state with no elements draws an empty tablist and panel. The store never produces it
   (that case is `'empty'`).

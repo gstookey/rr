@@ -2,7 +2,8 @@
 schema: corpus-doc/v1
 status: active
 title: Status Grid — Unit List implementation guide (v1)
-areas: [frontend, ux]
+areas: [frontend, ux, code]
+governs: ["packages/status-grid/src/lib/ui/unit-list/**"]
 related: ["docs/design/packets/status-grid-02-design-packet/mockups_r3_design_note.md", "docs/design/packets/ui-panes-01-design-packet/ui_panes_implementation_guide_v1.md"]
 updated: 2026-10-01
 ---
@@ -44,9 +45,9 @@ about the store:
 </rr-pane>
 ```
 
-Two wiring steps sit outside this component's files. First, export it from `ui/index.ts` with
-`export * from './unit-list/unit-list';`. Second, put `UnitList` in the surface's `imports` and replace the
-`<p>unit list</p>` placeholder. The component is part of the `ui` Sheriff module and imports only `../../domain`
+Two wiring lines sit outside this component's files, and both are already in the package: the `ui` barrel
+exports it (`export * from './unit-list/unit-list';`), and the surface lists `UnitList` in its `imports`. Copy
+the package and they come with it. The component is part of the `ui` Sheriff module and imports only `../../domain`
 and `../status-dot`.
 
 ## 2. The contract
@@ -62,10 +63,13 @@ and `../status-dot`.
   selection leaves the component.
 - **No toggle-off.** Choosing the unit that is already selected emits nothing. The store's `selectUnit` ignores
   a same-id call as well, but the guard sits in the component so that `unitSelect` always means "the selection
-  changed", whichever host is listening.
+  changed", whichever host is listening. *This guard is list-only:* the grid's `cellSelect` and the deck's
+  `elementSelect` re-emit on a repeat choice and rely on the store's no-op, because re-choosing a cell or a tab
+  is harmless and a guard there would need the component to know what the store holds.
 - **The phase comes in with the item.** The store computes `unitPhase(unit, now)`, so the list never reads a
-  clock. It re-renders when the store's `unitItems` changes, which happens when `now` moves a unit between
-  phases.
+  clock. It re-renders when the store's `unitItems` changes, which happens only when `now` moves a unit between
+  phases: `unitItems` re-runs on every 30s tick but has an `equal` that compares each unit and phase, so it
+  emits nothing until one changes.
 - **No sorting.** The design note asks for natural order by ID. That order belongs to whoever serves the data.
   If the list sorted by itself, it would move rows out from under the pointer.
 
@@ -159,6 +163,7 @@ The field and the list are each one tab stop, in that order.
 | ↓ / ↑ | Move the active option by one, clamped at the ends. **Selects nothing** |
 | Home / End | Move to the first or last option. Selects nothing |
 | Enter / Space | Select the active option (`preventDefault`, so Space does not scroll the pane) |
+| with Alt, Ctrl or Meta held | Left to the browser and the OS (Alt+↓ and friends are theirs) |
 | anything else | Left to the browser |
 
 A click selects and also makes that option active. Arrowing never fetches a unit, which follows the grid's rule
