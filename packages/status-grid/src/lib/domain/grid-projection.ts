@@ -1,6 +1,6 @@
 import type { CellCoordinate, ComponentId, UnitComponent, UnitGrid } from './models';
 import type { GridPosition } from './read-models';
-import { COUNTED_STATUSES, emptyCounts, worstOf, type StatusCounts, type ValidationStatus } from './status';
+import { emptyCounts, worstOf, type StatusCounts, type ValidationStatus } from './status';
 import type { TimeAxis } from './time-axis';
 
 /**
@@ -28,12 +28,14 @@ export interface GridRow {
 export function buildGridRows(axis: TimeAxis, grid: UnitGrid | null, elapsedCount: number): GridRow[] {
   if (grid === null) return [];
   const failed = new Set<ComponentId>(grid.failedComponentIds);
+  // Keyed by INSTANT, as the axis is: '…:00Z' and '…:00.000Z' are one column, so a sample spelled
+  // either way lands on it.
   const byKey = new Map<string, ValidationStatus>();
-  for (const sample of grid.samples) byKey.set(`${sample.componentId}|${sample.timestamp}`, sample.status);
+  for (const sample of grid.samples) byKey.set(`${sample.componentId}|${Date.parse(sample.timestamp)}`, sample.status);
 
   return grid.components.map((component) => {
     const cells = axis.columns.map((column): ValidationStatus => {
-      const sampled = byKey.get(`${component.id}|${column.timestamp}`);
+      const sampled = byKey.get(`${component.id}|${column.epochMs}`);
       if (sampled !== undefined) return sampled;
       if (column.index >= elapsedCount) return 'NO_DATA';
       return failed.has(component.id) ? 'ERROR' : 'PENDING';
@@ -50,11 +52,6 @@ export function countElapsed(rows: readonly GridRow[], elapsedCount: number): St
   }
   counts.NO_DATA = 0;
   return counts;
-}
-
-/** Total of the counted (verdict-bearing) statuses. */
-export function countedTotal(counts: StatusCounts): number {
-  return COUNTED_STATUSES.reduce((sum, status) => sum + counts[status], 0);
 }
 
 /** The worst elapsed status in each hour group — what the DayRibbon draws. */

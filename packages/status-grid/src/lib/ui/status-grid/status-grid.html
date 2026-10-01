@@ -36,7 +36,7 @@
 @if (counts().ERROR > 0) {
   <div class="banner" role="status">
     <rr-sg-status-dot status="ERROR" />
-    <span>Retrieval failed for {{ counts().ERROR }} samples — those cells show ERROR because no verdict could be obtained.</span>
+    <span>Retrieval failed for {{ counts().ERROR }} {{ counts().ERROR === 1 ? 'sample' : 'samples' }} — those cells show ERROR because no verdict could be obtained.</span>
   </div>
 }
 
@@ -50,7 +50,7 @@
     tabindex="0"
     [attr.aria-label]="(unit()?.name ?? '') + ' status by component and time'"
     [attr.aria-rowcount]="rows().length"
-    [attr.aria-colcount]="axis().columns.length"
+    [attr.aria-colcount]="axis().columns.length + 1"
     [attr.aria-activedescendant]="activeId()"
     [style.grid-template-columns]="columnsTemplate()"
     [style.grid-template-rows]="rowsTemplate()"
@@ -59,7 +59,7 @@
     (pointerleave)="onPointerLeave()"
     (focus)="onFocus()"
     (keydown)="onKeydown($event)"
-    (scroll)="onScroll()">
+    (scroll)="onScroll($event)">
     <div class="corner" aria-hidden="true"></div>
     @for (hour of axis().hourGroups; track hour.id) {
       <div class="hour" aria-hidden="true" [style.grid-column]="'span ' + hour.span">{{ hour.label }}</div>

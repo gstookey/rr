@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-import { STATUS_LABEL, type ValidationStatus } from '../domain';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import type { ValidationStatus } from '../domain';
 
 /**
  * `<rr-sg-status-dot>` — the feature's one status symbol: a 12px disc, or a hyphen for NO_DATA.
@@ -14,8 +14,8 @@ import { STATUS_LABEL, type ValidationStatus } from '../domain';
  *  • NO_DATA is a different CATEGORY (not yet, rather than a verdict), so it gets a different SHAPE.
  * Colours are Astro's status palette, read as tokens with fallbacks.
  *
- * Decorative by default (aria-hidden), because the row, cell or tab around it already carries the
- * status in its accessible name. Set `labelled` to make the dot announce its own status.
+ * Always decorative (aria-hidden): the row, cell, tab or chip around it carries the status in text
+ * or in its accessible name, so status never depends on colour alone.
  */
 @Component({
   selector: 'rr-sg-status-dot',
@@ -26,13 +26,9 @@ import { STATUS_LABEL, type ValidationStatus } from '../domain';
   host: {
     class: 'rr-sg-status-dot',
     '[attr.data-status]': 'status()',
-    '[attr.role]': 'labelled() ? "img" : null',
-    '[attr.aria-label]': 'labelled() ? label() : null',
-    '[attr.aria-hidden]': 'labelled() ? null : "true"',
+    'aria-hidden': 'true',
   },
 })
 export class StatusDot {
   readonly status = input.required<ValidationStatus>();
-  readonly labelled = input(false);
-  protected readonly label = computed(() => STATUS_LABEL[this.status()]);
 }

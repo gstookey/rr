@@ -1,4 +1,4 @@
-import { buildGridRows, countElapsed, countedTotal, locate, worstByHour } from './grid-projection';
+import { buildGridRows, countElapsed, locate, worstByHour } from './grid-projection';
 import type { UnitGrid } from './models';
 import { buildTimeAxis } from './time-axis';
 
@@ -45,6 +45,12 @@ describe('buildGridRows', () => {
     expect(rows[1].rollup).toBe('ERROR');
   });
 
+  // The axis treats two spellings of one instant as one column; the samples must land on it too.
+  it('matches a sample to its column by instant, whatever the spelling', () => {
+    const spelled: UnitGrid = { ...grid, samples: [{ componentId: 'gearbox', timestamp: '2026-10-01T04:00:00.000Z', status: 'INVALID' }] };
+    expect(buildGridRows(axis, spelled, 2)[0].cells[0]).toBe('INVALID');
+  });
+
   it('has no rows without a grid', () => {
     expect(buildGridRows(axis, null, 2)).toEqual([]);
   });
@@ -57,11 +63,11 @@ describe('counting', () => {
   it('counts elapsed cells per status, never NO_DATA', () => {
     const counts = countElapsed(rows, 2);
     expect(counts).toEqual({ VALID: 1, PARTIAL: 1, INVALID: 0, ERROR: 2, PENDING: 0, NO_DATA: 0 });
-    expect(countedTotal(counts)).toBe(4);
   });
 
   it('stops at the row length when the boundary is past the end', () => {
-    expect(countedTotal(countElapsed(rows, 99))).toBe(5); // the three future NO_DATA cells never count
+    // the future INVALID counts once elapsed; the three NO_DATA cells never do
+    expect(countElapsed(rows, 99)).toEqual({ VALID: 1, PARTIAL: 1, INVALID: 1, ERROR: 2, PENDING: 0, NO_DATA: 0 });
   });
 
   it('gives each hour its worst elapsed status, for the day ribbon', () => {

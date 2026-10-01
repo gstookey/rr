@@ -1,4 +1,4 @@
-import { DestroyRef, Injectable, PLATFORM_ID, inject, signal, type Signal } from '@angular/core';
+import { DestroyRef, Injectable, NgZone, PLATFORM_ID, inject, signal, type Signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 /** How often `now` advances. Samples arrive every 10–15 minutes, so a 30s lag on the
@@ -25,7 +25,13 @@ export class TimeSource {
   constructor() {
     // A server render has nothing to keep fresh, and an interval would hold the process open.
     if (!isPlatformBrowser(inject(PLATFORM_ID))) return;
-    const handle = setInterval(() => this.current.set(Date.now()), TIME_SOURCE_TICK_MS);
+    // On a zone.js app (17.3) the interval is started OUTSIDE the zone, so it is not a pending task
+    // that keeps the app (and `whenStable()` in tests) from ever settling; each tick re-enters the
+    // zone to write, so the change is rendered. Zoneless (22), both calls just call through.
+    const zone = inject(NgZone);
+    const handle = zone.runOutsideAngular(() =>
+      setInterval(() => zone.run(() => this.current.set(Date.now())), TIME_SOURCE_TICK_MS),
+    );
     inject(DestroyRef).onDestroy(() => clearInterval(handle));
   }
 }

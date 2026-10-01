@@ -100,6 +100,7 @@ export class DetailsDeck {
    * back through the store on the next render — a held arrow key must not repeat from a stale tab.
    */
   protected onKeydown(event: KeyboardEvent, from: number): void {
+    if (event.altKey || event.ctrlKey || event.metaKey) return; // the browser's and the OS's chords
     const count = this.elements().length;
     const moves: Partial<Record<string, number>> = {
       ArrowRight: (from + 1) % count,

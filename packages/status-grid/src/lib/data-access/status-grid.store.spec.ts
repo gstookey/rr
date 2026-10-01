@@ -52,6 +52,16 @@ describe('StatusGridStore', () => {
       expect(store.rows()).toEqual([]);
     });
 
+    // WHY: the clock ticks every 30s; the list should only re-render when a unit changes phase.
+    it('re-emits the unit items only when a unit changes phase', () => {
+      const store = setup();
+      const first = store.unitItems();
+      now.set(NOW + 30_000);
+      expect(store.unitItems()).toBe(first);
+      now.set(Date.parse('2026-10-02T07:00:00Z')); // WTG-13 starts at 06:00Z tomorrow
+      expect(store.unitItems()).not.toBe(first);
+    });
+
     it('labels each unit with its phase relative to now', () => {
       const store = setup();
       const phase = (id: string) => store.unitItems().find((item) => item.unit.id === id)?.phase;
@@ -131,6 +141,29 @@ describe('StatusGridStore', () => {
       store.selectUnit('WTG-04');
       store.selectCell(cell(store, 'converter', 0));
       expect(store.deckState()).toBe('error');
+    });
+
+    // WHY: a NO_DATA, PENDING or ERROR sample has no verdict, so there is no detail behind it to
+    // fetch — a real backend would answer with an error or nothing.
+    it('fetches detail only for a sample with a verdict', () => {
+      const store = setup();
+      const spy = jest.spyOn(source, 'sampleDetail');
+      store.selectCell(cell(store, 'gearbox', store.axis().columns.length - 1)); // NO_DATA
+      store.selectCell(cell(store, 'gearbox', store.elapsedCount() - 1)); // PENDING
+      store.selectUnit('WTG-04');
+      store.selectCell(cell(store, 'converter', 0)); // ERROR
+      expect(spy).not.toHaveBeenCalled();
+      expect(store.elements()).toEqual([]);
+      store.selectCell(cell(store, 'gearbox', 0));
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+
+    it('lets a selected future sample become due as the clock passes it', () => {
+      const store = setup();
+      store.selectCell(cell(store, 'gearbox', store.elapsedCount()));
+      expect(store.deckState()).toBe('future');
+      now.set(NOW + 60 * 60_000);
+      expect(store.deckState()).toBe('pending');
     });
 
     it('says "empty" when a judged sample has no detail to show', () => {

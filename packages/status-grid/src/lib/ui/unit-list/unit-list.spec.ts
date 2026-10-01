@@ -46,8 +46,8 @@ describe('UnitList', () => {
     fixture.detectChanges();
   }
 
-  function press(key: string): KeyboardEvent {
-    const event = new KeyboardEvent('keydown', { key, cancelable: true });
+  function press(key: string, init: KeyboardEventInit = {}): KeyboardEvent {
+    const event = new KeyboardEvent('keydown', { key, cancelable: true, ...init });
     listbox().dispatchEvent(event);
     fixture.detectChanges();
     return event;
@@ -201,10 +201,13 @@ describe('UnitList', () => {
       expect(emitted).toEqual([]);
     });
 
-    it('leaves other keys to the browser', () => {
+    it('leaves other keys, and modified keys, to the browser', () => {
       render();
       focusList();
       expect(press('a').defaultPrevented).toBe(false);
+      expect(press('ArrowDown', { altKey: true }).defaultPrevented).toBe(false);
+      expect(press('End', { ctrlKey: true }).defaultPrevented).toBe(false);
+      expect(press('ArrowDown', { metaKey: true }).defaultPrevented).toBe(false);
       expect(activeName()).toMatch(/^WTG-04,/);
     });
 

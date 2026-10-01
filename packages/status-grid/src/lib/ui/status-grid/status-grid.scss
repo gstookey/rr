@@ -87,6 +87,10 @@
   min-block-size: 0;
   background: var(--rr-sg-lattice, rgb(150 190 220 / 9%)); // what shows through the 1px gaps
   outline: none;
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  .grid { scroll-behavior: auto; }
 }
 
 .label,

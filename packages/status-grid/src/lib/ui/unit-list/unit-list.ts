@@ -153,6 +153,7 @@ export class UnitList {
   }
 
   protected onKeydown(event: KeyboardEvent): void {
+    if (event.altKey || event.ctrlKey || event.metaKey) return; // the browser's and the OS's chords
     const active = this.active();
     if (event.key === 'Enter' || event.key === ' ') {
       if (active === null) return;

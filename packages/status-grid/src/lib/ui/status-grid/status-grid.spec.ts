@@ -160,6 +160,8 @@ describe('StatusGrid', () => {
     it('shows the retrieval banner only while elapsed samples are ERROR', () => {
       render();
       expect(q('.banner')!.textContent).toContain('Retrieval failed for 4 samples');
+      render({ elapsedCount: 1 });
+      expect(q('.banner')!.textContent).toContain('Retrieval failed for 1 sample —');
       render({ elapsedCount: 0 });
       expect(q('.banner')).toBeNull();
     });
@@ -173,7 +175,7 @@ describe('StatusGrid', () => {
       expect(cell(1, 0).dataset['status']).toBe('ERROR');
       expect(cell(0, 1).getAttribute('aria-label')).toBe('Gearbox, 00:15Z, Invalid');
       expect(grid().getAttribute('aria-rowcount')).toBe('2');
-      expect(grid().getAttribute('aria-colcount')).toBe('6');
+      expect(grid().getAttribute('aria-colcount')).toBe('7'); // the row-header column, then six times
     });
 
     it('rings and marks the selected cell', () => {
@@ -216,7 +218,7 @@ describe('StatusGrid', () => {
       const scrollTo = jest.fn();
       grid().scrollTo = scrollTo;
       el.querySelectorAll<HTMLElement>('.ribbon__hour')[1].click();
-      expect(scrollTo).toHaveBeenCalledWith({ left: 4 * 19, behavior: 'smooth' });
+      expect(scrollTo).toHaveBeenCalledWith({ left: 4 * 19 });
     });
 
     it('does nothing when there is no grid to scroll', () => {
@@ -403,10 +405,16 @@ describe('StatusGrid', () => {
       expect(emitted).toEqual([coordinate('gearbox', 3), coordinate('converter', 3)]);
     });
 
-    it('leaves other keys to the browser', () => {
+    it('leaves other keys, and modified keys, to the browser', () => {
       render();
       grid().dispatchEvent(new Event('focus'));
       expect(key('Tab').defaultPrevented).toBe(false);
+      for (const modifier of ['altKey', 'ctrlKey', 'metaKey']) {
+        const event = new KeyboardEvent('keydown', { key: 'ArrowLeft', [modifier]: true, bubbles: true, cancelable: true });
+        grid().dispatchEvent(event);
+        update();
+        expect([modifier, event.defaultPrevented]).toEqual([modifier, false]);
+      }
       expect(position()).toEqual([0, 3]);
     });
   });
@@ -426,6 +434,14 @@ describe('StatusGrid', () => {
       expect(q('.hover')).toBeNull();
     });
 
+    it('keeps them for a fresh object of the same unit, as a reload of the unit list gives', () => {
+      render();
+      grid().dispatchEvent(new Event('focus'));
+      fixture.componentRef.setInput('unit', { ...UNIT });
+      update();
+      expect(grid().getAttribute('aria-activedescendant')).not.toBeNull();
+    });
+
     it('keeps them when other inputs change', () => {
       render();
       grid().dispatchEvent(new Event('focus'));
@@ -437,14 +453,14 @@ describe('StatusGrid', () => {
 
   describe('resize observation', () => {
     const original = globalThis.ResizeObserver;
-    let instances: { callback: () => void; observe: ReturnType<typeof jest.fn>; disconnect: ReturnType<typeof jest.fn> }[];
+    let instances: { callback: (entries: { target: Element }[]) => void; observe: ReturnType<typeof jest.fn>; disconnect: ReturnType<typeof jest.fn> }[];
 
     beforeEach(() => {
       instances = [];
       globalThis.ResizeObserver = class {
         observe = jest.fn();
         disconnect = jest.fn();
-        constructor(public callback: () => void) {
+        constructor(public callback: (entries: { target: Element }[]) => void) {
           instances.push(this);
         }
       } as unknown as typeof ResizeObserver;
@@ -453,16 +469,26 @@ describe('StatusGrid', () => {
       globalThis.ResizeObserver = original;
     });
 
-    it('observes the host, re-measures on resize, and disconnects on destroy', () => {
+    it('observes the scroller, re-measures on resize, and disconnects on destroy', () => {
       render();
       expect(instances).toHaveLength(1);
-      expect(instances[0].observe).toHaveBeenCalledWith(el);
+      expect(instances[0].observe).toHaveBeenLastCalledWith(grid());
       Object.defineProperty(grid(), 'clientWidth', { configurable: true, value: 254 });
-      instances[0].callback();
+      instances[0].callback([{ target: grid() }]);
       update();
       expect(q('.ribbon__bracket')!.style.width).toBe('100%');
       fixture.destroy();
       expect(instances[0].disconnect).toHaveBeenCalled();
+    });
+
+    // WHY: the scroller is re-created when the grid comes back from its empty state; an observer
+    // left on the discarded element would never report again.
+    it('follows the scroller when it is re-created', () => {
+      render({ rows: 'none' });
+      expect(instances[0].observe).not.toHaveBeenCalled();
+      fixture.componentRef.setInput('rows', buildGridRows(AXIS, GRID, 4));
+      update();
+      expect(instances[0].observe).toHaveBeenLastCalledWith(grid());
     });
 
     it('does not observe on the server', () => {
@@ -472,11 +498,17 @@ describe('StatusGrid', () => {
     });
   });
 
-  it('runs without ResizeObserver', () => {
+  describe('without ResizeObserver', () => {
     const original = globalThis.ResizeObserver;
-    (globalThis as { ResizeObserver?: unknown }).ResizeObserver = undefined;
-    render();
-    expect(() => fixture.destroy()).not.toThrow();
-    globalThis.ResizeObserver = original;
+    afterEach(() => {
+      globalThis.ResizeObserver = original;
+    });
+
+    it('still renders and tears down', () => {
+      (globalThis as { ResizeObserver?: unknown }).ResizeObserver = undefined;
+      render();
+      expect(q('.grid')).not.toBeNull();
+      expect(() => fixture.destroy()).not.toThrow();
+    });
   });
 });

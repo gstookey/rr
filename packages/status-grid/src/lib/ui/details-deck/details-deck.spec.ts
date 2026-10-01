@@ -46,8 +46,8 @@ describe('DetailsDeck', () => {
   const panel = () => host.querySelector('[role="tabpanel"]');
   const cardNames = () => Array.from(host.querySelectorAll('rr-sg-attribute-card .name')).map((n) => n.textContent);
 
-  function press(tab: HTMLElement, key: string): KeyboardEvent {
-    const event = new KeyboardEvent('keydown', { key, bubbles: true, cancelable: true });
+  function press(tab: HTMLElement, key: string, init: KeyboardEventInit = {}): KeyboardEvent {
+    const event = new KeyboardEvent('keydown', { key, bubbles: true, cancelable: true, ...init });
     tab.dispatchEvent(event);
     return event;
   }
@@ -202,10 +202,13 @@ describe('DetailsDeck', () => {
       expect(document.activeElement).toBe(tabs()[2]);
     });
 
-    it('leaves every other key alone', () => {
+    it('leaves every other key, and modified keys, alone', () => {
       ready();
       const event = press(tabs()[0], 'Enter');
       expect(event.defaultPrevented).toBe(false);
+      expect(press(tabs()[0], 'ArrowLeft', { altKey: true }).defaultPrevented).toBe(false);
+      expect(press(tabs()[0], 'Home', { ctrlKey: true }).defaultPrevented).toBe(false);
+      expect(press(tabs()[0], 'ArrowRight', { metaKey: true }).defaultPrevented).toBe(false);
       expect(emitted).toEqual([]);
     });
   });

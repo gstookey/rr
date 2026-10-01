@@ -3,10 +3,10 @@ import {
   Component,
   DestroyRef,
   ElementRef,
-  Injector,
+  NgZone,
   PLATFORM_ID,
-  afterNextRender,
   computed,
+  effect,
   inject,
   input,
   output,
@@ -120,7 +120,6 @@ export class StatusGrid implements OnChanges {
 
   private readonly scroller = viewChild<ElementRef<HTMLElement>>('scroller');
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
-  private readonly injector = inject(Injector);
 
   /** Keyboard position (aria-activedescendant), hover position, and the tooltip — all local:
    *  pointer motion never reaches the store. */
@@ -193,26 +192,37 @@ export class StatusGrid implements OnChanges {
   });
 
   constructor() {
-    afterNextRender(() => this.measure());
-    // The HOST is observed, not the scroller: the scroller is re-created whenever the grid comes
-    // back from its empty state, and an observer would be left watching the discarded element.
+    // The ribbon's bracket follows the scroller's width. The observer reports once on observe and
+    // again on every resize (a splitter drag, a collapse, the window itself). Its callback runs
+    // outside Angular's zone, so on a zone.js app (17.3) the measurement is brought back IN, or the
+    // bracket would not repaint until some unrelated event. Zoneless (22), run() just calls through.
+    const zone = inject(NgZone);
     const browser = isPlatformBrowser(inject(PLATFORM_ID));
     const observer =
-      browser && typeof ResizeObserver === 'function' ? new ResizeObserver(() => this.measure()) : null;
-    observer?.observe(this.host);
+      browser && typeof ResizeObserver === 'function' ? new ResizeObserver(([entry]) => zone.run(() => this.measure(entry.target))) : null;
+    if (observer) {
+      // The scroller is re-created whenever the grid comes back from its empty state: follow it.
+      // (No signal is written here — the effect only re-points the observer.)
+      effect(() => {
+        const scroller = this.scroller()?.nativeElement;
+        observer.disconnect();
+        if (scroller) observer.observe(scroller);
+      });
+    }
     inject(DestroyRef).onDestroy(() => {
       observer?.disconnect();
       this.clearTooltipTimer();
     });
   }
 
-  /** A different unit is a different grid: drop the keyboard, hover and tooltip positions (they
-   *  index rows and columns that may not exist any more) and re-measure for the ribbon. */
+  /** A different unit is a different grid: drop the keyboard, hover and tooltip positions — they
+   *  index rows and columns that may not exist any more. Compared by id, so a fresh object for the
+   *  same unit (a reload of the unit list) keeps the operator's place. */
   ngOnChanges(changes: SimpleChanges): void {
-    if (!changes['unit']) return;
+    const change = changes['unit'];
+    if (!change || change.previousValue?.id === change.currentValue?.id) return;
     this.active.set(null);
     this.onPointerLeave();
-    afterNextRender(() => this.measure(), { injector: this.injector });
   }
 
   protected cellId(row: number, column: number): string {
@@ -259,14 +269,15 @@ export class StatusGrid implements OnChanges {
     this.clearTooltipTimer();
   }
 
-  protected onScroll(): void {
-    this.measure();
+  protected onScroll(event: Event): void {
+    this.measure(event.target as Element);
     this.tooltip.set(null);
   }
 
   /** Scroll so an hour group starts at the left edge of the cells. */
   protected scrollToColumn(column: number): void {
-    this.scroller()?.nativeElement.scrollTo({ left: column * PITCH, behavior: 'smooth' });
+    // Smooth unless the operator asked for reduced motion: `scroll-behavior` in the SCSS decides.
+    this.scroller()?.nativeElement.scrollTo({ left: column * PITCH });
   }
 
   // ── Keyboard: one focusable grid, the active cell named by aria-activedescendant ─────────────
@@ -279,7 +290,8 @@ export class StatusGrid implements OnChanges {
 
   protected onKeydown(event: KeyboardEvent): void {
     const position = this.active();
-    if (position === null) return;
+    // Alt/Ctrl/Meta chords belong to the browser and the OS (Alt+← is Back).
+    if (position === null || event.altKey || event.ctrlKey || event.metaKey) return;
     const lastRow = this.rows().length - 1;
     const lastColumn = this.axis().columns.length - 1;
     const move: Record<string, () => GridPosition> = {
@@ -314,12 +326,13 @@ export class StatusGrid implements OnChanges {
 
   private showTooltip(cell: HTMLElement): void {
     this.tooltipTimer = null;
-    const position = positionOf(cell);
+    const { row, column } = positionOf(cell);
+    const gridRow = this.rows()[row];
     const host = this.host.getBoundingClientRect();
     const rect = cell.getBoundingClientRect();
     const below = rect.top - host.top < 80;
     this.tooltip.set({
-      text: this.cellLabels()[position.row][position.column].replace(/, /g, ' · '),
+      text: `${gridRow.component.name} · ${formatZuluTime(this.axis().columns[column].epochMs)} · ${STATUS_LABEL[gridRow.cells[column]]}`,
       x: rect.left - host.left + rect.width / 2,
       y: below ? rect.bottom - host.top + 4 : rect.top - host.top - 4,
       below,
@@ -331,9 +344,9 @@ export class StatusGrid implements OnChanges {
     this.tooltipTimer = null;
   }
 
-  private measure(): void {
-    const scroller = this.scroller()?.nativeElement;
-    this.scrollLeft.set(scroller?.scrollLeft ?? 0);
-    this.viewportWidth.set(scroller?.clientWidth ?? 0);
+  /** Read the scroller's position and width for the ribbon's bracket. */
+  private measure(scroller: Element): void {
+    this.scrollLeft.set(scroller.scrollLeft);
+    this.viewportWidth.set(scroller.clientWidth);
   }
 }

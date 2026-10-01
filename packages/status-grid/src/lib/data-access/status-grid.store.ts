@@ -18,6 +18,7 @@ import {
   type UnitGrid,
   type UnitId,
   type UnitListItem,
+  type ValidationStatus,
 } from '../domain';
 import { STATUS_GRID_DATA_SOURCE } from './status-grid.data-source';
 import { TimeSource } from './time-source';
@@ -48,6 +49,14 @@ export interface StatusGridState {
   /** The tab the operator chose. null = no choice: the first tab. Never written by default —
    *  see `activeElement`. */
   readonly activeElementId: ElementId | null;
+}
+
+/** The statuses that carry a verdict, and so have element detail behind them. */
+const VERDICTS: ReadonlySet<ValidationStatus> = new Set<ValidationStatus>(['VALID', 'PARTIAL', 'INVALID']);
+
+/** Unit list items are equal when every unit is the same object in the same phase. */
+function sameItems(a: readonly UnitListItem[], b: readonly UnitListItem[]): boolean {
+  return a.length === b.length && a.every((item, i) => item.unit === b[i].unit && item.phase === b[i].phase);
 }
 
 const initialState: StatusGridState = {
@@ -93,10 +102,15 @@ export const StatusGridStore = signalStore(
       counts: computed(() => countElapsed(rows(), elapsedCount())),
       hourWorst: computed(() => worstByHour(axis(), rows(), elapsedCount())),
       selectedUnit: computed(() => store.units().find((u) => u.id === store.selectedUnitId()) ?? null),
-      unitItems: computed((): UnitListItem[] => {
-        const now = time.now();
-        return store.units().map((unit) => ({ unit, phase: unitPhase(unit, now) }));
-      }),
+      // Reads the clock, so it re-runs every tick — but only EMITS when a unit changes phase, so
+      // the list re-renders a few times a day rather than every 30s.
+      unitItems: computed(
+        (): UnitListItem[] => {
+          const now = time.now();
+          return store.units().map((unit) => ({ unit, phase: unitPhase(unit, now) }));
+        },
+        { equal: sameItems },
+      ),
       deckState: computed((): DeckState => {
         const sample = selectedSample();
         if (sample === null) return 'idle';
@@ -138,11 +152,15 @@ export const StatusGridStore = signalStore(
       selectUnit,
 
       /** Select a sample. Re-selecting the same cell is a no-op (no toggle-off: the deck would
-       *  be left with nothing to say). The tab choice carries over when the element exists. */
+       *  be left with nothing to say). Detail is fetched only for a VERDICT — a NO_DATA, PENDING
+       *  or ERROR sample has none to fetch. The tab choice carries over when the element exists. */
       selectCell(coordinate: CellCoordinate): void {
         const unitId = store.selectedUnitId();
         if (unitId === null || sameCoordinate(coordinate, store.selectedCell())) return;
-        patchState(store, { selectedCell: coordinate, elements: source.sampleDetail(unitId, coordinate) });
+        const position = locate(coordinate, store.axis(), store.rows());
+        const status = position === null ? 'NO_DATA' : store.rows()[position.row].cells[position.column];
+        const elements = VERDICTS.has(status) ? source.sampleDetail(unitId, coordinate) : [];
+        patchState(store, { selectedCell: coordinate, elements });
       },
 
       selectElement(elementId: ElementId): void {
