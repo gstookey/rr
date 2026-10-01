@@ -5,11 +5,13 @@
   "license": "ISC",
   "scripts": {
     "clean": "rimraf dist",
-    "build": "tsc",
-    "test": "echo 'Common package defines no tests'"
+    "build": "tsc"
   },
-  "dependencies": {},
+  "dependencies": {
+    "tslib": "2.6.2"
+  },
   "devDependencies": {
+    "rimraf": "5.0.5",
     "typescript": "5.2.2"
   }
 }

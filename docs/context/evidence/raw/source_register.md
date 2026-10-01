@@ -3,12 +3,12 @@ schema: corpus-doc/v1
 status: active
 title: Source Register
 areas: [context-system]
-updated: 2026-08-25
+updated: 2026-10-01
 ---
 
 # Source Register
 
-**Created:** 2026-08-25 | **Last updated:** 2026-08-25
+**Created:** 2026-08-25 | **Last updated:** 2026-10-01 (SRC-016 — the legacy apps' package.json files, exact-pinned revision; earlier the same day SRC-013..015 — the Desert Island dev-environment stack sources, Axium)
 
 | ID | Source | Location | Kind | Ingested | Synthesized into | Notes |
 |---|---|---|---|---|---|---|
@@ -24,3 +24,7 @@ updated: 2026-08-25
 | SRC-010 | RR logo candidates (57 JPGs) | `images/rr_logos/` | generated images | registered only | `docs/design/brand/README.md` | Zip + `__MACOSX` removed 2026-08-25; originals kept. |
 | SRC-011 | TrAIdit context root example | `docs/context.root-files.example/` | reference copy | n/a | `canonical/context_system.md` | Read-only exemplar; excluded from corpus graph. |
 | SRC-012 | Graham's description of RR (program stand-up on an isolated network, 8 lines of effort) | `docs/context/evidence/raw/project-road-runner-description.txt` | founder-source | 2026-08-25 | `canonical/project_overview.md`, `canonical/isolated_network_constraints.md`, `canonical/current_priorities.md` | Landed on `main` 9852e23. C-006 resolved. |
+| SRC-013 | Front-end tech stack for the Desert Island dev environment (37-row table + example package.json; "not vetted for compatibility, feasibility, or US-made software") | `docs/source-documents/desert-island-setup-docs/front-end-tech-stack.md` | Graham-authored proposal | 2026-10-01 | `docs/design/packets/desert-island-devenv-01-design-packet/` (stack list, reconciliation), `desert-island-devenv/stack/frontend/package.json` | Vetted against npm 2026-10-01: 4 nonexistent versions, 1 peer conflict, 1 builder incompatibility, 53 advisories. Proposes pnpm + Nx (C-011, C-012) and Angular 22.2.0 (C-013). |
+| SRC-014 | Back-end tech stack from the team's architect (Java 25, Spring Boot 4.1.1, Gradle 9.7.1, Testcontainers, tools, images) | `docs/source-documents/desert-island-setup-docs/back-end-tech-stack.md` | architect's list (relayed by Graham) | 2026-10-01 | same packet; `desert-island-devenv/stack/backend/`, `stack/backend.env`, `stack/images.txt` | First Java back end in the corpus (C-014). Testcontainers 1.20.1 → 2.0.5, JaCoCo 0.8.12 → 0.8.15, Ryuk 0.9.0 → 0.14.0, `kubectl 5.0.4` does not exist. Open questions A-1..A-5. |
+| SRC-015 | Air-gapped dev-environment setup guidance (Gemini session: config matrix + staging/install scripts) | `docs/source-documents/desert-island-setup-docs/air-gapped-dev-env-setup-guidence.md` | AI chat transcript | 2026-10-01 | same packet (reconciliation §Workstation) | Treated as intent, not code: its scripts do not run as pasted (truncated URLs, fused lines). Its pnpm-store strategy contradicts ADR-004 and is unnecessary once Nexus exists. |
+| SRC-016 | The two legacy applications' package.json files (root + every workspace package; app-01: client/common/server, app-02: client/common/interface/server) — **revised 2026-10-01 by Graham to the exact versions installed on the island** (checked against the island lock files; `^` ranges removed) | `docs/source-documents/legacy-apps/legacy-app-0{1,2}/` | founder-source (hand-copied from the island) | first ported 2026-09-03 (PR #27, registered late); exact-pin revision ingested 2026-10-01 (main 4dec9c4) | `legacy-shells/` (via `tools/shells-from-source.mjs`), `legacy-shell-bundle-01/monorepo_hop_procedure_v3.md`, `bundle/locks/` | Ingest finding: app-02 carries **no NgRx** and Material/CDK **17.0.4** (app-01: 17.3.10); app-01 root CLI 17.3.17 vs client 17.3.7; node-forge 1.3.3 (app-01) vs 1.3.1 (app-02). Private scopes (`@other-team/*`, `@ssd_victor/*`) are not reproducible off-island. |

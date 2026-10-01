@@ -1,13 +1,16 @@
 ---
 schema: corpus-doc/v1
-status: exploratory
+status: superseded
+superseded_by: "docs/design/packets/legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v3.md"
 title: Monorepo Hop Procedure v2 — 17→18 and 18→19 in the real layout (angular.json in packages/client)
 areas: [frontend, isolated-network, dev-environment]
 related: ["docs/design/packets/legacy-shell-bundle-01-design-packet/v17_to_v18_monorepo_runbook_delta_v1.md", "docs/design/packets/ng-hop-01-v17-to-v18-design-packet/v17_to_v18_hop_runbook_v1.md", "docs/design/packets/ng-hop-02-v18-to-v19-design-packet/v18_to_v19_hop_runbook_v1.md"]
-updated: 2026-09-03
+updated: 2026-10-01
 ---
 
 # Monorepo Hop Procedure v2 — the island procedure, in the real layout
+
+> **Superseded 2026-10-01 by [`monorepo_hop_procedure_v3.md`](monorepo_hop_procedure_v3.md)** — the ladder now lands on **22.2.1**, is scripted (`tools/hop.sh`), and is re-based on the exact-pinned apps. Kept as the evidence trail (the "five attempts" table and the 2026-09-03 observations still stand).
 
 **Created:** 2026-09-03 | **Status:** `exploratory` — every step observed on the reconciled shells (Node v22.22.2 / npm 10.9.7), online and replayed **offline**. **Supersedes** the placement finding in [`v17_to_v18_monorepo_runbook_delta_v1.md`](v17_to_v18_monorepo_runbook_delta_v1.md) (kept for its evidence trail); read with the two bare-app runbooks for the per-hop background.
 

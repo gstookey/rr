@@ -1,0 +1,10 @@
+{
+  "name": "devenv-package-managers",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Package-manager tooling shipped in the front-end bundle (2026-10-01). npm comes with Node; pnpm and only-allow are npm packages, so they travel in the npm pool and install from Nexus.",
+  "dependencies": {
+    "only-allow": "1.2.2",
+    "pnpm": "10.34.6"
+  }
+}

@@ -9,7 +9,7 @@ updated: 2026-09-03
 
 # Current Priorities
 
-**Created:** 2026-08-25 | **Last updated:** 2026-09-08 (Axium; sync pass — ACME S0 merged and ruled a learning instrument (ADR-007); the two lanes now run in separate sessions)
+**Created:** 2026-08-25 | **Last updated:** 2026-10-01, later (Axium: ADR-008 settles D-1..D-9; the legacy ladder re-walked to 22.2.1 on the exact-pinned apps and scripted; Nexus npm-loading defects fixed; bundling scripts guide. Earlier: `desert-island-devenv-01` — Desert Island workstation bundles built and rehearsed)
 
 Compact operating context. Readable in one window. Standing truth lives in `docs/CURRENT_STATE.md`; this page is *sequencing and intent*.
 
@@ -39,16 +39,22 @@ Why this and not the v22 stretch: v19 is a **hard floor** (it discharges the Ang
 
 1. **Get the questionnaires out — one per island.** Their lead time is not ours to control, and most other planning is partly speculative until they return. Legacy Island's variant carries the highest-value questions ([S-01](https://github.com/gstookey/rr/issues/8)); Desert Island's assumes nothing despite being greenfield ([S-02](https://github.com/gstookey/rr/issues/9)).
 2. **Collect the legacy estate inventory** ([S-03](https://github.com/gstookey/rr/issues/10)). The largest body of work in the programme has no size at all until this returns, and it is the evidence that decides DR-04 (v19 floor vs v22 stretch).
-3. **~~Rehearse the hops~~ The whole ladder is rehearsed and merged — the lane is now the first REAL hop.** All five rungs (17→22) are proven estate-shaped on the shells, the 17→22 pool is offline-verified and rebuildable by a tested script, and every per-rung effort signal is recorded (`legacy-shell-bundle-01`, PRs #29/#31). **This side has run out of things that meaningfully reduce risk.** What remains is measurement that only the island can produce, in this order:
-   1. **Graham runs `--delta-from` against a Nexus package listing** — turns the 355.6 MB pool into a measured payload (the estate builds on the island today, so Nexus probably already serves the whole v17 surface; if so Milestone 1 ports as ~87 MB of hop deltas).
-   2. **Graham guinea-pigs the first real application, 17→18→19**, using the field kit in [`first-app-hop-01`](../../design/packets/first-app-hop-01-design-packet/README.md). The shells carry the estate's dependency surface but almost no source, so the migrations' *code-editing* behaviour is still entirely unmeasured. **This is the single highest-value action available to the programme.**
-   3. What comes back seeds the S-03 inventory bands and is the evidence DR-04 has been waiting for.
+3. **The ladder is rehearsed, re-based on the real pins and scripted — the lane is the first REAL hop (2026-10-01).** Graham's exact-pinned package.json files (SRC-016) re-based the shells; both were walked 17 → **22.2.1** with `tools/hop.sh` and replayed offline against Nexus. The bundle (`build-transfer-bundle.sh`, cumulative ≈ 410 MB) now carries everything the island needs: the tarballs, `upload-to-nexus.sh` (staged `--through <rung>`), `tools/hop.sh`, `LADDER.md`, and Node 22.23.3 for the last rung. Next, in order:
+   1. **Re-cut the cumulative bundle on the staging machine** (one command; the committed `bundle/SHA256SUMS` lets it prove byte-identity) and port it. If the 2026-09-03 bundle already went over, `--delta-from legacy-shells/bundle/MANIFEST-2026-09-03-v17v22.json` cuts only what changed.
+   2. **Load Nexus with `upload-to-nexus.sh --through 17-18`** — not an `npm publish` loop of your own, and not Nexus's upload API: both lose npm metadata `ng update` needs (found 2026-10-01). `npm view @angular/core@18.2.14 ng-update.packageGroup` must print a list.
+   3. **Graham guinea-pigs the first real application, 17→18** with `tools/hop.sh` step by step, using the field kit in [`first-app-hop-01`](../../design/packets/first-app-hop-01-design-packet/README.md) (its tooling notes now point at v3). The migrations' *code-editing* behaviour is still entirely unmeasured — **the single highest-value action available to the programme.** Check `@other-team/core-web-angular`'s peer range first.
+   4. What comes back seeds the S-03 inventory bands and is the evidence DR-04 has been waiting for.
 
-   **Status 2026-09-08: unchanged and correctly idle.** PRs #33 and #35 landed the field kit and the execution plan on 2026-09-04; nothing on this side has moved since, because nothing on this side *can*. The lane resumes when field notes come back.
-
-   Deliberately **not** built next: the specced "golden" bundle. It is capability for DR-04, and under ADR-005 its pins are bound to legacy's achieved ceiling — both unknown until step 2 returns. Available on request the moment Graham wants the option in hand.
 4. **~~Close the cheap decisions~~ half done** ([S-04](https://github.com/gstookey/rr/issues/11)): C-001's layout half (DR-05) is **closed — ADR-006**, `apps/` + `packages/` + `services/`. Still open: whether to ship the npm cache alongside the registry seed (DR-09). Graham's judgement only.
-5. **The Node patch bump is independent and probably the cheapest risk reduction available** ([S-13](https://github.com/gstookey/rr/issues/20)): 22.15 → 22.23.2 is a patch inside the same LTS line, needs no Angular work, and closes the Node half of the security driver on its own.
+5. **The Node patch bump is independent and probably the cheapest risk reduction available** ([S-13](https://github.com/gstookey/rr/issues/20)): the island runs **22.15.1** (Graham, 2026-10-01); **22.23.3** (newest 22.x) now ships inside the ladder bundle — a patch inside the same LTS line, needed by the 21→22 rung anyway, and on its own closes the Node half of the security driver.
+
+## Desert Island workstation environment (`desert-island-devenv-01`, EP-04 work, 2026-10-01)
+
+The stack list and both bundle scripts are done, **rebuilt after Graham's decisions (ADR-008)** and rehearsed offline (front end 10/10 on pnpm; Docker CE installed from the bundle, Testcontainers Postgres from Nexus). Next, in order:
+
+1. **Hand [`devops_tech_stack_list_v2.md`](../../design/packets/desert-island-devenv-01-design-packet/devops_tech_stack_list_v2.md) to DevOps**, with the [bundling scripts guide](../operations/user-workflow/bundling_scripts_guide_v1.md). Open questions to send with it: **O-1** the Desert Island cluster's Kubernetes version (tools are pinned for 1.30 — end-of-life upstream), O-2 TLS/CA, O-3 anonymous read, O-4 reverse-proxy limits, and the **Nexus edition** (CE needs its EULA accepted by an admin). The architect gets A-1..A-5; Graham is chasing **D-7** (one server runtime or two).
+2. **Re-cut both bundles on the real staging machine** (one command each — kind's release binary is fetched and checksum-verified there; this rehearsal had to build kind locally) and run `island/prove-install.sh` on a real RHEL 9 workstation: that proves what a container cannot — **a kind cluster reaching Ready**, VS Code/Eclipse on a desktop.
+3. With approval: an EP-04 story for this packet on the board.
 
 ## Side-quest lane — DDD-ARCH-01 (design only, beside Milestone 1)
 

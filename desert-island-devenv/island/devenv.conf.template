@@ -1,0 +1,19 @@
+# devenv.conf -- site values for the island-side scripts. Created 2026-10-01.
+# Copy to island/devenv.conf and edit. Nothing in here is secret: credentials live in the
+# file named by NEXUS_CREDENTIALS_FILE (one line, user:password), chmod 600.
+
+NEXUS_URL="http://nexus.example.internal:8081"     # base URL, no trailing /repository
+NEXUS_CREDENTIALS_FILE="$HOME/.devenv-nexus-credentials"
+
+# Hosted repository names (nexus-create-repos.sh creates them with these names).
+NPM_REPO="npm-hosted"
+MAVEN_REPO="maven-hosted"
+RAW_REPO="raw-hosted"
+PYPI_REPO="pypi-hosted"
+DOCKER_REPO="docker-hosted"
+# Docker clients do not use NEXUS_URL: the docker-hosted repository gets its own connector port.
+DOCKER_REGISTRY="nexus.example.internal:8082"
+DOCKER_REGISTRY_INSECURE=true     # true while the connector is plain HTTP; set false once TLS is in place
+
+# Where install-*-workstation.sh puts system-wide tools.
+DEVENV_PREFIX="/opt/devenv"

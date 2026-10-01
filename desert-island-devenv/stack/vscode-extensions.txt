@@ -1,0 +1,18 @@
+# VS Code extensions for the air-gapped workstation bundle. Created 2026-10-01.
+# Format: <publisher>.<name> <version> <targetPlatform|universal>
+# ORDER MATTERS on install: an extension whose dependency is missing makes VS Code reach for
+# the Marketplace, which does not exist offline. Dependencies and pack members come first.
+#
+# Dropped from the source list (see the packet tech stack list):
+#   - "Angular Extension Pack 1.2.4": the ID in the guidance doc (willmendesneto.angular6-extension-pack)
+#     does not exist; the 1.2.4 pack is loiane.angular-extension-pack, which installs 16 third-party
+#     extensions from the Marketplace -- unusable offline and an unreviewed supply chain.
+#   - ms-python.black-formatter 2026.1.0: that version does not exist; 2026.6.0 is the current stable.
+ms-python.vscode-python-envs 1.38.0 linux-x64
+ms-python.vscode-pylance 2026.4.1 universal
+ms-python.python 2026.6.0 linux-x64
+ms-python.debugpy 2026.6.0 linux-x64
+ms-python.black-formatter 2026.6.0 universal
+Angular.ng-template 22.2.0 universal
+dbaeumer.vscode-eslint 3.0.34 universal
+esbenp.prettier-vscode 12.4.0 universal

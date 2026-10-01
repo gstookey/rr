@@ -4,10 +4,12 @@ status: exploratory
 title: Island Execution Plan v1 — porting the full ladder and guinea-pigging the first app
 areas: [frontend, isolated-network, dev-environment, planning]
 related: ["docs/design/packets/first-app-hop-01-design-packet/preflight_checklist_v0.md", "docs/design/packets/first-app-hop-01-design-packet/field_hop_procedure_v1.md", "docs/design/packets/legacy-shell-bundle-01-design-packet/nexus_upload_instructions_v1.md", "docs/design/packets/legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v2.md"]
-updated: 2026-09-04
+updated: 2026-10-01
 ---
 
 # Island Execution Plan v1
+
+> **Updated tooling, 2026-10-01:** the bundle now carries the procedure (`LADDER.md` = [`monorepo_hop_procedure_v3.md`](../legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v3.md)), the scripted steps (`tools/hop.sh`), and its own loader (`upload-to-nexus.sh --through <rung>`, replacing the publish loop). The ladder lands on **22.2.1** (not 22.1.5), and the 21→22 rung's Node 22.23.3 ships in the bundle. Where this document and v3 differ, v3 wins; the decisions recorded here (one cumulative transfer, staged upload, the `@other-team` peer check) stand.
 
 **Created:** 2026-09-04 | **Author:** Axium | **Status:** `exploratory` — the plan of record for the first real hop, incorporating Graham's decisions of 2026-09-04. Nothing in it has been executed yet.
 

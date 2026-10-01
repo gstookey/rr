@@ -4,10 +4,12 @@ status: exploratory
 title: Field Hop Procedure v1 — one Angular rung on a real app, on the island
 areas: [frontend, isolated-network, dev-environment]
 related: ["docs/design/packets/legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v2.md", "docs/design/packets/first-app-hop-01-design-packet/preflight_checklist_v0.md", "docs/design/packets/first-app-hop-01-design-packet/field_notes_template_v0.md"]
-updated: 2026-09-03
+updated: 2026-10-01
 ---
 
 # Field Hop Procedure v1
+
+> **Updated tooling, 2026-10-01:** the bundle now carries the procedure (`LADDER.md` = [`monorepo_hop_procedure_v3.md`](../legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v3.md)), the scripted steps (`tools/hop.sh`), and its own loader (`upload-to-nexus.sh --through <rung>`, replacing the publish loop). The ladder lands on **22.2.1** (not 22.1.5), and the 21→22 rung's Node 22.23.3 ships in the bundle. Where this document and v3 differ, v3 wins; the decisions recorded here (one cumulative transfer, staged upload, the `@other-team` peer check) stand.
 
 **Created:** 2026-09-03 | **Status:** `exploratory` — an operational rewrite of [`monorepo_hop_procedure_v2.md`](../legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v2.md), which remains authoritative for *what was observed*. This document is what to *do*, and what to do when reality differs.
 
