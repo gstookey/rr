@@ -1,0 +1,25 @@
+// <rr-sg-status-dot> — Created: 2026-10-01
+// Astro's status palette, read as tokens with fallbacks. Define the --rr-sg-* tokens at :root in the
+// GLOBAL stylesheet to theme them: a token set on a component host does not survive the pop-out.
+:host {
+  display: inline-block;
+  flex: none;
+  inline-size: var(--rr-sg-dot-size, 12px);
+  block-size: var(--rr-sg-dot-size, 12px);
+  border-radius: 50%;
+  background: var(--rr-sg-dot-fill, transparent);
+}
+
+:host([data-status='VALID']) { --rr-sg-dot-fill: var(--rr-sg-status-valid, #56f000); }
+:host([data-status='PARTIAL']) { --rr-sg-dot-fill: var(--rr-sg-status-partial, #fce83a); }
+:host([data-status='INVALID']) { --rr-sg-dot-fill: var(--rr-sg-status-invalid, #ff3838); }
+:host([data-status='ERROR']) { --rr-sg-dot-fill: var(--rr-sg-status-error, #ffb302); }
+:host([data-status='PENDING']) { --rr-sg-dot-fill: var(--rr-sg-status-pending, #2dccff); }
+
+// NO_DATA is "not yet", not a verdict — a different category, so a different shape.
+:host([data-status='NO_DATA']) {
+  inline-size: 8px;
+  block-size: 2px;
+  border-radius: 1px;
+  background: var(--rr-sg-nodata, #62798e);
+}

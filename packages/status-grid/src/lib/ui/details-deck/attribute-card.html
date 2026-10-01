@@ -1,0 +1,29 @@
+<!-- Name and flag. The flag text is lower case and drawn in caps by CSS, so a screen reader says the
+     word rather than spelling it; the ◄ is decoration. -->
+<div class="head">
+  <span class="name" [title]="attribute().name">{{ attribute().name }}</span>
+  @switch (attribute().match) {
+    @case ('MISMATCH') {
+      <span class="flag"><span aria-hidden="true">◄ </span>mismatch</span>
+    }
+    @case ('MISSING') {
+      <span class="flag">missing</span>
+    }
+  }
+</div>
+
+<!-- Pinned to the bottom of the card, so EXPECTED and ACTUAL sit at the same height in every card. -->
+<dl class="values">
+  <div class="row">
+    <dt class="label">Expected</dt>
+    <dd class="value" [title]="attribute().expected">{{ attribute().expected }}</dd>
+  </div>
+  <div class="row row--actual">
+    <dt class="label">Actual</dt>
+    @if (attribute().match === 'MISSING') {
+      <dd class="value value--missing">value not received</dd>
+    } @else {
+      <dd class="value" [title]="attribute().actual ?? ''">{{ attribute().actual }}</dd>
+    }
+  </div>
+</dl>

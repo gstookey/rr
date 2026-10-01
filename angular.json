@@ -236,6 +236,35 @@
           }
         }
       }
+    },
+    "status-grid": {
+      "projectType": "library",
+      "root": "packages/status-grid",
+      "sourceRoot": "packages/status-grid/src",
+      "prefix": "rr",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/status-grid/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/status-grid/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "packages/status-grid/tsconfig.spec.json",
+            "setupFiles": [
+              "packages/status-grid/test-setup.ts"
+            ]
+          }
+        }
+      }
     }
   }
 }

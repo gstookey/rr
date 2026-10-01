@@ -1,0 +1,8 @@
+// <rr-sg-status-grid-surface> — Created: 2026-10-01
+// Fills the window's content area; the pane group does the rest.
+:host {
+  display: block;
+  block-size: 100%;
+  inline-size: 100%;
+  background: var(--rr-sg-window, #101923);
+}

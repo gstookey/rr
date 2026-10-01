@@ -1,0 +1,57 @@
+<!-- Filter row: sticky at the top of the pane body, which is the scroller. -->
+<div class="filter">
+  <input
+    #field
+    class="filter__field"
+    type="search"
+    placeholder="Filter units"
+    aria-label="Filter units"
+    autocomplete="off"
+    spellcheck="false"
+    [attr.aria-controls]="rows().length ? listboxId : null"
+    [value]="query()"
+    (input)="onQuery($event)" />
+  <span class="filter__count" aria-live="polite"><b>{{ count().lead }}</b>{{ count().tail }}</span>
+</div>
+
+@if (rows().length) {
+  <ul
+    class="listbox"
+    role="listbox"
+    aria-label="Units"
+    tabindex="0"
+    [id]="listboxId"
+    [attr.aria-activedescendant]="activeDescendant()"
+    (focus)="onFocus()"
+    (keydown)="onKeydown($event)">
+    @for (row of rows(); track row.id) {
+      <!-- The listbox pattern: the LIST takes focus and keys (aria-activedescendant); an option is
+           never focusable itself, so a click on it has no key twin of its own by design. -->
+      <!-- eslint-disable-next-line @angular-eslint/template/click-events-have-key-events, @angular-eslint/template/interactive-supports-focus -->
+      <li
+        class="option"
+        role="option"
+        [id]="row.optionId"
+        [attr.aria-selected]="row.id === selectedId()"
+        [attr.aria-label]="row.label"
+        [class.option--selected]="row.id === selectedId()"
+        [class.option--active]="row.id === active()?.id"
+        (click)="onOptionClick(row.id)">
+        <rr-sg-status-dot [status]="row.status" />
+        <span class="option__name">{{ row.before }}@if (row.match) {<mark class="option__match">{{ row.match }}</mark>}{{ row.after }}</span>
+        <span class="option__window">{{ row.windowLead }}@if (row.windowTail) {<span class="option__running">{{ row.windowTail }}</span>}</span>
+      </li>
+    }
+  </ul>
+} @else {
+  <!-- Outside the listbox: an empty listbox announces nothing useful. -->
+  <div class="empty" role="status">
+    @if (typed()) {
+      <p class="empty__title">No units match '{{ typed() }}'</p>
+      <p class="empty__hint">The filter matches unit names.</p>
+      <button type="button" class="empty__clear" (click)="clearFilter()">Clear filter</button>
+    } @else {
+      <p class="empty__title">No units to show.</p>
+    }
+  </div>
+}
