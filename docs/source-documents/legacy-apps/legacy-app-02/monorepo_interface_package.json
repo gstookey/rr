@@ -5,7 +5,6 @@
   "type": "module",
   "private": "true",
   "license": "ISC",
-
   "scripts": {
     "clean": "rimraf dist",
     "build": "tsc && fix-es-imports",
