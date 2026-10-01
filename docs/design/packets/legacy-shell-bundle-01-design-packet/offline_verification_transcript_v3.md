@@ -30,11 +30,17 @@ Driven **only by what is inside the bundle**: `upload-to-nexus.sh --through <run
 | v17 baseline: `npm ci` from Nexus + validate | ✅ (17.3.12, cli 17.3.17) | ✅ (17.3.12, cli 17.3.7) | v17-baseline: **published 1,220**, repaired 0, FAILED 0 |
 | 17 → 18 | ✅ GREEN (222 s) | ✅ GREEN (227 s) | 17-18: published 196, repaired 0, FAILED 0 |
 | 18 → 19 | ✅ GREEN (290 s) | ✅ GREEN (297 s) | 18-19: published 154, repaired 0, FAILED 0 |
-| 19 → 20 | __R1920_01__ | __R1920_02__ | 19-20: published 211, repaired 0, FAILED 0 |
-| 20 → 21 | __R2021_01__ | __R2021_02__ | __U2021__ |
-| 21 → 22.2.1 | __R2122_01__ | __R2122_02__ | __U2122__ |
+| 19 → 20 | ✅ GREEN (218 s) — `schematics` block ported to `packages/client/angular.json`, round-trip verified | ✅ GREEN (222 s) — same port | 19-20: published 211, repaired 0, FAILED 0 |
+| 20 → 21 | ✅ GREEN (290 s) — Jest 30 stack + `setup-jest.ts` rewrite, green on Jest 30 before the hop | ✅ GREEN (294 s) | 20-21: published 195, repaired 0, FAILED 0 |
+| 21 → 22.2.1 | ✅ GREEN (261 s) on the bundled Node 22.23.3 — client tsconfig → `bundler`; `common` TS1479 → `types: ["node"]` | ✅ GREEN (275 s) — `common` + `interface` TS1479 fixed the same way | 21-22: published 226, repaired 0, FAILED 0 — **total 2,202 = the whole pool** |
 
-GREEN = `hop.sh … all` completed every step and `validate` passed: `ng build`, `tsc` in every package, `jest`, `npm ls` (the v18 `chokidar` optional-peer WARN as expected).
+GREEN = `hop.sh … all` completed every step and `validate` passed: `ng build`, `tsc` in every package, `jest`, `npm ls` (the v18 `chokidar` optional-peer WARN as expected). Both apps finish at **Angular 22.2.1 · CLI 22.2.1 · TypeScript 6.0.3 · zone.js 0.15.1 · Jest 30 · Node 22.23.3**.
+
+**The container restarted during 19→20** (an environment event, not a failure): both apps were reset to their last green v19 commit, their trees restored with `npm ci` from Nexus (empty cache), and the replay resumed at 19→20 — the re-run upload found all 1,781 tarballs present with complete metadata (published 0, repaired 0).
+
+**Locks match the online walk.** The offline v22 locks contain **no name@version the committed v22 snapshots lack** (0 offline-only, both apps). The committed locks carry 164 extra entries — other platforms' optional binaries (esbuild for macOS/Windows/ARM, …) that the pool deliberately omits (linux-x64 island); npm against Nexus simply skips them. The rest is hoisting placement (`@angular/build` hoisted to the root vs nested under `build-angular`).
+
+**The tools that ran are the committed ones:** `tools/hop.sh`, both angular.json helpers, `upload-to-nexus.sh` and `npm-load-package.sh` in the replayed bundle are byte-identical to `legacy-shells/tools/` at the commit that records this transcript.
 
 ## What this replay caught (each fixed, then re-run from an empty repository)
 

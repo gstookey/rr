@@ -16,8 +16,8 @@ One page for the whole loop: **build on the connected side → carry the `.tar` 
 | Bundle | Built by | For | Size (2026-10-01) |
 |---|---|---|---|
 | `devenv-frontend-bundle-<date>.tar` | `desert-island-devenv/tools/build-frontend-bundle.sh` | new RHEL 9 workstations: Node + npm, pnpm, VS Code, test-browser binaries, the npm pool | 1.34 GB |
-| `devenv-backend-bundle-<date>.tar` | `desert-island-devenv/tools/build-backend-bundle.sh` | new RHEL 9 workstations: JDK, Gradle, Eclipse, Docker CE, kubectl, Helm, kind, the Maven tree, container images | __BE_SIZE__ |
-| `angular-upgrade-bundle-<slice>-<date>.tar` | `legacy-shells/tools/build-transfer-bundle.sh` | the legacy apps' Angular 17 → 22.2 upgrade ladder: npm tarballs for every rung, the hop tools, Node 22 for the last rung | __LADDER_SIZE__ (cumulative) |
+| `devenv-backend-bundle-<date>.tar` | `desert-island-devenv/tools/build-backend-bundle.sh` | new RHEL 9 workstations: JDK, Gradle, Eclipse, Docker CE, kubectl, Helm, kind, the Maven tree, container images | 4.22 GB |
+| `angular-upgrade-bundle-<slice>-<date>.tar` | `legacy-shells/tools/build-transfer-bundle.sh` | the legacy apps' Angular 17 → 22.2 upgrade ladder: npm tarballs for every rung, the hop tools, Node 22 for the last rung | ≈ 410 MB (cumulative) |
 
 **The stack lists** (what is in the first two, version by version, with every correction explained): [`devops_tech_stack_list_v2.md`](../../../design/packets/desert-island-devenv-01-design-packet/devops_tech_stack_list_v2.md) — the hand-off for DevOps — and the machine-readable pins in `desert-island-devenv/stack/` (`workstation.env`, `backend.env`, `images.txt`, `vscode-extensions.txt`, `frontend/package.json` + `pnpm-lock.yaml`, `package-managers/`, `backend/` Gradle project).
 

@@ -21,7 +21,7 @@ updated: 2026-10-01
 
 | | Front-end bundle | Back-end bundle |
 |---|---|---|
-| File | `devenv-frontend-bundle-<date>.tar` — **1.34 GB** | `devenv-backend-bundle-<date>.tar` — **__BE_SIZE__** |
+| File | `devenv-frontend-bundle-<date>.tar` — **1.34 GB** | `devenv-backend-bundle-<date>.tar` — **4.22 GB** |
 | Built by | `desert-island-devenv/tools/build-frontend-bundle.sh` | `desert-island-devenv/tools/build-backend-bundle.sh` |
 | Into Nexus | npm-hosted (1,554 packages, 291 MB — incl. pnpm), raw-hosted, pypi-hosted | maven-hosted (605 artifacts / 1,228 files, 331 MB), raw-hosted (incl. Docker CE RPMs), docker-hosted (11 images, incl. the kind node image) |
 | On each workstation | Node + npm, **pnpm**, uv, VS Code + 8 extensions, Cypress / Playwright / Prisma binaries | Temurin JDK, Gradle, Eclipse (+ Lombok agent), **Docker CE**, kubectl, Helm 3 + 4, **kind**, Gradle → Nexus redirect, Testcontainers → Nexus registry |
@@ -224,7 +224,7 @@ Saved as `docker-archive` tars, pushed by `load-nexus.sh` (skopeo preferred). **
 | `mockserver/mockserver:8.0.0` | ➕ | `sha256:b8426e0b3c80…` | 156 MB | for `testcontainers-mockserver` |
 | `selenium/standalone-chrome:latest` | ➕❓ | `sha256:7efe71e7e4a8…` | 970 MB | for `testcontainers-selenium`; pin a version (A-4) |
 | `keycloak/keycloak:26.7.4` (quay.io) | ➕ | `sha256:82a77884f3af…` | 256 MB | the identity server keycloak-js needs; matches the "26.7.4" in the source list |
-| `kindest/node:v1.30.13` | ➕ | `sha256:397209b3d947…` | __KIND_SIZE__ | kind v0.29.0's 1.30 node image (v2) — local clusters at the cluster's minor |
+| `kindest/node:v1.30.13` | ➕ | `sha256:397209b3d947…` | 410 MB | kind v0.29.0's 1.30 node image (v2) — local clusters at the cluster's minor |
 
 Full digests: `images/IMAGES.lock` in the bundle.
 
