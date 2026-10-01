@@ -9,7 +9,7 @@ updated: 2026-09-03
 
 # Current Priorities
 
-**Created:** 2026-08-25 | **Last updated:** 2026-09-08 (Axium; sync pass — ACME S0 merged and ruled a learning instrument (ADR-007); the two lanes now run in separate sessions)
+**Created:** 2026-08-25 | **Last updated:** 2026-10-01 (Axium; `desert-island-devenv-01` — Desert Island workstation bundles built and rehearsed; D-2 makes the shared Angular patch a near-term decision. Earlier, 2026-09-08: sync pass — ACME S0 merged and ruled a learning instrument (ADR-007); the two lanes now run in separate sessions)
 
 Compact operating context. Readable in one window. Standing truth lives in `docs/CURRENT_STATE.md`; this page is *sequencing and intent*.
 
@@ -49,6 +49,15 @@ Why this and not the v22 stretch: v19 is a **hard floor** (it discharges the Ang
    Deliberately **not** built next: the specced "golden" bundle. It is capability for DR-04, and under ADR-005 its pins are bound to legacy's achieved ceiling — both unknown until step 2 returns. Available on request the moment Graham wants the option in hand.
 4. **~~Close the cheap decisions~~ half done** ([S-04](https://github.com/gstookey/rr/issues/11)): C-001's layout half (DR-05) is **closed — ADR-006**, `apps/` + `packages/` + `services/`. Still open: whether to ship the npm cache alongside the registry seed (DR-09). Graham's judgement only.
 5. **The Node patch bump is independent and probably the cheapest risk reduction available** ([S-13](https://github.com/gstookey/rr/issues/20)): 22.15 → 22.23.2 is a patch inside the same LTS line, needs no Angular work, and closes the Node half of the security driver on its own.
+
+## Desert Island workstation environment (`desert-island-devenv-01`, EP-04 work, 2026-10-01)
+
+Graham asked for the DevOps stack list and the scripts that build the workstation bundles; both are done and rehearsed (offline RHEL 9 + Nexus, acceptance tests green with empty caches). What it needs next, in order:
+
+1. **Graham rules D-2** (one Angular 22.2.x patch for both islands) — it also decides whether the legacy 21→22 bundle is re-cut before the first real hop goes to v22. Then D-1, D-3..D-9.
+2. Hand `devops_tech_stack_list_v1.md` to DevOps with questions O-1..O-4; the architect's questions A-1..A-5 to the architect.
+3. Re-cut both bundles on the real staging machine after the answers (one command each) and run `island/prove-install.sh` on a real RHEL 9 workstation — the parts not provable in a container (VS Code/Eclipse GUI, Testcontainers on Podman) get proven there.
+4. With approval: an EP-04 story for this packet on the board.
 
 ## Side-quest lane — DDD-ARCH-01 (design only, beside Milestone 1)
 

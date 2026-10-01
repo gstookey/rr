@@ -8,7 +8,7 @@ updated: 2026-09-03
 
 # RR Context Wiki Index
 
-**Created:** 2026-08-25 | **Last updated:** 2026-09-08 (S-16 rehearsal — the day-one runbook executed offline, four defects found, v1 supersedes v0; DR-09 closed by necessity. Earlier the same day: ADR-007, ADR-006, the v17→v22 ladder, `first-app-hop-01`)
+**Created:** 2026-08-25 | **Last updated:** 2026-10-01 (`desert-island-devenv-01` — the Desert Island workstation stack list, its two transfer bundles and the Nexus load path, rehearsed offline; SRC-013..015; C-011..C-014. Earlier, 2026-09-08: S-16 rehearsal — the day-one runbook executed offline, four defects found, v1 supersedes v0; DR-09 closed by necessity. Earlier the same day: ADR-007, ADR-006, the v17→v22 ladder, `first-app-hop-01`)
 
 Navigation spine for the RR context system. Update when a page is added, removed, or changes meaningfully.
 
@@ -40,6 +40,9 @@ Navigation spine for the RR context system. Update when a page is added, removed
 - [Design README](../design/README.md)
 - [Brand — Visual Identity](../design/brand/README.md)
 - Packets:
+- [**DESERT-ISLAND-DEVENV-01 — the workstation stack, its two transfer bundles, the Nexus load path** (`desert-island-devenv-01`)](../design/packets/desert-island-devenv-01-design-packet/README.md) — `exploratory`, cut 2026-10-01 at Graham's request (EP-04 work); **both bundles built and rehearsed end to end on offline RHEL 9 against Nexus**; not activated
+  - [**DevOps Tech Stack List v1**](../design/packets/desert-island-devenv-01-design-packet/devops_tech_stack_list_v1.md) — hand this to DevOps · [Source Reconciliation v1](../design/packets/desert-island-devenv-01-design-packet/source_reconciliation_v1.md) — corrections, C-011..C-014, decisions D-1..D-9 · [Bundle Rehearsal Transcript v1](../design/packets/desert-island-devenv-01-design-packet/bundle_rehearsal_transcript_v1.md)
+  - Tooling: [`desert-island-devenv/`](../../desert-island-devenv/README.md) — `stack/` pins, `tools/build-{frontend,backend}-bundle.sh`, `island/` (travels in the bundles)
 - [**ACME-WORKSHOP-01 — the DDD reference application** (`acme-workshop-01`)](../design/packets/acme-workshop-01-design-packet/README.md) — `exploratory`, cut 2026-09-03; EP-06 (#37), stories S-18..S-25 (#38–#45); **not activated**
   - [Domain Model v0](../design/packets/acme-workshop-01-design-packet/domain_model_v0.md) · [Decision Register v0 (AW-D1..AW-D12)](../design/packets/acme-workshop-01-design-packet/decision_register_v0.md) · [Slice Decomposition v0 (S0..S7)](../design/packets/acme-workshop-01-design-packet/slice_decomposition_v0.md)
   - [**S0 Foundation Notes v0**](../design/packets/acme-workshop-01-design-packet/s0_foundation_notes_v0.md) — what S0 built, every pin with its publish date, what is/is not verified, the deviations, and the **ACME lexicon card**
@@ -63,7 +66,7 @@ Navigation spine for the RR context system. Update when a page is added, removed
 
 - [Governance README](governance/README.md)
 - [Decisions (ADR index)](governance/decisions/README.md) — ADR-001 context system · ADR-002 merge gate · ADR-003 board/doctrine · ADR-004 npm · **ADR-005 island stack sync (2026-09-03)** · **ADR-006 repo layout apps/packages/services (2026-09-04)** · **ADR-007 ACME Workshop is a learning instrument, not the scaffold (2026-09-08)**
-- [Contradiction Register](governance/contradictions/register.md) — C-001..C-009
+- [Contradiction Register](governance/contradictions/register.md) — C-001..C-014
 - [Meta](governance/meta/README.md)
 
 # Operations
@@ -90,7 +93,7 @@ Navigation spine for the RR context system. Update when a page is added, removed
 # Evidence
 
 - [Evidence README](evidence/README.md)
-- [Source Register](evidence/raw/source_register.md) — SRC-001..SRC-012
+- [Source Register](evidence/raw/source_register.md) — SRC-001..SRC-015
 - Raw: `evidence/raw/project-road-runner-description.txt` (SRC-012, founder source)
 - [Raw](evidence/raw/README.md) · [Images](evidence/images/README.md)
 - Raw source folders (registered, not moved): `../source-documents/`, `../angular-upgrade-docs/`, `../../images/rr_logos/`
