@@ -1,0 +1,107 @@
+// <rr-sg-attribute-card> — Created: 2026-10-01
+//
+// The look is driven by the host's data-match attribute (MATCH · MISMATCH · MISSING). Tokens read
+// with fallbacks; define --rr-sg-* at :root in the GLOBAL sheet (host tokens do not survive the
+// pop-out).
+
+:host {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; // name at the top, values pinned to the bottom
+  min-inline-size: 0;
+  padding: 10px 12px;
+  background: var(--rr-sg-surface-raised, #21364a);
+  border: 1px solid var(--rr-sg-border, rgb(150 190 220 / 14%));
+  border-radius: 4px;
+  color: var(--rr-sg-text, #e6ebef);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  min-inline-size: 0;
+}
+
+.name {
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.flag {
+  flex: none;
+  white-space: nowrap;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--rr-sg-text-dim, #9aa4ad);
+}
+
+.values {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  align-items: center;
+  gap: 0 8px;
+}
+
+.label {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--rr-sg-text-dim, #9aa4ad);
+}
+
+// The value box reaches 6px left of its column so a tinted ACTUAL keeps the text aligned with
+// EXPECTED above it.
+.value {
+  block-size: 24px;
+  margin: 0 0 0 -6px;
+  padding: 0 6px;
+  border-radius: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--rr-sg-mono, ui-monospace, 'Roboto Mono', monospace);
+  font-size: 14px;
+  line-height: 24px;
+}
+
+// ── MISMATCH: reads as a diff. EXPECTED stays neutral, so "the old value" never borrows VALID's green.
+:host([data-match='MISMATCH']) {
+  border-color: var(--rr-sg-diff-edge, rgb(255 56 56 / 55%));
+  box-shadow: inset 3px 0 0 var(--rr-sg-status-invalid, #ff3838);
+}
+:host([data-match='MISMATCH']) .flag { color: var(--rr-sg-diff-ink, #ff7a7a); }
+:host([data-match='MISMATCH']) .row--actual .value {
+  color: var(--rr-sg-diff-ink, #ff7a7a);
+  background: var(--rr-sg-diff-tint, rgb(255 56 56 / 12%));
+}
+
+// ── MISSING: muted, never alarming. Flat on the pane surface — which is why text-muted is legal
+//    here (it only reaches 4.5:1 on surface, not on raised).
+:host([data-match='MISSING']) {
+  background: var(--rr-sg-surface, #1b2d3e);
+  border-style: dashed;
+  border-color: var(--rr-sg-border-strong, rgb(150 190 220 / 26%));
+}
+:host([data-match='MISSING']) .name { color: var(--rr-sg-text-dim, #9aa4ad); }
+.value--missing {
+  font-family: inherit;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--rr-sg-text-muted, #8a96a1);
+}

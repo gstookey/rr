@@ -1,0 +1,49 @@
+// <rr-sg-sample-context> — Created: 2026-10-01
+//
+// Sits in <rr-pane>'s 28px header, right of the title. One line: the name ellipsizes, the time and
+// the chip never do. Tokens read with fallbacks; define --rr-sg-* at :root in the GLOBAL sheet.
+
+:host {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-inline-size: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 12px;
+  color: var(--rr-sg-text, #e6ebef);
+  font-variant-numeric: tabular-nums;
+}
+
+// The pane's actions slot does not shrink, so the name carries its own cap: a long component name
+// ellipsizes here instead of pushing the pane title off the bar.
+.name {
+  min-inline-size: 0;
+  max-inline-size: 24ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.time { flex: none; }
+
+.chip {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  block-size: 20px;
+  margin-inline-start: 2px;
+  padding: 0 8px 0 4px;
+  border: 1px solid var(--rr-sg-border-strong, rgb(150 190 220 / 26%));
+  border-radius: 10px;
+  background: var(--rr-sg-surface-raised, #21364a);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.none {
+  font-size: 11px;
+  color: var(--rr-sg-text-muted, #8a96a1);
+}
