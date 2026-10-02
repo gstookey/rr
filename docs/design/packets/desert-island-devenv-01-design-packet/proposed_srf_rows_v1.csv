@@ -1,0 +1,25 @@
+Category,Software,Current Major,Requested Version,Purpose,Approval Status,Axium note (delete before use)
+Styling,Roboto + Roboto Mono fonts (@fontsource/roboto + @fontsource/roboto-mono),none,5.3.0 / 5.3.0,Self-hosted fonts for AstroUXDS and Angular Material (no Google Fonts offline),NEW SRF NEEDED,recommend now (gap)
+Styling,Material Symbols icon font (material-symbols),none,0.47.6,Self-hosted Material icons,NEW SRF NEEDED,recommend now (gap)
+Node server,jose,none,6.2.12,JWT / OIDC token validation (replaces keycloak-connect in new code - ADR-008 D-3),NEW SRF NEEDED,recommend now (reference workspace uses it)
+Framework,Zod,none,4.6.5,Runtime schema validation for shared client/server contracts,NEW SRF NEEDED,recommend now (reference workspace uses it)
+Testing,supertest (+ @types/supertest),none,7.3.1 / 7.2.1,HTTP API tests for Node services,NEW SRF NEEDED,recommend now (reference workspace uses it)
+Build tooling,tsx,none,4.23.15,Runs TypeScript directly (Node services and scripts),NEW SRF NEEDED,recommend now (reference workspace uses it)
+Build tooling,CycloneDX npm SBOM (@cyclonedx/cyclonedx-npm),none,6.0.1,Software bill of materials (CycloneDX),NEW SRF NEEDED,recommend now
+Testing,axe-core (+ @axe-core/playwright),none,4.13.0 / 4.13.0,Accessibility (Section 508) checks in tests,NEW SRF NEEDED,recommend now
+Testing,Mock Service Worker (msw),none,3.0.1,Mock APIs in development and tests without live services,NEW SRF NEEDED,recommend now
+Testing,Angular Testing Library (@testing-library/angular + @testing-library/user-event),none,19.5.0 / 14.6.7,User-centric component tests,NEW SRF NEEDED,recommend now
+Node server,helmet + express-rate-limit,none,8.3.0 / 8.7.0,HTTP security headers and rate limiting,NEW SRF NEEDED,recommend now
+Node server,pino (+ pino-http),none,10.4.0 / 11.0.0,Structured (JSON) logging,NEW SRF NEEDED,recommend now
+Dashboard,angular-gridster2,none,22.0.0,Drag-and-resize dashboard panel grid,NEW SRF NEEDED,dashboard pick (see doc 2.1)
+Dashboard,AG Grid Community (ag-grid-community + ag-grid-angular),none,36.2.0,Data grid (virtualized; sort/filter/resize),NEW SRF NEEDED,dashboard pick (see doc 2.2; Syncfusion only if already licensed)
+Dashboard,Apache ECharts (+ ngx-echarts),none,6.1.0 / 22.0.0,Charts and data visualization,NEW SRF NEEDED,dashboard pick IF origin acceptable (see doc 2.3; else Chart.js + uPlot)
+Maps / geospatial,CesiumJS (cesium),none,1.146.0,2D/3D globe and maps (offline; no Cesium ion),NEW SRF NEEDED,map pick (AW-D1; see doc 3)
+Maps / geospatial,milsymbol,none,3.0.4,MIL-STD-2525 / APP-6 military symbols,NEW SRF NEEDED,map pick
+Maps / geospatial,mgrs + proj4,none,2.2.0 / 2.22.0,MGRS and coordinate conversions,NEW SRF NEEDED,map pick
+Workstation,Storybook (storybook + @storybook/angular),none,10.6.1 / 10.6.1,Component workshop and docs for dashboard widgets,need srf - nice to have / can wait,later
+Workstation,VS Code ext: Vitest Explorer / Playwright Test,none,1.52.2 / 1.1.19,Run and debug tests in the editor,need srf - nice to have / can wait,workstation
+Workstation,VS Code ext: Error Lens / EditorConfig,none,3.29.0 / 0.18.2,Inline errors; consistent formatting,need srf - nice to have / can wait,workstation
+Workstation,VS Code ext: REST Client,none,0.25.1,API calls from .http files (Postman needs a cloud login),need srf - nice to have / can wait,workstation
+Workstation,VS Code ext: YAML / Kubernetes / Container Tools,none,pin at build,Kubernetes / Helm / Docker editing,need srf - nice to have / can wait,workstation (pin a stable YAML release)
+Workstation,VS Code ext: Draw.io / Markdown Mermaid / markdownlint,none,pin at build / 1.32.1 / 0.62.1,Offline diagrams and docs,need srf - nice to have / can wait,workstation

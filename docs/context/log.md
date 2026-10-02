@@ -2,6 +2,25 @@
 
 <!-- Convention (BS-14): one `# [YYYY-MM-DD] <type> | <title>` header level, newest-first — prepend below this comment. Types: ingest | decision | milestone | lint | governance | session -->
 
+# [2026-10-02] session | Stack augmentation candidates — dashboard, maps, and a sweep before porting (proposal; picks pending)
+
+Graham, as the last pass before porting, asked what else to bring: a Kibana-like situational-awareness dashboard (css-grid + signals or angular-gridster2, maybe the Syncfusion grid, Lightweight Charts and ECharts), 2D/3D maps (Cesium or similar), and a sweep of the stack, workstations, Nexus and applications. He also asked whether the sheet makes bundling "free".
+
+**Answer:** `docs/design/packets/desert-island-devenv-01-design-packet/stack_augmentation_candidates_v1.md`, plus ready-to-paste sheet rows in `proposed_srf_rows_v1.csv`. Registry, Marketplace and vendor facts were checked 2026-10-02; unverified facts are marked.
+
+**Leans:**
+- Dashboard: angular-gridster2 (22.0.0, Angular ^22) for user-arranged panels; AG Grid Community (MIT) over Syncfusion, whose Community License excludes a defense program; ECharts + ngx-echarts **if** its Baidu/ASF origin passes the US-made screen, else Chart.js + uPlot. Lightweight Charts requires a visible TradingView attribution. AstroUXDS 8 already ships most situational-awareness chrome (clock, timeline, log, status, monitoring icons, classification marking).
+- Maps: CesiumJS (AW-D1; Bentley-owned since 2024; the package carries offline Natural Earth II tiles), milsymbol (MIL-STD-2525), mgrs/proj4. The ArcGIS SDK is the alternative if the organization runs Esri. The deciding question is the island's **map data services**.
+
+**Sweep findings (gaps in the current stack):**
+- AstroUXDS's README and Material's `ng add` load Roboto and Material Symbols from `fonts.googleapis.com`, and no font package is in the pool. Fix: `@fontsource/roboto(-mono)` + `material-symbols`.
+- The in-repo reference workspace depends on `jose` (ADR-008 D-3's keycloak-connect replacement), `zod`, `supertest` and `tsx`, which are absent from the Desert Island stack.
+- No SBOM (CycloneDX), accessibility (axe-core) or API-mocking (msw) tooling.
+
+**Also:** workstation extensions and CLI tools; Nexus Helm and Yum hosted repos; OpenSearch Dashboards for ops analytics; a "free?" answer (three edits per npm row, then the one command).
+
+**Open:** Graham's five questions (existing licenses; US-made screen; map data; user-arranged layouts; SBOM per bundle).
+
 # [2026-10-02] decision | "Is the SRF sheet wrong?" — Vite and esbuild rows corrected to Angular 22's own pins; the other "other majors" are genuine (C-015)
 
 Graham read how-to §6.3 (dependencies that are another major of a sheet package) and asked whether the sheet should carry the higher versions.

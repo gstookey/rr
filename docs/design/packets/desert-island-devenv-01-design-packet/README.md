@@ -3,13 +3,13 @@ schema: corpus-doc/v1
 status: exploratory
 title: Desert Island Dev Environment Packet 01 — the workstation stack, its two transfer bundles, and the Nexus load path
 areas: [dev-environment, isolated-network, technology-stack, frontend, backend]
-related: ["docs/design/packets/desert-island-devenv-01-design-packet/devops_tech_stack_list_v2.md", "docs/design/packets/desert-island-devenv-01-design-packet/bundle_rehearsal_transcript_v2.md", "docs/context/governance/decisions/ADR-008-desert-island-devenv-baseline.md", "docs/context/operations/user-workflow/bundling_scripts_guide_v1.md", "docs/design/packets/desert-island-devenv-01-design-packet/devops_tech_stack_list_v1.md", "docs/design/packets/desert-island-devenv-01-design-packet/source_reconciliation_v1.md", "docs/design/packets/desert-island-devenv-01-design-packet/bundle_rehearsal_transcript_v1.md", "docs/context/canonical/two_island_model.md", "docs/design/packets/iso-net-readiness-01-design-packet/day_one_on_the_island_runbook_v1.md", "desert-island-devenv/island/README.md"]
-updated: 2026-10-01
+related: ["docs/design/packets/desert-island-devenv-01-design-packet/stack_augmentation_candidates_v1.md", "docs/design/packets/desert-island-devenv-01-design-packet/devops_tech_stack_list_v2.md", "docs/design/packets/desert-island-devenv-01-design-packet/bundle_rehearsal_transcript_v2.md", "docs/context/governance/decisions/ADR-008-desert-island-devenv-baseline.md", "docs/context/operations/user-workflow/bundling_scripts_guide_v1.md", "docs/design/packets/desert-island-devenv-01-design-packet/devops_tech_stack_list_v1.md", "docs/design/packets/desert-island-devenv-01-design-packet/source_reconciliation_v1.md", "docs/design/packets/desert-island-devenv-01-design-packet/bundle_rehearsal_transcript_v1.md", "docs/context/canonical/two_island_model.md", "docs/design/packets/iso-net-readiness-01-design-packet/day_one_on_the_island_runbook_v1.md", "desert-island-devenv/island/README.md"]
+updated: 2026-10-02
 ---
 
 # Desert Island Dev Environment Packet 01 (`desert-island-devenv-01`)
 
-**Created:** 2026-10-01 (Axium, at Graham's request) | **Last updated:** 2026-10-01 (v2: Graham's decisions folded in — ADR-008) | **Status:** `exploratory` — **not activated**; no board story exists yet (creating one is Graham-gated). Epic home: [EP-04 — Desert Island environment stand-up](https://github.com/gstookey/rr/issues/6).
+**Created:** 2026-10-01 (Axium, at Graham's request) | **Last updated:** 2026-10-02 (stack augmentation candidates — dashboard, maps, sweep); 2026-10-01 (v2: Graham's decisions folded in — ADR-008) | **Status:** `exploratory` — **not activated**; no board story exists yet (creating one is Graham-gated). Epic home: [EP-04 — Desert Island environment stand-up](https://github.com/gstookey/rr/issues/6).
 
 ## What Graham asked for
 
@@ -20,6 +20,7 @@ updated: 2026-10-01
 | Artifact | For | What it is |
 |---|---|---|
 | [**`devops_tech_stack_list_v2.md`**](devops_tech_stack_list_v2.md) | **DevOps — hand them this** | the full, vetted stack after Graham's decisions: npm + pnpm, Docker CE + kind, kubectl/Helm for the 1.30 cluster, Angular 22.2.1 — every component, version, source, Nexus repository |
+| [**`stack_augmentation_candidates_v1.md`**](stack_augmentation_candidates_v1.md) + [`proposed_srf_rows_v1.csv`](proposed_srf_rows_v1.csv) | **Graham — picks pending** | what else to bring before porting: dashboard (panel grid, data grid, charts), 2D/3D maps, five gaps in the current stack (offline fonts, the reference workspace's libraries, SBOM, accessibility, API mocking), workstation, Nexus and service ideas — with ready-to-paste sheet rows (2026-10-02) |
 | [`bundling_scripts_guide_v1.md`](../../../context/operations/user-workflow/bundling_scripts_guide_v1.md) | **whoever builds and loads** | every bundle script (these two and the Angular upgrade ladder), start to finish, with troubleshooting |
 | [`bundle_rehearsal_transcript_v2.md`](bundle_rehearsal_transcript_v2.md) | evidence | the v2 changes rebuilt and rehearsed offline (pnpm, Docker + Testcontainers, kind), defects 9–13 — incl. the Nexus npm-metadata finding — and what is **not** proven |
 | [ADR-008](../../../context/governance/decisions/ADR-008-desert-island-devenv-baseline.md) | record | Graham's 2026-10-01 decisions (D-1..D-9) |
