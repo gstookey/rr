@@ -12,7 +12,8 @@
 //  1. Every npm package the stack declares belongs to exactly ONE spreadsheet row (the mapping), at
 //     the version the stack declares. Another version of the same name that something else pulls
 //     in (Angular's build needs @babel/core 8; the Babel row is 7) is an ordinary transitive
-//     dependency of whatever pulls it in -- and is listed, because an approval is for one major.
+//     dependency of whatever pulls it in -- and is listed, because an approval is for one major
+//     (for a 0.x package, one minor: semver treats each 0.x minor as a breaking line).
 //  2. A status bundle holds its rows' packages plus their transitive dependencies, following real
 //     dependency edges in the lockfile. When an edge reaches a package owned by ANOTHER status, it
 //     is not copied: it is reported as a requirement ("ts-jest needs jest -- MAJOR BUMP SRF NEEDED").
@@ -146,7 +147,9 @@ if (ghosts.length) die('srf-components.tsv names packages the stack does not dec
 // a package (name@version, no peer suffix) is OWNED when a row claims the name and it is the declared version
 const declaredVer = n => (importer.has(n) ? importer.get(n).replace(/\(.*$/, '') : null);
 const isOwned = base => { const [n, v] = at(base); return owner.has(n) && (declaredVer(n) === null || declaredVer(n) === v); };
-const major = v => v.split('.')[0];
+// The compatibility line semver uses (and npm's ^ ranges): the major, or for 0.x the minor too --
+// 0.25 -> 0.28 is as breaking as 7 -> 8 (missed before 2026-10-02: esbuild 0.25 vs Angular's 0.28).
+const major = v => (v.startsWith('0.') ? v.split('.').slice(0, 2).join('.') : v.split('.')[0]);
 
 const listOf = m => [...m.values()].map(x => ({ ...x, via: [...x.via].sort() }))
   .sort((a, b) => rank({ slug: a.slug }) - rank({ slug: b.slug }) || a.software.localeCompare(b.software));

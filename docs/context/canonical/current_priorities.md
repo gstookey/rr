@@ -9,7 +9,7 @@ updated: 2026-10-02
 
 # Current Priorities
 
-**Created:** 2026-08-25 | **Last updated:** 2026-10-02 (Axium: front-end bundles by SRF approval status — `build-srf-bundles.sh` + how-to); 2026-10-01, later (Axium: ADR-008 settles D-1..D-9; the legacy ladder re-walked to 22.2.1 on the exact-pinned apps and scripted; Nexus npm-loading defects fixed; bundling scripts guide. Earlier: `desert-island-devenv-01` — Desert Island workstation bundles built and rehearsed)
+**Created:** 2026-08-25 | **Last updated:** 2026-10-02, later (Axium: Vite/esbuild rows corrected to Angular 22's own pins; Graham to re-vet those two rows); 2026-10-02 (Axium: front-end bundles by SRF approval status — `build-srf-bundles.sh` + how-to); 2026-10-01, later (Axium: ADR-008 settles D-1..D-9; the legacy ladder re-walked to 22.2.1 on the exact-pinned apps and scripted; Nexus npm-loading defects fixed; bundling scripts guide. Earlier: `desert-island-devenv-01` — Desert Island workstation bundles built and rehearsed)
 
 Compact operating context. Readable in one window. Standing truth lives in `docs/CURRENT_STATE.md`; this page is *sequencing and intent*.
 
@@ -54,7 +54,7 @@ The stack list and both bundle scripts are done, **rebuilt after Graham's decisi
 
 1. **Hand [`devops_tech_stack_list_v2.md`](../../design/packets/desert-island-devenv-01-design-packet/devops_tech_stack_list_v2.md) to DevOps**, with the [bundling scripts guide](../operations/user-workflow/bundling_scripts_guide_v1.md). Open questions to send with it: **O-1** the Desert Island cluster's Kubernetes version (tools are pinned for 1.30 — end-of-life upstream), O-2 TLS/CA, O-3 anonymous read, O-4 reverse-proxy limits, and the **Nexus edition** (CE needs its EULA accepted by an admin). The architect gets A-1..A-5; Graham is chasing **D-7** (one server runtime or two).
 2. **Re-cut both bundles on the real staging machine** (one command each — kind's release binary is fetched and checksum-verified there; this rehearsal had to build kind locally) and run `island/prove-install.sh` on a real RHEL 9 workstation: that proves what a container cannot — **a kind cluster reaching Ready**, VS Code/Eclipse on a desktop.
-3. **Port by SRF approval status** (Graham, 2026-10-02): build the five category bundles from the current sheet (`build-srf-bundles.sh ~/bundles --sheet <csv>`), port **approved** now, each other category as its SRFs land — step by step in the [SRF category bundles how-to](../operations/user-workflow/srf_category_bundles_howto_v1.md). Push the **TypeScript 6** bump alongside Angular's: it gates the Angular CLI/build and the lint/test tooling (how-to §6).
+3. **Port by SRF approval status** (Graham, 2026-10-02): build the five category bundles from the current sheet (`build-srf-bundles.sh ~/bundles --sheet <csv>`), port **approved** now, each other category as its SRFs land — step by step in the [SRF category bundles how-to](../operations/user-workflow/srf_category_bundles_howto_v1.md). Push the **TypeScript 6** and **Vite 8** bumps alongside Angular's: they gate the Angular CLI/build (TypeScript also the lint/test tooling) — how-to §6. **Re-vet two rows first** (corrected 2026-10-02): Vite now requests **8.3.0** (still a bump from 5 — any drafted SRF naming 6.x must say 8.3.0), esbuild now **0.28.2** (does the "major 0" approval cover 0.28?).
 4. With approval: an EP-04 story for this packet on the board.
 
 ## Side-quest lane — DDD-ARCH-01 (design only, beside Milestone 1)

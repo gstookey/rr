@@ -4,12 +4,12 @@ status: exploratory
 title: Source Reconciliation v1 — the three desert-island stack sources vetted against the registries, the doctrine and the legacy ladder
 areas: [technology-stack, dev-environment, isolated-network, security, frontend, backend]
 related: ["docs/design/packets/desert-island-devenv-01-design-packet/devops_tech_stack_list_v1.md", "docs/design/packets/desert-island-devenv-01-design-packet/bundle_rehearsal_transcript_v1.md", "docs/context/governance/decisions/ADR-004-package-manager-npm.md", "docs/context/governance/decisions/ADR-005-island-stack-sync.md", "docs/context/canonical/technology_stack.md"]
-updated: 2026-10-01
+updated: 2026-10-02
 ---
 
 # Source Reconciliation v1
 
-**Created:** 2026-10-01 (Axium) | **Status:** `exploratory` — Graham-facing. Every correction below was checked against the live registry or vendor site **on 2026-10-01**; versions will drift, re-check before quoting.
+**Created:** 2026-10-01 (Axium) | **Last updated:** 2026-10-02 (annotation only: `vite` later moved to 8.3.0 and `esbuild` to 0.28.2 to match Angular 22's own pins — C-015) | **Status:** `exploratory` — Graham-facing. Every correction below was checked against the live registry or vendor site **on 2026-10-01**; versions will drift, re-check before quoting.
 
 **Sources:** `docs/source-documents/desert-island-setup-docs/` — SRC-013 (front-end stack + example package.json), SRC-014 (back-end list from the architect), SRC-015 (Gemini air-gap guidance). The DevOps-facing result is [`devops_tech_stack_list_v1.md`](devops_tech_stack_list_v1.md); the proof is [`bundle_rehearsal_transcript_v1.md`](bundle_rehearsal_transcript_v1.md).
 
@@ -36,7 +36,7 @@ What I did with that: **corrected only what was broken** — nonexistent, incomp
 | `@stomp/stompjs 7.0.0` | 7.2.0 | 2 | `npm install` fails `ERESOLVE`: `@stomp/rx-stomp@2.2.0` peers `^7.2.0` |
 | `vitest 3.0.5` | 4.1.11 | 2+3 | Angular 22.2's `@angular/build` peers `vitest ^4.0.8 \|\| ^5.0.0`; 4.1.11 also clears a **critical** advisory present through 4.1.10 |
 | `eslint 8.56.0`, `@typescript-eslint/* 7.9.0` | 9.39.5, 8.71.0 | 2 | typescript-eslint 7 does not support TypeScript 6; ESLint 8 is upstream-unsupported. 9.x is the newest line Sheriff 0.19.6 accepts — **see D-6** |
-| express 5.0.1, express-session 1.18.0, compression 1.7.4, lodash 4.17.21, node-forge 1.3.1, ws 8.18.0, postcss 8.5.1, vite 6.1.1, @babel/core 7.24.0, @playwright/test 1.50.1, prisma/@prisma/client 7.1.0 | 5.2.1, 1.19.0, 1.8.2, 4.18.1, 1.4.0, 8.22.0, 8.5.28, 6.4.3, 7.29.7, 1.63.0, 7.10.0 | 3 | each carried a published advisory; all same-major moves. Playwright's is pointed: older versions **install browsers without verifying them** — exactly the step the bundle build performs |
+| express 5.0.1, express-session 1.18.0, compression 1.7.4, lodash 4.17.21, node-forge 1.3.1, ws 8.18.0, postcss 8.5.1, vite 6.1.1, @babel/core 7.24.0, @playwright/test 1.50.1, prisma/@prisma/client 7.1.0 | 5.2.1, 1.19.0, 1.8.2, 4.18.1, 1.4.0, 8.22.0, 8.5.28, 6.4.3, 7.29.7, 1.63.0, 7.10.0 | 3 | each carried a published advisory; all same-major moves. Playwright's is pointed: older versions **install browsers without verifying them** — exactly the step the bundle build performs. *(2026-10-02: vite later moved again, to **8.3.0** — Angular 22's own build pins it, so staying on 6 added a second major; see DevOps list v2.)* |
 
 **Added because the listed set needs them** (not optional extras): `@angular/platform-server` (required peer of `@angular/ssr`), `@angular/build` (the real builder; the listed `@angular-devkit/build-angular` is its deprecated Webpack wrapper), `@tailwindcss/postcss` (how Tailwind 4 plugs into Angular), `ng-packagr` (library builds; peer of `@nx/angular`), `@vitest/coverage-v8`, and the ESLint 9 trio `angular-eslint` / `typescript-eslint` / `@eslint/js` (matching the in-repo workspace).
 

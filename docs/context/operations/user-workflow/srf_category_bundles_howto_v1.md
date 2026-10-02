@@ -9,17 +9,17 @@ updated: 2026-10-02
 
 # SRF Category Bundles — How-To v1
 
-**Created:** 2026-10-02 (Axium, at Graham's request) | **Status:** `exploratory` — every step below was run on 2026-10-02 against the committed sheet (results: [§7](#7-rehearsal-2026-10-02)).
+**Created:** 2026-10-02 (Axium, at Graham's request) | **Last updated:** 2026-10-02, later: the sheet's **Vite** (6.4.3 → 8.3.0) and **esbuild** (0.25.0 → 0.28.2) rows now match what Angular 22 itself pins ([§6](#6-what-the-sheet-tells-you) explains why, and what to re-vet); the planner treats each 0.x minor as its own major; sizes and the rehearsal re-done | **Status:** `exploratory` — every step below was run on 2026-10-02 against the committed sheet (results: [§7](#7-rehearsal-2026-10-02)).
 
 **What this is for.** Your front-end tech stack sheet gives every row an **Approval Status**. `build-srf-bundles.sh` reads that column and cuts the front-end/workstation stack into **one transfer bundle per status**, so you can port what's approved now and port each other group as its SRFs come through:
 
 | Order | Bundle | Status in the sheet | Rows | Size (2026-10-02) | What's in it |
 |---|---|---|---|---|---|
-| 1 | `devenv-frontend-approved-<date>.tar` | MAJOR ALREADY APPROVED | 39 | 403 MB | Node 24 (+npm), VS Code RPM, RxJS, zone.js, tslib, STOMP/RxStomp, SockJS, ws, amqplib, uuid, the Node-server libraries, PostCSS, Autoprefixer, esbuild, Babel 7, ts-jest, istanbul, typescript-eslint, Prettier and friends, the `@types/*` |
-| 2 | `devenv-frontend-bump-submitted-<date>.tar` | MAJOR BUMP SRF SUBMITTED | 8 | 105 MB | Angular 22.2.1: framework, SSR, CLI, both build systems, compiler-cli, Material, CDK |
-| 3 | `devenv-frontend-bump-needed-<date>.tar` | MAJOR BUMP SRF NEEDED | 18 | 361 MB | TypeScript 6, AstroUXDS, ng-packagr, NgRx, keycloak-angular/-js, Express 5, Tailwind 4, Vite 6, Jest 30 stack, jsdom, Cypress 16 (+ its binary), ESLint 9, `@types/jest` |
-| 4 | `devenv-frontend-new-srf-<date>.tar` | NEW SRF NEEDED | 5 | 302 MB | KafkaJS, Vitest, Playwright (+ Chromium), angular-eslint, Sheriff |
-| 5 | `devenv-frontend-nice-to-have-<date>.tar` | need srf - nice to have / can wait | 10 | 251 MB | pnpm, only-allow, the VS Code extensions, uv, Prisma (+ engine), Nx |
+| 1 | `devenv-frontend-approved-<date>.tar` | MAJOR ALREADY APPROVED | 39 | 403 MB | Node 24 (+npm), VS Code RPM, RxJS, zone.js, tslib, STOMP/RxStomp, SockJS, ws, amqplib, uuid, the Node-server libraries, PostCSS, Autoprefixer, esbuild 0.28, Babel 7, ts-jest, istanbul, typescript-eslint, Prettier and friends, the `@types/*` |
+| 2 | `devenv-frontend-bump-submitted-<date>.tar` | MAJOR BUMP SRF SUBMITTED | 8 | 75 MB | Angular 22.2.1: framework, SSR, CLI, both build systems, compiler-cli, Material, CDK |
+| 3 | `devenv-frontend-bump-needed-<date>.tar` | MAJOR BUMP SRF NEEDED | 18 | 352 MB | TypeScript 6, AstroUXDS, ng-packagr, NgRx, keycloak-angular/-js, Express 5, Tailwind 4, Vite 8, Jest 30 stack, jsdom, Cypress 16 (+ its binary), ESLint 9, `@types/jest` |
+| 4 | `devenv-frontend-new-srf-<date>.tar` | NEW SRF NEEDED | 5 | 301 MB | KafkaJS, Vitest, Playwright (+ Chromium), angular-eslint, Sheriff |
+| 5 | `devenv-frontend-nice-to-have-<date>.tar` | need srf - nice to have / can wait | 10 | 250 MB | pnpm, only-allow, the VS Code extensions, uv, Prisma (+ engine), Nx |
 
 Plus `SRF-BUNDLES-<date>.md`, a one-page summary of the lot.
 
@@ -75,12 +75,12 @@ Options:
 The plan stage prints one block per status, for example:
 
 ```
-  approved         39 rows    426 npm tarballs (21.5 MB)    3 other files (379.8 MB)
+  approved         39 rows    426 npm tarballs (21.9 MB)    3 other files (379.8 MB)
       requires: bump-needed:ESLint (+ @eslint/js), bump-needed:Jest, bump-needed:TypeScript
       carries other majors of sheet packages: uuid@8.3.2
 ```
 
-- **requires** lists the rows from *other* bundles that some of this bundle's rows need before a project can install them. This is your SRF critical path (see [§6](#6-what-the-2026-10-02-sheet-tells-you)).
+- **requires** lists the rows from *other* bundles that some of this bundle's rows need before a project can install them. This is your SRF critical path (see [§6](#6-what-the-sheet-tells-you)).
 - **carries other majors** lists dependencies that are a different major version of a package the sheet lists. An approval names a major version, so these are worth showing the reviewer (§6).
 
 It ends with `DONE` and a table of the `.tar` files. If it printed `STOP:` or `ABORT:` instead, see [§5](#5-troubleshooting). Nothing was written for that run.
@@ -237,28 +237,64 @@ The build refuses to run if any package the stack declares belongs to no row, be
 
 ---
 
-## 6. What the 2026-10-02 sheet tells you
+## 6. What the sheet tells you
 
-From the plan of the committed sheet. These are facts about the dependency graph, offered for your SRF strategy; they are not decisions.
+*(Revised 2026-10-02, after Graham asked: "if we need higher versions than the sheet lists, is the sheet wrong?")* These are facts about the dependency graph, offered for your SRF strategy; they are not decisions.
 
-1. **TypeScript 6 is the critical path.** It is "MAJOR BUMP SRF NEEDED" (TypeScript 5 is what's approved), and these rows can't be installed without it:
-   - Angular CLI, `@angular/build` and `build-angular` (bump-submitted);
-   - ts-jest and typescript-eslint (approved);
-   - angular-eslint and Sheriff (new SRF);
-   - Nx (nice-to-have).
+### 6.1 What the sheet lists, and what it can't
 
-   So the Angular approval alone doesn't give you a working Angular 22 toolchain. The runtime packages (`@angular/core` etc.) need only RxJS and tslib, both approved; the CLI and build need TypeScript 6. If you can, run the TypeScript bump alongside the Angular one, or combine the two bundles (Part C).
-2. **ESLint 9** (bump needed) gates typescript-eslint, eslint-plugin-unused-imports and eslint-config-prettier (all approved), plus angular-eslint and Sheriff. **Jest 30** (bump needed) gates ts-jest (approved). So until those bumps land, the approved bundle gives you the libraries, but not linting or Jest.
-3. **Other majors that ride along as dependencies.** An approval for one major might not be read as covering another:
-   - Angular 22's build tooling uses **Babel 8** (`@babel/core` 8.0.1/8.0.5, `@babel/preset-env` 8.0.5); the sheet's Babel row is 7.
-   - It also uses **Vite 8.3.0**; the sheet's Vite row is 6.4.3.
-   - In the same bundle, tsyringe brings **tslib 1.14.1** (the sheet's tslib row is 2.8.1).
-   - SockJS brings **uuid 8.3.2** (the sheet says uuid 11).
-   - Cypress brings **ws 7.5.13** (the sheet says ws 8).
-   - Prisma brings **dotenv 17.4.2** (the sheet says dotenv 16).
-4. **0.x versions.** zone.js 0.15, esbuild 0.25, amqplib 0.10, sockjs 0.3 and `@types/amqplib` 0.10 are approved as "major 0". Under semver, every 0.x minor can break things. Whether "major 0 approved" covers any 0.x minor is a question for the SRF process (**open**).
-5. **keycloak-connect 26** is approved, but ADR-008 D-3 (accepted) says new server code replaces it with standard OIDC/JWT validation: the adapter is stale, every version is flagged through its dependencies, and it pulls `chromedriver: "latest"`. The approval keeps it available (the legacy apps use it); it doesn't reverse D-3 (**flag**).
-6. **Shared dependencies:** 505 of the 1,554 npm tarballs ship in more than one bundle (≈ 40% duplication by count). That costs transfer bytes only.
+The sheet lists what the stack **declares**: our choices, one row each. The planner checks that every Requested Version is exactly the version the stack is locked to, so the sheet is correct about what it lists. What it can't show is what those choices **bring with them**: the bundles carry about 1,550 npm tarballs, against roughly 100 declared packages.
+
+Sometimes a dependency is **a second copy, at another major, of a package the sheet already lists.** npm and pnpm handle that by installing both copies side by side, each private to the package that asked for it. Angular's build gets its Babel 8 and Jest gets its Babel 7, and neither sees the other. That's normal and safe, but it means "Babel 7 approved" doesn't describe everything that crosses.
+
+There are two kinds of second copy, and they need different answers.
+
+### 6.2 Kind 1: we picked an older line than our own framework pins. The sheet was wrong; fixed 2026-10-02
+
+| Row | Was | Now | Why |
+|---|---|---|---|
+| Vite | 6.4.3 | **8.3.0** | Angular 22.2.1's build pins Vite **8.3.0** exactly. The only other user of our Vite, Vitest 4.1.11, accepts 6, 7 or 8. Vite 6 was a second major that nothing needed. |
+| esbuild | 0.25.0 | **0.28.2** | Angular 22.2.1's build pins esbuild **0.28.2** exactly (ng-packagr wants `^0.28.2`). Our 0.25.0 was only needed by Vite 6; jest-preset-angular accepts `>=0.23.0`, and the ladder's Angular 22 end state already runs Jest on esbuild 0.28.2. |
+
+Both rows changed in the stack (`stack/frontend/package.json`; the relock **only removed** packages: Vite 6.4.3, esbuild 0.25.0 and its platform binaries) and in the committed sheet. The pool went from 1,554 to 1,551 tarballs.
+
+**The SRF picture is now honest:** Angular's build (`@angular/build`, `build-angular`) now lists the **Vite** row (bump needed) and the **esbuild** row as requirements, where before they were hidden copies inside Angular's bundle. Approving Vite 8 covers exactly the Vite that Angular runs.
+
+**How it happened:**
+1. Your proposal (SRC-013) listed `vite 6.1.1` and `esbuild 0.25.0`.
+2. The reconciliation's rule was to keep each proposed major and move within it only for an advisory or an incompatibility. Vite moved to 6.4.3 for advisories, and esbuild stayed.
+3. That rule looked at each package on its own. It never asked whether Angular 22, added in the same pass, pins its own copy at a newer line. Angular pins both exactly, so staying on the proposed major *added* a major instead of avoiding one.
+4. esbuild was also hidden by the planner, which counted 0.25 and 0.28 as the same "major 0". Semver, and npm's `^`, treat each 0.x minor as its own breaking line. The planner now does too (`srf-plan.mjs`, 2026-10-02).
+
+### 6.3 Kind 2: both copies are genuinely needed. The sheet is right
+
+Each row below is what *we* use; the second copy is pinned by an upstream package for its own use. No change to the sheet can remove it.
+
+| Sheet row (ours) | Second copy | Pinned by | Why ours can't change |
+|---|---|---|---|
+| Babel Core 7.29.7 / Preset Env 7.26.9 | **Babel 8.0.5** (+ 8.0.1), preset-env **8.0.5** | Angular 22's build (`@angular/build`, `build-angular`, `compiler-cli`: exact pins) | Jest 30 itself hard-depends on Babel 7 (`@jest/transform`, `jest-snapshot`, `jest-config`: `^7.27.4`), so do istanbul-lib-instrument (`^7.23.9`) and ts-jest (`<8`); both legacy apps declare Babel 7. Both majors stay until Jest supports Babel 8. |
+| tslib 2.8.1 | tslib 1.14.1 | `build-angular` → webpack-dev-server → selfsigned → @peculiar/x509 → tsyringe (`^1.9.3`) | ours is the newer one |
+| uuid 11.1.1 | uuid 8.3.2 | sockjs 0.3.24 (`^8.3.2`; the latest sockjs) | ours is the newer one; RxStomp needs `>=9 <12` |
+| ws 8.22.0 | ws 7.5.13 | Cypress → chrome-remote-interface (`^7.2.0`) | ours is the newer one |
+| dotenv 16.4.5 | dotenv 17.4.2 | Prisma → c12 (`^17.3.1`) | 16.4.5 is legacy parity (both legacy apps declare it), and Nx pins 16.4.7, so 16 stays either way |
+
+Each second copy rides with the row that brings it: Babel 8 with Angular (its SRF is already submitted), tslib 1 with Angular, uuid 8 with SockJS (approved), ws 7 with Cypress (bump needed), dotenv 17 with Prisma (nice-to-have). Every bundle's `SRF-CONTENTS.md` lists them under "Other major versions of sheet software carried here". **Whether they need mention on an SRF is the SRF office's call (open).** If they do, Babel 8 is the one that touches an SRF already submitted (Angular's).
+
+### 6.4 The critical path
+
+1. **TypeScript 6 and Vite 8** (both bump needed) gate the Angular toolchain:
+   - TypeScript gates the Angular CLI, `@angular/build` and `build-angular` (bump-submitted); ts-jest and typescript-eslint (approved); angular-eslint and Sheriff (new SRF); Nx (nice-to-have).
+   - Vite gates `@angular/build` and `build-angular` (as it always did, now visible) and Vitest.
+
+   So the Angular approval alone doesn't give you a working Angular 22 toolchain. The runtime packages (`@angular/core` etc.) need only RxJS and tslib, both approved. If you can, run the TypeScript and Vite bumps alongside Angular's, or put the rows in one bundle (Part C).
+2. **ESLint 9** (bump needed) gates typescript-eslint, eslint-plugin-unused-imports and eslint-config-prettier (all approved), plus angular-eslint and Sheriff. **Jest 30** (bump needed) gates ts-jest (approved). Until those bumps land, the approved bundle gives you the libraries, but not linting or Jest.
+
+### 6.5 Still open
+
+- **0.x versions.** zone.js 0.15, **esbuild 0.28** (was 0.25), amqplib 0.10, sockjs 0.3 and `@types/amqplib` 0.10 are approved as "major 0". Under semver every 0.x minor is a breaking line, so whether "major 0 approved" covers esbuild 0.28 is a question for the SRF process. Angular 22 needed 0.28.2 all along, so the question existed before this change.
+- **Transitive dependencies:** do SRFs cover them? Each bundle lists every one.
+- **keycloak-connect 26** is approved, but ADR-008 D-3 (accepted) says new server code replaces it with standard OIDC/JWT validation: the adapter is stale, every version is flagged through its dependencies, and it pulls `chromedriver: "latest"`. The approval keeps it available (the legacy apps use it); it doesn't reverse D-3 (**flag**).
+- **Shared dependencies:** 492 of the 1,551 npm tarballs ship in more than one bundle (≈ 32% by count). That costs transfer bytes only.
 
 ---
 
@@ -276,17 +312,20 @@ Run end to end from the five delivered `.tar` files (extracted, mounted **read-o
 | `approved`: load | npm **426** uploaded, raw **3**, FAILED 0 (2 min 08 s; publishes with the bundle's own Node) |
 | `approved`: workstation `system` | Node 24.21.0 + npm 11.19.0 installed; pnpm, uv, Cypress binary, Playwright browsers each `SKIPPED` (expected) |
 | `approved`: `prove-install.sh category` | **GREEN**, 3/3. npm and raw fully served; **35 of 39 rows ready**, and their 33 npm packages installed from an empty cache (the other ready rows are Node, npm, VS Code and Python). `WAIT`: Jest (for ts-jest), TypeScript (for ts-jest and typescript-eslint), ESLint (for typescript-eslint, eslint-plugin-unused-imports, eslint-config-prettier) |
-| `bump-submitted`: load | npm **482** uploaded, **80** already present (shared with `approved`), FAILED 0. **Borrowed Node from Nexus raw** (this bundle carries none) |
-| `bump-submitted`: proof | **GREEN**, 2/2. **5 of 8 rows installed** (13 npm packages: Angular framework, SSR, compiler-cli, Material, CDK). `WAIT`: TypeScript (for the CLI, `@angular/build`, `build-angular`) and Express (for `build-angular`) |
-| `bump-needed`: load / proof | 390 uploaded, 283 present, raw 1, FAILED 0 / **GREEN**, **18 of 18 rows** installed |
+| `bump-submitted`: load | npm **471** uploaded, **80** already present (shared with `approved`), FAILED 0. **Borrowed Node from Nexus raw** (this bundle carries none) |
+| `bump-submitted`: proof | **GREEN**, 2/2. **5 of 8 rows installed** (13 npm packages: Angular framework, SSR, compiler-cli, Material, CDK). `WAIT`: TypeScript (for the CLI, `@angular/build`, `build-angular`), **Vite** (for `@angular/build`, `build-angular`) and Express (for `build-angular`) |
+| `bump-needed`: load / proof | 398 uploaded, 269 present, raw 1, FAILED 0 / **GREEN**, **18 of 18 rows** installed |
 | `new-srf`: load / proof | 45 uploaded, 78 present, raw 1, FAILED 0 / **GREEN**, **5 of 5** |
 | `nice-to-have`: load / proof | 211 uploaded, 402 present, raw 14, FAILED 0 / **GREEN**, **10 of 10** |
 | Workstation `system` again (`FROM_NEXUS=1`) | pnpm 10.34.6, uv 0.12.21, Cypress 16.1.1 binary, Playwright 1.63.0 browsers: all installed from Nexus |
 | `approved` proof again | **39 of 39** rows install. The earlier `WAIT`s cleared once their bundle was loaded |
-| **`prove-install.sh frontend`** (from the `nice-to-have` bundle) | **GREEN, 10/10**: `pnpm install --frozen-lockfile` of all 1,817 locked packages from an empty store; Angular CLI; TypeScript 6.0; Prisma + engine; Cypress binary; Playwright launches Chromium; npm; uv; Python 3.12 |
+| **`prove-install.sh frontend`** (from the `nice-to-have` bundle) | **GREEN, 10/10**: `pnpm install --frozen-lockfile` of all 1,790 locked packages from an empty store; Angular CLI; TypeScript 6.0; Prisma + engine; Cypress binary; Playwright launches Chromium; npm; uv; Python 3.12 |
 | Load `approved` again | uploaded 0, already-present 426 + 3, FAILED 0 |
+| Vitest on the new Vite (in the full-proof project) | `vite/8.3.0`, `esbuild 0.28.2`; `vitest run` of a test file: **1 passed** |
 
-**Uploads across the five loads: 426 + 482 + 390 + 45 + 211 = 1,554**, exactly the complete bundle's pool. Nothing is missing, and nothing was uploaded twice.
+**Uploads across the five loads: 426 + 471 + 398 + 45 + 211 = 1,551**, exactly the complete bundle's pool. Nothing is missing, and nothing was uploaded twice.
+
+*This table is the re-run of 2026-10-02 (later the same day) on the corrected stack (Vite 8.3.0, esbuild 0.28.2; pool 1,551). The first run, on Vite 6.4.3 / esbuild 0.25.0 and a pool of 1,554, was equally green: approved 426, bump-submitted 482, bump-needed 390, new-srf 45, nice-to-have 211 uploaded, 1,817 locked packages in the full proof.*
 
 **What the rehearsal caught (fixed, then re-run from a fresh Nexus):** the loader stopped **without any message** on the first bundle that carries no Node. A file search that finds nothing counted as an error under the scripts' strict shell settings. Fixed, and `load-nexus.sh` now always says STOP when it ends early. The category proof had already flagged that load as `FAIL`, as designed.
 
@@ -295,7 +334,7 @@ Run end to end from the five delivered `.tar` files (extracted, mounted **read-o
 - A Nexus newer than 3.76.1.
 - Your real staging machine and Nexus.
 
-**What changed after the run:** a header comment in each of `install-frontend-workstation.sh`, `load-nexus.sh` and `prove-install.sh`. Every other script in the rehearsed bundles is byte-identical to this commit.
+**What changed after the run:** nothing. The island scripts and the npm loader in the rehearsed bundles are byte-identical to the repository, and the bundles were cut by the planner as committed.
 
 ---
 

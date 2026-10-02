@@ -3,12 +3,12 @@ schema: corpus-doc/v1
 status: active
 title: Contradiction Register
 areas: [process-governance, context-system]
-updated: 2026-10-01
+updated: 2026-10-02
 ---
 
 # Contradiction Register
 
-**Created:** 2026-08-25 | **Last updated:** 2026-10-01 (C-011 and C-013 resolved by ADR-008; C-012 bundling settled, adoption per app; C-011..C-014 opened the same day from the Desert Island stack sources — Axium; earlier: C-008 resolved for the ACME lane, C-010 opened)
+**Created:** 2026-08-25 | **Last updated:** 2026-10-02 (C-015 opened and resolved the same day: the stack's Vite/esbuild pins vs Angular 22's own — Axium); 2026-10-01 (C-011 and C-013 resolved by ADR-008; C-012 bundling settled, adoption per app; C-011..C-014 opened the same day from the Desert Island stack sources — Axium; earlier: C-008 resolved for the ACME lane, C-010 opened)
 
 Numbered, never silently resolved. Status: `open` | `resolved (ADR/commit)` | `accepted tension`.
 
@@ -27,4 +27,5 @@ Numbered, never silently resolved. Status: `open` | `resolved (ADR/commit)` | `a
 | C-012 | 2026-10-01 | **Nx proposed as the workspace engine vs `technology_stack.md` ("npm workspaces, no Nx/Turborepo").** | SRC-013 vs `canonical/technology_stack.md` | open — **D-4 settled for bundling** (ADR-008: Nx ships, adoption per app) | Graham / DDD-ARCH-01 lane. Nx 23.1.2 is bundled (bytes are cheap) but not adopted; it carries residual high advisories via exactly-pinned axios/smol-toml. |
 | C-013 | 2026-10-01 | **Angular 22.2.0 (SRC-013) vs 22.1.5 — the legacy ladder's rehearsed v22 landing and the in-repo workspace — under ADR-005 (islands must match).** Security now points one way: 22.0–22.1.x carries GHSA-67c8-pqhq-4rmx (critical, `piscina` in `@angular/build`) and GHSA-ff3f-86qr-9cv3 (high, `@angular/router` SSR DoS); both fixed in 22.2.0. | SRC-013 vs `legacy-shells/bundle/locks/v22/`, root `package-lock.json`, [ADR-005](../decisions/ADR-005-island-stack-sync.md) | **resolved 2026-10-01 — [ADR-008](../decisions/ADR-008-desert-island-devenv-baseline.md) D-2** | Both islands land on **22.2.1**: the legacy ladder was re-walked to it on the exact-pinned sources (both shells green) and the Desert Island examples moved 22.2.0 → 22.2.1. The in-repo workspace (ACME lane, 22.1.x) is a learning instrument (ADR-007) — flagged to that lane, not changed here. |
 | C-014 | 2026-10-01 | **Two server-side runtimes proposed at once.** The architect's list (SRC-014) is Java 25 / Spring Boot 4.1 with JPA; the front-end list (SRC-013) also carries a Node back end — Express 5, Prisma, `pg`, amqplib, kafkajs, keycloak-connect. Doctrine names only a Node/Express *gateway* (BFF). | SRC-013, SRC-014 vs `canonical/technology_stack.md`, DDD-ARCH-01 | open — **D-7** | DDD-ARCH-01 lane (architecture). Both are bundled so the ruling doesn't cost a transfer cycle. |
+| C-015 | 2026-10-02 | **The Desert Island stack (and the SRF sheet built from it) pinned older lines than Angular 22 pins for itself:** `vite 6.4.3` while `@angular/build` / `build-angular` 22.2.1 pin `vite 8.3.0` exactly; `esbuild 0.25.0` while they pin `0.28.2`. Each shipped as two lines, and the sheet's rows named the line Angular does not use. Found by the SRF planner's other-major report (Graham asked "is the sheet wrong?"); esbuild had been hidden by the planner counting every 0.x as one major. | `stack/frontend/package.json`, SRC-017 rows Vite and esbuild, `devops_tech_stack_list_v2.md` | resolved (2026-10-02) | Pins and sheet rows moved to **8.3.0 / 0.28.2** (relock only removed packages); planner treats each 0.x minor as a major. Cause: the reconciliation kept each proposed major unless an advisory or incompatibility forced a move, package by package, without checking the framework's own pins. Graham re-vets the two rows (SRF how-to §6). |
 | C-006 | 2026-08-25 | **Project description exists in the Claude project but not in the repo.** `canonical/project_overview.md` is partial. | Claude project vs `docs/context/` | resolved (SRC-012, 2026-08-25) | Ingested into `project_overview.md` and `isolated_network_constraints.md`. |
