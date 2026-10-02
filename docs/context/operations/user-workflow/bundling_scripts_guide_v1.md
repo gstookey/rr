@@ -3,20 +3,21 @@ schema: corpus-doc/v1
 status: exploratory
 title: Bundling Scripts Guide v1 — building, porting and loading every transfer bundle (dev environment + Angular upgrade ladder)
 areas: [dev-environment, isolated-network, technology-stack, frontend, backend]
-related: ["docs/design/packets/desert-island-devenv-01-design-packet/devops_tech_stack_list_v2.md", "docs/design/packets/desert-island-devenv-01-design-packet/bundle_rehearsal_transcript_v2.md", "docs/design/packets/legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v3.md", "docs/design/packets/legacy-shell-bundle-01-design-packet/nexus_upload_instructions_v2.md", "desert-island-devenv/island/README.md"]
-updated: 2026-10-01
+related: ["docs/context/operations/user-workflow/srf_category_bundles_howto_v1.md", "docs/design/packets/desert-island-devenv-01-design-packet/devops_tech_stack_list_v2.md", "docs/design/packets/desert-island-devenv-01-design-packet/bundle_rehearsal_transcript_v2.md", "docs/design/packets/legacy-shell-bundle-01-design-packet/monorepo_hop_procedure_v3.md", "docs/design/packets/legacy-shell-bundle-01-design-packet/nexus_upload_instructions_v2.md", "desert-island-devenv/island/README.md"]
+updated: 2026-10-02
 ---
 
 # Bundling Scripts Guide v1
 
-**Created:** 2026-10-01 (Axium, at Graham's request) | **Status:** `exploratory` — every command below was run on 2026-10-01 (rehearsal evidence: [devenv transcript v2](../../../design/packets/desert-island-devenv-01-design-packet/bundle_rehearsal_transcript_v2.md), [ladder transcript v3](../../../design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v3.md)). Re-check versions before a re-cut.
+**Created:** 2026-10-01 (Axium, at Graham's request) | **Last updated:** 2026-10-02 (the front-end bundle can also be cut by SRF approval status — row added below) | **Status:** `exploratory` — every command below was run on 2026-10-01 (rehearsal evidence: [devenv transcript v2](../../../design/packets/desert-island-devenv-01-design-packet/bundle_rehearsal_transcript_v2.md), [ladder transcript v3](../../../design/packets/legacy-shell-bundle-01-design-packet/offline_verification_transcript_v3.md)). Re-check versions before a re-cut.
 
-One page for the whole loop: **build on the connected side → carry the `.tar` across → load Nexus → set up / upgrade on the isolated side.** There are three kinds of bundle:
+One page for the whole loop: **build on the connected side → carry the `.tar` across → load Nexus → set up / upgrade on the isolated side.** There are three kinds of bundle — and the front-end one can also be cut into five, one per SRF approval status:
 
 | Bundle | Built by | For | Size (2026-10-01) |
 |---|---|---|---|
 | `devenv-frontend-bundle-<date>.tar` | `desert-island-devenv/tools/build-frontend-bundle.sh` | new RHEL 9 workstations: Node + npm, pnpm, VS Code, test-browser binaries, the npm pool | 1.34 GB |
 | `devenv-backend-bundle-<date>.tar` | `desert-island-devenv/tools/build-backend-bundle.sh` | new RHEL 9 workstations: JDK, Gradle, Eclipse, Docker CE, kubectl, Helm, kind, the Maven tree, container images | 4.22 GB |
+| `devenv-frontend-<status>-<date>.tar` (×5) | `desert-island-devenv/tools/build-srf-bundles.sh` | the **same front-end content, split by SRF approval status** (approved · bump-submitted · bump-needed · new-srf · nice-to-have), so each group crosses when its approvals do — **step-by-step: [SRF Category Bundles How-To v1](srf_category_bundles_howto_v1.md)** | 105–403 MB each (2026-10-02) |
 | `angular-upgrade-bundle-<slice>-<date>.tar` | `legacy-shells/tools/build-transfer-bundle.sh` | the legacy apps' Angular 17 → 22.2 upgrade ladder: npm tarballs for every rung, the hop tools, Node 22 for the last rung | ≈ 410 MB (cumulative) |
 
 **The stack lists** (what is in the first two, version by version, with every correction explained): [`devops_tech_stack_list_v2.md`](../../../design/packets/desert-island-devenv-01-design-packet/devops_tech_stack_list_v2.md) — the hand-off for DevOps — and the machine-readable pins in `desert-island-devenv/stack/` (`workstation.env`, `backend.env`, `images.txt`, `vscode-extensions.txt`, `frontend/package.json` + `pnpm-lock.yaml`, `package-managers/`, `backend/` Gradle project).

@@ -1,0 +1,98 @@
+# srf-components.tsv -- what each row of the SRF status spreadsheet MEANS in the bundle.
+# Created 2026-10-02 (Axium) for tools/build-srf-bundles.sh.
+#
+# The spreadsheet (docs/source-documents/desert-island-setup-docs/front-end-srf-status.csv, or any
+# copy you pass with --sheet) says WHICH STATUS each row has; this file says which npm packages and
+# which other files belong to that row. Rows are matched on the "Software" column, ignoring case and
+# extra spaces. Columns are TAB-separated:
+#
+#   software (as in the sheet) <TAB> npm packages (space-separated) <TAB> other artifacts (space-separated)
+#
+# Other artifacts:
+#   raw:<path>/      every file under the full bundle's raw/<path>/   (Node, VS Code, uv, Cypress, ...)
+#   vsix:<id>        that VS Code extension's .vsix file(s)
+#   media:<text>     comes from the RHEL media, not from any bundle (listed in the bundle notes; "-" reads as a space)
+#   with:<row>       ships inside another row's file (npm inside the Node.js tarball)
+#
+# Every npm package the example stack declares (stack/frontend/package.json, and pnpm/only-allow
+# in stack/package-managers) must belong to exactly one row; the planner refuses to build otherwise.
+Node.js		raw:nodejs/
+npm		with:Node.js
+pnpm	pnpm
+only-allow	only-allow
+TypeScript	typescript
+VS Code		raw:vscode/
+VS Code ext: Angular Language Service		vsix:Angular.ng-template
+VS Code ext: ESLint		vsix:dbaeumer.vscode-eslint
+VS Code ext: Prettier		vsix:esbenp.prettier-vscode
+VS Code ext: Python / Pylance / Python Debugger / Python Environments		vsix:ms-python.python vsix:ms-python.vscode-pylance vsix:ms-python.debugpy vsix:ms-python.vscode-python-envs
+VS Code ext: Black Formatter		vsix:ms-python.black-formatter
+Python (RHEL 9 media version)		media:the-RHEL-9-AppStream-media-(dnf-install-python3.12)
+uv		raw:uv/
+Angular (core, common, compiler, forms, router, animations, platform-browser, platform-browser-dynamic, platform-server)	@angular/core @angular/common @angular/compiler @angular/forms @angular/router @angular/animations @angular/platform-browser @angular/platform-browser-dynamic @angular/platform-server
+Angular SSR	@angular/ssr
+Angular CLI	@angular/cli
+Angular Build (@angular/build)	@angular/build
+Angular Build Angular (@angular-devkit/build-angular)	@angular-devkit/build-angular
+Angular Compiler CLI	@angular/compiler-cli
+Angular Material	@angular/material
+Angular CDK	@angular/cdk
+AstroUXDS Angular	@astrouxds/angular
+AstroUXDS Web Components	@astrouxds/astro-web-components
+RxJS	rxjs
+zone.js	zone.js
+tslib	tslib
+ng-packagr	ng-packagr
+NgRx (Store, Effects, Entity, Router Store, Signals, Operators, Store DevTools)	@ngrx/store @ngrx/effects @ngrx/entity @ngrx/router-store @ngrx/signals @ngrx/operators @ngrx/store-devtools
+keycloak-js	keycloak-js
+keycloak-angular	keycloak-angular
+keycloak-connect	keycloak-connect
+STOMP.js (@stomp/stompjs)	@stomp/stompjs
+RxStomp (@stomp/rx-stomp)	@stomp/rx-stomp
+SockJS / SockJS Client	sockjs sockjs-client
+ws	ws
+amqplib	amqplib
+KafkaJS	kafkajs
+uuid	uuid
+Express	express
+express-session	express-session
+compression	compression
+cors	cors
+dotenv	dotenv
+Prisma (CLI and Client)	prisma @prisma/client	raw:prisma-engines/
+pg	pg
+Lodash	lodash
+Luxon	luxon
+node-forge	node-forge
+Tailwind CSS (+ @tailwindcss/postcss)	tailwindcss @tailwindcss/postcss
+PostCSS	postcss
+Autoprefixer	autoprefixer
+Nx (+ @nx/angular, @nx/express)	nx @nx/angular @nx/express
+Vite	vite
+esbuild	esbuild
+Babel Core / Babel Preset Env	@babel/core @babel/preset-env
+Jest	jest
+jest-environment-jsdom	jest-environment-jsdom
+jest-preset-angular	jest-preset-angular
+ts-jest	ts-jest
+babel-jest	babel-jest
+jsdom	jsdom
+Vitest (+ @vitest/coverage-v8)	vitest @vitest/coverage-v8
+istanbul-lib-instrument	istanbul-lib-instrument
+Cypress	cypress	raw:cypress/
+Playwright (@playwright/test)	@playwright/test	raw:playwright/
+ESLint (+ @eslint/js)	eslint @eslint/js
+typescript-eslint (+ parser and plugin)	typescript-eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
+angular-eslint	angular-eslint
+Sheriff (@softarc/sheriff-core + ESLint plugin)	@softarc/sheriff-core @softarc/eslint-plugin-sheriff
+eslint-plugin-unused-imports	eslint-plugin-unused-imports
+eslint-config-prettier	eslint-config-prettier
+Prettier	prettier
+@types/node	@types/node
+@types/express	@types/express
+@types/cors	@types/cors
+@types/jest	@types/jest
+@types/lodash	@types/lodash
+@types/pg	@types/pg
+@types/ws	@types/ws
+@types/amqplib	@types/amqplib

@@ -3,12 +3,12 @@ schema: corpus-doc/v1
 status: active
 title: RR Context Wiki Index
 areas: [context-system]
-updated: 2026-09-03
+updated: 2026-10-02
 ---
 
 # RR Context Wiki Index
 
-**Created:** 2026-08-25 | **Last updated:** 2026-10-01 (later the same day: Graham's decisions → **ADR-008**; DevOps stack list **v2**; the **bundling scripts guide**; the legacy ladder **re-walked to 22.2.1** on the exact-pinned apps — hop procedure v3, Nexus upload v2, offline transcript v3. Earlier: `desert-island-devenv-01` — the Desert Island workstation stack list, its two transfer bundles and the Nexus load path, rehearsed offline; SRC-013..015; C-011..C-014)
+**Created:** 2026-08-25 | **Last updated:** 2026-10-02 (the **SRF category bundles how-to** + SRC-017, Graham's SRF status sheet); 2026-10-01 (later the same day: Graham's decisions → **ADR-008**; DevOps stack list **v2**; the **bundling scripts guide**; the legacy ladder **re-walked to 22.2.1** on the exact-pinned apps — hop procedure v3, Nexus upload v2, offline transcript v3. Earlier: `desert-island-devenv-01` — the Desert Island workstation stack list, its two transfer bundles and the Nexus load path, rehearsed offline; SRC-013..015; C-011..C-014)
 
 Navigation spine for the RR context system. Update when a page is added, removed, or changes meaningfully.
 
@@ -41,7 +41,7 @@ Navigation spine for the RR context system. Update when a page is added, removed
 - [Brand — Visual Identity](../design/brand/README.md)
 - Packets:
 - [**DESERT-ISLAND-DEVENV-01 — the workstation stack, its two transfer bundles, the Nexus load path** (`desert-island-devenv-01`)](../design/packets/desert-island-devenv-01-design-packet/README.md) — `exploratory`, cut 2026-10-01 at Graham's request (EP-04 work); **both bundles built and rehearsed end to end on offline RHEL 9 against Nexus**; not activated
-  - [**DevOps Tech Stack List v2**](../design/packets/desert-island-devenv-01-design-packet/devops_tech_stack_list_v2.md) — **hand this to DevOps** (npm + pnpm, Docker CE + kind, k8s tools for the 1.30 cluster, Angular 22.2.1) · [Bundle Rehearsal Transcript v2](../design/packets/desert-island-devenv-01-design-packet/bundle_rehearsal_transcript_v2.md) (incl. the Nexus npm-metadata finding) · [**Bundling Scripts Guide v1**](operations/user-workflow/bundling_scripts_guide_v1.md) — every bundle script, start to finish · earlier: [**DevOps Tech Stack List v1**](../design/packets/desert-island-devenv-01-design-packet/devops_tech_stack_list_v1.md) — hand this to DevOps · [Source Reconciliation v1](../design/packets/desert-island-devenv-01-design-packet/source_reconciliation_v1.md) — corrections, C-011..C-014, decisions D-1..D-9 · [Bundle Rehearsal Transcript v1](../design/packets/desert-island-devenv-01-design-packet/bundle_rehearsal_transcript_v1.md)
+  - [**DevOps Tech Stack List v2**](../design/packets/desert-island-devenv-01-design-packet/devops_tech_stack_list_v2.md) — **hand this to DevOps** (npm + pnpm, Docker CE + kind, k8s tools for the 1.30 cluster, Angular 22.2.1) · [Bundle Rehearsal Transcript v2](../design/packets/desert-island-devenv-01-design-packet/bundle_rehearsal_transcript_v2.md) (incl. the Nexus npm-metadata finding) · [**Bundling Scripts Guide v1**](operations/user-workflow/bundling_scripts_guide_v1.md) — every bundle script, start to finish · [**SRF Category Bundles How-To v1**](operations/user-workflow/srf_category_bundles_howto_v1.md) — one front-end bundle per SRF approval status (2026-10-02) · earlier: [**DevOps Tech Stack List v1**](../design/packets/desert-island-devenv-01-design-packet/devops_tech_stack_list_v1.md) — hand this to DevOps · [Source Reconciliation v1](../design/packets/desert-island-devenv-01-design-packet/source_reconciliation_v1.md) — corrections, C-011..C-014, decisions D-1..D-9 · [Bundle Rehearsal Transcript v1](../design/packets/desert-island-devenv-01-design-packet/bundle_rehearsal_transcript_v1.md)
   - Tooling: [`desert-island-devenv/`](../../desert-island-devenv/README.md) — `stack/` pins, `tools/build-{frontend,backend}-bundle.sh`, `island/` (travels in the bundles)
 - [**ACME-WORKSHOP-01 — the DDD reference application** (`acme-workshop-01`)](../design/packets/acme-workshop-01-design-packet/README.md) — `exploratory`, cut 2026-09-03; EP-06 (#37), stories S-18..S-25 (#38–#45); **not activated**
   - [Domain Model v0](../design/packets/acme-workshop-01-design-packet/domain_model_v0.md) · [Decision Register v0 (AW-D1..AW-D12)](../design/packets/acme-workshop-01-design-packet/decision_register_v0.md) · [Slice Decomposition v0 (S0..S7)](../design/packets/acme-workshop-01-design-packet/slice_decomposition_v0.md)
@@ -76,7 +76,7 @@ Navigation spine for the RR context system. Update when a page is added, removed
 - Sessions: [SESSION_LOG](operations/sessions/SESSION_LOG.md) · [Rollup Checklist](operations/sessions/session_rollup_checklist.md) · [2026-08-25 Repo Initialization Plan](operations/sessions/2026-08-25_repo_initialization_plan.md)
 - [Feedback](operations/feedback/README.md) · [Raw backlog](operations/feedback/raw/user_feedback_backlog.md)
 - [Reviews](operations/reviews/README.md)
-- [User Workflow](operations/user-workflow/README.md) · [**Bundling Scripts Guide v1**](operations/user-workflow/bundling_scripts_guide_v1.md) — build, port, load and use every transfer bundle
+- [User Workflow](operations/user-workflow/README.md) · [**Bundling Scripts Guide v1**](operations/user-workflow/bundling_scripts_guide_v1.md) — build, port, load and use every transfer bundle · [**SRF Category Bundles How-To v1**](operations/user-workflow/srf_category_bundles_howto_v1.md) — step by step: cut, port, load and prove the front end one approval status at a time
 
 # Team / Agents
 
@@ -93,7 +93,7 @@ Navigation spine for the RR context system. Update when a page is added, removed
 # Evidence
 
 - [Evidence README](evidence/README.md)
-- [Source Register](evidence/raw/source_register.md) — SRC-001..SRC-016
+- [Source Register](evidence/raw/source_register.md) — SRC-001..SRC-017
 - Raw: `evidence/raw/project-road-runner-description.txt` (SRC-012, founder source)
 - [Raw](evidence/raw/README.md) · [Images](evidence/images/README.md)
 - Raw source folders (registered, not moved): `../source-documents/`, `../angular-upgrade-docs/`, `../../images/rr_logos/`

@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # install-frontend-workstation.sh -- set up one RHEL 9 workstation for front-end work from the
 # front-end bundle. Created 2026-10-01; rehearsed in a RHEL 9 (UBI 9) container (see packet).
+# Last updated 2026-10-02: everything after Node is optional -- with the SRF category bundles a machine
+# is set up from the categories loaded so far, and anything not there yet prints SKIPPED (re-run later).
 #
 #   sudo ./install-frontend-workstation.sh system   # once per machine: Node (+npm), pnpm, uv, VS Code RPM,
 #                                                    # Playwright browsers, Cypress binary, Prisma
@@ -28,6 +30,16 @@ getfile() {
   local t="${TMPDIR:-/tmp}/devenv-dl/$1"; mkdir -p "$(dirname "$t")"
   [ -s "$t" ] || curl -fsSL -o "$t" "$RAWURL/$1" || die "cannot fetch $RAWURL/$1"
   echo "$t"; }
+# getfile_opt <path>: like getfile, but returns 1 (quietly) when neither this bundle nor Nexus has the
+# file yet. Added 2026-10-02 for the SRF category bundles (build-srf-bundles.sh): a workstation is
+# set up from whichever categories are approved so far, and this step is re-run as more arrive.
+getfile_opt() {
+  if [ "${FROM_NEXUS:-0}" != 1 ] && [ -f "$BUNDLE_DIR/raw/$1" ]; then echo "$BUNDLE_DIR/raw/$1"; return 0; fi
+  local t="${TMPDIR:-/tmp}/devenv-dl/$1"; mkdir -p "$(dirname "$t")"
+  [ -s "$t" ] && { echo "$t"; return 0; }
+  curl -fsSL -o "$t" "$RAWURL/$1" 2>/dev/null && { echo "$t"; return 0; }
+  rm -f "$t"; return 1; }
+later() { echo "  SKIPPED: $1 -- not in this bundle and not in Nexus yet; re-run this step after loading the bundle that carries it"; }
 
 system_install() {
   [ "$(id -u)" = 0 ] || die "the system step needs root: sudo $0 system"
@@ -58,23 +70,30 @@ NPMRC
   log "pnpm $PNPM_VERSION -> $PREFIX/node/bin"
   local pt="$BUNDLE_DIR/npm/tarballs/pnpm-$PNPM_VERSION.tgz"
   if [ "${FROM_NEXUS:-0}" = 1 ] || [ ! -f "$pt" ]; then pt="pnpm@$PNPM_VERSION"; fi
-  "$PREFIX/node/bin/npm" install -g --prefix "$PREFIX/node" "$pt" --no-audit --no-fund >/dev/null || die "pnpm $PNPM_VERSION did not install"
-  for b in pnpm pnpx; do ln -sf "$PREFIX/node/bin/$b" "/usr/local/bin/$b"; done
-  echo "pnpm $(/usr/local/bin/pnpm --version)"
+  if [ "$pt" != "pnpm@$PNPM_VERSION" ] || curl -fsS -o /dev/null "$(repo_url "$NPM_REPO")/pnpm/-/pnpm-$PNPM_VERSION.tgz" 2>/dev/null; then
+    "$PREFIX/node/bin/npm" install -g --prefix "$PREFIX/node" "$pt" --no-audit --no-fund >/dev/null || die "pnpm $PNPM_VERSION did not install"
+    for b in pnpm pnpx; do ln -sf "$PREFIX/node/bin/$b" "/usr/local/bin/$b"; done
+    echo "pnpm $(/usr/local/bin/pnpm --version)"
+  else later "pnpm $PNPM_VERSION"; fi
 
   log "uv $UV_VERSION -> /usr/local/bin"
-  local ua; ua=$(getfile "uv/$UV_VERSION/uv-x86_64-unknown-linux-gnu.tar.gz")
-  tar -xzf "$ua" -C /usr/local/bin --strip-components=1 uv-x86_64-unknown-linux-gnu/uv uv-x86_64-unknown-linux-gnu/uvx
-  uv --version
+  local ua
+  if ua=$(getfile_opt "uv/$UV_VERSION/uv-x86_64-unknown-linux-gnu.tar.gz"); then
+    tar -xzf "$ua" -C /usr/local/bin --strip-components=1 uv-x86_64-unknown-linux-gnu/uv uv-x86_64-unknown-linux-gnu/uvx
+    uv --version
+  else later "uv $UV_VERSION"; fi
 
   log "Cypress $CYPRESS_VERSION binary -> $PREFIX/cypress"
-  mkdir -p "$PREFIX/cypress/$CYPRESS_VERSION"
-  cp "$(getfile "cypress/$CYPRESS_VERSION/linux-x64/cypress.zip")" "$PREFIX/cypress/$CYPRESS_VERSION/cypress.zip"
+  local cz
+  if cz=$(getfile_opt "cypress/$CYPRESS_VERSION/linux-x64/cypress.zip"); then
+    mkdir -p "$PREFIX/cypress/$CYPRESS_VERSION"; cp "$cz" "$PREFIX/cypress/$CYPRESS_VERSION/cypress.zip"
+  else later "the Cypress $CYPRESS_VERSION binary"; fi
 
   log "Playwright $PLAYWRIGHT_VERSION browsers -> $PREFIX/ms-playwright"
-  rm -rf "$PREFIX/ms-playwright"
-  tar -xzf "$(getfile "playwright/$PLAYWRIGHT_VERSION/playwright-browsers-linux-x64.tar.gz")" -C "$PREFIX"
-  chmod -R a+rX "$PREFIX/ms-playwright"
+  local pw
+  if pw=$(getfile_opt "playwright/$PLAYWRIGHT_VERSION/playwright-browsers-linux-x64.tar.gz"); then
+    rm -rf "$PREFIX/ms-playwright"; tar -xzf "$pw" -C "$PREFIX"; chmod -R a+rX "$PREFIX/ms-playwright"
+  else later "the Playwright $PLAYWRIGHT_VERSION browsers"; fi
 
   log "environment -> /etc/profile.d/devenv-frontend.sh"
   cat > /etc/profile.d/devenv-frontend.sh <<PROFILE
@@ -103,9 +122,11 @@ PROFILE
 
   if [ -n "${VSCODE_RPM:-}" ] && [ "${SKIP_VSCODE:-0}" != 1 ]; then
     log "VS Code $VSCODE_VERSION (RPM; dependencies resolve from the RHEL 9 repositories this machine uses)"
-    local rpm; rpm=$(getfile "vscode/$VSCODE_VERSION/$VSCODE_RPM")
-    if command -v dnf >/dev/null; then dnf install -y "$rpm" || die "dnf could not install VS Code -- record the missing dependencies it names"
-    else warn "dnf not found; install $rpm with your package tool"; fi
+    local rpm
+    if rpm=$(getfile_opt "vscode/$VSCODE_VERSION/$VSCODE_RPM"); then
+      if command -v dnf >/dev/null; then dnf install -y "$rpm" || die "dnf could not install VS Code -- record the missing dependencies it names"
+      else warn "dnf not found; install $rpm with your package tool"; fi
+    else later "VS Code $VSCODE_VERSION"; fi
   fi
   log "system step done. Log out and back in (or: source /etc/profile.d/devenv-frontend.sh)."
 }
@@ -114,12 +135,15 @@ user_install() {
   [ "$(id -u)" != 0 ] || die "run the user step as the developer, not root"
   need code
   log "VS Code extensions (order matters: dependencies first)"
+  local order vsix
+  order=$(getfile_opt vscode-extensions/INSTALL-ORDER.txt) || { later "the VS Code extensions"; order=/dev/null; }
   while read -r id ver plat; do
     [[ -z "$id" || "$id" == \#* ]] && continue
-    code --install-extension "$(getfile "vscode-extensions/$id-$ver-$plat.vsix")" --force >/dev/null \
-      || die "extension $id $ver did not install"
+    # Extensions can arrive in more than one SRF category bundle: install what is here, skip the rest.
+    vsix=$(getfile_opt "vscode-extensions/$id-$ver-$plat.vsix") || { later "extension $id $ver"; continue; }
+    code --install-extension "$vsix" --force >/dev/null || die "extension $id $ver did not install"
     echo "  $id $ver"
-  done < "$(getfile vscode-extensions/INSTALL-ORDER.txt)"
+  done < "$order"
   local s="$HOME/.config/Code/User/settings.json"
   if [ ! -f "$s" ]; then
     mkdir -p "$(dirname "$s")"
