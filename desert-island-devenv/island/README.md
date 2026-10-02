@@ -1,6 +1,6 @@
 # Air-gapped development workstation bundles — island runbook
 
-**Created:** 2026-10-01 · travels inside both bundles (`devenv-frontend-bundle-<date>.tar`, `devenv-backend-bundle-<date>.tar`)
+**Created:** 2026-10-01 · **Last updated:** 2026-10-02 (bundles by SRF approval status) · travels inside every front-end and back-end bundle (`devenv-frontend-bundle-<date>.tar`, `devenv-backend-bundle-<date>.tar`, and the `devenv-frontend-<status>-<date>.tar` category bundles)
 
 Written for someone on the isolated network **with no internet and no one to ask**. Each step names what can go wrong beside it. If what you see doesn't match what's written here, **stop and write down exactly what you saw** — whoever troubleshoots from outside will have only your description.
 
@@ -17,6 +17,31 @@ Written for someone on the isolated network **with no internet and no one to ask
 | both | `island/` | — | these scripts |
 
 **Not in the bundles — from the RHEL 9 installation media / your RHEL repositories:** `python3.12 python3.12-pip python3.12-devel`, `skopeo` (optional, for the image loader), `git`, `jq`, Docker CE's dependencies (`container-selinux`, `libseccomp`, `iptables-nft`, `nftables` — dnf pulls them when the installer installs the bundled Docker RPMs), and the desktop libraries VS Code needs (dnf resolves those itself). **Do not install `podman-docker`** — it owns `/usr/bin/docker` and conflicts with Docker CE (ADR-008: the team uses Docker).
+
+## Bundles by SRF approval status
+
+*(Added 2026-10-02.)* The front-end bundle can also arrive **split by approval status** — `devenv-frontend-approved-<date>`, `-bump-submitted-`, `-bump-needed-`, `-new-srf-`, `-nice-to-have-` (made by `build-srf-bundles.sh`). Each is an ordinary front-end bundle holding only its rows' software plus their dependencies; `SRF-CONTENTS.md` at its top lists exactly what is inside. Everything below applies to each one, with three differences:
+
+1. **Load each one when its approvals are in hand**, with the same `island/load-nexus.sh`. Any order works; a package two bundles share is skipped the second time (`already-present`). Load **`approved` first** — it carries Node.js, which the loader borrows (from Nexus) when the loading machine has no npm.
+2. **The workstation step skips what has not arrived yet.** `install-frontend-workstation.sh system` prints `SKIPPED: … re-run this step after loading the bundle that carries it` for pnpm, uv, the Cypress binary, the Playwright browsers or VS Code when they are not in Nexus yet. Re-run it (with `FROM_NEXUS=1` on machines without the media) after loading the bundle that carries them; the `user` step likewise skips extensions not loaded yet.
+3. **Prove each one with `island/prove-install.sh category`** (run from inside that bundle, after `system`):
+
+```
+PASS  npm: all 426 tarballs served by Nexus, each version listed in its package metadata
+PASS  raw: all 3 files served by Nexus
+WAIT  Jest (bundle: bump-needed) is not in Nexus yet -- needed to install: ts-jest
+WAIT  TypeScript (bundle: bump-needed) is not in Nexus yet -- needed to install: ts-jest; typescript-eslint (+ parser and plugin)
+WAIT  ESLint (+ @eslint/js) (bundle: bump-needed) is not in Nexus yet -- needed to install: typescript-eslint (+ parser and plugin); eslint-plugin-unused-imports; eslint-config-prettier
+NOTE  35 of 39 rows have everything they need in Nexus; 4 wait on the bundles named above
+PASS  npm installs the 33 npm packages of every row whose needs are met, from Nexus (empty cache)
+
+RESULT: 3 passed, 0 failed
+WAITING: 3 other bundle(s) named above must be loaded before those rows install -- not a failure of this bundle
+GREEN -- reproducible from Nexus alone.
+```
+*(the `approved` bundle loaded alone, rehearsed 2026-10-02)*
+
+`FAIL` is a problem with **this** bundle's load (re-run `load-nexus.sh`; then record). `WAIT` is not a failure: those rows need software from a bundle that is not loaded yet — they install once it is. When every bundle is loaded, `prove-install.sh frontend` (from any of them) is the full proof.
 
 ## Order of operations
 

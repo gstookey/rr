@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# prove-install.sh -- the acceptance test. Created 2026-10-01; rehearsed (see packet).
+# prove-install.sh -- the acceptance test. Created 2026-10-01; rehearsed (see packet). Last updated
+# 2026-10-02: `category` mode for the SRF category bundles.
 # Proves that NEXUS, not some local cache, can supply a full build -- the mistake the earlier
 # day-one rehearsal caught: a warm npm cache let an install "pass" against an EMPTY registry.
 # So every check here runs with a brand-new, empty cache directory.
@@ -13,12 +14,18 @@
 #                                 # with Docker: also a real Testcontainers Postgres, a docker pull,
 #                                 # and a kind cluster whose node AND pod images come from Nexus
 #                                 # (SKIP_KIND=1 to skip the cluster)
+#   ./prove-install.sh category   # from an SRF category bundle (devenv-frontend-<status>-<date>): Nexus
+#                                 # serves every npm tarball (and lists it in the package metadata) and
+#                                 # every file in THIS bundle; says which rows still WAIT on another
+#                                 # bundle; then npm-installs, from an empty cache, every row whose
+#                                 # needs are met. Added 2026-10-02 (build-srf-bundles.sh). Once every
+#                                 # category is loaded, `frontend` is the full proof.
 #
 # Run as a developer AFTER install-*-workstation.sh (system + user). Prints PASS/FAIL per check.
 set -uo pipefail
 source "$(dirname "$0")/lib/common.sh"
 load_conf
-WHAT="${1:?usage: prove-install.sh frontend|backend}"
+WHAT="${1:?usage: prove-install.sh frontend|backend|category}"
 T="$(mktemp -d "${TMPDIR:-/tmp}/devenv-proof.XXXXXX")"
 pass=0; fail=0
 ok()  { echo "PASS  $*"; pass=$((pass+1)); }
@@ -50,6 +57,27 @@ frontend() {
   step "uv runs"                     uv --version
   if command -v python3.12 >/dev/null; then ok "python3.12 present ($(python3.12 --version 2>&1))"
   else bad "python3.12 missing -- dnf install python3.12 (RHEL 9 AppStream)"; fi
+}
+
+category() {
+  [ -f /etc/profile.d/devenv-frontend.sh ] && source /etc/profile.d/devenv-frontend.sh
+  need node npm
+  [ -f "$BUNDLE_DIR/srf-bundle.json" ] || die "no srf-bundle.json -- run this from an SRF category bundle (devenv-frontend-<status>-<date>)"
+  echo "bundle $(basename "$BUNDLE_DIR") -- $(node -p 'require(process.argv[1]).status' "$BUNDLE_DIR/srf-bundle.json")"
+  echo "node $(node --version)  npm $(npm --version)  npm registry $(repo_url "$NPM_REPO")"
+  local line
+  while IFS= read -r line; do echo "$line"
+    case "$line" in PASS*) pass=$((pass+1)) ;; FAIL*) fail=$((fail+1)) ;; WAIT*) waits=$((waits+1)) ;; esac
+  done < <(node "$HERE_LIB/srf-proof.mjs" "$BUNDLE_DIR" "$(repo_url "$NPM_REPO")" "$(repo_url "$RAW_REPO")" "$T/installable.txt" 2>&1 \
+           || echo "FAIL  srf-proof.mjs stopped (message above)")
+  if [ -s "$T/installable.txt" ]; then
+    # A real install, resolved by npm against Nexus alone: empty cache, no lockfile, install scripts off
+    # (binaries such as Cypress's are checked by `prove-install.sh frontend` once everything is loaded).
+    mkdir -p "$T/category" "$T/category-cache"
+    step "npm installs the $(wc -l < "$T/installable.txt") npm packages of every row whose needs are met, from Nexus (empty cache)" \
+      npm install --prefix "$T/category" --cache "$T/category-cache" --registry "$(repo_url "$NPM_REPO")/" \
+        --no-save --no-package-lock --ignore-scripts --no-audit --no-fund $(cat "$T/installable.txt")
+  else echo "NOTE  no npm packages to install yet (none in this bundle, or every row waits on another bundle)"; fi
 }
 
 backend() {
@@ -97,7 +125,9 @@ backend() {
   fi
 }
 
-case "$WHAT" in frontend) frontend ;; backend) backend ;; *) die "frontend or backend" ;; esac
+waits=0
+case "$WHAT" in frontend) frontend ;; backend) backend ;; category) category ;; *) die "frontend, backend or category" ;; esac
 echo; echo "RESULT: $pass passed, $fail failed   (work dir: $T)"
+[ "$waits" = 0 ] || echo "WAITING: $waits other bundle(s) named above must be loaded before those rows install -- not a failure of this bundle"
 [ "$fail" = 0 ] && echo "GREEN -- reproducible from Nexus alone." || echo "NOT GREEN -- record every FAIL line and $T/proof.log."
 [ "$fail" = 0 ]

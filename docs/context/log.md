@@ -2,6 +2,47 @@
 
 <!-- Convention (BS-14): one `# [YYYY-MM-DD] <type> | <title>` header level, newest-first — prepend below this comment. Types: ingest | decision | milestone | lint | governance | session -->
 
+# [2026-10-02] ingest | Graham's SRF status sheet (SRC-017) → front-end bundles by approval status, rehearsed offline
+
+Graham turned the front-end stack table into a sheet with the **majors already approved** and an **Approval Status** per row: MAJOR ALREADY APPROVED 39, MAJOR BUMP SRF SUBMITTED 8 (Angular), MAJOR BUMP SRF NEEDED 18, NEW SRF NEEDED 5, nice to have / can wait 10. He asked for bundles by status, so each group can cross as its SRFs land, plus a step-by-step how-to. The sheet is registered as **SRC-017** (committed verbatim; its notes column is never read and never copied into a bundle).
+
+**Built:**
+- `desert-island-devenv/tools/build-srf-bundles.sh`, with the planner `srf-plan.mjs` and the assembler `srf-emit.mjs`.
+- The mapping `stack/srf-components.tsv` (sheet row → npm packages and other files).
+- `prove-install.sh category`, with its check `island/lib/srf-proof.mjs`.
+- Optional components in `install-frontend-workstation.sh`.
+- `load-nexus.sh` borrows Node from Nexus raw for bundles that carry none.
+
+**How it splits the stack:** one self-contained bundle per status: rows plus their transitive dependencies, never another row. The planner refuses to build if:
+- a package the stack declares belongs to no row (or two);
+- the sheet's Requested Version differs from the lock;
+- the five bundles together don't cover the whole 1,554-tarball pool.
+
+**Rehearsed offline from the delivered tars, one category at a time:** fresh Nexus 3.76.1, RHEL 9 containers without internet or Node.
+- Every load finished with FAILED 0, and the uploads summed to exactly the pool (426 + 482 + 390 + 45 + 211).
+- Every category proof was GREEN: approved 35/39 rows ready (WAIT on Jest, TypeScript, ESLint), bump-submitted 5/8 (WAIT on TypeScript, Express), then 18/18, 5/5, 10/10.
+- After the last load, approved went to 39/39.
+- `prove-install.sh frontend` passed 10/10.
+
+**Found and fixed in the rehearsal:** `load-nexus.sh` **exited silently** on a bundle without Node: under `pipefail`, a `ls` that matched nothing counted as an error. It now also prints a STOP on any unexpected exit. The category proof had already caught the incomplete load as FAIL.
+
+**Ingest findings (how-to §6):**
+- **TypeScript 6** (bump needed) gates the Angular CLI and build, ts-jest, typescript-eslint, angular-eslint, Sheriff and Nx.
+- **ESLint 9** and **Jest 30** gate approved lint and test rows.
+- Angular's build carries **Babel 8** and **Vite 8**; the sheet lists 7 and 6.
+- Other majors also ride along as dependencies: tslib 1, uuid 8, ws 7, dotenv 17.
+
+**Doctrine touched:**
+- New how-to `operations/user-workflow/srf_category_bundles_howto_v1.md`; the bundling guide points to it.
+- Island README section "Bundles by SRF approval status".
+- SRC-017; CURRENT_STATE (standing truth, plus open decision 5: SRF-process questions); current_priorities (Desert Island step 3); index.
+
+**Open (SRF process, not ours to answer):**
+- Do SRFs cover transitive dependencies?
+- Does "major 0 approved" cover every 0.x minor?
+- Do other-major dependencies need mention?
+- Graham's own note on TypeScript ("one big SRF or 17 separate?") stays in his sheet.
+
 # [2026-10-01] decision | ADR-008 + the legacy ladder re-walked to 22.2.1 on the exact-pinned apps; two Nexus npm-loading defects found and fixed
 
 Graham answered the `desert-island-devenv-01` decisions ("agree with all of your recs — I'll defer to you on the ones you didn't give recs for") with four answers of his own: **ship both npm and pnpm** (each app chooses; examples locked to pnpm), **Docker, not Podman, plus kind**, **newest Nexus** (the legacy island runs 3.81), and the legacy cluster's `kubectl version` (server **v1.30.4**, client 1.35 — outside the supported skew). Recorded as **ADR-008** (amends ADR-004's island clause; resolves C-011 and C-013). He also pushed exact-pinned package.json files for both legacy apps (main 4dec9c4; registered late as **SRC-016**) and asked for the upgrade ladder to be vetted and made runnable end to end — plus a PR, a rundown, where the stack lists live, and a how-to for the bundling scripts.

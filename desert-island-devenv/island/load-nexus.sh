@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # load-nexus.sh -- load everything in THIS bundle into the Nexus hosted repositories.
-# Created 2026-10-01; rehearsed against Nexus 3.96.4 (see packet). Run it from either bundle:
+# Created 2026-10-01; rehearsed against Nexus 3.96.4 (see packet). Last updated 2026-10-02: borrows
+# Node from Nexus raw for bundles that carry none; never ends without a message. Run it from either bundle:
 # it loads whichever of npm/, raw/, pypi/, maven/, images/ the bundle contains.
 #
 #   ./load-nexus.sh            verify the bundle, then load all of it
@@ -16,6 +17,11 @@ set -euo pipefail
 source "$(dirname "$0")/lib/common.sh"
 need curl sha256sum
 load_conf; load_creds
+# Never end silently: an exit that did not come through die() or the failure summary says so (added
+# 2026-10-02 after a bundle without Node made this script stop, mid-npm, with no message at all).
+unexpected() { local rc=$?; [ "$rc" = 0 ] || [ "${DEVENV_STOPPED:-0}" = 1 ] || \
+  printf '\nSTOP: load-nexus.sh ended unexpectedly (exit %s) -- record this message and the lines above it.\n' "$rc" >&2; }
+trap unexpected EXIT
 PARTS=("$@"); [ ${#PARTS[@]} -eq 0 ] && PARTS=(npm raw pypi maven images)
 JOBS="${LOAD_JOBS:-6}"
 LOGS="${DEVENV_LOGDIR:-$HOME/devenv-load-logs}/$(basename "$BUNDLE_DIR")"; mkdir -p "$LOGS"
@@ -52,10 +58,16 @@ load_npm() {
   # verified and repaired if Nexus dropped a version (found 2026-10-01 -- see lib/npm-load-package.sh).
   [ -x "$HERE_LIB/npm-load-package.sh" ] || die "lib/npm-load-package.sh missing -- rebuild the bundle"
   if ! command -v npm >/dev/null; then             # npm publish needs npm: borrow the Node this bundle carries
-    local nt nd; nt=$(ls "$BUNDLE_DIR"/raw/nodejs/*/node-*-linux-x64.tar.xz 2>/dev/null | sed -n 1p)
-    [ -n "$nt" ] || die "npm not found on this machine, and this bundle carries no Node to borrow it from"
+    local nt nd; nt=$(ls "$BUNDLE_DIR"/raw/nodejs/*/node-*-linux-x64.tar.xz 2>/dev/null | sed -n 1p) || true   # none: not an error
+    # An SRF category bundle without Node (2026-10-02): borrow the Node an earlier bundle put in Nexus raw.
+    if [ -z "$nt" ] && [ -f "$ISLAND_DIR/frontend.versions.env" ]; then
+      local NODE_VERSION; NODE_VERSION=$(sed -n 's/^NODE_VERSION=//p' "$ISLAND_DIR/frontend.versions.env")
+      nt="$(mktemp -d)/node-v$NODE_VERSION-linux-x64.tar.xz"
+      curl -fsS -u "$NEXUS_CREDS" -o "$nt" "$(repo_url "$RAW_REPO")/nodejs/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz" 2>/dev/null || nt=""
+    fi
+    [ -n "$nt" ] || die "npm not found on this machine, this bundle carries no Node, and Nexus raw has none yet -- load the bundle that carries Node.js first (or install Node on this machine)"
     nd="$(mktemp -d)"; tar -xJf "$nt" -C "$nd" --strip-components=1; export PATH="$nd/bin:$PATH"
-    echo "  using the bundle's own Node $(node --version) / npm $(npm --version) to publish"
+    echo "  using Node $(node --version) / npm $(npm --version) from $( [[ "$nt" == "$BUNDLE_DIR"/* ]] && echo 'this bundle' || echo 'Nexus raw') to publish"
   fi
   local npmrc; npmrc="$(mktemp)"; chmod 600 "$npmrc"
   printf '//%s/:_auth=%s\n' "$(repo_url "$NPM_REPO" | sed -E 's#^[a-z]+://##')" "$(printf '%s' "$NEXUS_CREDS" | base64 | tr -d '\n')" > "$npmrc"
@@ -160,6 +172,6 @@ fi
 
 if [ -s "$FAILS" ]; then
   log "FINISHED WITH FAILURES -- $(wc -l < "$FAILS") item(s), listed in $FAILS. Re-run once; anything still failing: record it."
-  exit 1
+  DEVENV_STOPPED=1; exit 1
 fi
 log "FINISHED: zero failures."

@@ -9,7 +9,7 @@ BUNDLE_DIR="$(cd "$ISLAND_DIR/.." && pwd)"
 
 log()  { printf '\n== %s\n' "$*"; }
 warn() { printf 'WARNING: %s\n' "$*" >&2; }
-die()  { printf '\nSTOP: %s\nRecord this message verbatim before doing anything else.\n' "$*" >&2; exit 1; }
+die()  { printf '\nSTOP: %s\nRecord this message verbatim before doing anything else.\n' "$*" >&2; DEVENV_STOPPED=1; exit 1; }
 need() { for c in "$@"; do command -v "$c" >/dev/null 2>&1 || die "required command not found: $c"; done; }
 
 # devenv.conf holds the site-specific values (Nexus URL, repository names, credentials file).
