@@ -8,7 +8,7 @@ updated: 2026-10-02
 
 # RR Context Wiki Index
 
-**Created:** 2026-08-25 | **Last updated:** 2026-10-02 (the **SRF category bundles how-to** + SRC-017, Graham's SRF status sheet); 2026-10-01 (later the same day: Graham's decisions → **ADR-008**; DevOps stack list **v2**; the **bundling scripts guide**; the legacy ladder **re-walked to 22.2.1** on the exact-pinned apps — hop procedure v3, Nexus upload v2, offline transcript v3. Earlier: `desert-island-devenv-01` — the Desert Island workstation stack list, its two transfer bundles and the Nexus load path, rehearsed offline; SRC-013..015; C-011..C-014)
+**Created:** 2026-08-25 | **Last updated:** 2026-10-02, later (Vite/esbuild rows corrected to Angular 22's own pins — how-to §6 rewritten, C-015); 2026-10-02 (the **SRF category bundles how-to** + SRC-017, Graham's SRF status sheet); 2026-10-01 (later the same day: Graham's decisions → **ADR-008**; DevOps stack list **v2**; the **bundling scripts guide**; the legacy ladder **re-walked to 22.2.1** on the exact-pinned apps — hop procedure v3, Nexus upload v2, offline transcript v3. Earlier: `desert-island-devenv-01` — the Desert Island workstation stack list, its two transfer bundles and the Nexus load path, rehearsed offline; SRC-013..015; C-011..C-014)
 
 Navigation spine for the RR context system. Update when a page is added, removed, or changes meaningfully.
 
@@ -66,7 +66,7 @@ Navigation spine for the RR context system. Update when a page is added, removed
 
 - [Governance README](governance/README.md)
 - [Decisions (ADR index)](governance/decisions/README.md) — ADR-001 context system · ADR-002 merge gate · ADR-003 board/doctrine · ADR-004 npm · **ADR-005 island stack sync (2026-09-03)** · **ADR-006 repo layout apps/packages/services (2026-09-04)** · **ADR-007 ACME Workshop is a learning instrument, not the scaffold (2026-09-08)** · **ADR-008 Desert Island dev-environment baseline (2026-10-01; amends ADR-004)**
-- [Contradiction Register](governance/contradictions/register.md) — C-001..C-014
+- [Contradiction Register](governance/contradictions/register.md) — C-001..C-015
 - [Meta](governance/meta/README.md)
 
 # Operations

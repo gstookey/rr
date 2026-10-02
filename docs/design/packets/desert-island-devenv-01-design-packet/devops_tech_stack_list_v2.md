@@ -4,12 +4,12 @@ status: exploratory
 title: DevOps Tech Stack List v2 — the air-gapped RHEL 9 full-stack development environment (Graham's decisions folded in, 2026-10-01)
 areas: [technology-stack, dev-environment, isolated-network, frontend, backend, security]
 related: ["docs/design/packets/desert-island-devenv-01-design-packet/devops_tech_stack_list_v1.md", "docs/design/packets/desert-island-devenv-01-design-packet/source_reconciliation_v1.md", "docs/design/packets/desert-island-devenv-01-design-packet/bundle_rehearsal_transcript_v2.md", "docs/context/operations/user-workflow/bundling_scripts_guide_v1.md", "desert-island-devenv/README.md", "desert-island-devenv/island/README.md"]
-updated: 2026-10-01
+updated: 2026-10-02
 ---
 
 # DevOps Tech Stack List v2 — air-gapped RHEL 9 full-stack development environment
 
-**Created:** 2026-10-01 (Axium) | **Status:** `exploratory` — **supersedes [v1](devops_tech_stack_list_v1.md)** (same day): Graham's answers of 2026-10-01 folded in — **npm *and* pnpm** shipped (the example stack locked to pnpm), **Docker CE + kind** instead of Podman, Kubernetes client tools matched to the **1.30** cluster, Angular **22.2.1** on both islands (D-2), the newest Nexus. Vetted against the live registries and vendor sites on **2026-10-01**; **both bundles rebuilt from these pins and rehearsed end to end** against Nexus on offline RHEL 9 machines ([transcript v2](bundle_rehearsal_transcript_v2.md)). Versions drift: re-check before a re-cut.
+**Created:** 2026-10-01 (Axium) | **Last updated:** 2026-10-02 — **`vite` 6.4.3 → 8.3.0 and `esbuild` 0.25.0 → 0.28.2**, to the versions Angular 22.2.1's own build pins, so each ships one line instead of two (found by the SRF planner; [SRF how-to §6](../../../context/operations/user-workflow/srf_category_bundles_howto_v1.md#6-what-the-sheet-tells-you)) | **Status:** `exploratory` — **supersedes [v1](devops_tech_stack_list_v1.md)** (same day): Graham's answers of 2026-10-01 folded in — **npm *and* pnpm** shipped (the example stack locked to pnpm), **Docker CE + kind** instead of Podman, Kubernetes client tools matched to the **1.30** cluster, Angular **22.2.1** on both islands (D-2), the newest Nexus. Vetted against the live registries and vendor sites on **2026-10-01**; **both bundles rebuilt from these pins and rehearsed end to end** against Nexus on offline RHEL 9 machines ([transcript v2](bundle_rehearsal_transcript_v2.md)). Versions drift: re-check before a re-cut.
 
 **What changed from v1, in one place:** §1 Docker CE replaces Podman (RPMs now *in* the back-end bundle) · §2 pnpm **10.34.6** bundled (10.15.0 carried 10+ advisories) · §3 Angular `22.2.0 → 22.2.1` (17 packages), `uuid 11.1.1` added (pnpm does not auto-install the peer npm did), lockfile is now `pnpm-lock.yaml` · §5 kubectl **v1.31.14**, Helm **v3.18.6** as `helm` + **v4.3.0** as `helm4`, kind **v0.29.0** · §6 `kindest/node:v1.30.13` added · §8 Nexus: target the newest release · §9 updated.
 
@@ -128,7 +128,7 @@ Generated from `stack/frontend/package.json` against the source list, **locked w
 | `cors` | 2.8.5 | **2.8.5** | ✅ |  |
 | `cypress` | 16.1.1 | **16.1.1** | ✅ |  |
 | `dotenv` | 16.4.5 | **16.4.5** | ✅ |  |
-| `esbuild` | 0.25.0 | **0.25.0** | ✅ |  |
+| `esbuild` | 0.25.0 | **0.28.2** | 🔧 | *(2026-10-02)* Angular 22.2.1's build pins esbuild **0.28.2** exactly, so 0.25.0 only added a second esbuild line (each 0.x minor is a breaking line). jest-preset-angular accepts `>=0.23.0`. |
 | `eslint` | 8.56.0 | **9.39.5** | 🔧⚠ | 8.56.0 is upstream-unsupported. 9.39.5 is the newest line Sheriff 0.19.6 supports — but npm now marks 9.x unsupported too; ESLint 10 needs Sheriff 0.20.x (decision). |
 | `eslint-config-prettier` | 10.1.5 | **10.1.5** | ✅ |  |
 | `eslint-plugin-unused-imports` | 4.1.4 | **4.1.4** | ✅ |  |
@@ -161,7 +161,7 @@ Generated from `stack/frontend/package.json` against the source list, **locked w
 | `typescript` | 6.0.3 | **6.0.3** | ✅ |  |
 | `typescript-eslint` | — | **8.71.0** | ➕ | added: flat-config entry point for typescript-eslint 8. |
 | `uuid` | — | **11.1.1** | ➕ | added (v2): `@stomp/rx-stomp@2.2.0` peers `uuid >=9 <12`. npm auto-installed it; pnpm wires the peer to the 8.3.2 `sockjs` brings, so it is declared explicitly. |
-| `vite` | 6.1.1 | **6.4.3** | 🛡 | 6.1.1 → 6.4.3 (`server.fs.deny` bypasses; bundled esbuild dev-server advisory). |
+| `vite` | 6.1.1 | **8.3.0** | 🔧 | *(2026-10-02)* Angular 22.2.1's build pins Vite **8.3.0** exactly and Vitest 4.1.11 accepts `^6 \|\| ^7 \|\| ^8`, so 6.4.3 only added a second Vite major. (v2 first moved 6.1.1 → 6.4.3 for advisories while keeping the proposed major.) |
 | `vitest` | 3.0.5 | **4.1.11** | 🔧 | 3.0.5 is incompatible: Angular 22.2 `@angular/build` requires `^4.0.8 || ^5.0.0`. 4.1.11 also clears a **critical** advisory present through 4.1.10. |
 | `ws` | 8.18.0 | **8.22.0** | 🛡 | 8.18.0 → 8.22.0 (high: memory disclosure / DoS). |
 | `zone.js` | 0.15.0 | **0.15.0** | ✅ |  |

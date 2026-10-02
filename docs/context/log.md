@@ -2,6 +2,37 @@
 
 <!-- Convention (BS-14): one `# [YYYY-MM-DD] <type> | <title>` header level, newest-first — prepend below this comment. Types: ingest | decision | milestone | lint | governance | session -->
 
+# [2026-10-02] decision | "Is the SRF sheet wrong?" — Vite and esbuild rows corrected to Angular 22's own pins; the other "other majors" are genuine (C-015)
+
+Graham read how-to §6.3 (dependencies that are another major of a sheet package) and asked whether the sheet should carry the higher versions.
+
+**Answer: two kinds of second copy.**
+- **Kind 1, the sheet was wrong (two rows).** The stack pinned `vite 6.4.3` and `esbuild 0.25.0`, but Angular 22.2.1's build pins **Vite 8.3.0** and **esbuild 0.28.2** *exactly*. Our only other Vite user, Vitest 4.1.11, accepts 6/7/8, and jest-preset-angular accepts esbuild ≥0.23. Pins and sheet rows moved to 8.3.0 / 0.28.2; statuses untouched.
+  - The relock (`pnpm install --lockfile-only` on the existing lock) **only removed** packages: Vite 6.4.3, esbuild 0.25.0 and its platform binaries. The pool went from 1,554 to 1,551 tarballs.
+- **Kind 2, the sheet is right.** Each of these second copies is pinned privately by an upstream package, and the sheet's version is also genuinely needed:
+  - **Babel 8** inside Angular's build; Jest 30 itself hard-depends on Babel 7.
+  - **tslib 1** via webpack-dev-server → selfsigned → @peculiar/x509 → tsyringe.
+  - **uuid 8** via sockjs.
+  - **ws 7** via Cypress.
+  - **dotenv 17** via Prisma's c12; 16 is legacy parity and is pinned by Nx.
+- **How it happened:** the reconciliation kept each proposed major (from SRC-013) unless an advisory or incompatibility forced a move. It judged package by package, never checking the framework's own pins. esbuild was additionally hidden by the planner counting every 0.x as one "major 0"; it now treats each 0.x minor as a major, as semver does.
+
+**Re-rehearsed offline** (fresh Nexus, five tars, porting order):
+- Every load FAILED 0; uploads 426 + 471 + 398 + 45 + 211 = 1,551.
+- Every category proof GREEN. The Angular bundle now shows `WAIT` on **Vite** next to TypeScript: Angular's need for Vite 8 is now explicit.
+- `prove-install.sh frontend` 10/10 (1,790 locked packages); Vitest on Vite 8.3.0 / esbuild 0.28.2 ran a test, passed.
+
+**Doctrine touched:**
+- `stack/frontend/package.json` + `pnpm-lock.yaml`; SRC-017 revised (two cells); `srf-plan.mjs`.
+- Docs: how-to §6 rewritten (6.1–6.5) and §7 re-run; DevOps stack list v2 (rows amended); reconciliation annotated.
+- Context: **C-015** (opened and resolved); CURRENT_STATE; current_priorities; bundling guide.
+
+**For Graham (re-vet):**
+- **Vite**: the SRF must name **8.3.0** (still a bump from 5).
+- **esbuild**: is **0.28.2** covered by "major 0 approved"?
+- **Babel 8**: rides with Angular's already-submitted SRF, if transitive majors need mention.
+- His own spreadsheet needs the same two cell edits.
+
 # [2026-10-02] ingest | Graham's SRF status sheet (SRC-017) → front-end bundles by approval status, rehearsed offline
 
 Graham turned the front-end stack table into a sheet with the **majors already approved** and an **Approval Status** per row: MAJOR ALREADY APPROVED 39, MAJOR BUMP SRF SUBMITTED 8 (Angular), MAJOR BUMP SRF NEEDED 18, NEW SRF NEEDED 5, nice to have / can wait 10. He asked for bundles by status, so each group can cross as its SRFs land, plus a step-by-step how-to. The sheet is registered as **SRC-017** (committed verbatim; its notes column is never read and never copied into a bundle).
